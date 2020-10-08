@@ -1,0 +1,64 @@
+\documentclass[10pt]{article}
+\pdfoutput=1 
+\usepackage{NotesTeX,lipsum}
+
+%\usepackage{showframe}
+
+\title{\begin{center}{\Huge \textit{Differential Equations Notes}}\\{{\itshape Based on Lectures and "An Introduction to ODEs"}}\end{center}}
+\author{$\theta\omega\theta$}
+\affiliation{
+Not in University of Cambridge\\
+skipped some takes irrelevant to contents\\
+}
+
+\emailAdd{not telling you}
+
+\begin{document}
+	\maketitle
+	\flushbottom
+	\newpage
+    \pagestyle{fancynotes}
+    %main doc
+    \part{Basic Calculus}
+    \section{Lecture 1}
+    \subsection{Differentiation}
+	\begin{definition}[Derivative]
+        The derivative of a function $f(x)$ wrt its argument $x$ is the function
+        \[
+            \frac{\mathrm{d}f}{\mathrm{d}x} = \lim_{h \to 0} \frac{f(x+h)-f(x)}{h} 
+        .\]
+        We define higher derivatives recursively by 
+        \[
+            \frac{\mathrm{d}^nf}{\mathrm{d}x^n} = \frac{\mathrm{d}}{\mathrm{d}x}\left( \frac{\mathrm{d}^{n-1}f}{\mathrm{d}x^{n-1}}  \right)   
+        .\]
+    \end{definition}
+    For the derivative to exist, we need
+    \[
+        \lim_{h \to 0-} \frac{f(x+h)-f(x)}{h} = \lim_{h \to 0+} \frac{f(x+h)-f(x)}{h} 
+    .\]
+    
+    Rules for differentiation:
+    \begin{enumerate}
+        \item \textbf{Chain rule}: $ (f(g(x)))' = f'(g(x))g'(x) $.
+        \item \textbf{Product rule}: $ (u\cdot v)' = u\cdot v'+u'\cdot v $.
+        \item \textbf{Leibniz's rule}: generalisation of product rule.\sidenote{There are multiple ways to prove, e.g. by induction.}
+        \[
+            \frac{\mathrm{d}^n}{\mathrm{d}x^n}(u\cdot v) = \sum_{k=0}^{n}\binom{n}{k}u^{(k)}v^{(n-k)}
+        .\]
+    \end{enumerate}
+    \subsection{Order of magnitude}
+    The goal is to compare the sizes of functions, in the vicinity of specific points.
+    \begin{definition}[Little and Big o]
+        We say $ f(x) = o(g(x)) $ as $x\to x_0$ if $ \lim_{x \to x_0} \frac{f(x)}{g(x)} = 0 $.
+
+        We say $ f(x) = O(g(x)) $ as $x\to x_0$ if $ \exists M, \delta>0, \left| x-x_0 \right| <\delta \Rightarrow \left| f(x) \right| \le M \left| g(x) \right| . $ The infinite case is defined similarly.
+    \end{definition}
+
+    To find the tangent line to $f$ at $x_0$, note that 
+    \[
+        \begin{aligned}
+             & \frac{\mathrm{d}f}{\mathrm{d}x}\Big|_{x=x_0} = \frac{f(x_0+h)-f(x_0)}{h}+ \frac{o(h)}{h} & \text{when $ h \to 0$} \\
+             \Longrightarrow & f(x_0+h) = f(x_0)+\frac{\mathrm{d}f}{\mathrm{d}x}\Big|_{x=x_0} h + o(h)& \text{when $ h \to 0$} \\
+        \end{aligned}
+    \]
+\end{document}
