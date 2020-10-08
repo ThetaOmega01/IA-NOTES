@@ -1,3 +1,3 @@
 # IA-NOTES
 Part IA notes 2020-2021 based on lectures.
-Build wit `pdflatex`.
+Build with `pdflatex`.
