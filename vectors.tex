@@ -1,0 +1,69 @@
+\documentclass[10pt]{article}
+\pdfoutput=1 
+\usepackage{NotesTeX,lipsum}
+
+%\usepackage{showframe}
+
+\title{\begin{center}{\Huge \textit{Vectors and Matrices}}\\{{\itshape Based on Lectures and "Intro to Linear Algebra"}}\end{center}}
+\author{$\theta\omega\theta$}
+\affiliation{
+Not in University of Cambridge\\
+skipped some talks irrelevant to contents\\
+}
+
+\emailAdd{not telling you}
+
+\begin{document}
+	\maketitle
+	\flushbottom
+	\newpage
+	\pagestyle{fancynotes}
+	\part{Complex Numbers}
+    \section{Definition}
+    \begin{definition}
+        Construct $\mathbb{C} $ from $ \mathbb{R}  $ by adding $i$ that $i^2 = -1$. Any $z\in \mathbb{C}$ is in the form
+        \[
+            z = x+iy, x = \Re z, y= \Im z, x,y\in \mathbb{R} . 
+        \] 
+        Addition and multiplication are defined by
+        \[
+            z_1+z_2 = (x_1+x_2) + i(y_1+y_2), z_1z_2 = (x_1+iy_1)(x_2+iy_2)
+        .\]
+        The \textit{conjugate} is defined by
+        \[
+            \bar{z} = z* = x-iy
+        .\]
+        The \textit{modulus} is defined by
+        \[
+            r = |z|, r\ge 0, r^2=|z|^2=z\bar{z}=x^2+y^2
+        .\]
+        The \textit{argument} is defined by
+        \[
+            z\neq 0: \theta=\arg(z)\in \mathbb{R}, z=r(\cos \theta+i\sin \theta)
+        .\]
+        The values of $ \theta $ in $ (-\pi, \pi] $ are called the \textit{principal values}.
+
+        Complex numbers can be plotted on an \textit{Argand diagram}.
+    \end{definition}
+    \section{Basic Properties \& Consequences}
+    \begin{enumerate}[(1)]
+        \item $ +, \times $ are commutative and associative,
+        
+            $ \mathbb{C} $ under $+$ is an abelian group,
+            
+            $ \mathbb{C} $ under $\times$ is an abelian group,
+
+            $ \mathbb{C} $ is a field.
+        \item \textbf{Fundamental Theorem of Algebra}: A polynomial with deg $n$ with coefficients in $ \mathbb{C}  $ can be written as a product of $n$ linear factors, has at least one solution in $ \mathbb{C}  $ and has n solutions connected with multiplicity.
+        \item Parallelogram constructions.
+        \item \[
+            \left| z_1 \right| \left| z_2 \right| = \left| z_1z_2 \right|, \left| z_1+z_2 \right| \le \left| z_1 \right| +\left| z_2 \right|
+        .\]
+
+        Alternative forms:
+        \[
+            \left| z_2-z_1 \right| \ge \left| z_2 \right| -\left| z_1 \right|, \left| z_2-z_1 \right| \ge \left| |z_2|-|z_1| \right| 
+        .\]
+        \item \textbf{De Moivre's Theorem}: $ z^n = r^n(\cos n\theta+i\sin n\theta) $.
+    \end{enumerate}
+\end{document}

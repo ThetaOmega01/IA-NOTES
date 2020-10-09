@@ -1,0 +1,59 @@
+\documentclass[10pt]{article}
+\pdfoutput=1 
+\usepackage{NotesTeX,lipsum}
+
+%\usepackage{showframe}
+
+\title{\begin{center}{\Huge \textit{Groups}}\\{{\itshape Based on Lectures and "Algebra and Geometry"}}\end{center}}
+\author{$\theta\omega\theta$}
+\affiliation{
+Not in University of Cambridge\\
+skipped some takes irrelevant to contents\\
+}
+
+\emailAdd{not telling you}
+
+\begin{document}
+	\maketitle
+	\flushbottom
+	\newpage
+	\pagestyle{fancynotes}
+	\part{Groups and Permutations}
+
+    \section{Definition of Groups}
+    \begin{definition}[Group]
+        A group is a set $G$ together with a binary operation $ \ast: G\times G \to G $ that 
+        \begin{enumerate}
+            \item (Closure) $ \forall g,h\in G, g\ast h $,
+            \item (Identity)$ \exists e\in G, \forall g\in G, e*g = g*e = g $,
+            \item (Inverse)$ \forall g\in G, \exists g^{-1}\in G, g * g^{-1} = g^{-1}*g = e $,
+            \item (Associativity)$ \forall g,h,k\in G, (g*h)*k = g*(h*k) $. 
+        \end{enumerate}
+    \end{definition}
+    \begin{remark}
+        The inverse of $g$ is unique, for if there are two $g',g''$, both are inverses of $g$, we have 
+        \[
+            g' = g''*g*g' = g''
+        .\]
+    \end{remark}
+    \begin{example}
+        \begin{enumerate}[(1)]
+            \item $G = \left\{ e\right\}$, the trivial group,
+            \item $ G = \left\{ \text{symmetries of } \triangle \right\} $,
+            \item $ (\mathbb{Z} , +) $,
+            \item $ (\mathbb{R} ,+), (\mathbb{Q} , +), (\mathbb{C} , +) $,
+            \item $ \mathbb{R}^* = \mathbb{R} \setminus \left\{ 0\right\}; (\mathbb{R}^*, \times) $,
+            \item $ (\mathbb{Z}_n, + \bmod n), \mathbb{Z}_n = \left\{ 0,1,\dots, n-1\right\} $,
+            \item Vector spaces with addition of vectors,
+            \item $ (\rm{GL}_2(\mathbb{R}), \text{matrix multiplication}) $, set of invertible $2\times 2$ matrices,
+        \end{enumerate}
+    \end{example}
+    \begin{example}[non-examples]
+        \begin{enumerate}[(1)]
+            \item $ (\mathbb{Z}_n, +) $, since it is not closed,
+            \item $ (\mathbb{Z} , \times) $, since some inverses do not exist,
+            \item $ (\mathbb{R} , *) $, where $ r*s = r^2 s $, since there is no identity,
+            \item $ (\mathbb{N}, *), n*m = |n-m| $.\marginnote{Here $ \mathbb{N} $ is the set of all positive numbers, and it remains this definition unless specified otherwise.} Associativity fails.
+        \end{enumerate}
+    \end{example}
+\end{document}
