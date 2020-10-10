@@ -18,7 +18,7 @@ skipped some talks irrelevant to contents\\
 	\flushbottom
 	\newpage
 	\pagestyle{fancynotes}
-	\part{Number Theory}
+	\part{Elementary Number Theory}
 
 	%main doc
 	\section*{Pre: Introduction}
@@ -45,5 +45,18 @@ skipped some talks irrelevant to contents\\
 		\item[\bf III] For any $n\in \mathbb{N}*$, if $9|n^2$ then $9|n$.	\marginnote{This is a \textit{wrong} claim. A counterexample is $n=3$.} 
 	\end{enumerate}
 
+	Definition of if and only if, ..., skipped
+
 	%end of section 1
+	\section{The Natural Numbers}
+	\begin{definition}
+		The set of natural numbers $ \mathbb{N} $ is a set containing an element “1” and with an operation “$+1$” satisfying
+		\begin{enumerate}[(1)]
+			\item $ \forall n\in \mathbb{N}, n+1\neq 1. $
+			\item If $ m\neq n $, then $ m+1\neq n+1. $ \marginnote{These two rules ensure that all natural numbers are different.}
+			\item (Induction Axiom) For any property $P(n)$, $ (P(1)\land P(n)\Rightarrow P(n+1)) \Rightarrow \forall n\in \mathbb{N} (P(n))$.
+		\end{enumerate}
+		They are called the \textit{Peano axioms}.
+	\end{definition}
+	Thus we can define $ +k $ recursively by $ 2=1+1 $, and $ n+(k+1)=(n+k)+1 $. Other usual operations can be defined similarly. Usual laws of arithmetic can be derived by induction.
 \end{document}
