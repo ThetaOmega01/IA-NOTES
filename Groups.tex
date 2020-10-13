@@ -56,4 +56,59 @@ skipped some takes irrelevant to contents\\
             \item $ (\mathbb{N}, *), n*m = |n-m| $.\marginnote{Here $ \mathbb{N} $ is the set of all positive numbers, and it remains this definition unless specified otherwise.} Associativity fails.
         \end{enumerate}
     \end{example}
+    \section{Propertie of Groups}
+    \begin{proposition}\label{prop:groups_properties}
+        Let $G$ be a group, then we have 
+        \begin{enumerate}
+            \item The identity is unique.
+            \item THe inverse is unique.
+            \item $ gh=g \land hg=g \Rightarrow h=e $.
+            \item $ gh=e \Rightarrow hg=e, h=g^{-1} $.
+            \item $ (g^{-1})^{-1}=g $.
+        \end{enumerate}
+    \end{proposition}
+    \begin{definition}
+        A group $G$ is called \textit{abelian} if $ \forall g,h\in G, gh=hg $.
+    \end{definition}
+    \begin{definition}
+        $G$ is said to be \textit{finite} if it has finitely may elements. Denote $|G|$ as its number of elements.
+    \end{definition}
+    \begin{definition}
+        Let $ (G,*) $ be a group. A subset $H\subseteq G$ is called a \textit{subgroup} of $G$ if $ (H,*) $ is a group, written as $ H\le G $.
+    \end{definition}
+    \begin{remark}
+        To check $ H\le G $, simply check closure, identity, and inverses. Associativity is inherited.
+    \end{remark}
+    \begin{proposition}\label{prop:uniqueness of identity}
+        Let $ e_H, e_G $ be the identities in $H$ and $G$ respectively, then $e_H=e_G$. 
+    \end{proposition}
+    \begin{example}
+        \begin{enumerate}[(1)]
+            \item $ \left\{ e\right\} \le G $.
+            \item $ G\le G $.
+            \item $ (\mathbb{Z} ,+)\le (\mathbb{Q} ,+)\le (\mathbb{R} ,+)\le (\mathbb{C} ,+) $.
+        \end{enumerate}
+    \end{example}
+    \begin{lemma}[subgroup test]\label{lma:subgroup test}
+        Let $ G $ be a group, then $ H\le G \Leftrightarrow H\neq \varnothing \land \forall a,b\in H, ab^{-1}\in H $.
+    \end{lemma}
+    \begin{proof}
+        Since $gg^{-1}=e\in H$, identity is satisfied. Since $ \forall a,b\in H, a(b^{-1})^{-1}=ab\in H $, closure is satisfied. $ \forall g\in H, eg^{-1}=g^{-1}\in H $, inverse is satisfied.
+    \end{proof}
+    \begin{proposition}\label{prop:subgroups of integers}
+        The subgroups of $ (\mathbb{Z} ,+) $ are precisely $ (n \mathbb{Z} ,+) $.
+    \end{proposition}
+    Proved by considering the minimal element.
+
+    Usual laws:
+    \begin{proposition}\label{prop:comparing_groups}
+        \begin{enumerate}[(1)]
+            \item Let $ H,K $ be subgroups of $G$ then $ H\cap K\le G $.
+            \item $ K\le H \land H\le G \Rightarrow K\le G $.
+            \item $ K \subseteq H, H\le G, K\le G \Rightarrow K\le H $.
+        \end{enumerate}
+    \end{proposition}
+    \begin{definition}
+        If $ X\neq \varnothing $ is a subset of group $G$, the subgroup \textit{generated} by $X$, written as $ \langle X \rangle $, is the intersection of all subgroups containing $X$.
+    \end{definition}
 \end{document}

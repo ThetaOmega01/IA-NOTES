@@ -59,4 +59,47 @@ skipped some talks irrelevant to contents\\
 		They are called the \textit{Peano axioms}.
 	\end{definition}
 	Thus we can define $ +k $ recursively by $ 2=1+1 $, and $ n+(k+1)=(n+k)+1 $. Other usual operations can be defined similarly. Usual laws of arithmetic can be derived by induction.
+	\begin{proposition}[Strong induction]\label{prop:strong_induction}
+		$(P(1) \land \forall n (\forall m\le n, P(m) \Rightarrow P(n+1))) \Rightarrow \forall n(P(n))$.
+	\end{proposition}
+	\begin{remark}
+		Some equivalent forms of strong induction:
+		\begin{enumerate}
+			\item If $P(n)$ fails for some $n$, then we have a minimum element $n'$ such that $P(n')$ is false but $P(m)$ is true for all $m\le n'$.
+			\item If $P(n)$ for some $n$ then there is a least $n$ with $P(n)$.
+
+			Often referred as the \textit{well-ordering principle}.
+		\end{enumerate}
+	\end{remark}
+	\section{The Integers}
+	Written in $ \mathbb{Z} $, consist of all symbols $n,-n,n\in \mathbb{N}$ and 0. Usual laws hold.
+
+	Expand definition of order by $ a<b $ if and only if $ \exists c\in \mathbb{N} $, $a+c=b$. We have
+	\[
+		\forall a,b,c, a<b \land c>0 \Longrightarrow ac<bc
+	.\]
+	\section{The Rationals}
+	Written in $ \mathbb{Q} $, consists of all expressions $ a/b, a,b\in \mathbb{Z}, b\neq 0 $ with $ a/b $ regarded as $ c/d $ if $ad=bc$.
+
+	Addition is defined as 
+	\[
+		\frac{a}{b}+\frac{c}{d} = \frac{ad+bc}{bd}
+	.\]
+	This holds however we write those fractions.
+	\begin{remark}
+		Unlike clear unambiguity in $\mathbb{Z}$, we cannot define operations like $ a/b\mapsto a^2/b^3 $.
+	\end{remark}
+
+	All usual laws work, with order defined as $ a/b<c/d(b,d>0) $ if and only if $ ad<bc $.
+
+	\section{Primes}
+	\begin{definition}
+		$m$ is said to be a $divisor$ of $n$ if and only if $\exists k\in \mathbb{N} , n=km$.
+
+		$ p\in \mathbb{N} $ is \textit{prime} if and only if only $1$ and $p$ divide $p$.
+	\end{definition}
+	\begin{proposition}\label{prop:factor_into_primes}
+		Every natural numebr $n\ge 2$ is expressible as a product of primes.
+	\end{proposition}
+	Proved by induction.
 \end{document}

@@ -103,4 +103,76 @@ skipped some talks irrelevant to contents\\
         \]
     \end{proof}
     Note that it can be applied recursively.
+    \section{Integration}
+    \subsection{Definition}
+    All functions mentions are assumed to be well-hehaved.
+
+    We evaluate the area under the curve of $f(x)$ by considering
+    \[
+        \sum_{n=0}^{N-1}f(x_n)\Delta x
+    \]
+    where $ \Delta x = \frac{b-a}{N} $ and $ x_n = a+n\Delta x. $
+    \begin{theorem}[MVT]\label{thm:mean_value_theorem_for_integral}
+        For a continuous function $f(x)$:
+        \[
+            \int_{x_n}^{x_{n+1}} f(x) \,\mathrm{d}x = f(x_c)(x_{n+1}-x_n) \quad \text{for some } x_c\in (x_n,x_{n+1})
+        .\]
+    \end{theorem}
+    Estimate $ f(x_c) $ as follows:
+    \[
+        f(x_c) = f(x_n)+O(x_c-x_n) = f(x_n)+O(x_{n+1}-x_n)
+    .\]\
+    Hence
+    \[
+        \begin{aligned}
+            \int_{x_n}^{x_{n+1}} f(x) \,\mathrm{d}x &= f(x_c)(x_{n+1}-x_n)\\
+            &= [f(x_n)+O(x_{n+1}-x_n)](x_{n+1}-x_n)\\
+            &= \Delta x f(x_n)+O(\Delta x^2).
+        \end{aligned}
+    \]
+    Therefore the error $ \epsilon = O(\Delta x^2) $. It follows that
+    \[
+        \int_{a}^{b} f(x) \,\mathrm{d}x = \lim_{\Delta x \to 0} \left\{ \left[ \sum_{n=0}^{N-1}f(x_n)\Delta x \right] + O(N\Delta x^2)\right\}
+    .\]
+    Hence 
+    \begin{definition}[Definite integral]
+        $\displaystyle \int_{a}^{b} f(x) \,\mathrm{d}x = \lim_{N \to \infty} \sum_{n=0}^{N-1}f(x_n)\Delta x$ 
+    \end{definition}
+    \subsection{Fundamental Theorem of Calculus}
+    \begin{theorem}[FTC]\label{thm:ftc}
+        Let
+        \[
+            F(x) = \int_{a}^{x} f(t) \,\mathrm{d}t
+        ,\]
+        then
+        \[
+            \frac{\mathrm{d}F}{\mathrm{d}x} = f(x) 
+        .\]
+    \end{theorem}
+    \begin{proof}
+        From the definition of derivative:
+        \[
+            \begin{aligned}
+                 \frac{\mathrm{d}F}{\mathrm{d}x} &= \lim_{h \to 0} \frac{1}{h} \left\{ \int_{a}^{x+h} f(t) \,\mathrm{d}t - \int_{a}^{x} f(t) \,\mathrm{d}t\right\}\\
+                 &= \lim_{h \to 0} \frac{1}{h} \int_{x}^{x+h} f(t) \,\mathrm{d}t\\
+                 &= \lim_{h \to 0} \frac{1}{h}\left( f(x)h+O(h^2) \right)\\
+                 &= f(x).
+            \end{aligned}
+        \]
+    \end{proof}
+    \begin{corollary}\label{col:ftc}
+            \[
+                \frac{\mathrm{d}}{\mathrm{d}x}\int_{x}^{b} -f(t) \,\mathrm{d}t 
+            .\]
+            \[
+                \frac{\mathrm{d}}{\mathrm{d}x} \int_{a}^{g(x)} f(t) \,\mathrm{d}t = \frac{\mathrm{d}}{\mathrm{d}x}F(g(x)) = \frac{\mathrm{d}F}{\mathrm{d}g} \frac{\mathrm{d}g}{\mathrm{d}x} = f(g(x))\frac{\mathrm{d}g}{\mathrm{d}x}   
+            .\]
+    \end{corollary}
+    \begin{definition}[Indefinite integral]
+        \[
+            \int f(x) \,\mathrm{d}x = \int_{x_0}^{x} f(t) \,\mathrm{d}t
+        .\]
+    \end{definition}
+    \subsection{Techniques of Integration}
+    skipped
 \end{document}

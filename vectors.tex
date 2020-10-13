@@ -66,4 +66,82 @@ skipped some talks irrelevant to contents\\
         .\]
         \item \textbf{De Moivre's Theorem}: $ z^n = r^n(\cos n\theta+i\sin n\theta) $.
     \end{enumerate}
+    \section{Exponential and Trigs in $\mathbb{C}$}
+    \begin{definition}
+        Define $ \exp, \cos, \sin $ on $ \mathbb{C} $ by
+        \[
+            \begin{aligned}
+                 \exp(z)&= e^z = \sum_{n=0}^{\infty} \frac{1}{n!}z^n,\\
+                 \cos(z)&= \frac{1}{2}(e^{iz}+e^{-iz}) = 1-\frac{1}{2!}z^2+\frac{1}{4!}z^4+\cdots,\\
+                 \sin(z)&= \frac{1}{2i}(e^{iz}-e^{-iz}) = z-\frac{1}{3!}z^3+\frac{1}{5!}z^5+\cdots.\\
+            \end{aligned}
+        \]
+        These series converge for all $ z\in \mathbb{C} $. Can be multiplied, rearranged, etc. Definitions reduce to familiar ones in the reals.
+    \end{definition}
+    \begin{proposition}\label{prop:exp multi}
+        $ \forall z,w\in \mathbb{C}, e^ze^w=e^{z+w}; e^ze^{-z}=1, (e^z)^n =e^{nz}, n\in \mathbb{Z}$.
+    \end{proposition}
+    \begin{lemma}\label{lma:exp_arth}
+        For $z=x+iy$:
+        \begin{enumerate}[(1)]
+            \item $ e^z = e^x(\cos y+i\sin y) $.
+            \item $ \exp(z)\in \mathbb{C} \setminus \left\{ 0\right\} $.
+            \item $ e^z = 1 \Leftrightarrow z = 2\pi n i, n\in \mathbb{Z} $.
+        \end{enumerate}
+    \end{lemma}
+    \begin{definition}[Roots of unity]
+        $z$ is an $ N $th root of unity if $ z^N=1 $.
+    \end{definition}
+    We have 
+    \[
+        z^N=r^Ne^{iN\theta} =1 \Longleftrightarrow r=1, N\theta = 2n\pi \Longleftrightarrow \theta = \frac{2n\pi}{N}
+    ,\]
+    which gives $N$ distinct solutions
+    \[
+        z = \frac{2n\pi}{N} = \omega^n, \quad, n=0,1,\dots, N-1
+    .\]
+    $\omega^n$ lie one the vertices of a regular $n$-gon on the unit circle.
+    \section{Logarithms and Complex powers}
+    \begin{definition}
+        Define $ w = \log z, z\in \mathbb{C} \land z\neq 0 $ by $ e^w = e^{\log z}=z $. Note that since exp is many-to-one, $\log$ is multi-valued.
+        \[
+            \begin{aligned}
+                 & z = re^{i\theta} =e^{\log r}e^{i\theta}=e^{\log r+ i\theta}\\
+                 \Longrightarrow & \boxed{\log z = \log r+i\theta = \log |z|+i\arg(z)}
+            \end{aligned}
+        \]
+        To make it single-valued, simply take the principal value.
+    \end{definition}
+    \begin{definition}
+        Define \textit{complex power} by 
+        \[
+            z^\alpha = e^{\alpha\log z}, \quad z,\alpha\in \mathbb{C} , z\neq 0
+        .\]
+        Note that since $ \arg z \to \arg z + 2n\pi \Rightarrow z^\alpha \to z^\alpha e^{2n\pi} $, it is generally multi-valued. This also reduces to common powers when $ z,\alpha\in \mathbb{R}. $
+    \end{definition}
+    \begin{example}
+        \[
+            i^i = e^{i\log i} = e^{i(0+i(\frac{\pi}{2}+2n\pi))} = e^{-(\frac{\pi}{2}+2n\pi)}
+        .\]
+    \end{example}
+    \section{Transformations, Lines, and Circles}
+    \begin{itemize}
+        \item We have five elementary transformations:
+        \begin{enumerate}[(1)]
+            \item $ z \mapsto z+a $,
+            \item $ z \mapsto \lambda z $,
+            \item $ z \mapsto e^{i\alpha} z $,
+            \item $ z \mapsto \bar{z} $,
+            \item $ z \mapsto \frac{1}{z} $.
+        \end{enumerate}
+        \item General point of a line in $\mathbb{C}$ through $z_0$ and parallel to $w$:
+        \[
+            z = z +\lambda w, \lambda\in \mathbb{R} \text{ or } \bar{w}z-w\bar{z}=\bar{w}z_0-w\bar{z_0}
+        .\]
+        \item General point of a circle in $\mathbb{C}$ with centre $ c $ and radius $ \rho $:
+        \[
+            z = c+ \rho e^{i\theta} \text{ or } \left| z-c \right| = \rho \text{ or } |z|^2-\bar{c}z-c\bar{z}=\rho^2-|c|^2
+        .\]
+        \item Stereographic projection.
+    \end{itemize}
 \end{document}
