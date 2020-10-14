@@ -10,6 +10,7 @@
 Not in University of Cambridge\\
 skipped some talks irrelevant to contents\\
 }
+\DeclareMathOperator{\spn}{span}
 
 \emailAdd{not telling you}
 
@@ -143,5 +144,75 @@ skipped some talks irrelevant to contents\\
             z = c+ \rho e^{i\theta} \text{ or } \left| z-c \right| = \rho \text{ or } |z|^2-\bar{c}z-c\bar{z}=\rho^2-|c|^2
         .\]
         \item Stereographic projection.
+    \end{itemize}
+    \part{Vectors in 3 Dimensions}
+    \section{Vector addition and scalar multiplication}
+    \begin{definition}[scalar multiplication]
+        Given $ \mathbf{a} $, and scalar $ \lambda\in \mathbb{R} $, define $ \lambda \mathbf{a} $ to be the position vector of $ A' $ on the line $OA$ with length $ |\lambda \mathbf{a}|=\left| \lambda \right| \left| \mathbf{a} \right|  $. Direction depends on the sign of $ \lambda $.
+    \end{definition}
+    Define $ \spn\left\{ \mathbf{a}\right\} = \left\{ \lambda \mathbf{a}: \lambda\in \mathbb{R} \right\} $. If $ \mathbf{a}\neq 0 $, then $ \spn \{\mathbf{a}\} $ is the entire line through $O$ and $A$.
+
+    Define $ \mathbf{a} \parallel \mathbf{b} $ if and only if either $ \mathbf{a} = \lambda \mathbf{b} $ or $ \mathbf{b} = \lambda \mathbf{a} $. Allow $ \lambda=0 $, so $\forall \mathbf{a}, \mathbf{0} \parallel \mathbf{a} $. Also allow $\lambda<0$.
+    \begin{definition}[vector addition]
+        Give $ \mathbf{a}, \mathbf{b} $, if $ \mathbf{a} \nparallel \mathbf{b} $, construct a parallelogram $OACB$ and define $ \mathbf{c} = \mathbf{a} + \mathbf{b} $.
+    \end{definition}
+    If $ a \parallel b $, then $ \mathbf{a} = \alpha \mathbf{u}, \mathbf{b}=\beta \mathbf{u} $, where $\mathbf{u}$ is a unit vector and $ \mathbf{a}+\mathbf{b}=(\alpha+\beta)\mathbf{u} $.
+
+    Given $ \mathbf{a},\mathbf{b},\dots,\mathbf{c} $, we have a linear combination
+    \[
+        \alpha \mathbf{a}+ \beta \mathbf{b}+\cdots+\gamma \mathbf{c}
+    \]
+    for any $ \alpha,\beta,\dots, \gamma\in \mathbb{R}  $.
+
+    Define $ \spn \left\{ \mathbf{a},\mathbf{b},\dots,\mathbf{c}\right\} = \left\{ \alpha \mathbf{a}+ \beta \mathbf{b}+\cdots+\gamma \mathbf{c}:\alpha,\beta,\dots, \gamma\in \mathbb{R} \right\} $. In 3d case, if $ \mathbf{a} \nparallel \mathbf{b} $, then $ \spn \{ \mathbf{a}, \mathbf{b} \} $ is a plane through $O,A,B$.
+    
+    Here are some properties:
+    \begin{itemize}
+        \item $ \forall \mathbf{a}, \mathbf{b}, \mathbf{c}, \mathbf{a}+\mathbf{0}=\mathbf{0}+\mathbf{a}=\mathbf{a} $, this says that $ \mathbf{0} $ is the identity for addition.
+        \item $ \exists -\mathbf{a}, \mathbf{a}+(-\mathbf{a})=(-\mathbf{a})+\mathbf{a}=\mathbf{0} $. This says $ -\mathbf{a} $ is the inverse of $ \mathbf{a} $ under addition.
+        \item $ \forall \mathbf{a},\mathbf{b}, \mathbf{a}+\mathbf{b}=\mathbf{b}+\mathbf{a} $, this says that vector addition is commutative.
+        \item $ \forall \mathbf{a},\mathbf{b},\mathbf{c}, (\mathbf{a}+\mathbf{b})+\mathbf{c}=\mathbf{a}+(\mathbf{b}+\mathbf{c}) $, this says that vector addition is associative.
+    \end{itemize}
+    Hence, the set of vectors with addition form an abelian group.
+
+    Relation with scalars:
+    \begin{itemize}
+        \item $ \lambda(\mathbf{a}+\mathbf{b})=\lambda \mathbf{a}+\lambda \mathbf{b} $.
+        \item $ (\lambda+\mu)\mathbf{a}=\lambda \mathbf{a}+ \mu \mathbf{a} $.
+        \item $ (\lambda \mu)\mathbf{a}=\lambda(\mu \mathbf{a}) $.
+    \end{itemize}
+    \section{Dot product}
+    \begin{definition}[dot product]
+        Give $ \mathbf{a}, \mathbf{b} $, let $ \theta $ be the angle between them, define $ \mathbf{a}\cdot\mathbf{b}=|\mathbf{a}||\mathbf{b}|\cos \theta $. Note that $ \theta $ is defined unless $ \mathbf{a}=\mathbf{0} $, in which case we define $ \mathbf{a}\cdot \mathbf{b}=0 $.
+
+        $ \mathbf{a}\perp\mathbf{b} \Leftrightarrow \mathbf{a}\cdot \mathbf{b}=0 \Leftrightarrow \theta=\frac{\pi}{2}\bmod \pi $ when $ \theta $ is defined. Allow $ \mathbf{a} $ or $ \mathbf{b}=0 $, so $ \mathbf{a} \parallel \mathbf{0} \land \mathbf{a} \perp \mathbf{0} $.
+    \end{definition}
+    For $ \mathbf{a}\neq \mathbf{0} $, $ |\mathbf{b}|\cos \theta $ is the component of $ \mathbf{b} $ along $ \mathbf{a} $.
+    \[
+        \left| \mathbf{b} \right| \cos \theta = \frac{\mathbf{a}\cdot \mathbf{b}}{|\mathbf{a}|}=\mathbf{u}\cdot \mathbf{b}
+    .\]
+    By resolving $ \mathbf{b} $ along and perpendicular to $ \mathbf{a} $, we get 
+    \[
+        \mathbf{b} = \mathbf{b}_{\parallel} + \mathbf{b}_{\perp }
+    .\]
+    Properties:
+    \begin{itemize}
+        \item $ \mathbf{a}\cdot \mathbf{b}=\mathbf{b}\cdot \mathbf{a}, \mathbf{a}\cdot \mathbf{a}=|\mathbf{a}|^2\ge 0 $, $ =0 $ iff $ \mathbf{a}=\mathbf{0} $.
+        \item $ (\lambda \mathbf{a})\cdot \mathbf{b}=\lambda (\mathbf{a}\cdot \mathbf{b})=\mathbf{a}\cdot (\lambda \mathbf{b}) $.
+        \item $ \mathbf{a}\cdot (\mathbf{b}+\mathbf{c})=\mathbf{a}\cdot \mathbf{b}+\mathbf{a}\cdot \mathbf{c} $.
+    \end{itemize}
+    \section{Vector cross product}
+    \begin{definition}
+        Given $ \mathbf{a},\mathbf{b} $, let $ \theta $ be the angle between them, wrt a unit vector $ \mathbf{n} $ normal to the plane they span. Define $ \mathbf{a} \wedge \mathbf{b} $ or $ \mathbf{a} \times \mathbf{b} $ as $ |\mathbf{a}||\mathbf{b}|\sin \theta \mathbf{n} $. $ \mathbf{0} $ case is similar.
+    \end{definition}
+    This is the \textit{vector area} of the parallelogram generated by $ \mathbf{a}, \mathbf{b} $. Note that $ \mathbf{a} \wedge \mathbf{b} = \mathbf{a} \wedge \mathbf{b}_{\perp } $.
+
+    Properties:
+    \begin{itemize}
+        \item $ \mathbf{a} \wedge \mathbf{b}=\mathbf{b}\wedge \mathbf{a} $.
+        \item $ (\lambda \mathbf{a})\wedge \mathbf{b}=\lambda(\mathbf{a}\wedge \mathbf{b})=\mathbf{a} \wedge (\lambda\mathbf{b}) $.
+        \item $ \mathbf{a}\wedge (\mathbf{b}+\mathbf{c})=\mathbf{a}\wedge \mathbf{b}+\mathbf{a}\wedge \mathbf{c} $.
+        \item $ \mathbf{a} \wedge \mathbf{b}=\mathbf{0} $ if and only if $ \mathbf{a} \parallel \mathbf{b} $.
+        \item $ \mathbf{a}\wedge \mathbf{b} \perp \mathbf{a} \land \perp \mathbf{b} $.
     \end{itemize}
 \end{document}

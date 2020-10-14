@@ -111,4 +111,42 @@ skipped some takes irrelevant to contents\\
     \begin{definition}
         If $ X\neq \varnothing $ is a subset of group $G$, the subgroup \textit{generated} by $X$, written as $ \langle X \rangle $, is the intersection of all subgroups containing $X$.
     \end{definition}
+    \begin{remark}
+        \begin{itemize}
+            \item $ e\in \langle X \rangle $.
+            \item $ X \subseteq \langle X \rangle $.
+            \item $ \langle X \rangle $ contains all possible products of elements of $X$ and their inverses.
+        \end{itemize}
+    \end{remark}
+    \begin{proposition}\label{prop:generation_of_groups}
+        Let $ \varnothing \neq X \subseteq G $. Then $ \langle X \rangle $ is the set of elements of $ G $ of the form
+        \[
+            x_1^{\alpha_1}x_2^{\alpha_2}\cdots x_k^{r_k},\quad x_i\in X, \alpha_i\in \left\{ -1,1\right\}, k\ge 0
+        .\]
+    \end{proposition}
+    \begin{proof}
+        Let $T$ be such a set. Then by definition $ T \subseteq \langle X \rangle $. On the other hand, $ X \subseteq T \Rightarrow \langle X \rangle  \subseteq T$ since $T$ clearly forms a subgroup. Hence $ T=\langle X \rangle $.
+    \end{proof}
+    \section{Homomorphisms}
+    \begin{definition}
+        Let $ (G,*_G), (H,*_H) $ be groups. A function $ \varphi: H \to G $ is a \textit{homomorphism} if
+        \[
+            \forall a,b\in H, \varphi (a*_HB)=\varphi (a)*_G \varphi (b)
+        .\]
+        It is called an \textit{isomorphism} if it is bijective.
+    \end{definition}
+    \begin{proposition}\label{prop:homom}
+        Let $ \varphi :H\to G $ be a homomorphism.
+        \begin{enumerate}[(1)]
+            \item $ \varphi (e_H)=e_G $.
+            \item $ \varphi (h^{-1})=\varphi (h)^{-1} $.
+            \item If $ \psi:G\to K $ is also a homomorphism, then $ \psi \varphi :H\to K $ is a homomorphism.
+        \end{enumerate}
+    \end{proposition}
+    \begin{proposition}\label{prop:isom_inverse_is_also_an_isom}
+        Let $ \varphi :H\to G $ be an isomorphism. Then $ \varphi^{-1} $ is also an isomorphism and this implies that 
+        \[
+            G \cong H \Longleftrightarrow H \cong G
+        .\]
+    \end{proposition}
 \end{document}
