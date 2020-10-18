@@ -1,7 +1,8 @@
 \documentclass[10pt]{article}
 \pdfoutput=1 
 \usepackage{NotesTeX,lipsum}
-
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\le}{\leqslant}
 %\usepackage{showframe}
 
 \title{\begin{center}{\Huge \textit{Numbers and Sets Notes}}\\{{\itshape Based on Lectures and "The Higher Arithmetic"}}\end{center}}
@@ -102,4 +103,17 @@ skipped some talks irrelevant to contents\\
 		Every natural numebr $n\ge 2$ is expressible as a product of primes.
 	\end{proposition}
 	Proved by induction.
+	\marginnote{Lecture 4.}
+	\begin{theorem}\label{thm:infinite_primes}
+		There are infinitely many primes.
+	\end{theorem}
+	\begin{definition}
+		For $ a,b\in \mathbb{N}  $, a natural number $c$ is the hcf of $a,b$ if $ c|a \land c|b $ and $ d|a \land d|b \Rightarrow d|c $.
+	\end{definition}
+	\begin{proposition}\label{prop:division_alg}
+		Let $ n,k $ be natural numbers. Then $ \exists q,r in \mathbb{Z} , 0\le r<k $ that $ n=qk+r $.
+	\end{proposition}
+	\begin{theorem}[Euclid's Algorithm]\label{thm:Euclid algorithm}
+		skipped
+	\end{theorem}
 \end{document}

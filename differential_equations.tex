@@ -1,7 +1,38 @@
 \documentclass[10pt]{article}
 \pdfoutput=1 
 \usepackage{NotesTeX,lipsum}
+\usepackage{IEEEtrantools}
+\def\d{{\mathrm d}}
+\def\e{{\mathrm e}}
+\def\g{{\mathrm g}}
+\def\h{{\mathrm h}}
+\def\f{{\mathrm f}}
+\def\p{{\mathrm p}}
+\def\s{{\mathrm s}}
+\def\t{{\mathrm t}}
+\def\i{{\mathrm i}}
 
+\def\A{{\mathrm A}}
+\def\B{{\mathrm B}}
+\def\E{{\mathrm E}}
+\def\F{{\mathrm F}}
+\def\G{{\mathrm G}}
+\def\H{{\mathrm H}}
+\def\P{{\mathrm P}}
+
+
+\def\bb{\mathbf b}
+\def \bc{\mathbf c}
+\def\bx {\mathbf x}
+\def\bn {\mathbf n}
+\def\le{\leqslant}
+\def\ge{\geqslant}
+\def\arcosh{{\rm arcosh}\,}
+
+\newcommand{\bluecomment}[1]{{\color{blue}#1}}
+%\renewcommand{\comment}[1]{}
+\newcommand{\redcomment}[1]{{\color{red}#1}}
+\newcommand{\tm}{\times}
 %\usepackage{showframe}
 
 \title{\begin{center}{\Huge \textit{Differential Equations Notes}}\\{{\itshape Based on Lectures and "An Introduction to ODEs"}}\end{center}}
@@ -175,4 +206,110 @@ skipped some talks irrelevant to contents\\
     \end{definition}
     \subsection{Techniques of Integration}
     skipped
+    \section{Introduction to multivariable functions}\marginnote{Lecture 5.}
+        \subsection{Partial derivative}
+        \begin{definition}
+            The \textit{partial derivative} of $ f(x,y) $ wrt $x$ is 
+            \begin{equation}
+                \frac{\partial f}{\partial x}\Big|_y = \lim_{\delta x \to 0} \frac{f(x+\delta x,y)-f(x,y)}{\delta x}.
+            \end{equation}
+            Similarly 
+            \[
+                \frac{\partial f}{\partial y}\Big|_x = \lim_{\delta y \to 0} \frac{f(x,y+\delta y)-f(x,y)}{\delta y}.
+            \]
+            We can take them in any order to form \textit{cross derivatives}.
+        \end{definition}
+        Note that 
+        \begin{equation}
+            \frac{\partial^2 f}{\partial x \partial y} = \frac{\partial }{\partial x}\left( \frac{\partial f}{\partial y}  \right)=\frac{\partial }{\partial y}\left( \frac{\partial f}{\partial x}  \right) .
+        \end{equation}
+        \subsection{Multivariable chain rule}
+        \begin{theorem}\label{thm:mvchainrule}
+            For well-behaved functions, we have 
+            \begin{equation}
+                \d f=\frac{\partial f}{\partial x} \d x+\frac{\partial f}{\partial y} \d y
+            \end{equation}
+        \end{theorem}
+        \begin{proof}
+            Note that 
+            \[
+                \begin{aligned}
+                     \delta f &= f(x+\delta x, y+\delta y)-f(x+\delta x, y)+f(x+\delta x, y)-f(x,y)\\
+                     &= f(x+\delta x,y)+\delta y \frac{\partial f}{\partial y}(x+\delta x, y)+o(\delta y)-f(x+\delta x,y)\\
+                     &+ f(x,y)+\delta x \frac{\partial f}{\partial x}(x,y)+o(\delta x)-f(x,y) \\
+                     &= \delta y \frac{\partial f}{\partial y}(x+\delta x, y)+\delta x \frac{\partial f}{\partial x}(x,y)+o(\delta x)+o(\delta y)\\
+                     &= \delta y \left( \frac{\partial f}{\partial y}(x,y)+\delta x \frac{\partial }{\partial x}\left( \frac{\partial f}{\partial y}(x,y)  \right)+o(\delta x)   \right)+\delta x \frac{\partial f}{\partial x}(x,y)+o(\delta x)+o(\delta y)\\
+                     &= \delta y \frac{\partial f}{\partial y}(x,y)+\delta x \frac{\partial f}{\partial x}(x,y)+\delta x \delta y \frac{\partial }{\partial x}\left( \frac{\partial f}{\partial y}(x,y)  \right)+o(\delta x)+o(\delta y)+o(\delta x \delta y).
+                \end{aligned}
+            \]
+            Taking limit gives the result.
+        \end{proof}
+        \begin{remark}
+            For $ f(x(t),y(t)) $, we have
+            \begin{equation}
+                \frac{\d f}{\d t}=\lim _{\delta x, \delta y, \delta t\to 0}\left[\frac{\partial f}{\partial x} \frac{\d x}{\d t}+\frac{\partial f}{\partial y} \frac{\d y}{\d t}\right] = \frac{\partial f}{\partial x} \frac{\d x}{\d t}+\frac{\partial f}{\partial y} \frac{\d y}{\d t}.
+            \end{equation}
+            And integral form:
+            \begin{equation}
+                \int \d f=\int \frac{\partial f}{\partial x} \d x+\int \frac{\partial f}{\partial y} \d y
+            \end{equation}
+            In this case we need to specify the \textit{path} of integral as there might be some priority issues.
+        \end{remark}
+        \subsection{Applications of multivariable chain rule}
+        \subsubsection{Change of variables}
+        It is often useful to write a DE in a different coordinate system before solving it. Need to transform the derivatives into the new coordinate system. 
+        \begin{example}
+            Change from cartesian coordinates to polar coordinates: $ x=r\cos \theta, y=r\sin \theta $. Firstly, write
+            \[
+                f=f(x(r,\theta),y(r,\theta))
+            .\]
+            We have 
+            \[
+                \frac{\partial f}{\partial r} = \frac{\partial f}{\partial x} \frac{\partial x}{\partial r}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial r}=\frac{\partial f}{\partial x}\cos \theta+\frac{\partial f}{\partial y}\sin \theta
+                \marginnote{By regarding $ \frac{\partial f}{\partial r}$ as $\frac{\mathrm{d}f}{\mathrm{d}r} $ with $\theta$ fixed, we get this result.}     
+            .\]
+            Similar for other partial derivatives.
+        \end{example}
+        \subsubsection{Implicit Differentiation}
+        Consider $ f(x,y,z)=c, c\in \mathbb{R} $. $f$ describes a surface in 3d space. $ f(x,y,z)=c $ implicitly defines $ x(y,z),y(x,z),z(x,y) $. However, we can find $ \frac{\partial z}{\partial x}  $ here using implicit differentiation.
+
+        Consider $ f(x,y,z(x,y))=c $.
+        \[
+            \d f = \frac{\partial f}{\partial x}\d x+ \frac{\partial f}{\partial y}\d y+ \frac{\partial f}{\partial z}\d z   
+        .\]
+        Finding the partial derivative for $x$: 
+        \[
+            \begin{aligned}
+                && \frac{\partial f}{\partial x}\Big|_y &= \frac{\partial f}{\partial x}\Big|_{yz}\frac{\partial x}{\partial x}\Big|_y+\frac{\partial f}{\partial y}\Big|_{xz}\frac{\partial y}{\partial x}\Big|_y+\frac{\partial f}{\partial z}\Big|_{xy}\frac{\partial z}{\partial x}\Big|_y\marginnote{Notice the subscripts are very important since they discribes different functions}\\
+                && &= \frac{\partial f}{\partial x}\Big|_{yz}+\frac{\partial f}{\partial y}\Big|_{xz}\frac{\partial y}{\partial x}\Big|_y+\frac{\partial f}{\partial z}\Big|_{xy}\frac{\partial z}{\partial x}\Big|_y.\\
+                &\Longleftrightarrow &\frac{\partial f}{\partial x}\Big|_y&=\frac{\partial f}{\partial x}\Big|_{yz}+\frac{\partial f}{\partial z}\Big|_{xy}\frac{\partial z}{\partial x}\Big|_y  \marginnote{Since $ \frac{\partial y}{\partial x}\Big|_y=0  $}  \\    
+                &\Longleftrightarrow &0 &= \frac{\partial f}{\partial x}\Big|_{yz}+\frac{\partial f}{\partial z}\Big|_{xy}\frac{\partial z}{\partial x}\Big|_y \marginnote{Since $f=c$ along the surface $z(x,y)$.} \\
+                &\Longleftrightarrow && \boxed{\frac{\partial z}{\partial x}\Big|_y=-\frac{\partial f/ \partial x|_{yz}}{\partial f/\partial z|_{xy}} }    
+            \end{aligned}
+        \]
+        Note that $ \frac{\partial f}{\partial x}\Big|_{yz} \neq 0 $ in general.
+        \begin{remark}
+            Reciprocal rule still holds as long as the same variable(s) are held fixed. e.g.
+            \[
+                \frac{\partial r}{\partial x}\Big|_y = \frac{1}{\frac{\partial x}{\partial r}\Big|_y }\quad\text{but}\quad  \frac{\partial r}{\partial x}\Big|_y \neq \frac{1}{\frac{\partial x}{\partial r}\Big|_{\theta} }
+            .\]
+        \end{remark}
+        \subsubsection{Differentiation of an integral wrt its parameters}
+        Consider a family of functions $ f(x;\alpha) $, where $ \alpha $ is the parameter. Define
+        \[
+            I(\alpha) = \int_{a(\alpha)}^{b(\alpha)} f(x;\alpha) \,\mathrm{d}x
+        .\]
+        \begin{IEEEeqnarray*}{rCl}
+            \frac{\mathrm{d}I}{\mathrm{d}\alpha}  & = & \lim_{\delta \alpha \to 0} \frac{I(\alpha+\delta \alpha)-I(\alpha)}{\delta \alpha}\marginnote{Draw a graph to understand the steps.}
+        \\
+            & = &\lim_{\delta \alpha \to 0} \frac{1}{\delta \alpha}\left[ \int_{a(\alpha+\delta \alpha)}^{b(\alpha+\delta \alpha)} f(x;\alpha+\delta \alpha) \,\mathrm{d}x-\int_{a(\alpha)}^{b(\alpha)} f(x;\alpha) \,\mathrm{d}x \right]
+        \\
+            & = &\lim_{\delta \alpha \to 0} \frac{1}{\delta \alpha}\left[ \int_{a(\alpha)}^{b(\alpha)}f(x;\alpha+\delta \alpha)- f(x;\alpha) \,\mathrm{d}x -\int_{a(\alpha)}^{a(\alpha+\delta \alpha)} f(x;\alpha+\delta \alpha) \,\mathrm{d}x+\int_{b(\alpha)}^{b(\alpha+\delta \alpha)} f(x;\alpha+\delta \alpha) \,\mathrm{d}x \right]
+        \\ 
+            & = &\int_{a(\alpha)}^{b(\alpha)}\frac{\partial f}{\partial \alpha}  \,\mathrm{d}x - f(a;\alpha) \lim_{\delta \alpha \to 0} \frac{a(\alpha+\delta \alpha)-a(\alpha)}{\delta \alpha}+ f(b;\alpha)\lim_{\delta \alpha \to 0}\frac{b(\alpha+\delta \alpha)-b(\alpha)}{\delta \alpha}.\marginnote{When $ \delta \alpha $ is very small, we can approximate the latter two integrals with the area of the rectangle of hight $ f(a;\alpha) $ and width $ a(\alpha+\delta \alpha)-a(\alpha) $.}
+        \end{IEEEeqnarray*}
+        Hence,
+        \[
+            \boxed{\frac{\mathrm{d}I}{\mathrm{d}\alpha} = \frac{\mathrm{d}}{\mathrm{d}\alpha}\int_{a(\alpha)}^{b(\alpha)} f(x;\alpha) \,\mathrm{d}x =  \int_{a(\alpha)}^{b(\alpha)}\frac{\partial f}{\partial \alpha}  \,\mathrm{d}x+f(b;\alpha)\frac{\mathrm{d}b}{\mathrm{d}\alpha}-f(a;\alpha) \frac{\mathrm{d}a}{\mathrm{d}\alpha} }
+        .\]
 \end{document}

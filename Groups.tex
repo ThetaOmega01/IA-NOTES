@@ -1,6 +1,9 @@
 \documentclass[10pt]{article}
 \pdfoutput=1 
 \usepackage{NotesTeX,lipsum}
+\DeclareMathOperator{\im}{Im}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
 
 %\usepackage{showframe}
 
@@ -56,7 +59,7 @@ skipped some takes irrelevant to contents\\
             \item $ (\mathbb{N}, *), n*m = |n-m| $.\marginnote{Here $ \mathbb{N} $ is the set of all positive numbers, and it remains this definition unless specified otherwise.} Associativity fails.
         \end{enumerate}
     \end{example}
-    \section{Propertie of Groups}
+    \section{Properties of Groups}
     \begin{proposition}\label{prop:groups_properties}
         Let $G$ be a group, then we have 
         \begin{enumerate}
@@ -128,6 +131,7 @@ skipped some takes irrelevant to contents\\
         Let $T$ be such a set. Then by definition $ T \subseteq \langle X \rangle $. On the other hand, $ X \subseteq T \Rightarrow \langle X \rangle  \subseteq T$ since $T$ clearly forms a subgroup. Hence $ T=\langle X \rangle $.
     \end{proof}
     \section{Homomorphisms}
+    \subsection{Definition and basic properties}
     \begin{definition}
         Let $ (G,*_G), (H,*_H) $ be groups. A function $ \varphi: H \to G $ is a \textit{homomorphism} if
         \[
@@ -149,4 +153,118 @@ skipped some takes irrelevant to contents\\
             G \cong H \Longleftrightarrow H \cong G
         .\]
     \end{proposition}
+    %Lecture 4
+    \subsection{Images and Kernels}\marginnote{Lecture 4.}
+    \begin{definition}
+        The \textit{image} of a homomorphism $ \varphi: H \to G $ is 
+        \[
+            \operatorname{Im}(\varphi)=\left\{ g\in G: \exists h\in H, \varphi(h)=g \right\}
+        .\]
+        The \textit{kernel} of $ \varphi $ is 
+        \[
+            \ker(\varphi)=\left\{ h\in H: \varphi(h)=e_G \right\}
+        .\]
+    \end{definition}
+    We have two immediate consequences:
+    \begin{proposition}\label{prop:ker, im are groups}
+        $ \operatorname{Im}(\varphi), \ker (\varphi)  $ are subgroups of $G,H$ respectively.
+    \end{proposition}
+    \begin{proof}
+        Take $ \operatorname{Im}(\varphi) $ as an example. Use lemma \ref{lma:subgroup test}: $ \operatorname{Im}(\varphi)  $ is non-empty since $ \varphi(e_H)=e_G $. For any $ a,b\in \operatorname{Im}(\varphi)  $, we have $ a=\varphi(h), b=\varphi(h') $ for $h,h'\in H$. Hence
+        \[
+            ab^{-1}=\varphi(h)\varphi(h')^{-1}=\varphi(hh'^{-1})\in \operatorname{Im}(\varphi) 
+        .\]
+        Hence $ \operatorname{Im}(\varphi)  $ is a subgroup. It is similar for $ \ker (\varphi) $.
+    \end{proof}
+    \begin{example}
+        \begin{enumerate}[(1)]
+            \item[(0)] Let $ \varphi:H\to G $ be the trivial homomorphism, i.e. $ \varphi(h)\equiv e_G $. Then $ \im(\varphi)=\left\{ e_G\right\} $ and $ \ker (\varphi)=H $.
+            \item Let $ \iota: H\to G $, where $H\le G$, be the inclusion map. Then $ \im (\iota) = H, \ker (\iota) = \left\{ e_H\right\} $.
+            \item $ \varphi: \mathbb{Z} \to \mathbb{Z}_n, \varphi(k)=k \bmod n $. $ \im (\varphi)=\mathbb{Z}_n, \ker (\varphi)= n \mathbb{Z}$.
+        \end{enumerate}
+    \end{example}
+    \begin{proposition}\label{prop:homom surj}
+        Let $ \varphi:H\to G $ be a homomorphism.
+        \begin{enumerate}[(1)]
+            \item $ \varphi $ is surjective if and only if $ \im \varphi = G $,
+            \item $ \varphi $ is injective if and only if $ \ker \varphi = \left\{ e\right\} $.
+        \end{enumerate}
+    \end{proposition}
+    \begin{proof}
+        By definition, (1) holds.
+
+        Suppose $ \varphi $ is injective. Take $ h\in \ker \varphi $. Then $ \varphi(h)=\varphi(e)=e_G \Leftrightarrow h=e $. Conversely suppose $ \ker \varphi=\left\{ e\right\} $. Take $ a,b $ such that $ \varphi(a)=\varphi(b) $. We have
+        \[
+            \varphi(ab_{-1})=\varphi(a)\varphi(b)^{-1}=e_G
+        .\]
+        Thus $ ab^{-1}=e_G \Leftrightarrow a=b $ and $ \varphi $ is injective.
+    \end{proof}
+    \section{Direct product of groups}
+    \begin{definition}
+        The \textit{direct product} of two groups $ G,H $ is the set $ G\times H $ with the operation of component-wise composition:
+        \[
+            (g_1,h_1) * (g_2,h_2):=(g_1*_G g_2, h_1 *_H h_2)
+        .\]
+    \end{definition}
+    Closure and identity are easily verified. The inverse is component-wise and associativity is inherited from $G,H$.
+    \begin{remark}
+        $ G\times H $ contains subgroups isomorphic to $G$ and $H$, i.e., $ G \times \{e_H\} $ and $ \{e_G\} \times H $.
+    \end{remark}
+    \begin{example}
+        $ \mathbb{Z} \times \{-1,1\} $ has elements $ (n,\pm 1), n\in \mathbb{Z} $ with $ (n,-1)*(m,-1)=(n+m,(-1)(-1))=(n+m,1) $, etc. Addition in the first component and multiplication in the second.
+
+        The identity of $\mathbb{Z} \times \{-1,1\}$ is $(0,1)$.
+    \end{example}
+    \begin{remark}
+        In $ G \times H $, everything in (the isomorphic copy of) $G$ \textit{commutes} with everything in (the isomorphic copy of) $H$. That is to say,
+        \[
+            \forall (g,e_H), (e_G,h), (g,e_H)*(e_G,h) = (e_G, h)*(g,e_H)=(g,h)
+        .\]
+    \end{remark}
+    \begin{theorem}[Direct Product Theorem]\label{thm:Direct Product Theorem}
+        \marginnote{This gives us two ways to think about direct products:
+        \begin{itemize}
+            \item Given two groups $H,K$, one can form their direct products $ H \times K $ and view $H,K$ as subgroups via $ H \times \{e_K\} $ and $ \{e_H\}\times K $.
+            \item Given a group $G$ with subgroups $H,K$ that satisfiy these conditions, then we are equivalently dealing with $ H \times K $.
+        \end{itemize}
+        By convention, we can simply regard $ H \times \{e_K\},\{e_H\}\times K $ as $ H,K. $}
+        Let $ H,K\le G $ such that
+        \begin{enumerate}[(1)]
+            \item $ H \cap K=\left\{ e\right\} $: they are \textit{disjoint},
+            \item $ \forall h,k, hk=kh $: they are \textit{commutative},
+            \item $ \forall g\in G, \exists h\in H, k\in K, g=hk $: $ G=HK $.
+        \end{enumerate}
+        Then $ G \cong H \times K $.
+    \end{theorem}
+    \begin{proof}
+        Consider the function $ \varphi: H\times K \to G $ defined by $ \varphi(h,k)=hk $. Note that 
+        \[
+            \varphi(h,k) * \varphi(h',k') = hkh'k'=hh'kk'=\varphi(hh',kk')=\varphi((h,k)*(h',k'))
+        ,\]
+        so $ \varphi $ is a homomorphism. From (3) we know that $ \varphi $ is surjective. Let $ \varphi(h,k)=e $, then $ hk=e \Leftrightarrow h=k^{-1} $. Hence $ h,k^{-1}\in H \cap K $ so $ h=k=e $. Hence it is injective. Thus $\varphi$ is an isomorphism and $ G \cong H \times K $.
+    \end{proof}
+    \section{Important Examples}
+    \subsection{Cyclic groups}
+    \begin{definition}
+        Let $G$ be a group and let $ X \subseteq G, X\neq \varnothing $. If $ \langle X \rangle =G $, then $X$ is called \textit{a generating set}\mn{It is not necessary unique.} of $G$.
+
+        $G$ is \textit{cyclic} if $\exists a\in G$ such that $ \langle a \rangle =G $. In this case, $ \forall b\in G, \exists k\in \mathbb{Z} , b=a^k $. $a$ is called a \textit{generator} of $G$.
+    \end{definition}
+    \begin{example}
+        \begin{enumerate}[(1)]
+            \item[(0)] Trivial group $ \left\{ e\right\}=\langle e \rangle  $.
+            \item $ (\mathbb{Z} ,+)=\langle 1 \rangle =\langle -1 \rangle  $.
+            \item $ (\mathbb{Z}_n, +_n)=\langle 1 \rangle =\langle k \rangle $, where $(k,n)=1$.
+            \item $ E=\left(\left\{ e^{\frac{2\pi ik}{n}}:0\le k\le n-1 \right\}, \cdot\right) =\langle e^{\frac{2\pi i m}{n}} \rangle $, where $(m,n)=1$.\marginnote{Hence, $ E \cong \mathbb{Z}_n $.}
+            \item $ \left\{ e,a,a^2,\dots, a^{n-1}\right\} $ with
+            \[
+                a^k * a^j = \begin{cases}
+                a^{k+j} &\text{if } k+j<n,\\
+                a^{k+j-n} &\text{if } k+j\ge n.\\
+                \end{cases} 
+            \]
+            Again, it is isomorphic to $ \mathbb{Z}_n $.
+        \end{enumerate}
+    \end{example}
+    Write $ C_n = \left\{ e,a,a^2,\dots, a^{n-1}\right\} $. Then every cyclic group is isomorphic to $C_n$ and we can write all cyclic groups in this form, or $ \cong \mathbb{Z} $, which is the infinite case.
 \end{document}
