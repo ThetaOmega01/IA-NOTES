@@ -1,7 +1,7 @@
 \documentclass[10pt]{article}
 \pdfoutput=1 
 \usepackage{NotesTeX,lipsum}
-
+\usepackage{IEEEtrantools}
 %\usepackage{showframe}
 
 \title{\begin{center}{\Huge \textit{Vectors and Matrices}}\\{{\itshape Based on Lectures and "Intro to Linear Algebra"}}\end{center}}
@@ -280,9 +280,9 @@ skipped some talks irrelevant to contents\\
     \subsection{Vector triple product}
     \begin{definition}
         Define the vector triple product by $ \mathbf{a}\times (\mathbf{b}\times \mathbf{c}) $. Note that $ \mathbf{a}\times (\mathbf{b}\times \mathbf{c}) $ does not necessarily give the same result as $ (\mathbf{a}\times \mathbf{b})\times \mathbf{c} $.
-        \[
-            \mathbf{a}\times (\mathbf{b}\times \mathbf{c})=(\mathbf{a}\cdot \mathbf{c})\mathbf{b}-(\mathbf{a}\cdot \mathbf{b})\mathbf{c}
-        .\]
+        \begin{equation}\label{eq:vector triple prod identity}
+            \mathbf{a}\times (\mathbf{b}\times \mathbf{c})=(\mathbf{a}\cdot \mathbf{c})\mathbf{b}-(\mathbf{a}\cdot \mathbf{b})\mathbf{c}.
+        \end{equation}
     \end{definition}
     \section{Lines, Planes, and Vector equations}
     Vectors are defined as position vectors from $O$. But the definition of addition enables us to use them to describe displacements between points.
@@ -337,4 +337,147 @@ skipped some talks irrelevant to contents\\
         .\] 
         Hence it is a plane.
     \end{enumerate}
+    \section{Index notation and the summation convention}
+    \subsection{Components, $\delta\& \epsilon$}
+    Write vectors $ \mathbf{a},\mathbf{b},\dots $ in terms of components $ a_i,b_i,\dots $ wrt an orthonormal right-handed basis $ \left\{ \mathbf{e}_i\right\} $. Indices $i,j,\dots$ take values $1,2,3$.
+
+    For example, if $ \mathbf{c}=\alpha \mathbf{a}+\beta \mathbf{b} $, then $ c_i=[\alpha \mathbf{a}+\beta \mathbf{b}]_i=\alpha a_i+\beta b_i $, for $i=1,2,3$. $i$ is called a \textit{free index}.
+
+    Hence
+    \begin{itemize}
+        \item $\displaystyle \mathbf{a}\cdot \mathbf{b} = \sum_{i=1}^{3}a_ib_i$.
+        \item $\displaystyle \mathbf{x}=\mathbf{a}+(\mathbf{b}\cdot \mathbf{c})\mathbf{d} \Leftrightarrow x_j=a_j+\left( \sum_{k=1}^{3} b_kc_k \right)d_j $. 
+    \end{itemize}
+    \begin{definition}[Kronecker delta]
+        \[
+            \delta_{ij} = \begin{cases}
+            1 &\text{ if }i=j\\
+            0 &\text{ if }i\neq j\\
+            \end{cases}
+        \] 
+    \end{definition}
+    We see that $ \delta_{ij}=\delta_{ji} $ and also 
+    \[
+        \left(\begin{array}{lll}
+            \delta_{11} & \delta_{12} & \delta_{13} \\
+            \delta_{21} & \delta_{22} & \delta_{23} \\
+            \delta_{31} & \delta_{32} & \delta_{33}
+            \end{array}\right)=\left(\begin{array}{lll}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & 1
+            \end{array}\right)
+    \]
+    Using this, $ \mathbf{e}_i\cdot \mathbf{e}_j=\delta_{ij} $
+    \begin{definition}[Levi-Civita epsilon]
+        \[
+            \epsilon_{ijk}=\begin{cases}
+            1 &\text{ if $ (i,j,k) $ is an even permutation of $ (1,2,3) $,}\\
+            -1 &\text{ if $ (i,j,k) $ is an odd permutation of $ (1,2,3) $,}\\
+            0 &\text{ else.}\\
+            \end{cases} 
+        \]
+    \end{definition}
+    We have $ \epsilon_{123}=\epsilon_{231}=\epsilon_{312}=1, \epsilon_{321}=\epsilon_{213}=\epsilon_{132}=-1 $.
+    $ \epsilon_{ijk} $ is totally anti-symmetric: exchanging any pair of indices produces a change in sign.
+
+    Then 
+    \[
+        \mathbf{e}_i \times \mathbf{e}_j = \sum_{k}\epsilon_{ijk}\mathbf{e}_k
+    \]
+    and 
+    \[
+        \begin{aligned}
+            \mathbf{a} \times \mathbf{b}&= \left( \sum_{i} a_i \mathbf{e}_i \right)\times \left( \sum_{j} b_j \mathbf{e}_j \right)\\
+            &= \sum_{ij}a_ib_j \mathbf{e}_i \times \mathbf{e}_j\\
+            &= \sum_{ij}a_ib_j\sum_{k}\epsilon_{ijk}\mathbf{e}_k=\sum_{ijk}a_ib_j\epsilon_{ijk}\mathbf{e}_k
+        \end{aligned}
+    \]
+    so 
+    \[
+        \boxed{(\mathbf{a}\times \mathbf{b})_k=\sum_{ij}\epsilon_{ijk}a_ib_j}
+    .\]
+    \subsection{Summation convention}
+    With components and index notation, indices that appear twice in a given term are usually summed over. In the summation convention, we omit the sum signs for repeated indices. i.e., the sum is understood.
+    \begin{example}
+        \begin{enumerate}[(i)]
+            \item In $ a_i \delta_{ij} = a_1\delta_{1j}+a_2\delta_{2j}+a_3 \delta_{3j}=a_j $, since $ \Sigma_{i} $ is understood.
+            \item $ \mathbf{a}\cdot \mathbf{b}=\delta_{ij}a_{i}b_{j}=a_ib_i $. $ \Sigma_{ij}, \Sigma_{i} $ are understood.
+            \item $ (\mathbf{a}\times \mathbf{b})_i=\epsilon_{ijk}a_jb_k $, $ \Sigma_{jk} $ is understood.
+            \item $ [\mathbf{a},\mathbf{b},\mathbf{c}]=\epsilon_{ijk}a_ib_jc_k $, $ \Sigma_{ijk} $ is understood.
+            \item $ \delta_{ii}=\delta_{11}+\delta_{22}+\delta_{33}=3 $.
+            \item 
+            \[
+                \begin{aligned}
+                    [(\mathbf{a}\cdot \mathbf{c})\mathbf{b}-(\mathbf{a}\cdot \mathbf{b})\mathbf{c}]_i&=(\mathbf{a}\cdot \mathbf{c})b_i-(\mathbf{a}\cdot \mathbf{b})c_i\\
+                    &= a_jc_jb_i-a_jb_jc_i.
+                \end{aligned}
+            \]
+            $ \Sigma_j $ is understood.
+        \end{enumerate}
+    \end{example}
+    Here are the rules of summation convention.
+    \begin{enumerate}[(1)]
+        \item An index occuring exactly once in any given term must appear once in every term in an equation, and it can take any value in $ 1,2,3 $, a \textit{free} index.
+        \item An index occuring exactly twice in a given term is summed over. A \textit{repeated}, \textit{contracted}, or \textit{dummy} index.
+        \item No index can occur more than twice in any given term.
+    \end{enumerate}
+    \subsection{Applications}
+    We can use this to prove the vector triple product identity.
+
+    \begin{proof}
+        Write the huge sum in summation convention:
+        \begin{IEEEeqnarray*}{rCl}
+            [\mathbf{a}\times (\mathbf{b}\times \mathbf{c})]_i & = & \epsilon_{ijk}a_j(\mathbf{b}\times \mathbf{c})_k
+        \\
+            & = & \epsilon_{ijk}a_j\epsilon_{kpq}b_pc_q
+        \\
+            & = & (\epsilon_{ijk}\epsilon_{kpq})a_jb_pc_q.
+        \end{IEEEeqnarray*}
+        Notice that
+        \begin{equation}
+            \epsilon_{ijk}\epsilon_{kpq}=\delta_{ip}\delta_{jq}-\delta_{iq}\delta_{jp} \tag{*}
+        \end{equation}
+        see next subsection. So 
+        \[
+            [\mathbf{a}\times (\mathbf{b}\times \mathbf{c})]_i=\delta_{ip}\delta_{jq}a_jb_pc_q-\delta_{iq}\delta_{jp}a_jb_pc_q
+        .\]
+        Notice also that $ a_i \delta_{ij}=a_j $, so
+        \[
+            [\mathbf{a}\times (\mathbf{b}\times \mathbf{c})]_i = a_qb_ic_q-a_jb_jc_i = (\mathbf{a}\cdot \mathbf{c})b_i-(\mathbf{a}\cdot \mathbf{b})c_i
+        .\]
+        Hence the equation \ref{eq:vector triple prod identity} is proved.
+    \end{proof}
+    \subsection{$\epsilon\, \epsilon$ identity}
+    \begin{proposition}\label{prop:eeidentity1}
+        $ \epsilon_{ijk}\epsilon_{pqk}= \delta_{ip}\delta_{jq}-\delta_{iq}\delta_{jp}=\epsilon_{kij}\epsilon_{kpq}$.
+    \end{proposition}
+    \begin{proof}
+        Notice that LHS and RHS are both anti-symmetric, so both vanish when $ i,j $ or $ p,q $ take the same value. Inspection shows that\mn{Think carefully here.} it suffices to show the cases $ i=p=1 \land  j=q=2 $ or $ i=q=1, j=p=2 $ and all other index changings that give non-zero results.
+    \end{proof}
+
+    \begin{proposition}\label{prop:eeidentity2}
+        $ \epsilon_{ijk}\epsilon_{pjk}=2\delta_{ip}. $
+    \end{proposition}
+    \begin{proof}
+        Take $q=j$ in the above equation:
+        \[
+            \epsilon_{ijk}\epsilon_{pjk}=\delta_{ip}\delta_{jj}-\delta_{ij}\delta_{jp}=3\delta_{ip}-\delta_{ip}=2\delta_{ip}
+        .\]
+    \end{proof}
+    \begin{proposition}\label{prop:eeidentity3}
+        $  \epsilon_{ijk}\epsilon_{ijk}=k $.
+    \end{proposition}
+    \begin{proposition}\label{prop:eeidentity4}
+        \[
+            \begin{aligned}
+                \epsilon_{ijk}\epsilon_{pqr}&=\delta_{ip}\delta_{jq}\delta_{kr}-\delta_{jp}\delta_{iq}\delta_{kr}\\
+                &+\delta_{jp}\delta_{kq}\delta_{ir}-\delta_{kp}\delta_{jq}\delta_{ir}\\
+                &+\delta_{kp}\delta_{iq}\delta_{jr}-\delta_{ip}\delta_{kq}\delta_{jr}.
+            \end{aligned}
+        \]
+    \end{proposition}
+    \begin{proof}
+        Total anti-symmetry\mn{This simplifies most of the process and leaves only one case to check.} in $i,j,k$ and independently in $p,q,r$ implies LHR, RHS agree up to an overall factor. To check the factor is 1, consider $i=p=1, j=q=2, k=r=3$.
+    \end{proof}
 \end{document}

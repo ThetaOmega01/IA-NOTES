@@ -4,7 +4,8 @@
 \DeclareMathOperator{\im}{Im}
 \renewcommand{\le}{\leqslant}
 \renewcommand{\ge}{\geqslant}
-
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\sym}{Sym}
 %\usepackage{showframe}
 
 \title{\begin{center}{\Huge \textit{Groups}}\\{{\itshape Based on Lectures and "Algebra and Geometry"}}\end{center}}
@@ -267,4 +268,113 @@ skipped some takes irrelevant to contents\\
         \end{enumerate}
     \end{example}
     Write $ C_n = \left\{ e,a,a^2,\dots, a^{n-1}\right\} $. Then every cyclic group is isomorphic to $C_n$ and we can write all cyclic groups in this form, or $ \cong \mathbb{Z} $, which is the infinite case.
+    %Lecture 5
+    \marginnote{Lecture 5}
+    \begin{theorem}\label{thm:cyclic group isom}
+        A cyclic group $G$ is isomorphic to $ \mathbb{Z}  $ or $ C_n $ for some $ n\in \mathbb{N} $.
+        \marginnote{Therefore we often write $ \mathbb{Z}  $ or $ C_n $ for a cyclic group, regardless of its description.}
+    \end{theorem}
+    \begin{proof}
+        Let $ G= \langle b \rangle  $. Suppose that $ \exists n, b^n=e $. Take the smallest $n$. Define $ \varphi: C_n = \left\{ e,a,a^2,\dots,a^{n-1}\right\}\to G $ by $ \varphi(a^k)=b^k(0\le k\le n-1) $. Then $ \forall a^j,a^k\in C_n, j,k<n $, we have 
+        \[
+            \varphi(a^j\cdot a^k)=\varphi(a^{j+k})=b^{j+k}= b^j*b^k=\varphi(a^j)*\varphi(a^k)
+        .\]
+        If $ j+k \ge n $, 
+        \[
+            \varphi(a^j\cdot a^k)=\varphi(a^{j+k-n})=b^{j+k-n}=b^{j+k}*(b^{n})^{-1}=b^{j+k}=\varphi(a^j)*\varphi(a^k)
+        .\]
+        Hence $ \varphi $ is a homomorphism. Since $ b^n=e $, $ \varphi $ is surjective. Suppose $ \varphi(a^k)=e \Leftrightarrow b^k=e \Leftrightarrow k=0 $, since $ 0\le k\le n-1 $. Otherwise \# to minimality of $n$.
+
+        If no such $ n $ exists, then define $ \varphi: \mathbb{Z} \to G $ ny $ \varphi(k)=b^k $. Note that
+        \[
+            \varphi(k+m)=b^{k+m}=b^k*b^m=\varphi(k)*\varphi(m)
+        .\]
+        Also $ \forall b^k\in G=\langle b \rangle, \varphi(k)=b^k $, and if $ m\in \ker \varphi $, then $ \varphi(m)=e=b^m \land \varphi(-m)=e $. If $ m\neq 0 $, then \# to the assumption that $ \nexists n, b^n=e $.
+
+        Therefore, $ G \cong \mathbb{Z} \lor G \cong C_n $.
+    \end{proof}
+    \begin{definition}
+        The \textit{order of an element} $ g\in G $ is the smallest $ n\in \mathbb{N}  $ that $ g^n=e $. If no such $n$ exists, we say $g$ has and \textit{infinite order}. The order of $g$ is written as $ \ord g. $
+    \end{definition}
+    \begin{proposition}\label{prop:div_order}
+        If $ g^m=e ,m>0$, then $ \ord g|m $.
+    \end{proposition}
+    \begin{proof}
+        If not, then $ m=q\ord g +r$ for some $ q,r\in \mathbb{N}  $ such that $ 0\le r\le \ord g-1 $, \#.
+    \end{proof}
+    \begin{remark}
+        Given $ g\in G $, the subgroup $ \langle g \rangle \cong C_n $ if $ \ord g=n $, and $ \cong \mathbb{Z}  $ if $ \ord g=\infty $. Hence $ \ord g=|\langle g \rangle | $. 
+    \end{remark}
+    \begin{proposition}\label{prop:cyclic_abelian}
+        Cyclic groups are abelian.
+    \end{proposition}
+    \subsection{Dihedral Groups}
+    \begin{definition}
+        The \textit{dihedral group} $ D_{2n} $ is the group of symmetries of a regular $n$-gon, the operation is composition of symmetries.
+    \end{definition}
+    \begin{example}
+        $ D_{6}= $ symmetries of $ \triangle $.
+    \end{example}
+    What are the elements of $ D_{2n} $?
+
+    Clearly we have $n$ rotations of angles
+    \[
+        \frac{2\pi k}{n}, \quad 0\le k<n
+    .\]
+    \begin{itemize}
+        \item When $n$ is odd, we have $n$ reflections in axes through the centre and each of the vertices.
+        \item When $n$ is even, we have $ n/2 $ reflections in axes through centre and pairs of opposite vertices. Another $ n/2 $ reflections in axes through pairs of opposite mid-points of edges.
+    \end{itemize}
+    Assert that these are all the elements of $ D_{2n} $. Indeed, let $ g\in D_{2n} $. Since $g$ is a symmetry, then $g$ must send vertices to vertices, e.g., $ g(v_1)=v_i $. $g$ must also send edges to edges, so $ v_2,v_n $ must be sent to $ \left\{ v_{i-1},v_{i+1}\right\} $.
+    Note that once we know where $g(v_1),g(v_2)$, then $g(v_n)$ is determined. \textit{Inductively}, all other $g(v_j)$ are determined, and hence $g$ is known. Since there are $ n $ choices for $v_1$ and 2 choices for $v_2$, so we have $2n$ elements in total. Hence there are no other elements.
+
+    It can be checked easily that $D_{2n}$ is a group.
+
+    \begin{remark}
+        Can generate $ D_{2n} $ by a rotation and a reflection. Let $ r $ be the rotation $ \frac{2\pi}{n} $ and $s$ be the reflection in axis through $v_1$ and centre, then $r^k$ give all rotations. Consider $ r^{i}sr^{-i} $:
+        \[
+            \begin{aligned}
+                r^{i}sr^{-i}\marginnote{The form $ r^{i}sr^{-i} $ is called \textit{conjugation} and allows us to change the axis of operation.}: &v_{i+1}\mapsto v_1 \mapsto v_1 \mapsto v_{i+1},\\
+                &v_{i+2} \mapsto v_2 \mapsto v_{n} \mapsto v_i,\\
+                &v_i \mapsto v_n \mapsto v_2 \mapsto v_{i+2} \mapsto v_{i+2}.
+            \end{aligned}
+        \]
+        We get reflection in axis through $ v_{i+1} $ and centre. If $ n $ is even, consider 
+        \[
+            \begin{aligned}
+                r^{i+1}sr^{-i}:& v_{i+1} \mapsto v_1 \mapsto v_1 \mapsto v_{i+2},\\
+                &v_{i+2} \mapsto v_2 \mapsto v_n \mapsto v_{i+1}.
+            \end{aligned}
+        .\]
+        Hence they give all symmetries and $ D_{2n}=\langle r,s \rangle $ and $ rs=sr^{-1} $, so it is not abelian.
+    \end{remark}
+    \subsection{Presentation}
+    One way to write groups is via a \textit{presentation}:
+    \[
+        \langle \text{generators}|\text{relation between generators} \rangle 
+    .\]
+    For example, $ C_n=\langle a|a^n=e \rangle  $, and $ D_{2n}=\langle r,s|r^n=e, s^2=e, rs=sr^{-1} \rangle  $.
+
+    Should be able to deduce all the properties in the group from the relatios in the presentation. In general it is not easy to write down a presentation for a given group, or to determine the group from a given presentation. E.g., 
+    \[
+        \begin{aligned}
+            &\langle a,b,c| aba^{-1}b^{-1}=b, bcb^{-1}c^{-1}=c, cac^{-1}a^{-1}=a \rangle\\
+            &\langle a,b,c,d| aba^{-1}b^{-1}=b, bcb^{-1}c^{-1}=c,cdc^{-1}d^{-1}=d,dad^{-1}a^{-1}=a \rangle 
+        \end{aligned}
+    \]
+    The first group is simply $\{e\}$ but the second group, known as Higman group, is very non-trivial.
+    \subsection{Permutation groups}
+    \begin{definition}
+        Given a set $X$, a \textit{permutation} of $X$ is a bijective function $ \sigma:X\to X $. The set of all permutations of $X$ is denoted by $ \sym X $.
+    \end{definition}
+    Of course we have 
+    \begin{theorem}\label{thm:perm_group}
+        $ \sym X $ forms a group wrt compositions.
+    \end{theorem}
+    \begin{definition}
+        If $ |X|=n $, we write $ S_n $ for (the isomorphism class of) $ \sym X $. $S_n$ is called \textit{symmetric group} on $n$ elements.
+    \end{definition}
+    \begin{remark}
+        $ |S_n|=n! $. Usually use $ X=\left\{ 1,2,\dots,n\right\} $ to study $S_n$.
+    \end{remark}
 \end{document}
