@@ -2,8 +2,39 @@
 \pdfoutput=1 
 \usepackage{NotesTeX,lipsum}
 \DeclareMathOperator{\im}{Im}
-\renewcommand{\le}{\leqslant}
-\renewcommand{\ge}{\geqslant}
+\usepackage{IEEEtrantools}
+\def\d{{\mathrm d}}
+\def\e{{\mathrm e}}
+\def\g{{\mathrm g}}
+\def\h{{\mathrm h}}
+\def\f{{\mathrm f}}
+\def\p{{\mathrm p}}
+\def\s{{\mathrm s}}
+\def\t{{\mathrm t}}
+\def\i{{\mathrm i}}
+
+\def\A{{\mathrm A}}
+\def\B{{\mathrm B}}
+\def\E{{\mathrm E}}
+\def\F{{\mathrm F}}
+\def\G{{\mathrm G}}
+\def\H{{\mathrm H}}
+\def\P{{\mathrm P}}
+
+
+\def\bb{\mathbf b}
+\def \bc{\mathbf c}
+\def\bx {\mathbf x}
+\def\bn {\mathbf n}
+\def\le{\leqslant}
+\def\ge{\geqslant}
+\def\arcosh{{\rm arcosh}\,}
+
+\newcommand{\bluecomment}[1]{{\color{blue}#1}}
+%\renewcommand{\comment}[1]{}
+\newcommand{\redcomment}[1]{{\color{red}#1}}
+\newcommand{\tm}{\times}
+%\usepackage{showframe}
 \DeclareMathOperator{\ord}{ord}
 \DeclareMathOperator{\sym}{Sym}
 %\usepackage{showframe}
@@ -377,4 +408,103 @@ skipped some takes irrelevant to contents\\
     \begin{remark}
         $ |S_n|=n! $. Usually use $ X=\left\{ 1,2,\dots,n\right\} $ to study $S_n$.
     \end{remark}
+    One way to write permutations is using a two-row notation. For example, consider $ \sigma\in S_3 $ such that $ \sigma(1)=2, \sigma(2)=3, \sigma(3)=1 $ can be represented as
+    \[
+        \begin{pmatrix}
+            1&2&3\\
+            2&3&1
+        \end{pmatrix}
+    .\]
+    In general, write $ \sigma\in S_n $ as 
+    \[
+        \begin{pmatrix}
+            1&2&3&\cdots&n\\
+            \sigma(1)&\sigma(2)&\sigma(3)&\cdots&\sigma(n)
+        \end{pmatrix}
+    .\]
+    Given a permutation that "cycles" some elements $ a_1,\dots,a_k \in \left\{ 1,2,\dots,n\right\}$ and leaves the other unchanged, then we can write as
+    \[
+        (a_1 a_2 \dots a_k) = \begin{pmatrix}
+            a_1&a_2&a_3&\cdots&a_k\\
+            \sigma(a_1)&\sigma(a_2)&\sigma(a_3)&\cdots&\sigma(a_k)
+        \end{pmatrix}
+    .\]
+    So in general,
+    \[
+        (a_1 \dots a_k)(x) =\begin{cases}
+        a_{i+1} &\text{ if } x=a_i(i<k)\\
+        a_1 &\text{ if } x=a_k\\
+        x &\text{ otherwise.}\\
+        \end{cases} 
+    \]
+    Note that $ (a_1 \dots a_k)=(a_2\dots a_{k} a_1)=\cdots $.
+    \begin{definition}
+        A permutation of the form $ \sigma = (a_1 \dots a_k) $ is called a $k$-\textit{cycle}. If $k=2$ then it is called a \textit{transposition}.
+    \end{definition}
+    \begin{example}
+        \begin{enumerate}[(1).]
+            \item Consider $ (1234)(324) $. $ 1 \mapsto 2 $, $ 2 \mapsto 1 $, $ 3 \mapsto 3 $, $4 \mapsto 4 $. Hence
+            \[
+                (1234)(324)=(12)
+            .\]
+            \item In $S_5$, $ (254)(534)=(1)(253)(4) = (253) $.
+        \end{enumerate}
+    \end{example}
+    \begin{remark}
+        \begin{enumerate}[(1).]
+            \item The inverse of $ (a_1 \dots a_k) $ is $ (a_k a_{k-1}\dots a_1) $.
+            \item $ S_3=D_6 $, but in general $ D_{2n}\le S_n $.
+        \end{enumerate}
+    \end{remark}
+    \begin{definition}
+        \begin{enumerate}[(1).]
+            \item Two cycles are \textit{disjoint} if no element appears in both of them.
+            \item $ g,h\in G $ are \textit{commute} if $gh=hg$ in $G$.
+        \end{enumerate}
+    \end{definition}
+    \begin{lemma}\label{lma:disjoint_cyc_commute}
+        Disjoint cycles commute.
+
+        \bluecomment{Note that $S_n$ is non-abelian for $n\ge 3$.}
+    \end{lemma}
+    \begin{proof}
+        Let $ \sigma, \tau\in S_n $ such that $ \sigma, \tau $ are disjoint. Let $ x\in \{1,2,\dots,n\} $.
+
+        If $x$ is in neither of $\sigma, \tau$, then $ \sigma \tau(x)=\tau \sigma(x) $. If $ x\in \tau $ but not in $ \sigma $, then $ \tau(x)\in \tau\notin \sigma $, so $ \sigma \tau(x)=\tau \sigma(x)=\tau(x) $. Similar for $ x\in \sigma, x\notin \tau $.
+    \end{proof}
+    \begin{theorem}\label{thm:disjoint cycle decomp}
+        Any $ \sigma\in S_n $ can be written as a composition of disjoint cycles, and this representation is unique up to reordering cycles, and "cycling" of cycles.
+    \end{theorem}
+    \begin{proof}
+        Take $ \sigma\in S_n $ and consider $ 1,\sigma(1),\sigma^2(1),\dots $. Since $ \{1,2,\dots,n\} $ is finite, $ \exists a>b $, $ \sigma^a(1)=\sigma^b(1) $, so that $ \sigma^{a,b}(1)=1 $. Let $k$ be the smallest integer that $ \sigma^{k}(1)=1 $. Then $ \forall l>m\in [0,k] $, if $ \sigma^{l}(1)=\sigma^{m}(1) $ then $ \sigma^{l-m}=1 $, contradicting with the minimality of $k$, so $ 1,\sigma(1),\dots,\sigma^{k-1}(1) $ are distinct. This cycle 
+        \[
+            \begin{pmatrix}
+                1&\sigma(1)&\sigma^2(x)&\cdots&\sigma^{k-1}(1)
+            \end{pmatrix}
+        \]
+        is the first cycle in decomposition. We can repeat this with the next number in $\{1,2,\dots,n\}$ that has not already appeared.
+
+        Since $ \sigma $ is a bijection, no number can reappear. Continue with this we exhaust $\{1,2,\dots,n\}$ and we get 
+        \[
+            \begin{pmatrix}
+                1&\sigma(1)&\cdots&\sigma^{k-1}(1)
+            \end{pmatrix}
+            \begin{pmatrix}
+                a&\sigma(a)&\cdots&\sigma^{k-1}(a)
+            \end{pmatrix}
+            \cdots
+        .\]
+        Hence it exists. To show it is unique, suppose we have to decompositions:
+        \[
+            \begin{aligned}
+                 \sigma&= \begin{pmatrix} a_1&\cdots&a_{k_1} \end{pmatrix}\begin{pmatrix} a_{k_2}&\cdots&a_{k_3} \end{pmatrix}\cdots \begin{pmatrix} a_{k_{n-1}}&\cdots&a_{k_n} \end{pmatrix}\\
+                 &= \begin{pmatrix} b_1&\cdots&b_{l_1} \end{pmatrix}\begin{pmatrix} b_{l_2}&\cdots&b_{l_3} \end{pmatrix}\cdots \begin{pmatrix} b_{l_{s-1}}&\cdots&b_{l_s} \end{pmatrix},
+            \end{aligned}
+        \]
+        so each $ j\in \{1,2,\dots,n\} $ appears exactly once in both. Then we have $ a_1=b_t $ for some $t$, and the other numbers appearing in the cycle of $b_t$ are uniquely determined by $ \sigma(a_1),\sigma^2(a_1),\dots $. So
+        \[
+            \begin{pmatrix} a_1&\cdots&a_{k_1} \end{pmatrix}\cdots = \begin{pmatrix} b_t&\cdots \end{pmatrix}\cdots
+        \]
+        since disjoint cycles commute and we can cycle cycles. Continue in this way, we see that all other cycles match. 
+    \end{proof}
 \end{document}

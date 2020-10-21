@@ -312,4 +312,56 @@ skipped some talks irrelevant to contents\\
         \[
             \boxed{\frac{\mathrm{d}I}{\mathrm{d}\alpha} = \frac{\mathrm{d}}{\mathrm{d}\alpha}\int_{a(\alpha)}^{b(\alpha)} f(x;\alpha) \,\mathrm{d}x =  \int_{a(\alpha)}^{b(\alpha)}\frac{\partial f}{\partial \alpha}  \,\mathrm{d}x+f(b;\alpha)\frac{\mathrm{d}b}{\mathrm{d}\alpha}-f(a;\alpha) \frac{\mathrm{d}a}{\mathrm{d}\alpha} }
         .\]
+
+    \part{First order linear ODEs}
+    \section{Terminology}
+    \begin{definition}
+        An \textit{ordinary differential equation} is a differential equation involving a function of one variable. A \textit{partial differential equation} is (a) differential equation(s) involving a function of more than one variable.
+
+        \textit{n}th order DE: the highest order of derivative is $n$.
+
+        Linear: dependent variable appears linearly.
+    \end{definition}
+    \section{Prelude: Exponential functions}
+    Consider $f=a^x, a>0$, we have
+    \[
+        \begin{aligned}
+             \frac{\mathrm{d}f}{\mathrm{d}x} &= \lim_{h \to 0} \frac{a^{x+h}-a^x}{h}=a^x \lim_{h \to 0} \frac{a^h-1}{h}\\
+            &= \lambda a^x.
+        \end{aligned}
+    \]
+    Hence
+    \begin{definition}
+        Define $ \exp(x)=e^x $ as the solution to the DE 
+        \[
+            \frac{\mathrm{d}f}{\mathrm{d}x}=f(x), \quad f(0)=1 
+        .\]
+        Therefore $e$ is the value of $a$ such that $\lambda=1$. i.e.,
+        \[
+            \lim_{h \to 0} \frac{e^h-1}{h}=1
+        .\]
+    \end{definition}
+    Define $ \ln (x) $ as the inverse of $e^x$ such that $ e^{\ln(x)}=x $.
+
+    Consider $ a^x=e^{\ln(a)x}$, so 
+    \[
+        \frac{\mathrm{d}f}{\mathrm{d}x}=(\ln a)a^x, \lambda=\ln a 
+    .\]
+
+    The exponential function is the \textit{eigenfunction} of the differential operator.
+
+    The \textit{eigenfunction} of an operator is unchanged by the action of the operator, except for a multiplicative scaling by the eigenvalue.
+    \section{Rules for linear ODEs}
+    \begin{enumerate}[\bfseries 1.]
+        \item Any linear homogeneous ODE with constant coefficients has solutions of form $ e^{\lambda x} $, the eigenfunction. By \textit{homogeneous} we mean that all terms involve the dependent variable or its derivatives.
+
+        This means that $y=0$ is a trivial solution for all homogeneous ODEs.
+
+        Constant coefficients imply that the independent variable does not appear explicitly in DE.
+        \item For linear homogeneous ODEs, any constant multiple of a solution is also a solution.
+        \item An $n$th order ODE has $n$ independent solutions.
+
+        For constant coefficient ODEs, this rule follows from the fundamental theorem of algebra.
+        \item An $n$th order ODE requires $n$ initial/boundary conditions.
+    \end{enumerate}
 \end{document}

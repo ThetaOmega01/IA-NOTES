@@ -2,6 +2,37 @@
 \pdfoutput=1 
 \usepackage{NotesTeX,lipsum}
 \usepackage{IEEEtrantools}
+\def\d{{\mathrm d}}
+\def\e{{\mathrm e}}
+\def\g{{\mathrm g}}
+\def\h{{\mathrm h}}
+\def\f{{\mathrm f}}
+\def\p{{\mathrm p}}
+\def\s{{\mathrm s}}
+\def\t{{\mathrm t}}
+\def\i{{\mathrm i}}
+
+\def\A{{\mathrm A}}
+\def\B{{\mathrm B}}
+\def\E{{\mathrm E}}
+\def\F{{\mathrm F}}
+\def\G{{\mathrm G}}
+\def\H{{\mathrm H}}
+\def\P{{\mathrm P}}
+
+
+\def\bb{\mathbf b}
+\def \bc{\mathbf c}
+\def\bx {\mathbf x}
+\def\bn {\mathbf n}
+\def\le{\leqslant}
+\def\ge{\geqslant}
+\def\arcosh{{\rm arcosh}\,}
+
+\newcommand{\bluecomment}[1]{{\color{blue}#1}}
+%\renewcommand{\comment}[1]{}
+\newcommand{\redcomment}[1]{{\color{red}#1}}
+\newcommand{\tm}{\times}
 %\usepackage{showframe}
 
 \title{\begin{center}{\Huge \textit{Vectors and Matrices}}\\{{\itshape Based on Lectures and "Intro to Linear Algebra"}}\end{center}}
@@ -268,7 +299,7 @@ skipped some talks irrelevant to contents\\
     In components, 
     \[
         \begin{aligned}
-            \mathbf{a}\cdot (\mathbf{b}\times \mathbf{c})&=a_1b2c_3-a_1b_3c_2 \\
+            \mathbf{a}\cdot (\mathbf{b}\times \mathbf{c})&=a_1b_2c_3-a_1b_3c_2 \\
             &+a_2b_3c_1-a_2b_1c_3\\
             &+a_3b_1c_2-a_3b_2c_1\\
         \end{aligned} =\begin{vmatrix}
@@ -480,4 +511,131 @@ skipped some talks irrelevant to contents\\
     \begin{proof}
         Total anti-symmetry\mn{This simplifies most of the process and leaves only one case to check.} in $i,j,k$ and independently in $p,q,r$ implies LHR, RHS agree up to an overall factor. To check the factor is 1, consider $i=p=1, j=q=2, k=r=3$.
     \end{proof}
+    \part{Vectors in General}
+    \section{Vectors in $ \mathbb{R}^n $}
+    \subsection{Definition and basic properties}\marginnote{Lecture 6}
+    \begin{definition}
+        Regard vectors as sets of components, and let 
+        \[
+            \mathbb{R}^n = \left\{ \mathbf{x}=(x_1,\dots, x_n): x_i\in \mathbb{R} \right\}
+        .\]
+        Define:
+        \begin{itemize}
+            \item Addition: $ \mathbf{x}+\mathbf{y}=(x_1+y_1,\dots,x_n+y_n) $,
+            \item Scalar multiplication: $ \lambda \mathbf{x}=(\lambda x_1,\dots,\lambda x_n) $.
+            \item Linear combinations: $ \lambda \mathbf{x}+\mu \mathbf{y} $,
+            \item Parallel: $ \mathbf{x} \parallel \mathbf{y} \Leftrightarrow \mathbf{x}=\lambda \mathbf{y} \lor \mathbf{y}=\lambda \mathbf{x} $.
+            \item Inner Product(Scalar product): $ \mathbf{x}\cdot \mathbf{y}= \sum_{i=1}^{n} x_iy_i $.
+        \end{itemize}
+    \end{definition}
+    Properites of inner product:
+    \begin{enumerate}[(1).]
+        \item Symmetric: $ \mathbf{x}\cdot \mathbf{y}=\mathbf{y}\cdot \mathbf{x} $.
+        \item Bilinear: 
+        \[
+            \begin{aligned}
+                (\lambda \mathbf{x}+\lambda' \mathbf{x}')\cdot \mathbf{y}&=\lambda \mathbf{x}\cdot \mathbf{y}+\lambda' \mathbf{x}'\cdot \mathbf{y},\\
+                \mathbf{x}\cdot (\mu\mathbf{y}+\mu' \mathbf{y}')&=\mu \mathbf{x}\cdot \mathbf{y}+\mu' \mathbf{x}' \cdot \mathbf{y}.
+            \end{aligned}
+        \]
+        \item Positive definite: $ \mathbf{x}\cdot \mathbf{x}\ge 0 $, with $=$ holds if and only if $ \mathbf{x}=\mathbf{0} $.
+    \end{enumerate}
+    \subsection{Norm of a vector}
+    \begin{definition}
+        The \textit{norm} of a vector $ \mathbf{x} $ is denoted as $ |\mathbf{x}| $ with $ |\mathbf{x}|^2=\mathbf{x}\cdot \mathbf{x} $.
+
+        $ \mathbf{x},\mathbf{y} $ are called \textit{orthogonal} if $ \mathbf{x}\cdot \mathbf{y}=0 $, denote as $ \mathbf{x} \perp \mathbf{y} $.
+    \end{definition}
+    The \textit{standard basis} of $ \mathbb{R}^n $ is
+    \[
+        e_i = (0,\dots,1,\dots,0)
+    \]
+    with 1 on the $i$th position. So that 
+    \[
+        \mathbf{x}=\sum_{i=1}^{n}x_i \mathbf{e}_i
+    \]
+    and $ \mathbf{e}_i \cdot \mathbf{e}_j = \delta_{ij} $. i.e., standard basis is orthogonal.
+    \subsection{Cauchy-Schwarz and Triangle inequalities}
+    \begin{proposition}[Cauchy-Schwarz]\label{prop:cauchy-schwarz}
+        \[
+            \forall \mathbf{x}, \mathbf{y}\in \mathbb{R}^n,\quad |\mathbf{x}\cdot \mathbf{y}|\le |\mathbf{x}| | \mathbf{y}|
+        \]
+        with equality if and only if $ \mathbf{x}\parallel \mathbf{y} $.
+    \end{proposition}
+    General deductions:
+    \begin{enumerate}[(i).]
+        \item Setting $ \mathbf{x}\cdot \mathbf{y}=|\mathbf{x}||\mathbf{y}|\cos \theta $, we can define angle $ \theta $ between $ \mathbf{x},\mathbf{y}\in \mathbb{R}^n $.
+        \item We have the \textit{triangle inequality}:
+        \[
+            |\mathbf{x}+\mathbf{y}|\le|\mathbf{x}|+|\mathbf{y}|
+        .\]
+    \end{enumerate}
+    \begin{proof}
+        If $ \mathbf{y}=\mathbf{0} $, then the result is immediate. If not, consider
+        \[
+            \begin{aligned}
+                 \left| \mathbf{x}-\lambda \mathbf{y} \right|&= (\mathbf{x}-\lambda \mathbf{y})(\mathbf{x}-\lambda \mathbf{y})\\
+                 &= \left| \mathbf{x} \right|^2-2\lambda \mathbf{x}\cdot \mathbf{y}+\lambda^2 |\mathbf{y}|^2\ge 0.
+            \end{aligned}
+        \]
+        This is a real equation of $\lambda$ with at most one root, so 
+        \[
+            (-2 \mathbf{x}\cdot \mathbf{y})^2-4|\mathbf{x}|^2|\mathbf{y}|^2\le 0 \Longleftrightarrow |\mathbf{x}\cdot \mathbf{y}|\le |\mathbf{x}| | \mathbf{y}|
+        .\]
+        Equality holds if and only if $ \mathbf{x}=\lambda \mathbf{y} $.
+
+        Note also that for triangle inequality:
+        \[
+            \begin{aligned}
+                 |\mathbf{x}+\mathbf{y}|^2&= |\mathbf{x}|^2+2 \mathbf{x}\cdot \mathbf{y}+|\mathbf{y}|^2\\
+                 &\le |\mathbf{x}|^2+2 |\mathbf{x}| | \mathbf{y}|+|\mathbf{y}|^2\\
+                 &=(|\mathbf{x}|+|\mathbf{y}|)^2,
+            \end{aligned}
+        \]
+        as required.
+    \end{proof}
+    \subsection{Inner Products and Cross products}
+    Inner product in $ \mathbb{R}^n $ can be written as
+    \[
+        \mathbf{a}\cdot \mathbf{b}=\delta_{ij}a_{i}b_{j},\quad \text{by summation convention}
+    .\]
+    For $n=3,$ it matches geometrical definition.
+
+    We can also define cross product in component definition. In 3d we have
+    \[
+        (\mathbf{a}\times \mathbf{b})_i=\epsilon_{ijk}a_jb_k
+    ,\]
+    and in $n$ dimensions we have $\epsilon_{ij\cdots l}$ which is totally anti-symmetric. But there are only two $a_ib_j$ so we cannot use this to define vector product in general.
+
+    However, in $ \mathbb{R}^2 $ we have $ \epsilon_{ij} $ with $ \epsilon_{12}=-\epsilon_{21}=1 $, so can use this to define a new scalar product 
+    \[
+        [\mathbf{a},\mathbf{b}]=\epsilon_{ij}a_ib_j=a_1b_2-a_2b_1
+    .\]
+    Geometrically, this the (signed) area of parallelogram formed by $ \mathbf{a},\mathbf{b} $ and 
+    \[
+        |[\mathbf{a},\mathbf{b}]|=|\mathbf{a}||\mathbf{b}|\sin \theta
+    .\]
+    Compare with $ [\mathbf{a},\mathbf{b},\mathbf{c}]=\epsilon_{ijk}a_ib_jc_k $.
+    \section{Vector Spaces}
+    \subsection{Axioms, span, and subspacs}
+    \begin{definition}
+        Let $V$ be a set of objects called \textit{vectors} with operation
+        \[
+            \begin{aligned}
+                 \mathbf{v}+\mathbf{w}\in V&\quad \forall \mathbf{v},\mathbf{w}\in V\\
+                 \lambda \mathbf{v}\in V&\quad \forall \mathbf{v}\in V, \lambda\in \mathbb{R}.
+            \end{aligned}
+        \]
+        Then $V$ is called a \textit{real vector space} if 
+        \begin{enumerate}[(i).]
+            \item $V$ with $+$ is an abelian group.
+            \item $ \lambda(\mathbf{v}+\mathbf{w})=\lambda \mathbf{v}+\lambda \mathbf{w} $
+            \item $ (\lambda+\mu)\mathbf{v}=\lambda \mathbf{v}+\mu \mathbf{v} $
+            \item $ \lambda(\mu \mathbf{v})=(\lambda \mu) \mathbf{v} $
+            \item $ 1 \mathbf{v}=\mathbf{v} $.
+        \end{enumerate}
+    \end{definition}
+    \begin{example}
+        Let $ V=\left\{ f:[0,1] \to \mathbb{R} : f \land f(0)=f(1)=0\right\} $. By smooth we mean $f$ is differentiable infinitely many times. Then $V$ is a real vector space with $+$ defined as $ (f+g)(x)=f(x)+g(x) $ and $ (\lambda f)(x)=\lambda(f(x)) $. Then all axioms apply.
+    \end{example}
 \end{document}
