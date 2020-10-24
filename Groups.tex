@@ -37,6 +37,7 @@
 %\usepackage{showframe}
 \DeclareMathOperator{\ord}{ord}
 \DeclareMathOperator{\sym}{Sym}
+\DeclareMathOperator{\lcm}{lcm}
 %\usepackage{showframe}
 
 \title{\begin{center}{\Huge \textit{Groups}}\\{{\itshape Based on Lectures and "Algebra and Geometry"}}\end{center}}
@@ -506,5 +507,97 @@ skipped some takes irrelevant to contents\\
             \begin{pmatrix} a_1&\cdots&a_{k_1} \end{pmatrix}\cdots = \begin{pmatrix} b_t&\cdots \end{pmatrix}\cdots
         \]
         since disjoint cycles commute and we can cycle cycles. Continue in this way, we see that all other cycles match. 
+    \end{proof}
+    \begin{definition}\marginnote{Lecture 7}
+        The set of cycle lengths of the disjoint cycle decomposition of $ \sigma $ is its \textit{cycle type} of $\sigma$.
+    \end{definition}
+    \begin{example}
+        $ (123)(56) $ has cycle type 3,2(or 2,3).
+    \end{example}
+    \begin{theorem}\label{thm:lcm of cycle type is order}
+        The order of $ \sigma\in S_n $ is the lcm of the cycle length in its cycle type.
+    \end{theorem}
+    \begin{proof}
+        Firstly note that the order of a $k$-cycle is $k$. Suppose $ \sigma= \tau_1 \tau_2\cdots \tau_r $, where $ \tau_i $ are disjoint cycles, we have 
+        \[
+            \sigma^m = \tau^m_1 \tau^m_2\cdots \tau^m_r
+        ,\]
+        since disjoint cycles commute. Let each $ \tau_i $ be a $k_i$-cycle, then if $ \sigma^m=e $, we have $ \tau^m_1,\tau^m_2,\dots,\tau^m_r=e $, and so $ \tau_1^m=\tau_2^{-m}\tau_{3}^{-m}\cdots \tau_{r}^{-m} $. The numbers permuted by LHS and RHS are disjoint since $ \tau_i $ are disjoint, so LHS, RHS must be $e$. So $ \tau_1^m=e $ and $ k_1|m$.
+
+        This holds for any $k_i$ and $k_i|m$, so $ l=\lcm (k_1,\dots,k_r)| \ord(\sigma) $. But if we take
+        \[
+            \sigma^{l}=\tau^l_1 \tau^l_2\cdots \tau^l_r = \prod_{i=1}^r (\tau^{k_i})^{l/k_i}=e
+        .\]
+        So $ \ord(\sigma)=\lcm (k_1,\dots,k_r) $.
+    \end{proof}
+    \begin{remark}
+        Disjoint cycle notation allows us to quickly compare elements of $S_n$, and to read off their orders.
+    \end{remark}
+    Disjoint cycle notation is just one useful way to express elements of $S_n$. Another is as a product of transpositions:
+    \begin{proposition}\label{prop:2.16}
+        Let $ \sigma\in S_n $, then $\sigma$ is a product of transpositions.
+    \end{proposition}
+    \begin{proof}
+        By theorem \ref{thm:disjoint cycle decomp}, it's enough to do this for a cycle. We observe that 
+        \[
+            (a_1 a_2 a_3 \cdots a_k)=(a_1a_2)(a_2a_3)\cdots(a_{k-1}a_k)
+        .\]
+    \end{proof}
+    \begin{remark}
+        This is not unique. e.g., (1234)=(12)(23)(34)=(12)(23)(12)(34)(12). But the \textit{parity} of the numbers of transpositions is well-defined..
+    \end{remark}
+    \begin{theorem}\label{thm:parity_transposition}
+        Writing $ \sigma\in S_n $ as a product of transpositions in different ways, $\sigma$ is either always a product of an even number of transpositions, or always a product of an odd number of transpositions.
+    \end{theorem}
+    \begin{proof}
+        Write $ \#(\sigma) $ for the number of cycles in $ \sigma $ in disjoint cycle decompositions, including any one-cycles. For example, $ \#((12)(34))=\#((123))=2, \#(e)=4 $. Let's see   what happens to $ \#(\sigma) $ if we multiply $ \sigma $ by a transposition $ \tau=(cd) $.
+        \begin{itemize}[-]
+            \item This will not affect any cycles not including $c$ or $d$.
+            \item If $c,d$ are in the same cycle in (disjoint cycle decomposition) of $ \sigma$, say $ (c a_2 a_3 \cdots a_{k-1} d  a_{k+1} \cdots a_l) $, then 
+            \[
+                (c a_2 a_3 \cdots a_{k-1} d  a_{k+1} \cdots a_l)(cd)=(c a_{k+1} a_{k+2} \cdots a_l)(d a_2 \cdots a_{k-1})
+            ,\]
+            so $ \#(\sigma \tau) =\#(\sigma)+1$.
+            \item If $c,d$ are in different cycles (possibly 1-cycle),
+            \[
+                (ca_2\cdots a_k)(db_2\cdots b_l)(cd)=(cdb_2\cdots b_ldca_2\cdots a_k)
+            .\]
+            So $ \# (\sigma\tau)=\#(\sigma)-1 $.
+        \end{itemize}
+        So far any $ \sigma $ and any transposition $ \tau $, $ \#(\sigma)\equiv\#(\sigma \tau)+1(\bmod 2)$. Now suppose $ \sigma $ is written as 2 different products of transpositions
+        \[
+            \sigma=\tau_{1} \cdots \tau_{k}=\tau_{1}^{\prime} \ldots \tau_{l}^{\prime}
+        .\]
+        We know by the previous theorem that $ \#(\sigma) $ is uniquely determined by $\sigma$. Also we have 
+        \[
+            \sigma=e\cdot \tau_{1} \cdots \tau_{k}= e\cdot \tau_{1}^{\prime} \ldots \tau_{l}^{\prime} 
+        ,\]
+        and so applying the above several times, we get 
+        \[
+            \#(\sigma)\equiv \#(e)+k\equiv n+k(\bmod 2); \#(\sigma)\equiv \#(e)+l\equiv n+l(\bmod 2)
+        .\]
+        So $ n+k\equiv n+2(\bmod 2) \Leftrightarrow k\equiv l(\bmod 2) $. Hence $k,l$ has the same parity.
+    \end{proof}
+    \begin{definition}
+        Writing $ \sigma\in S_n $ as a product of transositions, $ \sigma =\tau_{1} \cdots \tau_{k}$, the \textit{sign} of $ \sigma $ is defined as $ \epsilon(\sigma)=(-1)^k $. If $ \epsilon(\sigma)=1 $, we say $ \sigma $ is an \textit{even} permutation, and odd permutation if $ \epsilon(\sigma)=-1 $.
+    \end{definition}
+    \begin{theorem}\label{thm:2.19}
+        For $ n\ge 2 $, the sign function $ \epsilon: S_n\to \langle -1 \rangle $ is a surjective homomorphism.
+    \end{theorem}
+    \begin{proof}
+        If $ \sigma,\sigma' $ can be written as $k,l$ transpositions respectively, then $ \sigma \sigma' $ can be written as a product of $k+l$ transpositions and $ \epsilon(\sigma \sigma')=(-1)^{k+l}=(-1)^k\cdot (-1)^l=\epsilon(\sigma)\cdot \epsilon(\sigma') $. To see it is surjective, since $n\ge 2$, $ \epsilon(e)=1 $ and $ \epsilon(12)=-1 $, so it is.
+    \end{proof}
+    \begin{definition}
+        The \textit{kernel} of the homomorphism $ \epsilon $ is called the \textit{alternating group}, $ A_n \le S_n$.
+    \end{definition}
+    \begin{proposition}\label{prop:2.21}
+        $ \sigma\in S_n $ is even if and only if its disjoint cycle decomposition contains an \textit{even number} of \textit{even} cycles.\marginnote{Here "even cycle" means a cycle of even number of elements.}
+    \end{proposition}
+    \begin{proof}
+        Write 
+        \[
+            \sigma = \delta_1 \delta_2 \cdots \delta_k \chi_1 \chi_2\cdots \chi_{l}
+        ,\]
+        where $\delta$ are even cycles, and $\chi$ are odd cycles. Then $ \epsilon(\sigma)=(-1)^{k} $ and the result follows.
     \end{proof}
 \end{document}

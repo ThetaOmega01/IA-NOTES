@@ -364,4 +364,86 @@ skipped some talks irrelevant to contents\\
         For constant coefficient ODEs, this rule follows from the fundamental theorem of algebra.
         \item An $n$th order ODE requires $n$ initial/boundary conditions.
     \end{enumerate}
+    \section{Inhomogeneous(forced) first order ODEs with constant coefficients}
+    \subsection{Constant forcing}
+    \begin{example}
+        Consider the equation 
+        \[
+            5y'-3y=10
+        .\]
+        Solution steps:
+        \begin{enumerate}
+            \item Write the general solution $ y=y_p+y_c $ where $y_p$ is a \textit{particular integral} and $y_c$ is a complementary function
+            \item Find $ y_p $ by simply setting $y'=0$. In this case, $y=-10/3$.
+            \item Insert general solution into DE:
+            \[
+              \begin{aligned}
+                   &5(y_p+y_c)'-3(y_p+y_c)&=10\\
+                   \Longleftrightarrow & 5y_c'+10-3y_c&=10\\
+                    \Longleftrightarrow & 5y_c-3y_c'=0.
+              \end{aligned}  
+            \]
+            Note that $ y_c $ is a solution to corresponding homogeneous equation.
+            \item Solve for $y_c$. In this case, $y_c=Ae^{3x/5}$.
+            \item Combine $y_p$ and $y_c$.
+        \end{enumerate}
+    \end{example}
+    \subsection{Eigenfunction forcing}
+    Example problem: In a sample of rock, isotope A decays to isotope B at a rate proportional to $a$, the number of nuclei of A. B decays to C at a rate proportional to $b$, the number of nuclei of $B$. Find $b(t)$.
+    
+    We have 
+    \[
+        \begin{aligned}
+            &\frac{\mathrm{d}a}{\mathrm{d}t} = -k_a a \Longrightarrow  a = a_0 e^{-k_a t}\\
+            &\frac{\mathrm{d}b}{\mathrm{d}t} = k_a a -k_b b, 
+        \end{aligned}
+    \]
+    which means $ \dot{b}+k_b b=k_a a_0 e^{-k_a t} $. RHS is called a \textit{forcing term}, and it is an eigenfunction of differential operator.
+
+    We \textit{guess} the form of the particular integral
+    \[
+        b_p = ce^{-k_a t}
+    ,\]
+    then the equation becomes 
+    \[
+        -k_a c+k_b c = k_a a_0 \Longleftrightarrow c=\frac{k_a}{k_b-k_a}a_0,\quad \text{for }k_b\neq k_a
+    .\]
+    Since the general solution for the DE is $b=b_p+b_c$,
+    \[
+        \dot{b_c}+k_b b_c = 0 \Longleftrightarrow b_c = De^{-k_b t}
+    .\]
+    Hence
+    \[
+        b=\frac{k_{a}}{k_{b}-k_{a}} a_{0} e^{-k_{a} t}+D e^{-k_{b} t}
+    .\]
+    If $b(0)=0$, $ D = -c $, then 
+    \[
+        b = \frac{k_a}{k_b-k_a}a_0\left( e^{-k_a t}-e^{-k_b t} \right)
+    .\]
+    Taking the ratio of $ b $ and $a$:
+    \[
+        \frac{b(t)}{a(t)} = \frac{k_a}{k_b-k_a}\left( 1-e^{(k_a-k_b)t} \right)
+    .\]
+    We can date the age without knowing $a_0$ is. This result allows rocks and other materials to be dated by measuring ratio of isotopes.
+    \section{First order ODEs of non-constant coefficients}
+    The general form is 
+    \[
+        a(x)y'+b(x)+y = c(x)
+    .\]
+    The standard form is 
+    \[
+        y'+ p(x)y=f(x)
+    .\]
+    Solved using \textit{integrating factors}, multiply by IF $\mu$:
+    \[
+        \mu y'+(\mu p)y=\mu f
+    .\]
+    If $ \mu p=\mu' $, LHS$= (\mu y)' $ by product rule. Hence we want $p = \mu'/\mu$.
+    \[
+        \int p \,\mathrm{d}x = \int \frac{\mu'}{\mu} \,\mathrm{d}x = \ln \mu \Longrightarrow\boxed{\mu = e^{\int p(x) \,\mathrm{d}x}}
+    .\]
+    Thus the DE becomes 
+    \[
+        (\mu y)' = \mu f \Longleftrightarrow y = \frac{1}{\mu}\int \mu f \,\mathrm{d}x
+    .\]
 \end{document}

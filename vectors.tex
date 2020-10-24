@@ -315,6 +315,17 @@ skipped some talks irrelevant to contents\\
             \mathbf{a}\times (\mathbf{b}\times \mathbf{c})=(\mathbf{a}\cdot \mathbf{c})\mathbf{b}-(\mathbf{a}\cdot \mathbf{b})\mathbf{c}.
         \end{equation}
     \end{definition}
+    We have the following identities:
+    \begin{proposition}\label{prop:triple}
+        \[
+            \begin{array}{l}
+                \mathbf{a} \times(\mathbf{b} \times \mathbf{c})+\mathbf{b} \times(\mathbf{c} \times \mathbf{a})+\mathbf{c} \times(\mathbf{a} \times \mathbf{b})=\mathbf{0} \\
+                (\mathbf{a} \times \mathbf{b}) \times(\mathbf{c} \times \mathbf{d})=[\mathbf{a}, \mathbf{b}, \mathbf{d}] \mathbf{c}-[\mathbf{a}, \mathbf{b}, \mathbf{c}] \mathbf{d} \\
+                (\mathbf{a} \times \mathbf{b}) \cdot((\mathbf{c} \times \mathbf{d}) \times(\mathbf{e} \times \mathbf{f}))=[\mathbf{a}, \mathbf{b}, \mathbf{d}][\mathbf{c}, \mathbf{e}, \mathbf{f}]-[\mathbf{a}, \mathbf{b}, \mathbf{c}][\mathbf{d}, \mathbf{e}, \mathbf{f}] \\
+                (\mathbf{b} \times \mathbf{c}) \cdot(\mathbf{a} \times \mathbf{d})+(\mathbf{c} \times \mathbf{a}) \cdot(\mathbf{b} \times \mathbf{d})+(\mathbf{a} \times \mathbf{b}) \cdot(\mathbf{c} \times \mathbf{d})=0
+                \end{array}
+        \]
+    \end{proposition}
     \section{Lines, Planes, and Vector equations}
     Vectors are defined as position vectors from $O$. But the definition of addition enables us to use them to describe displacements between points.
     \subsection{Lines}
@@ -617,7 +628,7 @@ skipped some talks irrelevant to contents\\
     .\]
     Compare with $ [\mathbf{a},\mathbf{b},\mathbf{c}]=\epsilon_{ijk}a_ib_jc_k $.
     \section{Vector Spaces}
-    \subsection{Axioms, span, and subspacs}
+    \subsection{Axioms, span, and subspaces}
     \begin{definition}
         Let $V$ be a set of objects called \textit{vectors} with operation
         \[
@@ -638,4 +649,157 @@ skipped some talks irrelevant to contents\\
     \begin{example}
         Let $ V=\left\{ f:[0,1] \to \mathbb{R} : f \land f(0)=f(1)=0\right\} $. By smooth we mean $f$ is differentiable infinitely many times. Then $V$ is a real vector space with $+$ defined as $ (f+g)(x)=f(x)+g(x) $ and $ (\lambda f)(x)=\lambda(f(x)) $. Then all axioms apply.
     \end{example}
+    \begin{definition}\marginnote{Lecture 7}
+        A \textit{subspace} of a real vector space $V$ is a subset $U \subseteq V$ that is also a vector space. 
+    \end{definition}
+    \begin{remark}
+        A non-empty subset is a subspace if and only if $ \forall v,w\in U, \lambda v+ \mu u\in U $.
+    \end{remark}
+    For any vectors $ v_1,\dots,v_r\in V $, their \textit{span} $ \spn\left\{ v_1,\dots,v_r\right\}=\left\{ \lambda_1 v_1+\cdots+\lambda_r v_r:v_i\in \mathbb{R} \right\} $ is a subspace. $V$ and $ \left\{ 0\right\} $ are subspaces of $V$.
+    \begin{example}
+        A line or plane through $O$ is a subspace in $ \mathbb{R}^3 $, but a line or plane that does not contain $ \mathbf{0} $ is not a subspace.
+    \end{example}
+    \subsection{Linear dependence and independence}
+    For $ v_1,\dots,v_r\in V $, a real vector space, consider a linear relation
+    \[
+        \lambda_1 v_1+\cdots+\lambda_r v_r=0\tag{*}
+    .\]
+    If $ (*)\Rightarrow \lambda_i=0 $, then the vectors form a \textit{linearly independent set}. They obey only the trivial linear relation.
+
+    If $ (*) $ holds with at least $ \lambda_k\neq 0 $, then the vectors form a \textit{linearly dependent} set. They obey a non-trivial linear relation.
+    \begin{example}
+        In $ \mathbb{R}^2 $, $ \left\{ (1,0),(0,1),(0,2)\right\} $ is linearly dependent.
+
+        \bluecomment{We cannot express $(1,0)$ in terms of the others.}
+    \end{example}
+    Several facts:
+    \begin{itemize}
+        \item Any set containing $0$ is linearly dependent.
+        \item In $ \mathbb{R}^3 $, $ \left\{ \mathbf{a}\right\} $ is linearly independent if and only if $ \mathbf{a}\neq \mathbf{0} $.
+        \item $ \left\{ \mathbf{a},\mathbf{b}\mathbf{c}\right\} $ is linearly independent if $ [\mathbf{a},\mathbf{b},\mathbf{c}]\neq 0 $. Since if 
+        \[
+            \alpha \mathbf{a}+\beta \mathbf{b}+\gamma \mathbf{c}=0
+        ,\]
+        then dotting with $ \mathbf{b}\times \mathbf{c} $ we get $ \alpha[\mathbf{a},\mathbf{b},\mathbf{c}]=0 \Rightarrow \alpha=0 $. Similarly $ \beta=0, \gamma=0 $.
+    \end{itemize}
+    \subsection{Inner products}
+    This is an additional structure on a real vector space $V$, that can also be characterised by axioms or key properties.
+
+    For $v,w\in V$, denote inner product by 
+    \[
+        v\cdot w \text{  or  } (v,w)\in \mathbb{R} 
+    .\]
+    Require this satisfies 1. it's symmetric, 2. it's bilinear, 3. it is positive definite.
+
+    Definition of length or norm and deductions such as Cauchy-Schwarz inequality depend just on these properties.
+
+    \begin{example}
+        Consider space of functions 
+        $$ V=\left\{ f:[0,1]\to \mathbb{R} : f \text{ smooth}\land f(0)=f(1)=0\right\} .$$
+        Define an inner product by 
+        \[
+            (f,g)=\int_{0}^{1} f(x)g(x) \,\mathrm{d}x
+        .\]
+        which has properties 123. Cauchy-Schwarz holds:
+        \[
+            |(f,g)|\le \left\| f \right\| \left\| g \right\| 
+        \]
+        with $ \left\| f \right\|^2 =(f,f) $. i.e.
+        \[
+            \left| \int_{0}^{1} f(x)g(x) \,\mathrm{d}x \right| \le \left( \int_{0}^{1} f(x) \,\mathrm{d}x \right)^{1/2}\left( \int_{0}^{1} g(x) \,\mathrm{d}x \right)^{1/2}
+        .\]
+    \end{example}
+    \begin{lemma}\label{lma:innerprod}
+        In any real vector space $V$ with an inner product, if $v_1,v_2,\dots,v_r$ are non-zero and orthogonal vectors, then they are linearly independent.
+    \end{lemma}
+    \begin{proof}
+        If 
+        \[
+            \sum_{i}\alpha_i v_i=0
+        ,\]
+        then
+        \[
+            (v_j,\sum_{i}\alpha_i v_i)=0 \Longleftrightarrow \alpha_j=0
+        .\]
+    \end{proof}
+    \section{Bases and dimension}
+    \begin{definition}
+        For a vector space $V$, a \textit{basis} is a set 
+        \[
+            \mathfrak{B}= \left\{ e_1,\dots, e_n\right\}
+        \]
+        such that 
+        \begin{enumerate}[(i)]
+            \item $ \mathfrak{B} $ spans $V$. i.e., $ \forall v\in V $, 
+            \[
+                v = \sum_{i=1}^{n}v_i e_i
+            .\]
+            \item $ \mathfrak{B} $ is linearly independent.
+        \end{enumerate}
+        Given (ii), the coefficients $v_i$ in (i) are unique, since 
+        \[
+            \sum_{i}v_ie_i=\sum_{i}v_i'e_i \Longleftrightarrow v_i-v_i'=0 \Longleftrightarrow v_i=v_i'
+        .\]
+    \end{definition}
+    \begin{example}
+        Standard basis for $ \mathbb{R}^n $ consists of 
+        \[
+            e_1=\begin{pmatrix}
+                1\\
+                0\\
+                \vdots\\
+                0
+            \end{pmatrix},
+            e_2 = \begin{pmatrix}
+                0\\
+                1\\
+                \vdots\\
+                0
+            \end{pmatrix},
+            \dots,
+            e_n=\begin{pmatrix}
+                0\\
+                0\\
+                \vdots\\
+                1
+            \end{pmatrix}
+        .\]
+        Many other bases can be chosen.
+    \end{example}
+    \begin{theorem}\label{thm:dimension}
+        If $ \left\{ e_1,\dots,e_n\right\} $, $ \left\{ f_1,\dots,f_m\right\} $ are bases for a real vector space $V$, then $m=n$.
+    \end{theorem}
+    \begin{proof}
+        We have 
+        \[
+            \begin{aligned}
+                 f_a&= \sum_{i}A_{ai}e_i,\\ 
+                 e_i&= \sum_{a}B_{ia}f_a
+            \end{aligned}
+        \]
+        for $ A_{ai},B_{ia}\in \mathbb{R} $.
+        Hence
+        \[
+            \begin{aligned}
+                f_a&=\sum_{i}A_{ai}\sum_{b}B_{ib}f_{b}\\
+                &= \sum_{b}\sum_{i}A_{ai}B_{ib}f_b
+            \end{aligned}
+        \]
+        But the coefficients are unique, so 
+        \[
+            \sum_{i}A_{ai}B_{ib}=\delta_{ab}
+        .\]
+        Similarly,
+        \[
+            \sum_{a}B_{ia}A_{aj}=\delta_{ij}
+        .\]
+        Now, 
+        \[
+            \sum_{i,a}A_{ai}B_{ia}=\sum_{a} \delta_{aa}=m = \sum_{i}\delta_{ii}=n,\\
+        .\]
+    \end{proof}
+    \begin{definition}
+        The number of vectors in any basis is the \textit{dimension} of the vector space.
+    \end{definition}
+
 \end{document}
