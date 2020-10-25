@@ -446,4 +446,131 @@ skipped some talks irrelevant to contents\\
     \[
         (\mu y)' = \mu f \Longleftrightarrow y = \frac{1}{\mu}\int \mu f \,\mathrm{d}x
     .\]
+    \section{Discrete equations}\marginnote{Lecture 8}
+    A \textit{discrete equation} is an equation involving a function evaluated at a discrete set of points.
+    \subsection{Numerical integration}
+    Consider a discrete representation of $y(x)$, $ y(x_1),\dots,y(x_{n}) $. One approximation to $y'$ is 
+    \[
+        \frac{\mathrm{d}y}{\mathrm{d}x}\Big|_{x_n} \approx \frac{y_{n+1}-y_n}{h},\quad h=\frac{x_n}{n} 
+    ,\]
+    given that $x_i$ are uniformly distributed. This is called the \textit{Forward Euler} approximation, but it is not the best approximation of the derivative in most contexts.
+    
+    \begin{example}
+        Consider $ 5y'-3y=0 $. We can approximate the equation by 
+        \[
+            5\frac{y_{n+1}-y_n}{h}-3y=0
+        ,\]
+        which is called a \textit{difference equation}, and deduce that 
+        \[
+            y_{n+1}=\left( 1+\frac{3h}{5} \right)y_n
+        ,\]
+        which is called a \textit{recurrence relation}.
+
+        Apply recurrence relation repeatedly:
+        \[
+            y_n=\left( 1+\frac{3h}{5} \right)^{n}y_{0}=\left( 1+\frac{3x_n}{5n} \right)^{n}y_{0}
+        .\]
+        Euler's definition of $ e^x $ is 
+        \[
+            e^x=\lim_{n \to \infty} \left( 1+\frac{x}{n} \right)^n
+        .\]
+        It can be shown that this definition is equivalent to the previous definition. Hence 
+        \[
+            y(x)=\lim_{n \to \infty} y_n = y_0e^{3x/5}
+        .\]
+        \bluecomment{Note for finite $n$, $y_n<y(x)$.}
+    \end{example}
+    \subsection{Series solutions}
+    A powerful way to solve ODEs is to seek solutions in the form of an infinite power series. 
+    \[
+        y(x)=\sum_{n=0}^{\infty}a_n x^n
+    .\]
+    Plug into DE and find a solution.
+    \begin{example}
+        Consider $ 5y'-3y=0 $. Let 
+        \[
+            y(x)=\sum_{n=0}^{\infty}a_n x^n, \quad y'=\sum_{n=1}^{\infty}na_n x^{n-1}
+        .\]
+        Multiply both sides by $x$:
+        \[
+            \begin{aligned}
+                xy'&=\sum_{n=1}^{\infty}na_nx^n,\\
+                xy&= \sum_{n=0}^{\infty}a_n x^{n+1}=\sum_{n=1}^{\infty}a_{n-1} x^{n}.
+            \end{aligned}
+        \]
+        Then the DE becomes 
+        \[
+            \begin{aligned}
+                &5\sum_{n=1}^{\infty}na_nx^n-3\sum_{n=1}^{\infty}a_{n-1} x^{n}=0\\
+                \Longleftrightarrow & \sum_{n=1}^{\infty}x^n\left( 5na_n-3a_{n-1} \right)=0.
+            \end{aligned}
+        \]
+        This holds for every $x\in \mathbb{R}$, so it holds if and only if
+        \[
+            \forall x\in \mathbb{R}, 5na_n-3a_{n-1}=0 \Longleftrightarrow a_n = \frac{3}{5n}a_{n-1} \Longleftrightarrow a_n=\left( \frac{3}{5} \right)^n \frac{a_0}{n!}
+        .\]
+        Hence
+        \[
+            y= a_0\sum_{n=0}^{\infty} \left( \frac{3}{5} \right)^n \frac{x^n}{n!} = a_0 e^{3x/5}
+        .\]
+        This converges for all $x$, so $ y(x)=a_0 e^{3x/5} $ is a solution.
+    \end{example}
+    \section{First order nonlinear ODEs}
+    General form is 
+    \begin{equation}
+        Q(x,y)\frac{\mathrm{d}y}{\mathrm{d}x}+P(x,y)=0.
+    \end{equation}
+    \subsection{Separable equations}
+    (10.1) is separable if and only if it can be written in the form 
+    \[
+        q(y)\d y=p(x)\d x,
+    \]
+    and we simply solve $x,y$ by integrating both sides.
+    \subsection{Exact equations}
+    (10.1) is an \textit{exact equation} if and only if 
+    \[
+        Q(x,y)\d y+P(x,y)\d x\tag{*}
+    \]
+    is an \textit{exact differential} of function $f(x,y)$. i.e., $ \d f= Q\d y+P\d x $. If this holds, then (10.1) implies that $ \d f=0 $ and $f(x,y)$ is constant. We can use multivariable chain rule to check.
+    \[
+        \d f=\frac{\partial f}{\partial x}\d x+ \frac{\partial f}{\partial y}\d y \Longrightarrow \frac{\partial f}{\partial x}+\frac{\partial f}{\partial y}\frac{\mathrm{d}y}{\mathrm{d}x}=0     
+    .\]
+    Comparing with (10.1), if $(*)$ is an exact differential, then $\exists f(x)$ such that 
+    \[
+        \frac{\partial f}{\partial x}=P(x,y),\quad \frac{\partial f}{\partial y}=Q(x,y)  \tag{**}
+    .\]
+    Hence 
+    \[
+        \begin{aligned}
+             & \frac{\partial^2 f}{\partial y\partial x} =\frac{\partial P}{\partial y} \land  \frac{\partial^2 f}{\partial x\partial y} =\frac{\partial Q}{\partial x}\\
+             \Longleftrightarrow & \boxed{\frac{\partial P}{\partial y}=\frac{\partial Q}{\partial x}}.
+        \end{aligned}
+    \]
+    If it holds throughout a \textit{simply connected} domain $\mathcal{D}$, then $ P\d x+Q\d y $ is an exact differential of a single-valued function $f(x,y)$ in $D$. Henc we can use this to check exact equations.
+
+    $f(x,y)$ can be found by integrating $(**)$.
+    \begin{example}
+        Consider 
+        \[
+            6y(y-x)\frac{\mathrm{d}y}{\mathrm{d}x}+(2x-3y^2)=0 
+        .\]
+        Here $P=2x-3y^2, Q=6y(y-x)$. We have 
+        \[
+            \frac{\partial P}{\partial y}=-6y= \frac{\partial Q}{\partial x}
+        ,\]
+        so it is an exact equation.
+        Note that 
+        \[
+            \begin{aligned}
+                 &\int \frac{\partial f}{\partial x}  \,\mathrm{d}x=x^2-3xy^2+h(y),\\
+                 &\frac{\partial f}{\partial y}=(x^2-3xy^2+h(y))'_y= -6xy+h'(y)=6y(y-x),\\
+                 \Longrightarrow & h'=6y^2 \Longrightarrow h=.
+            \end{aligned}
+        \]
+        Hence $f(x,y)=x^2-3xy^2+2y^3+C$ and 
+        \[
+            x^2-3xy^2+2y^3=C
+        \]
+        is the general solution. 
+    \end{example}
 \end{document}
