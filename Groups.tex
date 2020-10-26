@@ -21,6 +21,8 @@
 \def\H{{\mathrm H}}
 \def\P{{\mathrm P}}
 
+\def\CC{{\mathbb C}}
+\def\RR{{\mathbb R}}
 
 \def\bb{\mathbf b}
 \def \bc{\mathbf c}
@@ -600,4 +602,101 @@ skipped some takes irrelevant to contents\\
         ,\]
         where $\delta$ are even cycles, and $\chi$ are odd cycles. Then $ \epsilon(\sigma)=(-1)^{k} $ and the result follows.
     \end{proof}
+    \section{M\"{o}bius group}\marginnote{Lecture 8}
+    The study of permutations of an infinite object, the functions $ \mathbb{C} \to \mathbb{C} $. Since $\mathbb{C}$ has geometry unlike $ \{1,2,\dots,n\} $, need to restrict to functions that interact well with this geometry.
+
+    More precisely, we want to study functions of the form 
+    \[
+        f:\mathbb{C} \to \mathbb{C}, \quad f(z)=\frac{az+b}{cz+d},\quad a,b,c,d,\in \mathbb{C} 
+    \]
+    such that $ad-bc\neq 0$\marginnote{Note that \[
+        f(z)-f(w)=\frac{(ad-bc)(z-w)}{(cw+d)(cz+d)}
+    ,\]
+    so $f(z)=f(w)$ and $f$ would be constant. However we need invertible functions, so we do need $ad-bc\neq 0$. }.
+
+    $f$ is undefined at point $-d/c$, to fix this, we introduce a new point $ \infty $ to $ \mathbb{C} $, forming the \textit{extended complex plane} $ \hat{\mathbb{C}}=\mathbb{C} \cup \{\infty\} $. Can visualise using \textit{stereographic projection}.
+
+    \begin{definition}
+        A \textit{M\"{o}bius map} is a function $ f: \hat{\mathbb{C}}\to \hat{\mathbb{C}} $ of the form
+        \[
+            f(z)=\frac{az+b}{cz+d}, a,b,c,d\in \CC, ad-bc\neq 0, f\left( \frac{-d}{c} \right)=\infty
+        ,\]
+        with
+        \[
+            f(\infty)=\begin{cases}
+            \frac{a}{c} &\text{ if } c\neq 0,\\
+            \infty &\text{ if } c=0.\\
+            \end{cases} 
+        \]
+    \end{definition}
+    \begin{lemma}\label{lma:mobius are bijections}
+        M\"{o}bius maps are bijections $ \hat{\CC}\to \hat{\CC} $.
+    \end{lemma}
+    \begin{proof}
+        Note that for $ f(z)=\frac{az+b}{cz+d} $, 
+        \[
+            f^{-1}(z)=\frac{dz-b}{-cz+a}
+        ,\]
+        which could be checked by doing some algebras.
+    \end{proof}
+    \begin{theorem}\label{thm:mobius_group}
+        The set of M\"{o}bius maps form a group $ M $ wrt composition.
+    \end{theorem}
+    \begin{proof}
+        Note that the identity is $z\mapsto z=\frac{1z+0}{0z+1}$, and by lemma they are invertible. Associativity  is inherited from the structure of functions in $ \mathbb{C} $. 
+    \end{proof}
+    \begin{remark}
+        $M$ is not abelian. e.g. take $ f_1(z)=z+1, f_2(z)=2z $. In dealing with M\"{o}bius maps in $ \hat{\CC} $, we use the convention $ \frac{1}{\infty}=0, \frac{1}{0}=\infty, \frac{a\infty}{c\infty}=\frac{a}{c} $.
+    \end{remark}
+    \begin{proposition}\label{prop:decomp_mobius}
+        Every M\"{o}bius group can be written as a composition of maps of the following forms:
+        \begin{enumerate}[(1)]
+            \item $ f(z)=az(a\neq 0) $, a dilation/rotation.
+            \item $ f(z)=z+b $, translation.
+            \item $ f(z)=\frac{1}{z} $, inversion.
+        \end{enumerate}
+    \end{proposition}
+    \begin{proof}
+        Let
+        \[
+            f(z)=\frac{az+b}{cz+d}
+        .\]
+        If $c\neq 0$, then $ f(z) $ is the composition 
+        \[
+            z \mapsto z+\frac{d}{c} \mapsto \frac{1}{z+\frac{d}{c}} \mapsto \frac{(-ad+bc)c^{-2}}{z+\frac{d}{c}} \mapsto \frac{a}{c}+\frac{(-ad+bc)c^{-2}}{z+\frac{d}{c}} \mapsto \frac{az+b}{cz+d}
+        .\]
+        If $c=0$, $ z \mapsto \frac{a}{d}z \mapsto \frac{a}{d}z+\frac{b}{d}. $
+    \end{proof}
+    In particular, the set $S$ of all dilations/rotations, translations, and inversions generate $M$. i.e., $ \langle S \rangle = M $.
+    \section{Lagrange's Theorem}
+    This result allows us to study the internal structure of a group wrt a subgroup.
+    \subsection{Cosets}
+    \begin{definition}
+        Let $H\le G$ and $g\in G$. Let $ gH=\left\{ gh:h\in H\right\} $, then $gH$ is called a \textit{left coset} of $H$ in $G$. Right coset is defined similarly.
+    \end{definition}
+    Cosets can be thought as a "translated copy" of $H$ that may no longer be a subgroup.
+    \begin{example}
+        \begin{enumerate}[(1)]
+            \item Let $ H=2 \mathbb{Z} \le \mathbb{Z} $, then some cosets are: 
+
+            $0+2\mathbb{Z}=2 \mathbb{Z}$, all even integers,
+
+            $ 1+2 \mathbb{Z} $ is all odd integers. Note that 
+            \[
+                n+  2 \mathbb{Z} =\begin{cases}
+                2\mathbb{Z} &\text{ if $n$ is even,}\\
+                1+2\mathbb{Z} &\text{ if $n$ is odd.}\\
+                \end{cases} 
+            \]
+            Hence these are the only cosets of $2 \mathbb{Z}$.
+            \item Let $ H=\left\{ e,(12)\right\}\le S_3 $. Then $eH=H$, $ (12)H=H $, $ (13)H=\left\{ (13),(123)\right\} $.
+        \end{enumerate}
+    \end{example}
+    Somethings to notice from example (2):
+    \begin{itemize}
+        \item $eH=H$.
+        \item $hH=H$ whenever $h\in H$.
+        \item $|H|=|gH|$.
+        \item $\displaystyle \bigcup_{g\in G}gH=G$. 
+    \end{itemize}
 \end{document}

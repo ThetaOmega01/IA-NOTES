@@ -801,5 +801,113 @@ skipped some talks irrelevant to contents\\
     \begin{definition}
         The number of vectors in any basis is the \textit{dimension} of the vector space.
     \end{definition}
+    \begin{remark}\marginnote{Lecture 8}
+        $\{0\}$ is called the \textit{trivial} vector space and has dimension 0.
 
+        The steps in the proof of basis theorem are within scope of this course, but the proof without prompts non-examinable. The same applies to the following:
+    \end{remark}
+    \begin{proposition}\label{prop:reduce_span}
+        Let $V$ be a vector space with finite subsets $ Y=\left\{ w_1,\dots,w_m\right\}$ and $ X=\left\{ u_1,\dots,u_k\right\} $, with $Y$ spans $V$ and $X$ linearly independent. Then 
+        \[
+            k\le \dim V\le m
+        .\]
+        And 
+        \begin{enumerate}[(1)]
+            \item A basis can be found as a subset of $Y$ be discarding vectors as necessary.
+            \item $X$ can be extended to a basis by adding vectors from $Y$ as necessary.
+        \end{enumerate}
+    \end{proposition}
+    \begin{proof}
+        (1) If $Y$ is linearly independent, then $Y$ is a basis, and $m=n=\dim V$. If $Y$ is not, then 
+        \[
+            \sum_{i=1}^{m}\lambda_i w_i=0
+        ,\]
+        where $ \lambda_i $ are not all zero. wlog, can take $\lambda_m\neq 0.$ Then 
+        \[
+            w_m=-\frac{1}{\lambda_m}\sum_{i=1}^{m-1}\lambda_i w_i
+        ,\]
+        so $ \spn Y=\spn (Y\setminus \left\{ w_m\right\})=\spn Y' $. We repeat, until a basis is obtained.
+
+        (2) If $X$ spans $V$ then $X$ is a basis $k=n=\dim V$. If not $ \exists u_{k+1} $ not in $\spn X$. Consider 
+        \[
+            \sum_{i=1}^{k+1}\mu_i u_i=0
+        \]
+        and thus $\mu_{i}=0, \forall i\in \left\{ 1,2,\dots,k+1\right\}$. Hence 
+        \[
+            X'=X \cup \left\{ u_{k+1}\right\}
+        \]
+        is linearly independent.
+
+        Furthermore, we can choose $u_{k+1}\in Y$ since otherwise $ \spn X=V $, \#. Repeat this until a basis is achieved. The process stops since $Y$ is finite.
+    \end{proof}
+    In this course, we will deal only with finite-dimensional spaces, except examples mentioned.
+    \begin{example}
+        $ V=\left\{ f:[0,1] \to \mathbb{R} : f\text{ smooth } \land f(0)=f(1)=0\right\} $. Note that 
+        \[s_n(x)=\sqrt{2}\sin(n\pi x)\]
+        belong to $V$ and 
+        \[
+            (s_n,s_m)=2 \int_{0}^{1} \sin(n\pi x)\sin(m\pi x) \,\mathrm{d}x=\delta_{nm},
+        \]
+        so these functions are orthonormal and thus linearly independent. So $V$ is infinite-dimensional.
+    \end{example}
+    \section{Vectors in $\mathbb{C}^n$}
+    \subsection{Introduction and definitions}
+    Let $ \mathbb{C}^n=\left\{ \mathbf{z}=(z_1,\dots,z_n):z_j\in \mathbb{C}\right\} $ and define 
+    \begin{itemize}
+        \item Addition: $ \mathbf{z}+\mathbf{w}=(z_1+w_1,\dots,z_n+w_n) $,
+        \item Scalar multiplication: $ \lambda \mathbf{z}=(\lambda z_1,\dots, \lambda z_n) $.
+    \end{itemize}
+    If scalars $ \lambda,\mu\in \mathbb{R} $, then $ \mathbb{C}^n $ is a real vector space, and axioms apply.
+
+    If $ \lambda, \mu\in \mathbb{C}  $, $ \mathbb{C}^n $ is a complex vector space. The same axioms hold, and definitions of linear combinations, linear dependence/independence, bases, dimension are generalised to $\mathbb{C}$.
+
+    The distinction between real and complex scalars is important.
+    \begin{example}
+        $ \mathbf{z}=(z_1,\dots,z_n)\in \mathbb{C}^{n} $ with $ z_j=x_j+iy_j, x_j, y_j \in \mathbb{R} $. Then 
+        \[
+            \mathbf{z}=\sum_{j} x_j \mathbf{e}_j + \sum_{j} y_j \mathbf{f}_j,
+        \]
+        a linear combination of $ \mathbf{e} $, the usual standard basis in $\mathbb{R}^{n}$, and $ \mathbf{f}_j=(0,\dots,i,\dots,0) $.
+    \end{example}
+    We can see that $ \left\{ \mathbf{e}_1,\dots,\mathbf{e}_n,\mathbf{f}_1,\dots,\mathbf{f}_n\right\} $ is a basis for $\mathbb{C}^{n}$ as a \textit{real} vector space, so it has dimension $2n$.
+    
+    However,
+    \[
+        \mathbf{z}=\sum_{j}z_j \mathbf{e}_j
+    \]
+    is a \textit{complex} linearl combination, so the basis of $ \mathbb{C}^{n} $ as a \textit{complex} vector space is simply $ \left\{ \mathbf{e}_1,\dots,\mathbf{e}_n\right\} $ and the dimension is $n$ over $ \mathbb{C} $.
+
+    From now on we will view $ \mathbb{C}^{n} $ as a complex vector space unless mentioned otherwise.
+    \subsection{Inner product}
+    The inner product on $ \mathbb{C}^{n} $ is defined by 
+    \[
+        (\mathbf{z},\mathbf{w})=\sum_{j=1}^n \bar{z}_j w_j
+    .\]
+    It has the followin properties:
+    \begin{enumerate}[(1)]
+        \item It is \textit{hermitian}: $ (\mathbf{w},\mathbf{z})=\overline{(\mathbf{z},\mathbf{w})} $.
+        \item It is linear/anti-linear: $ (\mathbf{z}, \lambda \mathbf{w} +\lambda' \mathbf{w}')=\lambda(\mathbf{z},\mathbf{w})+\lambda'(\mathbf{z},\mathbf{w}') $. But $ (\lambda \mathbf{z}+\lambda' \mathbf{z}',w)=\bar{\lambda}(\mathbf{z},\mathbf{w})+\bar{\lambda'}(\mathbf{z},\mathbf{w}') $.
+        \item Positive definite: $ (\mathbf{z},\mathbf{z})\in \mathbb{R} \land \ge 0 $. $ =0 $ if and only if $ \mathbf{z}=\mathbf{0} $.
+    \end{enumerate}
+    Define the norm of $ \mathbf{z} $ to be 
+    \[
+        \left| \mathbf{z} \right| \ge 0, |\mathbf{z}|^2=(\mathbf{z},\mathbf{z})
+    .\]
+    Also define $ \mathbf{z}, \mathbf{w}\in \mathbb{C}^{n} $ to be \textit{orthogonal} if $ (\mathbf{z},\mathbf{w})=0. $
+
+    Note that the standard basis for $ \mathbb{C}^{n} $ is orthonormal. That is,
+    \[
+        (\mathbf{e}_j,\mathbf{e}_k)=\delta_{jk}
+    .\]
+    \begin{example}
+        Complex inner product of $ \mathbb{C}^{1} $ is 
+        \[
+            (z,w)=\bar{z}w
+        .\]
+        Let $ z=a_1+ia_2,w=b_1+ib_2 $, and considers $ \mathbf{a}=(a_1,a_2),\mathbf{b}=(b_1,b_2)\in \mathbb{R}^{2} $. Then 
+        \[
+            \bar{z}w=a_1b_1+a_2b_2+i(a_1b_2-a_2b_1)=\mathbf{a}\cdot \mathbf{b}+i[\mathbf{a},\mathbf{b}]
+        ,\]
+        recover 2 scalar products in $ \mathbb{R}^2 $.
+    \end{example}
 \end{document}
