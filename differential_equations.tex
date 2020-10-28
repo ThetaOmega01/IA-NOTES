@@ -515,18 +515,18 @@ skipped some talks irrelevant to contents\\
         .\]
         This converges for all $x$, so $ y(x)=a_0 e^{3x/5} $ is a solution.
     \end{example}
-    \section{First order nonlinear ODEs}
+    \part{First order nonlinear ODEs}
     General form is 
     \begin{equation}
         Q(x,y)\frac{\mathrm{d}y}{\mathrm{d}x}+P(x,y)=0.
     \end{equation}
-    \subsection{Separable equations}
+    \section{Separable equations}
     (10.1) is separable if and only if it can be written in the form 
     \[
         q(y)\d y=p(x)\d x,
     \]
     and we simply solve $x,y$ by integrating both sides.
-    \subsection{Exact equations}
+    \section{Exact equations}
     (10.1) is an \textit{exact equation} if and only if 
     \[
         Q(x,y)\d y+P(x,y)\d x\tag{*}
@@ -564,7 +564,7 @@ skipped some talks irrelevant to contents\\
             \begin{aligned}
                  &\int \frac{\partial f}{\partial x}  \,\mathrm{d}x=x^2-3xy^2+h(y),\\
                  &\frac{\partial f}{\partial y}=(x^2-3xy^2+h(y))'_y= -6xy+h'(y)=6y(y-x),\\
-                 \Longrightarrow & h'=6y^2 \Longrightarrow h=.
+                 \Longrightarrow & h'=6y^2 \Longrightarrow h=2y^3.
             \end{aligned}
         \]
         Hence $f(x,y)=x^2-3xy^2+2y^3+C$ and 
@@ -573,4 +573,79 @@ skipped some talks irrelevant to contents\\
         \]
         is the general solution. 
     \end{example}
+    \section{Isoclines and solution curves}\marginnote{Lecture 9.}
+    Nonlinear equations are not guaranteed to have simple/closed form solutions. Nevertheless we can analyize the behaviour of the system without solving.
+
+    Consider an ODE of the form 
+    \[
+        \frac{\mathrm{d}y}{\mathrm{d}t}=f(y,t) 
+    .\]
+    Each intial condition will give a different solution curve.
+    \begin{example}
+        Consider the equation 
+        \[
+            \frac{\mathrm{d}y}{\mathrm{d}t}=t(1-y^2)=f(y,t) \tag{$*$}
+        .\]
+        It is separable:
+        \[
+            \begin{aligned}
+                 &\int \frac{\d y}{1-y^2} \,\mathrm{d}y=\int t \,\mathrm{d}t\\
+                 \Longrightarrow &y= \frac{A-e^{-t^2}}{A+e^{-t^2}}.
+            \end{aligned}
+        \]
+        This general solution produces a family of solution curves, parameterised by by $A$.
+    \end{example}
+    \begin{definition}[Isocline]
+        An \textit{isocline} is the curve along which $ f=\dot{y}=C $, where $C$ is a constant.
+    \end{definition}
+    Procedure of drawing a curve: draw isoclines, inspect the slope of $y$, draw a vector field, and plot the lines.
+    \begin{remark}
+        Since $f(y,t)$ is single-valued, any two solution curves do not cross.
+    \end{remark}
+    \section{Fixed(equilibrium) points}
+    \begin{definition}
+        A fixed point is a point where
+        \[
+            \frac{\mathrm{d}y}{\mathrm{d}t}=f(y,t)=0 
+        .\]
+        A fixed point is called \textit{stable}(\textit{unstable}) if solution curves in a small neighbourhood of the fixed point converge(diverge) to(away) the fixed point.
+    \end{definition}
+    We can analyize the stability of fixed points using a \textit{perturbation} analysis.
+
+    Let $y=a$ be a fixed point of $ \frac{\mathrm{d}y}{\mathrm{d}t}=f(y,t)  $, i.e. $ f(a,t)=0 $. Consider a small perturbation from the fixed point: $ y=a+\epsilon(t) $ We have 
+    \[
+        \begin{aligned}
+            \frac{\mathrm{d}\epsilon}{\mathrm{d}t}&=\frac{\mathrm{d}(y-a)}{\mathrm{d}t}
+            = \frac{\mathrm{d}y}{\mathrm{d}t}\\
+            &=f(a+\epsilon,t)\\
+            &= f(a,t)+\epsilon \frac{\partial f}{\partial y}(a,t)+O(\epsilon^2).
+        \end{aligned}
+    \]
+    For small $ \epsilon $, we have 
+    \[
+        \frac{\mathrm{d}\epsilon}{\mathrm{d}t}\approx \epsilon \frac{\partial f}{\partial y}(a,t)  
+    .\]
+    Hence we've converted the non-linear ODE into a linear one wrt $ \epsilon $.
+
+    If $ \lim_{t \to \infty} \epsilon=0 $, then $a$ is a stable fixed point. Conversely if $ \lim_{t \to \infty} \epsilon=\infty  $, then $a$ is an unstable fixed point. If $ f'_y(a,t)=0 $, then we need higher order terms in Taylor series.
+    \begin{example}
+        Consider $f(y,t)=t(1-y^2)$. The fixed points are $y=\pm 1$. $ f'_y=-2yt $. At $y=1$, we have 
+        \[
+            \dot{\epsilon}\approx -2\epsilon t \Rightarrow \epsilon=\epsilon_0 e^{-t^2}\to 0
+        .\] 
+        Hence $1$ is stable.
+        
+        At $y=-1$, $ \dot{\epsilon}=2t\epsilon \Rightarrow \epsilon=\epsilon_0e^{t^2}\to \infty $. Hence $-1$ is unstable.
+    \end{example}
+    \section{Autonomous DEs}
+    \begin{definition}
+        An \textit{autonomous DE} is a special case when $\dot{y}=f(y)$.
+    \end{definition}
+    In this case, near fixed points $ y=a$, we have $ \dot{\epsilon}=f'_y(a)\epsilon=\epsilon k $, where $k$ is constant. Hence $ \epsilon=\epsilon_0 e^{kt} $. Therefore for autonomous DEs we have 
+    \[
+      \text{if } \begin{cases}
+      f'(a)<0 \Rightarrow &\text{stable F.P.}\\
+       f'(a)>0 \Rightarrow &\text{unstable F.P.}\\
+      \end{cases}   
+    \]
 \end{document}
