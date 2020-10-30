@@ -81,7 +81,7 @@ skipped some takes irrelevant to contents\\
             \item $ (\mathbb{Z} , +) $,
             \item $ (\mathbb{R} ,+), (\mathbb{Q} , +), (\mathbb{C} , +) $,
             \item $ \mathbb{R}^* = \mathbb{R} \setminus \left\{ 0\right\}; (\mathbb{R}^*, \times) $,
-            \item $ (\mathbb{Z}_n, + \bmod n), \mathbb{Z}_n = \left\{ 0,1,\dots, n-1\right\} $,
+            \item $ (\mathbb{Z}_n, + \pmod n), \mathbb{Z}_n = \left\{ 0,1,\dots, n-1\right\} $,
             \item Vector spaces with addition of vectors,
             \item $ (\rm{GL}_2(\mathbb{R}), \text{matrix multiplication}) $, set of invertible $2\times 2$ matrices,
         \end{enumerate}
@@ -215,7 +215,7 @@ skipped some takes irrelevant to contents\\
         \begin{enumerate}[(1)]
             \item[(0)] Let $ \varphi:H\to G $ be the trivial homomorphism, i.e. $ \varphi(h)\equiv e_G $. Then $ \im(\varphi)=\left\{ e_G\right\} $ and $ \ker (\varphi)=H $.
             \item Let $ \iota: H\to G $, where $H\le G$, be the inclusion map. Then $ \im (\iota) = H, \ker (\iota) = \left\{ e_H\right\} $.
-            \item $ \varphi: \mathbb{Z} \to \mathbb{Z}_n, \varphi(k)=k \bmod n $. $ \im (\varphi)=\mathbb{Z}_n, \ker (\varphi)= n \mathbb{Z}$.
+            \item $ \varphi: \mathbb{Z} \to \mathbb{Z}_n, \varphi(k)=k \pmod n $. $ \im (\varphi)=\mathbb{Z}_n, \ker (\varphi)= n \mathbb{Z}$.
         \end{enumerate}
     \end{example}
     \begin{proposition}\label{prop:homom surj}
@@ -566,7 +566,7 @@ skipped some takes irrelevant to contents\\
             .\]
             So $ \# (\sigma\tau)=\#(\sigma)-1 $.
         \end{itemize}
-        So far any $ \sigma $ and any transposition $ \tau $, $ \#(\sigma)\equiv\#(\sigma \tau)+1(\bmod 2)$. Now suppose $ \sigma $ is written as 2 different products of transpositions
+        So far any $ \sigma $ and any transposition $ \tau $, $ \#(\sigma)\equiv\#(\sigma \tau)+1\pmod 2$. Now suppose $ \sigma $ is written as 2 different products of transpositions
         \[
             \sigma=\tau_{1} \cdots \tau_{k}=\tau_{1}^{\prime} \ldots \tau_{l}^{\prime}
         .\]
@@ -576,9 +576,9 @@ skipped some takes irrelevant to contents\\
         ,\]
         and so applying the above several times, we get 
         \[
-            \#(\sigma)\equiv \#(e)+k\equiv n+k(\bmod 2); \#(\sigma)\equiv \#(e)+l\equiv n+l(\bmod 2)
+            \#(\sigma)\equiv \#(e)+k\equiv n+k\pmod 2; \#(\sigma)\equiv \#(e)+l\equiv n+l\pmod 2
         .\]
-        So $ n+k\equiv n+2(\bmod 2) \Leftrightarrow k\equiv l(\bmod 2) $. Hence $k,l$ has the same parity.
+        So $ n+k\equiv n+2\pmod 2 \Leftrightarrow k\equiv l\pmod 2 $. Hence $k,l$ has the same parity.
     \end{proof}
     \begin{definition}
         Writing $ \sigma\in S_n $ as a product of transositions, $ \sigma =\tau_{1} \cdots \tau_{k}$, the \textit{sign} of $ \sigma $ is defined as $ \epsilon(\sigma)=(-1)^k $. If $ \epsilon(\sigma)=1 $, we say $ \sigma $ is an \textit{even} permutation, and odd permutation if $ \epsilon(\sigma)=-1 $.
@@ -699,4 +699,97 @@ skipped some takes irrelevant to contents\\
         \item $|H|=|gH|$.
         \item $\displaystyle \bigcup_{g\in G}gH=G$. 
     \end{itemize}
+    In fact, \marginnote{Lecture 9}
+    \begin{theorem}[Lagrange]\label{thm:Lagrange}\marginnote{Cosets \textit{pave} the group.}
+        Let $ H \le G $ where $G$ is finite, then 
+        \begin{enumerate}
+            \item $ |H|=|gH| $ for any $ g\in G $.
+            \item If $ g_1,g_2\in G $, then either $ g_1H=g_2H $ or $ g_1H \cap g_2 H=\varnothing  $.
+            \item $ \displaystyle \bigcup_{g\in G}gH=G $.
+        \end{enumerate}
+        In particular, define the \textit{index} of $H$ in $G$ to be the number of distinct cosets of $H$ in $G$, denoted by $ |G:H| $. Then we have 
+        \[
+            |G|=|G:H||H|
+        .\]
+    \end{theorem}
+    \begin{proof}
+        \begin{enumerate}
+            \item The function $ \varphi:H\to gH $ defined by $ \varphi(h)=gh $ for $h\in H$, is a bijection between $H$ and $gH$. Surjection is obvious since every $ gh=\varphi(h)\in gH $. To show its injectivity, note that $\varphi(h_1)=\varphi(h_2)\Rightarrow gh_1=gh_2 \Rightarrow h_1=h_2 $. Therefore, $ |H|=|gH|$.
+            \item Suppose $ g_1H\cap g_2H\neq \varnothing $. Then $ \exists g\in g_1H\cap g_2H \Rightarrow g=g_1h_1=g_2h_2 $, where $h_1,h_2\in H$. This means that $ g_1=g_2h_2h_1^{-1} $, and so $ \forall h\in H, g_1h=g_2h_2h_1^{-1}h\in g_2H \Rightarrow g_1H \subseteq g_2H $. Similarly $ g_2H \subseteq g_1H $, and so they are identical.
+            \item Given $g\in G$, then $ g\in gH $ so $ g\in \bigcup_{g\in G}gH \Rightarrow G \subseteq \bigcup_{g\in G}gH $. Certainly $ \bigcup_{g\in G}gH \subseteq G $ since all are subsets. Hence 
+            \[
+                \bigcup_{g\in G}gH=G
+            .\]
+        \end{enumerate}
+        Since $G$ is the distinct union of distinct cosets of $H$, $|G|=|G:H||H|$.
+    \end{proof}
+    \begin{remark}
+        Right cosets also works, using the same arguments. However, $ gH\neq Hg $ in general, since a group needs not to be abelian. For example, if $ H=\left\{ e,(12)\right\}\le S_3 $, the coset $ (13)H=\left\{ (13),(123)\right\} $ while $ H(13)=\left\{ (13),(132)\right\} $. Another fact to notice from this is that the set of cosets are not necessarily the same wrt left/right. $H$ is particulary special and interesting if $ gH=Hg $.
+    \end{remark}
+    \begin{proposition}\label{prop:3.4}
+        $ g_1H=g_2H \Longleftrightarrow g_1^{-1}g_2\in H $.
+    \end{proposition}
+    \begin{proof}
+        If $ g_1H=g_2H $, then $ g_1=g_2h $ for some $h\in H$. Hence $ g_1^{-1}g_2=h^{-1}\in H $. Conversely if $ g_1^{-1}g_2\in H $, $ g_1 g_1^{-1}g_2\in g_1H \Rightarrow g_2\in g_1H $. By Lagrange's theorem, they are identical.
+    \end{proof}
+    Take $ g_1,g_2,\dots,g_{|G:H|} $ from each disjoint coset of $H$ in $G$. Then we have 
+    \[
+        G=\bigsqcup_{i=1}^{|G:H|}g_iH
+    ,\]
+    where $ \bigsqcup  $ is the disjoint union notation. The $g_i$ are called \textit{coset representation} of $H$ in $G$.
+    \begin{corollary}\label{col:3.5}
+            Let $G$ be a finite group and $g\in G$, then $ \ord(g)||G| $.
+    \end{corollary}
+    \begin{proof}
+        Let $ H=\langle g \rangle $, then $ \ord(g)=|H| $ and thus $ \ord(g)||G| $ by Lagrange's theorem.
+    \end{proof}
+    \begin{corollary}\label{col:3.6}
+        Let $G$ be a finite group. If $g\in G$, then $ g^{|G|}=e $.
+    \end{corollary}
+    \begin{proof}
+        $ g^{|G|}=g^{\ord(g)n}=e^{n}=e $.
+    \end{proof}
+    \begin{corollary}\label{col:3.7}
+        If $ |G| $ is prime, then $G$ is cyclic, and is generated by any non-identity element.
+    \end{corollary}
+    \begin{proof}
+        Since $ |G|=p $, $p$ is prime, then $ |\langle g \rangle |||G| $ by Lagrange. Since $p$ is prime, then $ |\langle g \rangle |=1 $ or $p$. Hence if $g\neq e$, then $ g,e\in \langle g \rangle  $ so $ |\langle g \rangle |=p $, and thus $ \langle g \rangle =G $.
+    \end{proof}
+    \subsection{An application in Number Theory}
+    Consider $ (\mathbb{Z}_n, +_n) $. Define $ a*b=ab\pmod n $. This is well-defined since $ a_1 \equiv a_2\pmod n \land b_1 \equiv b_2 \pmod n \Rightarrow a_1b_1 \equiv a_2b_2\pmod n $. $ (\mathbb{Z}_n, *) $ is not a group since $0$ has no inverse.
+
+    Let $ \mathbb{Z}_n^* \subseteq \mathbb{Z}_n $ be the subset of elements of $\mathbb{Z}_n$ that have inverses. In fact, we have 
+    \begin{proposition}
+        $ \mathbb{Z}_n^*=\left\{ a\in \mathbb{Z}^n: (a,n)=1\right\} $.
+    \end{proposition}
+    \begin{proof}
+        Let $a\in \mathbb{Z}_n$ such that $a,n$ are coprime. Then $ \exists b,m, ba+mn=1 \Rightarrow b$ is the inverse of $a$ and $ \left\{ a\in \mathbb{Z}^n: (a,n)=1\right\} \subseteq \mathbb{Z}_n^* $.
+
+        Conversely if $a$ has an inverse in $ \mathbb{Z}_n $, then $ \exists b, ab \equiv 1\pmod n \Rightarrow \exists m, ab+mn=1  \Rightarrow (a,n)=1$. Hence $\mathbb{Z}_n^* \subseteq \left\{ a\in \mathbb{Z}^n: (a,n)=1\right\}$. 
+    \end{proof}
+    Obviosuly $1\in \mathbb{Z}_n^*$. By defintion every revertible element and its inverse is in $\mathbb{Z}_n^*$. Any product of two invertible elements is invertible, so $\mathbb{Z}_n^*$ is closed under $*$. Associativity is inherited from $ \mathbb{Z}_n $, so $\mathbb{Z}_n^*$ is a \textit{subgroup} of $ \mathbb{Z}_n $.
+    \begin{definition}[Euler totient function]
+        $ \phi(n)=|\mathbb{Z}_n^*| $.
+    \end{definition}
+    \begin{theorem}[Fermat-Euler]\label{thm:fermat-euler}
+        Let $n\ge 1$, $N\in \mathbb{Z}, (N,n)=1$, then
+        \[
+            N^{\phi(n)}\equiv 1\pmod n
+        .\]
+    \end{theorem}
+    \begin{proof}
+        Let $ a\in \mathbb{Z}_n $ such that $ N \equiv a \pmod{n} $. Then $a\in \mathbb{Z}_n^*$ and thus $ a^{|\mathbb{Z}_n^*|}=a^{\phi(n)} \equiv 1 \pmod{n} $. Since $ N=a+kn $,
+        \[
+            N^{\phi(n)}=(a+kn)^{\phi(n)} \equiv a^{\phi(n)}  \equiv 1 \pmod{n}.
+        \]
+    \end{proof}
+    Take $n=p$, we get $ N^{p-1}\equiv 1\pmod{p} $ for $ (N,p)=1 $.
+    \subsection{Exploring groups using Lagrange theorem}
+    Lagrange tells us what the possible orders of subgroups can be.
+    \begin{remark}
+        Not all possible orders have to appear.
+    \end{remark}
+    \begin{example}
+        For $D_{10}$, the sizes of subgroups can be $ 1,2,5,10 $. We have $ |\left\{ e\right\}|=1 $, $ |\left\{ e,g\right\}|=2 $, where $g$ has order 2. This can be done since we have 5 reflections. For subgroups of order 5, they must be cyclic by corollary \ref{col:3.7}. We have $ |\langle r \rangle |=5 $, where $r$ is a rotation. Obviously $ |D_{10}|=10 $.
+    \end{example}
 \end{document}

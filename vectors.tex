@@ -42,7 +42,8 @@ Not in University of Cambridge\\
 skipped some talks irrelevant to contents\\
 }
 \DeclareMathOperator{\spn}{span}
-
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\nullity}{null}
 \emailAdd{not telling you}
 
 \begin{document}
@@ -909,5 +910,161 @@ skipped some talks irrelevant to contents\\
             \bar{z}w=a_1b_1+a_2b_2+i(a_1b_2-a_2b_1)=\mathbf{a}\cdot \mathbf{b}+i[\mathbf{a},\mathbf{b}]
         ,\]
         recover 2 scalar products in $ \mathbb{R}^2 $.
+    \end{example}\newpage
+    \part{Matrices and Linear Maps}\marginnote{Lecture 9}
+    \section{Introduction}
+    \subsection{Definitions}
+    \begin{definition}
+        A \textit{linear map} or \textit{linear transformation} is a function $ T:V\to W $ between $V$ with $\dim V=n$ and $W$ with $\dim W=m$ such that 
+        \[
+            T(\lambda x+ \mu y)=\lambda T(x)+\mu T(y)
+        \]
+        where $ x,y\in V $ and $ \lambda,\mu\in \mathbb{R}$ or $ \mathbb{C} $, depending on whether $V,W$ are complex vector spaces.
+
+        $ x'=T(x)\in W $ is called the \textit{image} of $x$ under $T$. Define
+        \[
+            \begin{aligned}
+                 \im(T)&=\left\{ x'\in W: \exists x\in V, x'=T(x)\right\},\\
+                \ker(T)&=\left\{ x\in V:T(x)=0\in W\right\}.
+            \end{aligned}    
+        \]
+    \end{definition}
+    \begin{remark}
+        A linear map is determined by its action on a basis. We have 
+        \[
+            T\left( \sum_{i}x_i e_i \right)=\sum_{i}x_i T(e_i)
+        .\]
+    \end{remark}
+    \begin{lemma}\label{lma:ker,im subspace}
+        $ \im(T),\ker(T) $ are subspace of $ W,V $ respectively.
+    \end{lemma}
+    \begin{proof}
+        Note that $ 0\in \im(T) $ and $ \forall x',y'\in\im(T)  $, let $ T(x)=x',T(y)=y' $, then $  \lambda x'+\mu y'=\lambda T(x)+\mu T(y)=T(\lambda x+\mu y)\in \im(T) $, so it is a subspace. $\ker(T)$ is proved similarly.
+    \end{proof}
+    \begin{example}
+        \begin{enumerate}[(1)]
+            \item Zero linear map: $ T:V\to W $ that $ T(v)=0 $. We have $ \im(T)=\left\{ 0\right\} $ and $ \ker(T)=V $.
+            \item Identity map: $ T:V\to V $ that $ T(v)=v $. $ \im(T)=V, \ker(T)=\left\{ 0\right\} $.
+            \item Let $ V=W=\mathbb{R}^3 $ and $ T(x)=x' $ where 
+            \[
+                \begin{array}{l}
+                    x_{1}^{\prime}=3 x_{1}+x_{2}+5 x_{3}, \\
+                    x_{2}^{x}=-x_{1}-2 x_{3}, \\
+                    x_{3}^{\prime}=2 x_{1}+x_{2}+3 x_{3}.
+                \end{array}
+            \]
+            Then $T$ is indeed a linear map and
+            \[
+                \im(T)=\left\{ \lambda \begin{pmatrix}
+                    3\\-1\\2
+                \end{pmatrix}+\mu \begin{pmatrix}
+                    1\\0\\-1
+                \end{pmatrix} \right\},\quad \ker(T)=\left\{ \lambda \begin{pmatrix}
+                    2\\-1\\-1
+                \end{pmatrix}\right\}
+            .\]
+            Note that $\im(T)$ is a plane and $\ker(T)$ is a line.
+        \end{enumerate}
     \end{example}
+    \subsection{Rank and Nullity}
+    Define $ \rank(T)=\dim \im(T) $ and $ \nullity(T)=\dim \ker(T) $.
+    \begin{theorem}\label{thm:r-n thm}
+        For $ T:V\to W $ a linear map, then 
+        \[
+            \rank(T)+\nullity(T)=\dim V
+        .\]
+    \end{theorem}
+    \begin{proof}
+        Let $ \left\{ e_1,\dots,e_k\right\} $ be a basis of $\ker(T)$. Extend this by $ e_{k+1},\dots,e_n $ to a basis of $V$. Claim that $ \mathcal{B}=\left\{ T(e_{k+1}),\dots,T(e_n)\right\} $ is a basis of $\im(T)$. The result clearly follows.
+
+        Indeed, $ \mathcal{B} $ spans $\im(T)$ since $ \forall x\in V, x=\sum_{i}x_ie_i $ and 
+        \[
+            T(x)=\sum_{i=1}^{n}x_iT(e_i)=\sum_{i=k+1}^{n}x_iT(e_i)
+        .\]
+        Suppose 
+        \[
+            \sum_{i=k+1}^{n}\lambda T(e_i)=0
+        .\]
+        Thus 
+        \[
+            \begin{aligned}
+                 &T\left( \sum_{i=k+1}^{n}x_ie_i \right)=0\\
+                 \Longrightarrow & \sum_{i=k+1}^{n}x_ie_i\in \ker(T)\\
+                 \Longrightarrow & \sum_{i=k+1}^{n}x_ie_i=\sum_{i=1}^{k}x_ie_i\\
+                 \Longleftarrow & -\sum_{i=1}^{k}x_i e_i+\sum_{i=k+1}^{n}x_ie_i=0\\
+                 \Longrightarrow x_i=0 \text{ for } i=1,\dots,n.
+            \end{aligned}
+        \]
+        Hence $ \mathcal{B} $ is linearly independent and thus it is a base.
+    \end{proof}
+    \section{Geometrical Examples}
+    \subsection{Rotations}
+    In $ \mathbb{R}^{2} $, rotations about $\mathbf{0}$ through $ \theta $ is defined by 
+    \[\begin{aligned}
+         \mathbf{e}_1\mapsto \mathbf{e}_1'&=\cos(\theta)\mathbf{e}_1+\sin(\theta)\mathbf{e}_2,\\
+         \mathbf{e}_2\mapsto \mathbf{e}_2'&=-\sin(\theta)\mathbf{e}_1+\cos(\theta)\mathbf{e}_2.
+    \end{aligned}\]
+    In $ \mathbb{R}^{3} $, can extend so that $ \mathbf{e}_3\mapsto \mathbf{e}_3 $
+
+    To generalise to arbitrary rotations of $\theta $ along axis $ \mathbf{n} $, where $ \mathbf{n} $ is a unit vector, resolve horizontally and vertically:
+    \[
+        \mathbf{x}=\mathbf{x}_{\parallel}+\mathbf{x}_{\perp}
+    ,\]
+    where $ \mathbf{x}_{\parallel}=(\mathbf{x}\cdot \mathbf{n})\mathbf{n} $.
+    Then, 
+    \[
+        \begin{aligned}
+             \mathbf{x}_{\parallel}&\mapsto \mathbf{x}_{\parallel },\\
+            \mathbf{x}_{\perp }&\mapsto \cos(\theta)\mathbf{x}_{\perp }+\sin(\theta)\mathbf{n}\times \mathbf{x},
+        \end{aligned}
+    \]
+    by considering the plane perpendicular to $ \mathbf{n} $. Note that $ |\mathbf{x}_{\perp }|=|\mathbf{x}\times \mathbf{n}| $, so the result follows by comparing with $ \mathbb{R}^{2} $ by regarding $ \mathbf{e}_1 $ as $ \mathbf{x}_{\perp } $ and $ \mathbf{e}_2 $ as $ \mathbf{n}\times \mathbf{x} $.
+
+    Hence,
+    \[
+        \begin{aligned}
+            \mathbf{x} &\mapsto (\mathbf{n}\cdot \mathbf{x})\mathbf{x}+\cos \theta (\mathbf{x}-(\mathbf{n}\cdot \mathbf{x})\mathbf{x})+\sin \theta \mathbf{n}\times \mathbf{x}\\
+            &= \boxed{\cos \theta \mathbf{x}+(1-\cos \theta)(\mathbf{n}\cdot \mathbf{x})\mathbf{x}+\sin \theta \mathbf{n}\times \mathbf{x}.}
+        \end{aligned}
+    \]
+    \subsection{Reflections and Projections}
+    For a plane with unit normal vector $ \mathbf{n} $, define projectin of $ \mathbf{x} $ on the plane as 
+    \[
+        \begin{aligned}
+             \mathbf{x}_{\parallel}& \mapsto \mathbf{0},\\
+             \mathbf{x}_{\perp}& \mapsto \mathbf{x}_{\perp}.
+        \end{aligned}
+    \]
+    i.e.,
+    \[
+        \mathbf{x}\mapsto \mathbf{x}'=\mathbf{x}-(\mathbf{n}\cdot \mathbf{x})\mathbf{n}
+    .\]
+    Define reflection of $ \mathbf{x} $ wrt the plane by 
+    \[
+        \begin{aligned}
+             \mathbf{x}_{\parallel}& \mapsto -\mathbf{x}_{\parallel},\\
+             \mathbf{x}_{\perp}& \mapsto \mathbf{x}_{\perp}.
+        \end{aligned}
+    \]
+    i.e.,
+    \[
+        \mathbf{x} \mapsto \mathbf{x}'=\mathbf{x}-2(\mathbf{n}\cdot \mathbf{x})\mathbf{n}
+    .\]
+    Same applies to $ \mathbb{R}^{2} $ by replacing plane by line.
+    \subsection{Dilations}
+    Given scale factors $ \alpha,\beta,\gamma>0 $. Define a \textit{dilation} along axes by 
+    \[
+        \begin{aligned}
+             \mathbf{e}_1 &\mapsto \mathbf{e}_1'=\alpha \mathbf{e}_1,\\
+             \mathbf{e}_2 &\mapsto \mathbf{e}_2'=\beta \mathbf{e}_2,\\
+             \mathbf{e}_3 &\mapsto \mathbf{e}_3'=\gamma \mathbf{e}_3.
+        \end{aligned}
+    \]
+    Then $ \mathbf{x}=x_1 \mathbf{e}_1+x_2 \mathbf{e}_2 +x_3 \mathbf{e}_3 \mapsto \mathbf{x}'=\alpha x_1 \mathbf{e}_1+\beta x_2 \mathbf{e}_2 +\gamma x_3 \mathbf{e}_3 $.
+    \subsection{Shears}
+    Let $ \mathbf{a},\mathbf{b} $ be orthogonal unit vectors in $ \mathbb{R}^{3} $, and $ \lambda $ a real parameter. Define a \textit{shear}
+    \[
+        \mathbf{x} \mapsto \mathbf{x}'=\mathbf{x}+\lambda \mathbf{a}(\mathbf{x}\cdot \mathbf{b})
+    .\]
+    Notice that $ \mathbf{a}\mapsto \mathbf{a} $ and $ \mathbf{b} \mapsto \mathbf{b}+\lambda \mathbf{a} $. Definition holds the same way in $ \mathbb{R}^{2} $.
 \end{document}

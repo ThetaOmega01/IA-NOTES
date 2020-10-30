@@ -2,6 +2,8 @@
 \pdfoutput=1 
 \usepackage{NotesTeX,lipsum}
 \usepackage{IEEEtrantools}
+\usepackage{mhchem}
+
 \def\d{{\mathrm d}}
 \def\e{{\mathrm e}}
 \def\g{{\mathrm g}}
@@ -574,7 +576,7 @@ skipped some talks irrelevant to contents\\
         is the general solution. 
     \end{example}
     \section{Isoclines and solution curves}\marginnote{Lecture 9.}
-    Nonlinear equations are not guaranteed to have simple/closed form solutions. Nevertheless we can analyize the behaviour of the system without solving.
+    Nonlinear equations are not guaranteed to have simple/closed form solutions. Nevertheless we can analyze the behaviour of the system without solving.
 
     Consider an ODE of the form 
     \[
@@ -610,7 +612,7 @@ skipped some talks irrelevant to contents\\
         .\]
         A fixed point is called \textit{stable}(\textit{unstable}) if solution curves in a small neighbourhood of the fixed point converge(diverge) to(away) the fixed point.
     \end{definition}
-    We can analyize the stability of fixed points using a \textit{perturbation} analysis.
+    We can analyze the stability of fixed points using a \textit{perturbation} analysis.
 
     Let $y=a$ be a fixed point of $ \frac{\mathrm{d}y}{\mathrm{d}t}=f(y,t)  $, i.e. $ f(a,t)=0 $. Consider a small perturbation from the fixed point: $ y=a+\epsilon(t) $ We have 
     \[
@@ -648,4 +650,139 @@ skipped some talks irrelevant to contents\\
        f'(a)>0 \Rightarrow &\text{unstable F.P.}\\
       \end{cases}   
     \]
+    \section{Phase Portraits}\marginnote{Lecture 10}
+    Another way to analyze solutions to a DE is using a geometrical representation of the solution called a \textit{phase portrait}.
+    \begin{example}[Chemical kinetics]
+        Consider the reaction
+        \[
+            \ce{NaOH + HCl -> NaCl + H_2O}
+        \]
+        with 
+        \begin{center}
+            \begin{tabular}{lccccccc}
+              \toprule
+              & NaOH & + & HCl & $\rightarrow$ & H$_2$O & + & NaCl \\
+              \midrule
+              Number of molecules & $a$ & & $b$ & & $c$ & & $c$ \\
+              Initial number of molecules & $a_0$ & & $b_0$ & & $0$ & & $0$ \\
+              \bottomrule
+            \end{tabular}
+          \end{center}
+          A model of reaction rate is 
+          \[
+              \frac{\mathrm{d}c}{\mathrm{d}t}=\lambda ab 
+          ,\]
+          where $ \lambda $ is constant. Atoms are conserved: $ a=a_0-c, b=b_0-c $. Then the equation can be written as 
+          \[
+              \frac{\mathrm{d}c}{\mathrm{d}t}=\lambda(a_0-c)(b_0-c) 
+          .\]
+          This is an example of nonlinear first order ODE.
+
+          Plot a 2D phase portrait for this DE. One way is to plot $ \frac{\mathrm{d}c}{\mathrm{d}t}  $ against $t$:
+          \begin{center}
+            \begin{tikzpicture}
+              \draw [->] (-0.5, 0) -- (5, 0) node [right] {$c$};
+              \draw [->] (0, -1) -- (0, 4) node [above] {$\dot c$};
+              \draw [blue, semithick] (0.5, 3) parabola bend (2.5, -1) (4.5, 3);
+              \node at (1.5, 0) [anchor = north east] {$a_0$};
+              \node at (3.5, 0) [anchor = north west] {$b_0$};
+            \end{tikzpicture}
+          \end{center}
+          We can analyze the behaviour using 1D phase portrait:
+          \begin{center}
+            \begin{tikzpicture}
+              \draw [->-=0.5] (0, 0) -- (2, 0);
+              \draw [->-=0.6] (4, 0) -- (2, 0);
+              \draw [->-=0.5, ->] (4, 0) -- (6, 0) node [right] {$c$};
+              \draw (2, 0.1) -- (2, -0.1) node [below] {$a_0$};
+              \draw (4, 0.1) -- (4, -0.1) node [below] {$b_0$};
+            \end{tikzpicture}
+          \end{center}
+          arrows are drawn by sign of $ \dot{c} $.
+    \end{example}
+    \begin{example}[Population dynamics]
+        Let $ y(t) $ be population, $ \alpha y $ be birth rate and $ \beta y $ be death rate.
+        \begin{enumerate}[(a)]
+            \item Linear model
+            \[
+                \frac{\mathrm{d}y}{\mathrm{d}t}=\alpha y-\beta y \Rightarrow y=y_{0}e^{(\alpha-\beta)t} 
+            .\]
+            If $ \alpha>\beta $, then $ \lim_{t \to \infty} y=\infty  $.
+            \item Nonlinear model 
+            \[
+                \frac{\mathrm{d}y}{\mathrm{d}t} =(\alpha-\beta)y-\gamma y^2
+            .\]
+            $ \gamma y^2 $ is dominant when $y$ is large. It models increased death rate at high population.
+
+            Equivalently we have $  \dot{y}=ry(1-\frac{y}{\lambda}) $ where $ r=\alpha-\beta, \lambda=\frac{\alpha-\beta}{\gamma} $. $ \lambda $ is called the \textit{carrying capacity}.
+            \begin{center}
+                \begin{tikzpicture}[yscale = 1.5]
+                  \draw [->] (-0.5, 0) -- (4.5, 0) node [right] {$y$};
+                  \draw [->] (0, -1) -- (0, 2) node [above] {$\dot{y}$};
+                  \node [anchor = north east] at (0, 0) {$O$};
+                  \draw [mblue, semithick] (0, 0) parabola bend (1.75, 1.5) (4, -.9796);
+                  \node [anchor = north east] at (3.5, 0) {$\lambda$};
+              
+                  \draw [->-=0.5] (0, -1.5) -- (3.5, -1.5);
+                  \draw [-<-=0.2, ->] (3.5, -1.5) -- (4.5, -1.5) node [right] {$y$};
+                  \draw (0, -1.4) -- (0, -1.6) node [below] {$O$};
+                  \draw (3.5, -1.4) -- (3.5, -1.6) node [below] {$\lambda$};
+                \end{tikzpicture}
+              \end{center}
+        \end{enumerate}
+    \end{example}
+    \section{Fixed points in discrete equations}
+    \subsection{Definitions}
+    Consider a first order discrete(difference) equation of the form 
+    \[
+        x_{n+1}=f(x_n)
+    .\]
+    Define the \textit{fixed point} as the value of $x_n$ where $ x_{n+1}=x_n $. That is, where
+    \[
+        f(x_n)=x_n
+    .\]
+    \subsection{Stability}
+    Use perturbation analysis to study its stability. Let $ x_f $ be a stable point of $x_n$, and perturb by a small $ \epsilon $:
+    \[
+        \begin{aligned}
+            f(x_f+\epsilon)&=f(x_f)+\epsilon \frac{\mathrm{d}f}{\mathrm{d}x}\Big|_{x_f}+O(\epsilon^2) \\
+            &= x_f+\epsilon \frac{\mathrm{d}f}{\mathrm{d}x}\Big|_{x_f}+O(\epsilon^2)\\
+            &\approx x_f+\epsilon \frac{\mathrm{d}f}{\mathrm{d}x}\Big|_{x_f}.
+        \end{aligned}
+    \]
+    Let $ x_n= x_f+\epsilon$, then 
+    \[
+        x_{n+1}\approx x_f+\epsilon \frac{\mathrm{d}f}{\mathrm{d}x}\Big|_{x_f}.
+    \]
+    Therefore,
+    \[
+        x_f \text{ is} \begin{cases}
+        \text{stable} &\text{if } \left| \frac{\mathrm{d}f}{\mathrm{d}x}\Big|_{x_f} \right| <1\\
+        \text{unstable} &\text{if }\left| \frac{\mathrm{d}f}{\mathrm{d}x}\Big|_{x_f} \right| >1\\
+        \end{cases} 
+    \]
+    \subsection{Example: Logistic map}
+    Nonlinear discrete population model 
+    \[
+        \frac{x_{n+1}-x_n}{\Delta t}=\lambda x_n-\gamma x_{n}^2
+    .\]
+    Formally,
+    \[
+        x_{n+1}=(\lambda \Delta t+1) x_n-\gamma \Delta t x_n^2
+    .\]
+    A simpler version is 
+    \[
+        x_{n+1}=rx_n(1-x_n)=f(x_n)
+    .\]
+    This equation is the Logistic map.
+    
+    \textbf{Fixed points}: Let $ f(x_n)=x_n $. We have $ x_n(r-1-rx_n)=0 \Rightarrow x_n=0 \lor x_n=1-1/r $.
+
+    \textbf{Stability}: Write $ f(x)=rx(1-x) $, then 
+    \[
+        \frac{\mathrm{d}f}{\mathrm{d}x}=r(1-2x) 
+    .\]
+    Hence for $x_n=0$ we have $ \frac{\mathrm{d}f}{\mathrm{d}x}\Big|_0=r $, so if $ 0<r<1 $, it is stable. For $ r>1 $, it is unstable.
+
+    For $ x_n=1-\frac{1}{r} $, $ \frac{\mathrm{d}f}{\mathrm{d}x}\Big|_{x_n}=2-r  $. Then for $ 0<r<1 $ it is unphysical since $x_n<0$. If $ 1<r<3 $, it is stable. For $ r>3 $ it is unstable.
 \end{document}
