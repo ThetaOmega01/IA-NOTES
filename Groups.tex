@@ -792,4 +792,47 @@ skipped some takes irrelevant to contents\\
     \begin{example}
         For $D_{10}$, the sizes of subgroups can be $ 1,2,5,10 $. We have $ |\left\{ e\right\}|=1 $, $ |\left\{ e,g\right\}|=2 $, where $g$ has order 2. This can be done since we have 5 reflections. For subgroups of order 5, they must be cyclic by corollary \ref{col:3.7}. We have $ |\langle r \rangle |=5 $, where $r$ is a rotation. Obviously $ |D_{10}|=10 $.
     \end{example}
+    \subsection{Studying small groups using Lagrange's Theorem}\marginnote{Lecture 10}
+    \begin{example}
+        \begin{itemize}
+            \item $|G|=1 \Rightarrow G=\left\{ e\right\}$.
+            \item $ |G|=2 \Rightarrow G \cong C_2 $ since 2 is prime.
+            \item $|G|=3 \Rightarrow G \cong C_3$.
+            \item $|G|=4$, then $ G \cong C_4 $ or $ G \cong C_2\times C_2 $.
+
+            \textit{proof}. By Lagrange, the possible orders of subgroups of $G$ is 1($ \left\{ e\right\} $), 2($C_2$), and 4. If $ \exists g\in G, \ord g=4$, then $ G=\left\{ e,g,g^2,g^3\right\} $ and thus $ G \cong C_4 $. If no element has order 4, then all non-identity elements have order 2. Claim that $G$ is abelian. Indeed, let $ h,g\in G, h,g\neq e $, then $ \ord g=\ord h=2 $ and we have 
+            \[
+                gh=h^2ghg^2=h(hg)^2g=hg
+            .\]
+            Take $ b\neq c\in G $ such that $\ord b=\ord c=2$. Since $ (\langle b \rangle \cap \langle c \rangle = \left\{ e\right\}) \land (\forall b'\in \langle b \rangle,c'\in \langle c \rangle, b'c'=c'b') \land (bc\neq b \land bc\neq c \Rightarrow \forall g\in G, g=b'c', b\in \langle b \rangle, c'\in \langle c \rangle  )   $, we have $ G \cong \langle b \rangle \times \langle c \rangle $ and thus $ G \cong C_2 \times C_2 $.
+            \item $ |G|=5 $ then $ G \cong C_5 $. We need more tools to study groups of order $ \ge 6 $.
+        \end{itemize}
+    \end{example}
+    \section{Quotient groups}
+    \subsection{Normal subgroups}
+    \begin{definition}
+        A subgroup $N$ of $G$ is \textit{normal} if $ \forall g\in G, gN=Ng $. Written as $ N \trianglelefteq G $.
+    \end{definition}
+    \begin{proposition}
+        The followings are equivalent:
+        \begin{enumerate}[(1)]
+            \item $ \forall g\in G, gN=Ng $.
+            \item $ \forall g\in G, \forall n\in N, g^{-1}ng\in N $.
+            \item $ \forall g\in G, g^{-1}Ng=N $.
+        \end{enumerate}
+    \end{proposition}
+    \begin{proof}
+        $ (1)\Rightarrow (2) $. If $ gN=Ng $, we have $ \forall n\in N, ng\in Ng=gN \Rightarrow ng=gn' $ for some $n\in N$. Hence $ g^{-1}ng=g^{-1}gn'=n\in N $.
+
+        $ (2) \Rightarrow (3) $. From $(2)$ we know that $ g^{-1}Ng \subseteq N $. Suppose $ n\in N $ and let $ n'=gng^{-1} $, then $ n=g^{-1}n'g\in g^{-1}Ng \Rightarrow g^{-1}Ng = N $.
+
+        $ (3) \Rightarrow (1) $. Trivial.
+    \end{proof}
+    \begin{example}
+        \begin{enumerate}[(1)]
+            \item $ \left\{ e\right\} $ and $G$ are always normal.
+            \item $ n \mathbb{Z}\trianglelefteq \mathbb{Z}$.
+            \item $ A_3 \trianglelefteq S_3 $, recall that $ A_3 $ is the alternating group.
+        \end{enumerate}
+    \end{example}
 \end{document}
