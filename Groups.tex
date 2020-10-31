@@ -832,7 +832,52 @@ skipped some takes irrelevant to contents\\
         \begin{enumerate}[(1)]
             \item $ \left\{ e\right\} $ and $G$ are always normal.
             \item $ n \mathbb{Z}\trianglelefteq \mathbb{Z}$.
-            \item $ A_3 \trianglelefteq S_3 $, recall that $ A_3 $ is the alternating group.
+            \item $ A_3 \trianglelefteq S_3 $, recall that $ A_3 $ is the alternating group. We have
+            \[
+                A_3=\left\{ e,(123),(132)\right\}
+            .\]
+            Obviously we have $ eA_3=A_3e $. We also have $(123)A_3=A_3(123)$. Consider a transposition
+            \[
+                (12)A_3=\left\{(12),(23),(1) \right\}
+            .\]
+            Similar for $(13)$ or $(23)$.
         \end{enumerate}
     \end{example}
+    \begin{proposition}
+        \begin{enumerate}[(1)]
+            \item Any subgroup of an abelian group is normal.
+            \item Any subgroup of index 2 is normal.
+        \end{enumerate}
+    \end{proposition}
+    \begin{proof}
+        If $G$ is abelian, we have $ g^{-1}ng=n\in N $.
+
+        If $H\le G$ with $ |G:H|=2$, then there are exactly two cosets in $G$. Obviously $H$ itself is a coset, so by Lagrange the other coset is $ G \setminus H $. This is true for both left and right cosets.
+    \end{proof}
+    \begin{proposition}\label{prop:4.4}
+        If $ \varphi:G\to H $ is a homomorphism, then $ \ker \varphi \trianglelefteq G $.
+    \end{proposition}
+    \begin{proof}
+        We already know that $ \ker \varphi $ is a subgroup of $G$. Let $ k\in \ker \varphi $ and $g\in G$. Consider $ g^{-1}kg $:
+        \[
+            \varphi(g^{-1}kg)=\varphi(g)^{-1}\varphi(k) \varphi(g)=e
+        .\]
+        Hence $ g^{-1}kg\in \ker \varphi $. Hence $\ker \varphi \trianglelefteq G$.
+    \end{proof}
+    \begin{example}
+        \begin{enumerate}[(1)]
+            \item Consider $ \mathrm{SL}_2(\mathbb{R})\le \mathrm{GL_2}(\mathbb{R}) $, where $ \mathrm{SL}_2(\mathbb{R}) $ is the set of all $ 2 \times 2 $ matrices of determinant 1. Note that $ \mathrm{SL}_2(\mathbb{R}) = \ker \det $, so $ \mathrm{SL}_2(\mathbb{R})\trianglelefteq  \mathrm{GL_2}(\mathbb{R}) $.
+            \item $ A_n\trianglelefteq S_n $. Note that $ A_n $ can be defined as the kernel of the \textit{sign} homomorphism. Also note that $ |S_n:A_n|=2 $.
+            \item $ n \mathbb{Z} \trianglelefteq \mathbb{Z} $. We can view it as $ \ker \varphi: \mathbb{Z} \to \mathbb{Z}_n $, where $ \varphi(k)=k \bmod n $.(Or since $ \mathbb{Z} $ is abelian.)
+        \end{enumerate}
+    \end{example}
+    We can use this to study groups of small orders.
+    \begin{proposition}\label{prop:4.6}
+        If $ |G|=6 $, then $ G \cong C_6 \lor G \cong D_6 $.
+    \end{proposition}
+    \begin{proof}
+        By Lagrange, the possible orders of elements are $1,2,3,6$. If $ \exists $ an element $g$ of order 6, then $ G = \langle g \rangle \cong C_6 $. If there does not exist such an element, then there must exist an element $ r $ of order 3, since otherwise $|G|=2^n$. So $ |\langle r \rangle |=3 $ and $ |G:\langle r \rangle |=2 $, so $ \langle r \rangle \trianglelefteq G $. We also have an element $s$ of order 2 since $|G|$ is even. 
+        
+        By previous result, $ s^{-1}rs\in \langle r \rangle $. If $ s^{-1}rs=e $, then $ r=e $, \#. If $ s^{-1}rs=r $, then $sr=rs$, and $ \ord sr=6 $ since $ (sr)^n=s^nr^n $, which means that $ n=\lcm(2,3)=6 $. \#. Hence the only possibility is $ s^{-1}rs=r^2 $. Hence $ G=\langle r,s|r^3=s^2=e, sr=r^2s=r^{-1}s \rangle  $. Hence $ G \cong D_6 $.
+    \end{proof}
 \end{document}

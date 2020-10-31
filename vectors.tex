@@ -911,8 +911,8 @@ skipped some talks irrelevant to contents\\
         ,\]
         recover 2 scalar products in $ \mathbb{R}^2 $.
     \end{example}\newpage
-    \part{Matrices and Linear Maps}\marginnote{Lecture 9}
-    \section{Introduction}
+    \part{Matrices and Linear Maps}
+    \section{Introduction}\marginnote{Lecture 9}
     \subsection{Definitions}
     \begin{definition}
         A \textit{linear map} or \textit{linear transformation} is a function $ T:V\to W $ between $V$ with $\dim V=n$ and $W$ with $\dim W=m$ such that 
@@ -1024,7 +1024,7 @@ skipped some talks irrelevant to contents\\
     \[
         \begin{aligned}
             \mathbf{x} &\mapsto (\mathbf{n}\cdot \mathbf{x})\mathbf{x}+\cos \theta (\mathbf{x}-(\mathbf{n}\cdot \mathbf{x})\mathbf{x})+\sin \theta \mathbf{n}\times \mathbf{x}\\
-            &= \boxed{\cos \theta \mathbf{x}+(1-\cos \theta)(\mathbf{n}\cdot \mathbf{x})\mathbf{x}+\sin \theta \mathbf{n}\times \mathbf{x}.}
+            &= \boxed{\cos \theta \mathbf{x}+(1-\cos \theta)(\mathbf{n}\cdot \mathbf{x})\mathbf{n}+\sin \theta \mathbf{n}\times \mathbf{x}.}
         \end{aligned}
     \]
     \subsection{Reflections and Projections}
@@ -1067,4 +1067,163 @@ skipped some talks irrelevant to contents\\
         \mathbf{x} \mapsto \mathbf{x}'=\mathbf{x}+\lambda \mathbf{a}(\mathbf{x}\cdot \mathbf{b})
     .\]
     Notice that $ \mathbf{a}\mapsto \mathbf{a} $ and $ \mathbf{b} \mapsto \mathbf{b}+\lambda \mathbf{a} $. Definition holds the same way in $ \mathbb{R}^{2} $.
+    \section{Matrices as linear maps}\marginnote{Lecture 10}
+    \subsection{Definitions}
+    Consider a linear map $ T:\mathbb{R}^{n}\to \mathbb{R}^{m} $, with bases $ \left\{ \mathbf{e}_i\right\}_{i=1}^n, \left\{ \mathbf{f}_a\right\}_{a=1}^m $, of the form 
+    \[
+        T(\mathbf{x})=\mathbf{x}',\quad \mathbf{x}=\sum_{i=1}^{n}x_i \mathbf{e}_i, \mathbf{x}'=\sum_{a=1}^{m} x_a' f_a 
+    .\]
+    Linearity of $T$ implies we can specify $T$ using $ T(\mathbf{e}_i)=\mathbf{e}_i'=\mathbf{C}_i\in \mathbb{R}^{m} $. Take these $ \mathbf{C}_i $ as \textit{columns} of an $ m \times n $ array or \textit{matrix} $M$ with rows $ \mathbf{R}_a\in \mathbb{R}^{n} $.
+    \[
+        M=\begin{pmatrix}
+            \uparrow & & \uparrow \\
+            \mathbf{C}_1 & \cdots & \mathbf{C}_n\\
+            \downarrow & & \downarrow 
+        \end{pmatrix}=\begin{pmatrix}
+            \leftarrow & \mathbf{R}_1 & \rightarrow \\
+            &\cdots &\\
+            \leftarrow & \mathbf{R}_{m} & \rightarrow 
+        \end{pmatrix}
+    .\]
+    $M$ has \textit{entries} $ M_{ai}\in \mathbb{R} $ where $a$ labels rows and $i$ labels columns. Thus we have 
+    \[
+        M_{ai} = (\mathbf{C}_i)_a=(\mathbf{R}_a)_i
+    .\]
+    The action of $T$ is then given by
+    \[
+        \mathbf{x}'=M \mathbf{x}
+    ,\]
+    defined by $ x_a'=\sum_{i=1}^{n}M_{ai}x_i = M_{ai}x_i $, by summation convention. In column vector:
+    \[
+        \begin{pmatrix}
+            x_1'\\x_2'\\\vdots\\x_m'
+        \end{pmatrix}=\begin{pmatrix}
+            M_{11}&M_{12}&\cdots&M_{1n}\\
+            M_{21}&M_{22}&\cdots&M_{2n}\\
+            \vdots&\vdots&&\vdots\\
+            M_{m1}&M_{m2}&\cdots&M_{mn}
+        \end{pmatrix}\begin{pmatrix}
+            x_1\\x_2\\\vdots\\x_m
+        \end{pmatrix}=\begin{pmatrix}
+            M_{1i}x_i\\M_{2i}x_i\\\vdots\\M_{mi}x_i
+        \end{pmatrix}
+    .\]
+    Indeed, this matrix does represent $T$, for 
+    \[
+        \begin{aligned}
+            \mathbf{x}'&=T(x_i \mathbf{e}_i)=x_iT(\mathbf{e}_i)=x_i \mathbf{C}_i \\
+            \Longrightarrow & x_a'=x_i (\mathbf{C}_i)_a=M_{ai}x_i.
+        \end{aligned}
+    \]
+    Now we can regard properties of $T$ as properties of $M$. For example, 
+    \[
+        \begin{aligned}
+             & \im(T)=\im(M)=\spn\left\{ \mathbf{C}_1,\dots, \mathbf{C}_n\right\};\\
+             & x_a'=M_{ai}x_i=(\mathbf{R}_{a})_ix_i= \mathbf{R}_a\cdot \mathbf{x};\\
+             & \ker T = \ker M=\left\{ \mathbf{x}:\mathbf{R}_a\cdot \mathbf{x}=0 \text{ for all }a.\right\}.\\
+        \end{aligned}
+    \]
+    \subsection{Examples}
+    \begin{example}
+        \begin{enumerate}[(1)]
+            \item The \textit{zero map} $ \mathbb{R}^{n}\to \mathbb{R}^{m} $ corresponds to the \textit{zero matrix}.
+            \item Identity map corresponds to $ I $ where $ I_{ij}=\delta_{ij} $, called the \textit{unit matrix}.
+            \item Let $ T:\mathbb{R}^{3}\to \mathbb{R}^{3} $ with $ \mathbf{x}'=T(\mathbf{x})=M \mathbf{x} $ where 
+            \[
+                M=\begin{pmatrix}
+                    3&1&5\\-1&0&-2\\2&1&3
+                \end{pmatrix}
+            .\]
+            We get 
+            \[
+                \begin{pmatrix}
+                    x_1'\\x_2'\\x_3'
+                \end{pmatrix}=\begin{pmatrix}
+                    3x_1+x_2+5x_3\\-x_1-2x_3\\2x_1+x_2+3x_3
+                \end{pmatrix}
+            .\]
+            Hence if we let 
+            \[
+                \mathbf{C}_1=\begin{pmatrix}
+                    3\\-1\\2
+                \end{pmatrix},
+                \mathbf{C}_2=\begin{pmatrix}
+                    1\\0\\1
+                \end{pmatrix},
+                \begin{pmatrix}
+                    5\\-2\\3
+                \end{pmatrix}
+            ,\]
+            we get 
+            \[
+                \im T=\im M = \spn\left\{ \mathbf{C}_1,\mathbf{C}_2,\mathbf{C}_3\right\}=\spn\left\{ \mathbf{C}_1, \mathbf{C}_2\right\}
+            .\]
+            Here we have
+            \[
+                \mathbf{R}_1=\begin{pmatrix}
+                    3&1&5
+                \end{pmatrix},\mathbf{R}_2=\begin{pmatrix}
+                    -1&0&2
+                \end{pmatrix},\mathbf{R}_3=\begin{pmatrix}
+                    2&1&3
+                \end{pmatrix}
+            ,\]
+            hence $ \mathbf{R}_2 \times \mathbf{R}_3 = \begin{pmatrix}
+                2&-1&-1
+            \end{pmatrix}=\mathbf{u} $, where infact $ \mathbf{u} \perp \mathbf{R}_1 $. Hence 
+            \[
+                \ker T=\ker M=\left\{ \lambda \mathbf{u}:\lambda\in \mathbb{R}\right\}
+            .\]
+            \item Now we turn to study rotations in $ \mathbb{R}^{2} $ and $ \mathbb{R}^{3} $. The matrix wrt rotation of angle $ \theta $ in $ \mathbb{R}^{2} $ is
+            \[
+                R=\begin{pmatrix}
+                    \cos \theta&-\sin \theta\\
+                    \sin \theta&\cos \theta
+                \end{pmatrix}
+            .\]
+            For $ \mathbb{R}^{3} $, note that 
+            \[
+                \begin{aligned}
+                     &\mathbf{x}'=\cos \theta \mathbf{x}+(1-\cos \theta)(\mathbf{n}\cdot \mathbf{x})\mathbf{n}+\sin \theta \mathbf{n}\times \mathbf{x}\\
+                     \Longrightarrow &x'_i= \cos \theta x_i+(1-\cos \theta)n_jx_jx_i-\sin \theta \epsilon_{ijk}x_j n_k=R_{ij}\\
+                     \Longrightarrow & R_{ij}=\cos \theta \delta_{ij}+(1-\cos \theta)n_in_j-\sin \theta \epsilon_{ijk} n_k.
+                \end{aligned}
+            \]
+            \item Dilations. We have 
+            \[
+                M=\begin{pmatrix}
+                    \alpha&0&0\\
+                    0&\beta&0\\
+                    0&0&\gamma
+                \end{pmatrix}
+            .\]
+            \item Reflections. To find the matrix $H$ wrt the reflection in plane with normal vector $ \mathbf{n} $, consider 
+            \[
+                \begin{aligned}
+                     x_i'&=x_i-2(x_jn_j)n_i=H_{ij}x_j\\
+                     \Longrightarrow & H_{ij}=\delta_{ij}-2n_in_j.
+                \end{aligned}
+            \]
+            \item Shear. We have 
+            \[
+                \begin{aligned}
+                     &\mathbf{x}'=\mathbf{x}+\lambda(\mathbf{b}\cdot \mathbf{x})\mathbf{a}\\
+                    \Longrightarrow & x_i'=x_i+\lambda(b_jx_j)a_i=S_{ij}x_j\\
+                    \Longrightarrow & S_{ij}=\delta_{ij}+\lambda a_i b_j.
+                \end{aligned}
+            \]
+        \end{enumerate}
+    \end{example}
+    \subsection{Matrix of a General Linear Map $ V\to W $}
+    \begin{definition}
+        Consider $ T:V\to W $, between general (real or complex) vector spaces, with dim $n,m$ respectively. Choose $ \left\{ e_i\right\}_{i=1}^n, \left\{ f_a\right\}_{a=1}^m $ as bases of $ V,W $. Define the matrix of $T$ wrt these bases is defined as an $m\times n$ array with entries $ M_{ai}\in \mathbb{R}\text{ or }\mathbb{C}  $ defined by 
+        \[
+            T(e_i)=\sum_{a=1}^{m}f_a M_{ai}
+        .\]
+    \end{definition}
+    Then $ x'=T(x) \Leftrightarrow x_a'=M_{ai}x_i $.
+    \marginnote{Entries in column $i$ of $M$ are components of $T(e_i)$ wrt basis $f_a$.}
+    \begin{remark}
+        Given choices of bases $ \left\{ e_i\right\},\left\{ f_a\right\} $, $V$ is identified with $ \mathbb{R}^{n} $ and $W$ is identified with $ \mathbb{R}^{m} $, and $T$ is identified with an $m \times n$ matrix $M$. 
+    \end{remark}
 \end{document}
