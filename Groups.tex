@@ -31,6 +31,8 @@
 \def\le{\leqslant}
 \def\ge{\geqslant}
 \def\arcosh{{\rm arcosh}\,}
+\def\ltrigeq{\trianglelefteq}
+\def\rtrigeq{\trianglerighteq}
 
 \newcommand{\bluecomment}[1]{{\color{blue}#1}}
 %\renewcommand{\comment}[1]{}
@@ -813,7 +815,7 @@ skipped some takes irrelevant to contents\\
     \begin{definition}
         A subgroup $N$ of $G$ is \textit{normal} if $ \forall g\in G, gN=Ng $. Written as $ N \trianglelefteq G $.
     \end{definition}
-    \begin{proposition}
+    \begin{proposition}\label{prop:condition for normal groups}
         The followings are equivalent:
         \begin{enumerate}[(1)]
             \item $ \forall g\in G, gN=Ng $.
@@ -880,4 +882,90 @@ skipped some takes irrelevant to contents\\
         
         By previous result, $ s^{-1}rs\in \langle r \rangle $. If $ s^{-1}rs=e $, then $ r=e $, \#. If $ s^{-1}rs=r $, then $sr=rs$, and $ \ord sr=6 $ since $ (sr)^n=s^nr^n $, which means that $ n=\lcm(2,3)=6 $. \#. Hence the only possibility is $ s^{-1}rs=r^2 $. Hence $ G=\langle r,s|r^3=s^2=e, sr=r^2s=r^{-1}s \rangle  $. Hence $ G \cong D_6 $.
     \end{proof}
+    \subsection{Quotients}
+    Consider $ n \mathbb{Z} \ltrigeq \mathbb{Z} $. The cosets are 
+    \[
+        0+n \mathbb{Z}, 1+n \mathbb{Z} , 2+n \mathbb{Z} , \dots, (n-1)+n \mathbb{Z} 
+    .\]
+    Although they are subsets of $ \mathbb{Z} $, they behave like elements of $ \mathbb{Z}_n $ if we define addition to be 
+    \[
+        (k+n \mathbb{Z} )+(m+n \mathbb{Z} )=(k+m)+n \mathbb{Z}
+    \]
+    which works similarly to $ +_n $.
+
+    For $ H\le G $, define 
+    \[
+        g_1H\cdot g_2H:= g_1g_2H
+    .\]
+    This may not be well-defined as it may depend on choice of coset representatives $g_1,g_2$.
+    To make it well-defined, we need 
+    \[
+        g_1'H=g_1H, g_2'H=g_2H \Longrightarrow g_1'g_2'H=g_1g_2H
+    .\]
+    Note that $ g_1'=g_1h_1 $ for some $h_1\in H$, $ g_2'=g_2h_2 $ for some $h_2\in H$. So 
+    \[
+        g_1'g_2'H=g_1h_1g_2h_2H=g_1h_1g_2H
+    .\]
+    Hence it is well-defined if and only if $  g_1h_1g_2H=g_1g_2H $ for any $ g_1,g_2\in G, h_1\in H $. i.e., $ g_2^{-1}h_1g_2H=H \Leftrightarrow g_2^{-1}h_1g_2\in H $, $ \forall g_1,g_2,h_1 $, by proposition \ref{prop:3.4}. Therefore, by proposition \ref{prop:condition for normal groups}, \underline{multiplication is well-defined if and only if $ H\ltrigeq G $.}
+    \begin{proposition}\label{prop:set of one-sided cosets form a group}
+        Let $ N\ltrigeq G $. The set of (left) cosets of $N$ in $G$ form a group under the operation $ g_1N\cdot g_2N=g_1g_2 N $.
+    \end{proposition}
+    \begin{proof}
+        By above arguments, it is well-defined. Closure is obviously satisfied. $eN=N$ so $e$ is the identity. We have $ (gN)^{-1}=g^{-1}N $. Associativity is from $G$ since
+        \[
+            (g_1N\cdot g_2N)\cdot g_3N=(g_1g_2N)\cdot g_3N=g_1g_2g_3N=g_1N\cdot(g_2N\cdot g_3N)
+        .\]
+    \end{proof}
+    \begin{definition}
+        If $ N \ltrigeq G $, the group of (left) cosets of $N$ in $G$ is called the \textit{quotient group} of $G$ by $N$, written as $ G/N $. 
+    \end{definition}
+    \begin{example}
+        \begin{enumerate}
+            \item $ \mathbb{Z}/n\mathbb{Z} $ is a group behaves like $ \mathbb{Z}_{n} $. In fact, $ \mathbb{Z}/n\mathbb{Z} \cong \mathbb{Z}_{n} $. These are the only quotients of $ \mathbb{Z} $ since the only subgroups are $ n \mathbb{Z} $.
+            \item Consider $ A_3 \ltrigeq S_3 $. This gives $ S_3/A_3$, which has only two elements since $ |S_3:A_3|=2 $. We must have $ S_3/A_3 \cong C_2 $. Indeed, take a non-trivial coset $ (12) A_3$, then
+            \[
+                (12)A_3\cdot (12)A_3=(12)^2A_3=A_3
+            .\]
+            \bluecomment{In general, $ |G/N| =|G:N|$.}
+            \item If $ G=H\times K $, then $ H \ltrigeq G \land K\ltrigeq G $. We have $ G/H \cong K \land G/K \cong H $.(exercise)
+            \item Consider $ N=\langle r^2 \rangle \le D_8 $. It is normal since $ r^{-1}r^2r\in N \land s^{-1}r^2s=r^{-2}=r^2\in N $. Since $ \langle r,s \rangle =D_8 $, $ g^{-1}ng\in N, \forall g\in D_8 $.(exercise)
+
+            $ |N|=2 $, so $ |D_8/N|=|D_8:N|=|D_8|/|N|=4 $ by Lagrange. By section 7.4, $ D_8/N\cong C_2\times C_2 \text{ or } C_4 $. Since $ D_8/N=\left\{ N,sN,rN,srN\right\} $, we have $ (sN)^2=N, (rN)^2=N $ since $ N=\langle r^2 \rangle $. Also, $ (srN)^2=N $ by previous result, so $ \ord D_8/N=2 $ so $ D_8/N\cong C_2 \times C_2 $.
+            \item (Non-example) Consider $ H=\langle (12) \rangle \le S_3 $. $H$ is not normal since $ (123)H=\left\{ (123),(13)\right\}\neq \left\{ (123),(23)\right\}=H(123) $. Cosets are $ H, (123)H, (132)H $. If we impose product on them:
+            \[
+                \begin{aligned}
+                    &(123)H\cdot (132)H=(123)\cdot (132)H=H,\\ 
+                    \text{but } &(13)H\cdot (132)(H)=(13)(132)H=(23)H\neq H.
+                \end{aligned}
+            \]
+            Hence we cannot form the quotient.
+        \end{enumerate}
+        \begin{remark}
+            \begin{itemize}
+                \item Some properties of $G$ pass from $G$ to its quotients. e.g., being abelian or finite.
+                \item Quotients are not subgroups. They may not even be isomorphic to subgroups.
+                \item Need to specify in which group is a subgroup normal. e.g., if $ K\le N\le G \land K \ltrigeq G $, it is not true in general that $ K \ltrigeq G$, even it is true that $ N\ltrigeq G $. Thus, normality is not transitive.
+                \item However if $ N\le H\le G  \land N \ltrigeq G$, then $ N\ltrigeq H $.
+            \end{itemize}
+        \end{remark}
+    \end{example}
+    \begin{theorem}\label{thm:map from group to quotients}
+        Given $ N\ltrigeq G $, the function $ \pi:G\to G/N $ that 
+        \[
+            \pi(g)=gN
+        \]
+        is a surjective homomorphism. It is called the \textit{quotient map}. 
+        
+        In particular, We have $ \ker \pi=N $.
+    \end{theorem}
+    \begin{proof}
+        $ \pi(g)\cdot \pi(h)=gN\cdot hN=ghN=\pi(gh) $, so it is a homomorphism. Clearly $ \pi $ is surjective since $ \forall gN\in G/N, \pi(g)=gN $. Also $ \pi(g)=gN=N $ if and only if $g\in N$, so $ \ker \pi=N $.
+    \end{proof}
+    Together with proposition \ref{prop:4.4}:
+    
+    \underline{Normal subgroups are exactly kernels of homomorphisms.}
+
+    \begin{theorem}\label{thm:1st isom thm}
+        Let $ \varphi:G\to H $ be a homomorphism, then $ G/\ker \varphi \cong \im \varphi $.
+    \end{theorem}
 \end{document}

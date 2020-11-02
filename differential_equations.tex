@@ -785,4 +785,128 @@ skipped some talks irrelevant to contents\\
     Hence for $x_n=0$ we have $ \frac{\mathrm{d}f}{\mathrm{d}x}\Big|_0=r $, so if $ 0<r<1 $, it is stable. For $ r>1 $, it is unstable.
 
     For $ x_n=1-\frac{1}{r} $, $ \frac{\mathrm{d}f}{\mathrm{d}x}\Big|_{x_n}=2-r  $. Then for $ 0<r<1 $ it is unphysical since $x_n<0$. If $ 1<r<3 $, it is stable. For $ r>3 $ it is unstable.
+
+    \part{Higher Order Linear ODEs}
+    \section{Linear 2nd order ODEs with constant coefficients}\marginnote{Lecture 11.}
+    The general form of a linear 2nd order ODE with constant coefficients is 
+    \begin{equation}\label{eq:11.1}
+        a \frac{\mathrm{d}^2y}{\mathrm{d}x^2}+b \frac{\mathrm{d}y}{\mathrm{d}x}+cy = f(x),
+    \end{equation}
+    $a,b,c$ are constants and $f(x)$ is called the \textit{forcing term}.
+
+    Note that from the definition of derivative we have 
+    \[
+        \frac{\mathrm{d}}{\mathrm{d}x}(y_1+y_2)=\frac{\mathrm{d}y_1}{\mathrm{d}x}+\frac{\mathrm{d}y^2}{\mathrm{d}x},   
+    \]
+    and similarly
+    \[
+        \frac{\mathrm{d}^2}{\mathrm{d}x^2}(y_1+y_2)=\frac{\mathrm{d}^2y_1}{\mathrm{d}x^2}+\frac{\mathrm{d}^2y^2}{\mathrm{d}x^2}
+    .\]
+
+    \begin{definition}
+        A \textit{linear differnetial operator} $ \mathcal{D} $ is built from a linear combination of derivatives. For example,
+    \[
+        \mathcal{D} = a\frac{\mathrm{d}^2}{\mathrm{d}x^2}+b \frac{\mathrm{d}}{\mathrm{d}x}+c.
+    \]
+    \end{definition}
+    It follows that 
+    \[
+        \mathcal{D}(y_1+y_2)=\mathcal{D}(y_1)+\mathcal{D}(y_2)
+    .\]
+
+    We can exploit this by solving (\ref{eq:11.1}) in 3 steps
+    \begin{enumerate}
+        \item Find the complementary functions $y_1,y_2$ which satisfy the homogeneous equation
+        \begin{equation}\label{eq:11.2}
+            a \frac{\mathrm{d}^2y}{\mathrm{d}x^2}+b \frac{\mathrm{d}y}{\mathrm{d}x}+cy = 0.
+        \end{equation}
+        \item Find a particular integral $y_p$ which solves (\ref{eq:11.1}).
+        \item If $y_1,y_2$ are linearly independent, then 
+        \[y_1+y_p\text{ and }y_2+y_p\]
+        are linearly independent solutions to (\ref{eq:11.1}).
+    \end{enumerate}
+    3. follows since $ \mathcal{D}(y_1) $ and $ \mathcal{D}(y_p)=f(x) $, so that $ \mathcal{D}(y_1+y_2)=f(x) $.
+    \section{Linear independence of functions}
+    \begin{definition}
+        A set of functions are \textit{linearly dependent} if 
+        \begin{equation}\label{eq:11.3}
+            \sum_{i=1}^{N} c_if_i=0
+        \end{equation}
+        for a set of $N$ functions, $c_i$ are constants, and at least one $c_i\neq 0$.
+
+        If $f_i$ are not linearly dependent, then they are \textit{linearly independent}.
+    \end{definition}
+    Equivalently, if any function can be written as a linear combination of the others, say
+    \[
+        f_1=\alpha_2 f_2+\cdots+\alpha_N f_N
+    .\]
+    Then the functions are linearly dependent.
+    \section{Eigenfunctions for 2nd order ODEs}
+    Recall that $ e^{\lambda x} $ is the eigenfunction of $ \frac{\mathrm{d}}{\mathrm{d}x}  $. In fact, it is the eigenfunction of $ \frac{\mathrm{d}^n}{\mathrm{d}x^n}  $, for $ \frac{\mathrm{d}^n}{\mathrm{d}x^n} (e^{\lambda x})=\lambda^{n}e^{\lambda x} $. Hence it is the eigenfunction of any linear differential operator $ \mathcal{D} $. Then equation (\ref{eq:11.2}) can be written as
+    \[
+        \underbrace{\left( a\frac{\mathrm{d}^2}{\mathrm{d}x^2}+b \frac{\mathrm{d}}{\mathrm{d}x}+c \right)}_{\mathcal{D}}y=0
+    .\]
+    Therefore, solutions to \ref{eq:11.2} take the form
+    \[
+        y_c=Ae^{\lambda x}
+    .\]
+    Plugging in we get 
+    \begin{equation}\label{eq:11.3}
+        a\lambda^2+b\lambda+c=0.
+    \end{equation}
+    This is the \textit{characteristic} or \textit{auxiliary} equation.
+
+    From the fundamental theorem of algebra, we have 2(possibly repeat) roots in $ \mathbb{C} $. Let $ \lambda_1, \lambda_2 $ be roots. 
+
+    \begin{enumerate}[\textbf{case \arabic*}]
+        \item $ \lambda_1\neq \lambda_2$. Then
+        \[
+            y_1=Ae^{\lambda_1 x},\quad y_2=Be^{\lambda_2 x}
+        .\]
+        In this case $ y_1,y_2 $ are linearly independent and \textit{complete}(they form a basis of solution space). That is, any solution $f(x)$ can be written as 
+        \[
+            f(x)=c_1y_1(x)+c_2y_2(x)
+        .\]
+        Therefore, the general form of $f_c$ is 
+        \[
+            y_c(x)=Ae^{\lambda_1 x}+Be^{\lambda_2 x}
+        .\]
+        \item $ \lambda_1=\lambda_2 $: degenerated. Here $ y_1,y_2 $ are linearly dependent and not complete.
+        \begin{example}
+            Take a look at
+            \[
+                y''-4y'-4y=0
+            .\]
+            Try $ y_c=e^{\lambda x} $, we get $ (\lambda-2)^2=0 $. This is degenerated and we need a new tool:
+        \end{example}
+        \textbf{Detuning}: Consider a slightly modified(detuned) equation 
+        \[
+           y''-4y'+(4-\epsilon^2)y=0 
+        \]
+        for $ \epsilon\ll 1 $. Try $ y_c=e^{\lambda x} $:
+        \[
+            \lambda^2-4\lambda+(4-\epsilon^2)=0 \Longleftrightarrow \lambda=2\pm \epsilon
+        .\]
+        So
+        \[
+            y_c=Ae^{(2+\epsilon)x}+Be^{(2-\epsilon)x}=e^{2x}(Ae^{\epsilon x}+Be^{-\epsilon x})
+        .\]
+        Expand this in Taylor series:
+        \[
+            y_c=e^{2x}\left( (A+B)+\epsilon x(A-B)+O(\epsilon^2) \right)
+        .\]
+        Take limit $ \epsilon\to 0 $:
+        \[
+            \lim_{\epsilon \to 0} y_c \approx e^{2x}\left( (A+B)+\epsilon x(A-B) \right)
+        .\]
+        Apply initial conditions $ y_c(0)=C, y_c'(0)=D $, we get $ C=A+B, D=2(A+B)+\epsilon(A-B)=2C+\epsilon(A-B) $. Hence 
+        \[
+            A+B=O(1),\, A-B=O\left(\frac{1}{\epsilon}\right) \text{ as }\epsilon\to 0
+        .\]
+        Let $ \alpha=A+B=O(1), \beta=\epsilon(A-B)=O(\epsilon)O(1/\epsilon)=O(1) $, we have 
+        \[
+            \lim_{\epsilon \to 0} y_c=e^{2x}(\alpha+\beta x)
+        .\]
+        \textit{General rule}: If $y_1$ is a degenerate complementary function for linearly ODE with constant coefficients, then $ y_2 $ is a linearly independent complementary function.
+    \end{enumerate}
 \end{document}
