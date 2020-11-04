@@ -825,7 +825,7 @@ skipped some talks irrelevant to contents\\
         \[y_1+y_p\text{ and }y_2+y_p\]
         are linearly independent solutions to (\ref{eq:11.1}).
     \end{enumerate}
-    3. follows since $ \mathcal{D}(y_1) $ and $ \mathcal{D}(y_p)=f(x) $, so that $ \mathcal{D}(y_1+y_2)=f(x) $.
+    3. follows since $ \mathcal{D}(y_1)=\mathcal{D}(y_2)=0 $ and $ \mathcal{D}(y_p)=f(x) $, so that $ \mathcal{D}(y_1+y_2)=f(x) $.
     \section{Linear independence of functions}
     \begin{definition}
         A set of functions are \textit{linearly dependent} if 
@@ -909,4 +909,169 @@ skipped some talks irrelevant to contents\\
         .\]
         \textit{General rule}: If $y_1$ is a degenerate complementary function for linearly ODE with constant coefficients, then $ y_2 $ is a linearly independent complementary function.
     \end{enumerate}
+    \section{Homogenoeous 2nd order linear ODEs with non-constant coefficients}
+    \marginnote{Lecture 12}
+    The general form is 
+    \begin{equation}\label{eq:2nd non-const}
+        \frac{\mathrm{d}^2y}{\mathrm{d}x^2}+p(x)\frac{\mathrm{d}y}{\mathrm{d}x} +q(x)y=0.
+    \end{equation}
+    We can assume that the coefficient of $y''$ is $1$ since we can divide the coefficient otherwise.
+    \subsection{Reduction of order}
+    Given one solution to \ref{eq:2nd non-const}, $y_1(x)$, our objective is to find a second solution $y_2(x)$. The idea is to look for a solution of form
+
+    \begin{equation}\label{eq:12.2}
+        y_2(x)=v(x)y_1(x).
+    \end{equation}
+
+    Note that $ y_2'=v'y_1+vy_1', y_2''=v''y_1+2v'y_1'+vy_1'' $. If $y_2$ is also a solution, then 
+    \[
+        y_2''+p(x)y_2'+q(x)y_2=0
+    .\]
+    Use this in \ref{eq:12.2} and collect terms:
+    \[
+        \begin{aligned}
+             &v(y_1''+py_1'+qy_1)+v'(2y_1'+py_1)+v''y_1=0\\
+             \Longleftrightarrow &v'(2y_1'+py_1)+v''y_1=0.\marginnote{Since $y_1$ is a solution.}
+        \end{aligned}
+    \]
+    Let $u=v'$, then $u'y_1+u(2y_1'+py_1)=0$, which is first order and separable. Then we can solve for $u(x)$ and integrate for $v(x)$.
+    \section{Solution space}
+    An $n$th order linear ODE of the form
+    \[p(x)y^{(n)}+q(x)y^{(n-1)}+\cdots+r(x)y=f(x)\]
+    can be used to write $y^{(n)}(x)$ in terms of $ y,y',\dots, y^{(n-1)} $.
+    \begin{example}[Damped oscillator]
+        \[m \ddot{y}=-ky-L \dot{y}.\]
+        The acceleration is described by the disposition and velocity. The state of the system can be described by an $n$-dimensional \textit{solution vector}
+        \begin{equation}\label{eq:12.3}
+            \mathbf{Y}(x)=\begin{pmatrix}
+                y(x)\\y'(x)\\\vdots\\y^{(n-1)}(x)
+            \end{pmatrix}.
+        \end{equation}
+    \end{example}
+    \begin{example}
+        Consider $ y''+4y=0 $. This is an example of \textit{undamped oscillator}. Two solutions are $ y_1=\cos 2x, y_2=\sin 2x $. $ y_1'=-2 \sin 2x, y_2= 2 \cos 2x $. Hence 
+        \[
+            \mathbf{Y}_1(x)=\begin{pmatrix}
+                y_1\\y_1'
+            \end{pmatrix}=\begin{pmatrix}
+                \cos 2x\\-2 \sin 2x
+            \end{pmatrix}=, \mathbf{Y}_2(x)=\begin{pmatrix}
+                \sin 2x\\2 \cos 2x
+            \end{pmatrix}
+        .\]
+        The phase portrait is 
+        \begin{center}
+            \begin{tikzpicture}
+              \draw [->] (-3, 0) -- (3, 0) node [right] {$y$};
+              \draw [->] (0, -2.5) -- (0, 2.5) node [above] {$y'$};
+        
+              \draw (0, 0) circle [x radius = 1.2, y radius = 1.6];
+              \draw [color=red,->] (0, 0) -- (1, 0.8844) node [right] {$\mathbf{Y}_2(x)$};
+              \draw [color=blue,->] (0, 0) -- (0.6633, -1.3333) node [right] {$\mathbf{Y}_1(x)$};
+              \draw [->] (0, 0) -- (0, 1.6) node [right] {$\mathbf{Y}_2(0)$};
+              \draw [->] (0, 0) -- (1.2, 0) node [right] {$\mathbf{Y}_1(0)$};
+            \end{tikzpicture}
+          \end{center}
+          \marginnote{Note that they do span the space, since any solution is a linear combination of $y_1$ and $y_2$ and the two free initial conditions are completely determined by $y$ and $y'$, as described in solutoin vectors.}
+          Since $\mathbf{Y}_1,\mathbf{Y}_2$ are linearly independent for all $x$, any point in solution space $(y,y')$ can be reached by a linear combination of $y_1$ and $y_2$ .
+    \end{example}
+
+    Solutions $y_1,\dots,y_n$ are linearly independent if their solution vectors $ \mathbf{Y}_1,\dots,\mathbf{Y}_n $ are linearly independent.
+
+    $n$ linearly independent solution vectors form a basis for solution space of an $n$th order ODE.
+    \section{Wronskian}
+    \subsection{Initial/Boundary conditions}
+    Consider ICs for a 2nd order homogeneous ODE: 
+    \[
+        y(0)=a, y'(0)=b
+    .\]
+    If the general solution is 
+    \[
+        y(x)=Ay_1(x)+By_2(x)
+    ,\]
+    then we have the following linear system 
+    \[
+        \left\{ \begin{aligned}
+            &Ay_1(0)+By_2(0)=a\\
+            &Ay_1'(0)+By_2'(0)=b
+        \end{aligned}\right.  
+    \]
+    or
+    \[
+        \underbrace{\begin{pmatrix}
+            y_1(0)&y_2(0)\\
+            y_1'(0)&y_2'(0)
+        \end{pmatrix}}_{=M}
+        \begin{pmatrix}
+            A\\B
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            a\\b
+        \end{pmatrix}
+    .\]
+    It has a unique solution for $A,B$ if 
+    \[
+        |M|\neq 0
+    .\] 
+    \newpage
+    \subsection{Wronsikian}
+    \begin{definition}
+        The \textit{Wronsikian} $ W(x) $ is the determinant of the \textit{fundamental} matrix, formed by placing solution vectors $ \mathbf{Y}_i $ in the $i$th column.
+        \[
+            W(x)=
+            \begin{vmatrix}
+                \uparrow &\uparrow &&\uparrow \\
+                \mathbf{Y}_1&\mathbf{Y}_2&\cdots & \mathbf{Y}_n\\
+                \downarrow & \downarrow & &  \downarrow
+            \end{vmatrix}
+            \begin{vmatrix}y_{1}&y_{2}&\cdots &y_{n}\\y_{1}'&y_{2}'&\cdots &y_{n}'\\\vdots &\vdots &\ddots &\vdots \\y_{1}^{{(n-1)}}&y_{2}^{{(n-1)}}&\cdots &y_{n}^{{(n-1)}}\end{vmatrix}
+        .\]
+    \end{definition}
+    For a second order ODE, we have 
+    \begin{equation}\label{eq:12.4}
+        W(x)=\begin{vmatrix}
+            y_1&y_2\\
+            y_1'&y_2'
+        \end{vmatrix}=y_1y_2'-y_2y_1'.
+    \end{equation}
+    Solution vectors are linearly independent if $W(x)\neq 0$.
+
+    \begin{example}
+        Back to $ y''+4y=0 $. We have 
+        \[
+            W(x)=\begin{vmatrix}
+                \cos 2x& \sin 2x\\
+                -2 \sin 2x& 2 \cos 2x
+            \end{vmatrix}=2 \cos^2 2x+ 2 \sin^2 2x=2
+        .\]
+        Hence $ \mathbf{Y}_1,\mathbf{Y}_2 $ are linearly independent $ \forall x $.
+    \end{example}
+    \begin{remark}
+        Reverse implication: if $ \mathbf{Y}_1,  \mathbf{Y}_2 $ are linearly dependent, then $ W(x)=0 $.
+
+        Suppose that $ y(x) $ is a linear combination of $y_1(x),y_2(x)$. Then $\mathbf{Y}, \mathbf{Y}_1, \mathbf{Y}_2 $ are linearly dependent. Hence 
+        \[
+            W(x)=\begin{vmatrix}
+                y&y_1&y_2\\
+                y'&y_1'&y_2'\\
+                y''&y_1''&y_2''
+            \end{vmatrix}=0
+        .\]
+        For $ y_1= \cos 2x, y_2=\sin 2x $,
+        \[
+            \begin{aligned}
+                &\begin{vmatrix}
+                    y&\cos 2x&\sin 2x\\
+                    y'&-2 \sin 2x&2 \cos 2x\\
+                    y''&-4 \cos 2x&-4 \sin 2x
+                \end{vmatrix}=0\\
+                \Longrightarrow & 8y+2y''=0\\
+                \Longrightarrow & y''+4y=0.
+            \end{aligned}
+        \]
+    \end{remark}
+    \begin{remark}
+        Note that $W(x)=0$ does \textit{not} necessarily imply linear dependence.
+    \end{remark}
 \end{document}

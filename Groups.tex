@@ -172,7 +172,7 @@ skipped some takes irrelevant to contents\\
     \begin{definition}
         Let $ (G,*_G), (H,*_H) $ be groups. A function $ \varphi: H \to G $ is a \textit{homomorphism} if
         \[
-            \forall a,b\in H, \varphi (a*_HB)=\varphi (a)*_G \varphi (b)
+            \forall a,b\in H, \varphi (a*_Hb)=\varphi (a)*_G \varphi (b)
         .\]
         It is called an \textit{isomorphism} if it is bijective.
     \end{definition}
@@ -882,7 +882,7 @@ skipped some takes irrelevant to contents\\
         
         By previous result, $ s^{-1}rs\in \langle r \rangle $. If $ s^{-1}rs=e $, then $ r=e $, \#. If $ s^{-1}rs=r $, then $sr=rs$, and $ \ord sr=6 $ since $ (sr)^n=s^nr^n $, which means that $ n=\lcm(2,3)=6 $. \#. Hence the only possibility is $ s^{-1}rs=r^2 $. Hence $ G=\langle r,s|r^3=s^2=e, sr=r^2s=r^{-1}s \rangle  $. Hence $ G \cong D_6 $.
     \end{proof}
-    \subsection{Quotients}
+    \subsection{Quotients}\marginnote{Lecture 11}
     Consider $ n \mathbb{Z} \ltrigeq \mathbb{Z} $. The cosets are 
     \[
         0+n \mathbb{Z}, 1+n \mathbb{Z} , 2+n \mathbb{Z} , \dots, (n-1)+n \mathbb{Z} 
@@ -965,7 +965,97 @@ skipped some takes irrelevant to contents\\
     
     \underline{Normal subgroups are exactly kernels of homomorphisms.}
 
-    \begin{theorem}\label{thm:1st isom thm}
+    \begin{theorem}[First isomorphism theorem]\label{thm:1st isom thm}
         Let $ \varphi:G\to H $ be a homomorphism, then $ G/\ker \varphi \cong \im \varphi $.
     \end{theorem}
+    \begin{proof}\marginnote{Lecture 12}
+        Define $\bar{\varphi}: G/ \ker \varphi\to \im \varphi $ by $ \bar{\varphi}(g \ker \varphi)=\varphi(g) $. It is well-defined since if $ g_1 \ker \varphi=g_2 \ker \varphi $, then $ g_1=g_2k $ for some $k\in \ker \varphi$.
+        \[
+            \bar{\varphi}(g_1 \ker \varphi)=\varphi(g_1)=\varphi(g_2 k)=\varphi(g_2)\varphi(k)=\varphi(g_2)=\bar{\varphi}(g_2 \ker \varphi)
+        .\]
+        Also $ \bar{\varphi} $ is a homomorphism since 
+        \[
+            \bar{\varphi}(g \ker \varphi \cdot g' \ker \varphi)=\bar{\varphi}(gg' \ker \varphi)=\varphi(gg')=\varphi(g)\varphi(g')=\bar{\varphi}(g \ker \varphi) \bar{\varphi}(g '\ker \varphi)
+        .\]
+        $ \bar{\varphi} $ is surjective since $ \forall I\in \im \varphi, I=\varphi(g)=\bar{\varphi}(g \ker \varphi). $
+
+        It is also injective since if $ \bar{\varphi}(g \ker \varphi)=e=\varphi(g) $, then $ g\in \ker \varphi $ and $ g \ker \varphi = \ker \varphi $.
+    \end{proof}
+    \begin{example}
+        \begin{enumerate}
+            \item $ \det : \text{GL}_2( \mathbb{R} ) $, $ \im (\det )=\mathbb{R}^* $, and $ \ker (\det )=\text{SL}_2(\mathbb{R} ) $. So $ \text{GL}_2( \mathbb{R})/ \text{SL}_2( \mathbb{R}) \cong \mathbb{R}^*.$
+            \item $ \varphi: \mathbb{R} \to \mathbb{C}^* $ by $ \varphi(r)=e^{2\pi ir} $. Obviously it is a homomorphism. $ \im \varphi $ is $S^1$, the circle of radius 1 in $\mathbb{C}$. $ \varphi(r)=e^{2\pi ir}=1 \Leftrightarrow r\in \mathbb{Z} $. Hence 
+            \[
+                \mathbb{R}/\mathbb{Z}=S^1
+            .\]
+        \end{enumerate}
+    \end{example}
+    \begin{theorem}[Correspondence theorem]\label{thm:Correspondence theorem}\marginnote{helps to understand the subgroup structure of quotient groups.}
+        Let $ N \ltrigeq G $. The subgroups of $G/N$ are in bijective correspondence with subgroups of $G$ containing $N$.
+    \end{theorem}
+    \begin{proof}
+        Let $ N \le M \le G $ and $ N \ltrigeq G $. Then $ N \ltrigeq M $ and $ M/N \le G/N $. Conversely, for any $ H\le G/N $, consider $ \pi^{-1}(H)=\left\{ g\in G: gN\in H\right\} $, where $ \pi: G\to G/N $ is the quotient map. Claim that $ \pi^{-1}(H) $ is a subgroup. Indeed, $\pi^{-1}(H)\neq \varnothing$ since $e\in H$. Let $ g_1,g_2\in \pi^{-1}(H) $, then $ \pi(g_1g_2^{-1})=g_1g_2^{-1}N=g_1N\cdot g_2^{-1}N\in H \Leftrightarrow g_1g_2^{-1}\in \pi^{-1}(H) $. Hence it is group. Since $ e\in H, N\le \pi^{-1}(H) $. 
+
+        Now it is clear that $\tilde{\pi}:\mathcal{S}\to G/N$, where $\mathcal{S}$ is the set of subgroups of $G$ containing $N$,by $ \tilde{\pi}(M)=\pi(M)=M/N$, is a bijective map. Indeed, consider $ \bar{\pi}:G/N\to \mathcal{S} $ defined by $ \bar{\pi}(H)=\pi^{-1}(H) $. Then we have 
+        \[
+            \tilde{\pi}\bar{\pi}(M/N)=\tilde{\pi}(M)=M/N,\quad \bar{\pi}\tilde{\pi}(M)=\bar{\pi}(M/N)=M
+        .\]
+        Therefore, $ \bar{\pi}=\tilde{\pi}^{-1} $ so $ \tilde{\pi} $ is a bijection.
+    \end{proof}
+    \begin{remark}
+        This correspondence preserves lots of structures: indices, normality, and containment.
+    \end{remark}
+    \newpage
+    \begin{example}
+        Consider $ C_4\times C_2 $. If we take $ C_4=\left\{ e,a,a^2,a^3\right\}, C_2=\left\{ e,b\right\} $,then the group lattice diagram is 
+        \begin{center}
+            \begin{tikzpicture}
+                \node(C4*C2)                           {$C_4\times C_2$};
+                \node(C41)       [below left=1cm and 1cm of C4*C2] {$C_4 \cong \langle (a,e) \rangle $};
+                \node(C42)       [below=1cm of C4*C2] {$C_4 \cong \langle (a,b) \rangle $};
+                \node(C43)       [below right=1cm and 1cm of C4*C2] {$C_2\times C_2 \cong \left\{ (e,e),(a^2,b),(e,b),(a^2,e)\right\}$};
+                \node(C21)      [below=1cm of C41]       {$C_2 \cong \langle (a^2,e) \rangle $};
+                \node(C22)      [below=1cm of C42]       {$C_2 \cong \langle (a^2,b) \rangle $};
+                \node(C23)      [below=1cm of C43]       {$C_2 \cong \langle (e,b) \rangle $};
+                \node(Cee)      [below=1cm of C22]     {$\left\{ (e,e)\right\}$};
+                \foreach \x in {1,2,3} {
+                    \draw (C4*C2) -- (C4\x);
+                    \draw (C21) -- (C4\x);
+                    \draw (Cee) -- (C2\x);
+                }
+                \foreach \y in {2,3} {
+                    \draw (C43) -- (C2\y);
+                }
+                \end{tikzpicture}
+        \end{center}
+        Let $ N=\langle (a^2,b) \rangle $, then the by the theorem, then $ C_4\times C_2/N $ has only one non-trivial element $\left\{ (e,e),(a^2,b),(e,b),(a^2,e)\right\}$. The lattice diagram is simply 
+        \begin{center}
+            \begin{tikzpicture}
+                \node(N1)                           {$C_4\times C_2/N$};
+                \node(N2)       [right=1cm of N1] {$C_2 \cong \left\{ N,(e,b)N\right\}$};
+                \node(N3)       [right=1cm of N2] {$\{N\}$};
+                \draw (N1) -- (N2);
+                \draw (N2) -- (N3);
+                \end{tikzpicture}
+        \end{center}
+        Note that $ \ord C_4 \times C_2/N=4 $ by Lagrange, so $ C_4 \times C_2/N \cong C_4 $.
+    \end{example}
+    What if we have a subgroup $ H \le G $ that doesn't contain $ N \ltrigeq G $? We can still make a normal subgroup of $H$ by $ H \cap N $.
+
+    \begin{corollary}[2nd Isomorhpism theorem]\label{col:2nd Isomorhpism theorem}
+            Let $ H\le G, N \ltrigeq G $, then $ H \cap N \ltrigeq H $ and $ H/H \cap N \cong HN/N $\marginnote{$ HN=\left\{ hn:h\in H, n\in N\right\} $.}.
+    \end{corollary}
+    \begin{proof}
+        We firstly prove a lemma 
+        \begin{lemma}
+            Let $ N \ltrigeq G, H\le G $, then $HN\le G$, and $ HN=\langle H,N \rangle $.
+        \end{lemma}
+        Since $ e\in HN, HN\neq \varnothing $. Let $ g_1,g_2\in HN, g_1=h_1n_1, g_2=h_2n_2 $, then
+        \[
+            g_1g_2^{-1}=h_1n_1 n_2^{-1}h_2^{-1}=h_1n'h_2^{-1}
+        .\]
+        Since $N$ is normal, $hN=Nh$ for all $h\in H$, so $ n'h_2^{-1}=h_3n'' $ for some $n''\in N, h_3\in H$. Therefore $ g_1g_2^{-1}=h_1h_3n''\in HN $, so by subgroup test $ HN\le G $. Obviously $ H,N \subseteq HN $, so $ \langle H,N \rangle \subseteq HN $. Let $ g=hn\in HN $, then by definition of generating group, $ g\in \langle H,N \rangle $, hence $ HN=\langle H,N \rangle $.
+
+        Now prove the main theorem. It is clear that $ N \ltrigeq HN $, and let $ \varphi: H\to HN/N $ by $ \varphi(h)=hN $. Then $ \varphi $ is a surjective homomorphism. $ \varphi(h)=hN=N \Leftrightarrow h\in H\cap N $. Hence $ \ker \varphi=H \cap N $. By the first isomorphism theorem, $ H/H\cap N \cong HN/N \le G/N $.
+    \end{proof}
 \end{document}
