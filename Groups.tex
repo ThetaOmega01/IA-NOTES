@@ -1058,4 +1058,13 @@ skipped some takes irrelevant to contents\\
 
         Now prove the main theorem. It is clear that $ N \ltrigeq HN $, and let $ \varphi: H\to HN/N $ by $ \varphi(h)=hN $. Then $ \varphi $ is a surjective homomorphism. $ \varphi(h)=hN=N \Leftrightarrow h\in H\cap N $. Hence $ \ker \varphi=H \cap N $. By the first isomorphism theorem, $ H/H\cap N \cong HN/N \le G/N $.
     \end{proof}
+    \begin{corollary}[3rd Isomorphism theorem]\label{col:3rd Isomorphism theorem}
+            Let $ N \le M \le G $ such that $ N \ltrigeq G \land M \ltrigeq G $. Then $ M /N \ltrigeq G/N $ and 
+            \[
+                (G/N)/(M/N) \cong G/M
+            .\]
+    \end{corollary}
+    \begin{proof}
+        Define $ \varphi:G/N \to G/M $ by $ \varphi(gN)=gM $. $ \varphi $ is well-defined and is a surjective homomorphism. Note that $ \varphi(gN)=gM=M \Leftrightarrow g\in M $. So $ \ker \varphi=M/N $, then by the first isomorphism theorem, we have $ (G/N)/(M/N) \cong G/M $.
+    \end{proof}
 \end{document}
