@@ -1067,4 +1067,107 @@ skipped some takes irrelevant to contents\\
     \begin{proof}
         Define $ \varphi:G/N \to G/M $ by $ \varphi(gN)=gM $. $ \varphi $ is well-defined and is a surjective homomorphism. Note that $ \varphi(gN)=gM=M \Leftrightarrow g\in M $. So $ \ker \varphi=M/N $, then by the first isomorphism theorem, we have $ (G/N)/(M/N) \cong G/M $.
     \end{proof}
+    \begin{example}\marginnote{Lecture 13}
+        \begin{enumerate}
+            \item Consider $ G= \mathbb{Z} ,H=3\bbZ, N=5\bbZ $. Then by theorem \ref{col:2nd Isomorhpism theorem}, we have $ H \cap N \ltrigeq H $, i,e., $ 15\bbZ \ltrigeq 3\bbZ $ and $ H/H\cap N \cong HN/N $. Note that $ \langle H,N \rangle =\mathbb{Z} $, since $1=2\times 5-3\times 3$.
+            \item (See $ C_4 \times C_2 $ example) Let $ C_4=\langle a \rangle , C_2=\langle b \rangle $. Let $ N=\langle (a^2,b) \rangle, M=\langle (e,b),(a^2,e) \rangle $, then $ N \le M\le G $ and $ N,M \ltrigeq G $. By corollary \ref{col:3rd Isomorphism theorem}, we have 
+            \[
+                (C_4 \times C_2 / N)/ (M/N)\cong C_4 \times C_2 / M
+            .\]
+        \end{enumerate}
+    \end{example}
+    \section{Simple groups}
+    \begin{definition}[Simple Groups]
+        A group $G$ is \textit{simple} if and only if its only normal subgroups are $ \left\{ e\right\} $ and $G$.
+    \end{definition}
+    \begin{example}
+        \begin{itemize}
+            \item $ C_p $ with $p$ prime is a simple group.
+            \item $ A_5 $ of alternating permutations is simple. Proof will be given later.
+        \end{itemize}
+    \end{example}
+    \part{Group Actions}
+    \section{Basic properties}
+        For many examples of groups met, we identified group elements oby their effect on some sets. e.g., $S_n$ permuting the set $ \left\{ 1,2,\dots,n\right\} $. A M\"{o}bius group being functions $ \hat{\mathbb{C}}\to \hat{\bbC} $, $ D_{2n} $ being symmetries of an $n$-gon.
+
+        While we can study groups purely algebraicly from the axioms, groups truly com alive when acting on other objects.
+
+        \begin{definition}
+            Let $ G $ be a group and $X$ be a set. An \textit{action} of $G$ on $X$ is a function $ \alpha: G \times X\to X $ by 
+            \[
+                \alpha(g,x)=\alpha_g(x)
+            ,\]
+            satisfying 
+            \begin{itemize}
+                \item $ \alpha_g(x)\in X, \forall g\in G, \forall x\in X $.
+                \item $ \alpha_e(x)=x, \forall x\in X $.
+                \item $ \alpha_g \circ \alpha_h(x)=\alpha_{gh}(x), \forall g,h\in H, \forall x\in X $. In other words, 
+                \[
+                    \alpha(g,\alpha(h,x))=\alpha(gh,x)
+                .\]
+            \end{itemize}
+            Write $ G\curvearrowright X $ that $ G $ acts on $X$.
+        \end{definition}
+        \begin{example}
+            \begin{enumerate}
+                \item Take $G,X$, and define the trivial action of $G$ on $X$ by $ \alpha_g(x)=x, \forall g\in G, \forall x\in X $. This is just the identity function.
+                \item $ S_n \curvearrowright \left\{ 1,\dots,n\right\} $ by permutation.
+                \item $ D_{2n} \curvearrowright \left\{ \text{vertices of a regular $n$-gon}\right\} $, and by labelling the vertices $ 1,\dots, n $, we have $ D_{2n} \curvearrowright \left\{ 1,2,\dots,n\right\} $.
+                \item $ M \curvearrowright \hat{\bbC} $ via M\"{o}bius maps.
+                \item Symmetries of a cube act on set of vertices, set of edges, set of faces, and set of pairs of opposite faces.
+            \end{enumerate}
+        \end{example}
+        \begin{remark}
+            \begin{itemize}
+                \item Examples 2. and 3. show that more than one group can act on a given set.
+                \item Example 5. shows that one group can act on many sets.
+                \item We'll see that actions give information about the group.
+            \end{itemize}
+        \end{remark}
+        \begin{lemma}\label{lma:5.3}
+            $ \forall g\in G $, $ \alpha_g:X\to X, x \mapsto \alpha_g(x) $ is a bijection.
+        \end{lemma}
+        \begin{proof}
+            We have $ \alpha_g(\alpha_{g^{-1}}(x))=\alpha_{gg^{-1}}(x)=\alpha_e(x)=x $. And similarly, $ \alpha_{g^{-1}}(\alpha_g(x))=x $. Hence $ \alpha_{g^{-1}}=\alpha_g^{-1} $ and both are bijections.
+        \end{proof}
+        We can also define actions by linking $G$ to $ \sym(X) $.
+        \begin{proposition}\label{prop:5.4}
+            Let $G$ be a group and $X$ be a set. Then $ \alpha:G \times X \to X $ by $ \alpha(g,x)=\alpha_g(x) $ is an action if and only if the function $ \rho:G \to \sym(X) $ by $ \rho(g)=\alpha_g $ is a homomorphism.
+        \end{proposition}
+        \begin{proof}
+            Assume $ \alpha $ is an action. By lemma \ref{lma:5.3}, $ \alpha_g $ is a bijection $ X \to X $, so $ \alpha_g\in \sym(X) $. Therefore,
+            \[
+                \rho(gh)=\alpha_{gh}=\alpha_g \alpha_h=\rho(g)\rho(h)
+            .\]
+            Hence $ \rho $ is a homomorphism.
+
+            Conversely, given $ \rho:G \to \sym(X) $ is a homomorphism, define $ \alpha:G \times X \to X $ by $ \alpha(g,x)=\alpha_g(x)=\rho(g)(x) $. Since $ \rho(g)\in \sym(X) $, we have $ \alpha_g(x)\in X $. $ \alpha_e(x)=\rho(e)(x)=e(x)=x $. Finally, $ \alpha_g \alpha_h=\rho(g)\rho(h)=\rho(gh)=\alpha_{gh}$. Hene it is an action.
+        \end{proof}
+        \begin{remark}
+            Since the action induces a function $ X \to X $, we can regard $ \alpha_g:X \to X $ induced by $g$, and simply write $ g(x) $.  
+        \end{remark}
+        \begin{definition}
+            The \textit{kernel} of an action $ \alpha:G \times X \to X $ is the kernel of the above $ \rho $.\marginnote{All the permutations of $G$ that act as the identity of $ \sym(X) $. i.e., they do nothing to $x$.}
+        \end{definition}
+        Note that $ G/\ker \rho \cong \im \rho\le \sym(X) $ by theorem \ref{thm:1st isom thm}. In particular, if $ \ker \rho = \left\{ e\right\} $, then $ G\le \sym(X) $.
+
+        \begin{example}
+            \begin{enumerate}
+                \item $ D_{2n} $ acting on $ \left\{ 1,\dots,n\right\} $ has $ \ker \rho=\left\{ e\right\} $. Every non-trivial element of $ D_{2n} $ moves at least one vertex. So $ D_{2n}\le S_n $.
+                \item Let $G$ be the symmetries of a cube, and consider
+                \[
+                    X=\left\{ \text{unordered pairs of opposite faces}\right\}
+                .\]
+                It is clear that $ |X|=3 $, so we get $ \rho:G\to \sym(X) \cong S_3 $. Since $G$ contains all symmetries of the cube, it must contain all symmetries of $X$, so $\rho$ is surjective. Hence by the first isomorphism theorem \ref{thm:1st isom thm}, we have 
+                \[
+                    G/\ker \rho \cong \im \rho = S_3
+                .\]
+                In particular, this tells us that $ \ker \rho $ is non-trivial. i.e., there are symmetries which do not move faces.
+            \end{enumerate}
+        \end{example}
+        \begin{definition}
+            An action $ G \curvearrowright X $ is called \textit{faithful} if $ \ker \rho = \left\{ e\right\} $.
+        \end{definition}
+        \section{Orbits and Stabilisers}
+        
 \end{document}
