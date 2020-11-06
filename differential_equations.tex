@@ -955,7 +955,7 @@ skipped some talks irrelevant to contents\\
                 y_1\\y_1'
             \end{pmatrix}=\begin{pmatrix}
                 \cos 2x\\-2 \sin 2x
-            \end{pmatrix}=, \mathbf{Y}_2(x)=\begin{pmatrix}
+            \end{pmatrix}, \mathbf{Y}_2(x)=\begin{pmatrix}
                 \sin 2x\\2 \cos 2x
             \end{pmatrix}
         .\]
@@ -1024,7 +1024,7 @@ skipped some talks irrelevant to contents\\
                 \uparrow &\uparrow &&\uparrow \\
                 \mathbf{Y}_1&\mathbf{Y}_2&\cdots & \mathbf{Y}_n\\
                 \downarrow & \downarrow & &  \downarrow
-            \end{vmatrix}
+            \end{vmatrix}=
             \begin{vmatrix}y_{1}&y_{2}&\cdots &y_{n}\\y_{1}'&y_{2}'&\cdots &y_{n}'\\\vdots &\vdots &\ddots &\vdots \\y_{1}^{{(n-1)}}&y_{2}^{{(n-1)}}&\cdots &y_{n}^{{(n-1)}}\end{vmatrix}
         .\]
     \end{definition}
@@ -1070,8 +1070,130 @@ skipped some talks irrelevant to contents\\
                 \Longrightarrow & y''+4y=0.
             \end{aligned}
         \]
+        This allows us to find the original equations given the solutions.
     \end{remark}
     \begin{remark}
         Note that $W(x)=0$ does \textit{not} necessarily imply linear dependence.
     \end{remark}
+    \section{Abel's Theorem}\marginnote{Lecture 13.}
+    \subsection{Theorem}
+    Consider a second-order homogeneous ODE 
+    \begin{equation}\label{eq:13.1}
+        y''+p(x)y'+q(x)=0.
+    \end{equation}
+    \begin{theorem}[Abel]\label{thm:Abel}
+        If $p(x),q(x)$ are continuous on an interval $I$, then the Wronsikian $W(x)$ is either $ W(x)=0 $ or $ W(x)\neq 0 \forall x\in I $.
+    \end{theorem}
+    Sketch of proof: Let $y_1,y_2$ be solutions to equation \ref{eq:13.1}:
+    \[
+        \begin{aligned}
+             &y_1''+p(x)y_1'+q(x)y_1=0\\
+             &y_2''+p(x)y_2'+q(x)y_2=0.
+        \end{aligned}
+    \]
+    Multiply the first by $y_2,$ the second by $y_1$:
+    \[
+        \begin{aligned}
+            &y_2(y_1''+p(x)y_1'+q(x)y_1)=0\\
+            &y_1(y_2''+p(x)y_2'+q(x)y_2)=0.
+       \end{aligned}
+    \]
+    Subtract the first by the second:
+    \[
+        \begin{aligned}
+            &(y_2y_1''-y_1y_2'')+p(x)(y_2y_1'-y_1y_2')=0\\
+            \Longrightarrow & \frac{\mathrm{d}W}{\mathrm{d}x}+p(x)W(x)=0. 
+        \end{aligned}
+    \]
+    Therefore,
+    \[
+        \begin{aligned}
+            &\int_{W(x_0)}^{W(x)} \frac{1}{W} \,\mathrm{d}W = \int_{x_0}^x -p(\tilde{x}) \,\mathrm{d}\tilde{x}\\
+            \Longrightarrow  & \boxed{W(x)=W(x_0)e^{-\int_{x_0}^{x} p(u) \,\mathrm{d}u}}\marginnote{Called the \textit{Abel's identity}.}
+        \end{aligned}
+    \]
+    Since $p(x)$ is continuous on $I$, it is bounded and thus integrable. Therefore, $ e^{-\int_{x_0}^{x} p(u) \,\mathrm{d}u}\neq 0 $. It follows that if $ W(x_0)=0 $ then $ W(x)=0, \forall x $. If $ W(x_0)\neq 0 $ then $ W(x)\neq 0, \forall x $.
+    \begin{corollary}\label{col:abel}
+            If $p(x)=0$, then $ W=W(x_0) $.
+    \end{corollary}
+    Note that we can find $ W(x) $ without solving the equation itself.
+    \begin{example}[Bessel's equation]
+        Consider
+        \[
+            x^2y''+xy'+(x^2-n^2)y=0
+        .\]
+        There is no closed form of solution, but we can still find the Wronskian of this equation:
+        \[
+            \begin{aligned}
+                &y''+\frac{1}{x}y'+\left( 1-\frac{n^2}{x^2} \right) y=0\\
+                \Longrightarrow &W(x)=W(x_0) e^{-\int_{x_0}^{x} \frac{1}{u} \,\mathrm{d}u}\\
+                &=W(x_0) e^{-(\ln x-\ln x_0)}\\
+                &= W_0 e^{-\ln x}=\frac{W_0}{x}.
+            \end{aligned}
+        \]
+    \end{example}
+    \subsection{Application of Abel's theorem}
+    We can find the second solution using the first solution for second order ODEs.
+    \[
+        y_1y_2'-y_2y_1'=W(x_0)e^{-\int_{x_0}^{x} p(u) \,\mathrm{d}u}
+    .\]
+    This is a first order ODE for $y_2$.
+    \subsection{Generalisation to higher order ODEs}
+    Note that any linear $n$th order ODE can be written with 
+    \[
+        \mathbf{Y}'+\mathbf{A}(x)\mathbf{Y}=\mathbf{0}
+    .\]
+    This will be shown later.
+
+    It can be shown that 
+    \[
+        W'+\trace(\bfA)W=0
+    \]
+    and that 
+    \[
+        W'=W_0e^{-\int^{x} \trace(\mathbf{A}) \,\mathrm{d}u}
+    \]
+    and Abel's theorem holds.\marginnote{This is a really rough discussion, to be discussed later and ES3 Q7.}
+    \section{Equidimensional equations}
+    \subsection{Definition}
+    \begin{definition}[Equidimensional equations]
+        An ODE is \textit{equidimensional} if the differential operator is unaffected by a multiplicative scaling.
+    \end{definition}
+    For example, rescale $ x \to x' $ with $ x'=\alpha x $.
+
+    The general form of 2nd order equidimensional equations is 
+    \begin{equation}\label{eq:13.8}
+        ax^2y''+bxy'+cy=f(x).
+    \end{equation}
+    \begin{remark}
+        Note that $ \frac{\mathrm{d}}{\mathrm{d}x'}=\frac{1}{\alpha}\frac{\mathrm{d}}{\mathrm{d}x},$ and $ \frac{\mathrm{d}^2}{\mathrm{d}x'^2}=\frac{1}{\alpha^2}\frac{\mathrm{d}^2}{\mathrm{d}x^2}   $.
+    \end{remark}
+    Hence by scaling to $x'$, we get 
+    \[
+        ax'^2 \frac{\mathrm{d}^2y}{\mathrm{d}x'^2} +bx' \frac{\mathrm{d}y}{\mathrm{d}x'}+cy=f(x'/\alpha) 
+    .\]
+    Notice that LHS does not change, so the equation is equidimensional.
+    \subsection{Methods to solve}
+    \begin{enumerate}
+        \item Note that $ y=x^k $ is an eigenfunction of the operator $ x \frac{\mathrm{d}}{\mathrm{d}x}  $. To solve \ref{eq:13.8}, try $ y=x^k $:
+        \[
+            ak(k-1)+bk+c=0
+        .\]
+        If the roots $ k_1\neq k_2 $, then the solutions are of the form
+        \[
+            y_c=Ax^{k_1}+Bx^{k_2}
+        .\]
+        \item Note that $ z=\ln x $ turns \ref{eq:13.8} into an equation with constant coefficients.
+        \[
+            a \frac{\mathrm{d}^2y}{\mathrm{d}z^2}+(b-a)\frac{\mathrm{d}y}{\mathrm{d}z}+cy = f(e^z) \marginnote{Verify this.}
+        .\]
+        Try $ y=e^{\lambda z} $ for complementary function:
+        \[
+            a \lambda^2+(b-a)\lambda+c=0
+        .\]
+        Let $ \lambda_1,\lambda_2 $ be the solutions. If $ \lambda_1\neq \lambda_2 $ then $ y_c=Ae^{\lambda_1 z}+Be^{\lambda_2 z}=Ax^{\lambda_1}+Be^{\lambda_2}$. If $ \lambda_2=\lambda_2(k-1=k_2) $, then by detuning we have 
+        \[
+            y_c=(A+B\ln x)x^{k_1}
+        .\]
+    \end{enumerate}
 \end{document}

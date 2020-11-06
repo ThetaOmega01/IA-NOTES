@@ -1403,4 +1403,217 @@ skipped some talks irrelevant to contents\\
         \end{IEEEeqnarray*}
         Hence $ R(\theta)R(-\theta)=I $ or $ R(-\theta)=R^{-1}(\theta) $.
     \end{example}
+    \subsection{Transpose and Hermitian conjugate}\marginnote{Lecture 12}
+    \begin{definition}
+        If $M$ is an $ m\times n $ (real or complex) matrix, the transpose $ M^T $ is an $ n\times m $ matrix 
+    \[
+        (M^T)_{ia}=M_{ai}\quad \text{exchange rows and columns}
+    ,\]
+    where $ a=1,\dots,m,i=1,\dots,n $.
+    \end{definition}
+
+    \begin{proposition}[Properties]
+        Let $ A\in \mathcal{M}_{m\times n}, B\in \mathcal{M}_{n\times p} $,
+        \begin{enumerate}
+            \item $ (\alpha A+\beta B)^T=\alpha A^T+\beta B^T $.
+            \item $ (AB)^T=B^TA^T $.
+        \end{enumerate}
+    \end{proposition}
+    \begin{remark}
+        Write 
+        \[
+            \mathbf{x}=\begin{pmatrix}
+                x_1\\\vdots\\x_n
+            \end{pmatrix}
+        ,\]
+        then $ \mathbf{x}^T=(x_1,\dots,x_n) $. Inner products in $ \mathbb{R}^{n} $ is 
+        \[
+            \mathbf{x}\cdot \mathbf{y}=\mathbf{x}^T \cdot \mathbf{y}\quad 1 \times 1 \text{ matrix}
+        .\]
+        Note that $ \mathbf{y}\mathbf{x}^T $ is an $ n \times n $ matrix with $ M_{ij}=x_iy_j $
+    \end{remark}
+    \begin{definition}
+        If $ M\in \mathcal{M}_{n\times n} $ then $M$ is:
+        \begin{enumerate}
+            \item \textit{symmetric} if $ M^T=M $ or $ M_{ij}=M_{ji} $.
+            \item \textit{anti-symmetric} if $ M^T=-M $ or $ M_{ij}=-M_{ji} $.
+        \end{enumerate}
+    \end{definition}
+    \begin{proposition}
+        Any $ M $ can be written as $ M=S+A $, where $S$ is symmetric and $A$ is anti-symmetric.
+    \end{proposition}
+    \begin{proof}
+        Take $ S=\frac{1}{2}(M+M^T) $ and $ \frac{1}{2}(M-M^T) $.
+    \end{proof}
+    \begin{remark}
+        If $ A\in \mathcal{M}_{3\times 3} $ is anti-symmetric, we can write $ A_{ij}=\epsilon_{ijk}a_k $, or 
+        \[
+            A=\begin{pmatrix}
+                0&a_3&-a_2\\
+                -a_3&0&a_1\\
+                a_2&-a_1&0
+            \end{pmatrix}
+        .\]
+        Then $ (A \mathbf{x})_{i}=\epsilon_{ijk}a_kx_j=(x \times a)_{i} $.
+    \end{remark}
+    \begin{definition}
+        If $ M\in \mathcal{M}_{m\times n} $, the \textit{Hermitian conjugate} $ M^\dagger  $ is an $n\times n$ matrix defined by 
+        \[
+            (M^\dagger )_{ia}=\overline{M}_{ai}, \text{ or } M^\dagger =\overline{M}^T=\overline{M^T}
+        .\]
+
+        If $M$ is square, then $M$ is \textit{hermitian} if $ M^\dagger =M $ or $ M_{ij}=\overline{M}_{ji} $, and is \textit{anti-hermitian} if $ M_{ij}=-\overline{M}_{ji} $.
+    \end{definition}
+    Similarly above, if 
+    \[
+        \mathbf{z}=\begin{pmatrix}
+            z_1\\\vdots\\z_n
+        \end{pmatrix}\in \mathbb{C}^{n},
+    \]
+    then $ \mathbf{z}^\dagger = (\bar{z}_1,\dots, \bar{z}_n)\in \mathbb{C}^{n} $. Also the complex inner product is
+    \[
+        (\mathbf{z},\mathbf{w})=\bar{z}_i w_i=\mathbf{z}^\dagger \mathbf{w}
+    .\]
+    \subsection{Trace}
+    \begin{definition}
+        For a complex $ n \times n $ matrix $M$, the \textit{trace} is defined by 
+        \[
+            \trace(M)=M_{ii}
+        .\]
+    \end{definition}
+    Properties:
+    \begin{enumerate}
+        \item $ \tr(\alpha M+ \beta N)=\alpha \tr(M)+\beta \tr(N) $.
+        \item $ \tr(MN)=\tr(NM) $ for $ M\in \mathcal{M}_{m\times n}, N\in \mathcal{M}_{n\times m} $.
+        \item $ \tr(M^T)=\tr(M) $.
+        \item $ \tr(I)=\delta_{ii}=n $ if $ I\in \mathcal{M}_{n\times n} $.
+    \end{enumerate}
+    If $ S\in \mathcal{M}_{n\times n} $ is symmetric, let 
+    \[
+        T=S-\frac{1}{n}\tr(S)I \Longleftrightarrow T_{ij}=S_{ij}-\frac{1}{n}\tr(S)\delta_{ij}
+    .\]
+    Then
+    \[
+        \tr(T)=S_{ii}-\frac{1}{n}\tr(S)\delta_{ii}=0
+    .\]
+    Then 
+    \[
+        S=T+\frac{1}{n}\tr(S)I
+    .\]
+    $T$ is often referred to as \textit{traceless} and $ \frac{1}{n}\tr(S)I $ is referred to as \textit{pure trace}.
+    \begin{remark}
+        If $A$ is $ n \times n $ anti-symmetric, then $ \tr(A)=A_{ii}=0 $.
+    \end{remark}
+    \section{Orthogonal and unitary matrices}
+    \begin{definition}
+        A real $ n\times n $ matrix $U$ is \textit{orthogonal} if and only if $ U^T=U^{-1} $, which can be written as 
+        \[
+            U_{ki}U_{kj}=U_{ik}U_{jk}=\delta_{ij}
+        .\]
+        This means that columns of $U$ are orthonormal and rows of $U$ are orthonormal. In matrix,
+        \[
+            \begin{pmatrix}
+                &\vdots&\\
+                \leftarrow & \mathbf{C}_i& \rightarrow \\
+                &\vdots&
+            \end{pmatrix}
+            \begin{pmatrix}
+                &\uparrow&\\
+                \cdots&\mathbf{C}_j&\cdots\\
+                &\downarrow &
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                &\vdots&\\
+                \leftarrow & \mathbf{R}_i& \rightarrow \\
+                &\vdots&
+            \end{pmatrix}
+            \begin{pmatrix}
+                &\uparrow&\\
+                \cdots&\mathbf{R}_j&\cdots\\
+                &\downarrow &
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                1&\cdots&0\\
+                \vdots&\ddots &\vdots \\
+                0&\cdots &1
+            \end{pmatrix}
+        .\]
+    \end{definition}
+    For example, if $U=R(\theta)$ is the rotation through $ \theta $ about axis $\mathbf{n}$, then $ U^T=R(\theta)^T=R(-\theta)=R^{-1}(\theta)=U^{-1} $, so the rotation matrix is orthogonal.
+
+    \begin{definition}[Equivalent definition]
+        $U$ is orthogonal if and only if it preserves inner product on $ \mathbb{R}^{n} $.
+        \[
+            (U \mathbf{x})\cdot (U \mathbf{y})=\mathbf{x}\cdot \mathbf{y}, \quad \forall \bfx,\bfy\in \mathbb{R}^{n}
+        .\]
+    \end{definition}
+    To check equivalence, note that 
+    \[
+        (U \mathbf{x})^T(U \mathbf{y})=(\mathbf{x}^T U^T)(U \mathbf{y})=\mathbf{x}^T(U^TU)\mathbf{y}=\mathbf{x}^T \mathbf{y}
+    .\]
+    The last equality holds if and only if $ U^TU=I $, so they are indeed equivalent.
+
+    Moreover, in $ \mathbb{R}^{n} $, the columns of $U$ are $ U \mathbf{e}_i $, so inner product is preserved when $U$ acts on standard basis. That is $ (U \mathbf{e}_i)\cdot(U\mathbf{e}_j) =\delta_{ij}$, so the columns of $U$ are orthonormal.
+    \begin{example}
+        To find general $2\times 2$ orthogonal matrices, note that 
+        \[
+            U\begin{pmatrix}
+                1\\0
+            \end{pmatrix}=\begin{pmatrix}
+                \cos \theta\\ \sin \theta
+            \end{pmatrix},
+            U\begin{pmatrix}
+                0\\1
+            \end{pmatrix}=\pm \begin{pmatrix}
+                -\sin \theta\\ \cos \theta
+            \end{pmatrix}
+        \]
+        by the fact that $ |U \mathbf{x}|^2=|\bfx|^2 \Leftrightarrow |U \mathbf{x}|=| \mathbf{x}| $. Therefore, two cases of $U$ are 
+        \[
+            U=R=\begin{pmatrix}
+                \cos \theta & \sin \theta\\
+                \sin \theta & -\cos \theta
+            \end{pmatrix} \text{ or } U=H=\begin{pmatrix}
+                \cos \theta & -\sin \theta\\
+                \sin \theta & \cos \theta
+            \end{pmatrix}
+        .\]
+        Obviously the first one is rotaton. To show the second is reflection, let $ \mathbf{n}=(-\sin \theta/2, \cos \theta/2) $ Then by the example of reflection in section 19.2, we have 
+        \[
+            H_{ij}=\delta_{ij}-2n_in_j
+        .\]
+        Hence 
+        \[
+            H=\begin{pmatrix}
+                1-2 \sin ^{2} \theta / 2 & 2 \sin \theta / 2 \cos \theta / 2 \\
+                2 \sin \theta / 2 \cos \theta / 2 & 1-2 \cos ^{2} \theta / 2
+            \end{pmatrix}=\begin{pmatrix}
+                \cos \theta & -\sin \theta\\
+                \sin \theta & \cos \theta
+            \end{pmatrix}
+        .\]
+    \end{example}
+    \begin{remark}
+        Cases $ U=R, U=H $ are distinguished by 
+        \[
+            \det R=1, \det H=-1
+        .\]
+    \end{remark}
+    \begin{definition}
+        A complex $n\times n$ matrix $U$ is called \textit{unitary} if and only if 
+        \[
+            U^\dagger =U^{-1}
+        .\]
+        Equivalently, $U$ is unitary if and only if it preserves inner product on $ \mathbb{C}^{n} $:
+        \[
+            (U \mathbf{z}, U \mathbf{w})=(\mathbf{z},\mathbf{w}), \forall \mathbf{z},\mathbf{w}\in \mathbb{C}^{n}
+        .\]
+    \end{definition}
+    To check equivalence, 
+    \[
+            (U \mathbf{z}, U \mathbf{w})=(U \mathbf{z})^\dagger (U \mathbf{w})=(\bfz^\dagger U^\dagger )(U \bfw )=\bfz^\dagger (U^\dagger U)\bfw=\bfz^\dagger \bfw
+    \]
+    iff $ U^\dagger U=I $.
 \end{document}
