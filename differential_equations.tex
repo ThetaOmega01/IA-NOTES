@@ -1196,4 +1196,178 @@ skipped some talks irrelevant to contents\\
             y_c=(A+B\ln x)x^{k_1}
         .\]
     \end{enumerate}
+    \section{Forced(Inhomogeneous) 2nd order ODEs}
+    This section discusses methods of finding particular integral $ y_p(x) $.
+    \subsection{Guess work}
+    \begin{center}
+        \begin{tabular}{cc}
+        \toprule
+        Form of $f(x)$ & Form of $y_p$ \\ \midrule
+        $ e^{mx} $ & $ Ae^{mx} $ \\
+        $ \sin kx, \cos kx $ & $ A \sin kx + B \cos kx $ \\
+        $ P_n(x) $, $n$th degree polynomial & $ a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0 $ \\ \bottomrule
+        \end{tabular}
+        \end{center}
+        Steps:
+        \begin{enumerate}
+            \item Insert guess into ODE.
+            \item Equate coefficients of functions
+            \item Solve for unknown coefficients.
+        \end{enumerate}
+    \subsection{Variation of parameters}
+    Method for finding particular integral given complementary functions $ y_1,y_2 $. We assume that $ y_1,y_2 $ are linearly independent, and have solution vectors 
+    \[
+        \mathbf{Y}_1=\begin{pmatrix}
+            y_1\\y_1'
+        \end{pmatrix},
+        \bfY_2=\begin{pmatrix}
+            y_2\\y_2'
+        \end{pmatrix}
+    .\]
+    Suppose the solution vector for $ y_p $ satisfies
+    \begin{equation}\label{eq:14.1}
+        \bfY_p=\begin{pmatrix}
+            y_p\\y_p'
+        \end{pmatrix}
+        =u(x)\bfY_1+v(x)\bfY_2.
+    \end{equation}
+    Try to find 2 equations for $u(x),v(x)$.
+
+    Note that
+    \[
+        \ref{eq:14.1}  \Rightarrow  
+        \begin{aligned}
+            y_p&=uy_1+vy_2,\qquad (\text{a})\\
+            y_p'&=uy_1'+vy_2'.\qquad (\text{b})    
+        \end{aligned}
+    \]
+    Differentiating (a) gives 
+    \[
+        y_p'=u'y_1+uy_1'+v'y_2+vy_2'\tag{c}
+    .\]
+    Subtracting by (b) gives 
+    \[
+        \boxed{u'y_1+v'y_2=0}\tag{d}
+    .\]
+    We also have 
+    \[
+        y_p''=uy_1''+u'y_1'+v'y_2'+vy_2''\tag{e}
+    .\]
+    If $ y_p(x) $ satisfies $ y_p''+p(x)y_p'+q(x)y_p=f(x) $, then 
+    \[
+        (\text{e})+p(x)(\text{b})+q(x)(\text{a})=f(x)
+    .\]
+    We also know 
+    \[
+        y_1''+py_1'+qy_2=0\land y_2''+py_2+qy_2=0,
+    \]
+    so after simplification
+    \[
+       \boxed{ u'y_1'+v'y_2'=f(x)}\tag{f}
+    .\]
+
+    (d), (f) gives 
+    \[
+        \underbrace{\begin{pmatrix}
+            y_1&y_2\\
+            y_1'&y_2'
+        \end{pmatrix}}_{\text{fundamental matrix}}
+        \begin{pmatrix}
+            u'\\v'
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            0\\f
+        \end{pmatrix}
+        \Longrightarrow 
+        \begin{pmatrix}
+            u'\\v'
+        \end{pmatrix}=
+        \frac{1}{W(x)}\begin{pmatrix}
+            y_2&-y_2\\
+            -y_1'&y_1
+        \end{pmatrix}
+        \begin{pmatrix}
+            0\\f
+        \end{pmatrix}
+        =\begin{pmatrix}
+            -y_2f/W\\ y_1f/W
+        \end{pmatrix}
+    .\]
+    Hence, 
+    \[
+        \boxed{y_p = y_2 \int^{x} \frac{y_1(t)f(t)}{W(t)} \,\mathrm{d}t-y_1 \int^{x} \frac{y_2(t)f(t)}{W(t)} \,\mathrm{d}t}
+    .\]
+    \section{Forced oscillating systems}
+    Many physical systems have a restoring force and damping, e.g. friction.
+    \begin{example}[Car suspension]
+        Consider a car wheel with a spring and a damper at the top. The ground pushes the wheel with a force $ F(t) $ and the height of the centre of the wheel is $y(t)$, with $y(0)=0$. Newton's 2nd law tells us that 
+        \begin{equation}\label{eq:14.2}
+            M\ddot{y} = F(t)-\underbrace{ky}_{\text{spring}}-\underbrace{L \dot{y}}_{\text{damper}}.
+        \end{equation}
+        The standard form is 
+        \[
+            \ddot{y}+\frac{L}{M}\dot{y}+\frac{k}{M}y=\frac{F(t)}{M}
+        .\]
+        Let $ \tau= \sqrt{k/M}t $, then 
+        \[
+            y''+2Ky'+y=f(\tau)
+        ,\]
+        where $ y'=\frac{\mathrm{d}y}{\mathrm{d}\tau}, K=\frac{L}{2\sqrt{kM}}, f=\frac{F}{k}  $.
+    \end{example}
+    \subsection{Unforced response(free/natural response)}
+    If $f=0$, we have 
+    \[
+        y''+2Ky'+y=0 \Longrightarrow \lambda^2+2K \lambda+1=0 \Longrightarrow \lambda = -K\pm \sqrt{K^2-1}
+    .\]
+    \subsubsection*{case 1: $ K<1 $, underdamped}
+    In this case, $ \lambda_1,\lambda_2\in \mathbb{C} $, and 
+    \[
+        y=e^{-K\tau}\left( A \sin \left( \sqrt{1-K^2}\tau \right)+B \cos \left( \sqrt{1-K^2}\tau \right) \right)
+    .\]
+    \begin{center}
+        \begin{tikzpicture}
+          \draw [->] (0, 0) -- (6, 0) node [right] {$t,\tau$};
+          \draw [->] (0, -2) -- (0, 2) node [above] {$y$};
+      
+          \draw [semithick, mblue, domain = 0:5.8, samples=200] plot (\x, {1.8 * exp (-0.5 * \x) * sin (300 * \x + 40)});
+          \draw[dashed, purple, domain = 0:5.8, samples=200, mylabel=at 2.0 above right with {$e^{-K\tau}$}] plot (\x, {1.8 * exp (-0.5 * \x) });
+          \draw [dashed, purple, domain = 0:5.8, samples=200] plot (\x, {-1.8 * exp (-0.5 * \x) });
+        \end{tikzpicture}
+      \end{center}
+      This is a damped oscillator of $2\pi/\sqrt{1-K^2}$. Note that period $ \to \infty $ as $ K \to 1 $.
+      \subsubsection*{Case 2: critically damped}
+      In this case $ \lambda_1=\lambda_2=-K $, which we can use detuning to obtain
+      \[
+          y=(A+B\tau)e^{-K\tau}
+      .\]
+      \begin{center}
+        \begin{tikzpicture}
+          \draw [->] (0, 0) -- (6, 0) node [right] {$t, \tau$};
+          \draw [->] (0, -2) -- (0, 2) node [above] {$y$};
+      
+          \draw [semithick, mblue, domain = 0:5.8, samples=100] plot (\x, {(1 + 3 * \x) * exp (-\x)});
+        \end{tikzpicture}
+      \end{center}
+      \subsubsection*{Case 3: $K>1$, overdamped}
+      $ \lambda_1,\lambda_2\in \mathbb{R} $ and $ <0 $.
+      We have 
+      \[
+          y=Ae^{\lambda_1 \tau}+Be^{\lambda_2 \tau}
+      .\]
+      Wlog let $ \left| \lambda_1 \right| <|\lambda_2| $,
+      \begin{center}
+        \begin{tikzpicture}
+          \draw [->] (0, 0) -- (6, 0) node [right] {$t,\tau$};
+          \draw [->] (0, -2) -- (0, 2) node [above] {$y$};
+            
+          \draw [semithick, mblue, domain = 0:5.8, samples=100] plot (\x, {2 * exp (-0.3 * \x) - 1.2*exp(-2 * \x)});
+
+          \draw [dashed, red, domain = 0:5.8, samples=100] plot (\x, {2 * exp (-0.3 * \x)});
+          \draw [dashed, green, domain = 0:5.8, samples=100] plot (\x, { - 1.2*exp(-2 * \x)});
+        \end{tikzpicture}
+      \end{center}
+      \begin{remark}
+          Unforced response decays in all cases.
+      \end{remark}
 \end{document}

@@ -109,6 +109,14 @@
 \tikzset{eqpic/.style={baseline={([yshift=-.5ex]current bounding box.center)}}}
 \tikzset{commutative diagrams/.cd,cdmap/.style={/tikz/column 1/.append style={anchor=base east},/tikz/column 2/.append style={anchor=base west},row sep=tiny}}
 
+\tikzset{mylabel/.style  args={at #1 #2  with #3}{
+    postaction={decorate,
+    decoration={
+      markings,
+      mark= at position #1
+      with  \node [#2] {#3};
+ } } } }
+
 \definecolor{mblue}{rgb}{0.2, 0.3, 0.8}
 \definecolor{morange}{rgb}{1, 0.5, 0}
 \definecolor{mgreen}{rgb}{0.1, 0.4, 0.2}
