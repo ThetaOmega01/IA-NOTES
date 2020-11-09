@@ -1635,7 +1635,7 @@ skipped some talks irrelevant to contents\\
     \end{equation}
     Then if $ \det M\neq 0 $, $M$ is invertible with
     \[
-        M^{-1}\frac{1}{\det M}\tilde{M}
+        M^{-1}=\frac{1}{\det M}\tilde{M}
     .\]
     For $n=2$, recall that \ref{eq:inverse1} holds with 
     \[
@@ -1804,4 +1804,145 @@ skipped some talks irrelevant to contents\\
         .\]
     \end{enumerate}
     The first three properites fix the alternating form completely, and they imply the rest properties.
+
+    To justify 2., check for a transposition $ \tau=(p,q), p<q$.
+    \[
+        \begin{aligned}
+            [\bfv_1,\dots,\bfv_q,\dots,\bfv_p,\bfv_{n}]&=\sum_{\sigma}\epsilon(\sigma)(\bfv_1)_{\sigma(1)}\cdots (\bfv_q)_{\sigma(p)}\cdots(\bfv_p)_{\sigma(q)}\cdots (\bfv_n)_{\sigma(n)}\\
+            &=\sum_{\sigma}\epsilon(\sigma)(\bfv_1)_{\sigma'(1)}\cdots (\bfv_q)_{\sigma'(q)}\cdots(\bfv_p)_{\sigma'(p)}\cdots (\bfv_n)_{\sigma'(n)},
+        \end{aligned}
+    \]
+    where $ \sigma'=\sigma \tau $. Therefore, 
+    \[
+        [\bfv_1,\dots,\bfv_q,\dots,\bfv_p,\bfv_{n}] = -[\bfv_1,\dots,\bfv_p,\dots,\bfv_q,\bfv_{n}]
+    ,\]
+    since $ \epsilon(\sigma')=-\epsilon(\sigma) $ and $ \sum_{\sigma}=\sum_{\sigma'} $.
+    \begin{proposition}
+        $ [\bfv_1,\bfv_2,\dots,\bfv_n]\neq 0 \Leftrightarrow \bfv_1,\bfv_2,\dots,\bfv_n $ are linearly independent.
+    \end{proposition}
+    \begin{proof}
+        If $ \bfv_1,\bfv_2,\dots,\bfv_n $ are linearly dependent, then by 5. $ [\bfv_1,\bfv_2,\dots,\bfv_n]=0 $, \#. Conversely, linear independence of $ \bfv_1,\bfv_2,\dots,\bfv_n $ implies that they span $ \mathbb{R}^{n} $ or $ \mathbb{C}^{n} $. Hence $ \exists u_{ai}\in \mathbb{R} \text{ or }\mathbb{C}  $ such that
+        \[
+            \mathbf{e}_i = u_{ai}\bfv_a,\text{ by summation convention}
+        .\]
+        Now 
+        \[
+            \begin{aligned}
+                [\bfe_1,\dots,\bfe_n]&=[u_{a1}\bfv_a,u_{b2}\bfv_a,\dots, u_{cn}\bfv_a]\\
+                &= u_{a1}u_{b2}\cdots u_{cn}[\bfv_a,\bfv_b,\dots,\bfv_c]\\
+                &=u_{a1}u_{b2}\cdots u_{cn} \epsilon_{ab\dots c} [\bfv_1,\bfv_2,\dots,\bfv_n]\text{ by 2.}
+            \end{aligned}
+        \]
+        But LHS is 1, so $ [\bfv_1,\bfv_2,\dots,\bfv_n]\neq 0 $.
+    \end{proof}
+    \begin{example}
+        Cosider 
+        \[
+            \bfv_1=\begin{pmatrix}
+                i\\0\\0\\2
+            \end{pmatrix},
+            \bfv_2=\begin{pmatrix}
+                0\\0\\5i\\0
+            \end{pmatrix},
+            \bfv_3=\begin{pmatrix}
+                3\\2i\\0\\0
+            \end{pmatrix},
+            \bfv_4=\begin{pmatrix}
+                0\\0\\-i\\1
+            \end{pmatrix}\in \mathbb{C}^{4}
+        .\]
+        We have 
+        \[
+            \begin{aligned}
+                 [\bfv_1,\bfv_2,\bfv_3,\bfv_4]&=5i[\bfv_1,\bfe_3,\bfv_3,\bfv_4]\\
+                 &= 5i[i\bfe_1+2\bfe_4, \bfe_3,3\bfe_1+2i\bfe_2,-i\bfe_3+\bfe_4]\\
+                 &= 5i[i\bfe_1,\bfe_3,2i\bfe_2,\bfe_4]\\
+                 &= 5i(i)(2i)(-1)=10i.
+            \end{aligned}
+        \]
+        Hence they are linearly independent.
+    \end{example}
+    \subsection{Determinants in $ \mathbb{R}^{n} $ and $ \mathbb{C}^{n} $}
+    \subsubsection{Definitions}
+    \begin{definition}
+        For $ M\in \mathcal{M}_{n\times n} $ with columns $ \bfC_a=M\bfe_a $, the \textit{determinant} $ \det M $ or $ |M|\in \mathbb{R} \text{ or }\mathbb{C}  $ is defined by 
+    \[
+        \begin{aligned}
+            \det M&= [\bfC_1,\dots,\bfC_n]\\
+             &=[M\bfe_1,\dots,M\bfe_n]\\
+             &= \epsilon_{ij\dots,l}M_{i1}M_{j2}\cdots M_{ln}\\
+             &= \sum_{\sigma}\epsilon(\sigma)M_{\sigma(1)1}\cdots M_{\sigma(n)n}.
+        \end{aligned}
+    \]
+    Each of the expressions can be taken as the defintion.
+    \end{definition}
+    \begin{example}
+        \begin{enumerate}
+            \item $n=2$, $ \det M= \sum_{\sigma}\epsilon(\sigma)M_{\sigma(1)1}M_{\sigma(2)2}=M_{11}M_{22}-M_{12}M_{21} $.
+            \item Consider any diagonal matrix $M$ such that $ M_{ij}=0 $ whenever $ i\neq j $. We have 
+            \[
+                \det M = M_{11}M_{22}\cdots M_{nn}
+            .\]
+            \item Consider $ M\in \mcM_{n\times n} $ defined by 
+            \[
+                M= \begin{pmatrix}
+                    A&0\\
+                    0&1
+                \end{pmatrix}
+            ,\]
+            where $A\in \mcM_{(n-1) \times (n-1)}$, so that $ M_{ni}=M_{in}=0 $ if $i\neq n$. Hence we can restrict permutation $ \sigma $ in definition to have $ \sigma(n)=n $. Therefore $ \det M=\det A $.
+        \end{enumerate}
+    \end{example}
+    \begin{proposition}[Alternative Definitions]
+        If $ \bfR_a $ are rows of $M$, then 
+        \[
+            \begin{aligned}
+                \det M&=[\bfR_1,\bfR_2,\dots,\bfR_n]\\
+                &= \epsilon_{ij\dots l}M_{1i}M_{2j}\cdots M_{nl}\\
+                &= \sum_{\sigma}M_{1\sigma(1)}M_{2\sigma(2)}\cdots M_{n\sigma(n)}.
+            \end{aligned}
+        \]
+        i.e., $ \det M = \det M^T $.
+    \end{proposition}
+    Recall that $ (\bfC_{a})_i=M_{ia}=(\bfR_{i})_a $.
+    \begin{proof}
+        We show directly the $ \sum_\sigma $ agree by considering 
+        \[
+            M_{\sigma(1)1}\cdots M_{\sigma(n)n} = M_{1\rho(1)}M_{2\rho(2)}\cdots M_{n\rho(n)},\quad \rho=\sigma^{-1}.
+        \]
+        But then $ \epsilon(\sigma)=\epsilon(\rho) $ and $ \sum_\sigma=\sum_\rho $, so this completes the proof.
+    \end{proof}
+    \subsubsection{Evaluating Determinants, Expanding by Rows or Columns}
+    \begin{definition}
+        For $ M\in \mcM_{n\times n} $ with entries $M_{ia}$, define the \textit{minor} $ M^{ia} $ to be the $ (n-1)\times (n-1) $ determinant of matrix obtained by deleting row $i$ and column $a$ from $M$.
+    \end{definition}
+    \begin{proposition}
+        \[
+            \det M = \sum_{i}(-1)^{i+a}M_{ia}M^{ia} = \sum_{a}(-1)^{i+a}M_{ia}M^{ia}
+        .\]
+    \end{proposition}
+    \begin{example}
+        Consider 
+        \[
+            M=\begin{pmatrix}
+                i&0&3&0\\
+                0&0&2i&0\\
+                0&5i&0&-i\\
+                2&0&0&1
+            \end{pmatrix}
+        .\]
+        Expand by row 3:
+        \[
+            \det M=-5i\begin{vmatrix}
+                i&3&0\\
+                0&2i&0\\
+                2&0&1
+            \end{vmatrix}+i\begin{vmatrix}
+                i&0&3\\
+                0&0&2i\\
+                2&0&0
+            \end{vmatrix}
+            = 10i.
+        \]
+    \end{example}
 \end{document}

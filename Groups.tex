@@ -1097,6 +1097,7 @@ skipped some takes irrelevant to contents\\
             \[
                 \alpha(g,x)=\alpha_g(x)
             ,\]
+            \marginnote{We can write $ \alpha(g,x) =\alpha_g(x)=\redcomment{g(x)}$, to emphasize that for a fixed $g$, $ \alpha(g,x) $ defines a function $ X \to X $ by looking at $ x \mapsto \alpha(g,x)=\alpha_g(x) $.}
             satisfying 
             \begin{itemize}
                 \item $ \alpha_g(x)\in X, \forall g\in G, \forall x\in X $.
@@ -1133,7 +1134,9 @@ skipped some takes irrelevant to contents\\
         We can also define actions by linking $G$ to $ \sym(X) $.
         \begin{proposition}\label{prop:5.4}
             Let $G$ be a group and $X$ be a set. Then $ \alpha:G \times X \to X $ by $ \alpha(g,x)=\alpha_g(x) $ is an action if and only if the function $ \rho:G \to \sym(X) $ by $ \rho(g)=\alpha_g $ is a homomorphism.
+            \marginnote{$ g(x)=\alpha(g,x)=\rho(g)(x) $.}
         \end{proposition}
+        
         \begin{proof}
             Assume $ \alpha $ is an action. By lemma \ref{lma:5.3}, $ \alpha_g $ is a bijection $ X \to X $, so $ \alpha_g\in \sym(X) $. Therefore,
             \[
@@ -1147,9 +1150,10 @@ skipped some takes irrelevant to contents\\
             Since the action induces a function $ X \to X $, we can regard $ \alpha_g:X \to X $ induced by $g$, and simply write $ g(x) $.  
         \end{remark}
         \begin{definition}
-            The \textit{kernel} of an action $ \alpha:G \times X \to X $ is the kernel of the above $ \rho $.\marginnote{All the permutations of $G$ that act as the identity of $ \sym(X) $. i.e., they do nothing to $x$.}
+            \marginnote{All the permutations of $G$ that act as the identity of $ \sym(X) $. i.e., they do nothing to $x$.}
+            The \textit{kernel} of an action $ \alpha:G \times X \to X $ is the kernel of the above $ \rho $.
         \end{definition}
-        Note that $ G/\ker \rho \cong \im \rho\le \sym(X) $ by theorem \ref{thm:1st isom thm}. In particular, if $ \ker \rho = \left\{ e\right\} $, then $ G\le \sym(X) $.
+        Note that $ G/\ker \rho \cong \im \rho\le \sym(X) $ by theorem \ref{thm:1st isom thm}. In particular, if $ \ker \rho = \left\{ e\right\} $, then $ G \cong \im(\rho)\le \sym(X) $.
 
         \begin{example}
             \begin{enumerate}
@@ -1168,6 +1172,86 @@ skipped some takes irrelevant to contents\\
         \begin{definition}
             An action $ G \curvearrowright X $ is called \textit{faithful} if $ \ker \rho = \left\{ e\right\} $.
         \end{definition}
-        \section{Orbits and Stabilisers}
-        
+        \section{Orbits and Stabilisers}\marginnote{Lecture 14.}
+        \begin{definition}
+            Let $ G \curvearrowright X, x\in X $. The \textit{orbit} of $X$ is $ \orb(x) $ defined as 
+            \[
+                (G(x)=)\orb(x)=\left\{ g(x):g\in G\right\} \subseteq X
+            .\]
+            The \textit{stabliser} of $x$ is 
+            \[
+                (G_x=)\stab(x)=\left\{ g\in G: g(x)=x\right\} \subseteq G
+            .\]
+            The action is \textit{transitive} if $ \orb(x)=X $. i.e., can get to any element from any other element.
+        \end{definition}
+        \begin{example}
+            $ G=S_3=\left\{ e,(12),(23),(13),(123),(132)\right\}\le S_4 $, and $ G \curvearrowright \left\{ 1,2,3,4\right\} $.
+
+            We have
+            \[
+                \begin{aligned}
+                    &\orb(1)=\orb(2)=\orb(3)=\left\{ 1,2,3\right\}.\\
+                    &\orb(4)=\left\{ 4\right\}.\\
+                    &\stab(1)=\left\{ e,(23)\right\},
+                    \stab(2)=\left\{ e,(13)\right\},
+                    \stab(3)=\left\{ e,(12)\right\},
+                    \stab(4)=G.
+                \end{aligned}
+            \]
+        \end{example}
+        \begin{lemma}\label{lma:5.9}
+            For any $ x\in X $, $ \stab(x) \le G$. 
+        \end{lemma}
+        \begin{proof}
+            $ \stab(x)\neq \varnothing $ since $ e\in \stab(x) $. Take $ a,b\in \stab(x) $, then 
+            \[
+                ab^{-1}(x)=a(b^{-1}(x))=a(x)=x \Longrightarrow ab^{-1}\in \stab(x)
+            ,\]
+            since $b$ is bijective. Hence $ \stab(x)\in G $.
+        \end{proof}
+        Recall that a partition of a set $X$ is a set of subsets of $X$ such that each $x\in X$ belongs to exactly one subset in the partition.
+        \begin{lemma}\label{lma:5.10}
+            Let $ G \curvearrowright X $, then the orbits partition $X$.
+        \end{lemma}
+        \begin{proof}
+            $ \forall x\in X, x\in \orb(x) $ since $e\in\orb(x)$, so that 
+            \[
+                \bigcup_{x\in X}\orb(x)=X
+            .\]
+            Claim that two orbits are either identical or disjoint. Indeed, if $ g\in \orb(x)\cap \orb(y) $, $ \exists g_1,g_2\in G, g_1(x)=g_2(y)=z $, so $ y=g_2^{-1}(z) $. Now $ y=g_2^{-1}g_1(x)\in \orb(x) \Rightarrow \orb(y)\subseteq \orb(x) $. Similarly $ \orb(x) \subseteq \orb(y) $, so that $ \orb(x)=\orb(y) $.
+        \end{proof}
+        \begin{remark}
+            Recall the proof of disjoint cycle notation for a given $ \sigma\in S_n $, it is actually finding the orbits of $ \{1,2,\dots,n\} $ under $ \langle \sigma \rangle  $, which are disjoint. \bluecomment{Note that sizes of orbits can be different.}
+        \end{remark}
+        \newpage
+        \begin{theorem}[Orbit-Stabliser Theorem]\label{thm:Orbit-Stabliser Theorem}
+            Let $ G \curvearrowright X $ such that $G$ is finite, then $ \forall x\in X $,
+            \[
+                |G|=|\orb(x)|\cdot |\stab(x)|
+            .\]
+        \end{theorem}
+        \begin{proof}
+            Note that 
+            \[
+                \begin{aligned}
+                    g(x)=h(x)&\Longleftrightarrow h^{-1}g(x)=x \Longleftrightarrow h^{-1}g(x)\in \stab(x)\\
+                    &\Longleftrightarrow g\stab(x)=h\stab(x).
+                \end{aligned}
+            \]
+            Hence, distinct points in the orbit of $x$ are in bijection with distinct cosets of $\stab(x)$. By Lagrange, we have 
+            \[
+                |\orb(x)|=|G|/|\stab(x)| \Longleftrightarrow |G|=|\orb(x)|\cdot |\stab(x)|
+            .\]
+        \end{proof}
+        In particular, all elements in a given coset $ g\stab(x) $ do the same thing to $x$ as $g$ does. Indeed, an element of $g\stab(x)$ has the form $ gh,h\in \stab(x) $, so 
+        \[
+            gh(x)=g(h(x))=g(x)
+        .\]
+        We can use this to investigate groups further.
+        \begin{example}
+            $ |D_{2n}|=2n $, proved by orbit-stabliser: $ D_{2n} $ acts transitively on vertices $ \left\{ 1,\dots,n\right\} $, so $ |\orb(1)| $, and $ \stab(1)=\left\{ e,s\right\} $, where $s$ is the reflection through $1$. So by orbit-stabliser,
+            \[
+                |D_{2n}|=|\orb(1)|\cdot |\stab(1)|=2n
+            .\]
+        \end{example}
 \end{document}
