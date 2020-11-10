@@ -1370,4 +1370,124 @@ skipped some talks irrelevant to contents\\
       \begin{remark}
           Unforced response decays in all cases.
       \end{remark}
+      \section{Damped oscillating systems: Forced response}\marginnote{Lecture 15}
+      \subsection{Sinvsoided forcing}
+      Consider 
+      \begin{equation}\label{eq:15.1}
+        \ddot{y}+\mu \dot{y}+ \omega_0^2y = \sin \omega t.
+      \end{equation}
+      Guess $ y_p=A \sin \omega t+B \cos \omega t $, and equate all coefficients of $ \sin \omega t $ and $ \cos \omega t $:
+      \begin{IEEEeqnarray}{RrCl}
+         \sin \omega t: & -A \omega^2-B \mu \omega+\omega_0^2 A & = & 1
+      \\
+        \cos \omega t: & -B \omega^2+A \mu \omega+ \omega_o^2 B & = &0 
+      \end{IEEEeqnarray}
+      Note that
+      \begin{IEEEeqnarray*}{Rl}
+          (27.3) \Longrightarrow & A = B\frac{\omega^2-\omega_0^2}{\mu \omega}
+      \\
+        (27.2) \Longrightarrow & A(\omega_0^2-\omega^2) = 1+B \mu \omega
+        \\
+        \Longrightarrow &A= \frac{\omega_0^2-\omega^2}{(\omega_0^2-\omega^2)^2+\mu^2 \omega^2},
+        \\
+        &B=\frac{-\mu \omega}{(\omega_0^2-\omega^2)^2+\mu^2 \omega^2}.
+      \end{IEEEeqnarray*}
+      Therefore, 
+      \[
+          y_p=\frac{1}{(\omega_0^2-\omega^2)^2+\mu^2 \omega^2}\left[ (\omega_0^2-\omega^2)\sin \omega t-\mu \omega \cos \omega t \right]
+      .\]
+      For underdamped $y_c$, the solution will tend to $y_p$ as $t$ grows.
+      \begin{remark}[for damped systems]
+          \begin{itemize}
+              \item Complementary functions give transient(short time) response to intitial conditions.
+              \item Particular integral gives long time response to forcing.
+          \end{itemize}
+      \end{remark}
+      When $ \omega=\omega_0 $ and $ \mu\neq 0 $(damped), then 
+      \[
+          \lim_{\omega \to \omega_0}y_0 = \frac{-\cos \omega t}{\mu \omega} 
+      ,\]
+      which is a finite-amplitude oscillation. Note that the amplitude increases with decreasing $\mu$.
+      \subsection{Resonance in undamped systems}
+      A general form is
+      \begin{equation}
+        \ddot{y}+\omega_0^2 y = \sin \omega_0 t.
+      \end{equation}
+      We use detuning to solve this. Consider 
+      \begin{equation}
+        \ddot{y}+\omega_0^2 y = \sin \omega t, \omega\neq \omega_0.
+      \end{equation}
+      Guess $ y_p=C \sin \omega t $. We get 
+      \[
+          C(-\omega^2+\omega_0^2)=1 \Longrightarrow y_p = \frac{1}{\omega_0^2-\omega^2}\sin \omega t
+      .\]
+      Since LHS of (27.4) is linear, $ y=y_p+Ay_c $ is also a solution. Consider 
+      \[
+          y_p = \frac{1}{\omega_0^2-\omega^2}\sin \omega t + A \sin \omega_0 t
+      .\]
+      Pick $A=-\frac{1}{\omega_0^2-\omega^2}$, then 
+      \[
+          y_p = \frac{\sin \omega t-\sin \omega_0 t}{\omega_0^2-\omega^2} = \frac{2}{\omega_0^2-\omega^2}\left[ \cos \left( \frac{\omega+\omega_0}{2}t \right)\sin \left( \frac{\omega-\omega_0}{2}t \right) \right]
+      .\] 
+      Write $ \omega_0-\omega = \delta \omega $, we get 
+      \[
+          y_p = \frac{-2}{\delta \omega(\omega_0+\omega)}\left[ \cos \left( \omega_0-\frac{\delta \omega}{2}t \right) \sin \frac{\delta \omega}{2}t \right]
+      .\]
+      \begin{center}
+        \begin{tikzpicture}
+          \draw [->] (0, 0) -- (6.5, 0) node [right] {$t$};
+          \draw [->] (0, -2) -- (0, 2) node [above] {$y_p$};
+      
+          \draw [semithick, mblue, domain=0:6,samples=600] plot(\x, {2 * cos(2000 * \x) * sin (90 * \x)});
+          \draw [semithick, morange] (0, 0) sin (1, 2) cos (2, 0) sin (3, -2) cos (4, 0) sin (5, 2) cos (6, 0);
+          \draw [semithick, mgreen] (0, 0) sin (1, -2) cos (2, 0) sin (3, 2) cos (4, 0) sin (5, -2) cos (6, 0);
+      
+          \draw [semithick, mblue] (7.5, 0.7) -- (8, 0.7) node [black, right] {$y_p$};
+          \draw [semithick, morange] (7.5, 0) -- (8, 0) node [black, right] {$\sin\left(\frac{\delta \omega}{2} t\right)$};
+          \draw [semithick, mgreen] (7.5, -0.7) -- (8, -0.7) node [black, right] {$-\sin\left(\frac{\delta \omega}{2} t\right)$};
+      
+          \draw [<->] (1, -2.5) -- (5, -2.5) node [pos=0.5,fill=white] {$O\left(\frac{1}{\delta \omega}\right)$};
+        \end{tikzpicture}
+      \end{center}
+      Let $ \delta \omega\to 0 $, we get 
+      \[
+          \lim_{\delta \omega \to 0} \sin \left( \frac{\delta \omega}{2}t \right) \approx \frac{\delta \omega}{2}t
+      ,\]
+      and thus 
+      \[
+          \lim_{\delta \omega \to 0} y_p = -\frac{-t}{2\omega_0}\cos \omega_0 t
+      .\]
+      This represents a linear growth in amplitude. Note that $y_p$ takes form of complementary functions times an independent variable.
+      \subsection{Impulses and point forces}
+      Consider a system that experiences a sudden force. e.g., Consider a car driving over a speedbump. Suppose at time $T$ the car is above the bump, and at $T-\epsilon, T+\epsilon$ the car drives on and off the bump respectively. Consider $ \epsilon\to 0 $: force becomes a sudden impulse.
+      \begin{center}
+        \begin{tikzpicture}
+          \draw [->] (-3, 0) -- (3.25, 0) node [right] {$t$};
+          \draw [->, use as bounding box] (0, 0) node [below] {$T$} -- (0, 2.3) node [above] {force};
+          \draw [semithick, morange, domain=-2.5:2.5, samples = 100] plot (\x, { 1.6 * exp( - 4 * \x * \x)});
+        \end{tikzpicture}
+      \end{center}
+      Take $y$ as the disposition wrt $t$, the equation is 
+      \begin{equation}
+          M \ddot{y} = F(t)-ky-L \dot{y}
+      \end{equation}
+      Integrate this from $T-\epsilon$ to $T+\epsilon$:
+      \[
+          \begin{aligned}
+            &\lim_{\epsilon \to 0} \int_{T-\epsilon}^{T+\epsilon} M \ddot{y} \,\mathrm{d}t = \lim_{\epsilon \to 0} \int_{T-\epsilon}^{T+\epsilon} F(t)-ky-L \dot{y} \,\mathrm{d}t\\
+            \Longleftrightarrow & \lim_{\epsilon \to 0} M\left[ \dot{y} \right]_{T-\epsilon}^{T+\epsilon} = \lim_{\epsilon \to 0} \left\{ \int_{T-\epsilon}^{T+\epsilon} F(t) \,\mathrm{d}t - k \int_{T-\epsilon}^{T+\epsilon} y \,\mathrm{d}t - L\left[ y \right]_{T-\epsilon}^{T+\epsilon}\right\}\\
+            \Longrightarrow & \lim_{\epsilon \to 0} M\left[ \dot{y} \right]_{T-\epsilon}^{T+\epsilon} = \lim_{\epsilon \to 0} \int_{T-\epsilon}^{T+\epsilon} F(t) \,\mathrm{d}t,
+          \end{aligned}
+      \]
+      given that $y$ is finite and continuous.
+
+      Define \textit{impulse} $I$ as 
+      \[
+          I =\lim_{\epsilon \to 0} \int_{T-\epsilon}^{T+\epsilon} F(t) \,\mathrm{d}t
+      ,\]
+      hence it becomes 
+      \[
+          I = \lim_{\epsilon \to 0} M\left[ \dot{y} \right]_{T-\epsilon}^{T+\epsilon}
+      .\]
+      Velocity $ \dot{y} $ experiences a sudden change(discontinuous) which depends on integral of force $ F(t) $.
 \end{document}
