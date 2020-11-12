@@ -1254,4 +1254,115 @@ skipped some takes irrelevant to contents\\
                 |D_{2n}|=|\orb(1)|\cdot |\stab(1)|=2n
             .\]
         \end{example}
+    \section{Example of Symmetries}\marginnote{Lecture 15.}
+    \subsection{Symmetries of the Tetrahedron}
+    A tetrahedron has 4 faces(regular trangle), 4 vertices, and 6 edges. Vertices are labelled as $ \left\{ 1,2,3,4 \right\} $.
+
+    \begin{itemize}
+        \item Let $G$ be the group of symmetries of a tetrahedron. Clearly $G$ acts transitively on the vertices. No non-identity symmetry fixes all vertices, so get $ \rho:G \to S_4 $ injective.
+
+        $ \orb(1)=\left\{ 1,2,3,4 \right\}, \stab(1)=\sym\left\{ 2,3,4 \right\} $. Orbit-stabliser theorem tells that 
+        \[
+            |G|=|\orb(1)|\cdot |\stab(1)| = 4\cdot 6 = 24 = |S_4|
+        .\]
+        Since $ G \le S_4 $ and $ |G|=|S_4| $, $ G=S_4 $.
+        \item Let $ G^+\le G $ of rotations in $G$. $ \orb(1)=\left\{ 1,2,3,4 \right\}, \stab(1)=\left\{ e, (234),(243) \right\} $. Hence $ |G|=4\cdot 3 = 12 $. Therefore $ G^+=A_4 $. Can check we have all 3-cycles, and all double transpositions, since these are rotations in axis through midpoints of opposite edges.
+    \end{itemize}
+    \subsection{Symmetries of the Cube}
+    Label the vertices of a cube $ \left\{ 1,\dots,8 \right\} $. Let $G$ be the group of symmetries of a cube acting on the vertices. The act is transitive, so $ |\orb(1)|=8 $. We have 
+    \[
+        \stab(1)=\left\{ e,\text{2 rotations axis through 1}, \text{3 reflections plane through 1 and edges 12,13,14} \right\}
+    .\]
+    Hence $ |G|=8\cdot 6=48. $ We will determine this group completely later.
+    \begin{itemize}
+        \item Let $ G^+ \le G$ be the subgroup of rotations, acting on the 8 vertices. $ |\orb(1)|=8 $, and $ |\stab(1)|=3 $, so $ |G^+|=24 $.
+
+        Now let $ G^+ $ act on the 4 body diagonals, giving $ \rho:G^+\to S_4 $. We have all 4-cycles in $ \im \rho $, and we have all transpositions. 4-cycles come from rotations through centres of two opposite faces, and transpositions come from rotations through midpoints of opposite edges. Hence we have $ (12),(1234) $ so we have $ \langle (12),(1234) \rangle =S_4 $, which means that \textit{$ \rho $ is surjective}. Since $ |G^+|=|S_4|=24 $, $ G^+\cong S_4 $.
+    \end{itemize}
+    \subsection{Platonic Solids}
+    These two solids are two of the 5 Platonic solids, i.e., solid in $ \mathbb{R}^{3} $ that have polygonal faces, straight edges and vertices such that their group of symmetries acts transitively on triples of the form (vertex, incident edge, incident face). i.e., particularly symmetric solids.
+
+    The other platonic solids are octahedron, dodecahedron, icosahedron. The cube and octahedron are "dual". i.e., can be inscribed in each other with vertices in the middle of faces.
+    \begin{center}
+        \begin{tikzpicture}[z = -5.5, scale = 1.5]
+          \coordinate (O1) at (0, 0, -1);
+          \coordinate (O2) at (-1, 0, 0);
+          \coordinate (O3) at (0, 0, 1);
+          \coordinate (O4) at (1, 0, 0);
+          \coordinate (O5) at (0, 1, 0);
+          \coordinate (O6) at (0, -1, 0);
+      
+          \draw [draw = blue, dashed] (O1) -- (O2) -- (O5) -- cycle;
+          \draw [draw = blue, dashed] (O4) -- (O1) -- (O5) -- cycle;
+          \draw [draw = blue, dashed] (O1) -- (O2) -- (O6) -- cycle;
+          \draw [draw = blue, dashed] (O4) -- (O1) -- (O6) -- cycle;
+          \draw [draw = blue] (O2) -- (O3) -- (O5) -- cycle;
+          \draw [draw = blue] (O3) -- (O4) -- (O5) -- cycle;
+          \draw [draw = blue] (O2) -- (O3) -- (O6) -- cycle;
+          \draw [draw = blue] (O3) -- (O4) -- (O6) -- cycle;
+      
+          \coordinate (C1) at (-1, -1, -1);
+          \coordinate (C2) at (-1, -1, 1);
+          \coordinate (C3) at (-1, 1, 1);
+          \coordinate (C4) at (-1, 1, -1);
+          \coordinate (C5) at (1, -1, -1);
+          \coordinate (C6) at (1, -1, 1);
+          \coordinate (C7) at (1, 1, 1);
+          \coordinate (C8) at (1, 1, -1);
+      
+          \draw [draw = red, dashed] (C1) -- (C2);
+          \draw [draw = red] (C2) -- (C3);
+          \draw [draw = red] (C3) -- (C4);
+          \draw [draw = red, dashed] (C4) -- (C1);
+          \draw [draw = red] (C5) -- (C6) -- (C7) -- (C8) -- cycle;
+          \draw [draw = red, dashed] (C1) -- (C5);
+          \draw [draw = red] (C2) -- (C6);
+          \draw [draw = red] (C3) -- (C7);
+          \draw [draw = red] (C4) -- (C8);
+        \end{tikzpicture}
+      \end{center}
+      So are icosahedron and dodecahedron. To be dual, it means that they have exactly the same group of symmetries. So there are only 3 groups of symmetries for Platonic solids.
+
+      We have already seen that if $2||G|$ then $G$ has an element of order 2. Can show that the same thing applies for primes.
+
+      \begin{theorem}[Cauchy]\label{thm:Cauchy}
+          Let $G$ be a finite group, $p$ be a prime such that $p||G|$, then $G$ has an element of order $p$. 
+      \end{theorem}
+      \begin{proof}
+          Let $p||G|$. Consider $ G^p = G\times \cdots \times G $. This is the group formed of $p-tuples$ of elements of $G$ with coordinate-wise composition. That is,
+          \[
+              (g_1,\dots,g_p)\cdot (h_1,\dots,h_p)=(g_1h_1,\dots,g_ph_p)
+          .\]
+          Consider subset $ X \subseteq G $ as 
+          \[
+              X = \left\{ (g_1,\dots,g_p)\in G^p: g_1g_2\cdots g_p = e\right\}
+          .\]
+          Note that if $g\in G$ with order $p$, then $ (g,g,\dots,g)\in X $. Conversely if $ (g,g,\dots,g)\in X, g\neq e $, then $ \ord g=p $ by Lagrange.
+
+          Now take a cyclic group $C_p=\langle a \rangle $ and let $C_p$ act on $X$ by \textit{cycling}:
+          \[
+              a(g_1,\dots,g_p)=(g_2,\dots, g_p,g_1)
+          .\] 
+          This is an action since:
+          \begin{enumerate}[(1)]
+              \item If $ g_1\cdots g_p=e $, then $ e=g_1^{-1}eg_1=g_1^{-1}g_1g_2\cdots g_p g_1=g_2\cdots g_pg_1 $. Therefore $ a(g_1,\dots,g_p) \in X$. By induction, it is true for any power of $a$.
+              \item $ e(g_1,\dots,g_p)=g_1,\dots,g_p $ by definition.
+              \item $ a^k(g_1,\dots,g_p)=(g_{k+1},\dots,g_k)=a\cdot a\cdot \cdots \cdot a(g_1,\dots,g_p) $
+          \end{enumerate}
+          Since orbit partition $X$, the sum of sizes of distinct orbits must be $|X|$. But $|X|=|G|^{p-1}$ because we can choose the first $p-1$ element arbitrarily and let the last element multiply to $e$. So since $ p||G| $, $ p||X| $.
+
+          We have by orbit-stabliser:
+          \[
+              |\orb(g_1\dots,g_p)||\stab(g_1\dots,g_p)|=|C_p|=p
+          .\]
+          Hence $|\orb(g_1\dots,g_p)|$ must be of size 1 or $p$, and they sum to $|X|=p\cdot Q$ where $Q$ is an integer. Hence,
+          \[
+              |X|=pQ=\sum_{\orb \text{ of size 1}} 1 + \sum_{\orb\text{ of size }p} p
+          .\]
+          Clearly $ |\orb(e,e,\dots,e)|=1 $, so there must be at least $p-1$ other orbits of size 1. But orbits of size 1 must be of the form
+          \[
+              \{(g,g,\dots,g)\}
+          .\]
+          So $ \exists g\neq e $ such that $ (g,\dots,g) \in X$, which implies that $ \boxed{\ord g = p }$.
+      \end{proof}
 \end{document}

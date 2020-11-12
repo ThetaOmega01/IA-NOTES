@@ -430,7 +430,7 @@ skipped some talks irrelevant to contents\\
     \section{First order ODEs of non-constant coefficients}
     The general form is 
     \[
-        a(x)y'+b(x)+y = c(x)
+        a(x)y'+b(x)y = c(x)
     .\]
     The standard form is 
     \[
@@ -548,7 +548,7 @@ skipped some talks irrelevant to contents\\
              \Longleftrightarrow & \boxed{\frac{\partial P}{\partial y}=\frac{\partial Q}{\partial x}}.
         \end{aligned}
     \]
-    If it holds throughout a \textit{simply connected} domain $\mathcal{D}$, then $ P\d x+Q\d y $ is an exact differential of a single-valued function $f(x,y)$ in $D$. Henc we can use this to check exact equations.
+    If it holds throughout a \textit{simply connected} domain $\mathcal{D}$, then $ P\d x+Q\d y $ is an exact differential of a single-valued function $f(x,y)$ in $D$. Hence we can use this to check exact equations.
 
     $f(x,y)$ can be found by integrating $(**)$.
     \begin{example}
@@ -1490,4 +1490,177 @@ skipped some talks irrelevant to contents\\
           I = \lim_{\epsilon \to 0} M\left[ \dot{y} \right]_{T-\epsilon}^{T+\epsilon}
       .\]
       Velocity $ \dot{y} $ experiences a sudden change(discontinuous) which depends on integral of force $ F(t) $.
+
+      \subsection{Dirac delta function}\marginnote{Lecture 16}
+      Consider a family of functions $ D(t,\epsilon) $ such that 
+      \begin{enumerate}
+          \item $ \lim_{\epsilon \to 0} D(t,\epsilon)=0\  \forall t\neq 0 $,
+          \item $\displaystyle \int_{-\infty}^{\infty} D(t,\epsilon) \,\mathrm{d}t =1$.
+      \end{enumerate}
+      \begin{example}
+          $\displaystyle D(t,\epsilon)=\frac{1}{\epsilon\sqrt{\pi}}e^{-t^2/\epsilon^2} $. Note that
+          \[
+              \int_{-\infty}^{\infty} D(t,\epsilon) \,\mathrm{d}t=1
+          .\]
+          See sheet 1.
+          \begin{center}
+            \begin{tikzpicture}
+              \draw [->] (-3, 0) -- (3.25, 0) node [right] {$t$};
+              \draw [->, use as bounding box] (0, 0) -- (0, 4) node [above] {$D$};
+          
+              \draw [semithick, mblue, domain=-3:3, samples = 100] plot (\x, { 1.6 * exp( - \x * \x)});
+              \draw [semithick, morange, domain=-3:3, samples = 100] plot (\x, { 3.2 * exp( - 4 * \x * \x)});
+          
+              \draw [mblue, semithick] (3.5, 2.25) -- (4, 2.25) node [right, black] {$\varepsilon = 1$};
+              \draw [morange, semithick] (3.5, 1.75) -- (4, 1.75) node [right, black] {$\varepsilon = 0.5$};
+            \end{tikzpicture}
+          \end{center}
+      \end{example}
+      \begin{definition}
+        Define \textit{Dirac delta function} as 
+        \[
+            \delta(x)=\lim_{\epsilon \to 0} D(x,\epsilon)
+        .\]
+      \end{definition}
+      Properties of $ \delta(x) $:
+      \begin{enumerate}
+          \item $ \forall x\neq 0, \delta(x)=0 $.
+          \item $\displaystyle \int_{-\infty }^{\infty } \delta(x) \,\mathrm{d}x=1$.
+          \item (Sampling property) For continuous function $g(x)$, 
+          \[
+              \int_{-\infty}^{\infty} g(x)\delta(x) \,\mathrm{d}x = g(0)\int_{-\infty}^{\infty}  \delta(x)\,\mathrm{d}x = g(0)
+          .\]
+          More generally,
+          \begin{equation}\label{eq:generalised sampling property}
+            \int_{a}^{b} g(x)\delta(x-x_0) \,\mathrm{d}x = \begin{cases}
+                g(x_0) &\text{if $ x_0\in [a,b] $.}\\
+                0 &\text{otherwise.}\\
+                \end{cases} 
+          \end{equation}
+      \end{enumerate}
+      \begin{definition}
+        We can define \textbf{Heaviside step function} from Dirac delta function $H(x)$ by 
+        \begin{equation}\label{eq:heaviside step func}
+            H(x)=\int_{-\infty}^{x} \delta(t) \,\mathrm{d}t.
+        \end{equation}
+      \end{definition}
+      From FTC, $ H'=\delta(x) $.
+
+      Properties of $H(x)$:
+      \begin{enumerate}
+          \item $H(x)=0$ for $x<0$.
+          \item $H(x)=1$ for $x>0$.
+          \item $ H(0) $ is undefined.
+      \end{enumerate}
+      \begin{center}
+        \begin{tikzpicture}
+          \draw [->] (-3, 0) -- (3, 0) node [right] {$x$};
+          \draw [->] (0, 0) -- (0, 3) node [above] {$H(x)$};
+    
+          \draw [mblue, semithick] (-3, 0) -- (0, 0);
+          \draw [mblue, semithick] (0, 2) node [left] {1} -- (3, 2);
+        \end{tikzpicture}
+      \end{center}
+      \begin{definition}
+          Define \textbf{Ramp function} as 
+          \[
+              r(x)=\int_{-\infty}^{x} H(t) \,\mathrm{d}t
+          .\]
+      \end{definition}      \begin{center}
+        \begin{tikzpicture}
+          \draw [->] (-3, 0) -- (3, 0) node [right] {$x$};
+          \draw [->] (0, 0) -- (0, 3) node [above] {$r(x)$};
+    
+          \draw [mblue, semithick] (-3, 0) -- (0, 0);
+          \draw [mblue, semithick, domain = 0:2.5] plot (\x, {\x});
+        \end{tikzpicture}
+      \end{center}
+      Note that function get "smoother" as we integrate.
+      \subsection{Delta function forcing}
+      Consider
+      \begin{equation}\label{eq:16.5}
+        y''+p(x)y'+q(x)y=\delta(x).
+      \end{equation}
+      Note that highest order derivative "inherits" discontinuity from forcing.
+
+      Since $\delta(x)=0$ for $x\neq 0$, 
+      \[
+          y''+py'+q=0, \quad \text{for }x< 0 \text{ and }x>0
+      .\]
+      $y(x)$ satisfies \textit{jump conditions}: 
+      \begin{enumerate}
+          \item $y(x)$ is continuous at $x=0$.
+          \[
+              \lim_{\epsilon \to 0} [y]_{x=-\epsilon}^{x=\epsilon}=0
+          .\]
+          \item $y'(x)$ has a jump of 1 at $x=0$. Integrate \ref{eq:16.5} in a small window around $x=0$:
+          \[
+              \lim_{\epsilon \to 0} \int_{-\epsilon}^{\epsilon} (16.5) \,\mathrm{d}x \Longrightarrow \lim_{\epsilon \to 0} [y']_{-\epsilon}^{\epsilon} = 1
+          .\]
+      \end{enumerate}
+      Method for solution: Solve \ref{eq:16.5} for $ x<0 $ and $x>0$. This yields 4 unknown constants, so use 2 jump conditions and 2 initial conditions.1e
+      \begin{example}
+          Consider $ y''-y=3\delta(x-\frac{\pi}{2}) $. Set intial conditions to be $ y=0 $ at $ x=0,\pi $.
+
+          For $ 0<x< \frac{\pi}{2} $, we have $ y''-y=0 \Rightarrow y=Ae^x+Be^{-x} $ or $ y= A \sinh x+B \cosh x $. $ y=0 $ at $x=0$, so $ y=A \sinh x $.
+
+          Note that the equation is invariant $ x\to \pi-x $. By symmetry, for $ \frac{\pi}{2} $, $ y=C \sinh (\pi-x) $.
+
+          Use the second jump condition:
+          \[
+              \begin{aligned}
+                &\lim_{\epsilon \to 0} \int_{\frac{\pi}{2}-\epsilon}^{\frac{\pi}{2}+\epsilon} y''-y \,\mathrm{d}x = \lim_{\epsilon \to 0} [y']_{\frac{\pi}{2}-\epsilon}^{\frac{\pi}{2}+\epsilon} = 3\\
+                \Longrightarrow & -C \cosh \frac{\pi}{2}-A \cosh \frac{\pi}{2}=3.
+              \end{aligned}
+          \]
+          Use the first jump condition:
+          \[
+              \begin{aligned}
+                &\lim_{\epsilon \to 0} [y]_{\frac{\pi}{2}-\epsilon}^{\frac{\pi}{2}+\epsilon}, \text{ shorthand notation } [y]^{\frac{\pi}{2}+}_{\frac{\pi}{2}-}=0\\
+                \Longrightarrow & A \sinh \frac{\pi}{2}=C \sinh \frac{\pi}{2}\\
+                \Longrightarrow & A=C=\frac{-3}{2\cosh \frac{\pi}{2}}.
+              \end{aligned}
+          \]
+          Hence 
+          \[
+              y= \begin{cases}
+              -\frac{3}{2}\frac{\sinh x}{\cosh \frac{\pi}{2}} &\text{if $ 0\le x<\frac{\pi}{2} $.}\\
+              -\frac{3}{2}\frac{\sinh (\pi -x)}{\cosh \frac{\pi}{2}}&\text{if $ \frac{\pi}{2}<x\le \pi $}\\
+              \end{cases} 
+          .\]
+          \begin{center}
+            \begin{tikzpicture}
+              \draw [->] (0, 0) -- (7, 0) node [right] {$x$};
+          
+              \draw [->] (0, 0) -- (0, -3.5) node [below] {$y$};
+          
+              \draw [semithick, mblue, domain=0:1.5708] plot ({2 * \x}, {-1.3 * sinh (\x)});
+              \draw [semithick, mblue, domain=1.5708:3.14159] plot ({2 * \x}, {-1.3 * sinh (pi - \x)});
+            \end{tikzpicture}
+          \end{center}
+      \end{example}
+      \subsection{Heaviside step function forcing}
+      Consider 
+      \begin{equation}\label{eq:16.7}
+        y''+p(x)y'+q(x)y=H(x-x_0).
+      \end{equation}
+      $y(x)$ satisfies
+      \begin{equation}\label{eq:16.8}
+        \begin{cases}
+            y''+py'+qy=0 &\text{for }x<x_0,\\
+            y''+py'+qy=1&\text{for }x>x_0.\\
+          \end{cases}
+      \end{equation}
+      Evaluate \ref{eq:16.7} on either side of $x_0$:
+          \[
+            [y'']_{x_0-}^{x_0+}+p(x_0)[y']_{x_0-}^{x_0+}+q(x_0)[y]_{x_0-}^{x_0+}=1.
+          \]
+          If $ y'' \sim H \Rightarrow y' \sim r(x) \Rightarrow y\sim \int r(x) $, so $y',y$ are both continuous.
+
+      The jump conditions here are 
+      \begin{enumerate}
+          \item $ [y']_{x_0-}^{x_0+}=0 $,
+          \item $ [y]_{x_0-}^{x_0+}=0 $.
+      \end{enumerate}
+      Use ICs and jump conditions to find constants in solving the solution to \ref{eq:16.8}.
 \end{document}
