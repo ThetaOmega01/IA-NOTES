@@ -346,6 +346,7 @@
 \DeclareMathOperator{\orb}{Orb}
 \DeclareMathOperator{\stab}{Stab}
 \DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\ccl}{ccl}
 
 \newcommand{\bfA}{{\bf A}}
 \newcommand{\bfB}{{\bf B}}
@@ -508,6 +509,29 @@
 \newcommand{\mfX}{{\mathfrak{X}}}
 \newcommand{\mfY}{{\mathfrak{Y}}}
 \newcommand{\mfZ}{{\mathfrak{Z}}}
+
+%% 定义对齐方式 hang
+\SetLabelAlign{hang}{%
+  #1%
+  \aftergroup\adjustparshapeindent}
+%% 编号 #1 会通过 \sbox 存到 \@tempboxa 中，为避免全局设置，
+%% 需要用 \aftergroup 跳到盒子外部来设置
+\newcommand*\adjustparshapeindent{%
+  \@ifnextchar\egroup
+    {\aftergroup\adjustparshapeindent}
+    {\adjustparshapeindent@auxi}}
+\newcommand*\adjustparshapeindent@auxi{%
+  \unless\ifdim\wd\@tempboxa=\labelwidth
+    \adjustparshapeindent@auxii
+  \fi}
+%% 调整 \parshape 的缩进
+\newcommand*\adjustparshapeindent@auxii{%
+  \dimen@ = \dimexpr\wd\@tempboxa-\labelwidth\relax
+  \labelwidth = \wd\@tempboxa
+  \advance\linewidth -\dimen@
+  \advance\leftmargin \dimen@
+  \advance\@totalleftmargin \dimen@
+  \parshape \@ne \@totalleftmargin \linewidth}
 
 
 %===========================================================================================================

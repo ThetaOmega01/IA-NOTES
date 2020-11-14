@@ -1365,4 +1365,95 @@ skipped some takes irrelevant to contents\\
           .\]
           So $ \exists g\neq e $ such that $ (g,\dots,g) \in X$, which implies that $ \boxed{\ord g = p }$.
       \end{proof}
+      \section{Left Multiplication Actions}\marginnote{Lecture 16}
+      \begin{lemma}\label{lma:5.13}
+          Let $G$ be a group, $G$ acts on itself by left multiplication. This action is faithful and transitive.
+      \end{lemma}
+      \begin{proof}
+          $ \forall g,x\in G, gx\in G $. $ ex=x $. $ g_1g_2(x)=(g_1g_2)(x) $. Hence it is an action. $ g(x)=gx=x \Leftrightarrow g=e $ so it is faithful. It is transitive since given $x,y\in G$, we have $g=yx^{-1}$ such that $g(x)=y$.
+      \end{proof}
+      \begin{definition}
+          The left multiplication action of a group on itself is called the \textit{left regular action}.
+      \end{definition}
+      \begin{theorem}[Cayley]\label{thm:Cayley}
+          Every group is isomorphic to a subgroup of a symmetric group.
+      \end{theorem}
+      \begin{proof}
+          Let $ G \curvearrowright G $ by left regular action. This gives a homomorphism $ \rho: G \to \sym G $ with $ \ker \rho=\left\{ e \right\} $ since the action is faithful. So by first isomorphism theorem, $G/\ker \rho=G \cong \im \rho \subseteq \sym G$. 
+      \end{proof}
+      \begin{proposition}\label{prop:5.16}
+          Let $H\le G$, then $G \curvearrowright G/H$ by left multiplication(left coset action) and it is transitive.
+      \end{proposition}
+      \begin{proof}
+          $ g(g_1H)=gg_1H\in G/H $. $ e(g_1H)=g_1H $. $ g_1(g_2(g_3H))=(g_1g_2)g_3H $. So it is an action. Given two cosets $ g_1H,g_2H $, have $ (g_1g_2^{-1})(g_2H)=g_1H $, so it is transitive.
+      \end{proof}
+      \begin{remark}
+          This is the left regular action if $H$ is trivial. This induces actions of $G$ on its quotient groups $G/N$.
+      \end{remark}
+      \section{Conjugation Action}
+      \begin{definition}
+          Given $g,h\in G$, the element $hgh^{-1}\in G$ is the \textit{conjugate} of $g$ by $h$.
+      \end{definition}
+      We should think of conjugate elements as doing the same thing from different points of view. This will become particularly clear when we look at M\"{o}bius maps and matrices later.
+      \begin{example}
+          Consider $D_{10}$ and consider the conjugate $s$ and $rsr^{-1}$ where $s$ is reflection through $v_1$ and $r$ is rotation by $2\pi/5 $. It is clear that $rsr^{-1}$ is the reflection through $v_2$. 
+      \end{example}
+      \begin{example}\marginnote{You can expect conjugate elements to have similar properties. e.g., same order.}
+          Consider matrix groups such as $ \mathrm{GL}_2(\mathbb{R}) $ where a conjugate matrix represents the same transformation, but wrt a different basis. Will talk about this later.
+      \end{example}
+      \begin{proposition}\label{prop:5.18}
+          A group $G$ acts on itself by conjugation.
+      \end{proposition}
+      \begin{proof}
+          $g(x)=gxg^{-1}\in G$. $exe^{-1}=x$. $ g(h(x))=g(hxh^{-1})=ghxh^{-1}g^{-1}=(gh)x(gh)^{-1}=(gh)(x) $. Hence it is an action. 
+      \end{proof}
+      The kernel, orbits and stablisers have special names:
+      \begin{definition}
+          The kernel of he conjugation action $ G \curvearrowright G $ is called \textit{center} $ Z(G) $ of $G$:
+          \[
+              Z(G)=\left\{ g\in G: ghg^{-1}=h, \forall h \right\} \Longleftrightarrow Z(G)=\left\{ g\in G: gh=hg \right\}
+          .\] 
+          That is, the elements that commute with every other element.
+
+          An orbit of this action is called \textit{conjugacy class}:
+          \[
+              \ccl(h)=\left\{ ghg^{-1}:g\in G \right\} \text{ or } \ccl_G(h)
+          .\]
+
+          Stablisers are called \textit{centralisers}
+          \[
+              C_G(h)=\left\{ g\in G:ghg^{-1}=h \right\}
+          .\]
+          That is, elements that commute $h$.
+      \end{definition}
+      \begin{proposition}
+          $\displaystyle Z(G)=\bigcap_{h\in G}C_G(h)$. 
+      \end{proposition}
+      \begin{proof}
+          Let $g\in Z(G)$. Then $\forall h\in G, ghg^{-1}=h \Rightarrow \forall h\in G, g\in C_G(h) \Rightarrow Z(G)\subseteq \bigcap C_G(h)$. Conversely let $ g\in \bigcap C_G(h) $, then $ \forall h, ghg^{-1}=h \Rightarrow g\in Z(G) \Rightarrow \bigcap C_G(h) \subseteq Z(G) $. Hence $ Z(G)=\bigcap_{h\in G}C_G(h) $.
+      \end{proof}
+      \begin{definition}
+          If $H\le G$ and $g\in G$, the \textit{conjugate of $H$ by $g$} is 
+          \[
+              gHg^{-1}=\left\{ ghg^{-1}:h\in H \right\}
+          .\]
+      \end{definition}
+      \begin{proposition}\label{prop:5.21}
+          Let $H\le G$, $g\in G$. Then $gHg^{-1}$ is also a subgroup of $G$.
+      \end{proposition}
+      \begin{proof}
+          $e\in gHg^{-1}$. Let $gh_1g^{-1},gh_2g^{-1}\in gHg^{-1}$. Then $ gh_1g^{-1}(gh_2g^{-1})^{-1}=gh_1g^{-1}gh_2^{-1}g^{-1}gh_1h_2^{-1}g^{-1}\in gHg^{-1} $.
+      \end{proof}
+      \begin{proposition}
+          $ gHg^{-1} \cong H $.
+      \end{proposition}
+      \begin{proof}
+          Let $ \varphi: H \to gHg^{-1} $ by $ \varphi(h)=ghg^{-1} $. Indeed, it is a homomorphism. It is clearly a bijection so it is an isomorphism.
+      \end{proof}
+      \begin{proposition}\label{prop:5.22}
+          A group $G$ acts by conjugation on the set of its subgroups. The singleton orbits are the normal subgroups.
+      \end{proposition}
+      \begin{proof}
+          Let $H\le G, g\in G$. $ gHg^{-1}\le G $ so it is closed under conjugation. Obviously $ eHe^{-1}=H $ and $ g_1(g_2(H))=g_1(g_2Hg_2^{-1})=g_1g_2H(g_1g_2)^{-1}=(g_1g_2)(H) $. Therefore it is an action. Let $N \le G$ that has a singleton orbit. Since $eNe^{-1}=N$, $ \orb(N) $ must be $N$ itself. By definition of normal subgroups, $ N \ltrigeq G $.
+      \end{proof}
 \end{document}

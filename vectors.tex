@@ -1945,7 +1945,7 @@ skipped some talks irrelevant to contents\\
             = 10i.
         \]
     \end{example}
-    \subsection{Simplifying Determinants: Row and Column operation}
+    \subsection{Simplifying Determinants: Row and Column operation}\marginnote{Lecture 15.}
     Let $ M\in \mcM_{n\times n} $. Summary: $ \det M $ is a function of the rows $ \bfR_i $ or columns $ \bfC_i $ that is multilinear, totally antisymmetric, and $ \det I = 1 $.
     \subsubsection{Row and Column Scalings}
     If $ \bfR_i \mapsto \lambda\bfR_i $ for $i$ fixed, \textit{or} $ \bfC_a\mapsto \lambda\bfC_a $ for $a$ fixed, then 
@@ -2134,4 +2134,159 @@ skipped some talks irrelevant to contents\\
             \end{pmatrix}
         .\]
     \end{example}
+    \section{Systems of Linear Equations}
+    \subsection{Introduction \& Nature of Solutions}\marginnote{Lecture 16.}
+    Consider a system of $n$ linear equations in $n$ unknowns $x_i$. Write in matrix-vector form
+    \[
+        A\bfx=\bfb,\quad \bfx,\bfb\in \mathbb{R}^{n}, A\in \mcM_{n\times n}
+    .\]
+    i.e.,
+    \[
+        \left\lbrace\begin{aligned}
+            A_{11} x_{1}+&\ldots+A_{1 n} x_{n}=b_{1} \\
+            &\vdots\\
+            A_{n 1} x_{1}+&\ldots+A_{n n} x_{n}=b_{n}.
+        \end{aligned}\right.
+    \]
+    There are three possibilities:
+    \begin{enumerate}[(i)]
+        \item $ \det A\neq 0 $, then there is a unique solution $ \bfx=A^{-1}\bfb $.
+        \item $ \det A=0 $ and $ \bfb\notin \im(A) $. Then there is no solution.
+        \item $ \det A=0  $ and $ \bfb\in \im(A) $. Then there are infinitely many solutions. In this case, the general solution is 
+        \[
+            \bfx=\bfx_0+\bfu,
+        ,\]
+        where $\bfx_0$ is a particular solution and $\bfu\in \ker A$.
+    \end{enumerate}
+    Elaboration: A solution exists if and only if $ A\bfx_0=\bfb $ for some $ \bfx_0 \Leftrightarrow \bfb\in \im(A) $. Then $\bfx$ is a solution if and only if $\bfu=\bfx-\bfx_0\in \ker A$. That is 
+    \[
+        A\bfu=\mathbf{0}
+    .\]
+    This is called the corresponding \textit{homogeneous} problem.
+    
+    Now $ \det A\neq 0 \Leftrightarrow \im(A)=\mathbb{R}^{n} \Leftrightarrow \ker A=\{\mathbf{0}\} $. So in case (i) there is always a unique solution for any $\bfb$. But $ \det A=0 \Leftrightarrow \rank(A)<n \Leftrightarrow \nullity A>0 $, and either $\bfb\in \im(A)$ or $\bfb\notin\im(A)$.
+
+    If $ \bfu_1,\dots,\bfu_k $ is a basis of $ \ker A $, then the general solution to the homogeneous problem is 
+    \[
+        \bfu= \sum_{i=1}^{k}\lambda_i \bfu_i, \quad k=\nullity A
+    .\]
+    \begin{remark}
+        Compare to differential equations on functions $y(x)$. Consider a linear differential operator 
+        \[
+            \mcL= p_2(x)\frac{\mathrm{d}^2}{\mathrm{d}x^2}+p_1 \frac{\mathrm{d}}{\mathrm{d}x} +p_0(x),\quad \mcL y=f 
+        .\]
+        It has a particular solution $y_0(x)$ with $ \mcL y_0=f $, and the general solution 
+        \[
+            y=y_0+(\lambda_1 y_1+\lambda_2 y_2)
+        \]
+        where $\mcL y_1=\mcL y_2=0$.
+    \end{remark}
+    \begin{example}
+        Consider $A\bfx=\bfb$ where
+        \[
+            A=\begin{pmatrix}
+                1&1&a\\
+                a&1&1\\
+                1&a&1
+            \end{pmatrix}, \bfb=\begin{pmatrix}
+                1\\c\\1
+            \end{pmatrix},\quad a,c\in \mathbb{R}.
+        \]
+        Previously found $ \det A=(a-1)^2(a+2) $. We have three cases:
+        \begin{itemize}
+            \item \underline{$a\neq 1,-2$}. Then $A^{-1}$ exists, as shown previously. Hence the unique solution is 
+            \[
+                \frac{1}{(1-a)(a+2)}
+            \begin{pmatrix}
+                    1\\c\\1
+                \end{pmatrix}
+               \begin{pmatrix}
+                    1&-(1+a) & 1 \\
+                    1 & 1&-(1+a) \\
+                    -(1+a)& 1 & 1
+            \end{pmatrix}
+            =\begin{pmatrix}
+                2-c-ca\\c-a\\c-a
+            \end{pmatrix}
+            .\]
+            Geometrically, solution is a point.
+            \item \underline{$a=1$}. Then $A_{ia}\equiv 1$ and 
+            \[
+                \im A=\left\{ \lambda\begin{pmatrix}
+                    1\\1\\1
+                \end{pmatrix} : \lambda\in \mathbb{R} \right\},\quad \ker A = \spn\left\{ \begin{pmatrix}
+                    -1\\1\\0
+                \end{pmatrix},\begin{pmatrix}
+                    -1\\0\\1
+                \end{pmatrix} \right\}
+            .\]
+            $ \bfb\in \im A \Leftrightarrow c=1 $, and a particular solution is $ \bfx_0^T=(1,0,0) $. General solution is 
+            \[
+                \bfx=\begin{pmatrix}
+                    1\\0\\0
+                \end{pmatrix}+\lambda\begin{pmatrix}
+                    -1\\1\\0
+                \end{pmatrix}+\mu\begin{pmatrix}
+                    -1\\0\\1
+                \end{pmatrix}=\begin{pmatrix}
+                    1-\lambda-\mu\\
+                    \lambda\\
+                    \mu
+                \end{pmatrix}
+            .\]
+            Hence for $a=c=1$, we have (iii), which is a plane. If $a=1,c\neq 1$ there is no solution.
+            \item \underline{$a=-2$}. In this case 
+            \[
+                A=\begin{pmatrix}
+                    1&1&-2\\
+                    -2&1&1\\
+                    1&-2&1
+                \end{pmatrix} \Rightarrow \im A=\spn\left\{ \begin{pmatrix}
+                    1\\-2\\1
+                \end{pmatrix},\begin{pmatrix}
+                    1\\1\\-2
+                \end{pmatrix} \right\}, \ker A = \left\{ \lambda\begin{pmatrix}
+                    1\\1\\1
+                \end{pmatrix} \right\}
+            .\]
+            Claim that $ \bfb\in \im A \Leftrightarrow c=-2$, and thus a particular solution is $ \bfx_0^T=(1,0,0) $.
+
+            Indeed, $\bfb\in \im A$ if and only if it is coplanar with the basis. i.e., 
+            \[
+                \left[ \begin{pmatrix}
+                    1\\c\\1
+                \end{pmatrix},\begin{pmatrix}
+                    1\\-2\\1
+                \end{pmatrix},\begin{pmatrix}
+                    1\\1\\-2
+                \end{pmatrix} \right]=3c+6=0 \Leftrightarrow c=-2
+            .\]
+            Therefore, general solution is 
+            \[
+                \bfx=\begin{pmatrix}
+                    1+\lambda\\\lambda\\\lambda
+                \end{pmatrix}
+            .\]
+            For $a=c=-2$, we have case (iii) which is a line. If $ a=-2,c\neq -2 $ then there is no solution.
+        \end{itemize}
+    \end{example}
+    \subsection{Geometrical Interpretation in $ \mathbb{R}^{3} $}
+    Let $ \bfR_1,\bfR_2,\bfR_3 $ be rows of $A$. Then 
+    \[
+        A\bfu=\mathbf{0}\Longleftrightarrow \bfR_i\cdot \bfu=0, r=1,2,3
+    .\]
+    So solution of homogeneous problem is given by intersection of these planes.
+    \begin{enumerate}[align=hang]
+        \item[\underline{$ \rank A=3 $}.] Normals are independent so the planes intersect only at $O$.
+        \item[\underline{$ \rank A=2 $}.] Normals span a plane and planes intersect in a line.
+        \item[\underline{$ \rank A=1 $}.] Normals are parallel and planes coincide.
+    \end{enumerate}
+
+    Now consider instead $ A\bfx=\mathbf{b}\Leftrightarrow \bfR_i\cdot \bfx=b_i, r=1,2,3 $. Still planes with normals $ \bfR_i $, but not through $O$ unless one of $b_i=0$.
+    \begin{enumerate}[align=hang]
+        \item[\underline{$ \rank A=3 $}.] $ \det A\neq 0 $ and normals are independent. Planes intersect at a point, which is the unique solution.
+        \item[\underline{$ \rank A<3 $}.] $ \det A=0 $. Existence of solutions depends on $\bfb$.
+        \item[\underline{$ \rank A=2 $}.] Planes may intersect in a line but they may not. e.g., pairwise intersect in lines, or two planes are parallel and the third intersects them. In latter cases there is no solution.
+        \item[\underline{$ \rank A=1 $}.] Planes may coincide but may not. e.g., at least two are parallel but do not coincide.
+    \end{enumerate}
 \end{document}
