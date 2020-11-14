@@ -1945,4 +1945,193 @@ skipped some talks irrelevant to contents\\
             = 10i.
         \]
     \end{example}
+    \subsection{Simplifying Determinants: Row and Column operation}
+    Let $ M\in \mcM_{n\times n} $. Summary: $ \det M $ is a function of the rows $ \bfR_i $ or columns $ \bfC_i $ that is multilinear, totally antisymmetric, and $ \det I = 1 $.
+    \subsubsection{Row and Column Scalings}
+    If $ \bfR_i \mapsto \lambda\bfR_i $ for $i$ fixed, \textit{or} $ \bfC_a\mapsto \lambda\bfC_a $ for $a$ fixed, then 
+    \[
+        \det M \mapsto \lambda \det M
+    .\]
+    If we scale all rows or columns of $M$, then $ \det M \mapsto \lambda^n \det M  $.
+    \subsubsection{Rows and Column Operations}
+    If $ \bfR_i\mapsto\bfR_i+\lambda\bfR_j $ for $j\neq i$, or $ \bfC_a\mapsto\bfC_a+\lambda\bfC_b $ for $ b\neq a, a,b,c,d $ are fixed, then by multilinearity, we have 
+    \[
+        \det M \mapsto \det M
+    .\]
+    \subsubsection{Row and Column Exchanges}
+    If $ \bfR_i\leftrightarrow \bfR_j $ or $ \bfC_a \leftrightarrow \bfC_b $, then 
+    \[
+        \det M \mapsto - \det M
+    .\]
+    \begin{example}
+        Consider 
+        \[
+            A=\begin{pmatrix}
+                1 & 1 & a \\
+                a & 1 & 1 \\
+                1 & a & 1
+            \end{pmatrix}, \quad a \in \mathbb{C}
+        .\]
+        \begin{IEEEeqnarray*}{rCl}
+            \bfC_1 \mapsto \bfC_1-\bfC_3 & : & \det A =\begin{vmatrix}
+                1-a & 1 & a \\
+                a-1 & 1 & 1 \\
+                0 & a & 1
+            \end{vmatrix}=(1-a)\begin{vmatrix}
+                1 & 1 & a \\
+                -1 & 1 & 1 \\
+                0 & a & 1
+            \end{vmatrix}.
+        \\
+          \bfC_2 \mapsto \bfC_2-\bfC_3  & : & \det A = (1-a)\begin{vmatrix}
+            1 & 1-a & a \\
+            -1 & 0 & 1 \\
+            0 & a-1 & 1
+        \end{vmatrix}=(1-a)^2\begin{vmatrix}
+            1 & 1 & a \\
+            -1 & 0 & 1 \\
+            0 & -1 & 1
+        \end{vmatrix}.
+        \\
+           \bfR_1\mapsto \sum \bfR_i & : & \det A = (1-a)^2\begin{vmatrix}
+            0 & 0 & a+2 \\
+            -1 & 0 & 1 \\
+            0 & -1 & 1
+        \end{vmatrix} = \underline{(1-a)^2(a+2)}.
+        \end{IEEEeqnarray*}
+    \end{example}
+    \subsection{Multiplicative Property}
+    \begin{theorem}\label{thm:multi_prop}
+        For $ M,N\in \mcM_{n\times n} $, $ \det MN=\det M \det N $.
+    \end{theorem}
+    \begin{proof}
+        Can prove this using the following elaboration on $ \det M $.
+    \begin{lemma}\label{lma:multi_prop}
+        $ \epsilon_{i_1i_2\cdots i_n}M_{i_1a_1}M_{i_2a_2}\cdots M_{i_na_n}=\epsilon_{a_1a_2\cdots a_n}\det M $.
+    \end{lemma}
+    \begin{proof}
+        LHS and RHS are each totally antisymmetric in $a_1,\dots,a_n$, so must be related by a constant of proportionality. To fix the constant, simply take $(a_1,\dots,a_n)=(1,\dots,n)$ and indeed it works.
+    \end{proof}
+    We have 
+    \begin{IEEEeqnarray*}{rCl}
+        \det MN & = & \epsilon_{i_1\cdots i_n}(MN)_{i_11}\cdots(MN)_{i_nn}
+    \\
+        & = & \epsilon_{i_1\cdots i_n}M_{i_1 k_1}N_{k_1 1}\cdots M_{i_nk_n}N_{k_nn}
+    \\
+        & = & (\det M)\epsilon_{k_1\cdots k_n} N_{k_11}\cdots N_{k_nn}
+    \\
+        & = & \det M \det N.
+    \end{IEEEeqnarray*}
+    \end{proof}
+    Consequences:
+    \begin{enumerate}
+        \item $ M^{-1}M=I \Rightarrow |M^{-1}||M|=1 $, so $ |M^{-1}|=|M|^{-1} $.
+        \item For $R$ real and orthogonal,
+        \[
+            R^TR=I \Longrightarrow |R|^2=1 \Longrightarrow |R|=\pm 1
+        .\]
+        \item For $U$ complex and unitary, 
+        \[
+            U^\dagger U=I \Longrightarrow |U^\dagger ||U|=1 \Longrightarrow |\overline{U}||U|=|U|^2=1 \Longrightarrow |U|=\pm 1
+        .\]
+        Here we use facts that $ |U^T|=|U| $ and $ |\overline{U}|=\overline{|U|} $. The second one is immediate from definition.
+    \end{enumerate}
+    \section{Minors, Cofactors, and Inverses}
+    \subsection{Cofactors and Determinants}
+    Consider a particular column of a matrix $ M\in \mcM_{n\times n} $ and write it 
+    \[
+        \bfC_a=\sum_{i}M_{ia}\bfe_i
+    .\]
+    Then 
+    \[
+        |M|=[\bfC_1,\dots,\bfC_n]=\sum_{i}M_{ia}[\bfC_1,\dots,\bfe_i,\bfC_{a+1},\dots,\bfC_n]:= \sum_i M_{ia}\Delta_{ia}
+    .\]
+    Hence
+    \[
+        \Delta_{ia}=\begin{vmatrix}
+            A & \begin{matrix}
+                0\\ \vdots \\ 0
+            \end{matrix} & B\\
+            \begin{matrix}
+                0 & \cdots & 0
+            \end{matrix} & 1 &\begin{matrix}
+                0 & \cdots & 0
+            \end{matrix}\\
+            C & \begin{matrix}
+                0\\ \vdots \\ 0
+            \end{matrix} & D
+        \end{vmatrix}
+    ,\]
+    where 1 appears at row $i$ column $a$. Swap it to bottom-right:
+    \[
+        \Delta_{ia}=(-1)^{n-a}(-1)^{n-i}\begin{vmatrix}
+            \begin{matrix}
+                A&B\\C&D
+            \end{matrix}&\begin{matrix}
+                0\\ \vdots \\ 0
+            \end{matrix}\\
+            \begin{matrix}
+                0 & \cdots & 0
+            \end{matrix}&1
+        \end{vmatrix}=(-1)^{i+a}M^{ia}
+    ,\]
+    where $ M^{ia} $ is the minor of $M$. We deduce that 
+    \[
+        \det M = \sum_{i} M_{ia}\Delta_{ia}=\sum_{i}(-1)^{i+a}M_{ia}M^{ia}
+    .\]
+    Here $\Delta_{ia}$ is the \textit{cofactor}.
+
+    Similarly, by considering rows, 
+    \[
+        \det M = \sum_{a}M_{ia}\Delta_{ia}=\sum_{a}(-1)^{i+a}M_{ia}M^{ia}
+    .\]
+    \subsection{Adjugates and Inverses}
+    Reasoning as above, consider $ \bfC_b=\sum_i M_{ib}\bfe_i $. Then 
+    \[
+       \begin{aligned}
+            &[\bfC_1,\dots,\bfC_{a-1},\bfC_b,\bfC_{a+1},\dots,m\bfC_n]\\
+            =&\sum_{i}M_{ib}\Delta_{ia}=\left.\begin{cases}
+            \det M &\text{if }a=b,\\
+            0 &\text{otherwise.}\\
+            \end{cases}\right\rbrace  = (\det M )\delta_{ab}.
+       \end{aligned} 
+    \]
+    Similarly, expanding a row we get 
+    \[
+        \sum_{a}M_{ja}\Delta_{ia} = (\det M)\delta_{ij}
+    .\]
+    Let $ \Delta $ be the matrix of cofactors(entries of $\Delta_{ia}$), and define the \textit{adjugate} $ \tilde{M}=\adj(M) = \Delta^T $. Then 
+    \[
+        \Delta_{ia}M_{ib}=\Delta^T_{ai}M_{ib}=(\Delta^T M)_{ab}=|M| \delta_{ab} \Longrightarrow \tilde{M}M=|M|I
+    .\] 
+    Similarly, $ M \tilde{M}=|M|I $. Hence if $ \det M\neq 0 $, then 
+    \[
+        M^{-1}=\frac{1}{\det M}\tilde{M}
+    .\]
+    \begin{example}
+        Return to 
+        \[
+            A=\begin{pmatrix}
+                1&1&a\\
+                a&1&1\\
+                1&a&1
+            \end{pmatrix}
+        .\]
+        By previous, $ \det A=(1-a)^2(a+2) $. To find the inverse, note that $ \Delta_{12}=1-a $, etc. The matrix of cofactors is 
+        \[
+            \Delta=\begin{pmatrix}
+                1-a&1-a&a^2-1\\
+                a^2-1&1-a&1-a\\
+                1-a&a^2-1&1-a
+            \end{pmatrix}
+        .\]
+        Hence 
+        \[
+            A^{-1}=\frac{1}{(1-a)(a+2)}\begin{pmatrix}
+                    1&-(1+a) & 1 \\
+                    1 & 1&-(1+a) \\
+                    -(1+a)& 1 & 1
+            \end{pmatrix}
+        .\]
+    \end{example}
 \end{document}
