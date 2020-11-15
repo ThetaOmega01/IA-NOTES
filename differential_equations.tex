@@ -1598,7 +1598,7 @@ skipped some talks irrelevant to contents\\
               \lim_{\epsilon \to 0} \int_{-\epsilon}^{\epsilon} (16.5) \,\mathrm{d}x \Longrightarrow \lim_{\epsilon \to 0} [y']_{-\epsilon}^{\epsilon} = 1
           .\]
       \end{enumerate}
-      Method for solution: Solve \ref{eq:16.5} for $ x<0 $ and $x>0$. This yields 4 unknown constants, so use 2 jump conditions and 2 initial conditions.1e
+      Method for solution: Solve \ref{eq:16.5} for $ x<0 $ and $x>0$. This yields 4 unknown constants, so use 2 jump conditions and 2 initial conditions.
       \begin{example}
           Consider $ y''-y=3\delta(x-\frac{\pi}{2}) $. Set intial conditions to be $ y=0 $ at $ x=0,\pi $.
 
@@ -1663,4 +1663,121 @@ skipped some talks irrelevant to contents\\
           \item $ [y]_{x_0-}^{x_0+}=0 $.
       \end{enumerate}
       Use ICs and jump conditions to find constants in solving the solution to \ref{eq:16.8}.
+      \section{Higher order discrete(difference) equations}\marginnote{Lecture 17}
+      General form for $m$th order linear discrete equation with constant coefficients is
+      \begin{equation}\label{eq:17.1}
+          a_my_{n+m}+a_{m-1}y_{n+m-1}+\cdots+a_1y_{n+1}+a_0y_n=f_n.\marginnote{Exploit same principles used to solve higher order ODEs.}
+      \end{equation}
+      \subsection{Eigenfunction}
+      Consider a difference operator $D[y_n]=y_{n+1}$. It has eigenfunction $ y_n=k^n $, where $k$ is constant. This works since 
+      \[
+          D[k^n]=k^{n+1}=k\cdot k^n= ky_n
+      .\]
+      \subsection{Linearity}
+      \ref{eq:17.1} is \textit{linear} in $y$. Hence we can write the solution in a sum of complementary function and a particular solution:
+      \[
+          y_n=y_n^{(c)}+y_n^{(p)}
+      .\]
+      \begin{example}
+          Consider
+          \[
+              a_2y_{n+2}+a_1y_{n+1}+a_0y_n=f_n
+          .\]
+          We firstly solve the homogeneous equation 
+          \[
+            a_2y_{n+2}+a_1y_{n+1}+a_0y_n=0
+          .\]
+          Try $y_n=k^n$: 
+          \[
+              a_2k^2+a_1k+a_0=0
+          ,\]
+          which gives two solutions $k_1,k_2$. Therefore 
+        \[
+            y_n^{(c)}=\begin{cases}
+            Ak_1^n+Bk_2^n &\text{ if }k_1\neq k_2,\\
+            k^n(A+Bn) &\text{ if }k_1=k_2=k.\\
+            \end{cases} 
+        \]
+      \end{example}
+      \subsection{Particular integral}
+      \begin{center}
+        \begin{tabular}{cc}
+        \toprule
+        Form of $f_n$ & Form of $y_n^{(p)}$ \\ \midrule
+        $ k^n $ & $ Ak^n $ if $ k\neq k_1,k_2 $ \\
+        $ k_1^n, k_2^n $ & $ Ank_1^n+B_nk_2^n $ \\
+        $ n^p $ & $ An^p+Bn^{p-1}+\cdots+Cn+D$ \\ \bottomrule
+        \end{tabular}
+    \end{center}
+    \subsection{Fibonacci Sequence}
+    General form is $ F_n=F_{n-1}+F_{n-2} $, and $ F_0=F_1=1 $. Standard for is 
+    \[
+        y_{n+2}-y_{n+1}-y_n=0
+    .\]
+    Try $y=k^n$:
+    \[
+        k^2-k-1=0 \Longleftrightarrow k_{1,2}=\frac{1\pm \sqrt{5}}{2}
+    .\]
+    We get 
+    \[
+        k_1=\phi\approx 1.618\dots,\quad k_2=-\frac{1}{\phi}
+    .\]
+    Since $k_1\neq k_2$, we have $ F_n=Ak_1^{n}+Bk_2^n $. Plugging in ICs gives 
+    \[
+        F_n = \frac{k_1^{n+1}-k_2^{n+1}}{\sqrt{5}} = \frac{1}{\sqrt{5}}\left( \phi^{n+1}-\left( -\frac{1}{\phi} \right)^{n+1} \right)
+    .\]
+    Also 
+    \[
+        \lim_{n \to \infty} \frac{F_{n+1}}{F_n} = \lim_{n \to \infty} \frac{\phi^{n+2}-(-1/\phi)^{n+2}}{\phi^{n+1}-(-1/\phi)^{n+1}}=\phi
+    .\]
+    \section{Series solutions for higher order ODEs}
+    \subsection{Method of Frobenius}
+    Series solutions applied to linear, homogeneous 2nd order ODEs. General form is 
+    \begin{equation}\label{eq:17.2}
+        p(x)y''+q(x)y'+r(x)y=0.
+    \end{equation}
+    seek power series expansion about $x=x_0$.
+    
+    \textbf{Firstly} classify $x=x_0$.
+    \begin{definition}
+        $x=x_0$ is an \textit{ordinary point} if Taylor series of $ q/p $ and $ r/p $ converge in some region around $x_0$. i.e., $ q/p, r/p $ are \textit{analytic}.
+
+        Otherwise, $x=x_0$ is a \textit{singular point}.
+    \end{definition} 
+    \begin{definition}
+        If $x=x_0$ is a singular point, but \ref{eq:17.2} can be written as 
+        \[
+            P(x)(x-x_0)^2y''+Q(x)(x-x_0)+R(x)y=0
+        ,\]
+        and $Q/P$ and $R/P$ are analytic, then $x=x_0$ is a \textit{regular singular point}.
+
+        Otherwise, $x=x_0$ is an \textit{irregular} singular point.
+    \end{definition}
+    \begin{remark}
+        $\displaystyle \frac{Q}{P}=(x-x_0)\frac{q}{p}, \frac{R}{P}=(x-x_0)^2\frac{r}{p}$. 
+    \end{remark}
+    \begin{example}
+        \begin{enumerate}
+            \item $ (1-x^2)y''-2xy'+2y=0 $. We have 
+            \[
+                \frac{q}{p}=\frac{-2x}{1-x^2}, x=\pm 1\text{ are singular points}
+            .\]
+            However, 
+            \[
+                \frac{Q}{P} = (x-1)\frac{q}{p}=\frac{2x}{1+x}
+            ,\]
+            so $1$ is a regular singular point. Similarly $-1$ is also a regular singular point.
+            \item $ y'' \sin x + y' \cos x+2y=0 $. We have 
+            \[
+                \frac{q}{p}=\frac{\cos x}{\sin x}, \frac{r}{p}=\frac{2}{\sin x}
+            .\]
+            $ x=n\pi, n\in \mathbb{Z} $ are regular singular points.
+            \item $ (1+\sqrt{x})y''-2xy'+2y=0 $.
+            \[
+                \frac{q}{p}=\frac{-2x}{1+\sqrt{x}}
+            .\]
+            Here $x=0$ is an irregular singular point.
+            \bluecomment{Note: Second derivative is undefined.}
+        \end{enumerate}
+    \end{example}
 \end{document}
