@@ -2289,5 +2289,230 @@ skipped some talks irrelevant to contents\\
         \item[\underline{$ \rank A=2 $}.] Planes may intersect in a line but they may not. e.g., pairwise intersect in lines, or two planes are parallel and the third intersects them. In latter cases there is no solution.
         \item[\underline{$ \rank A=1 $}.] Planes may coincide but may not. e.g., at least two are parallel but do not coincide.
     \end{enumerate}
-    
+    \section{Eigenvalues and Eigenvectors}\marginnote{Lecture 17, forgive me for using bold fonts for general vectors again since that's what was taught in class}
+    \subsection{Introduction}
+    \subsubsection{Basics}
+    \begin{definition}
+        For a linear map $T:V\to V$, a vector $\bfv\neq \mathbf{0}$ is called an \textit{eigenvector} of $T$ with eigenvalue $\lambda$ if $ T(\bfv)=\lambda\bfv $.
+    \end{definition}
+    If $ \mathbb{R}^{n} $ or $ \mathbb{C}^{n} $ and $T$ is given by $ A\in \mathcal{M}_{n\times n} $, then $ A\bfv=\lambda\bfv \Leftrightarrow (A-\lambda I)\bfv=0 $. For some given $ \lambda $ this holds for some $ \bfv\neq \mathbf{0} $ if and only if 
+    \[
+        \det (A-\lambda I)=0,\quad \text{characteristic equation}
+    .\]
+    i.e., $ \lambda $ is an eigenvalue if and only if it is a root of 
+    \[
+        \chi_A(t) = \det (A-tI) = \det\begin{pmatrix}
+            A_{11}-t & A_{12} & \ldots & A_{1 n} \\
+            A_{21} & A_{22}-t & \ldots & A_{2 n} \\
+            \vdots &\vdots & \ddots  & \vdots \\
+            A_{n 1} & A_{n 2} & \ldots & A_{n n}-t
+        \end{pmatrix}
+    .\]
+    $ \chi_A(t) $ is called a \textit{characteristic polynomial}.
+
+    We can find eigenvalues as roots of characteristic polynomial and then determine corresponding eigenvectors.
+    \subsubsection{Examples}
+    \begin{example}
+        \begin{enumerate}[(i)]
+            \item $V=\mathbb{C}^{2}, A=\begin{pmatrix}
+                2&i\\-i&2
+            \end{pmatrix}, \det (A-\lambda I)=\begin{vmatrix}
+                2-\lambda & i\\-i & 2-\lambda
+            \end{vmatrix}=(2-\lambda)^2-1=0 \Leftrightarrow \lambda=2\pm 1=1,3 $. To find eigenvectors, when $ \lambda=1 $,
+            \[
+                (A-I)\bfv=\begin{pmatrix}
+                    1&i\\-i&1
+                \end{pmatrix}
+                \begin{pmatrix}
+                    v_1\\v_2
+                \end{pmatrix}=\mathbf{0} \Longrightarrow \bfv=\alpha\begin{pmatrix}
+                    1\\i
+                \end{pmatrix},\alpha\neq 0
+            .\]
+            When $ \lambda=3 $,
+            \[
+                (A-3I)\bfv=A=\begin{pmatrix}
+                    -1&i\\-i&-1
+                \end{pmatrix}\begin{pmatrix}
+                    v_1\\v_2
+                \end{pmatrix}=\mathbf{0} \Longrightarrow 
+                \bfv=\beta\begin{pmatrix}
+                    1\\-i
+                \end{pmatrix},\beta\neq 0
+            .\]
+            \item Take 
+            \[
+                V=\mathbb{R}^{2},A=\begin{pmatrix}
+                    1&1\\0&1
+                \end{pmatrix}
+            .\]
+            It follows that 
+            \[
+                \det (A-\lambda I)=\begin{vmatrix}
+                    1-\lambda& 1\\0& 1-\lambda
+                \end{vmatrix}=(1-\lambda)^2=0 \Longleftrightarrow \lambda=1
+            .\]
+            Hence 
+            \[
+                (A-I)\bfv=\begin{pmatrix}
+                    0&1\\0&0
+                \end{pmatrix}\begin{pmatrix}
+                    v_1\\v_2
+                \end{pmatrix}=\mathbf{0} \Longleftrightarrow \bfv=\alpha\begin{pmatrix}
+                    1\\0
+                \end{pmatrix}, \alpha\neq 0
+            .\]
+            We have only one linearly independent eigenvector.
+            \item $ V=\mathbb{R}^2, \mathbb{C}^{2} $ and 
+            \[
+                U = \begin{pmatrix}
+                    \cos \theta&-\sin \theta\\
+                    \sin \theta&\cos \theta
+                \end{pmatrix}
+            .\]
+            The characteristic polynomial is 
+            \[
+                \chi_U(t)=\det (U-tI)=t^2-2t \cos \theta+1 \Leftrightarrow \lambda=e^{\pm i\theta}
+            ,\]
+            and eigenvectors are 
+            \[
+                \bfv=\alpha\begin{pmatrix}
+                    1\\\mp i
+                \end{pmatrix}, \alpha\neq 0
+            .\]
+            So there is no real eigenvalue/eigenvector unless $ \theta=n\pi $, but complex eigenvalues/eigenvectors are as above.
+            \item Consider 
+            \[
+                V=\mathbb{C}^{n}, A=\begin{pmatrix}
+                    \lambda_1&&\\
+                    &\ddots&\\
+                    &&\lambda_n
+                \end{pmatrix}
+            .\]
+            Then
+            \[
+                \chi_A(t)=(\lambda_1-t)(\lambda_2-t)\cdots (\lambda_n-t)
+            .\]
+            Hence eigenvalues are $ \lambda=\lambda_i $ and $ \bfv=\lambda\bfe_i, \alpha\neq 0 $ for each $i$.
+        \end{enumerate}
+    \end{example}
+    \subsubsection{Deduction involving $ \chi_A(t) $}
+    For $ A\in \mathcal{M}_{n\times n} $, the characteristic polynomial has degree $n$:
+    \[
+        \chi_A(t)=\sum_{j=0}^{n}c_jt^j=(-1)^n(t-\lambda_1)\cdots(t-\lambda_n)
+    .\]
+    \begin{enumerate}[(i)]
+        \item $ \exists  $ at least one root for $ \chi_A $, in fact, $ \exists n$ roots connected with multiplicity(from FTA).
+        \item $ \tr(A)=A_{ii}=\sum_{i=1}^{n}\lambda_i $. Compare terms of degree $n-1$ in $t$. From the definition of matrix we get 
+        \[
+            (-t)^{n-1} A_{11}+(-t)^{n-1} A_{22}+\ldots+(-t)^{n-1} A_{n n}
+        .\]
+        Overall sign should match with the expansion of 
+        \[
+            (-1)^n(t-\lambda_1)\cdots(t-\lambda_n)
+        .\]
+        \item $ \det A = \chi_A(0)=\prod_{i=1}^{n}\lambda_i $.
+        \item If $A$ is real, coefficients $c_i$ are real and 
+        \[
+            \chi_A(\lambda)=0 \Longleftrightarrow \chi_A(\bar{\lambda})
+        .\]
+        So non-real roots appear in conjugate pairs.
+    \end{enumerate}
+    \subsection{Eigenspaces and Multiplicities}
+    \subsubsection{Definitions}
+    \begin{definition}
+        For an eigenvalue $ \lambda $ of a matrix $A$, define the \textit{eigenspace}
+        \[
+            E_\lambda=\left\{ \bfv:A\bfv=\lambda\bfv \right\}=\ker (A-\lambda I) 
+        .\]
+        The \textit{geometric multiplicity} is 
+        \[
+            m_\lambda=\dim E_\lambda=\nullity(A-\lambda I)
+        .\]
+        This is the number of linearly independent eigenvectors with eigenvalue $ \lambda $.
+
+        The \textit{algebraic multiplicity} is
+        \[
+            M_\lambda, \text{ the multiplicity of $\lambda$ as a root of $ \chi_A(t) $}
+        .\]
+        i.e.,
+        \[
+            \chi_A(t)=(t-\lambda)^{M_\lambda}f(t), f(\lambda)\neq 0
+        .\]
+    \end{definition}
+    \begin{proposition}
+        $ M_\lambda\ge m_\lambda $. Note that $ m_\lambda\ge 1 $ since $ \lambda $ is a root of $ \chi_A(t) $.
+    \end{proposition}
+    \begin{proof}
+        See secion 25.3.
+    \end{proof}\newpage
+    \subsubsection{Examples}
+    \begin{example}
+        \begin{enumerate}[(i)]
+            \item Consider 
+            \[
+                A=\begin{pmatrix}
+                    -2 & 2 & -3 \\
+                    2 & 1 & -6 \\
+                    1 & -2 & 0
+                \end{pmatrix}\Longrightarrow \chi_A(t)=\det (A-tI)=(5-t)(t+3)^2
+            .\]
+            Hence roots are $ \lambda=5,-3 $, $-3$ twice, so that $ M_5=1, M_{-3}=2 $.
+            
+            When $ \lambda=5 $, the eignespace is
+            \[
+                E_5=\left\{ \alpha\begin{pmatrix}
+                    1\\2\\-1
+                \end{pmatrix} \right\}
+            .\]
+            When $ \lambda=-3 $,
+            \[
+                E_{-3}=\left\{ \alpha\begin{pmatrix}
+                    -2\\1\\0
+                \end{pmatrix}+\beta\begin{pmatrix}
+                    3\\0\\1
+                \end{pmatrix} \right\}
+            .\]
+            Here $ \dim E_5 = m_5=1, \dim E_{-3}=m_{-3}=2 $.
+            \item Consider 
+            \[
+                A=\begin{pmatrix}
+                    -3&-1&1\\
+                    -1&-3&1\\
+                    -2&-2&0
+                \end{pmatrix}
+                \Longrightarrow 
+                \chi_A(t)=-(t+2)^3
+            .\]
+            Root is $ \lambda=-2 $, three times, so that $ M_{-2}=3 $. To find the eigenspace,
+            \[
+                (A+2 I) \bfx=\left(\begin{array}{rrr}
+                    -1 & -1 & 1 \\
+                    -1 & -1 & 1 \\
+                    -2 & -2 & 2
+                    \end{array}\right)\left(\begin{array}{l}
+                    x_{1} \\
+                    x_{2} \\
+                    x_{3}
+                    \end{array}\right)=\mathbf{0} \Longrightarrow \bfx=\begin{pmatrix}
+                        -x_2+x_3\\x_2\\x_3
+                    \end{pmatrix}
+            .\]
+            Hence 
+            \[
+                E_{-2}=\left\{ \alpha\begin{pmatrix}
+                    -1\\1\\0
+                \end{pmatrix} \right\}+\beta\begin{pmatrix}
+                    1\\0\\1
+                \end{pmatrix}
+            .\]
+            Hence $ \dim E_{-2}=m_{-2}=2<M_{-2} $.
+            \item Reflection in plane through the origin with unit normal vector $ \bfn $. Notice that
+            \[
+                H\bfn=-\bfn \text{ and } H\bfu=\bfu \text{ for any }\bfu \perp \bfn
+            .\]
+            Hence eigenvalues are $ \pm 1 $ and $ E_{-1}=\{\alpha\bfn\} $, $ E_1=\{\bfx:\bfx\cdot \bfn=0\} $. Also $ M_{-1}=m_{-1}=1, M_1=m_1=2 $.
+            \item Rotation about axis $ \bfn $ through angle $ \theta $ in $ \mathbb{R}^{3} $. We have $ R\bfn=\bfn $ and there are no real eigenvalues unless $ \theta=n\pi $, rotation restricted the plane perpendicular to $\bfn$ has eigenvalues $ e^{\pm i\theta} $, as in previous example (iii) in 25.1.2.
+        \end{enumerate}
+    \end{example}
 \end{document}

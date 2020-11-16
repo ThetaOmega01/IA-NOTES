@@ -1391,6 +1391,7 @@ skipped some takes irrelevant to contents\\
           This is the left regular action if $H$ is trivial. This induces actions of $G$ on its quotient groups $G/N$.
       \end{remark}
       \section{Conjugation Action}
+      \subsection{Basics}
       \begin{definition}
           Given $g,h\in G$, the element $hgh^{-1}\in G$ is the \textit{conjugate} of $g$ by $h$.
       \end{definition}
@@ -1456,4 +1457,118 @@ skipped some takes irrelevant to contents\\
       \begin{proof}
           Let $H\le G, g\in G$. $ gHg^{-1}\le G $ so it is closed under conjugation. Obviously $ eHe^{-1}=H $ and $ g_1(g_2(H))=g_1(g_2Hg_2^{-1})=g_1g_2H(g_1g_2)^{-1}=(g_1g_2)(H) $. Therefore it is an action. Let $N \le G$ that has a singleton orbit. Since $eNe^{-1}=N$, $ \orb(N) $ must be $N$ itself. By definition of normal subgroups, $ N \ltrigeq G $.
       \end{proof}
+      \begin{remark}\marginnote{Lecture 17.}
+        This gives another view of point of normal subgroups: they are invariant under conjugation.
+      \end{remark}
+      \begin{proposition}\label{prop:5.23}
+          Normal subgroups are those subgroups that are union of conjugacy classes.
+      \end{proposition}
+      \begin{proof}
+          Let $ N \ltrigeq G $. Then if $ h\in N $, then $ghg^{-1}\in N$ for all $g\in G$, so $ \ccl(h) \subseteq N $. Therefore, 
+          \[
+              N=\bigcup_{h\in N} \ccl(h)
+          .\]
+          Conversely, if $H$ is a subgroup that is a union of conjugacy classes, then $ \forall g\in G, h\in H, ghg^{-1}\in H \Leftrightarrow H \ltrigeq G $.
+      \end{proof}
+      \begin{example}
+          Consider $ A_3=\left\{ e,(123),(132) \right\} $. In fact 
+          \[
+              A_3 = \{e\}\sqcup \{(123),(132)\}
+          .\]
+      \end{example}
+      \begin{remark}
+          Note that $ (123),(132) $ are conjugate in $S_3$, but not in $A_3$.
+      \end{remark}
+      \subsection{Conjugation in $S_n$}
+      \begin{lemma}\label{lma:5.24}
+            Given a $k$-cycle, $(a_1\ a_2\ \cdots\ a_k)$ and $ \sigma\in S_n $, we have 
+            \[
+                \sigma(a_1\ \cdots \ a_k)\sigma^{-1}=(\sigma(a_1)\ \sigma(a_2)\ \cdots\ \sigma(a_k))
+            .\]
+      \end{lemma}
+      \begin{proof}
+          Let's look at where the elements are sent.
+          \[
+             \begin{aligned}
+                  &\sigma(a_i) \mapsto a_i \mapsto a_{i+1} \mapsto \sigma(a_{i+1}),\\
+                  &a \mapsto \sigma^{-1}(a) \mapsto \sigma^{-1}(a) \mapsto a,\quad \text{for $a\notin \left\{ \sigma(a_1),\dots, \sigma(a_k) \right\}$.}
+             \end{aligned}
+          \]
+          RHS does the same thing as LHS, so $ \sigma(a_1\ \cdots \ a_k)\sigma^{-1}=(\sigma(a_1)\ \sigma(a_2)\ \cdots\ \sigma(a_k)) $.
+      \end{proof}
+      \begin{proposition}\label{prop:5.25}
+          Two elements of $S_n$ are conjugate (in $S_n$, i.e., $\tau=\rho\sigma\rho^{-1}$ for some $\rho \in S_n$), if and only if they have \underline{the same cycle type}.
+      \end{proposition}
+      \begin{proof}
+          Take $ \sigma, \tau\in S_n $ such that $ \sigma, \tau $ are conjugate. Write $ \sigma $ in disjoint cycles:
+          \[
+              \sigma=\sigma_1\sigma_2\cdots \sigma_m
+          ,\]
+          then if $ \tau=\rho\sigma\rho^{-1} $
+          \[
+            \begin{aligned}
+                \tau&=\rho\sigma_1\sigma_2\cdots \sigma_m\rho^{-1}\\
+                &= \rho\sigma_1\rho^{-1}\rho\sigma_2\rho^{-1}\cdots \rho\sigma_m\rho^{-1}.
+            \end{aligned}
+          \]
+          By \ref{lma:5.24}, each $ \rho\sigma\rho^{-1} $ is a cycle of the same length as $\sigma_i$, and the $ \rho\sigma_i\rho^{-1} $ are disjoint, since $\rho$ is a bijction. Hence $ \sigma,\tau $ have the same cycle type.
+
+          Conversely if $\sigma,\tau$ have the same cycle types, then can write 
+          \[
+            \begin{aligned}
+                &\sigma= (a_1\ \cdots\ a_{k_1})(a_{k_1+1}\ \cdots\ a_{k_2})\cdots\\
+                &\tau = (b_1\ \cdots\ b_{k_1})(b_{k_1+1}\ \cdots\ b_{k_2})\cdots
+            \end{aligned}
+          \]
+          in disjoint cycle notation, including singletons, so that all of $\{1,\dots,n\}$ appear in the notation.
+
+          Construct $ \rho $ as $ \rho(a_i)=b_i, \forall i$, which is indeed a permutation. Then $ \rho\sigma\rho^{-1}=\tau $.
+      \end{proof}
+      \begin{example}[Conjugate classes of $S_4$]
+        \begin{center}
+            \begin{tabular}{c|c|c|c|c}
+                Cycle Type & Example Element & Size of $\ccl$ & Size of $C_{S_4}$ & Sign \\
+                \hline 
+                & & & \redcomment{$ |S_4|/|\ccl| $} & \\
+                1,1,1,1 & $e$ & 1 & $24/1=24$ &1 \\
+                2,1,1 & $(1\ 2)$ & 6 & 4 &-1 \\
+                2,2 & $(1\ 2)(3\ 4)$ & 3 & 8 &1 \\
+                3,1 & $(1\ 2\ 3)$ & 8 & 4 &1 \\
+                4 & $(1\ 2\ 3\ 4)$ & 6 & 4 &-1 \\
+            \end{tabular}
+        \end{center}
+        From this, we can work out the normal subgroups of $S_4$:
+        \begin{itemize}
+            \item Must contain $e$,
+            \item Must be a union of conjugacy classes,
+            \item Must have order dividing $|G|$.
+        \end{itemize}
+        Possibilities: look through divisors of $|G|$: 1,2,3,4,6,8,12,24.
+        \begin{enumerate}[align=hang, label=\textit{order} \arabic*]
+            \item $ \left\{ e \right\} $.
+            \item Not possible.
+            \item Not possible.
+            \item $ \left\{ e,(12)(34),(13)(24),(14)(23) \right\} \cong C_2 \times C_2=:V_4 $, Klein 4 group.
+            \item[\textit{order} 6] Not possible.
+            \item[\textit{order} 8] Not possible.
+            \item[\textit{order} 12] $ \{e,(12)(34),(13)(24),(14)(23), (123), (132),(124),(142),(134),(143),(234),(243)\}$, which is exactly $A_4$.
+            \item[\textit{order} 24] $S_4$. 
+        \end{enumerate}
+        So all possible quotients of $S_4$ are:
+        \begin{itemize}
+            \item $ S_4/\{e\}\cong S_4 $.
+            \item $ S_4/V_4 = \left\{ V_4,(12)V_4,(13)V_4,(23)V_4,(123)V_4,(132)V_4 \right\} \cong S_3 $.
+            \item $ S_4/A_4 \cong C_2 $.
+            \item $ S_4/S_4 \cong \left\{ e \right\} $.
+        \end{itemize}
+        Can repeat this with $S_5$.
+      \end{example}
+      \subsection{Conjugation in $A_n$}
+      Note that 
+      \[
+          \ccl_{A_n}(\sigma)=\left\{ \tau \sigma\tau^{-1}:\tau\in A_n \right\} \subseteq \ccl_{S_n}(\sigma)
+      .\]
+      But elements that are conjugate in $S_n$ may not be conjugate in $A_n$. e.g., $ (23)(123)(23)=(132) $ in $S_3$ but $ (23)\notin A_3 $ so there is no other elements forming the conjugation.
+
+      However, in $S_5, (23)(45)(123)(45)(23)=(132)$, so $ (123),(132) $ are conjugate in $A_5$.
 \end{document}
