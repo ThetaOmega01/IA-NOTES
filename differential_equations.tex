@@ -1780,4 +1780,124 @@ skipped some talks irrelevant to contents\\
             \bluecomment{Note: Second derivative is undefined.}
         \end{enumerate}
     \end{example}
+    \begin{theorem}[Fuch]\label{thm:Fuch}\marginnote{Lecture 18}
+       \begin{enumerate}
+           \item If $x_0$ is ordinary, then there are two linearly independent solutions of the form
+           \[
+               y=\sum_{n=0}^{\infty} a_n (x-x_0)^n
+           ,\]
+           convergent in some regions around $x_0$.
+           \item If $x_0$ is a regular singular point, then there is \textit{at least one} solution of the form 
+           \[
+               y=\sum_{n=0}^{\infty}a_n(x-x_0)^{n+\sigma}
+           ,\]
+           where $ \sigma\in \mathbb{R} $ and $a_0\neq 0$.
+       \end{enumerate} 
+    \end{theorem}
+    \begin{example}
+        Consider 
+        \[
+            (1-x^2)y''+2xy'+2y=0\tag{$*$}
+        .\]
+        We find series solutions about $x=0$. Firstly divide $(1-x^2)$:
+        \[
+            y''-\frac{2x}{(1-x^2)}y'+\frac{2}{1-x^2}y=0
+        .\]
+        Hence $x=0$ is ordinary and we can plug in the form in 1.:
+        \[
+            y=\sum_{n=0}^{\infty}a_n x^n, y'=\sum_{n=1}^{\infty} na_nx^{n-1}, y''=\sum_{n=2}^{\infty }n(n-1)a_nx^{n-2}
+        .\]
+        \[
+            \begin{aligned}
+                x^2 \times (*) &\Longrightarrow (1-x^2)x^2y''-2x^2xy'+2x^2y=0\\
+                &\Longleftrightarrow \sum_{n=2}^{\infty}a_nn(n-1)(1-x^2)x^n-2 \sum_{n=1}^{\infty}a_n(nx^2)x^n+2 \sum_{n=0}^{\infty}a_n x^2x^{n}=0.\\
+            \end{aligned}
+        \]
+        Equate coefficients of $x^n$ for $n\ge 2$:
+        \[
+            a_n(n(n-1))-a_{n-2}(n-2)(n-3)-2a_{n-2}(n-2)+2a_{n-2}=0
+        .\]
+        This is a discrete equation for $a_n$. Write in standard form:
+        \[
+            n(n-1)a_n=(n^2-3n)a_{n-2} \Longleftrightarrow a_n = \frac{n-3}{n-1}a_{n-2}
+        .\]
+        Note that $a_0,a_1$ are not set by this recurrence relation and are arbitrary constants set by ICs. Note also that since $a_3=0$, $a_{2n+1}=0$ for $n\ge 1$. For $n$ even, 
+        \[
+            a_n=\frac{-1}{n-1}a_0
+        .\]
+        Therefore,
+        \[
+            y=a_1x+a_0\left( 1-x^2-\frac{x^4}{3}-\frac{x^6}{5}+\cdots \right)
+        .\]
+        From the fact that $ \ln (1\pm x) = \pm x-\frac{x^2}{2}\pm \frac{x^3}{3}-\cdots $ and that
+        \[
+            \begin{aligned}
+                 \ln \left( \frac{1+x}{1-x} \right)&= \ln (1+x)-\ln (1-x)\\
+                &= 2x+2\frac{x^3}{3}+\cdots,
+            \end{aligned}
+        \]
+        we have 
+        \[
+            y=a_1 x+a_0\left( 1-\frac{x}{2}\ln \left( \frac{1+x}{1-x} \right) \right)
+        .\]
+        Note that behaviour near $x=\pm 1$ is singular and will be discussed  later.
+    \end{example}
+    \begin{example}
+        Consider
+        \[
+            4xy''+2(1-x^2)y'-xy=0\tag{$**$}
+        .\]
+        We find series solutions about $x=0$. Clearly $0$ is a regular singular point. Hence try
+        \[
+            \begin{aligned}
+                y&=\sum_{n=0}^{\infty}a_nx^{n+\sigma}, a_0\neq 0\\
+                y'&= \sum_{n=0}^{\infty}a_n(n+\sigma)x^{n+\sigma-1}\\
+                y''&=\sum_{n=0}^{\infty} a_n(n+\sigma)(n+\sigma-1)x^{n+\sigma-2}.
+            \end{aligned}
+        \]
+        \[
+            \begin{aligned}
+                 x \times (**)&\Longrightarrow 4x^2y''+2(1-x^2)xy-x^2y=0\\
+                &\Longleftrightarrow \sum_{n=0}^{\infty}a_nx^{n+\sigma}\left( 4(n+\sigma)(n+\sigma-1)+2(1-x^2)(x+\sigma)-x^2 \right)=0.
+            \end{aligned}
+        \]
+        Equate coefficients of $x^{n+\sigma}$ for $n\ge 2$:
+        \[
+            a_n\left( 4(n+\sigma)(n+\sigma-1)+2(n+\sigma) \right)+a_{n-2}\left( -2(n-2+\sigma)-1 \right)=0
+        .\]
+        Which is 
+        \[
+            2(n+\sigma)(2n+2\sigma-1)a_n=(2n+2\sigma-3)a_{n-2}
+        .\]
+        To find $\sigma$, equate coefficients of lowest powers of $x$. Set $n=0$ and equate coefficients of $x^\sigma$:
+        \[
+            a_0(4\sigma(\sigma-1)+2\sigma)=0 \Longleftrightarrow 4\sigma(\sigma-1)+2\sigma=0 \Longleftrightarrow \sigma=0,\frac{1}{2}
+        .\]
+        If $ \sigma=0 $, equate coefficients of lowest powers of $x$. For $n=0$, the coefficient of $x_0$ is $a_0(0)=0$, so $a_0$ is arbitrary. For $n=1$, $ a_1(4 \cdot 1 \cdot 0)+a_1 \cdot 2 \cdot 1=0 \Leftrightarrow a_1=0 $. For $n\ge 2$ the recurrence relation applies so 
+        \[
+            a_n = \frac{2n-3}{2n(2n-1)}a_{n-2}
+        .\]
+        Note that for odd $n$ $a_n=0$. Therefore,
+        \[
+            y_1=a_0\left( 1+\frac{x^2}{4\cdot 3}+\frac{5x^4}{8\cdot 7\cdot 4\cdot 3}+\cdots \right)
+        .\]
+
+        If $\sigma=1/2$, then 
+        \[
+            2n(2n+1)b_n\marginnote{use different lables to avoid confusion} = (2n-2)b_{n-2}
+        .\]
+        If $n=0$, 
+        \[
+            4\cdot \frac{1}{2}\cdot \left( -\frac{1}{2} \right)b_0+2\cdot \frac{1}{2}b_0=0 \Longleftrightarrow b_0 \text{ is arbitrary}
+        .\]
+        If $n=1$,
+        \[
+            \left( 4(1+\frac{1}{2})\cdot \frac{1}{2}+2(1+\frac{1}{2}) \right)b_1=0 \Longleftrightarrow b_1=0
+        .\]
+        Hence,
+        \[
+            y_2=b_0x^{\sfrac{1}{2}}\left( 1+\frac{x^2}{2\cdot 5}+\frac{3x^4}{2\cdot 5\cdot 4\cdot 9}+\cdots \right)
+        .\]
+        Here we found 2 linearly independent solutions.
+    \end{example}
 \end{document}
