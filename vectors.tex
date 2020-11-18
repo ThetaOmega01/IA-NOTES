@@ -727,15 +727,15 @@ skipped some talks irrelevant to contents\\
     \begin{definition}
         For a vector space $V$, a \textit{basis} is a set 
         \[
-            \mathfrak{B}= \left\{ e_1,\dots, e_n\right\}
+            \mathcal{B}= \left\{ e_1,\dots, e_n\right\}
         \]
         such that 
         \begin{enumerate}[(i)]
-            \item $ \mathfrak{B} $ spans $V$. i.e., $ \forall v\in V $, 
+            \item $ \mathcal{B} $ spans $V$. i.e., $ \forall v\in V $, 
             \[
                 v = \sum_{i=1}^{n}v_i e_i
             .\]
-            \item $ \mathfrak{B} $ is linearly independent.
+            \item $ \mathcal{B} $ is linearly independent.
         \end{enumerate}
         Given (ii), the coefficients $v_i$ in (i) are unique, since 
         \[
@@ -2515,4 +2515,52 @@ skipped some talks irrelevant to contents\\
             \item Rotation about axis $ \bfn $ through angle $ \theta $ in $ \mathbb{R}^{3} $. We have $ R\bfn=\bfn $ and there are no real eigenvalues unless $ \theta=n\pi $, rotation restricted the plane perpendicular to $\bfn$ has eigenvalues $ e^{\pm i\theta} $, as in previous example (iii) in 25.1.2.
         \end{enumerate}
     \end{example}
+    \subsubsection{Linear Independence of Eigenvectors}
+    \begin{proposition}\marginnote{Lecture 18}
+        Let $ \bfv_1,\bfv_2,\dots, \bfv_r $ be eigenvectors of a matrix $A\in \mcM_{n\times n}$ with eigenvalues $ \lambda_1,\dots,\lambda_r $. If the eigenvalues are distinct $ \lambda_i\neq \lambda_j, \forall i\neq j $, then $ \bfv_1,\dots,\bfv_r $ are linearly independent.
+    \end{proposition}
+    \begin{proof}
+        Note that $ \bfw=\sum_{j=1}^{r} \alpha_j \bfv_j $ then 
+        \[
+            (A-\lambda I)=\sum_{j=1}^{r} \alpha_j(\lambda_j-\lambda)\bfv_j
+        .\]
+        We have two methods.
+        \begin{enumerate}[align=hang,label=Method \arabic*.]
+            \item By contradiction. Suppose that $\bfv_i$ are linearly dependent, so there exists a linear combination $ \bfw= \mathbf{0} $ with number $p$ of non-zero coefficients $ \ge 2 $. Pick such a $\bfw$ such that the number is the least. Wlog suppose $ \alpha_1 \neq 0$. Then 
+            \[
+                (A-\lambda_1 I)\bfw= \sum_{j>1}\alpha_j(\lambda_j-\lambda_1 )\bfv_j=\mathbf{0}
+            .\]
+            This is a linear relation with $p-1$ non-zero coefficients, \#.
+            \item Given a relation $ \bfw=\mathbf{0} $, 
+            \[
+                \bfw=\mathbf{0} \Longrightarrow \prod_{j\neq k}(A-\lambda_j I)\bfw=\alpha_k\prod_{j\neq k}(A-\lambda_j I) \bfv_k=\mathbf{0}
+            ,\]
+            for $k$ fixed. Since $ \lambda_i $ are distinct, $ \alpha_k=0 $. i.e. they are linearly independent.
+        \end{enumerate}
+    \end{proof}
+    \begin{corollary}
+            With conditions as in proposition, let $ \mathcal{B}_{\lambda_i} $ be a basis for $ E_{\lambda_i},i=1,\dots,r $, then 
+            \[
+                \bigcup_{i=1}^{r} \mcB_{\lambda_i}
+            \]
+            is linearly independent.
+    \end{corollary}
+    \begin{proof}
+        Consider a general linear combination of all the vectors, it has the form 
+        \[
+            \bfw=\bfw_1+\bfw_2+ \cdots +\bfw_r
+        \]
+        where each $\bfw_i\in E_{\lambda_i}$. By proposition, $ \bfw=0 \Rightarrow \bfw_i=0 \Rightarrow  $ all the coefficients $=0$. Hence they are linearly independent.
+    \end{proof}
+    \section{Diagonalisability and Similarity}
+    \subsection{Introduction}
+    \begin{proposition}
+        For an $n\times n$ matrix $A$ acting on $V=\mathbb{R}^{n}$ or $ \mathbb{C}^{n} $, the followings are equivalent:
+        \begin{enumerate}
+            \item There exists a basis of eigenvectors for $V$
+            \[
+                \bfv_1,\dots,\bfv_n \text{ with }A\bfv_i=\lambda_i\bfv_i
+            .\]
+        \end{enumerate} 
+    \end{proposition}
 \end{document}

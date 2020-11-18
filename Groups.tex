@@ -1533,7 +1533,7 @@ skipped some takes irrelevant to contents\\
                 1,1,1,1 & $e$ & 1 & $24/1=24$ &1 \\
                 2,1,1 & $(1\ 2)$ & 6 & 4 &-1 \\
                 2,2 & $(1\ 2)(3\ 4)$ & 3 & 8 &1 \\
-                3,1 & $(1\ 2\ 3)$ & 8 & 4 &1 \\
+                3,1 & $(1\ 2\ 3)$ & 8 & 3 &1 \\
                 4 & $(1\ 2\ 3\ 4)$ & 6 & 4 &-1 \\
             \end{tabular}
         \end{center}
@@ -1564,6 +1564,7 @@ skipped some takes irrelevant to contents\\
         Can repeat this with $S_5$.
       \end{example}
       \subsection{Conjugation in $A_n$}
+
       Note that 
       \[
           \ccl_{A_n}(\sigma)=\left\{ \tau \sigma\tau^{-1}:\tau\in A_n \right\} \subseteq \ccl_{S_n}(\sigma)
@@ -1571,4 +1572,103 @@ skipped some takes irrelevant to contents\\
       But elements that are conjugate in $S_n$ may not be conjugate in $A_n$. e.g., $ (23)(123)(23)=(132) $ in $S_3$ but $ (23)\notin A_3 $ so there is no other elements forming the conjugation.
 
       However, in $S_5, (23)(45)(123)(45)(23)=(132)$, so $ (123),(132) $ are conjugate in $A_5$.
+
+      Some conjugacy classes may split into smaller conjugacy classes in $A_n$. But how?\marginnote{Lecture 18.}
+
+      By orbit-stabliser, $ |S_n|=|\ccl_{S_n}(\sigma)||C_{S_n}(\sigma)| $ and $ |A_n|=|\ccl_{A_n}(\sigma)||C_{A_n}(\sigma)| $. But $ |S_n|=2|A_n| $ and $ |\ccl_{A_n}(\sigma)|\le |\ccl_{S_n}(\sigma)| $, so either
+      \[
+        \ccl_{A_n}(\sigma)=\ccl_{S_n}(\sigma) \text{ and } |C_{A_n}(\sigma)|=\frac{1}{2}|C_{S_n}(\sigma)|
+      \]
+      or
+      \[
+        |\ccl_{A_n}(\sigma)|=\frac{1}{2} |\ccl_{S_n}(\sigma)|\text{ and } C_{A_n}(\sigma)=C_{S_n}(\sigma)
+      .\]
+      \begin{definition}
+          When $|\ccl_{A_n}(\sigma)|=\frac{1}{2} |\ccl_{S_n}(\sigma)|$, we say that the conjugacy class of $ \sigma $ \textit{splits} in $A_n$.
+      \end{definition}
+      To see when it happens, we have the following proposition:
+      \begin{proposition}\label{prop:5.28}
+          The ccl of $ \sigma $ in $A_n$ splits in $A_n$ if and only if no odd permutations commute with $\sigma$.
+      \end{proposition}
+      \begin{proof}
+          Note that 
+          \[
+            |\ccl_{A_n}(\sigma)|=\frac{1}{2} |\ccl_{S_n}(\sigma)| \Longleftrightarrow C_{A_n}(\sigma)=C_{S_n}(\sigma)
+          ,\]
+          so $ C_{A_n}(\sigma)=A_n \cap C_{S_n}(\sigma) $. However, $ A_n \cap C_{S_n}(\sigma) =C_{S_n}(\sigma) $ if and only if $C_{S_n}(\sigma)$ has no odd elements. i.e., no odd permutations commute with $ \sigma $.
+      \end{proof}
+      \begin{example}[Conjugate classes of $A_4$]
+        \begin{center}
+            \begin{tabular}{c|c|c|c|c}
+                Cycle Type & Example Element & Odd element in $C_{S_4}$? & $|\ccl_{S_4}|$ & $|\ccl_{A_4}|$ \\
+                \hline 
+                1,1,1,1 & $e$ & yes, eg. $(1\ 2)$ & 1 & 1\\
+                2,2 & $(1\ 2)(3\ 4)$ & yes eg. $(1\ 2)$ & 3 & 3\\
+                3,1 & $(1\ 2\ 3)$ & no\marginnote{Since $ |C_{S_4}|=3 $ and clearly contains $(123)$ itself, so $ C_{S_4}=\langle (123) \rangle $} & 8 & 4 and 4\\
+            \end{tabular}
+        \end{center}
+      \end{example}
+      \begin{example}[Conjugate classes of $A_5$]
+        \begin{center}
+            \begin{tabular}{c|c|c|c|c}
+                Cycle Type & Example Element & Odd element in $C_{S_5}$? & $|\ccl_{S_5}|$ & $|\ccl_{A_5}|$ \\
+                \hline 
+                1,1,1,1,1 & $e$ & yes, eg. $(1\ 2)$ & 1 & 1\\
+                2,2,1 & $(1\ 2)(3\ 4)$ & yes eg. $(1\ 2)$ & 15 & 15\\
+                3,1,1 & $(1\ 2\ 3)$ & yes eg. $(4\ 5)$ & 20 & 20\\
+                5 & $(1\ 2\ 3\ 4\ 5)$ & no, see lemma & 24 & 12 and 12\\
+            \end{tabular}
+        \end{center}
+        \begin{lemma}\label{lma:5.31}
+            $ C_{S_5}(12345)=\langle (12345) \rangle $.
+        \end{lemma}
+        \begin{proof}
+            Note that $ |\ccl(12345)|=5!/5=24 $. By orbit-stabliser, $ |C_{S_5}(12345)|=5 $, and it is clear that $C_{S_5}(12345)=\langle (12345) \rangle$.
+        \end{proof}
+      \end{example}
+      \begin{theorem}\label{thm:5.32}
+          $A_5$ is a simple group.
+      \end{theorem}
+      \begin{proof}
+          Normal subgroups must be unions of conjugacy classes, must contain $e$ and the order must divide $|A_5|=60$. The sizes of conjugacy classes in $A_5$ are $1,15,20,12,12$. The only ways of adding 1 plus some of the sizes to get a number dividing 60 are $ 1 $ and $ 1+15+20+12+12=60 $. Hence the normal subgroups of $A_5$ are $\{e\}$ and $A_5$. Therefore it is simple. 
+      \end{proof}
+      \begin{remark}
+          All $A_n, n\ge 5$ are simple.
+      \end{remark}
+      
+      \section{The \mobius Group Revisited}
+      We now have the tools to study the actions of the \mobius group $ \mathcal{M} $.
+      \begin{remark}
+          The definition of \mobius maps defines an action $ \mcM \curvearrowright \hat{\mathbb{C}} $.
+      \end{remark}
+      \begin{proposition}\label{prop:6.1}
+          The action $ \mcM \curvearrowright \hat{\mathbb{C}} $ is faithful, and so $ \mcM\le \sym(\hat{\bbC}) $.
+      \end{proposition}
+      \begin{proof}
+          Consider $ \rho: \mcM \to \sym(\hat{\bbC}) $ defined by $ \rho(f)(z)=f(z) $. Can verify that $ \rho $ is injective and the action is faithful.
+      \end{proof}
+      \begin{definition}
+          A \textit{fixed point} of a \mobius map $f$ is a point $z\in \hat{\bbC}$ such that $ f(z)=z $.
+      \end{definition}
+      \begin{theorem}\label{thm:6.3}
+          A \mobius map with $\ge 3$ fixed points is the identity.
+      \end{theorem}
+      \begin{proof}
+          Let $ f=az+b/cz+d $ have $\ge 3$ fixed points. Then if $\infty$ is not a fixed point,
+          \[
+             \frac{az+b}{cz+d}=z \Longleftrightarrow cz^2+(d-a)z-b=0
+          \]
+          has $\ge 3$ roots. But a quadratic equation has $\le 2$ roots, so $c=b=0$ and $d=a$. i.e., $f$ is the identity.
+          If $\infty$ is a fixed point, so $ a/c=\infty \Leftrightarrow c=0 $. So 
+          \[
+              \frac{az+b}{d}=z \Longleftrightarrow (a-d)z+b=0
+          \]
+          has $\ge 2$ roots, and similarly $f$ is the identity.
+      \end{proof}
+      \begin{corollary}\label{col:6.4}
+              If two \mobius maps coincide on 3 distinct points in $ \hat{\bbC} $ then they are equal.\marginnote{Knowing what a \mobius map does on 3 distinct points in $ \hat{\bbC} $ \textit{uniquely} determines it.}
+      \end{corollary}
+      \begin{proof}
+          Apply theorem \ref{thm:6.3} on $g^{-1}f$.
+      \end{proof}
 \end{document}
