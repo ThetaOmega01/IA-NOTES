@@ -2445,7 +2445,7 @@ skipped some talks irrelevant to contents\\
     \end{proposition}
     \begin{proof}
         See secion 25.3.
-    \end{proof}\newpage
+    \end{proof}
     \subsubsection{Examples}
     \begin{example}
         \begin{enumerate}[(i)]
@@ -2454,7 +2454,7 @@ skipped some talks irrelevant to contents\\
                 A=\begin{pmatrix}
                     -2 & 2 & -3 \\
                     2 & 1 & -6 \\
-                    1 & -2 & 0
+                    -1 & -2 & 0
                 \end{pmatrix}\Longrightarrow \chi_A(t)=\det (A-tI)=(5-t)(t+3)^2
             .\]
             Hence roots are $ \lambda=5,-3 $, $-3$ twice, so that $ M_5=1, M_{-3}=2 $.
@@ -2502,9 +2502,9 @@ skipped some talks irrelevant to contents\\
             \[
                 E_{-2}=\left\{ \alpha\begin{pmatrix}
                     -1\\1\\0
-                \end{pmatrix} \right\}+\beta\begin{pmatrix}
+                \end{pmatrix}+\beta\begin{pmatrix}
                     1\\0\\1
-                \end{pmatrix}
+                \end{pmatrix} \right\}
             .\]
             Hence $ \dim E_{-2}=m_{-2}=2<M_{-2} $.
             \item Reflection in plane through the origin with unit normal vector $ \bfn $. Notice that
@@ -2560,7 +2560,128 @@ skipped some talks irrelevant to contents\\
             \item There exists a basis of eigenvectors for $V$
             \[
                 \bfv_1,\dots,\bfv_n \text{ with }A\bfv_i=\lambda_i\bfv_i
-            .\]
+            ,\]
+            no summation convention.
+            \item There exists $n\times n$ invertible matrix $P$ such that 
+            \[
+                P^{-1}AP=D, D=\begin{pmatrix}
+                    \lambda_1&&0\\
+                    &\ddots&\\
+                    0&&\lambda_n
+                \end{pmatrix}
+            ,\]
+            $D$ is called the diagonal matrix.
+
+            If either holds, $A$ is \textit{diagonalisable}.
         \end{enumerate} 
     \end{proposition}
+    \begin{proof}
+        Note that for any matrix $P$, $AP$ has columns $ A\bfC_i(P) $, $PD$ has columns $ \lambda_i \bfC_i(P) $. Then 1. and 2. are related by choosing $ \bfv_i=\bfC_i(P) $, then 
+        \[
+            P^{-1}AP=D \Longleftrightarrow AP=PD \Longleftrightarrow A\bfv_i=\lambda_i\bfv_i
+        .\]
+        i.e., given a basis as in 1., the relation defines a matrix $P$ and conversely, given a matrix $P$ in 2. we can form a basis of eigenvectors.
+    \end{proof}
+    \begin{example}
+        \begin{enumerate}[(i)]
+            \item Refer back to 25.1.2 (ii) $ A=\begin{pmatrix}
+                1&1\\0&1
+            \end{pmatrix} $. We found that $ E_1=\left\{ \alpha\begin{pmatrix}
+                1\\0
+            \end{pmatrix} \right\} $. This is a single eigenvalue with one linearly independent eigenvector. Hence there is no basis for eigenvectors in $ \mathbb{R}^{2} $ or $ \mathbb{C}^{2} $.
+            \item Refer back to 25.1.2 (iii) where $U = \begin{pmatrix}
+                \cos \theta&-\sin \theta\\
+                \sin \theta&\cos \theta
+            \end{pmatrix}$, found eigenvalues $ e^{\pm i\theta} $. The eigenvectors are $ \begin{pmatrix}
+                1\\\mp i
+            \end{pmatrix} $, which are linearly independent over $\mathbb{C}$.
+
+            Set $ P=\begin{pmatrix}
+                1&1\\-i&i
+            \end{pmatrix} $, then $ P^{-1}=\dfrac{1}{2}\begin{pmatrix}
+                1&i\\1&-i
+            \end{pmatrix} $ and 
+            \[
+                P^{-1}UP=\begin{pmatrix}
+                    e^{i\theta}&0\\
+                    0&e^{-i\theta}
+                \end{pmatrix}
+            .\]
+            $U$ is diagonalisable over $ \mathbb{C}  $ but not over $ \mathbb{R}  $.
+        \end{enumerate}
+    \end{example}
+    \subsection{Criteria for Diagonalisability}
+    \begin{proposition}
+        Consider $n\times n$ matrix $A$.
+        \begin{enumerate}
+            \item $A$ is diagonalisable if it has $n$ distinct eigenvalues.(sufficient condition)
+            \item $A$ is diagonalisable if and only if $ \forall \lambda $, $ M_\lambda=m_\lambda $.
+        \end{enumerate}
+    \end{proposition}
+    \begin{proof}
+        \begin{enumerate}
+            \item If we have $n$ distinct eigenvalues then we have $n$ distinct eigenvectors so they form a basis.
+            \item If $ \lambda_1,\dots,\lambda_r $ are all distinct eigenvalues, then 
+            \[
+                \bigcup_{i=1}^{r}\mcB_{\lambda_i}
+            \]
+            is linearly independent. But \# of elements is 
+            \[
+                \sum_i m_{\lambda_i}=\sum_i M_{\lambda_i}=n,\ \deg \text{ of } \chi
+            .\]
+            Hence we have a basis for eigenvalues.
+        \end{enumerate}
+    \end{proof}
+    \begin{remark}
+        Case 1. is a special case of 2. where $ M_\lambda=m_\lambda=1 $.
+    \end{remark}
+    \begin{example}
+        \begin{enumerate}[(i)]
+            \item $A=\begin{pmatrix}
+                -2 & 2 & -3 \\
+                2 & 1 & -6 \\
+                -1 & -2 & 0
+            \end{pmatrix}$. $ \lambda=5,13 $, $ M_5=m_5=1, M_{-3}=m_{-3}=2 $. Hence $A$ is diagonalisable. We have
+            \[
+                P=\begin{pmatrix}
+                    1&-2&3\\
+                    2&1&0\\
+                    -1&0&1
+                \end{pmatrix} \Longrightarrow P^{-1}=\frac{1}{8}\begin{pmatrix}
+                    1&2&-3\\
+                    -2&4&6\\
+                    1&2&5
+                \end{pmatrix}\Longrightarrow 
+                P^{-1}AP=\begin{pmatrix}
+                    5&0&0\\
+                    0&-3&0\\
+                    0&0&-3
+                \end{pmatrix}
+            .\]
+            \item $ A=\begin{pmatrix}
+                -3&-1&1\\
+                -1&-3&1\\
+                -2&-2&0
+            \end{pmatrix}$, $ \lambda=-2 $. $ M_{-2}=3>M_{-2}=2 $. $A$ is not diagonalisable.
+        \end{enumerate}
+    \end{example}
+    \subsection{Similarity}
+    \begin{definition}
+        $ A,B\in \mcM_{n\times n} $ are \textit{similar} if 
+        \[
+            B=P^{-1}AP
+        \]
+        for some $ P\in \mcM_{n \times n} $. This is an equivalence relation.
+    \end{definition}
+    \begin{proposition}
+        If $A$ and $B$ are similar, then 
+        \begin{enumerate}
+            \item $ \tr B=\tr A $,
+            \item $ \det B=\det A $,
+            \item $ \chi_B(t)=\chi_A(t) $.
+        \end{enumerate}
+    \end{proposition}
+    \begin{proof}
+        $ \tr B=\tr P^{-1}AP=\tr APP^{-1}=\tr A $. $ \det B=\det P^{-1}AP=\det P^{-1}\det A \det P=\det A $. $ \det (B-tI)=\det (P^{-1}AP-tP^{-1}P)=\det (P^{-1}(A-tI)P)=\det (A-tI) $.
+    \end{proof}
 \end{document}
