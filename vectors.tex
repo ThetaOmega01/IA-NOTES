@@ -2312,7 +2312,7 @@ skipped some talks irrelevant to contents\\
 
     We can find eigenvalues as roots of characteristic polynomial and then determine corresponding eigenvectors.
     \subsubsection{Examples}
-    \begin{example}
+    \begin{example}\label{eg:25.1.2}
         \begin{enumerate}[(i)]
             \item $V=\mathbb{C}^{2}, A=\begin{pmatrix}
                 2&i\\-i&2
@@ -2443,8 +2443,44 @@ skipped some talks irrelevant to contents\\
     \begin{proposition}
         $ M_\lambda\ge m_\lambda $. Note that $ m_\lambda\ge 1 $ since $ \lambda $ is a root of $ \chi_A(t) $.
     \end{proposition}
-    \begin{proof}
-        See secion 25.3.
+    \begin{proof}(Non-examinable) Let $\lambda$ be an eigenvalue of $A\in \mcM_{n\times n}$ and choose a basis for the eigenspace $ E_\lambda $:
+        \[
+            \bfv_1,\bfv_2,\dots,\bfv_r.
+        \]
+        Extend this to a basis of $ \mathbb{R}^{n} $ or $ \mathbb{C}^{n} $:
+        \[
+            \mcB=\left\{ \bfv_1,\dots,\bfv_r,\bfw_{r+1},\dots, \bfw_{n} \right\}.
+        \]
+        Now since $\bfv_i$ are eigenvectors, we have 
+        \[
+            A \bfv_i = \lambda \bfv_i.
+        \]
+        And since $\bfw_a$ are in the space,
+        \[
+            A \bfw_a = \sum_{i=1}^{r} B_{ia} \bfv_i + \sum_{b=r+1}^{n} B_{ba} \bfw_{b}.
+        \]
+        Let $P$ be the matrix of columns from $ \mcB $ and let $B$ be the matrix of entries such that $B_{ij}=\lambda \delta_{ij}$ for $i,j=1,\dots,r$, $B_{ai}=0$ and $ B_{ia},B_{ab} $ unknown for $ a,b=r+1,\dots,n $. That is,
+        \[
+            B = \begin{pmatrix}
+                \lambda I & M\\
+                O & \hat{B}
+            \end{pmatrix},
+        \]
+        where $I\in \mcM_{r\times r}$, $ \hat{B}\in \mcM_{(n-r)\times (n-r)} $, $O$ is a zero matrix, and $M$ is unknown. It follows that 
+        \[
+            AP=PB \Longleftrightarrow P^{-1}AP=B,
+        \] 
+        i.e., $A\sim B$. Therefore,
+        \begin{align*}
+            \chi_A(t)&=\chi_B(t)=det(B-tI)\\
+            &= \begin{vmatrix}
+                \lambda I & M\\
+                O & \hat{B}
+            \end{vmatrix}\\
+            &= \det ((\lambda-t)I)\det (\hat{B}-tI)\\
+            &= (\lambda-t)^{r}\det (\hat{B}-tI).
+        \end{align*}
+        It follows that $ M_\lambda\ge r = m_\lambda $, as claimed.
     \end{proof}
     \subsubsection{Examples}
     \begin{example}
@@ -2516,7 +2552,7 @@ skipped some talks irrelevant to contents\\
         \end{enumerate}
     \end{example}
     \subsubsection{Linear Independence of Eigenvectors}
-    \begin{proposition}\marginnote{Lecture 18}
+    \begin{proposition}\label{prop:eigenvectors linearly independent}\marginnote{Lecture 18}
         Let $ \bfv_1,\bfv_2,\dots, \bfv_r $ be eigenvectors of a matrix $A\in \mcM_{n\times n}$ with eigenvalues $ \lambda_1,\dots,\lambda_r $. If the eigenvalues are distinct $ \lambda_i\neq \lambda_j, \forall i\neq j $, then $ \bfv_1,\dots,\bfv_r $ are linearly independent.
     \end{proposition}
     \begin{proof}
@@ -2538,7 +2574,7 @@ skipped some talks irrelevant to contents\\
             for $k$ fixed. Since $ \lambda_i $ are distinct, $ \alpha_k=0 $. i.e. they are linearly independent.
         \end{enumerate}
     \end{proof}
-    \begin{corollary}
+    \begin{corollary}\label{col:basis of all eigenvectors}
             With conditions as in proposition, let $ \mathcal{B}_{\lambda_i} $ be a basis for $ E_{\lambda_i},i=1,\dots,r $, then 
             \[
                 \bigcup_{i=1}^{r} \mcB_{\lambda_i}
@@ -2554,7 +2590,7 @@ skipped some talks irrelevant to contents\\
     \end{proof}
     \section{Diagonalisability and Similarity}
     \subsection{Introduction}
-    \begin{proposition}
+    \begin{proposition}\label{prop:conditions for diag}
         For an $n\times n$ matrix $A$ acting on $V=\mathbb{R}^{n}$ or $ \mathbb{C}^{n} $, the followings are equivalent:
         \begin{enumerate}
             \item There exists a basis of eigenvectors for $V$
@@ -2686,4 +2722,150 @@ skipped some talks irrelevant to contents\\
         $ \det B=\det P^{-1}AP=\det P^{-1}\det A \det P=\det A $. \\
         $ \det (B-tI)=\det (P^{-1}AP-tP^{-1}P)=\det (P^{-1}(A-tI)P)=\det (A-tI) $.
     \end{proof}
+    \section{Hermitian and Symmetric Matrices}
+    \subsection{Real eigenvalues and Orthogonal Eigenvectors}\marginnote{Lecture 19}
+    Recall that a matrix $A\in \mcM_{n\times n}$ is \textit{hermitian} if and only if 
+    \[
+        A^{\dagger}=\overline{A}^T=A \Leftrightarrow \overline{A}_{ij}=A_{ji}.
+    \]
+    In the special case when $A$ is real and symmetric, we have 
+    \[
+        \overline{A}=A \land A^T=A \Leftrightarrow \overline{A}_{ij}=A_{ij}\land A_{ij}=A_{ji}.
+    \]
+    Recall also that the \textit{complex inner product} of $\bfv,\bfw \in \mathbb{C}^{n}$ is defined by 
+    \[
+        (\bfv,\bfw)= \bfv^\dagger \bfw= \bar{v}_i w_i.
+    \]
+    In $ \mathbb{R}^{n} $ it reduces to $ \bfv^T \bfw $.
+    \begin{lemma}
+        If $A$ is hermitian, then 
+        \[
+            (A\bfv)^\dagger \bfw=\bfv^\dagger (A\bfw),\quad \forall \bfv,\bfw\in \mathbb{C}^{n}.
+        \]
+    \end{lemma}
+    \begin{proof}
+        Indeed, 
+        \[
+            (A\bfv)^\dagger \bfw = \bfv^\dagger A^\dagger \bfw = \bfv^\dagger (A\bfw).
+        \]
+    \end{proof}
+    \begin{theorem}\label{thm:eigen for hermitians}
+        For a matrix $ A\in \mcM_{n\times n} $,
+        \begin{enumerate}
+            \item Every eigenvalue $ \lambda $ is real.
+            \item Eigenvectors $ \bfv,\bfw $ with different eigenvalues $ \lambda,\mu $ are orthogonal. That is,
+            \[
+                \bfv^\dagger \bfw=0.
+            \]
+            \item If $A$ is real and symmetric, then for each $ \lambda $ in 1. we can choose a real eigenvector $ \bfv $ and 2. becomes 
+            \[
+                \bfv^T\bfw=\bfv \cdot \bfw=0.
+            \]
+        \end{enumerate}
+    \end{theorem}
+    \begin{proof}
+        \begin{enumerate}
+            \item Note that 
+            \begin{align*}
+                & \bfv^\dagger (A\bfv)=(A\bfv)^\dagger \bfv\\
+                \Longrightarrow & \bfv^\dagger \lambda\bfv = (\lambda\bfv)^\dagger \bfv\\
+                \Longrightarrow & \lambda\bfv^\dagger \bfv=\bar{\lambda}\bfv^\dagger \bfv\\
+                \Longrightarrow & \lambda=\bar{\lambda}.
+            \end{align*}
+            \item Note that 
+            \begin{align*}
+                &\bfv^\dagger (A\bfw) = (A\bfv)^\dagger \bfw\\
+                \Longrightarrow & \mu \bfv^\dagger \bfw = \lambda \bfv^\dagger \bfw\\
+                \Longrightarrow & \bfv^\dagger \bfw=0.
+            \end{align*}
+            \item Given $ A\bfv=\lambda\bfv $, where $A,\lambda$ are real, let 
+            \[
+                \bfv=\bfu+i\bfu',
+            \]
+            where $ \bfu,\bfu'\in \mathbb{R}^{n} $. By equating real and imaginary parts,
+            \[
+                A\bfu=\lambda\bfu,\quad A\bfu'=\lambda\bfu'.
+            \]
+            But $ \bfv\neq \mathbf{0} $, so at least one of $ \bfu,\bfu' $ is non-zero, and thus there is a real eigenvector.
+        \end{enumerate}
+    \end{proof}
+    \begin{remark}
+        Refer to proposition \ref{prop:eigenvectors linearly independent}. For hermitian matrices we have this stronger result.
+    \end{remark}
+    In previous discussion(corollary \ref{col:basis of all eigenvectors}) we considered bases $ \mcB_{\lambda} $ for each eigenspace $ E_\lambda $. Now it is natural to choose them orthogonally.
+    \begin{example}
+        \begin{enumerate}[(i)]
+            \item Refer to example \ref{eg:25.1.2} and let $ A = \begin{pmatrix}
+                2&i\\-i&2
+            \end{pmatrix} $. $A$ is hermitian, so by theorem, the eigenvectors should be orthogonal.
+
+            Indeed, if we take $ \bfu_1^T=\frac{1}{\sqrt{2}}(1,i), \bfu_2^T=\frac{1}{\sqrt{2}}(1,-i) $, then $ \bfu_1^\dagger \bfu_2=\frac{1}{\sqrt{2}}(1-1)=0 $, as expected. By choice, they are orthonormal in addition. Since the eigenvalues are distinct, we can choose $ \displaystyle P = \frac{1}{\sqrt{2}}\begin{pmatrix}
+                1&1\\i&-i
+            \end{pmatrix} $ so that 
+            \[
+                P^{-1}AP=\begin{pmatrix}
+                    1&0\\
+                    0&3
+                \end{pmatrix}.
+            \]
+            Observe that the columns of $P$ are orthonormal, so $P$ is unitary.
+            \item Consider $ A = \begin{pmatrix}
+                0&1&1\\
+                1&0&1\\
+                1&1&0
+            \end{pmatrix} $. It is real and symmetric. $ \lambda=-1,2 $, and $ M_{-1}=2, M_{2}=1 $. To find an orthonormal basis for $ E_{-1} $, firstly note that by considering $ \ker (A+I) $, 
+            \[
+                E_{-1}=\spn\left\{ \bfw_1,\bfw_2 \right\}, \text{ where } \bfw_1=\begin{pmatrix}
+                    1\\-1\\0
+                \end{pmatrix}, \bfw_2=\begin{pmatrix}
+                    1\\0\\-1
+                \end{pmatrix}.
+            \]
+            Normalise $\bfw_1$:
+            \[
+                \bfu_1=\frac{1}{|\bfw_1|}=\frac{1}{\sqrt{2}}\begin{pmatrix}
+                    1\\-1\\0
+                \end{pmatrix}
+            \]
+            Subtract the \textit{projection} of $\bfu_1$ on $\bfw_2$:
+            \[
+                \bfw_2'=\bfw_2-(\bfu_1 \cdot \bfw_2)\bfu_1=\begin{pmatrix}
+                    1/2\\1/2\\-1
+                \end{pmatrix}.
+            \]
+            By construction, $ \bfw_2' \perp \bfu_1 $. Finally, normalise $ \bfw_2' $ to $ \bfu_2^T=\frac{1}{\sqrt{6}}(1,1,-2) $, and thus $ \mcB_{-1}=\left\{ \bfu_1,\bfu_2 \right\} $ is an orthonormal basis for $ E_{-1} $.
+
+            Similarly, $ \mcB_2=\left\{ \bfu_3 \right\} , \bfu_3^T=\frac{1}{\sqrt{3}}(1,1,1)$. Then $ \mcB=\mcB_{-1}\cup \mcB_2 $ is an orthonormal basis for $ \mathbb{R}^{3} $.
+
+            Let $ \mcM_{n\times n}\ni P=(\bfu_1\ \bfu_2\ \bfu_3) $, then 
+            \[
+                P^{-1}AP=\begin{pmatrix}
+                    -1&0&0\\
+                    0&-1&0\\
+                    0&0&2
+                \end{pmatrix}.
+            \]
+            Furthermore, since $ \bfu_i $ are orthonormal, $ P $ is orthogonal.
+        \end{enumerate}
+    \end{example}
+    These are typcal examples of hermitian(real and symmetric) matrices which are diagonalisable. In fact, all of them are diagonalisable:
+    \subsection{Unitary and Orthogonal Diagonalisation}
+    \begin{theorem}\label{thm:all hermitians are diag}
+        Any $n\times n$ hermitian matrix is diagonalisable, so 
+        \begin{enumerate}
+            \item $ \exists $ a basis of eigenvectors $ \bfu_1,\dots,\bfu_n $ of $ \mathbb{C}^{n} $ with $ A\bfu_i=\lambda_i\bfu_i $, and equivalently 
+            \item $ \exists P\in \mcM_{n\times n} $ invertible such that 
+            \[
+                P^{-1}AP=D=\begin{pmatrix}
+                    \lambda_1&&0\\
+                    &\ddots&\\
+                    0&&\lambda_n
+                \end{pmatrix},
+            \]
+            with columns of $P$ be the eigenvectors $\bfu_i$.
+        \end{enumerate}
+        In addition, $\bfu_i$ can be chosen to be \textit{orthonormal} and $P$ can be chosen to be \textit{unitary}($ P^\dagger AP=D $).
+
+        Particularly when $A$ is real and symmetric, $ \bfu_i $ can be chosen to be real and orthonormal, and $P$ can be chosen to be orthogonal($ P^TAP=D $).
+    \end{theorem}
 \end{document}
