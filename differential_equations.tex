@@ -1900,4 +1900,80 @@ skipped some talks irrelevant to contents\\
         .\]
         Here we found 2 linearly independent solutions.
     \end{example}
+    \subsection{Special cases of the indicial equation}\marginnote{Lecture 19.}
+    Consider an expension about $x=x_0$, and let $ \sigma_1,\sigma_2 $ be the roots of initial indicial equation. The following proposition helps to determine the form of series solution. wlog, suppose $ \sigma_1\le \sigma_2 $.
+    \begin{proposition}\label{prop:indicial equation}
+        We have the following cases:
+        \begin{enumerate}[align=hang, label=\textbf{case} \arabic*]
+            \item $ \sigma_1-\sigma_2\notin \mathbb{Z} $, then there are two linearly independent solutions of form 
+            \[
+                y=(x-x_0)^{\sigma_1}\sum_{n=0}^{\infty} a_n(x-x_0)^n+(x-x_0)^{\sigma_2}\sum_{n=0}^{\infty} b_n(x-x_0)^n.
+            \]
+            Note that $ y\sim (x-x_0)^{\sigma_1} $ as $ x\to 0 $.
+            \item $ \sigma_1-\sigma_2\in \mathbb{Z} $. Then the solutions are of the form 
+            \begin{align*}
+                y_1&= (x-x_0)^{\sigma_2}\sum_{n=0}^{\infty} a_n(x-x_0)^n,\\
+                y_2&=(x-x_0)^{\sigma_1}\sum_{n=0}^{\infty} b_n(x-x_0)^n+cy_1 \ln (x-x_0),
+            \end{align*}
+            where $c$ may or maynot be 0.
+            \item $ \sigma_1=\sigma_2=\sigma $, here $c\neq 0$ so 
+            \begin{align*}
+                y_1&= (x-x_0)^{\sigma}\sum_{n=0}^{\infty} a_n(x-x_0)^n,\\
+                y_2&=(x-x_0)^{\sigma}\sum_{n=0}^{\infty} b_n(x-x_0)^n+y_1 \ln (x-x_0).\marginnote{Since any $c$ will just add a constant multiple in the combination $ \alpha y_1+\beta y_2 $, we can take $c=1$.}
+            \end{align*}
+        \end{enumerate}
+    \end{proposition}\newpage
+    \begin{example}
+        Consider the equation
+        \begin{equation}\label{eq:19.1}
+            x^2y''-xy=0
+        \end{equation}
+        and find the series solutions at $x=0$. This is a regular singular point, so try
+        \begin{align*}
+            y&=\sum_{n=0}^{\infty}a_nx^{n+\sigma}, a_0\neq 0\\
+            y'&= \sum_{n=0}^{\infty}a_n(n+\sigma)x^{n+\sigma-1}\\
+            y''&=\sum_{n=0}^{\infty} a_n(n+\sigma)(n+\sigma-1)x^{n+\sigma-2}.
+        \end{align*}
+        We get 
+        \[
+            \sum_{n=0}^{\infty}a_nx^{n+\sigma}\left( (n+\sigma)(n+\sigma-1)-x \right)=0.
+        \]
+        Equate coefficients of $ x^{n+\sigma} $ for $n\ge 2$:
+        \[
+            a_n(n+\sigma)(n+\sigma-1)=a_{n-1}.
+        \]
+        The indicial equation is 
+        \[
+            \sigma(\sigma-1)a_0=0 \Longrightarrow \sigma=0,1,
+        \]
+        and it is an example of case 2.
+
+        If $ \sigma=1 $, 
+        \[
+            a_n = \frac{a_{n-1}}{n(n+1)} = \frac{a_0}{(n+1)(n!)^2}.
+        \]
+        Hence one solution is 
+        \[
+            y_1 = (x-x_0) a_0\sum_{n=0}^{\infty} \frac{x^n}{(n+1)(n!)^2}.
+        \]
+        If $ \sigma=0 $, then 
+        \[
+            b_n = \frac{b_{n-1}}{n(n-1)} \text{ for }n\ge 2,\ b_0,b_1 \text{ arbitrary}.
+        \]
+        Therefore the sum is linearly dependent to $y_1$, and thus $c\neq 0$:\marginnote{Actually, we can get this form via \textbf{reduction of order}, by setting $y_2=vy_1$ and solve the reduced DE.}
+        \[
+            y_2 = y_1 \ln x + b_0 + xb_1 + \sum_{n=2}^{\infty}\frac{x^n}{(n)((n-1!)^2}.
+        \]
+    \end{example}
+    \begin{example}
+        Review again $(1-x^2)y''+2xy'+2y=0,$ and seek a series solution expanded about $-1$. Let $z=1+x$, so it is equivalent to expand about $z=0$. We get 
+        \[
+            z(2-z)y''-2(z-1)y'+2y=0.
+        \]
+        Try $y=\sum_{n=0}^{\infty}a_nx^{n+\sigma}, a_0\neq 0$. Boring algebras give the indicial equation 
+        \[
+            2\sigma(\sigma-1)+2\sigma=0 \Longleftrightarrow \sigma=0.
+        \]
+        This is an example of case 3, and we need $ y_1\ln z $ term.
+    \end{example}
 \end{document}
