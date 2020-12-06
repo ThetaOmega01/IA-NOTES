@@ -2823,7 +2823,7 @@ skipped some talks irrelevant to contents\\
             \]
             Normalise $\bfw_1$:
             \[
-                \bfu_1=\frac{1}{|\bfw_1|}=\frac{1}{\sqrt{2}}\begin{pmatrix}
+                \bfu_1=\frac{1}{|\bfw_1|}\bfw_1=\frac{1}{\sqrt{2}}\begin{pmatrix}
                     1\\-1\\0
                 \end{pmatrix}
             \]
@@ -2868,4 +2868,246 @@ skipped some talks irrelevant to contents\\
 
         Particularly when $A$ is real and symmetric, $ \bfu_i $ can be chosen to be real and orthonormal, and $P$ can be chosen to be orthogonal($ P^TAP=D $).
     \end{theorem}
+    \begin{proof}(Non-examinable)\marginnote{Lecture 20}
+        Let $V$ be a subspace of $ \mathbb{C}^{n} $ and consider $A$ restricted to $V$. Use induction on $\dim V=m$.
+
+        Given $V$ as above, since any matrix has an eigenvalue and an eigenvector, chosse $ \lambda,\bfv $ such that $ A\bfv=\lambda\bfv $. Let $ W = \{\bfw\in V: (\bfv,\bfw)=0\} $. Claim that $W$ is a subspace and $\dim W=m-1$. Indeed, given $ \bfx_i\in V $ as a basis, we can choose $ \bfw_i=\bfx-(\bfv_i,\bfx)\bfv_i $, then the result follows. By induction, $W$ has a basis of orthonormal eigenvectors of $A$, say $ \{\bfu_1,\bfu_2,\dots,\bfu_{m-1}\} $. Then if we take $ \bfu_m = \frac{1}{|\bfv|}\bfv $, then $\{\bfu_1,\bfu_2,\dots,\bfu_{m}\}$ is a basis for $V$ consisting of orthonormal eigenvectors of $A$. Clearly it is true for $m=1$. This completes the induction.
+    \end{proof}
+    \section{Quadratic Form}
+    \subsection{Basics}
+    \begin{definition}\marginnote{Consider a function $ \mcF: \mathbb{R}^{2}\to \mathbb{R} $ defined by $ \mcF(\bfx)=2x_1^2-4x_1x_2+5x_2^2 $. This can be simplyfied to $ \mcF(\bfx)=x_1'^2+6x_2'^2 $ where $ x_1'=\frac{1}{\sqrt{5}}(2x_1+x_2), x_2'=\frac{1}{\sqrt{5}}(-x_1+2x_2) $. On the other hand, $ \mcF(\bfx) $ can be written as $ \mcF(\bfx)=\bfx^TA\bfx $ where 
+        $$ A=\begin{pmatrix}
+            2&-2\\
+            -2&5
+        \end{pmatrix}. $$
+         $A$ has eigenvalues $ 1,6 $ and eigenvectors 
+         $$  \frac{1}{\sqrt{5}}\begin{pmatrix}
+            2\\1
+        \end{pmatrix}, \frac{1}{\sqrt{5}}\begin{pmatrix}
+            -1\\2
+        \end{pmatrix}, $$
+        leading to the expression above via diagonalisation.}
+
+        A \textbf{quadratic form} is a function $\mcF: \mathbb{R}^{n}\to \mathbb{R}$ given by
+        \[
+            \mcF(\bfx) = \bfx^TA\bfx=x_iA_{ij}x_j,
+        \]
+        where $A\in \mcM_{n\times n}$ is a symmetric matrix.(any antisymmetric part will not contribute)
+    \end{definition}
+    We can write 
+    \[
+        P^TAP=D=\begin{pmatrix}
+            \lambda_1&&0\\
+            &\ddots&\\
+            0&&\lambda_n
+        \end{pmatrix}
+    \]
+    since $A$ is real and symmetric, and $P$ is orthogonal with an orthonormal basis of eigenvectors $\bfu_i$ as columns. Set $ \bfx'=P^T\bfx \Leftrightarrow \bfx=P\bfx' $, we get 
+    \[
+        \mcF(\bfx)= \bfx^TA\bfx=(P\bfx')^TA(P\bfx)=\bfx'^T(P^TAP)\bfx'=\bfx'^TD\bfx = \lambda_i x_i.
+    \]
+    \begin{definition}
+        We say that $\mcF$ is \textbf{diagonalised} if $\mcF$ is written in the above form.
+    \end{definition}
+    Note that 
+    \begin{align*}
+        \bfx'&= x_1'\bfe_1+\cdots+x_n'\bfe_n\\
+        \bfx&= x_1\bfe_1+ \cdots + x_n\bfe_n\\
+        &= x_1'\bfu_1+\cdots +x_n'\bfu_n,
+    \end{align*}
+    since $x_i' = \bfu_i\cdot \bfx \Leftrightarrow \bfx'=P^T\bfx$. This is an example of \textit{change of basis}.
+    \begin{definition}
+        The basis $ \mcB = \{\bfu_1,\dots,\bfu_n\} $ as given by $P$ is called the \textbf{principal axes} of $\mcF$. $\mcB$ is related to the standard basis via an orthogonal transformation.
+    \end{definition}
+    \subsection{Examples in $ \mathbb{R}^{2},\mathbb{R}^{3} $}
+    \begin{example}[$ \mathbb{R}^{2} $]
+        Consider $ \mcF(\bfx)=\bfx^TA\bfx $, where 
+        \[
+            A=\begin{pmatrix}
+                \alpha&\beta\\
+                \beta&\alpha
+            \end{pmatrix}.
+        \]
+        It can be computed that $ \lambda = \alpha+\beta,\alpha-\beta $, and eigenvalues are
+        \[
+            \bfu_1 = \frac{1}{\sqrt{2}}\begin{pmatrix}
+                1\\1
+            \end{pmatrix}, \bfu_2 = \frac{1}{\sqrt{2}}\begin{pmatrix}
+                -1\\1
+            \end{pmatrix}.
+        \]
+        Now we can compute 
+        \begin{align*}
+            \mcF(\bfx)&= \alpha x_1^2+2\beta x_1x_2+\alpha x_2^2\\
+            &= (\alpha+\beta)x_1'^2+(\alpha-\beta)x_2'^2,
+        \end{align*}
+        where $ x_1' = \bfu_1 \cdot \bfx = \frac{1}{\sqrt{2}}(x_1+x_2), x_2'= \frac{1}{\sqrt{2}}(-x_1+x_2)$.
+
+        Take $ \alpha=3/2,\beta=-1/2 $, so that $ \lambda=1,2 $, then $ \mcF(\bfx)=1 \Leftrightarrow x_1'^2+2x_2'^2=1 $ represents an ellipse.
+
+        Instead consider $ \alpha=-1/2, \beta=3/2 $, so that $ \lambda=1,-2 $, then $ \mcF=1 $ represents a hyperbola.
+    \end{example}
+    \begin{example}[$\mathbb{R}^3$]
+        \[
+            \mcF(\bfx)=\bfx^TA\bfx = \lambda_i x_i'^2.
+        \]
+        \begin{enumerate}[(i)]
+            \item If $A$ has eigenvalues $\lambda_1,\lambda_2,\lambda_3>0$, then $ \mcF=1 $ is an ellipsoid.
+            \item Specifically let 
+            \[
+                A= \begin{pmatrix}
+                    0&1&1\\
+                    1&0&1\\
+                    1&1&0
+                \end{pmatrix}.
+            \]
+            From previous, $ \lambda_{1,2}=1 $ and $ \bfu_1^T=\frac{1}{\sqrt{2}}(1,-1,0), \bfu_2^T=\frac{1}{\sqrt{6}}(1,1,-2) $. $ \lambda_3=2 $ with $ \bfu_3^T=\frac{1}{\sqrt{3}}(1,1,1) $. Then 
+            \[
+                \mcF = 2x_1x_2+2x_2x_3+2x_3x_1 = -x_1'^2-x_2'^2+2x_3'^2.
+            \]
+            Now $\mcF=1 \Leftrightarrow 2x_3'^2=1+x_1'^2+x_2'^2 $. It is a 2 sheeted hyperboloid.
+        \end{enumerate}
+    \end{example}
+    \begin{example}
+        Consider a smooth function $ f: \mathbb{R}^{n}\to \mathbb{R} $ and suppose that $f$ has a stationary point at $ \bfx=\bfa: \frac{\partial f}{\partial x_i}(\bfa)=0  $. Taylor's theorem tells us that 
+        \[
+            f(\bfa+\bfh)=f(\bfa)+\mcF(\bfh)+O(|\bfh|^3),
+        \]
+        where $\mcF$ is a quadratic form with
+        \[
+            A_{ij}=\frac{1}{2} \frac{\partial^2f}{\partial x_i \partial x_j}.\marginnote{Hessian matrix at $ \bfx=\bfa $.} 
+        \]
+        So $ \mcF(\bfh)=\lambda_i h_i'^2 $ wrt principal axes, and if $ \lambda_i>0 $ for all $i$ then $f$ has a minimum, vise versa, and $f$ has a saddle at $\bfa$ otherwise. For $n=2$, consider $ \tr(A)=\lambda_1+\lambda_2 $, $ \det A=\lambda_1\lambda_2 $.
+    \end{example}
+    \section{Cayley-Hamilton Theorem}
+    Define the \textit{polynomial} of a matrix as 
+    \[
+        p(A)=c_0I+c_1A+\cdots + c_kA^k.
+    \]
+    The \textit{power series} can also be defined as, for example,
+    \[
+        \exp(A)=I+A+\frac{1}{2}A^2+ \cdots +\frac{1}{r!}A^r+ \cdots .
+    \]
+    For a diagonal matrix $D$, we have 
+    \[
+        D^r = \begin{pmatrix}
+            \lambda_1^r&&0\\
+            & \ddots &\\
+            0&&\lambda_n^r
+        \end{pmatrix},\quad p(D)=\begin{pmatrix}
+            p(\lambda_1)&&0\\
+            & \ddots &\\
+            0&&p(\lambda_n)
+        \end{pmatrix}, \quad \exp(D)=\begin{pmatrix}
+            e^{\lambda_1}&&0\\
+            & \ddots &\\
+            0&&e^{\lambda_n}
+        \end{pmatrix}.
+    \]
+    Also if $ B=P^{-1}AP $, then $ p(B)=P^{-1}p(A)P $.
+    \begin{theorem}[Cayley-Hamilton]\label{thm:Cayley-Hamilton}
+        $ \chi_A(A)=0 $.
+    \end{theorem}
+    \begin{remark}
+        We can rewrite this as 
+        \[
+            -c_0I = A(c_1A+ \cdots +c_nA^{n-1}),
+        \]
+        where $c_i$ are coefficients in $\chi_A$. If $ \det A=c_0\neq 0 $, we have 
+        \[
+            A^{-1}=-\frac{1}{c_0}(c_1A+ \cdots +c_nA^{n-1}).
+        \]
+    \end{remark}
+    For $ 2 \times 2 $ and diagonalisable matrices this is obvious.
+    \begin{proof}(non-examinable)
+        Let $ M=A-tI $, so that $ \det M=\chi_A(t)=\sum_{r=0}^{n}c_rt^r $. Note that the adjugate of $M$ can be written as a polynomial of $t$ of degree $n-1$:
+        \[
+            \adj(M)=\tilde{M}=\sum_{r=0}^{n-1}B_r t^r,
+        \]
+        where $B_r$ are matrices. Note that
+        \begin{align*}
+            \tilde{M}M&=\det (M)I = \left( \sum_{r=0}^{n-1}B_r t^r \right)\left( A-tI \right)\\
+            &=B_0A+ \left[\sum_{r=1}^{n-1}(B_{r}A-B_{r-1})t^r\right] -B_{n-1}t^n\\
+            &= \left[ \sum_{r=0}^{n}c_rt^r  \right]I.
+        \end{align*}
+        Therefore, we have 
+        \begin{align*}
+            \sum_{r=0}^{n}c_r A^r&= B_0A+ \left[\sum_{r=1}^{n-1}(B_{r}A-B_{r-1})A^r\right] -B_{n-1}A^n\\
+            &= 0,
+        \end{align*}
+        as required.
+    \end{proof}
+    \part{Change of Bases/Canonical Forms/\\Symmetries}
+    \section{Change of Bases in General}
+    Recall that given a linear map $ T: V \to W $, where $V,W$ are real or complex vector space. Let $ \mcB_V=\left\{ \bfe_i:i=1\dots,n \right\} $ and $ \mcB_W=\left\{ \bff_a:a=1,\dots,m \right\} $. The matrix $A\in \mcM_{m\times n}$ wrt these bases is defined by 
+    \[
+        T(\bfe_i)=\bff_a A_{ai}.
+    \] 
+    This holds since
+    \[
+        T(x_i\bfe_i)=x_iT(\bfe_i)=x_i\bff_aA_{ai}=(A_{ai}x_i)\bff_a.
+    \]
+    Same matrix $T$ has a different matrix $A'$ wrt different bases $ \left\{ \bfe_i':i=1,\dots,n \right\}, \{\bff_a':a=1,\dots,m\} $. To relate $A,A'$ we must specify how bases are related. The \textit{change of base} matirces $P\in \mcM_{n\times n}, Q\in \mcM_{m\times m}$ are defined by 
+    \[
+        \bfe_i'=\bfe_jP_{ji}, \quad \bff_a'=\bff_bQ_{ba}.
+    \]
+    Entries in column $i$ of $P$ are components of new basis vectors $\bfe_i'$ wrt $\mcB_V$, and similar for $Q$.
+    \begin{remark}
+        $P$ and $Q$ are invertible and from the relation above, we can exchange $\bfe_i$ with $\bfe_i'$ with $ P\to P^{-1} $ and similar for $Q$.
+    \end{remark}
+    \begin{proposition}
+        With definitions as above,
+        \[
+            A'=Q^{-1}AP.
+        \]
+        This is the \textit{change of basis formula for a linear map}.
+    \end{proposition}
+    \begin{example}
+        $n=2,m=3$, and take $ T(\bfe_1) = \bff_1+2\bff_2-\bff_3 $, and $ T_(\bfe_2)=-\bff_1+2\bff_2+\bff_3 $. This produces the matrix 
+        \[
+            A=\begin{pmatrix}
+                1&-1\\
+                2&2\\
+                -1&1
+            \end{pmatrix}.
+        \]
+        Now consider new bases $ \bfe_1'=\bfe_1-\bfe_2, \bfe_2'=\bfe_1+\bfe_2 $, $ \bff_1'= \bff_1-\bff_3, \bff_2'=\bff_2, \bff_3'=\bff_1+\bff_3$ we get 
+        \[
+            P=\begin{pmatrix}
+                1&1\\
+                -1&1
+            \end{pmatrix},
+            Q=\begin{pmatrix}
+                1&0&1\\
+                0&1&0\\
+                -1&0&1
+            \end{pmatrix}.
+        \]
+        Therefore 
+        \[
+            A'=Q^{-1}AP=\begin{pmatrix}
+                2&0\\
+                0&4\\
+                0&0
+            \end{pmatrix}
+        \]
+    \end{example}
+    \begin{proof}
+        Note that 
+        \begin{align*}
+            T(\bfe_i')&= T(\bfe_jP_{ji})\\
+            &=T(\bfe_j)P_{ji}\\
+            &= \bff_aA_{aj}P_{ji}.
+        \end{align*}
+        But
+        \begin{align*}
+            T(\bfe_i')&= \bff_b' A_{bi}'\\
+            &= \bff_aQ_{ab}A_{bi}'.
+        \end{align*}
+        Comparing coefficients gives
+        \[
+            A_{aj}P_{ji}=Q_{ab}A_{bi}' \Longleftrightarrow AP=QA \Longleftrightarrow Q^{-1}AP=A'.
+        \]
+        
+    \end{proof}
 \end{document}

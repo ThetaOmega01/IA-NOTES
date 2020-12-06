@@ -1976,4 +1976,234 @@ skipped some talks irrelevant to contents\\
         \]
         This is an example of case 3, and we need $ y_1\ln z $ term.
     \end{example}
+    \part{Multivariable Functions and Applications}
+    \section{Function of multiple independent variables}
+    \subsection{Directional Derivative and Gradient Vector}\marginnote{Lecture 20}
+    Consider a function $f(x,y)$ and a small displacement vector $ \d \bfs $. Consider the rate of change of $f$ in direction $ \d \bfs $. Note that 
+    \[
+        \d f = \frac{\partial f}{\partial x}\d x+ \frac{\partial f}{\partial y}\d y = (\d x,\d y) \cdot \left( \frac{\partial f}{\partial x} ,\frac{\partial f}{\partial y}\right):=\d\bfs \cdot \nabla f,
+    \]
+    where $ \d \bfs=(\d x,\d y) $ and $ \nabla f = \left( \frac{\partial f}{\partial x} ,\frac{\partial f}{\partial y}\right) $ is the \textit{gradient vector} in cartesian coordinates. If we write $ \d \bfs=\d s \hat{\bfs} $, then we can rewrite the equation as 
+    \[
+        \d f = \d s (\hat{\bfs}\cdot \nabla f).
+    \]
+    \begin{definition}[Directional derivative]
+        The \textit{directional derivative} of $f$ along $\hat{\bfs}$ is defined as 
+        \[
+            \frac{\mathrm{d}f}{\mathrm{d}s} = \hat{\bfs} \cdot \nabla f. 
+        \]
+    \end{definition}
+    \begin{proposition}[Properties of gradient vector]\label{prop:properties of gradient vector}
+        \begin{enumerate}
+            \item The \textit{magnitude} of $\nabla f$ is the maximum rate of change of $f(x,y)$:
+            \[
+                \left| \nabla f \right| = \max_{\langle \hat{\bfs}, \nabla f \rangle } \frac{\mathrm{d}f}{\mathrm{d}s}. 
+            \]
+            \item The \textit{direction} of $\nabla f$ is the direction where $f$ \textit{increases} the most rapidly.
+            \[
+                \left| \frac{\mathrm{d}f}{\mathrm{d}s}  \right| = \left| \nabla f\right| \cos \langle \hat{\bfs},\nabla f \rangle.
+            \]
+            \item If $ \d \bfs $ and $\hat{\bfs}$ are parallel to contours of $f$, then 
+            \[
+                \frac{\mathrm{d}f}{\mathrm{d}s}=\hat{\bfs} \cdot \nabla f=0. 
+            \]
+            That is, $ \nabla f $ is perpendicular to contours of $f$ and $ |\nabla f| $ is the slope in the "uphill" direction.
+        \end{enumerate}
+    \end{proposition}
+    \subsection{Stationary Points}
+    In general, there is always at least one direction where $ \frac{\mathrm{d}f}{\mathrm{d}s}=0 $, parallel to the contours of $f$.
+    \begin{definition}
+        A \textit{stationary point} is a point at which 
+        \[
+            \forall \hat{\bfs}, \frac{\mathrm{d}f}{\mathrm{d}s}=0. 
+        \]
+    \end{definition}
+    Since $ \frac{\mathrm{d}f}{\mathrm{d}s}=\hat{\bfs}\cdot \nabla f $, $ \nabla f=0 $ at stationary points.
+    \subsubsection*{Types of stationary points}
+    \begin{itemize}
+        \item Local minimum,
+        \item Local maximum,
+        \item Saddle points:
+        \begin{center}
+            \begin{tikzpicture}
+              \begin{axis}[hide axis, xtick=\empty, ytick=\empty]
+                \addplot3 [mesh, draw=gray, samples = 11] {x^2 - y^2};
+                \node [circ] at (axis cs:0, 0, 0) {};
+              \end{axis}
+            \end{tikzpicture}
+          \end{center}
+    \end{itemize}
+    \begin{remark}
+        Near min/max, the contours of $f$ are elliptical, and near saddle points the contours are hyperbolic. Contours of $f$ can only cross at saddle points.
+    \end{remark}
+    \subsection{Multivariable Taylor Series}
+    Consider a point $\bfs_0$ and a small displacement $ \sigma\bfs = \delta s \hat{\bfs} $. The taylor series expansion in the direction of $\hat{\bfs}$ is 
+    \[
+        f(s_0+\delta s)=f(s_0)+\delta s \frac{\mathrm{d}f}{\mathrm{d}s}\Big|_{s_0}+\frac{1}{2}(\delta s)^2 \frac{\mathrm{d}^2f}{\mathrm{d}s^2}\Big|_{s_0}+\cdots  . 
+    \]
+    From definition of directional derivative, 
+    \[
+        \frac{\mathrm{d}}{\mathrm{d}s} = \hat{\bfs}\cdot \nabla. 
+    \]
+    Hence 
+    \[
+        \delta s \frac{\mathrm{d}}{\mathrm{d}s}=\delta\bfs \cdot \nabla . 
+    \]
+    Hence we can rewrite the expansion as 
+    \[
+        f(s_0+\delta s)=f(s_0)+\underbrace{\delta\bfs \cdot \nabla f}_{(1)}\Big|_{s_0}+\underbrace{\frac{1}{2}(\delta s)^2(\hat{\bfs}\cdot \nabla )^2 f}_{(2)}\Big|_{s_0}+\cdots .
+    \]
+    In cartesian coordinates,
+    \[
+        \bfs_0=(x_0,y_0), \delta\bfs = (\delta x,\delta y), x=x_0+\delta x, y=y_0+\delta y.
+    \]
+    Thus 
+    \begin{align*}
+        (1)&=\delta(x)\frac{\partial f}{\partial x}+\delta y \frac{\partial f}{\partial y}, \\
+        (2)&= \frac{1}{2}\left( \delta x \frac{\partial }{\partial x}+\delta y \frac{\partial }{\partial y}   \right)^2 f\\
+        &= \frac{1}{2}\left( \delta x^2 f_{xx}+\delta x\delta y (f_{xy}+f_{yx})+\delta_y f_{yy} \right)\\
+        &= \frac{1}{2}(\delta x, \delta y) \begin{pmatrix}
+            f_{xx}& f_{xy}\\
+            f_{yx}& f_{yy}
+        \end{pmatrix}
+        \begin{pmatrix}
+            \delta x\\ \delta y
+        \end{pmatrix}
+    \end{align*}
+    \begin{definition}
+        The \textit{Hessian matrix} is defined by 
+        \[
+            \bfH = \begin{pmatrix}
+                f_{xx}& f_{xy}\\
+            f_{yx}& f_{yy}
+            \end{pmatrix} = \nabla (\nabla f).
+        \]
+    \end{definition}
+    Therefore we have(in 2D cartesian coordinates)
+    \begin{align*}
+        f(x, y) &= f(x_0, y_0) + (x - x_0)f_x + (y - y_0)f_y \\
+        &+ \frac{1}{2}[(x - x_0)^2 f_{xx} + 2(x - x_0)(y - y_0)f_{xy} + (y - y_0)^2 f_{yy}]
+      \end{align*}
+      and in general 
+      \[
+        f(\mathbf{x}) = f(\mathbf{x}_0 ) + \delta \mathbf{x}\cdot\nabla f(\mathbf{x}_0) + \frac{1}{2}\delta \mathbf{x}\cdot \nabla \nabla f\Big|_{\bfx_0}\cdot \delta \mathbf{x}^T+ \cdots .
+      \]
+      \subsection{Classifying Stationary Points}
+      Since $ \nabla f= \mathbf{0} $ defines a stationary point, the Taylor series about s.p. $ \bfx=\bfx_s $ is 
+      \[
+          f(\bfx)\approx f(\bfx_s)+\frac{1}{2}\delta\bfx \bfH\Big|_{\bfx_s}\cdot \delta\bfx^T.
+      \]
+      The nature of s.p. depends on $H$.
+
+      Consider a function in $n$-dimensional space 
+      \[
+          f=f(x_1,\dots,x_n).
+      \]
+      We have
+      \[
+          \bfH = \begin{pmatrix}
+              f_{x_1x_1}& \cdots & f_{x_1x_n}\\
+              \vdots & \ddots & \vdots \\
+              f_{x_nx_1}& \cdots & f_{x_nx_n}
+          \end{pmatrix}.
+      \]
+      If $f_{x_ix_j}$ are defined for all $i,j$. Note that $f_{x_ix_j}=f_{x_jx_i}$. Hence $\bfH$ is symmetric and can be diagonalised wrt its principal axes.
+      \[
+          \delta\bfx \bfH \delta\bfx^T = (\delta x_1,\dots,\delta x_n) \begin{pmatrix}
+              \lambda_1&\cdots&0\\
+              \vdots &\ddots &\vdots \\
+              0& \cdots & \lambda_n
+          \end{pmatrix}\begin{pmatrix}
+              \delta x_1\\\vdots \\\delta x_n
+          \end{pmatrix},
+      \]
+      where $ \lambda_i $ are eigenvalues of $\bfH$ and $ \delta x_i $ is the displacement along principal axes. Hence 
+      \[
+        \delta\bfx \bfH \delta\bfx^T = \lambda_i\delta x_i^2.\quad (\text{summation convention})
+      \]
+      \begin{definition}[Signature of $\bfH$]
+          The \textit{signatrue} of $\bfH$ is the pattern of signs of its subdeterminants.
+      \end{definition}
+      For example, for $f(x_1,\dots,x_n)$, the pattern of signs is the signs of 
+      \[
+          \underbrace{|f_{x_1x_1}|}_{|\bfH_1|}, \underbrace{\begin{vmatrix}
+              f_{x_1x_1}&f_{x_1x_2}\\
+              f_{x_2x_1}&f_{x_2x_2}
+          \end{vmatrix}}_{|\bfH_2|}, \dots,\underbrace{\begin{vmatrix}
+            f_{x_1x_1}& \cdots & f_{x_1x_n}\\
+            \vdots & \ddots & \vdots \\
+            f_{x_nx_1}& \cdots & f_{x_nx_n}
+          \end{vmatrix}}_{|\bfH|}.
+      \]
+      If $H$ is positive(negative) definite, then $\bfH_1,\bfH_2,\dots,\bfH_{n-1}$ are also positive(negative definite)(Sylvester's criterion). i.e., a min/max point in $n$-dimensional space is also a min/max point in any subspace including the point.
+      \subsubsection*{Types of stationary points}
+      \begin{enumerate}
+          \item Minimum, if $\delta\bfx \bfH \delta\bfx^T>0$ for all $ \delta\bfx $. This means that $ \forall i, \lambda_i>0 $, and thus it happens if $H$ is positive definite, signature is $+,+,+,\dots$.
+          \item Maximum, $\delta\bfx \bfH \delta\bfx^T<0$ for all $\delta\bfx$, $ \lambda_i<0 $ and $\bfH$ is negative definite, signature is $-,+,-,+,\dots$.
+          \item Saddle, $\bfH$ is indefinite, signatrue is non of above.
+      \end{enumerate}
+      \begin{remark}
+          If $|\bfH|=0$, then we need higher order Taylor series. 
+      \end{remark}
+      \subsection{Contours of $f$ near s.p.}
+      Consider a coordinate system along principal axes of $\bfH$:
+      \[
+          \bfH=\begin{pmatrix}
+              \lambda_1&0\\
+              0&\lambda_2
+          \end{pmatrix}.
+      \]
+      Let $ \delta\bfx= (\bfx-\bfx_s)=(\xi,\eta) $. In a small region near $\bfx_s$, contours of $f$ satisfy:
+      \begin{align*}
+        f&=\text{constant} \approx f(\bfx_s)+\frac{1}{2}\delta\bfx \bfH\Big|_{\bfx_s}\cdot \delta\bfx^T\\
+        & \Longrightarrow \lambda_1 \xi^2+\lambda_2 \eta^2 \approx \text{constant}.
+      \end{align*}
+      Near min/max, $ \lambda_1,\lambda_2 $ have the same sign, so the contours are elliptical. Near saddle points $ \lambda_1,\lambda_2 $ have opposite signs, so the contours are hyperbolic.
+      \begin{example}
+          Consider 
+          \[
+              f(x,y)=4x^3-12xy+y^2+10y+6.
+          \]
+          The stationary points are $(x,y)=(1,1), (5,25)$. $f_{xx}=24x, f_{xy}=-12, f_{yy}=2$.
+
+          For $(1,1)$, the pattern is $+,-$, so it is a saddle point.
+
+          For $(5,25)$, the pattern is $+,+$, so it is a minimum.
+      \end{example}
+      \section{Systems of linear ODEs}
+      Consider 2 functions $y_1(t),y_2(t)$ which satisfy 
+      \begin{align*}
+        \dot{y_1} &= a y_1+by_2+f_1(t)\\
+        \dot{y_2}&= cy_1+dy_2+f_2(t).
+      \end{align*}
+      In vector form,
+      \[
+          \dot{\bfY} = M\bfY+\bfF,
+      \]
+      where 
+      \[
+          \bfY = \begin{pmatrix}
+            y_1\\y_2
+          \end{pmatrix},M=\begin{pmatrix}
+              a&b\\
+              c&d
+          \end{pmatrix}, \bfF = \begin{pmatrix}
+            f_1\\f_2
+          \end{pmatrix}.
+      \]
+      Any $n$th order DE can be written as a system of $n$ first order ODEs. e.g., the standard form of a 2nd order ODE is $ \ddot{y}+a \dot{y}+by=f $. Let $y_1=y, y_2=\dot{y}=\dot{y_1}$. Then $ \bfY^T=(y,\dot{y}) $. Hence we can write 
+      \begin{align*}
+          \dot{y_1}&= y_2,\\
+          \dot{y_2}&= -ay_2-by_1+f,
+      \end{align*} 
+      or
+      \[
+          \dot{\bfY}=\begin{pmatrix}
+              0&1\\
+              -b&-a
+          \end{pmatrix}\bfY+\begin{pmatrix}
+              0\\f
+          \end{pmatrix}.
+      \]
+
 \end{document}
