@@ -1637,6 +1637,7 @@ skipped some takes irrelevant to contents\\
       \end{remark}
       
       \section{The \mobius Group Revisited}
+      \subsection{Basic Properties}
       We now have the tools to study the actions of the \mobius group $ \mathcal{M} $.
       \begin{remark}
           The definition of \mobius maps defines an action $ \mcM \curvearrowright \hat{\mathbb{C}} $.
@@ -1671,4 +1672,414 @@ skipped some takes irrelevant to contents\\
       \begin{proof}
           Apply theorem \ref{thm:6.3} on $g^{-1}f$.
       \end{proof}
+      \begin{theorem}\label{thm:6.5}\marginnote{Lecture 19}
+          There is a unique \mobius map sending any 3 distinct points of $ \hat{\mathbb{C}} $ to any 3 distinct points of $ \hat{\bbC} $. i.e., given $ z_1,z_2,z_3, w_1,w_2,w_3\in \hat{\bbC} $ distinct, $ \exists ! f, f(z_i)=w_i $ for $i=1,2,3$.
+      \end{theorem}
+      \begin{proof}
+          Suppose first that $w_1=0,w_2=1,w_3 = \infty $. Then we can take
+          \[
+              f(z)=\frac{(z_2-z_3)(z-z_1)}{(z_2-z_1)(z-z_3)}.
+          \]
+          Particularly, if $z_1=\infty$, take $ f(z)=\frac{z_2-z_3}{z-z_3} $; if $z_2=\infty$, take $ f(z)=\frac{z-z_1}{z-z_3} $; if $z_3=\infty$, take $ f(z)=\frac{z-z_1}{z_2-z_1} $. Thus we have found a function $ f_1: (z_1,z_2,z_3) \mapsto (0,1, \infty ) $ and $ f_2:(w_1,w_2,w_3)\mapsto (0,1,\infty ) $. Now consider 
+          \[
+              f = f_2^{-1}\circ f_1: (z_1,z_2,z_3)\mapsto (w_1,w_2,w_3),
+          \]
+          as required.
+
+          Uniqueness follows trivially from corollary \ref{col:6.4}.
+      \end{proof}
+      From example sheet 2 we see that:
+      \begin{proposition}\label{prop:egsheet2}
+          A conjugate $ hfh^{-1} $ of a \mobius map satisfies:
+          \begin{enumerate}
+              \item $ \ord(hfh^{-1})=\ord(f) $;
+              \item $f$ fixes $z \Leftrightarrow hfh^{-1}$ fixes $h(z)$.
+          \end{enumerate}
+          In particular, the number of fixed point is invariant.
+      \end{proposition}
+      The following theorem is a partial converse to this observation:
+      \begin{theorem}\label{thm:6.6}
+          Every non-identity $f\in \mcM$ has either 1 or 2 fixed points. If $f$ has 1 fixed point, then it is conjugate to $ z \mapsto z+1 $. If $f$ has 2 fixed points, then it is conjugate to a map of the form $ z \mapsto az, a\in \hat{\bbC}\setminus \{0\} $.
+      \end{theorem}
+      \begin{proof}
+            It suffices to show that $f$ cannot have 0 fixed point.
+            If $ f(z)=\frac{az+b}{cz+d} $, consider the quadratic
+            \[
+                cz^2+(d-a)z-b \Longleftrightarrow f(z)=z,
+            \]
+            it has at least one solution since $ \Delta\ge 0 $, so $f$ has at least one fixed point.
+
+            If $f$ has 1 fixed point $z_0$, choose $z_1\in \bbC$ not fixed by $f$. Then $ z_1,f(z_1),z_0 $ are all distinct. Hence $ \exists g:(z_1,f(z_1),z_0)\mapsto (0,1,\infty) $. Consider $ gfg^{-1}: 0 \mapsto 1, \infty \mapsto \infty $. Claim that $gfg^{-1}$ is of the form $ az+1,a\in \mathbb{C} $. Indeed, any map of the form $az+1$ has the two properties. The other direction follows by direct substitution in the general form $\frac{az+b}{cz+d}$. If $a\neq 1$, $gfg^{-1}$ has $ \frac{1}{1-a}\neq \infty  $ as a fixed point, \# since we only supposed 1 fixed point. Hence $f$ is conjugate to $z+1$.
+            
+            If $f$ has 2 fixed points $z_0,z_1$, consider $ g:(z_0,z_1) \mapsto (0,\infty ) $. We have $ gfg^{-1}:(0,\infty ) \mapsto (0,\infty ) $, so that $gfg^{-1}$ fixes $0$ and $\infty$. Claim that $g$ is of the form $az$. Indeed, take $ a=gfg^{-1} $, then substitution in the general form gives the answer.
+      \end{proof}
+      We can use this to work out $f^n$ for any $ f\in \mcM $. Indeed, if $f$ fixes one point, then $gf^ng^{-1}=(gfg^{-1})^n=z+n$. Similarly if $f$ fixes 2 points then $ gf^ng^{-1}=a^n z $.
+      \subsection{Circles and Lines}
+      Equation of a circle with centre $b\in \bbC$ and radius $r>0$ is 
+      \[
+          |z-b|=r \Longleftrightarrow z \bar{z}- \bar{b}z-b \bar{z}+ b \bar{b}-r^2=0.\tag{$*$}
+      \]
+      Equation of a line in $\bbC$:
+      \[
+          a \Re (z)+b \Im (z)=c(a,b,c\in \bbR) \Longleftrightarrow \overline{\frac{a+ib}{2}}z+\frac{a+ib}{2}\bar{z}-c=0.\tag{$ \dagger $}
+      \]
+      For a line in $ \hat{\bbC} $ we also consider $ \infty  $ is always on the line, this can be visualised by using stereographic projection. These lines are also circles through the north pole.
+
+      Both $ (*) $ and $(\dagger)$ have the form in the next definition:
+      \begin{definition}
+          A \textit{circle} in $ \hat{\bbC} $ is the set of points satisfying the equation
+          \[
+              Az \bar{z}+ \overline{B}z+B \bar{z}+C=0,
+          \]
+          with $ A,C,\in \mathbb{R}, B\in \mathbb{C}, |B|^2>AC $. We consider $ \infty  $ to be a solution if and only if $A=0$.
+      \end{definition}
+      
+      \begin{exercise}
+          The set of points satisfying such an equation is always either a circle in $\bbC$ or a line with $ \infty $.
+      \end{exercise}
+
+      We call all of these object circles in $ \hat{\bbC} $ by convention.
+      \begin{remark}
+          We shouldn't think of $\infty$ as a "special" point.
+      \end{remark}
+
+      \begin{theorem}\label{thm:6.8}
+          \mobius maps send circles to circles in $ \hat{\bbC} $.
+      \end{theorem}
+      \begin{proof}
+          By proposition \ref{prop:decomp_mobius}, it suffices to check $ f_1=az,f_2=z+b,f_3=\frac{1}{z} $ have this property. Write $S(A,B,C)$ for the circle 
+          \[
+             Az \bar{z}+ \overline{B}z+B \bar{z}+C=0. %\tag{$\clubsuit $}
+          \]
+          We can check that 
+          \begin{align*}
+              f_1&: S(A,B,C)\mapsto S\left( \frac{A}{\bar{a}a},\frac{B}{\bar{a}},C \right),\\
+              f_2&: S(A,B,C)\mapsto S(A,B-Ab,C+Ab \bar{b}-B \bar{b}- \overline{B}b),\\
+              f_3&: S(A,B,C) \mapsto S(C,\overline{B},A).
+          \end{align*}
+      \end{proof}
+      \begin{remark}
+          A circle is determined by 3 points on it, and a \mobius map is determined by where it sends 3 points. In practice, it is easy to find a \mobius map sending a given circle to another given circle.
+      \end{remark}
+      \begin{example}
+          Want a \mobius map $f$ that sends the unit circle to the circle $ \mathbb{R} \cup \{\infty\} $, the real line. Pick $ \{-1,i,1\} $ on the unit circle and pick $ \{-1,0,1\} $ on $ \bbR \cup \{\infty \} $. We want $-1,1$ fixed and $ i \mapsto 0 $. For example 
+          \[
+              f(z)=\frac{z-i}{1-iz}.
+          \]
+          There are many choices.
+      \end{example}
+    \subsection{Cross-Ratios}
+    Recall that given $z_1,z_2,z_3 \in \hat{\bbC}$ distinct, $ \exists !f\in \mcM, f(z_1)=0, f(z_2)=1,f(z_3)=\infty  $. 
+    \begin{definition}
+        If $z_1,z_2,z_3,z_4 \in \hat{\bbC}$ distinct, then the \textit{cross ratio} $ [z_1,z_2,z_3,z_4] $ is defined to be $f(z_4)$, where $f$ is the function above.
+
+        In particular, $ [0,1,\infty,w]=w $.
+    \end{definition}
+    We have the following formula:
+    \begin{proposition}
+        \[
+            [z_1,z_2,z_3,z_4] = \frac{(z_2-z_3)(z_4-z_1)}{(z_2-z_1)(z_4-z_3)}
+        \]
+        with special cases interpreted accordingly.
+    \end{proposition}
+    \begin{proof}
+        Refer to theorem \ref{thm:6.5}.
+    \end{proof}
+    \begin{proposition}\label{prop:6.10}
+        Double transpositions of the $z_i$ fix the cross-ratio.
+    \end{proposition}
+    \begin{proof}
+        By inspection.
+    \end{proof}
+    \begin{theorem}\label{thm:6.11}
+        \mobius maps preserve cross-ratios. i.e., $ \forall g\in \mcM, \forall z_1,z_2,z_3,z_4\in \hat{\bbC} $ distinct,
+        \[
+            [g(z_1),g(z_2),g(z_3),g(z_4)]=[z_1,z_2,z_3,z_4].
+        \] 
+    \end{theorem}
+    \begin{proof}
+        Let $f$ be the unique \mobius map $ (z_1,z_2,z_3)\mapsto (0,1,\infty ) $, so that 
+        \[
+            f(z_4)=[z_1,z_2,z_3,z_4].
+        \]
+        Consider $ fg^{-1}: g(z_1)\mapsto 0,g(z_2)\mapsto 1,g(z_3)\mapsto \infty  $. Hence $fg^{-1}$ is the unique map that does this and we have 
+        \[
+            [g(z_1),g(z_2),g(z_3),g(z_4)] = fg^{-1}(g(z_4))=f(z_4)=[z_1,z_2,z_3,z_4],
+        \]
+        as required.
+    \end{proof}
+    \begin{corollary}\label{col:6.12}
+        Four distinct points $_1,z_2,z_3,z_4\in \hat{\bbC}$ lie on a circle if and only if $[z_1,z_2,z_3,z_4]\in \bbR$.
+    \end{corollary}
+    \begin{proof}
+        Let $f\in \mcM: (z_1,z_2,z_3)\mapsto (0,1,\infty )$, so that $ f(z_4)=[z_1,z_2,z_3,z_4] $. The circle $C$ through $z_1,z_2,z_3$ is sent to the circle through $0,1,\infty$, i.e., the real axis. Hence $z_4$ lies on the circle if and only if $f(z_4)$ is on the real line, i.e., $[z_1,z_2,z_3,z_4]\in \bbR \cup \{\infty\} \Leftrightarrow [z_1,z_2,z_3,z_4]\in \bbR$ since $f(z_3)=\infty$.
+    \end{proof}
+    \section{Matrix Groups}
+    \subsection{Some Matrix Groups}
+    Denote $ \mathcal{M}_{n\times n}(\mathbb{F}) $ for the set of $ n \times n $ matrices over the field $\bbF$, typically $\bbR,\bbC$.
+
+    \begin{definition}
+        The \textit{general linear group} over $\bbF$ is defined by 
+        \[
+            \GL_n(\bbF)=\left\{ A\in \mathcal{M}_{n\times n}(\mathbb{F}):A \text{ is invertible} \right\}.
+        \]
+    \end{definition}
+    \begin{proposition}
+        \begin{itemize}
+            \item $ \GL_n(\bbF) \to \bbF^*:=\bbF \setminus \{0\} $ is a surjective homomorphism.
+        \end{itemize}
+    \end{proposition}
+    \begin{definition}
+        The \textit{special linear group} $ \SL_n(\bbF) \le \GL_n(\bbF) $ is defined by $ \SL_n(\bbF) = \ker \det $.
+    \end{definition}
+    \begin{definition}
+        The \textit{orthogonal group} $ \Or_n=\Or_n(\bbR)=\{A\in \GL_n(\bbR): A^\top A=I\} $.
+    \end{definition}
+    \begin{proposition}\label{prop:7.4}
+        $ \det : \Or_n\to \left\{ \pm 1 \right\} $ is a surjective homomorphism.
+    \end{proposition}
+    \begin{proof}
+        If $A\in \Or_n$ then $A^\top A=I$, so 
+        \[
+            \det (A)^2=\det A^\top \det A = \det (A^\top A)=\det I=1 \Longleftrightarrow \det A=\pm 1.
+        \] 
+        It is surjective since $ \det I=1, \det \tilde{I}=-1 $, where 
+        \[
+            \tilde{I}=\begin{pmatrix}
+                -1&\cdots &\cdots &0\\
+                \vdots &1& \cdots &\vdots \\
+                \vdots &\vdots &\ddots &\vdots \\
+                0&\cdots&\cdots &1
+            \end{pmatrix}.
+        \]
+        $ \det  $ is indeed a homomorphism as in $ \GL_n(\bbR) $.
+    \end{proof}
+    \begin{definition}
+        The \textit{special orthogonal group} $ \SO_n=\SO_n(\bbR) = \ker \det $. i.e.,
+        \[
+            \SO_n=\{A\in \Or_n:\det A=1\}.
+        \]
+    \end{definition}
+    \begin{proposition}\label{prop:7.6}
+        The function $ \varphi:\SL_2(\bbC)\to \mcM $ defined by 
+        \[
+            \begin{pmatrix}
+                a&b\\
+                c&d
+            \end{pmatrix} \mapsto \frac{az+b}{cz+d}
+        \]
+        is a surjective homomorphism with kernel $ \{\pm I\} $.
+    \end{proposition}
+    \begin{proof}
+        The fact that $ \varphi $ is a homomorphism follows by some algebras. If $ \frac{az+b}{cz+d} $ is a \mobius map, check
+        \[
+            D^2=\det \begin{pmatrix}
+                a&b\\
+                c&d
+            \end{pmatrix} \Longrightarrow \det \begin{pmatrix}
+                a/D&b/D\\
+                c/D&d/D
+            \end{pmatrix}=D^{-2}D^2=1.
+        \]
+        The transformed matrix represents the same \mobius map. It follows that $ \varphi $ is surjective.
+
+        For kernel, note that 
+        \[
+            \varphi\begin{pmatrix}
+                a&b\\
+                c&d
+            \end{pmatrix}=\operatorname{id}\in \mcM \Longleftrightarrow \forall z\in \hat{\bbC},\frac{az+b}{cz+d}=z \Longleftrightarrow c=b=0,a=d \Longleftrightarrow \begin{pmatrix}
+                a&b\\
+                c&d
+            \end{pmatrix}=\begin{pmatrix}
+                a&0\\
+                0&a
+            \end{pmatrix}.
+        \]
+        Since $ A\in \SL_2(\bbC) $, $a=\pm 1$ and thus $ \ker \varphi=\{\pm I\} $, as claimed. 
+    \end{proof}
+    \begin{corollary}\label{col:7.7}
+            $ \mcM \cong \SL_2(\bbC)/\{\pm I\} $.
+    \end{corollary}
+    \begin{proof}
+        By 1st isomorphism theorem.
+    \end{proof}
+    \begin{remark}
+        The quotient $\SL_2(\bbC)/\{\pm I\}$ is known as the \textit{projective special linear group}, denoted by $ \PSL_2(\bbC) $.
+    \end{remark}
+    \subsection{Actions of Matrix Groups}
+    All of the groups defined above act on the corresponding vector space. i.e., 
+    \[
+        \GL_n(\bbF),\SL_n(\bbF) \curvearrowright \bbF^n; \Or_n,\SO_n \curvearrowright \bbR^n
+    \]
+    via $ A(\bfx)=A\bfx $.
+
+    \begin{example}
+        Let $ G\le \GL_2(\bbR)\curvearrowright \bbR^2 $. Consider its orbits.
+
+        $ \{\mathbf{0}\} $ is always a singleton orbit. If $ G=\GL_2(\bbR) $, then $G$ acts transitively on $ \mathbb{R}^{2}\setminus\{0\} $ since can complete any $ \bfv\neq \mathbf{0} $ to a basis and have an invertible change of basis matrix sending any basis to any other basis. Hence we have 2 orbits, $ \mathbb{R}^{2}\setminus\{0\} $ and $ \{0\} $.
+    \end{example}
+    \begin{example}
+        Let $ G = \left\{ \begin{pmatrix} a&b\\0&d \end{pmatrix}\in \GL_2(\bbR) \right\}=\left\{ \begin{pmatrix} a&b\\0&d \end{pmatrix}:a,d\neq 0 \right\} $. Note that 
+        \begin{align*}
+            \orb\begin{pmatrix}
+                0\\0
+            \end{pmatrix}&=\left\{ \begin{pmatrix}
+                0\\0
+            \end{pmatrix} \right\},\\
+            \orb \begin{pmatrix}
+                1\\0
+            \end{pmatrix}&=\left\{ \begin{pmatrix} a&b\\0&d \end{pmatrix}\begin{pmatrix}
+                1\\0
+            \end{pmatrix}:\begin{pmatrix} a&b\\0&d \end{pmatrix}\in G \right\} = \left\{ \begin{pmatrix}
+                a\\0
+            \end{pmatrix}:a\neq 0 \right\},\\
+            \orb\begin{pmatrix}
+                0\\1
+            \end{pmatrix}&=\left\{ \begin{pmatrix} a&b\\0&d \end{pmatrix}\begin{pmatrix}
+                0\\1
+            \end{pmatrix}:\begin{pmatrix} a&b\\0&d \end{pmatrix}\in G \right\} = \left\{ \begin{pmatrix}
+                b\\d
+            \end{pmatrix}:d\neq 0 \right\}.
+        \end{align*}
+        We can see that they partition $ \mathbb{R}^{2} $.
+    \end{example}
+    See example sheet 4 for some other examples.
+
+    \subsection{Change of Basis}
+    We now interpret the conjugation of $ \GL_n(\bbF) $ on $ \mathcal{M}_{n\times n}(\mathbb{F}) $ using change of basis.
+
+    Recall that $ \alpha: \bbF^n \to \bbF^n $ is a linear map, we can interpret $\alpha$ with $A$ wrt a basis $ \{\bfe_1,\dots,\bfe_n\} $ of $ \bbF^n $. If we have a different basis $ \{\bff_1,\dots,\bff_n\} $, $\alpha$ will be interpreted wrt this basis by $ P^{-1}AP $ where $P$ is the change of basis matrix. This is an example of conjugation.
+    \begin{proposition}\label{prop:7.9}
+        $ \GL_n(\bbF) \curvearrowright \mathcal{M}_{n\times n}(\mathbb{F}) $ by conjugation. 
+        \[
+            \orb(A)=\left\{ M\in \mathcal{M}_{n\times n}(\mathbb{F}): M \text{ represents the same linear map wrt different bases} \right\}.
+        \]
+    \end{proposition}
+    \begin{proof}
+        It is easy to check that conjugation is indeed an action. To see the orbits, note that $ A,B $ are on the same orbit if and only if $ \exists P\in \GL_n(\bbF), A = PBP^{-1} \Leftrightarrow B=P^{-1}AP $.
+    \end{proof}
+    \begin{example}
+        Recall from Vectors and Matrices that every matrix in $ \mathcal{M}_{2\times 2}(\mathbb{C}) $ is conjugate to a matrix in Jordan normal form(JNF):
+        \[
+            \begin{pmatrix}
+                \lambda_1&0\\
+                0&\lambda_2
+            \end{pmatrix},
+            \begin{pmatrix}
+                \lambda&0\\
+                0&\lambda
+            \end{pmatrix},
+            \begin{pmatrix}
+                \lambda&1\\
+                0&\lambda
+            \end{pmatrix}.
+        \]
+        In case $\begin{pmatrix}
+            \lambda_1&0\\
+            0&\lambda_2
+        \end{pmatrix}$, $ \lambda_1,\lambda_2 $ are uniquely determined by the matrix(eigenvalues), but their order may not be unique. i.e., we can exchange $ \lambda_1,\lambda_2 $. Other than this, no two matrices on this list are conjugate.
+
+        These give a complete discription of the orbits of $ \GL_2(\bbC)\curvearrowright \mathcal{M}_{2\times 2}(\mathbb{C}) $. It can be generalised to $n$.
+
+        Note that $ P\in \stab(A)\Leftrightarrow PAP^{-1}=A \Leftrightarrow PA=AP $. By direct caluclations of matrices we see that 
+        \begin{align*}
+            \stab\begin{pmatrix}
+                \lambda_1&0\\
+                0&\lambda_2
+            \end{pmatrix} &= \left\{ \begin{pmatrix}
+                a&0\\
+                0&d
+            \end{pmatrix}\in \GL_2(\bbC) \right\},\\
+            \stab \begin{pmatrix}
+                \lambda&0\\
+                0&\lambda
+            \end{pmatrix}&= \GL_2(\bbC),\\
+            \stab\begin{pmatrix}
+                \lambda&1\\
+                0&\lambda
+            \end{pmatrix}&=\left\{ \begin{pmatrix}
+                a&b\\
+                0&a
+            \end{pmatrix}\in \GL_2(\bbC) \right\}.
+        \end{align*}
+    \end{example}
+    \subsection{Geometry of Orthogonal Groups}
+    Consider the columns $ \bfp_1,\dots,\bfp_n\to P\in \Or_n $, we have 
+    \[
+        (P^\top P)_{ij} = \bfp_i^\top\bfp_j = \bfp_i \cdot \bfp_j,
+    \]
+    so
+    \[
+        P\in \Or_n \Longleftrightarrow \bfp_i \cdot \bfp_j = \delta_{ij}.
+    \]
+    \begin{proposition}\label{prop:7.11}
+        $ P\in \Or_n \Leftrightarrow  $ the columns of $P$ form an orthonormal basis.
+    \end{proposition}
+    Think of $P$ as a change of basis matrix, we get 
+    \begin{proposition}\label{prop:7.12}
+        Consider $ \Or_n \curvearrowright \mathcal{M}_{n\times n}(\mathbb{R}) $ by conjugation. Two matrices lie in the same orbit if and only if they represent the same linear map wrt two orthonormal bases.
+    \end{proposition}
+    \begin{proposition}\label{prop:7.13}
+        $ P\in \Or_n \Leftrightarrow \forall \bfx,\bfy\in \mathbb{R}^{2}, P\bfx \cdot P\bfy = \bfx \cdot \bfy $.
+    \end{proposition}
+    \begin{proof}
+        If $ P\in \Or_n $, then 
+        \[
+            P\bfx \cdot P\bfy = (P\bfx)^\top(P\bfy) = \bfx^\top P^\top P \bfy = \bfx^\top \bfy = \bfx \cdot \bfy.
+        \]
+        If $P\bfx \cdot P\bfy = \bfx \cdot \bfy$, then taking the standard basis vectors $\bfe_i,\bfe_j$, $ P\bfe_i \cdot \P\bfe_j = \delta_{ij} $. Hence $ P\bfe_1 \dots, P\bfe_n $ are orthonormal, and hence $P\in \Or_n$.
+    \end{proof}
+    \begin{corollary}\label{col:7.13}
+        For $P\in \Or_n$ and $ \bfx,\bfy\in \mathbb{R}^{2} $, we have 
+        \begin{enumerate}
+            \item $ |P\bfx|=|\bfx| $, $P$ preserves length,
+            \item $ \langle P\bfx,P\bfy \rangle = \langle \bfx,\bfy \rangle $, $P$ preserves angles.
+        \end{enumerate}
+    \end{corollary}
+    \begin{proof}
+        \begin{enumerate}
+            \item Follows from \ref{prop:7.13}.
+            \item Since angles are defined using inner products, it follows.
+        \end{enumerate}
+    \end{proof}
+    Let's investigate what the elements of $ \Or_n, \SO_n $ look like.
+    \begin{definition}
+        If $ \bfa\in \mathbb{R}^{n}, |\bfa|=1 $, then the \textit{reflection} in the plane normal to $\bfa$ is the linear map 
+        \[
+            R_{\bfa}:\mathbb{R}^{n}\to \mathbb{R}^{n},\quad \bfx \mapsto \bfx-2(\bfx \cdot \bfa)\bfa.
+        \]
+    \end{definition}
+    \begin{proposition}\label{prop:7.15}
+        $ R_\bfa\in \Or_n $.
+    \end{proposition}
+    \begin{proof}
+        Let $ \bfx,\bfy\in \mathbb{R}^{n} $. Note that 
+        \begin{align*}
+            R_\bfa(\bfx)\cdot R_\bfa(\bfy) &= (\bfx-2(\bfx \cdot \bfa)\bfa)(\bfy-2(\bfy \cdot \bfa)\bfa)\\
+            &= \bfx \cdot \bfy - 4(\bfx \cdot \bfa)(\bfy \cdot \bfa)+4(\bfx \cdot \bfa)(\bfy \cdot \bfa)\\
+            &=\bfx \cdot \bfy,
+        \end{align*}
+        as required.
+    \end{proof}
+    Conjugate of reflections are also reflections.
+    \begin{lemma}\label{lma:7.16}
+        Given $ P\in \Or_n, PR_\bfa P^{-1} = R_{P\bfa} $.
+    \end{lemma}
+    \begin{proof}
+        We have
+        \begin{align*}
+            PR_\bfa P^{-1}(\bfx) &= P(P^{-1}(\bfx)-2(P^{-1}(\bfx) \cdot \bfa)\bfa)\\
+            &=\bfx-2(P^{-1}(\bfx) \cdot \bfa)(P\bfa).
+        \end{align*}
+        But $ P^{-1}=P^\top $, so 
+        \[
+            P^{-1}(\bfx) \cdot \bfa = P^\top \bfx \cdot \bfa = \bfx^\top P \bfa = \bfx \cdot P\bfa,
+        \]
+        so that 
+        \[
+            PR_\bfa P^{-1}(\bfx) = \bfx-2(\bfx \cdot P\bfa)(P\bfa).
+        \]
+        This is the reflection wrt plane with normal vector $ P\bfa $, and hence $ PR_\bfa P^{-1} = R_{P\bfa} $.
+    \end{proof}
 \end{document}

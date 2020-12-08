@@ -1405,9 +1405,9 @@ skipped some talks irrelevant to contents\\
     \end{example}
     \subsection{Transpose and Hermitian conjugate}\marginnote{Lecture 12}
     \begin{definition}
-        If $M$ is an $ m\times n $ (real or complex) matrix, the transpose $ M^T $ is an $ n\times m $ matrix 
+        If $M$ is an $ m\times n $ (real or complex) matrix, the transpose $ M^{\top} $ is an $ n\times m $ matrix 
     \[
-        (M^T)_{ia}=M_{ai}\quad \text{exchange rows and columns}
+        (M^{\top})_{ia}=M_{ai}\quad \text{exchange rows and columns}
     ,\]
     where $ a=1,\dots,m,i=1,\dots,n $.
     \end{definition}
@@ -1415,8 +1415,8 @@ skipped some talks irrelevant to contents\\
     \begin{proposition}[Properties]
         Let $ A\in \mathcal{M}_{m\times n}, B\in \mathcal{M}_{n\times p} $,
         \begin{enumerate}
-            \item $ (\alpha A+\beta B)^T=\alpha A^T+\beta B^T $.
-            \item $ (AB)^T=B^TA^T $.
+            \item $ (\alpha A+\beta B)^{\top}=\alpha A^{\top}+\beta B^{\top} $.
+            \item $ (AB)^{\top}=B^{\top}A^{\top} $.
         \end{enumerate}
     \end{proposition}
     \begin{remark}
@@ -1426,24 +1426,24 @@ skipped some talks irrelevant to contents\\
                 x_1\\\vdots\\x_n
             \end{pmatrix}
         ,\]
-        then $ \mathbf{x}^T=(x_1,\dots,x_n) $. Inner products in $ \mathbb{R}^{n} $ is 
+        then $ \mathbf{x}^{\top}=(x_1,\dots,x_n) $. Inner products in $ \mathbb{R}^{n} $ is 
         \[
-            \mathbf{x}\cdot \mathbf{y}=\mathbf{x}^T \cdot \mathbf{y}\quad 1 \times 1 \text{ matrix}
+            \mathbf{x}\cdot \mathbf{y}=\mathbf{x}^{\top} \cdot \mathbf{y}\quad 1 \times 1 \text{ matrix}
         .\]
-        Note that $ \mathbf{y}\mathbf{x}^T $ is an $ n \times n $ matrix with $ M_{ij}=x_iy_j $
+        Note that $ \mathbf{y}\mathbf{x}^{\top} $ is an $ n \times n $ matrix with $ M_{ij}=x_iy_j $
     \end{remark}
     \begin{definition}
         If $ M\in \mathcal{M}_{n\times n} $ then $M$ is:
         \begin{enumerate}
-            \item \textit{symmetric} if $ M^T=M $ or $ M_{ij}=M_{ji} $.
-            \item \textit{anti-symmetric} if $ M^T=-M $ or $ M_{ij}=-M_{ji} $.
+            \item \textit{symmetric} if $ M^{\top}=M $ or $ M_{ij}=M_{ji} $.
+            \item \textit{anti-symmetric} if $ M^{\top}=-M $ or $ M_{ij}=-M_{ji} $.
         \end{enumerate}
     \end{definition}
     \begin{proposition}
         Any $ M $ can be written as $ M=S+A $, where $S$ is symmetric and $A$ is anti-symmetric.
     \end{proposition}
     \begin{proof}
-        Take $ S=\frac{1}{2}(M+M^T) $ and $ \frac{1}{2}(M-M^T) $.
+        Take $ S=\frac{1}{2}(M+M^{\top}) $ and $ \frac{1}{2}(M-M^{\top}) $.
     \end{proof}
     \begin{remark}
         If $ A\in \mathcal{M}_{3\times 3} $ is anti-symmetric, we can write $ A_{ij}=\epsilon_{ijk}a_k $, or 
@@ -1459,7 +1459,7 @@ skipped some talks irrelevant to contents\\
     \begin{definition}
         If $ M\in \mathcal{M}_{m\times n} $, the \textit{Hermitian conjugate} $ M^\dagger  $ is an $n\times n$ matrix defined by 
         \[
-            (M^\dagger )_{ia}=\overline{M}_{ai}, \text{ or } M^\dagger =\overline{M}^T=\overline{M^T}
+            (M^\dagger )_{ia}=\overline{M}_{ai}, \text{ or } M^\dagger =\overline{M}^{\top}=\overline{M^{\top}}
         .\]
 
         If $M$ is square, then $M$ is \textit{hermitian} if $ M^\dagger =M $ or $ M_{ij}=\overline{M}_{ji} $, and is \textit{anti-hermitian} if $ M_{ij}=-\overline{M}_{ji} $.
@@ -1485,7 +1485,7 @@ skipped some talks irrelevant to contents\\
     \begin{enumerate}
         \item $ \tr(\alpha M+ \beta N)=\alpha \tr(M)+\beta \tr(N) $.
         \item $ \tr(MN)=\tr(NM) $ for $ M\in \mathcal{M}_{m\times n}, N\in \mathcal{M}_{n\times m} $.
-        \item $ \tr(M^T)=\tr(M) $.
+        \item $ \tr(M^{\top})=\tr(M) $.
         \item $ \tr(I)=\delta_{ii}=n $ if $ I\in \mathcal{M}_{n\times n} $.
     \end{enumerate}
     If $ S\in \mathcal{M}_{n\times n} $ is symmetric, let 
@@ -1506,7 +1506,7 @@ skipped some talks irrelevant to contents\\
     \end{remark}
     \section{Orthogonal and unitary matrices}
     \begin{definition}
-        A real $ n\times n $ matrix $U$ is \textit{orthogonal} if and only if $ U^T=U^{-1} $, which can be written as 
+        A real $ n\times n $ matrix $U$ is \textit{orthogonal} if and only if $ U^{\top}=U^{-1} $, which can be written as 
         \[
             U_{ki}U_{kj}=U_{ik}U_{jk}=\delta_{ij}
         .\]
@@ -1541,7 +1541,7 @@ skipped some talks irrelevant to contents\\
             \end{pmatrix}
         .\]
     \end{definition}
-    For example, if $U=R(\theta)$ is the rotation through $ \theta $ about axis $\mathbf{n}$, then $ U^T=R(\theta)^T=R(-\theta)=R^{-1}(\theta)=U^{-1} $, so the rotation matrix is orthogonal.
+    For example, if $U=R(\theta)$ is the rotation through $ \theta $ about axis $\mathbf{n}$, then $ U^{\top}=R(\theta)^{\top}=R(-\theta)=R^{-1}(\theta)=U^{-1} $, so the rotation matrix is orthogonal.
 
     \begin{definition}[Equivalent definition]
         $U$ is orthogonal if and only if it preserves inner product on $ \mathbb{R}^{n} $.
@@ -1551,9 +1551,9 @@ skipped some talks irrelevant to contents\\
     \end{definition}
     To check equivalence, note that 
     \[
-        (U \mathbf{x})^T(U \mathbf{y})=(\mathbf{x}^T U^T)(U \mathbf{y})=\mathbf{x}^T(U^TU)\mathbf{y}=\mathbf{x}^T \mathbf{y}
+        (U \mathbf{x})^{\top}(U \mathbf{y})=(\mathbf{x}^{\top} U^{\top})(U \mathbf{y})=\mathbf{x}^{\top}(U^{\top}U)\mathbf{y}=\mathbf{x}^{\top} \mathbf{y}
     .\]
-    The last equality holds if and only if $ U^TU=I $, so they are indeed equivalent.
+    The last equality holds if and only if $ U^{\top}U=I $, so they are indeed equivalent.
 
     Moreover, in $ \mathbb{R}^{n} $, the columns of $U$ are $ U \mathbf{e}_i $, so inner product is preserved when $U$ acts on standard basis. That is $ (U \mathbf{e}_i)\cdot(U\mathbf{e}_j) =\delta_{ij}$, so the columns of $U$ are orthonormal.
     \begin{example}
@@ -1902,7 +1902,7 @@ skipped some talks irrelevant to contents\\
                 &= \sum_{\sigma}M_{1\sigma(1)}M_{2\sigma(2)}\cdots M_{n\sigma(n)}.
             \end{aligned}
         \]
-        i.e., $ \det M = \det M^T $.
+        i.e., $ \det M = \det M^{\top} $.
     \end{proposition}
     Recall that $ (\bfC_{a})_i=M_{ia}=(\bfR_{i})_a $.
     \begin{proof}
@@ -2028,13 +2028,13 @@ skipped some talks irrelevant to contents\\
         \item $ M^{-1}M=I \Rightarrow |M^{-1}||M|=1 $, so $ |M^{-1}|=|M|^{-1} $.
         \item For $R$ real and orthogonal,
         \[
-            R^TR=I \Longrightarrow |R|^2=1 \Longrightarrow |R|=\pm 1
+            R^{\top}R=I \Longrightarrow |R|^2=1 \Longrightarrow |R|=\pm 1
         .\]
         \item For $U$ complex and unitary, 
         \[
             U^\dagger U=I \Longrightarrow |U^\dagger ||U|=1 \Longrightarrow |\overline{U}||U|=|U|^2=1 \Longrightarrow |U|=\pm 1
         .\]
-        Here we use facts that $ |U^T|=|U| $ and $ |\overline{U}|=\overline{|U|} $. The second one is immediate from definition.
+        Here we use facts that $ |U^{\top}|=|U| $ and $ |\overline{U}|=\overline{|U|} $. The second one is immediate from definition.
     \end{enumerate}
     \section{Minors, Cofactors, and Inverses}
     \subsection{Cofactors and Determinants}
@@ -2100,9 +2100,9 @@ skipped some talks irrelevant to contents\\
     \[
         \sum_{a}M_{ja}\Delta_{ia} = (\det M)\delta_{ij}
     .\]
-    Let $ \Delta $ be the matrix of cofactors(entries of $\Delta_{ia}$), and define the \textit{adjugate} $ \tilde{M}=\adj(M) = \Delta^T $. Then 
+    Let $ \Delta $ be the matrix of cofactors(entries of $\Delta_{ia}$), and define the \textit{adjugate} $ \tilde{M}=\adj(M) = \Delta^{\top} $. Then 
     \[
-        \Delta_{ia}M_{ib}=\Delta^T_{ai}M_{ib}=(\Delta^T M)_{ab}=|M| \delta_{ab} \Longrightarrow \tilde{M}M=|M|I
+        \Delta_{ia}M_{ib}=\Delta^{\top}_{ai}M_{ib}=(\Delta^{\top} M)_{ab}=|M| \delta_{ab} \Longrightarrow \tilde{M}M=|M|I
     .\] 
     Similarly, $ M \tilde{M}=|M|I $. Hence if $ \det M\neq 0 $, then 
     \[
@@ -2220,7 +2220,7 @@ skipped some talks irrelevant to contents\\
                     -1\\0\\1
                 \end{pmatrix} \right\}
             .\]
-            $ \bfb\in \im A \Leftrightarrow c=1 $, and a particular solution is $ \bfx_0^T=(1,0,0) $. General solution is 
+            $ \bfb\in \im A \Leftrightarrow c=1 $, and a particular solution is $ \bfx_0^{\top}=(1,0,0) $. General solution is 
             \[
                 \bfx=\begin{pmatrix}
                     1\\0\\0
@@ -2249,7 +2249,7 @@ skipped some talks irrelevant to contents\\
                     1\\1\\1
                 \end{pmatrix} \right\}
             .\]
-            Claim that $ \bfb\in \im A \Leftrightarrow c=-2$, and thus a particular solution is $ \bfx_0^T=(1,0,0) $.
+            Claim that $ \bfb\in \im A \Leftrightarrow c=-2$, and thus a particular solution is $ \bfx_0^{\top}=(1,0,0) $.
 
             Indeed, $\bfb\in \im A$ if and only if it is coplanar with the basis. i.e., 
             \[
@@ -2726,17 +2726,17 @@ skipped some talks irrelevant to contents\\
     \subsection{Real eigenvalues and Orthogonal Eigenvectors}\marginnote{Lecture 19}
     Recall that a matrix $A\in \mcM_{n\times n}$ is \textit{hermitian} if and only if 
     \[
-        A^{\dagger}=\overline{A}^T=A \Leftrightarrow \overline{A}_{ij}=A_{ji}.
+        A^{\dagger}=\overline{A}^{\top}=A \Leftrightarrow \overline{A}_{ij}=A_{ji}.
     \]
     In the special case when $A$ is real and symmetric, we have 
     \[
-        \overline{A}=A \land A^T=A \Leftrightarrow \overline{A}_{ij}=A_{ij}\land A_{ij}=A_{ji}.
+        \overline{A}=A \land A^{\top}=A \Leftrightarrow \overline{A}_{ij}=A_{ij}\land A_{ij}=A_{ji}.
     \]
     Recall also that the \textit{complex inner product} of $\bfv,\bfw \in \mathbb{C}^{n}$ is defined by 
     \[
         (\bfv,\bfw)= \bfv^\dagger \bfw= \bar{v}_i w_i.
     \]
-    In $ \mathbb{R}^{n} $ it reduces to $ \bfv^T \bfw $.
+    In $ \mathbb{R}^{n} $ it reduces to $ \bfv^{\top} \bfw $.
     \begin{lemma}
         If $A$ is hermitian, then 
         \[
@@ -2759,7 +2759,7 @@ skipped some talks irrelevant to contents\\
             \]
             \item If $A$ is real and symmetric, then for each $ \lambda $ in 1. we can choose a real eigenvector $ \bfv $ and 2. becomes 
             \[
-                \bfv^T\bfw=\bfv \cdot \bfw=0.
+                \bfv^{\top}\bfw=\bfv \cdot \bfw=0.
             \]
         \end{enumerate}
     \end{theorem}
@@ -2799,7 +2799,7 @@ skipped some talks irrelevant to contents\\
                 2&i\\-i&2
             \end{pmatrix} $. $A$ is hermitian, so by theorem, the eigenvectors should be orthogonal.
 
-            Indeed, if we take $ \bfu_1^T=\frac{1}{\sqrt{2}}(1,i), \bfu_2^T=\frac{1}{\sqrt{2}}(1,-i) $, then $ \bfu_1^\dagger \bfu_2=\frac{1}{\sqrt{2}}(1-1)=0 $, as expected. By choice, they are orthonormal in addition. Since the eigenvalues are distinct, we can choose $ \displaystyle P = \frac{1}{\sqrt{2}}\begin{pmatrix}
+            Indeed, if we take $ \bfu_1^{\top}=\frac{1}{\sqrt{2}}(1,i), \bfu_2^{\top}=\frac{1}{\sqrt{2}}(1,-i) $, then $ \bfu_1^\dagger \bfu_2=\frac{1}{\sqrt{2}}(1-1)=0 $, as expected. By choice, they are orthonormal in addition. Since the eigenvalues are distinct, we can choose $ \displaystyle P = \frac{1}{\sqrt{2}}\begin{pmatrix}
                 1&1\\i&-i
             \end{pmatrix} $ so that 
             \[
@@ -2833,9 +2833,9 @@ skipped some talks irrelevant to contents\\
                     1/2\\1/2\\-1
                 \end{pmatrix}.
             \]
-            By construction, $ \bfw_2' \perp \bfu_1 $. Finally, normalise $ \bfw_2' $ to $ \bfu_2^T=\frac{1}{\sqrt{6}}(1,1,-2) $, and thus $ \mcB_{-1}=\left\{ \bfu_1,\bfu_2 \right\} $ is an orthonormal basis for $ E_{-1} $.
+            By construction, $ \bfw_2' \perp \bfu_1 $. Finally, normalise $ \bfw_2' $ to $ \bfu_2^{\top}=\frac{1}{\sqrt{6}}(1,1,-2) $, and thus $ \mcB_{-1}=\left\{ \bfu_1,\bfu_2 \right\} $ is an orthonormal basis for $ E_{-1} $.
 
-            Similarly, $ \mcB_2=\left\{ \bfu_3 \right\} , \bfu_3^T=\frac{1}{\sqrt{3}}(1,1,1)$. Then $ \mcB=\mcB_{-1}\cup \mcB_2 $ is an orthonormal basis for $ \mathbb{R}^{3} $.
+            Similarly, $ \mcB_2=\left\{ \bfu_3 \right\} , \bfu_3^{\top}=\frac{1}{\sqrt{3}}(1,1,1)$. Then $ \mcB=\mcB_{-1}\cup \mcB_2 $ is an orthonormal basis for $ \mathbb{R}^{3} $.
 
             Let $ \mcM_{n\times n}\ni P=(\bfu_1\ \bfu_2\ \bfu_3) $, then 
             \[
@@ -2866,7 +2866,7 @@ skipped some talks irrelevant to contents\\
         \end{enumerate}
         In addition, $\bfu_i$ can be chosen to be \textit{orthonormal} and $P$ can be chosen to be \textit{unitary}($ P^\dagger AP=D $).
 
-        Particularly when $A$ is real and symmetric, $ \bfu_i $ can be chosen to be real and orthonormal, and $P$ can be chosen to be orthogonal($ P^TAP=D $).
+        Particularly when $A$ is real and symmetric, $ \bfu_i $ can be chosen to be real and orthonormal, and $P$ can be chosen to be orthogonal($ P^{\top}AP=D $).
     \end{theorem}
     \begin{proof}(Non-examinable)\marginnote{Lecture 20}
         Let $V$ be a subspace of $ \mathbb{C}^{n} $ and consider $A$ restricted to $V$. Use induction on $\dim V=m$.
@@ -2875,7 +2875,7 @@ skipped some talks irrelevant to contents\\
     \end{proof}
     \section{Quadratic Form}
     \subsection{Basics}
-    \begin{definition}\marginnote{Consider a function $ \mcF: \mathbb{R}^{2}\to \mathbb{R} $ defined by $ \mcF(\bfx)=2x_1^2-4x_1x_2+5x_2^2 $. This can be simplyfied to $ \mcF(\bfx)=x_1'^2+6x_2'^2 $ where $ x_1'=\frac{1}{\sqrt{5}}(2x_1+x_2), x_2'=\frac{1}{\sqrt{5}}(-x_1+2x_2) $. On the other hand, $ \mcF(\bfx) $ can be written as $ \mcF(\bfx)=\bfx^TA\bfx $ where 
+    \begin{definition}\marginnote{Consider a function $ \mcF: \mathbb{R}^{2}\to \mathbb{R} $ defined by $ \mcF(\bfx)=2x_1^2-4x_1x_2+5x_2^2 $. This can be simplyfied to $ \mcF(\bfx)=x_1'^2+6x_2'^2 $ where $ x_1'=\frac{1}{\sqrt{5}}(2x_1+x_2), x_2'=\frac{1}{\sqrt{5}}(-x_1+2x_2) $. On the other hand, $ \mcF(\bfx) $ can be written as $ \mcF(\bfx)=\bfx^{\top}A\bfx $ where 
         $$ A=\begin{pmatrix}
             2&-2\\
             -2&5
@@ -2890,21 +2890,21 @@ skipped some talks irrelevant to contents\\
 
         A \textbf{quadratic form} is a function $\mcF: \mathbb{R}^{n}\to \mathbb{R}$ given by
         \[
-            \mcF(\bfx) = \bfx^TA\bfx=x_iA_{ij}x_j,
+            \mcF(\bfx) = \bfx^{\top}A\bfx=x_iA_{ij}x_j,
         \]
         where $A\in \mcM_{n\times n}$ is a symmetric matrix.(any antisymmetric part will not contribute)
     \end{definition}
     We can write 
     \[
-        P^TAP=D=\begin{pmatrix}
+        P^{\top}AP=D=\begin{pmatrix}
             \lambda_1&&0\\
             &\ddots&\\
             0&&\lambda_n
         \end{pmatrix}
     \]
-    since $A$ is real and symmetric, and $P$ is orthogonal with an orthonormal basis of eigenvectors $\bfu_i$ as columns. Set $ \bfx'=P^T\bfx \Leftrightarrow \bfx=P\bfx' $, we get 
+    since $A$ is real and symmetric, and $P$ is orthogonal with an orthonormal basis of eigenvectors $\bfu_i$ as columns. Set $ \bfx'=P^{\top}\bfx \Leftrightarrow \bfx=P\bfx' $, we get 
     \[
-        \mcF(\bfx)= \bfx^TA\bfx=(P\bfx')^TA(P\bfx)=\bfx'^T(P^TAP)\bfx'=\bfx'^TD\bfx = \lambda_i x_i.
+        \mcF(\bfx)= \bfx^{\top}A\bfx=(P\bfx')^{\top}A(P\bfx)=\bfx'^{\top}(P^{\top}AP)\bfx'=\bfx'^{\top}D\bfx = \lambda_i x_i.
     \]
     \begin{definition}
         We say that $\mcF$ is \textbf{diagonalised} if $\mcF$ is written in the above form.
@@ -2915,13 +2915,13 @@ skipped some talks irrelevant to contents\\
         \bfx&= x_1\bfe_1+ \cdots + x_n\bfe_n\\
         &= x_1'\bfu_1+\cdots +x_n'\bfu_n,
     \end{align*}
-    since $x_i' = \bfu_i\cdot \bfx \Leftrightarrow \bfx'=P^T\bfx$. This is an example of \textit{change of basis}.
+    since $x_i' = \bfu_i\cdot \bfx \Leftrightarrow \bfx'=P^{\top}\bfx$. This is an example of \textit{change of basis}.
     \begin{definition}
         The basis $ \mcB = \{\bfu_1,\dots,\bfu_n\} $ as given by $P$ is called the \textbf{principal axes} of $\mcF$. $\mcB$ is related to the standard basis via an orthogonal transformation.
     \end{definition}
     \subsection{Examples in $ \mathbb{R}^{2},\mathbb{R}^{3} $}
     \begin{example}[$ \mathbb{R}^{2} $]
-        Consider $ \mcF(\bfx)=\bfx^TA\bfx $, where 
+        Consider $ \mcF(\bfx)=\bfx^{\top}A\bfx $, where 
         \[
             A=\begin{pmatrix}
                 \alpha&\beta\\
@@ -2949,7 +2949,7 @@ skipped some talks irrelevant to contents\\
     \end{example}
     \begin{example}[$\mathbb{R}^3$]
         \[
-            \mcF(\bfx)=\bfx^TA\bfx = \lambda_i x_i'^2.
+            \mcF(\bfx)=\bfx^{\top}A\bfx = \lambda_i x_i'^2.
         \]
         \begin{enumerate}[(i)]
             \item If $A$ has eigenvalues $\lambda_1,\lambda_2,\lambda_3>0$, then $ \mcF=1 $ is an ellipsoid.
@@ -2961,7 +2961,7 @@ skipped some talks irrelevant to contents\\
                     1&1&0
                 \end{pmatrix}.
             \]
-            From previous, $ \lambda_{1,2}=1 $ and $ \bfu_1^T=\frac{1}{\sqrt{2}}(1,-1,0), \bfu_2^T=\frac{1}{\sqrt{6}}(1,1,-2) $. $ \lambda_3=2 $ with $ \bfu_3^T=\frac{1}{\sqrt{3}}(1,1,1) $. Then 
+            From previous, $ \lambda_{1,2}=1 $ and $ \bfu_1^{\top}=\frac{1}{\sqrt{2}}(1,-1,0), \bfu_2^{\top}=\frac{1}{\sqrt{6}}(1,1,-2) $. $ \lambda_3=2 $ with $ \bfu_3^{\top}=\frac{1}{\sqrt{3}}(1,1,1) $. Then 
             \[
                 \mcF = 2x_1x_2+2x_2x_3+2x_3x_1 = -x_1'^2-x_2'^2+2x_3'^2.
             \]
