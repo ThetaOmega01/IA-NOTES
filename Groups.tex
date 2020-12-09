@@ -2082,4 +2082,199 @@ skipped some takes irrelevant to contents\\
         \]
         This is the reflection wrt plane with normal vector $ P\bfa $, and hence $ PR_\bfa P^{-1} = R_{P\bfa} $.
     \end{proof}
+    Can a reflection lie in $ \SO_n $? We need to know the determinant of a reflection $ R_\bfa $. Recall in vectors and matrices that the determinant is the product of the eigenvalues. We can spot some eigenvectors: $ R_\bfa(\bfa)=-\bfa \Rightarrow \lambda_\bfa=-1 $. Let $ \Pi $ be the plane of reflection, then for any $ \bfx\in \Pi $ we have $ R_\bfa(\bfx)=\bfx \Rightarrow \lambda_{\bfx}=1$. Since $ \lambda_\bfx=1 $ has geometric and algebraic multiplicity $n-1$, and $ \lambda_\bfa $ has multiplicities $1$, so these are all eigenvalues and $ \det R_\bfa=-1 $, and thus
+    \begin{proposition}\label{prop:7.17}
+        $R_\bfa\notin \SO_n$.
+    \end{proposition}
+    \begin{theorem}\label{thm:7.18}
+        Every element of $\SO_2$ has the form 
+        \[
+            \begin{pmatrix}
+                \cos \theta& -\sin \theta\\
+                \sin \theta& \cos \theta
+            \end{pmatrix}
+        \]
+        for some $ \theta\in [0,2\pi) $. This is a rotation matrix.
+
+        Conversely, every element of this form lies in $\SO_2$.
+    \end{theorem}
+    \begin{proof}
+        Let $A= \begin{pmatrix}
+            a&b\\c&d
+        \end{pmatrix} $.
+        We have $ A^\top A=I, \det A=1 $. This is equivalent to 
+        \[
+            \begin{pmatrix}
+                a&b\\b&d
+            \end{pmatrix}=\begin{pmatrix}
+                d&-b\\-c&a
+            \end{pmatrix} \Longleftrightarrow a=d,b=-c \land ad-bc=1 \Longrightarrow a^2+c^2=1.
+        \]
+        Hence we can take $ a=\cos \theta, c=\sin \theta $. The converse argument is obvious.
+    \end{proof}
+    \begin{theorem}\label{thm:7.19}
+        The elements of $ \Or_2 \setminus \SO_2 $ are exactly reflections in lines through the origin.
+    \end{theorem}
+    \begin{proof}
+        Clearly reflections in lines through the origin are in $ \Or_2 \setminus \SO_2 $. Conversely suppose
+        \[
+            A=\begin{pmatrix}
+                a&b\\c&d
+            \end{pmatrix}\in \Or_2 \setminus \SO_2,
+        \]
+        so that $ A^\top A=I \land \det A=-1 $, and thus 
+        \[
+            \begin{pmatrix}
+                a&b\\b&d
+            \end{pmatrix}=\begin{pmatrix}
+                -d&b\\c&-a
+            \end{pmatrix} \Longleftrightarrow a=-d \land b=c \land ad-bc=-1 \Longrightarrow a^2+c^2=1, a=\cos \theta,c=\sin \theta
+        \]
+        Thus 
+        \[
+            A = \begin{pmatrix}
+                \cos \theta& \sin \theta\\
+                \sin \theta& -\cos \theta
+            \end{pmatrix},
+        \]
+        this is a reflection.
+    \end{proof}
+    \begin{corollary}\label{col:7.20}
+            Every element of $\Or_2$ is the composition of at most 2 reflections.
+    \end{corollary}
+    \begin{proof}
+        Clearly if $ A\in  \Or_2 \setminus \SO_2$ then $A$ is a reflection. If $ A\in \SO_2 $ then $A$ is a rotation, but we can write 
+        \[
+            A=A\begin{pmatrix}
+                -1&0\\
+                0&1
+            \end{pmatrix}\begin{pmatrix}
+                -1&0\\
+                0&1
+            \end{pmatrix}: A\begin{pmatrix}
+                -1&0\\
+                0&1
+            \end{pmatrix},\begin{pmatrix}
+                -1&0\\
+                0&1
+            \end{pmatrix}\in \Or_2 \setminus \SO_2.
+        \]
+    \end{proof}
+    Now study 3D case.
+    \begin{theorem}\label{thm:7.21}
+        If $ A\in \SO_3 $ then $ \exists \bfv\in \mathbb{R}^{3}, |\bfv|=1 \land  A\bfv=\bfv $.
+    \end{theorem}
+    \begin{proof}
+        It suffices to show $ \det (A-I)=0 $. Note that 
+        \begin{align*}
+            \det (A-I)&= \det (A-A A^\top)\\
+            &= \det (A(I-A^\top))\\
+            &= \det A \det (I-A^\top)\\
+            &= \det (I-A^\top)\\
+            &= (-1)^3\det(A-I)=-\det (A-I). 
+        \end{align*}
+        Thus $ \det (A-I)=0 $.
+    \end{proof}
+    \begin{corollary}\label{col:7.22}
+        Every $ A\in \SO_3 $ is conjugate(in $ \SO_3 $) to a matrix of the form \marginnote{Geometrically, it says that every element in $ \SO_3 $ is a rotation wrt some axes.}
+        \[
+            \begin{pmatrix}
+                1&0&0\\
+                0&\cos \theta& -\sin \theta\\
+                0&\sin \theta& \cos \theta
+            \end{pmatrix}.
+        \]
+    \end{corollary}
+    \begin{proof}
+        By theorem \ref{thm:7.21}, $ \exists \bfv_1 $ as an eigenvector with eigenvalue 1. Extend $\bfv_1$ to an orthonormal basis $ \{\bfv_1,\bfv_2,\bfv_3\} $ of $ \mathbb{R}^{3} $. Then for $i=2,3$,
+        \[
+            A\bfv_i \cdot \bfv_1 = A\bfv_i \cdot A\bfv_1 = \bfv_i \cdot \bfv_1 = 0.
+        \]
+        Hence $ A $ maps $ \spn\{\bfv_2,\bfv_3\} $ and we can think of $A|_{\spn\{\bfv_2,\bfv_3\}}$, $A$ restricted to $\spn\{\bfv_2,\bfv_3\}$. Note that $\det A|_{\spn\{\bfv_2,\bfv_3\}}=1$ since wrt $\{\bfv_1,\bfv_2,\bfv_3\}$ we have 
+        \[
+            A=\begin{pmatrix}
+                1&0&0\\
+                0&a& b\\
+                0&c& d
+            \end{pmatrix}.
+        \]
+        Hence $A|_{\spn\{\bfv_2,\bfv_3\}}\in \SO_2$ and its matrix is of the form 
+        \[
+            \begin{pmatrix}
+                \cos \theta& -\sin \theta\\
+                \sin \theta& \cos \theta
+            \end{pmatrix},
+        \]
+        as required.
+
+        The change of basis matrix $P\in \Or_3$ since $\{\bfv_1,\bfv_2,\bfv_3\}$ is orthonormal. If $P\notin \SO_3$ we can take the basis $ \{-\bfv_1,\bfv_2,\bfv_3\} $.
+    \end{proof}
+    \begin{corollary}\label{col:7.23}
+        Every element of $\Or_3$ is the composition of at most 3 reflections.
+    \end{corollary}
+    \begin{proof}
+        If $A\in \SO_3$, then $ \exists P\in \SO_3 $ such that 
+        \[
+            A=PBP^{-1}, \quad B=\begin{pmatrix}
+                1&0&0\\
+                0&\cos \theta& -\sin \theta\\
+                0&\sin \theta& \cos \theta
+            \end{pmatrix}.
+        \]
+        By corollary \ref{col:7.20}, $B$ is a composition of at most 2 reflections $B_1,B_2$, and so is $A$, since a conjugate of a reflection is a reflection and 
+        \[
+            A=PB_1B_2P^{-1} = PB_1P^{-1}PB_2P^{-1}.
+        \]
+
+        If $ A\in \Or_3 \setminus \SO_3 $ then $ \det A=-1 $ and 
+        \[
+            A=\underbrace{A\begin{pmatrix}
+                -1&0&0\\
+                0&1&0\\
+                0&0&1
+            \end{pmatrix}}_{H}\begin{pmatrix}
+                -1&0&0\\
+                0&1&0\\
+                0&0&1
+            \end{pmatrix}.
+        \]
+        $ \det H=1 $, so $H$ is a product of $\le 2$ reflections, and $A$ is a product of $\le 3$ reflections.
+
+    \end{proof}
+    \section{Symmetries of the Cube Revisited}
+    We can think of symmetry groups of the platonic solids as subgroups of $\Or_3$. By Q11 on example sheet 4, we have that $ \Or_3 \cong \SO_3 \times C_2 $, where $C_2$ is generated by the map $ \bfv \mapsto -\bfv $. So if $ \bfv \mapsto -\bfv $ is a symmetry of a platonic solid, the its group of symmetries will also split as the direct product $ G^+ \times C_2 $.(exercise)
+    
+    So we have that the symmetry group of the cube is $ G^+\times C_2 \cong S_4 \times C_2 $.
+    \section{Groups of Order 8}
+    We have seen all possibilities for groups of order $\le 7$. For order 8, we need to first define a new group.
+    \begin{definition}
+        Consider the subset of matrices in $ \GL_2(\bbC) $ given by
+        \[
+            \mathbf{1}:=\begin{pmatrix}
+                1&0\\
+                0&1
+            \end{pmatrix},
+            \mathbf{i}:= \begin{pmatrix}
+                i&0\\
+                0&-i
+            \end{pmatrix},
+            \mathbf{j}:=\begin{pmatrix}
+                0&1\\
+                -1&0
+            \end{pmatrix},
+            \mathbf{k}:= \begin{pmatrix}
+                0&i\\
+                i&0
+            \end{pmatrix}.
+        \]
+        The set $ \{\pm \mathbf{1},\pm \mathbf{i},\pm \mathbf{j},\pm \mathbf{k}\} $ form a group wrt matrix multiplication called the \textit{Quaternions} $ Q_8 $.(exercise)
+    \end{definition}
+    One can verify that the elements satisfy the following relation:
+    \begin{itemize}
+        \item $ \forall g\in Q_8, g^4=\mathbf{1} $.
+        \item $ (-\mathbf{1})^2=\mathbf{1} $.
+        \item $ \mathbf{i}^2=\mathbf{j}^2=\mathbf{k}^2=-\mathbf{1} $.
+        \item $ \mathbf{i}\mathbf{j}=\mathbf{k},\mathbf{j}\mathbf{k}=\mathbf{i},\mathbf{k}\mathbf{i}=\mathbf{j} $.
+        \item $ \mathbf{j}\mathbf{i}=-\mathbf{k}, \mathbf{k}\mathbf{j}=-\mathbf{i}, \mathbf{i}\mathbf{k}=-\mathbf{j}$.
+    \end{itemize}
 \end{document}

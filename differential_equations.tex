@@ -2086,12 +2086,12 @@ skipped some talks irrelevant to contents\\
       \end{align*}
       and in general 
       \[
-        f(\mathbf{x}) = f(\mathbf{x}_0 ) + \delta \mathbf{x}\cdot\nabla f(\mathbf{x}_0) + \frac{1}{2}\delta \mathbf{x}\cdot \nabla \nabla f\Big|_{\bfx_0}\cdot \delta \mathbf{x}^T+ \cdots .
+        f(\mathbf{x}) = f(\mathbf{x}_0 ) + \delta \mathbf{x}\cdot\nabla f(\mathbf{x}_0) + \frac{1}{2}\delta \mathbf{x}\cdot \nabla \nabla f\Big|_{\bfx_0}\cdot \delta \mathbf{x}^{\top}+ \cdots .
       \]
       \subsection{Classifying Stationary Points}
       Since $ \nabla f= \mathbf{0} $ defines a stationary point, the Taylor series about s.p. $ \bfx=\bfx_s $ is 
       \[
-          f(\bfx)\approx f(\bfx_s)+\frac{1}{2}\delta\bfx \bfH\Big|_{\bfx_s}\cdot \delta\bfx^T.
+          f(\bfx)\approx f(\bfx_s)+\frac{1}{2}\delta\bfx \bfH\Big|_{\bfx_s}\cdot \delta\bfx^{\top}.
       \]
       The nature of s.p. depends on $H$.
 
@@ -2109,7 +2109,7 @@ skipped some talks irrelevant to contents\\
       \]
       If $f_{x_ix_j}$ are defined for all $i,j$. Note that $f_{x_ix_j}=f_{x_jx_i}$. Hence $\bfH$ is symmetric and can be diagonalised wrt its principal axes.
       \[
-          \delta\bfx \bfH \delta\bfx^T = (\delta x_1,\dots,\delta x_n) \begin{pmatrix}
+          \delta\bfx \bfH \delta\bfx^{\top} = (\delta x_1,\dots,\delta x_n) \begin{pmatrix}
               \lambda_1&\cdots&0\\
               \vdots &\ddots &\vdots \\
               0& \cdots & \lambda_n
@@ -2119,7 +2119,7 @@ skipped some talks irrelevant to contents\\
       \]
       where $ \lambda_i $ are eigenvalues of $\bfH$ and $ \delta x_i $ is the displacement along principal axes. Hence 
       \[
-        \delta\bfx \bfH \delta\bfx^T = \lambda_i\delta x_i^2.\quad (\text{summation convention})
+        \delta\bfx \bfH \delta\bfx^{\top} = \lambda_i\delta x_i^2.\quad (\text{summation convention})
       \]
       \begin{definition}[Signature of $\bfH$]
           The \textit{signatrue} of $\bfH$ is the pattern of signs of its subdeterminants.
@@ -2138,8 +2138,8 @@ skipped some talks irrelevant to contents\\
       If $H$ is positive(negative) definite, then $\bfH_1,\bfH_2,\dots,\bfH_{n-1}$ are also positive(negative definite)(Sylvester's criterion). i.e., a min/max point in $n$-dimensional space is also a min/max point in any subspace including the point.
       \subsubsection*{Types of stationary points}
       \begin{enumerate}
-          \item Minimum, if $\delta\bfx \bfH \delta\bfx^T>0$ for all $ \delta\bfx $. This means that $ \forall i, \lambda_i>0 $, and thus it happens if $H$ is positive definite, signature is $+,+,+,\dots$.
-          \item Maximum, $\delta\bfx \bfH \delta\bfx^T<0$ for all $\delta\bfx$, $ \lambda_i<0 $ and $\bfH$ is negative definite, signature is $-,+,-,+,\dots$.
+          \item Minimum, if $\delta\bfx \bfH \delta\bfx^{\top}>0$ for all $ \delta\bfx $. This means that $ \forall i, \lambda_i>0 $, and thus it happens if $H$ is positive definite, signature is $+,+,+,\dots$.
+          \item Maximum, $\delta\bfx \bfH \delta\bfx^{\top}<0$ for all $\delta\bfx$, $ \lambda_i<0 $ and $\bfH$ is negative definite, signature is $-,+,-,+,\dots$.
           \item Saddle, $\bfH$ is indefinite, signatrue is non of above.
       \end{enumerate}
       \begin{remark}
@@ -2155,7 +2155,7 @@ skipped some talks irrelevant to contents\\
       \]
       Let $ \delta\bfx= (\bfx-\bfx_s)=(\xi,\eta) $. In a small region near $\bfx_s$, contours of $f$ satisfy:
       \begin{align*}
-        f&=\text{constant} \approx f(\bfx_s)+\frac{1}{2}\delta\bfx \bfH\Big|_{\bfx_s}\cdot \delta\bfx^T\\
+        f&=\text{constant} \approx f(\bfx_s)+\frac{1}{2}\delta\bfx \bfH\Big|_{\bfx_s}\cdot \delta\bfx^{\top}\\
         & \Longrightarrow \lambda_1 \xi^2+\lambda_2 \eta^2 \approx \text{constant}.
       \end{align*}
       Near min/max, $ \lambda_1,\lambda_2 $ have the same sign, so the contours are elliptical. Near saddle points $ \lambda_1,\lambda_2 $ have opposite signs, so the contours are hyperbolic.
@@ -2171,6 +2171,7 @@ skipped some talks irrelevant to contents\\
           For $(5,25)$, the pattern is $+,+$, so it is a minimum.
       \end{example}
       \section{Systems of linear ODEs}
+      \subsection{Baiscs}
       Consider 2 functions $y_1(t),y_2(t)$ which satisfy 
       \begin{align*}
         \dot{y_1} &= a y_1+by_2+f_1(t)\\
@@ -2191,7 +2192,7 @@ skipped some talks irrelevant to contents\\
             f_1\\f_2
           \end{pmatrix}.
       \]
-      Any $n$th order DE can be written as a system of $n$ first order ODEs. e.g., the standard form of a 2nd order ODE is $ \ddot{y}+a \dot{y}+by=f $. Let $y_1=y, y_2=\dot{y}=\dot{y_1}$. Then $ \bfY^T=(y,\dot{y}) $. Hence we can write 
+      Any $n$th order DE can be written as a system of $n$ first order ODEs. e.g., the standard form of a 2nd order ODE is $ \ddot{y}+a \dot{y}+by=f $. Let $y_1=y, y_2=\dot{y}=\dot{y_1}$. Then $ \bfY^{\top}=(y,\dot{y}) $. Hence we can write 
       \begin{align*}
           \dot{y_1}&= y_2,\\
           \dot{y_2}&= -ay_2-by_1+f,
@@ -2205,5 +2206,192 @@ skipped some talks irrelevant to contents\\
               0\\f
           \end{pmatrix}.
       \]
-
+    \subsection{Matrix Methods}
+    To solve a system of linear ODEs:
+    \[
+        \dot{\bfY}=M\bfY+\bfF\tag{$*$}
+    \]
+    \begin{enumerate}
+        \item Write $ \bfY = \bfY_c+\bfY_p $, where 
+        \[
+            \dot{\bfY_c}=M\bfY_c.
+        \]
+        \item Seek solutions of $ \bfY_c = \bfv e^{\lambda t} $:
+        \[
+            (*) \Longrightarrow \lambda\bfv = M\bfv.
+        \]
+        Note that $ \lambda,\bfv $ are eigenvalues and eigenvectors of $M$.
+        \item Find $ \bfY_p $ based on form of $\bfF$. 
+    \end{enumerate}
+    \begin{example}
+        Consider 
+        \[
+            \dot{\bfY}-\begin{pmatrix}
+                -4&24\\
+                1&-2
+            \end{pmatrix}\bfY = \begin{pmatrix}
+                4\\1
+            \end{pmatrix}e^t.
+        \]
+        The eigenvectors and eigenvalues of the matrix is $ \lambda_1=2, \bfv_1^{\top} = (4,1), \lambda_2 =-8, \bfv_2^\top =(-6,1) $, so
+        \[
+            \bfY_c = A\begin{pmatrix}
+                4\\1
+            \end{pmatrix}e^{2t}+B\begin{pmatrix}
+                -6\\1
+            \end{pmatrix}e^{-8t}.
+        \]
+        For particular integral, try 
+        \[
+            \bfY_p = \begin{pmatrix}
+                u_1\\u_2
+            \end{pmatrix}e^{t},
+        \]
+        where $u_1,u_2$ are unknown. 
+        \begin{align*}
+            &\begin{pmatrix}
+                u_1\\u_2
+            \end{pmatrix}-\begin{pmatrix}
+                -4&24\\
+                1&-2
+            \end{pmatrix}\begin{pmatrix}
+                u_1\\u_2
+            \end{pmatrix} = \begin{pmatrix}
+                4\\1
+            \end{pmatrix}\\
+            \Longrightarrow & \begin{pmatrix}
+                5&-24\\
+                -1&3
+            \end{pmatrix}\begin{pmatrix}
+                u_1\\u_2
+            \end{pmatrix} = \begin{pmatrix}
+                4\\1
+            \end{pmatrix}\\
+            \Longrightarrow & \begin{pmatrix}
+                u_1\\u_2
+            \end{pmatrix}=\begin{pmatrix}
+                -4\\-1
+            \end{pmatrix}.
+        \end{align*}
+        Hence the solution is 
+        \[
+            \bfY = A\begin{pmatrix}
+                4\\1
+            \end{pmatrix}e^{2t}+B\begin{pmatrix}
+                -6\\1
+            \end{pmatrix}e^{-8t}-\begin{pmatrix}
+                4\\1
+            \end{pmatrix}e^{t}.
+        \]
+    \end{example}
+    \begin{remark}
+        If the forcing term on RHS matches with $ \bfY_c $, try $ \bfY_p = \bfu t e^{\lambda t} $.
+    \end{remark}
+    From a linear system of $n$ first order ODEs, we can construct $n$ uncoupled $n$th order ODEs.
+    \begin{example}
+        From the last example,
+        \begin{align*}
+            \dot{y_1}&= -4y_1+24y_2+4e^t,\\
+            \dot{y_2}&= y_1-2y_2+e^t.
+        \end{align*}
+        Differentiate the first equation:
+        \begin{align*}
+            &\ddot{y_1} = -4 \dot{y_1}+24 \dot{y_2}+4e^t\\
+            \Longrightarrow & \ddot{y_1} = -4 \dot{y_1}+24y_1-48y_2+28e^t\\
+            \Longrightarrow & \ddot{y_1} +6 \dot{y_1}-16y_1=36e^t.
+        \end{align*}
+        Then the solution can be computed as 
+        \[
+            y_1 = Ae^{2t}+Be^{-8}t+ 4e^{t}.
+        \]
+        This indeed matches with the previous result.
+    \end{example}
+    \subsection{Phase Portraits Revisited}
+    For complementary function $ \dot{\bfY_c}=M\bfY_c $, we see from previous section that 
+    \[
+        \bfY_c = A\bfv_1 e^{\lambda_1 t}+B\bfv_2 e^{\lambda_2 t}.
+    \]
+    We have 3 cases for phase portraits:
+    \begin{enumerate}
+        \item $ \lambda_1,\lambda_2\in \mathbb{R}, \lambda_1 \lambda_2<0 $. wlog let $ \lambda_1>0, \lambda_2<0 $. The phase portrait looks like 
+        \begin{center}
+            \begin{tikzpicture}
+              \draw [->] (-4, 0) -- (4, 0) node [right] {$y_1$};
+              \draw [->] (0, -1.7) -- (0, 1.7) node [above] {$y_2$};
+        
+              \draw [->-=0.785, -<-=0.215, mblue, semithick] (-4, -1) -- (4, 1) node [right] {$\bfv_1$};
+              \draw [->-=0.25, -<-=0.75, mblue, semithick] (-4, 0.667) -- (4, -0.667) node [right] {$\bfv_2$};
+        
+              \draw [mblue, semithick, ->- = 0.3, ->- = 0.7] (-4, 1) .. controls (0, 0.333) and (0, 0.35) .. (4, 1.3);
+              \draw [mblue, semithick, -<- = 0.3, -<- = 0.7] (-4, -1.3) .. controls (0, -0.3) and (0, -0.333) .. (4, -1);
+        
+              \draw [mblue, semithick, ->- = 0.3, ->- = 0.7] (-4, 0.333) .. controls (-2, 0) and (-2, -0.3) .. (-4, -0.6);
+              \draw [mblue, semithick, ->- = 0.3, ->- = 0.7] (4, -0.333) .. controls (2, 0) and (2, 0.3) .. (4, 0.6);
+            \end{tikzpicture}
+          \end{center}
+          $(0,0)$ is a saddle node.
+          \item $ \lambda_1,\lambda_2\in \mathbb{R}, \lambda_1,\lambda_2>0 $. If $ \lambda_1,\lambda_2<0 $, wlog suppose $ |\bfv_1|>|\bfv_2| $.
+          \begin{center}
+            \begin{tikzpicture}[rotate=-20]
+              \draw [mblue, semithick] (-3, 0) -- (3, 0) node [right] {$\bfv_1$};
+              \draw [mblue, semithick] (0, -2) -- (0, 2) node [above] {$\bfv_2$};
+      
+              \draw [mblue, semithick] (-2, 2) parabola bend (0, 0) (2, 2);
+              \draw [mblue, semithick] (-1, 2) parabola bend (0, 0) (1, 2);
+              \draw [mblue, semithick] (-2, -2) parabola bend (0, 0) (2, -2);
+              \draw [mblue, semithick] (-1, -2) parabola bend (0, 0) (1, -2);
+            \end{tikzpicture}
+          \end{center}
+          If $ \lambda_1,\lambda_2>0 $, then it is called an \textit{unstable node}. The sketch is the same with arrow reversed.
+          \item $ \lambda_1,\lambda_2 $ are complex conjugate. If $ \Re(\lambda_1,\lambda_2)<0 $
+          \begin{center}
+            \begin{tikzpicture}
+              \draw [mblue, semithick, domain = 0:40,samples=300] plot ({2*exp(-\x/10)*cos(50*\x)}, {2*exp(-\x/10)*sin(50*\x)});
+            \end{tikzpicture}
+          \end{center}
+          with arrow going in. This is a \textit{stable spiral}. If $ \Re(\lambda_1,\lambda_2)>0 $ then it is an \textit{unstable spiral} with arrow reversed. If $ \Re(\lambda_1,\lambda_2)=0 $, then we have cocentric ellipces. 
+    \end{enumerate}
+    \begin{remark}
+        To find direction of rotation, we can evaluate system of equations at a given point to find sign of $ \dot{y_1},\dot{y_2} $.
+    \end{remark}
+    \subsection{Nonlinear Systems of ODEs}
+    Consider an autonomous\marginnote{$f,g$ are independent of time $t$} system of two nonlinear first order ODEs:
+    \begin{align*}
+        \dot{x}&= f(x,y),\\
+        \dot{y}&= g(x,y).
+    \end{align*}
+    $f,g$ are nonlinear functions of $x,y$.
+    \subsubsection*{Equilibrium(fixed) Points}
+    Let $ (x_0,y_0) $ be a fixed point:
+    \[
+        \dot{x}|_{(x_0,y_0)} = \dot{y}|_{(x_0,y_0)}=0 \Rightarrow f(x_0,y_0)=g(x_0,y_0)=0.
+    \]
+    We solve this system for $(x_0,y_0)$.
+    \subsubsection*{Stability of equilibrium points}
+    Perturbation analysis: Consider a small displacement away from $(x_0,y_0)$:
+    \[
+        (x,y) = (x_0+\xi (t),y_0+\eta (t)).
+    \]
+    We have 
+    \begin{align*}
+        \dot{\xi} &= (x_0+\xi (t),y_0+\eta (t))\\
+        &\approx f(x_0,y_0)+\xi f_x(x_0,y_0)+\eta f_y(x_0,y_0)
+    \end{align*}
+    and 
+    \begin{align*}
+        \dot{\eta}&=g(x_0+\xi,y_0+\eta)\\
+        &\approx g(x_0,y_0)+\xi f_x(x_0,y_0)+\eta g_y(x_0,y_0)
+    \end{align*}
+    But $f(x_0,y_0)=g(x_0,y_0)=0$,  so 
+    \[
+        \begin{pmatrix}
+            \dot{\xi}\\\dot{\eta}
+        \end{pmatrix} = \begin{pmatrix}
+            f_x&f_y\\
+            g_x&g_y
+        \end{pmatrix}\Big|_{(x_0,y_0)}\begin{pmatrix}
+            \xi\\\eta
+        \end{pmatrix}.
+    \]
+    This is a linear homogeneous system of ODEs. The eigenvalues of the matrix determine stability and behaviour.
 \end{document}

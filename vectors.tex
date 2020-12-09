@@ -41,7 +41,6 @@
 Not in University of Cambridge\\
 skipped some talks irrelevant to contents\\
 }
-\DeclareMathOperator{\spn}{span}
 \DeclareMathOperator{\im}{Im}
 \DeclareMathOperator{\nullity}{null}
 \emailAdd{not telling you}
@@ -3108,6 +3107,149 @@ skipped some talks irrelevant to contents\\
         \[
             A_{aj}P_{ji}=Q_{ab}A_{bi}' \Longleftrightarrow AP=QA \Longleftrightarrow Q^{-1}AP=A'.
         \]
-        
+    \end{proof}
+    Consider changes in vector components 
+    \[
+        \bfx = x_i\bfe_i = x_j'\bfe_j = (P_{ij}x_j')\bfe_i.
+    \]
+    This implies $ x_i=P_{ij}x_j' $. Write 
+    \[
+        X = \begin{pmatrix}
+            x_1\\\vdots \\x_n
+        \end{pmatrix}, X'=\begin{pmatrix}
+            x_1'\\\vdots \\x_n'
+        \end{pmatrix},
+    \]
+    we have 
+    \[
+        X=PX' \Longleftrightarrow X'=P^{-1}X.
+    \]
+    Similarly $ \bfy = y_a\bff_a = y_b'\bff_b' \Rightarrow y_a=Q_{ab}y_b' $, so that 
+    \[
+        Y=QY' \Longleftrightarrow Y'=Q^{-1}Y.
+    \]
+    Therefore the matrices are defined to ensure 
+    \[
+        Y=AX \land Y'=A'X' \Longrightarrow QY'=APX' \Longrightarrow Y'=Q^{-1}APX',
+    \]
+    so that $ A'=Q^{-1}AP $, as expected.
+
+    Now consider some special cases:
+    \begin{enumerate}[(i)]
+        \item $V=W, \bfe_i=\bff_i, \bfe'=\bfi'$. Then $P=Q$ and $ A = P^{-1}AP $. This shows that matrices representing the same linear map are similar. Conversely if $A,A'$ are similar, then we can regard them as representing the same linear map with $P$ defining the change of basis.
+        \item $V=W=\bbR^n$ or $\bbC^n$ and $ \bfe_i $ are the standard basis, wrt to which $T$ has matrix $A$. If $ \exists  $ a basis of eigenvectors $ \bfe_i'=\bfv_i $ with $ A\bfv_i=\lambda_i\bfv_i $, then
+        \[
+            A'= P^{-1}AP = D, \quad \bfv_i = \bfe_jP_{ji}.
+        \]
+        So that eigenvectors are columns of $P$, as expected.
+        \item $A$ hermitian: $ A^\dagger =A $, then we always have a basis of orthonormal eigenvectors $ \bfe_i'=\bfu_i $, and (ii) applies with $P$ unitary.
+    \end{enumerate}
+    \section{Jordan Canonical/Normal Form}
+    This result classifies $n\times n$ complex matrices up to similarity.
+    \begin{proposition}
+        Any $ A\in \mathcal{M}_{2\times 2}(\mathbb{C}) $ is similar to one of the followings:
+        \begin{align*}
+            A' &= \begin{pmatrix}
+                \lambda_1&0\\
+                0&\lambda_2
+            \end{pmatrix},\lambda_1\neq \lambda_2, \chi_A(t)=(t-\lambda_1)(t-\lambda_2),\\
+            A'&= \begin{pmatrix}
+                \lambda&0\\
+                0&\lambda
+            \end{pmatrix},\chi_A(t)=(t-\lambda)^2, \\
+            A'&=\begin{pmatrix}
+                \lambda&1\\
+                0&\lambda
+            \end{pmatrix},\chi_A(t)=(t-\lambda)^2.
+        \end{align*}
+    \end{proposition}
+    \begin{proof}
+        $ \chi_A(t) $ has 2 roots over $ \mathbb{C} $, so if roots are distinct, then eigenvalues are distinct and $A'=P^{-1}AP$ with eigenvectors being the columns of $P$. For repeated root, if $ M_\lambda=m_\lambda=2 $, same argument applies. If $ M_\lambda=2, m_\lambda=1 $, let $\bfv$ be the eigenvector, and let $\bfw$ be any other vector $ \bfv,\bfw $ are linearly independent. Then 
+        \[
+            A\bfv=\lambda\bfv, A\bfw = \alpha\bfv+\beta\bfw.
+        \]
+        Matrix of map wrt basis $ \{\bfv,\bfw\} $ is 
+        \[
+            \begin{pmatrix}
+                \lambda&\alpha\\
+                0&\beta
+            \end{pmatrix}.
+        \]
+        But $ \beta=1 $ since otherwise the eigenvalues are $ \lambda,\beta $, back to case 1. Also $ \alpha\neq 1 $ otherwise back to case 2. Now set $ \bfu=\alpha\bfv $, then $ A\bfu=\lambda \bfu, A\bfw = \bfw+\lambda\bfw $, so wrt this basis 
+        \[
+            A'=\begin{pmatrix}
+                \lambda&1\\
+                0&\lambda
+            \end{pmatrix},
+        \] 
+        as claimed.
+    \end{proof}
+    Alternative approach for case 3: If $A$ has a characteristic polynomial $ \chi_A(t)=(t-\lambda)^2 $, but $ A\neq \lambda I$, then $ \exists \bfw, \bfu=(A-\lambda I)\bfw \neq \mathbf{0} $. Now $ (A-\lambda I)\bfu=(A-\lambda I)^2\bfw = \mathbf{0} $ by Cayley-Hamilton theorem. Can check that $\bfu,\bfw$ are the same to the previous proof.
+    \begin{example}
+        Consider 
+        \[
+            A=\begin{pmatrix}
+                1&4\\
+                -1&5
+            \end{pmatrix}, \chi_A(t)=(t-3)^2, A-3I = \begin{pmatrix}
+                -2&4\\
+                -1&2
+            \end{pmatrix}.
+        \]
+        Choose $ \bfw^\top=(1,0) $, and $\bfu^\top=(-2,-1)$, so that $\bfu\neq \mathbf{0}\land \bfw$ is not an eigenvector. Therefore $A\bfu=3\bfu$ and $A\bfw=\bfu+3\bfu$, so 
+        \[
+            A'=\begin{pmatrix}
+                3&1\\
+                0&3
+            \end{pmatrix} \text{ with }P = \begin{pmatrix}
+                -2&1\\
+                -1&0
+            \end{pmatrix} \text{ and } A'=P^{-1}AP.
+        \] 
+    \end{example}
+    To extend arguments to higher dimensions, consider 
+    \[
+        N = \begin{pmatrix}
+            0&1&&&\\
+            &0&1&&\\
+            &&0&&\\
+            &&&\ddots&1\\
+            &&&&0
+        \end{pmatrix}, N_{i(i+1)}=1 \text{ for } i=1,2,\dots,n-1, N_{jk}=0 \text{ otherwise}
+    \]
+    when applied to standard basis in $ \mathbb{C}^{n} $. We get $ \bfe_n \mapsto \bfe_{n-1} \mapsto \cdots \mapsto \bfe_1 \mapsto \mathbf{0} $, consistent with $ N^n=0 $. Then
+    \[
+        J=\lambda I+N = \begin{pmatrix}
+            \lambda&1&&&\\
+            &\lambda&1&&\\
+            &&\lambda&&\\
+            &&&\ddots&1\\
+            &&&&\lambda
+        \end{pmatrix}
+    \]
+    has $ \chi_J(t) = (\lambda-t)^n $ and $ M_\lambda=n,m_\lambda=1 $.
+    \begin{theorem}
+        Any $ A\in \mathcal{M}_{n\times n}(\mathbb{C}) $ is similar to a matrix of the following form
+        \[
+            A'=\begin{pmatrix}
+                \boxed{J_{n_1}(\lambda_1)}&&\\
+                &\ddots&\\
+                &&\boxed{J_{n_r}(\lambda_r)}
+            \end{pmatrix},
+        \]
+        where $\lambda_1,\ldots,\lambda_r$ are the eigenvalues, $n_1+n_2+\cdots+n_r=n$ and $J_p(\lambda)$, the Jordan Block, is of the form
+        \[
+            J_p(\lambda)=\begin{pmatrix}
+                \lambda&1&&&\\
+                &\lambda&1&&\\
+                &&\lambda&&\\
+                &&&\ddots&1\\
+                &&&&\lambda
+            \end{pmatrix}.
+        \]
+        $A$ is diagonalisable if and only if $A'$ consists of $1\times 1$ blocks. This is the \textit{Jordan normal form}.
+    \end{theorem}
+    \begin{proof}
+        See IB Linear Algebra and Groups, Rings and Modules.
     \end{proof}
 \end{document}
