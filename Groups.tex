@@ -2277,4 +2277,129 @@ skipped some takes irrelevant to contents\\
         \item $ \mathbf{i}\mathbf{j}=\mathbf{k},\mathbf{j}\mathbf{k}=\mathbf{i},\mathbf{k}\mathbf{i}=\mathbf{j} $.
         \item $ \mathbf{j}\mathbf{i}=-\mathbf{k}, \mathbf{k}\mathbf{j}=-\mathbf{i}, \mathbf{i}\mathbf{k}=-\mathbf{j}$.
     \end{itemize}
+    \begin{lemma}\label{lma:8.2}
+        If a finite group has all non-identity elements of order 2, then it is isomorphic to $ C_2 \times C_2 \times \cdots C_2 $.
+    \end{lemma}
+    \begin{proof}
+        By Q7 of example sheet 1, we know that such a $G$ must be abelian and $|G|2^n$ for some $n$. If $|G|=2$ then $ G \cong C_2 $. If $|G|>2$ then choose $a_1\neq e\in G\in G$ of order 2, and $a_2\notin \langle a_1 \rangle $. By direct product theorem, $ \langle a_1,a_2 \rangle \cong \langle a_1 \rangle \times \langle a_2 \rangle \cong C_2\times C_2 $. This process continues and finally ends.
+    \end{proof}
+    Now we can classify groups of order 8.
+    \begin{theorem}\label{thm:8.3}
+        A group of order 8 is isomorphic to exactly one of the following:
+        \[
+            C_8, C_4 \times C_2,C_2 \times C_2 \times C_2, D_8, Q_8.
+        \]
+    \end{theorem}
+    \begin{proof}
+        Firstly, the above groups are not isomorphic. Note that $  C_8, C_4 \times C_2,C_2 \times C_2 \times C_2$ are abelian while $D_8, Q_8$ are not. By considering the maximum order in each set $ C_8, C_4 \times C_2,C_2 \times C_2 \times C_2 $, we see that they are not isomorphic. $D_8, Q_8$ are distinguished by \# of elements of order 2.
+
+        Now let $ |G|=8 $ and $g\in G$, then $ \ord(G)|8 $ by Lagrange, so $ \ord(g)=1,2,4,8. $
+        \begin{enumerate}[align=hang]
+            \item[$ \ord=8 ,$] Then $ G=\langle g \rangle \cong C_8 $.
+            \item[$ \ord=2 ,$] Then by lemma \ref{lma:8.2} $ G \cong C_2\times C_2 \times C_2 $.
+            \item[$ \ord=4, $] let $\ord h=4$ then $ \langle h \rangle \cong C_4, |G:\langle h \rangle |=2 \Rightarrow \langle h \rangle \ltrigeq G $. By Q4 of sheet 3, $ \forall g\in G, g^2\in \langle h \rangle $. If $ g^2=h,h^3 $, then $ g^4=h^2\neq e $, so $ \ord g=8,\# $. Hence $g^2=e,h^2$. If $g^2=e$ consider $ ghg^{-1} $. This must lie in $ \langle h \rangle $ and must have order 4 since $\ord h=4$. So $ ghg^{-1}=h,h^3 $. $ ghg^{-1}=h \Rightarrow hg=gh \Rightarrow G \cong \langle h \rangle \times \langle g \rangle $. $ ghg^{-1}=h^3=h^{-1} \Rightarrow h=r,g=s, G \cong D_8 $. If $g^2=h^2$, we have $ ghg^{-1}=h,h^3 $ for the same reason above. $ ghg^{-1}=h \Rightarrow (gh)^2=ghgh=g^2h^2=e \Rightarrow \ord gh=2 \Rightarrow G \cong \langle h \rangle \times \langle gh \rangle \cong C_4 \times C_2 $. If $ ghg^{-1}=h^3  $, define $ \varphi: G\to Q_8 $ by $ e \mapsto \mathbf{1}, h \mapsto \mathbf{i},h^2 \mapsto =-\mathbf{1}, h^3 \mapsto - \mathbf{i}, g \mapsto \mathbf{j},gh \mapsto - \mathbf{k}, gh^2 \mapsto -\mathbf{j}, gh^3 \mapsto \mathbf{k} $. Clearly $\varphi$ is bijective and is an isomorphism.
+        \end{enumerate}
+    \end{proof}
+    \begin{remark}
+        Every subgroup of an abelian group is normal, but the converse is not true, since every subgroup is normal does not mean that the group is abelian. $ Q_8 $ is such a counterexample.
+    \end{remark}
+    \part{Introduction to Geometric Group Theory}
+    Geometric group theory is a branch that aims to exploit connections between properties of groups and geometric properties of spaces on which they act. Groups can even be turned into geometric objects themselves.
+    \section{Free groups}
+    Let $S$ be a set called an \textit{alphabet}, and let $ S^{-1} $ be the set of "formal inverses" of elements of $S$: 
+    \[
+        S^{-1}=\{s^{-1}:s\in S\}.
+    \]
+    A \textit{word} in the alphabet $S$ is a finite sequence of elements of $S\cup S^{-1}$, e.g., $s_1s_2\dots$.\marginnote{We also consider the "empty" word, a word with no letter. This is considered to be the identity.}
+
+    A word is said to be \textit{reduced} if it does not contain occurences of subwords of the form $ss^{-1}$ or $s^{-1}s$
+
+    Given a word, we can get a reduced word from it by removing any such subwords. For example, if $ S=\{a,b,c\} $ then the word $ aa^{-1}bcb^{-1}bc^{-1}b $ is reduced to $bb(b^2)$.
+    \begin{definition}[Free groups]
+        The \textit{free group} on the alphabet $S$ denoted by $ F(S) $, is the set of reduced words in the alphabet $S$, with operation concatenation followed by reduction.
+    \end{definition}
+
+    Free groups are characterised by the "universal property":
+    \begin{proposition}
+        \begin{itemize}
+            \item For any given $G$, homomorphisms $F(S)\to G$ are in bijective correspondence with functions $ S \to G $.
+            \item If $G=\langle X \rangle $, we have a surjective homomorphism $ F(X) \twoheadrightarrow G $. In particular, every group is the quotient of a free group.
+            \item If $ |S|=|T| $, then $ F(S)\cong F(T) $. We write $ F_n $ for $F(S)$ when $|S|=n$.
+        \end{itemize}
+    \end{proposition}
+    \section{Group Presentations Revisited}
+    \begin{definition}
+        Let $X$ be a subset of a group $G$. The \textit{normal closure} $ \llangle X \rrangle $ of $X$ in $G$, or denoted by $ X^G $, is the smallest normal subgroup of $G$ containing $X$:
+        \[
+            X \subseteq N \ltrigeq G \Longrightarrow \llangle X \rrangle\le N.
+        \]
+    \end{definition}
+    In fact,
+    \begin{proposition}
+        $\llangle X \rrangle$ is generated by $ \{gxg^{-1}:g\in G,x\in X\} $.
+    \end{proposition}
+    Given a free group $F(S)$ and $ R \subseteq F(S) $, write $ \langle S|R \rangle $ for the group $ F(S)/\llangle R \rrangle $.
+    \begin{definition}
+        A \textit{presentation} of a group $G$ is an isomorphism of $G$ with a group written in the form $ \langle S|R \rangle $. $G$ is said to be \textit{finitely presented} if it admits a finite presentation $ \langle s_1,\dots,s_n|r_1,\dots,r_m \rangle $.
+    \end{definition}
+    Informally, in the free group we can cancel $ss^{-1}$ and $ s^{-1}s $ and in $ \langle S|R \rangle  $, can also cancel any words in $R$.
+    \begin{example}
+        \begin{enumerate}
+            \item $ R=\varnothing $ then $ \langle S|R \rangle \cong F(S) $. If $R=S$, then $ \langle S|R \rangle \cong \{e\} $.
+            \item $ C_n \cong \langle a|a^n \rangle \cong F(a)/\llangle a^n\rrangle \cong \mathbb{Z} / n \mathbb{Z} $.
+            \item $ D_{2n} \cong \langle r,s|r^n,s^2, srs^{-1}r \rangle  $.
+            \item $ \langle a,b|aba^{-1}b^{-2},a^{-2}b^{-1}ab \rangle \cong \{e\} $.
+        \end{enumerate}
+    \end{example}
+    \begin{remark}
+        \begin{itemize}
+            \item A group can have many presentations. e.g., $ \langle a|a^n \rangle =\langle a,b|a^n,b \rangle $.
+            \item In general it is difficult to recognize which group a given presentation presents, even with the trivial group.
+            \item There are uncountably many isomorphism classes of finitely generated groups(i.e. $S$ finite), but countably many  isomorphism classes of finitely presented groups.
+        \end{itemize}
+    \end{remark}
+    \section{Cayley Graphs}
+    We will focus on finitely generated .
+    \begin{definition}
+        Let $G$ be finitely generated, and let $ S \subseteq G $. The \textit{Cayley graph} of $G$ wrt $S$, denoted by $ \operatorname{Cay}(G,S)  $, is given by:
+        \begin{itemize}
+            \item Vertices of $ \operatorname{Cay}(G,S)=G  $,
+            \item Edges of $ \operatorname{Cay}(G,S)=\{(g,gs):g\in G,s\in S\} $
+        \end{itemize}
+    \end{definition}
+    \begin{example}
+        \begin{itemize}
+            \item $ \mathbb{Z}, S= \langle 1 \rangle $.\marginnote{Draw it yourself. Lazy to type.}
+            \item $ \mathbb{Z}^2,S=\{(1,0),(0,1)\} $, $ S=\{(1,0)\} $.
+        \end{itemize}
+    \end{example}
+    \begin{remark}
+        \begin{itemize}
+            \item Could use directed or labelled edges.
+            \item $ \operatorname{Cay}(G,S)  $ is $ 2|S| $-regular graph(number of edges from each vertex is $ 2|S| $).
+            \item Ususally we do not put double edges.
+            \item $ \operatorname{Cay}(G,S)  $ is connect if and only if $ G=\langle S \rangle $.
+            \item Relators in elements of $S$ give rise to cycles in the graph.
+            \item If $ \langle S \rangle =G $, paths from $e$ to a given vertex correspond to words in $S$ which represent the corresponding elements in $G$.
+            \item $ \operatorname{Cay}(G,S)  $ allows us to put a distance on $G$, the \textit{word metric} $ d_S(g,h) = $ length of the shortest path $ g\to h $.
+            \item $G$ acts on $ \operatorname{Cay}(G,S)  $ by isometries via left multiplication: 
+            \[
+                h(g)=hg, d_S(h(g_1),h(g_2))=d_S(g_1,g_2) .
+            \]
+            \item Cayley graphs \textbf{do not} uniquely determine the group.
+        \end{itemize}
+    \end{remark}
+    \begin{example}
+        \begin{enumerate}
+            \item $ G=\{e\} $.
+            \item $ C_5=\langle a \rangle =\langle a,a^2 \rangle $.
+            \item $ \mathbb{Z} =\langle 2,3 \rangle  $.
+            \item $ D_6=\langle r,s \rangle  $.
+            \item $ C_4=\langle a \rangle , C_2 \times C_2 $ have the same Cayley graph.
+            \item $ F_2=F(a,b) $.
+        \end{enumerate}
+    \end{example}
+    Cayley graphs can also be used to visualise quotients.
+
+    For infinite groups, there are lots of really nice connections between geometric properites of Cayley graph and algebraic properties of the group.
 \end{document}

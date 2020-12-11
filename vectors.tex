@@ -3252,4 +3252,184 @@ skipped some talks irrelevant to contents\\
     \begin{proof}
         See IB Linear Algebra and Groups, Rings and Modules.
     \end{proof}
+    \section{Conics and Quadrics}
+    \subsection{Quadrics in General}
+    \begin{definition}
+        A \textit{Quadric} in $ \mathbb{R}^{n} $ is a hypersurface defined by
+    \[
+        Q(\bfx)=\bfx^\top A\bfx+ \bfb^\top\bfx+c=0
+    \]
+    for some non-zero, symmetric, real $n\times n$ matrix $A$, $ \bfb\in \mathbb{R}^{n},c\in \mathbb{R} $.
+    \end{definition}
+    So
+    \[
+        Q(\bfx) = A_{ij}x_i x_j+b_ix_i+c=0.
+    \]
+    Consider classifying solutions for $ \bfx $ up to geometrical equivalence: no distinction between solutions related by isometries in $ \mathbb{R}^{n} $, i.e. related by 
+    \begin{enumerate}
+        \item Translations: change in origin,
+        \item Orthogonal transformations about the origin.
+    \end{enumerate}
+    Note that $A$ is invertible if and only if it has no zero eigenvalues. In this case we can \underline{complete square} in equation $ Q(\bfx)=0 $ by setting 
+    \[
+        \bfy = \bfx + \frac{1}{2} A^{-1} \bfb.
+    \]
+    Therefore 
+    \begin{align*}
+        \bfy^\top A\bfy &= \left( \bfx + \frac{1}{2} A^{-1} \bfb \right)^\top A \left( \bfx + \frac{1}{2} A^{-1} \bfb \right)\\
+        &= \left( \bfx^\top +\frac{1}{2} \bfb^\top (A^{-1})^\top \right)A \left( \bfx + \frac{1}{2} A^{-1} \bfb \right)\\
+        &=\bfx^\top A\bfx+\bfb^\top \bfx+\frac{1}{4}\bfb^\top A\bfb.
+    \end{align*}
+    Then $ Q(\bfx)=0 \Leftrightarrow \mcF(\bfy)=k $, where $ \mcF= \bfy^\top A\bfy$ is a quadratic form wrt new origin $ \bfy=\mathbf{0} $, and $ k= \frac{1}{4}\bfb^\top A\bfb-c$. Now diagonalise $ \mcF$ wrt principal axes. Then the eigenvalues of $A$ and value of $k$ determine the geometrical nature of solution.
+    \begin{remark}
+        If $A$ has at least one zero eigenvalues, then the analysis above changes and the simplest standard form may have linear and quadratic terms.
+    \end{remark}
+    \subsection{Conics as Quadrics}
+    Quadrics in $ \mathbb{R}^{2} $ are curves, called \textit{conics}.
+    \subsubsection*{\boldmath{$\det A\neq 0$}}
+    By completing square and diagonalising $A$, we get a standard form 
+        \[
+            \lambda_1 x_1'^2+\lambda_2 x_2'^2=k,
+        \]
+        where $ x_i' $ correspond to principal axes and new origin. If $ \lambda_1,\lambda_2>0 $, then it is an ellipse for some $k>0$, and a point for $k=0$, and no solution exists for $k<0$. If $ \lambda_1>0,\lambda_2<0 $, then it is a hyperbola if $k>0$ or $k<0$, and pair of lines if $k=0$.
+    \subsubsection*{\boldmath{$ \det A=0 $}}
+    Wlog, suppose $ \lambda_1>0,\lambda_2=0 $. Diagonalise $A$ in the original formula $Q(\bfx)$ to get
+    \[
+        \lambda_1 x_1^2+b_1'x_1'+b_2'x_2'+c=0 \Longleftrightarrow \lambda_1 x_1''^2+b_2'x_2'+c'=0,
+    \]
+    where $ x_1''=x_1+\frac{1}{2\lambda_1} b_1', c'=c-\frac{b_1'^2}{4\lambda_1^2} $. If $ b_2'=0 $, then we get a pair of lines for $c'<0$, a single line for $c'=0$, no solution for $c'>0$.
+
+    If $ b_2'\neq 0 $, then the equation becomes 
+    \[
+        \lambda_1 x_1''^2+b_2'x_2''=0,
+    \]
+    which is a parabola.($ x_2''=x_2'+\frac{1}{b_2'}c' $)
+
+    All changes of coordinates correspond to translations, or shifts of origin, or orthogonal transformations, which preserve lengths and angles.
+    \subsection{Standard Forms for Conics}
+    General forms for conics can be written in terms of lengths $a,b$ \textit{semi-major/minor} axes, or length scale $l$ and a parameter(eccentricity) $e$.
+
+    \subsubsection{Cartesian Coordinaties}
+    \begin{enumerate}[align=hang]
+        \item[\bfseries Ellipse]
+        \[
+            \frac{x^2}{a^2}+\frac{y^2}{b^2}=1.
+        \]
+        eccentricity $e<1$ and $ b^2=a^2(1-e^2) $, foci are $ x=\pm ae $.
+    
+        \item[\bfseries Parabola]
+        \[
+            y^2=4ax.
+        \]
+        $e=1$ and focus $ x=a $.
+        \item[\bfseries Hyperbola]
+        \[
+            \frac{x^2}{a^2}-\frac{y^2}{b^2}=1.
+        \] 
+        $e>1$ and $ b^2=a^2(e^2-1) $, foci are $ x=\pm ae $.
+    \end{enumerate}
+    \subsubsection{Polar Coordinates}
+    Choose the origin at a focus, we have
+    \[
+        r = \frac{l}{1+e\cos \theta}.
+    \]
+    \begin{enumerate}[align=hang]
+        \item[\bfseries Ellipse] $e<1$, $ l=a(1-e^2) $.
+        \item[\bfseries Parabola] $ e=1, l=2a $.
+        \item[\bfseries Hyperbola] $ e>1, l=a(e^2-1) $.  
+    \end{enumerate}
+    \subsection{Conics as Sections of a Cone}
+    Equation for a cone in $ \mathbb{R}^{3} $:
+    let $\bfc$ be the apex, $\bfn$(unit) be the axis and $ \alpha<\frac{\pi}{2} $ be the angle:
+    \[
+        (\bfx-\bfc)\cdot \bfn=|\bfx-\bfc|\cos \alpha.
+    \]
+    Squaring gives double cone:
+    \[
+        ((\bfx-\bfc)\cdot \bfn)^2=|\bfx-\bfc|^2\cos^2 \alpha.
+    \]
+    Let $ \bfc=c\bfe_3,n=\cos \beta \bfe_1-\sin \beta \bfe_3 $, where $ \beta>0 $ is the angle between $\bfn$ and horizontal axis. Consider intersection with plane $x_3=0$, then 
+    \[
+        (x_1 \cos \beta-c \sin \beta)^2=(x_1^2+x_2^2+c^2)\cos^2 \alpha \Longleftrightarrow (\cos^2 \alpha-\cos^2\beta)x_1^2+\cos^2x_2^2+2x_1c \sin \beta \cos \beta = C.
+    \]
+    If $ \cos^2 \alpha>\cos^2 \beta \Leftrightarrow \alpha<\beta $, we get an ellipse. If $ \alpha=\beta $, then we get a parabola. If $ \alpha>\beta $ we get a hyperbola.
+    \section{Symmetries and Transformation Groups}
+    \subsection{Orthogonal Transformations and Rotations in $ \mathbb{R}^{n} $}
+    $ R $ is orthogonal $ \Leftrightarrow R^\top R=I \Leftrightarrow (R\bfx)\cdot (R\bfy)=\bfx \cdot \bfy \Leftrightarrow  $ rows or columns of $R$ are orthonormal. The set of such matrix $ R\in \mathcal{M}_{n\times n}(\mathbb{R}) $ forms the \textit{orthogonal group} $ \Or_n $. $ R\in \Or_n \Rightarrow \det R=\pm 1 $. $ \SO_n $ is the special orthogonal group, as defined in Groups. Orthogonal matrices preserve lengths and $n$-dimensional volumns, while special orthogonal matrices preserve orientation or sign of $n$-dimensional volumns. As illustrated in Groups, $\SO_n$ is the set of rotations, and reflecitons are in $ \Or_n \setminus \SO_n $. For a specific $H\in \Or_n \setminus \SO_n$, any element of $\Or_n$ is of the form
+    \[
+        R \text{ or } RH \text{ with }R\in \SO_n.
+    \] 
+    Now we can regard $ x_i'=R_{ij}x_j $ in two ways: 1. rotation transforms vectors $x_i'$ components of a new vector $ \bfx'=R\bfx $ wrt standard basis;2. $ x_i' $ components of the same vector $\bfx$ wrt a new orthonormal basis $ \{\bfu_i\} $. In general we have $ \bfx=x_i\bfe_i=x_j'\bfu_j $ with $ \bfu_i=R_{ij}\bfe_j=\bfe_jP_{ji} $, so $ P=R^{-1}=R^\top $(compare with previous section).
+    \subsection{2D Minkowski Space \& Lorentz Transformations}
+    Consider a new inner product on $ \mathbb{R}^{2} $ given by 
+    \[
+        (\bfx,\bfy)=\bfx^\top J \bfy=x_0y_0-x_1y_1,J=\begin{pmatrix}
+            1&0\\
+            0&-1
+        \end{pmatrix}.
+    \]
+    Label components as $ (x_0,x_1) $. Note that it is not positive definite since $ (\bfx,\bfx)=x_0^2-x_1^2 $, which is a quadratic form with eigenvalues $ \pm 1 $, but still bilinear and symmetric. Standard basis vectors
+    \[
+        \bfe_0=\begin{pmatrix}
+            1\\0
+        \end{pmatrix},\bfe_1\begin{pmatrix}
+            0\\1
+        \end{pmatrix},
+    \]
+    since $ (\bfe_0,\bfe_0)=-(\bfe_1,\bfe_1)=1, (\bfe_0,\bfe_1)=0 $. This inner product is called the \textit{Minkowski metric }on $ \mathbb{R}^{2} $. $ \mathbb{R}^{2} $ with this metric is called the \textit{Minkowski space}.
+
+    Now consider 
+    \[
+        M=\begin{pmatrix}
+            M_{00}&M_{01}\\
+            M_{10}&M_{11}
+        \end{pmatrix}: \mathbb{R}^{2}\to \mathbb{R}^{2},
+    \]
+    this preserves Minkowski metric if and only if $ (M\bfx, M\bfy)=(\bfx,\bfy),\forall \bfx,\bfy\in \mathbb{R}^{2} \Leftrightarrow (M\bfx)^{\top }J(M\bfy)=\bfx^\top M^\top JM\bfy = \bfx^\top J \bfy,\forall \bfy,\bfy \Leftrightarrow J=M^\top JM $. The set of such matrices form a group. Note that $ \det M=\pm 1 $. Furthermore, $ |M_{00}^2\ge 1| $ so $ M_{00}\ge 1 \lor M_{00}\le -1 $. The subgroup with $ \det M=1 \land M_{00}\ge 1 $ is called the \textit{Lorentz group}.
+    \subsubsection*{General form of $M$}
+    Find this by using columns $ M\bfe_0,M\bfe_1 $ are orthonormal in the same sense as $ \bfe_0\&\bfe_1 $. 
+    \[
+        (M\bfe_0,M\bfe_0)=M_{00}^2-M_{10}^2=(\bfe_0,\bfe_0)=1(\text{so } |M_{00}|^2\ge 1).
+    \]
+    Taking $ M_{00}\ge 1 $ we can write
+    \[
+        M\bfe_0=\begin{pmatrix}
+            \cosh \theta\\ \sinh \theta
+        \end{pmatrix},\theta\in \mathbb{R}.
+    \]
+    \[
+        (M\bfe_0,M\bfe_1)=0 \land (M\bfe_1,M\bfe_1)=-1 \Longrightarrow M\bfe_1 = \pm \begin{pmatrix}
+            \sinh \theta\\ \cosh \theta
+        \end{pmatrix},\theta\in \mathbb{R}.
+    \]
+    Finally imposing $\det=1$ we have 
+    \[
+        M=\begin{pmatrix}
+            \cosh \theta & \sinh \theta\\
+            \sinh \theta & \cosh \theta
+        \end{pmatrix}.
+    \]
+    Note that the matrices found obey $ M(\theta_1)M(\theta_2)=M(\theta_1+\theta_2) $ using hyperbolic addition formulas.
+    \subsubsection*{Physical interpretation/application}
+    Set 
+    \[
+        M(\theta)=\gamma(v)\begin{pmatrix}
+            1&v\\
+            v&1
+        \end{pmatrix}, v=\tanh \theta,\gamma(v)=(1-v^2)^{-1/2}, -1<v<1.
+    \]
+    Rename $ x_0 \to t $, time coordinate, $ x_1 \to x $, space coordinate, then 
+    \[
+        \bfx'=M\bfx \Longleftrightarrow \left\{ \begin{aligned}
+             t'=\gamma(t+vx)\\
+             x'=\gamma(x+vt)
+        \end{aligned} \right. .
+    \]
+    This is the \textit{Lorentz transformation} or \textit{boost} relating time and space coordinates for observers moving with relative velocity $v$ in Rpecial Relativity, in units with speed of light $c=1$. The $ \gamma $ factor in Lorentz transformation gives rise to time dilation and length contraction effects.
+
+    Group property $ M(\theta_3)=M(\theta_1)M(\theta_2) $ with $ \theta_3=\theta_1+\theta_2 $ implies related composition of velocities $ v_i=\tanh \theta_i $,
+    \[
+        v_3=\frac{v_1+v_2}{1+v_1v_2}.
+    \]
+    This is consistent with $|v_i|<1$.
 \end{document}
