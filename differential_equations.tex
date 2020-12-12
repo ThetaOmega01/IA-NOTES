@@ -972,7 +972,7 @@ skipped some talks irrelevant to contents\\
               \draw [->] (0, 0) -- (1.2, 0) node [right] {$\mathbf{Y}_1(0)$};
             \end{tikzpicture}
           \end{center}
-          \marginnote{Note that they do span the space, since any solution is a linear combination of $y_1$ and $y_2$ and the two free initial conditions are completely determined by $y$ and $y'$, as described in solutoin vectors.}
+          \marginnote{Note that they do span the space, since any solution is a linear combination of $y_1$ and $y_2$ and the two free initial conditions are completely determined by $y$ and $y'$, as described in solution vectors.}
           Since $\mathbf{Y}_1,\mathbf{Y}_2$ are linearly independent for all $x$, any point in solution space $(y,y')$ can be reached by a linear combination of $y_1$ and $y_2$ .
     \end{example}
 
@@ -2349,7 +2349,7 @@ skipped some talks irrelevant to contents\\
               \draw [mblue, semithick, domain = 0:40,samples=300] plot ({2*exp(-\x/10)*cos(50*\x)}, {2*exp(-\x/10)*sin(50*\x)});
             \end{tikzpicture}
           \end{center}
-          with arrow going in. This is a \textit{stable spiral}. If $ \Re(\lambda_1,\lambda_2)>0 $ then it is an \textit{unstable spiral} with arrow reversed. If $ \Re(\lambda_1,\lambda_2)=0 $, then we have cocentric ellipces. 
+          with arrow going in. This is a \textit{stable spiral}. If $ \Re(\lambda_1,\lambda_2)>0 $ then it is an \textit{unstable spiral} with arrow reversed. If $ \Re(\lambda_1,\lambda_2)=0 $, then we have cocentric ellipces called \textit{centre}. 
     \end{enumerate}
     \begin{remark}
         To find direction of rotation, we can evaluate system of equations at a given point to find sign of $ \dot{y_1},\dot{y_2} $.
@@ -2393,5 +2393,193 @@ skipped some talks irrelevant to contents\\
             \xi\\\eta
         \end{pmatrix}.
     \]
-    This is a linear homogeneous system of ODEs. The eigenvalues of the matrix determine stability and behaviour.
+    This is a linear homogeneous system of ODEs. The eigenvalues of the matrix determine stability and behaviour. 
+    \begin{example}[Phytoplankton and zooplankton: Predator-prey model or Lotka-Volterra equations]
+        In a predator-prey system of phytoplanktons and zooplanktons, the populations of two species can be modelled as
+        \begin{align*}
+            \text{prey}\quad & \dot{x}=\alpha x- \beta xy=f(x,y),\\
+            \text{predator}\quad & \dot{y} = \delta xy-\gamma y=g(x,y),
+        \end{align*}
+        where $ \alpha,\beta,\delta,\gamma>0 $.
+
+        Consider the behaviour of the solution at a fixed point, where $ \dot{x}=\dot{y}=0 $.
+        \begin{align*}
+            \dot{x}=0 &\Longrightarrow x = 0 \lor y = \frac{\alpha}{\beta}\\
+            \dot{y}=0& \Longrightarrow y = 0 \lor x = \frac{\gamma}{\delta}.
+        \end{align*}
+        Therefore the fixed points are $ (x_0,y_0)=(0,0), (\frac{\gamma}{\delta},\frac{\alpha}{\beta}) $. Note that 
+        \[
+            M=\begin{pmatrix}
+                f_x&f_y\\
+                g_x&g_y
+            \end{pmatrix}=\begin{pmatrix}
+                \alpha-\beta y&-\beta x\\
+                \delta y&\delta x-\gamma
+            \end{pmatrix}.
+        \]
+        At $(0,0)$, we have 
+        \[
+            \begin{pmatrix}
+                \dot{\xi}\\\dot{\eta}
+            \end{pmatrix} = \begin{pmatrix}
+                \alpha&0\\
+                0&-\gamma
+            \end{pmatrix}\begin{pmatrix}
+                \xi\\\eta
+            \end{pmatrix}.
+        \]
+        The eigenvalues are $ \alpha>0,-\gamma<0 $, so it is a saddle node.
+
+        At $ (\frac{\gamma}{\delta},\frac{\alpha}{\beta}) $, we have 
+        \[
+            \begin{pmatrix}
+                \dot{\xi}\\\dot{\eta}
+            \end{pmatrix} = \begin{pmatrix}
+                0&-\frac{\gamma \beta}{\delta}\\
+                \frac{\delta \alpha}{\beta}&0
+            \end{pmatrix}\begin{pmatrix}
+                \xi\\\eta
+            \end{pmatrix}.
+        \]
+        By solving $ \lambda^2+\alpha \gamma=0 $, we get $ \lambda=\pm \sqrt{-\alpha\gamma}=\pm i \sqrt{\alpha\gamma} $. Hence $ \lambda $ are purely imaginary so it is a centre. For $x$, we have 
+        \[
+            \dot{\xi}=-\frac{\beta \gamma}{\delta}\eta.
+        \]
+        If $ \eta>0 $, $ \dot{\xi}<0 $, so the direction is counterclockwise.
+    \end{example}
+    \part{Partial Differential Equations}
+    \begin{definition}
+        A PDE is a DE with multiple independent variables.
+    \end{definition}
+    \section{First Order Wave Equation}
+    Consider $ y(x,t) $ where 
+    \[
+        \frac{\partial y}{\partial t}-c \frac{\partial y}{\partial x}=0,\quad c = \text{constant}.  
+    \]
+    We solve by \textit{method of characteristics}, sample $y(x,t)$ along a path $x(t)$, so that the function becomes $ y(x(t),t) $. Note that 
+    \[
+        \frac{\mathrm{d}y}{\mathrm{d}t} = \frac{\partial y}{\partial t}+\frac{\partial y}{\partial x}\frac{\mathrm{d}x}{\mathrm{d}t}.    
+    \]
+    Compare with the standard form, if $ \frac{\mathrm{d}x}{\mathrm{d}t}=-c  $, then $ \frac{\mathrm{d}y}{\mathrm{d}t}=0  $. i.e., $y$ is constant along paths with $ x=x_0-ct, x_0\in \mathbb{R} $.
+    \begin{center}
+        \begin{tikzpicture}
+          \draw [->] (-1, 0) -- (5, 0) node [right] {$x$};
+          \draw [->] (0, -1) -- (0, 3) node [above] {$t$};
+          \node [anchor = north east] at (0, 0) {$O$};
+      
+          \foreach \x in {1, 2, 3, 4, 5} {
+            \draw [red] (\x- 0.5, 0) -- (\x - 1.5, 2.5);
+          }
+          \node [right] at (4, 1.5) {contours of $y$};
+        \end{tikzpicture}
+      \end{center}
+      If $ y(x,0)=f(x) $, $ y = f(x_0) $ along characteristics. Hence the general solution is \marginnote{Firstly consider a particular path, then consider all possible paths. This indeed gives the general solution.}
+      \[
+          y=f(x+ct).
+      \]
+      \begin{example}[Unforced wave equation]
+          \[
+              \frac{\partial y}{\partial t}-c \frac{\partial y}{\partial x}=0, \quad y(x,0)=x^2-3.  
+          \]
+          The solution is 
+          \[
+              y(x,t)=(x+ct)^2-3.
+          \]
+      \end{example}
+      \begin{example}[Forced wave equation]
+          \[
+            \frac{\partial y}{\partial t}+5 \frac{\partial y}{\partial x}=e^{-t}, \quad y(x,0)=e^{-x^2}.
+          \]
+          Now 
+          \[
+              \frac{\mathrm{d}y}{\mathrm{d}t} = e^{-t} 
+          \]
+          along paths with $ \frac{\mathrm{d}x}{\mathrm{d}t} =5 $ or $ x=x_0+5t $. We have $ y=A-e^{-t} $ along paths. I.C.: at $t=0$, $x=x_0$ and $ y(x,0)=A-1=e^{-x_0^2} $. Hence 
+          \[
+              y(x,t)=1+e^{-x_0^2}-e^{-t} = 1+e^{-(x-5t)^2}-e^{-t}.
+          \]
+      \end{example}
+      \section{Second Order Wave Equation}
+      General form is 
+      \[
+          \frac{\partial^2 y}{\partial t^2}-c^2 \frac{\partial^2 y}{\partial x^2}=0.  
+      \]
+      Factor the differnetial operator:
+      \[
+          \left( \frac{\partial t}{\partial t}-c\frac{\partial }{\partial x}   \right)\left( \frac{\partial t}{\partial t}+c\frac{\partial }{\partial x}   \right)y=0.
+      \]
+      Note that operators commute, so 
+      \[
+         \frac{\partial t}{\partial t}-c\frac{\partial y }{\partial x}   =0\quad \text{or}\quad  \frac{\partial t}{\partial t}+c\frac{\partial y}{\partial x} =0.
+      \]
+      By comparison, we have 
+      \[
+          y=f(x+ct)\quad \text{or}\quad y=g(x-ct).
+      \]
+      Since the original equation is linear in $y$, general solution is 
+      \[
+          y = f(x+ct)+g(x-ct).\marginnote{We need not add $A,B$ to make it a span, since $f,g$ are already general solutions.}
+      \]
+      \begin{example}
+          Consider $ y_{tt}-c^2y_{xx}=0 $ subjected to $ y=\frac{1}{1+x^2}, y_t=0 $ at $t=0$. $ y\to 0 $ as $ x\to \pm \infty $. Solution is $ y=f(x+ct)+g(x-ct) $. Apply ICs:
+          \begin{align*}
+              &f(x)+g(x)=\frac{1}{1+x^2}\\
+              &cf'(x)-cg'(x)=0\\
+              \Longrightarrow & f'=g' \Longrightarrow f=g+A\\
+              \Longrightarrow & 2g+A=\frac{1}{1+x^2} \Longrightarrow \begin{aligned}
+                g(x)=\frac{1}{2}\left( \frac{1}{1+x^2}\right)-\frac{1}{2}A\\
+                f(x)=\frac{1}{2}\left( \frac{1}{1+x^2}\right)+\frac{1}{2}A
+              \end{aligned} 
+          \end{align*}
+          Hence the general solution is 
+          \[
+              y(x,t)=\frac{1}{2}\left( \underbrace{\frac{1}{1+(x+ct)^2}}_{\text{moves left}}+\underbrace{\frac{1}{1+(x-ct)^2}}_{\text{moves right}} \right), c>0.
+          \]
+      \end{example}
+      \section{Diffusion Equation}
+      \begin{example}
+          Consider 
+          \[
+              \frac{\partial y}{\partial t} = \kappa \frac{\partial^2 y}{\partial x^2}  
+          \]
+          subjected to $ y(x,0)=\delta(x) $, the dirac delta function, and $ y\to 0, x\to \infty $. Define $ \eta=\frac{x^2}{4\kappa t} $, the \textit{similarity variable}.\marginnote{Motivated by dimensional analysis: $\eta$ is dimensionless.}
+
+          Seek solutions of form
+          \[
+              y=t^{-\alpha}f(\eta).
+          \]
+          $\alpha,f$ are to be determined. Note that $ y_t=-\alpha t^{-\alpha-1}f(\eta)+t^{-\alpha}f_{\eta}\eta_t, y_x=t^{-\alpha}f_{\eta}\eta_x, y_{xx}=t^{-\alpha}f_{\eta \eta}(\eta_x)^2+t^{-\alpha}f_{\eta}\eta_{xx}$. Then the original equation becomes 
+          \[
+              -\frac{\alpha}{t}f+f_{\eta}\eta_t=\kappa(f_{\eta \eta}(\eta_x)^2+f_\eta \eta_{xx}).
+          \]
+          Now 
+          \[
+              \eta_t = \frac{-x^2}{4\kappa t^2} = \frac{-\eta}{t}, \eta_x = \frac{1x}{2\kappa t}, (\eta_x)^2 = \frac{x^2}{4\kappa^2 t^2}= \frac{\eta}{\kappa t}, \eta_{xx}=\frac{1}{2\kappa t}.
+          \]
+          Hence it becomes 
+          \[
+              \alpha f+f'\eta+f''\eta+\frac{f'}{2}=0 \Longrightarrow \eta \frac{\mathrm{d}}{\mathrm{d}\eta}\left( f+f' \right) +\frac{1}{2}(f'+2\alpha f)=0.
+          \]
+          Thus we have turned the equation into an ODE.\marginnote{$ \alpha $ is arbitrary at this stage.} Set $ \alpha=1/2 $, then 
+          \[
+            \eta \frac{\mathrm{d}}{\mathrm{d}\eta}\left( f+f' \right) +\frac{1}{2}(f+f')=0 \Longrightarrow \eta \frac{\mathrm{d}F}{\mathrm{d}\eta} +\frac{1}{2}F=0.(f+f'=F)
+          \]
+          One solution is $ F=0 \Rightarrow f+f'=0 \Rightarrow f=Ae^{-\eta} $. Recall that $ y=t^{-\alpha}f(\eta) $, so 
+          \[
+              y=A t^{-1/2}e^{-x^2/4\kappa t}.
+          \]
+          From ICs, recall that 
+          \[
+              \delta(x)=\lim_{\epsilon \to 0} \frac{1}{\epsilon\sqrt{\pi}}e^{-t^2/\epsilon^2}
+          \]
+        Let $ \epsilon^2=4 \kappa t $, then $ t\to 0 \Leftrightarrow \epsilon\to 0 $. Then 
+        \[
+            \delta(x)=\lim_{t \to 0} \frac{1}{\sqrt{4\pi \kappa}}t^{-1/2}e^{-x^2/4\kappa t} \Longrightarrow A=\frac{1}{\sqrt{4\pi \kappa}}.
+        \]
+        Therefore 
+        \[
+            y(x,t)=\frac{1}{\sqrt{4\pi \kappa}}t^{-1/2}e^{-x^2/4\kappa t}.
+        \]
+        This indeed matches with the second IC.
+      \end{example}
 \end{document}
