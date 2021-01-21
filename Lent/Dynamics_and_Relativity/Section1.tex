@@ -1,0 +1,61 @@
+\section{Newtonian Dynamics - Basic Concepts}
+\subsection{Particles}
+\begin{definition}[Particle]
+    A \textbf{particle} is an object of negligible size and a finite mass $m>0$. (Perhaps) it has an electric charge $q$. 
+\end{definition}
+\begin{definition}[Position vector]
+    Position of a particle is described by a \textbf{position vector} $\bfr(t)$ or $\bfx(t)$ wrt to origin $O$. A particle at the origin has position vector $ \mathbf{0} $. The Cartesian components of $\bfr(t)$ are given by $(x,y,z): 
+    \mathbf{r}= x \bfi + y\bfj + z\bfk$. 
+\end{definition}
+\begin{definition}[Frame of reference]
+    The choice of coordinate axes defines a \textbf{frame of reference} $S$.
+\end{definition}
+\begin{definition}[Velocity]
+    The \textbf{velocity} of a particle is 
+    \[
+        \bfu = \frac{\mathrm{d}}{\mathrm{d}t} \bfr(t) = \dot{\bfr}. 
+    \]
+    Note that $ \bfu $ is \textit{tangent} to path. See Vector Calculus for more details.
+\end{definition}
+\begin{definition}[Momentum]
+    The \textbf{momentum} of a particle is 
+    \[
+        m\bfu = m \dot{\bfr} = \bfp.
+    \]
+\end{definition}
+\begin{definition}[Acceleration]
+    The \textbf{acceleration} of the particle is 
+    \[
+        \dot{\bfu}= \ddot{\bfr} = \frac{\mathrm{d}^2\bfr}{\mathrm{d}t^2}.
+    \]
+\end{definition}
+\begin{note}
+    Time derivative of $\bfu(t)$ is
+    \[
+        \dot{\bfu}(t) = \lim_{h \to 0} \frac{\bfu(t+h)-\bfu(t)}{h},
+    \]
+    with $\bfu\to\bfu_0$ if and only if $|\bfu-\bfu_0|\to 0$. Then we can evaluate derivative by taking derivative of each component:
+    \[
+        \frac{\mathrm{d}\bfr}{\mathrm{d}t} = \left( \frac{\mathrm{d}x}{\mathrm{d}t}, \frac{\mathrm{d}y}{\mathrm{d}t}, \frac{\mathrm{d}z}{\mathrm{d}t} \right). 
+    \]
+\end{note}
+\begin{proposition}[Product rules]\label{prop:product rules}
+    \begin{align*}
+        \frac{\mathrm{d}}{\mathrm{d}t}(f\bfg) &= \frac{\mathrm{d}f}{\mathrm{d}t} \cdot \bfg + f \frac{\mathrm{d}\bfg}{\mathrm{d}t},\\
+        \frac{\mathrm{d}}{\mathrm{d}t}(\bfg \cdot \bfh) &= \frac{\mathrm{d}\bfg}{\mathrm{d}t} \cdot \bfh + \bfg \cdot \frac{\mathrm{d}\bfh}{\mathrm{d}t},\\ 
+        {\color{blue}\frac{\mathrm{d}}{\mathrm{d}t}(\bfg \times \bfh) &= \frac{\mathrm{d}\bfg}{\mathrm{d}t} \times \bfh + \bfg \times \frac{\mathrm{d}\bfh}{\mathrm{d}t}}\quad\text{Order matters}.
+    \end{align*}
+\end{proposition}
+\subsection{Newton's Laws of Motions}
+\begin{law}[Newton's First Law of Motion]
+    There exists \textbf{inertial frame of reference} in which a particle remains at rest or move in a straight line at constant \textit{speed}(i.e. it moves at constant \textit{velocity}) unless it is acted on by a \textit{force}.
+\end{law}
+\begin{law}[Newton's Second Law of Motion]
+    In an inertial frame, the rate of change of momentum of a particle is equal to the force acting on it.
+\end{law}
+\begin{law}[Newton's Third Law of Motion]
+    To every action there is an \textit{equal} and \textit{opposite} reaction
+\end{law}
+\begin{note}
+    All of these statements about particles can be extended to \textit{finite bodies} composed of many particles.
+\end{note}

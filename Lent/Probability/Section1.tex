@@ -1,0 +1,94 @@
+\section{Classical Probability}
+\subsection{Probability Space}
+\begin{definition}[Probability Space]
+    Suppose $ \Omega $ is a set(called \textbf{sample space}) and $ \mathcal{F} $ is a collection of subsets of $ \Omega $. We call $\mcF$ a \textbf{$\sigma$-algebra} if 
+    \begin{enumerate}
+        \item $ \Omega\in \mathcal{F} $,
+        \item $ A\in \mathcal{F} \Rightarrow A^\complement \in \mathcal{F} $,
+        \item For any \textit{countable} collection $ (A_n)_{n\ge 1} $ with $A_n\in \mcF$, $ \bigcup_{n=1}^{\infty}A_n\in \mathcal{F} $.
+    \end{enumerate}
+    Suppose $\mcF$ is a $ \sigma $-algebra on $ \Omega $. A function $ \mathbb{P}:\mathcal{F}\to [0,1] $ is called a \textbf{probability measure} if
+    \begin{enumerate}
+        \item $ \bbP(\Omega)=1 $,
+        \item For any \textit{countable disjoint} collection $ (A_n)_{n\ge 1} $ in $ \mathcal{F} $, 
+        \[
+            \mathbb{P}\left( \bigcup_{n=1}^{\infty}A_n \right) = \sum_{n=1}^{\infty} \mathbb{P}(A_n).
+        \]
+        We say $ \mathbb{P}(A) $ is the \textbf{probability} of $A$.
+    \end{enumerate}
+    We call $ (\Omega,\mathcal{F},\mathbb{P}) $ a \textbf{probability space}.
+\end{definition}
+\begin{remark}
+    When $ \Omega $ is countable, we take $\mcF$ be all subsets of $ \Omega $.
+\end{remark}
+\begin{definition}[Outcomes, Events]
+    The elements of $ \Omega $ are called \textbf{outcomes} and the elements of $\mcF$ are called \textbf{events}.
+\end{definition}
+\begin{remark}
+    We talk about probabilities of \textit{events} rather than \textit{outcomes}.
+\end{remark}
+\begin{proposition}[Properties of $\bbP$]\label{prop:Properties of P}
+    Immediate from the definition,
+    \begin{itemize}
+        \item $ \mathbb{P}(A^\complement) = 1 - \mathbb{P}(A) $.
+        \item $ \mathbb{P}(\varnothing)=0 $.
+        \item If $ A \subseteq B $, then $ \mathbb{P}(A) \le \mathbb{P}(B) $.
+        \item $ \mathbb{P}(A \cup B) = \mathbb{P}(A)+\mathbb{P}(B)-\mathbb{P}(A \cap B) $.
+    \end{itemize}
+\end{proposition}
+\begin{example}
+    \underline{Rolling a fair die.} Here $ \Omega = \{1,2,3,4,5,6\}, \mathcal{F} = 2^\Omega $. For $ \omega\in \Omega, \mathbb{P}(\{\omega\})=1/6 $, and if $ A \subseteq \Omega, \mathbb{P}(A)=|A|/6 $, since all outcomes are \textit{equally likely}.
+\end{example}
+\begin{example}
+    \underline{Equally likely outcomes.} Let $ \Omega = \{\omega_1,\dots, \omega_n\} $ be a finite set and $ \mathcal{F}=2^\Omega $. Define $\bbP$ as $ \mathbb{P}(A)=|A|/|\Omega| $. In classical probability, this models picking a random element of $ \Omega $. Note that $ \mathbb{P}(\{\omega\})=1/|\Omega|, \forall \omega\in \Omega $.
+\end{example}
+\begin{example}
+    \underline{Picking balls from a bag.} Suppose we have $n$ balls with $n$ labels from $ \{1,\dots,n\} $ so they are distinct. Pick $k\le n$ balls at ramdom \textit{without replacement}. Take $ \Omega = \{A \subseteq \{1,\dots,n\}: |A|=k\} $, so $ |\Omega|=\binom{n}{k} $. $ \mathbb{P}(\{\omega\}) = 1/|\Omega| = 1/\binom{n}{k} $.
+\end{example}
+\begin{example}
+    \underline{Deck of cards.} Take a \textit{well-shuffled} deck of 52 cards. Well-shuffled means all possible permutations are equally likely. Let $ \Omega = \{\text{all permutations of 52 cards}\}, |\Omega|=52! $. Now $ \mathbb{P}(\text{top 2 cards are aces}) = 4 \cdot 3 \cdot 50!/52! = 1/221$.
+\end{example}
+\begin{example}
+    \underline{Largest digit.} Consider a string of $n$ random digits $ 0,\dots,9 $. $ \Omega = \{0,\dots,9\}^n, |\Omega| = 10^n, \mathcal{F}=2^\Omega $. Let $ A_k = \{\text{no digit exceeds }k\}, B_k =\{\text{largest digit is }k\} $. $ \mathbb{P}(B_k) = |B_k|/10^n $. Notice $ B_k = A_k \setminus A_{k-1} $ and $ |A_k| = (k+1)^n $, so $ |B_k|=(k+1)^n-k^n $, so $ \mathbb{P}(B_k) = \frac{(k+1)^n-k^n}{10^n} $.
+\end{example}
+\begin{example}
+    \underline{Birthday problem.} There are $n$ people. What is the probability that at least 2 of them share the same birthday?\footnote{Assume that every year has 365 days. Also assume each birthday is equally likely.} So $ \Omega = \{1,\dots,365\}^n $, $ \mathcal{F} = 2^\Omega, \mathbb{P}(\{\omega\}) = 1/365^n $. Let $ A=\{\text{at least 2 people share the same birthday}\} $, then $ A^\complement = \{\text{all birthdays are different}\} $ and since $ \mathbb{P}(A)=1-\mathbb{P}(A^\complement) $, it suffices to calculate $ \mathbb{P}(A^\complement) = |A^\complement|/|\Omega| = 365 \cdot 364 \cdot \cdots \cdot (365-n+1)/365^n $ and hence 
+    \[
+        \mathbb{P}(A) = 1-\frac{365 \cdot 364 \cdot \cdots \cdot (365-n+1)}{365^n}.
+    \]
+    Note that $n=22, \mathbb{P}(A) \approx 0.476$ and $ n=23, \mathbb{P}(A)\approx 0.507 $. 
+\end{example}
+
+\subsection{Combinatorial Analysis}
+
+\begin{question}{1}
+    Suppose $ |\Omega|=n $. Want to partition $ \Omega $ into $k$ \textit{disjoint} subsets $ \Omega_1,\dots,\Omega_k, |\Omega_i|=n_i, \sum_{i=1}^{k}n_i=n $. How many ways are there to do so?
+\end{question}
+
+\begin{definition}[Multinomial Coefficient]
+    Let $ M=\# \text{ of ways} $, then 
+    \[
+        M = \binom{n}{n_1}\binom{n-n_1}{n_2} \cdots \binom{n-(n_1+\cdots+n_{k-1})}{n_k} = \frac{n!}{n_1!n_2!\cdots n_k!} := \binom{n}{n_1,n_2,\dots,n_k}
+    \]
+    is called \textbf{multinomial coefficient} and it is the answer to the question above.
+\end{definition}
+
+\begin{question}{2}
+    How many strictly increasing functions $ f: \{1,\dots,k\} \to \{1,\dots,n\}$ exist?
+\end{question}
+
+Any function is uniquely determined by its range which is a subset of $ \{1,\dots,n\} $ of size $k$. There are $ \binom{n}{k} $ such subsets, and hence $ \binom{n}{k} $ such functions.
+
+\begin{question}{3}
+    How many non-decreasing functions $ f: \{1,\dots,k\} \to \{1,\dots,n\}$ exist?
+\end{question}
+
+Define a bijection from $ \{f: \{1,\dots,k\}\to \{1,\dots,n\}: f \text{ is non-decreasing}\} $ to $ \{g: \{1,\dots,k\}\to \{1,\dots,n+k-1\}: g \text{ is strictly increasing}\} $. $ \forall f \nearrow $, define $ g(i)=f(i+i-1) $. It is clear that $g$ is strictly increasing and takes values $ \{1,\dots,n+k-1\} $, and vice versa.
+\begin{proposition}[Combination with Repetition]\label{prop:Combination with Repetition}
+    The number of ways to choose $k$ items from $n$ items with repetition is 
+    \[
+        \binom{n+k-1}{n},
+    \]
+    and it is the answer to question 3.
+\end{proposition}
+\subsection{Stirling's Formula, Countable Subadditivity property}

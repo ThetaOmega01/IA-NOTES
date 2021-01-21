@@ -19,6 +19,14 @@
 \usepackage{tikz-cd}
 \usepackage{enumerate}
 \usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,
+    citecolor = black,      
+    urlcolor=cyan,
+    }
 
 %%%%%%%%%%% Snippets %%%%%%%%%%%%%%%%
 \newcommand*\widefbox[1]{\fbox{\hspace{2em}#1\hspace{2em}}}
@@ -435,13 +443,19 @@
 \newtheorem{problem}[theorem]{Problem}
 \newtheorem*{claim}{Claim}
 
+\newtheorem{inquestion}{Question}
+\newenvironment{question}[1]
+  {\renewcommand\theinquestion{#1}\inquestion}
+  {\endinquestion}
+
 \newtheorem{definition}{Definition}[section]
 \newtheorem{conjecture}{Conjecture}[section]
 \newtheorem{example}{Example}[section]
+\newtheorem*{law}{Law}
 
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
 \newtheorem*{note}{Note}
 
-\title{\triposcourse{} Summary}
+\title{\triposcourse{} Notes}
 \author{jt775}
