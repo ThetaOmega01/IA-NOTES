@@ -1,0 +1,27 @@
+\section{Limits and convergence}
+\subsubsection*{Review for Numbers and Sets}
+\begin{enumerate}[align=left]
+    \item[\textit{Sequences}.] $ a_n, (a_n)_{n=1}^{\infty}, a_n\in \mathbb{R}  $. $ a_n\to a $ as $n\to \infty$ if $ \forall \epsilon>0, \exists N $ such that $ \forall n\ge N, |a_n-a|<\epsilon $. $N$ dependents on $\epsilon$. 
+    \item[\textit{Monotone sequences}.] $ a_n\le a_{n+1} $ or $ a_n\ge a_{n+1} $. No ``equal'' is in the relation if we add ``strictly''.
+    \item[\textit{Fundamental axiom of the real numbers}.] If $ a_n\in \mathbb{R}  $, $ \forall n\ge 1 $, $A\in \mathbb{R}$, $ a_n \nearrow $ and $ \forall i, a_i\le A $ then $ \exists a\in \mathbb{R} $ such that $a_n\to a$. ``An increasing sequence of real numbers bounded above converges.'' Equivalent for decreasing sequences. Equivalent also to ``every non-empty set of real numbers bounded above has a supremum'', the least upper bound property.
+    \item[\textit{Supremum and infimum}.] For $ S \subseteq \mathbb{R}, S\neq \varnothing  $, $ \sup S=k $ if $ \forall x\in S, x\le k $ and $ \forall \epsilon>0, \exists x\in S $ such that $ x>k-\epsilon $. Similar for infimum.
+    \item[\textit{Extension to $\mathbb{C}$}.] The above things make perfect sense for $ a_n\in \mathbb{C} $, with $ |\cdot| $ defined as modulus. However, complex numbers \textit{do not} have an order.
+\end{enumerate}
+
+Several useful deductions:
+\begin{lemma}\label{lma:1.1}
+    \begin{enumerate}
+        \item The limit is unique.
+        \item $ a_n\to a $ and $n_1<n_2<n_3<\cdots$ then $ a_{n_j}\to a $.
+        \item If $ a_n\equiv n $ then $a_n\to c$.
+        \item Convergent sequences are bounded.
+        \item If $ a_n\to a,b_n\to b $ then $ a_n\pm b_n\to a\pm b $ and $ a_nb_n\to ab, a_n/b_n\to a/b $ for $b_n\neq 0$.
+        \item If $ a_n\le A $ and $a_n\to a$, then $a\le A$.
+    \end{enumerate}
+\end{lemma}
+\begin{lemma}[Archimedes]\label{lma:1.2}
+    $ 1/n\to 0 $ as $ n\to \infty $.
+\end{lemma}
+\begin{proof}
+    See Numbers and Sets.
+\end{proof}

@@ -1,0 +1,153 @@
+Throughout this course, a column vector
+\[
+    \begin{pmatrix}
+        a \\ b \\ c
+    \end{pmatrix}
+\]
+is interpreted as the vector $ \mathbf{x} = a \mathbf{e}_x+b \mathbf{e}_y+ c \mathbf{e}_z $ where $ \mathbf{e}_i $ are basis vectors aligned with the \textit{fixed} Cartesian $x$-$y$-$z$ axes in $ \mathbb{R}^{3} $.
+\section{Differential Geometry of Curves}
+\subsection{Parametrised curves and arc lengths}
+\subsubsection*{Basic definitions}
+\begin{definition}[Parametrised curve]
+    A \textbf{parametrised curve} in $ \mathbb{R}^{3} $ is the image of a continuous map $ \mathbf{x}: [a,b]\to \mathbb{R}^{3} $ where $ t \to \mathbf{x}(t) $. In Cartesian coordinates,
+    \[
+        \mathbf{x}(t)=\begin{pmatrix}
+            x_1(t) \\ x_2(t) \\ x_3(t)
+        \end{pmatrix} = \begin{pmatrix}
+            x(t) \\ y(t) \\ z(t)
+        \end{pmatrix}.
+    \]
+\end{definition}
+\begin{definition}[Differentialble, regular, and smooth curves]
+    We say $C$ is a \textbf{differentiable} if each of the components $ \{x_i(t)\}_{i=1}^3 $ are differentiable. It is \textbf{regular} if $ |\mathbf{x}'(t)|\neq 0 $. If $C$ is differentiable and regular, then we say $C$ is \textbf{smooth}.
+\end{definition}
+\begin{note}
+    The regular condition \textit{is} needed. Consider $ \mathbf{x}(t)=(t^2,t^3) $, then $ \mathbf{x} $ is differentiable but has a cusp at $t=0$, that $ \mathbf{x}'(0)=0 $.
+\end{note}
+Recall that $x_i(t)$ is differentiable at $t$ if
+\[
+    x_i(t+h) = x_i(t) + x_i'(t) h+o(h).
+\]
+\begin{definition}[Vector definition of derivatives]
+    The derivative $ \mathbf{x}'(t) $ is defined as
+    \[
+        \mathbf{x}(t+h) = \mathbf{x}(t) + \mathbf{x}'(t)h + o(h),
+    \]
+    where $o(h)$ is a vector for which $ |o(h)|/h\to 0 $.
+\end{definition}
+\subsubsection*{Finding lengths}
+
+Approximate $C$ using straight lines. Introduce a \textit{partition} $P$ of $[a,b]$ that $ t_0 = a, t_N = b $,
+\[
+    t_0<t_1<\cdots<t_N.
+\]
+Set $ \Delta t_i = t_{i+1}-t_i $ and $ \delta t = \max_i \Delta t_i $.
+\begin{definition}[Relative length]
+    Define length of $C$ \textit{relative} to $P$ by
+    \[
+        \ell (C,P) = \sum_{i=0}^{N-1} \left| \mathbf{x}(t_{i+1})-\mathbf{x}(t_i) \right|.
+    \]
+\end{definition}
+
+\begin{center}
+\begin{tikzpicture}
+    \draw[color=blue] plot [smooth, tension=1] coordinates {(0,0) (3,1) (6,-1.2) (8,0)};
+    \draw[->-=0.5, color=red] (0,0) -- (3,1);
+    \draw[->-=0.5, color=red]  (6,-1.2) -- (8,0);
+    \draw[->-=0.5, color=red]  (3,1) -- (6,-1.2);
+\end{tikzpicture}
+\end{center}
+
+\begin{definition}[Length of curve, rectifiability]
+    Define \textbf{length} of $C$ by
+    \[
+        \ell (C) = \lim_{\Delta t \to 0} \ell (C,P).
+    \]
+    If the limit does not exist, $C$ is said to be \textbf{non-rectifiable}.
+\end{definition}
+
+Suppose $C$ is differentiable. Then
+\begin{align*}
+    \mathbf{x}(t_{i+1}) & = \mathbf{x}(t_i+t_{i+1}-t_i)                                   \\
+                        & = \mathbf{x}(t_i+ \Delta t_i)                                   \\
+                        & = \mathbf{x}(t_i) + \mathbf{x}'(t_i)\Delta t_i + o(\Delta t_i).
+\end{align*}
+It follows that
+\[
+    \left| \mathbf{x}(t_{i+1})- \mathbf{x}(t_i)\right| =\left| \mathbf{x}'(t_i) \right| \Delta t_i + o(\Delta t_i),
+\]
+and thus 
+\[
+    \ell (C,P) = \sum_{i=0}^{N-1} \left| \mathbf{x}'(t_i) \right| \Delta t_i + o(\Delta t_i).
+\]
+Therefore for any $ \epsilon>0 $, if $ \Delta t $ is \textit{sufficiently} small, we have 
+\[
+    \left| o(\Delta t_i) \right| < \frac{\epsilon }{b-a} \Delta t_i, \quad i=0,\dots,N-1.
+\]
+So 
+\begin{align*}
+    \left| \ell (C,P) - \sum_{i=0}^{N-1} \left| \mathbf{x}'(t_i) \right| \Delta t_i \right| &= \left| \sum_{i=0}^{N-1} o(\Delta t_i) \right| \\ 
+    &< \frac{\epsilon}{b-a} \sum_{i=0}^{N-1} \Delta t_i = \epsilon.
+\end{align*}
+
+\begin{definition}[Detailed definition of lengths]
+    The length of $C$ can be computed explicitely as 
+    \[
+        \ell (C) = \lim_{\Delta t \to 0} \sum_{i=0}^{N-1} \left| \mathbf{x}'(t_i) \right| \Delta t_i = \int_{a}^{b} \left| \mathbf{x}'(t) \right|  \,\mathrm{d}t.
+    \]
+    See Analysis I for Riemann integrals. We write 
+    \[
+        \ell (C) = \int_{C} \,\mathrm{d}s,
+    \]
+    where $ \rmd s $ is called the \textbf{arc-length element}, so $ \rmd s = |\mathbf{x}'(t)| \dd t $.
+\end{definition}
+\begin{definition}[Line integral]
+    The \textbf{line intergal} of $f(\bfx)$ along $C$ is defined by 
+    \[
+        \int_{C} f(\mathbf{x}) \,\mathrm{d}s = \int_{a}^{b} f(\mathbf{x}(t)) \left| \bfx'(t) \right| \,\mathrm{d}t.
+    \]
+\end{definition}
+\begin{definition}[Piecewise smooth curve]
+    Call $C$ \textbf{piecewise smooth} if $C$ is made up of $M$ smooth curves $ C_1,\dots,C_M $. Write $C=C_1+\cdots+C_M$ and the line integral along $C$ is defined as 
+    \[
+        \int_{C} f(\mathbf{x}) \,\mathrm{d}s = \sum_{i=1}^{M}\int_{C_i} f(\mathbf{x}) \,\mathrm{d}s.
+    \]
+\end{definition}
+\begin{note}
+    (Informally) 
+    \[
+        \rmd s = |\mathbf{x}'(t)|\dd t = \sqrt{\left( \frac{\mathrm{d}x}{\mathrm{d}t}  \right)^2+\left(\frac{\mathrm{d}y}{\mathrm{d}t}  \right)^2+\left(\frac{\mathrm{d}z}{\mathrm{d}t}  \right)^2}\dd t,
+    \]
+    i.e.
+    \[
+        \rmd s^2 = \rmd x^2+\rmd y^2+\rmd z^2.
+    \]
+    This is known as the Pythagorean's theorem.
+\end{note}
+\begin{example}
+    Let $C$ be a circle of radius $r$. Reproduce the process to find the curve length of $C$, i.e. the parameter. Check that 
+    \[
+        \int_{C} x^2y \,\mathrm{d}s = 0.
+    \]
+\end{example}
+
+\subsubsection*{Change of parametrisations}
+
+Suppose $C$ has 2 different parametrisations
+\begin{align*}
+    \mathbf{x} &= \mathbf{x}_1(t), \quad a\le t\le b,\\
+    \mathbf{x} &= \mathbf{x}_2(\tau),\quad \alpha\le \tau\le \beta.
+\end{align*}
+We must have $ \bfx_2(\tau) = \bfx_1(t(\tau)) $ for some function $t(\tau)$. Assume that $ \frac{\mathrm{d}t}{\mathrm{d}\tau}\neq 0  $, so that $ t(\tau) $ is invertible and differentiable(see inverse function theorem in Analysis and Topology). Note that 
+\begin{align*}
+    \frac{\mathrm{d}}{\mathrm{d}\tau} \mathbf{x}_2(\tau) &= \frac{\mathrm{d}}{\mathrm{d}\tau} \mathbf{x}_1(t(\tau))\\
+    &= \bfx_1'(t(\tau)) \frac{\mathrm{d}t}{\mathrm{d}\tau}.  
+\end{align*}
+Hence we can make the substitution $ t=t(\tau) $. Assume that $ \frac{\mathrm{d}t}{\mathrm{d}\tau}>0  $, then 
+\[
+    \int_{a}^{b} f(\bfx_1(t)) |\mathbf{x}_1'(t)| \,\mathrm{d}t = \int_{\alpha}^{\beta} |\mathbf{x}_1'(t(\tau))| \frac{\mathrm{d}t}{\mathrm{d}\tau}  \,\mathrm{d}\tau = \int_{\alpha}^{\beta} f(\bfx_2(\tau))|\mathbf{x}_2'(\tau)| \,\mathrm{d}\tau.
+\]
+Similarly it holds for $ \frac{\mathrm{d}t}{\mathrm{d}\tau}<0  $. Hence
+\begin{proposition}[Change of parametrisations]\label{prop:change of parametrisations}
+    $ \displaystyle \int_{C} f(\bfx) \,\mathrm{d}s $ is \textit{invariant} under different parametrisations.
+\end{proposition}

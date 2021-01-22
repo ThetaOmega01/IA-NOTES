@@ -37,22 +37,30 @@
     \end{itemize}
 \end{proposition}
 \begin{example}
-    \underline{Rolling a fair die.} Here $ \Omega = \{1,2,3,4,5,6\}, \mathcal{F} = 2^\Omega $. For $ \omega\in \Omega, \mathbb{P}(\{\omega\})=1/6 $, and if $ A \subseteq \Omega, \mathbb{P}(A)=|A|/6 $, since all outcomes are \textit{equally likely}.
+    \underline{Rolling a fair die.} Here $ \Omega = \{1,2,3,4,5,6\}, \mathcal{F} = 2^\Omega $. For $ \omega\in \Omega$, $\mathbb{P}(\{\omega\})=1/6 $, and if $ A \subseteq \Omega, \mathbb{P}(A)=|A|/6 $, since all outcomes are \textit{equally likely}.
 \end{example}
 \begin{example}
     \underline{Equally likely outcomes.} Let $ \Omega = \{\omega_1,\dots, \omega_n\} $ be a finite set and $ \mathcal{F}=2^\Omega $. Define $\bbP$ as $ \mathbb{P}(A)=|A|/|\Omega| $. In classical probability, this models picking a random element of $ \Omega $. Note that $ \mathbb{P}(\{\omega\})=1/|\Omega|, \forall \omega\in \Omega $.
 \end{example}
 \begin{example}
-    \underline{Picking balls from a bag.} Suppose we have $n$ balls with $n$ labels from $ \{1,\dots,n\} $ so they are distinct. Pick $k\le n$ balls at ramdom \textit{without replacement}. Take $ \Omega = \{A \subseteq \{1,\dots,n\}: |A|=k\} $, so $ |\Omega|=\binom{n}{k} $. $ \mathbb{P}(\{\omega\}) = 1/|\Omega| = 1/\binom{n}{k} $.
+    \underline{Picking balls from a bag.} Suppose we have $n$ balls with $n$ labels $ \{1,\dots,n\} $ so they are distinct. Pick $k\le n$ balls at ramdom \textit{without replacement}. Take $ \Omega = \{A \subseteq \{1,\dots,n\}: |A|=k\} $, so $ |\Omega|=\binom{n}{k} $. $ \mathbb{P}(\{\omega\}) = 1/|\Omega| = 1/\binom{n}{k} $.
 \end{example}
 \begin{example}
     \underline{Deck of cards.} Take a \textit{well-shuffled} deck of 52 cards. Well-shuffled means all possible permutations are equally likely. Let $ \Omega = \{\text{all permutations of 52 cards}\}, |\Omega|=52! $. Now $ \mathbb{P}(\text{top 2 cards are aces}) = 4 \cdot 3 \cdot 50!/52! = 1/221$.
 \end{example}
 \begin{example}
-    \underline{Largest digit.} Consider a string of $n$ random digits $ 0,\dots,9 $. $ \Omega = \{0,\dots,9\}^n, |\Omega| = 10^n, \mathcal{F}=2^\Omega $. Let $ A_k = \{\text{no digit exceeds }k\}, B_k =\{\text{largest digit is }k\} $. $ \mathbb{P}(B_k) = |B_k|/10^n $. Notice $ B_k = A_k \setminus A_{k-1} $ and $ |A_k| = (k+1)^n $, so $ |B_k|=(k+1)^n-k^n $, so $ \mathbb{P}(B_k) = \frac{(k+1)^n-k^n}{10^n} $.
+    \underline{Largest digit.} Consider a string of $n$ random digits from 0 to 9. $ \Omega = \{0,\dots,9\}^n $, $ |\Omega| = 10^n, \mathcal{F}=2^\Omega  $. Let 
+    \[
+         A_k = \{\text{no digit exceeds }k\}, B_k =\{\text{largest digit is }k\} .
+    \]
+    $ \mathbb{P}(B_k) = |B_k|/10^n $. Notice $ B_k = A_k \setminus A_{k-1} $ and $ |A_k| = (k+1)^n $, so $ |B_k|=(k+1)^n-k^n $, so $ \mathbb{P}(B_k) = \frac{(k+1)^n-k^n}{10^n} $.
 \end{example}
 \begin{example}
-    \underline{Birthday problem.} There are $n$ people. What is the probability that at least 2 of them share the same birthday?\footnote{Assume that every year has 365 days. Also assume each birthday is equally likely.} So $ \Omega = \{1,\dots,365\}^n $, $ \mathcal{F} = 2^\Omega, \mathbb{P}(\{\omega\}) = 1/365^n $. Let $ A=\{\text{at least 2 people share the same birthday}\} $, then $ A^\complement = \{\text{all birthdays are different}\} $ and since $ \mathbb{P}(A)=1-\mathbb{P}(A^\complement) $, it suffices to calculate $ \mathbb{P}(A^\complement) = |A^\complement|/|\Omega| = 365 \cdot 364 \cdot \cdots \cdot (365-n+1)/365^n $ and hence 
+    \underline{Birthday problem.} There are $n$ people. What is the probability that at least 2 of them share the same birthday?\footnote{Assume that every year has 365 days. Also assume each birthday is equally likely.} So $ \Omega = \{1,\dots,365\}^n $, $ \mathcal{F} = 2^\Omega, \mathbb{P}(\{\omega\}) = 1/365^n $. Let 
+    \[
+        A=\{\text{at least 2 people share the same birthday}\} ,
+    \]
+     then $ A^\complement = \{\text{all birthdays are different}\} $ and since $ \mathbb{P}(A)=1-\mathbb{P}(A^\complement) $, it suffices to calculate $ \mathbb{P}(A^\complement) = |A^\complement|/|\Omega| = 365 \cdot 364 \cdot \cdots \cdot (365-n+1)/365^n $ and hence 
     \[
         \mathbb{P}(A) = 1-\frac{365 \cdot 364 \cdot \cdots \cdot (365-n+1)}{365^n}.
     \]
@@ -62,13 +70,14 @@
 \subsection{Combinatorial Analysis}
 
 \begin{question}{1}
-    Suppose $ |\Omega|=n $. Want to partition $ \Omega $ into $k$ \textit{disjoint} subsets $ \Omega_1,\dots,\Omega_k, |\Omega_i|=n_i, \sum_{i=1}^{k}n_i=n $. How many ways are there to do so?
+    Suppose $ |\Omega|=n $. Want to partition $ \Omega $ into $k$ \textit{disjoint} subsets $ \Omega_1,\dots,\Omega_k$, $ |\Omega_i|=n_i, \sum_{i=1}^{k}n_i=n $. How many ways are there to do so?
 \end{question}
 
 \begin{definition}[Multinomial Coefficient]
     Let $ M=\# \text{ of ways} $, then 
     \[
-        M = \binom{n}{n_1}\binom{n-n_1}{n_2} \cdots \binom{n-(n_1+\cdots+n_{k-1})}{n_k} = \frac{n!}{n_1!n_2!\cdots n_k!} := \binom{n}{n_1,n_2,\dots,n_k}
+        M= \binom{n}{n_1}\cdots \binom{n-(n_1+\cdots+n_{k-1})}{n_k} = \frac{n!}{n_1!n_2!\cdots n_k!}
+        =: \binom{n}{n_1,n_2,\dots,n_k}
     \]
     is called \textbf{multinomial coefficient} and it is the answer to the question above.
 \end{definition}
