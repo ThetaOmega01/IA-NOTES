@@ -41,7 +41,7 @@ Approximate $C$ using straight lines. Introduce a \textit{partition} $P$ of $[a,
 \[
     t_0<t_1<\cdots<t_N.
 \]
-Set $ \Delta t_i = t_{i+1}-t_i $ and $ \delta t = \max_i \Delta t_i $.
+Set $ \Delta t_i = t_{i+1}-t_i $ and $ \Delta t = \max_i \Delta t_i $.
 \begin{definition}[Relative length]
     Define length of $C$ \textit{relative} to $P$ by
     \[
@@ -122,7 +122,7 @@ So
     \[
         \rmd s^2 = \rmd x^2+\rmd y^2+\rmd z^2.
     \]
-    This is known as the Pythagorean's theorem.
+    This is known as the Pythagorean theorem.
 \end{note}
 \begin{example}
     Let $C$ be a circle of radius $r$. Reproduce the process to find the curve length of $C$, i.e. the parameter. Check that 
@@ -145,7 +145,7 @@ We must have $ \bfx_2(\tau) = \bfx_1(t(\tau)) $ for some function $t(\tau)$. Ass
 \end{align*}
 Hence we can make the substitution $ t=t(\tau) $. Assume that $ \frac{\mathrm{d}t}{\mathrm{d}\tau}>0  $, then 
 \[
-    \int_{a}^{b} f(\bfx_1(t)) |\mathbf{x}_1'(t)| \,\mathrm{d}t = \int_{\alpha}^{\beta} |\mathbf{x}_1'(t(\tau))| \frac{\mathrm{d}t}{\mathrm{d}\tau}  \,\mathrm{d}\tau = \int_{\alpha}^{\beta} f(\bfx_2(\tau))|\mathbf{x}_2'(\tau)| \,\mathrm{d}\tau.
+    \int_{a}^{b} f(\bfx_1(t)) |\mathbf{x}_1'(t)| \,\mathrm{d}t = \int_{\alpha}^{\beta} f(\bfx_2(\tau))|\mathbf{x}_1'(t(\tau))| \frac{\mathrm{d}t}{\mathrm{d}\tau}  \,\mathrm{d}\tau = \int_{\alpha}^{\beta} f(\bfx_2(\tau))|\mathbf{x}_2'(\tau)| \,\mathrm{d}\tau.
 \]
 Similarly it holds for $ \frac{\mathrm{d}t}{\mathrm{d}\tau}<0  $. Hence
 \begin{proposition}[Change of parametrisations]\label{prop:change of parametrisations}

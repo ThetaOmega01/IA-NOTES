@@ -92,7 +92,7 @@ Any function is uniquely determined by its range which is a subset of $ \{1,\dot
     How many non-decreasing functions $ f: \{1,\dots,k\} \to \{1,\dots,n\}$ exist?
 \end{question}
 
-Define a bijection from $ \{f: \{1,\dots,k\}\to \{1,\dots,n\}: f \text{ is non-decreasing}\} $ to $ \{g: \{1,\dots,k\}\to \{1,\dots,n+k-1\}: g \text{ is strictly increasing}\} $. $ \forall f \nearrow $, define $ g(i)=f(i+i-1) $. It is clear that $g$ is strictly increasing and takes values $ \{1,\dots,n+k-1\} $, and vice versa.
+Define a bijection from $ \{f: \{1,\dots,k\}\to \{1,\dots,n\}: f \text{ is non-decreasing}\} $ to $ \{g: \{1,\dots,k\}\to \{1,\dots,n+k-1\}: g \text{ is strictly increasing}\} $. $ \forall f \nearrow $, define $ g(i)=f(i)+i-1 $. It is clear that $g$ is strictly increasing and takes values $ \{1,\dots,n+k-1\} $, and vice versa.
 \begin{proposition}[Combination with Repetition]\label{prop:Combination with Repetition}
     The number of ways to choose $k$ items from $n$ items with repetition is 
     \[
@@ -100,4 +100,170 @@ Define a bijection from $ \{f: \{1,\dots,k\}\to \{1,\dots,n\}: f \text{ is non-d
     \]
     and it is the answer to question 3.
 \end{proposition}
-\subsection{Stirling's Formula, Countable Subadditivity property}
+\subsection{Stirling's Formula}
+\textbf{Notation}. Let $(a_n),(b_n)$ be 2 sequences. We write 
+\[
+    a_n \sim b_n \text{ if } \frac{a_n}{b_n} \to 1 \text{ as }n \to \infty .
+\]
+
+\begin{theorem}[Stirling]\label{thm:stirling}
+    $ n! \sim n^n \sqrt{2\pi n}e^{-n} $ as $n\to \infty$.
+\end{theorem}
+
+Weaker statement:
+\begin{proposition}\label{prop:weak stirling}
+    $ \log n! \sim n \log n $.
+\end{proposition}
+\begin{proof}
+    Note that 
+    \[
+        l_n = \log n! = \sum_{k=1}^{n}\log k.
+    \]
+    Note that $ \log \lfloor x \rfloor \le \log x \le \log \lfloor x+1 \rfloor $. We have 
+    \begin{align*}
+        & \int_{1}^{n} \log \lfloor x \rfloor \,\mathrm{d}x \le \int_{1}^{n} \log x \,\mathrm{d}x \le \log \lfloor x+1 \rfloor\\ 
+        \Longrightarrow & \sum_{k=1}^{n-1}\log k\le n\log n-n+1\le \sum_{k=1}^{n} \log k\\ 
+        \Longrightarrow & l_{n-1}\le n\log n-n+1\le l_n.
+    \end{align*}
+    Therefore, 
+    \begin{align*}
+        &n\log n-n+1\le l_n\le (n+1) \log (n+1) -n \\ 
+        \Longrightarrow& 1- \frac{1-n}{n\log n}\le \frac{l_n}{n\log n}\le \frac{(n+1) \log (n+1)}{n\log n}-\frac{1}{\log n}\\ 
+        \Longrightarrow & \frac{l_n}{n\log n} \to 1.
+    \end{align*}
+\end{proof}
+
+\begin{lemma}\label{lma:stirling1}
+    For any twice-differentiable function $f$, we have 
+    \[
+        \int_{a}^{b} f(x) \,\mathrm{d}x = \frac{f(a)+f(b)}{2}(b-a) - \frac{1}{2} \int_{a}^{b} (x-a)(b-x)f''(x) \,\mathrm{d}x.
+    \]
+\end{lemma}
+
+\begin{proof}
+    \begin{align*}
+        \int_{a}^{b} (x-a)(b-x)f''(x) \,\mathrm{d}x &= \left[ (x-a)(b-x)f'(x) \right]_{a}^{b} - \int_{a}^{b} (-2x+a+b) f'(x) \,\mathrm{d}x\\ 
+        &= \left[ (2x-a-b)f(x) \right]_{a}^{b} - \int_{a}^{b} 2f(x) \,\mathrm{d}x\\ 
+        &= (f(a)+f(b))(a+b) - 2 \int_{a}^{b} f(x) \,\mathrm{d}x.
+    \end{align*}
+    The result follows.
+\end{proof}
+
+\begin{lemma}\label{lma:stirling2}
+    $\displaystyle 2^{-2n}\binom{2n}{n}\sim \frac{1}{\sqrt{\pi n}}$. 
+\end{lemma}
+\begin{proof}
+    Consider 
+    \[
+        I_n = \int_{0}^{\frac{\pi}{2}} \cos^n \theta \,\mathrm{d}\theta,
+    \]
+    so $I_0=\frac{\pi}{2}, I_1=1$. Note that 
+    \begin{align*}
+        I_n &= \left[ \sin \theta \cos^{n-1} \theta \right]_{0}^{\frac{\pi}{2}} + (n-1)\int_{0}^{\frac{\pi}{2}} \cos^{n-2} \theta(1-\cos^2 \theta) \,\mathrm{d}\theta\\ 
+        &= (n-1)(I_{n-2}-I_{n}),
+    \end{align*}
+    so
+    \[
+        I_n = \frac{n-1}{n}I_{n-2},
+    \]
+    and
+    \[
+        I_{2n} = \frac{2n-1}{2n}I_{2n-2} = \cdots = \frac{(2n)!/(2^n n!)}{2^n n!} I_0 = \frac{(2n)!}{2^{2n} (n!)^2}\frac{\pi}{2}=2^{-2n}\binom{2n}{n}\frac{\pi}{2}.
+    \]
+    Similarly,
+    \[
+        I_{2n+1} = \frac{1}{2n+1} \cdot \left( 2^{-2n}\binom{2n}{n} \right)^{-1}.
+    \]
+
+    From $I_n = \frac{n-1}{n}I_{n-2}$ we see $ I_n/I_{n-2}\to 1 $. Notice that $I_n$ is decreasing wrt $n$, so 
+    \[
+        \frac{I_{2n}}{I_{2n+1}}\le \frac{I_{2n-1}}{I_{2n+1}}\to 1
+    \]
+    and also 
+    \[
+        \frac{I_{2n}}{I_{2n+1}}\ge \frac{I_{2n}}{I_{2n-2}}\to 1,
+    \]
+    so by sandwich theorem, $ I_{2n}/I_{2n+1}\to 1$, which means 
+    \begin{align*}
+        &2^{-2n}\binom{2n}{n}\frac{\pi}{2} \sim \frac{1}{2n+1} \cdot \left( 2^{-2n}\binom{2n}{n} \right)^{-1}\\ 
+        \Longrightarrow & \left( 2^{-2n}\binom{2n}{n} \right)^2 \sim \frac{2}{(2n+1)\pi} \sim \frac{1}{\pi n}\\ 
+        \Longrightarrow & 2^{-2n}\binom{2n}{n} \sim \frac{1}{\sqrt{\pi n}},
+    \end{align*}
+    as required.
+\end{proof}
+
+\begin{proof}[Proof of Stirling's theorem]
+    Consider 
+    \begin{align*}
+        \int_{k}^{k+1} \log x \,\mathrm{d}x &= \frac{\log k+ \log (k+1)}{2} + \frac{1}{2} \int_{k}^{k+1} \frac{(x-k)(k+1-x)}{x^2} \,\mathrm{d}x\\ 
+        &= \frac{\log k+ \log (k+1)}{2} + \frac{1}{2} \int_{0}^{1} \frac{x(1-x)}{(x+k)^2} \,\mathrm{d}x.
+    \end{align*}
+    This holds by lemma \ref{lma:stirling1} and change of variable. Summing over $1$ to $n-1$ we get 
+    \begin{align*}
+        \int_{1}^{n} \log x \,\mathrm{d}x &= \frac{\log(n-1)!+\log n!}{2} + \sum_{k=1}^{n-1}\underbrace{\frac{1}{2}\int_{0}^{1} \frac{x(1-x)}{(x+k)^2} \,\mathrm{d}x}_{a_k}\\ 
+        \Longrightarrow &n\log n-n+1 = \log n! - \frac{\log n}{2} + \sum_{k=1}^{n-1}a_k\\ 
+        \Longrightarrow & \log n! = n\log n-n+1+\frac{\log n}{2}-\sum_{k=1}^{n-1}a_k\\ 
+        \Longrightarrow & n! = n^n e^{-n} \sqrt{n} \exp\left( 1- \sum_{k=1}^{n-1}a_k\right).
+    \end{align*}
+
+    Note that 
+    \[
+        a_k\le \frac{1}{2}\int_{0}^{1} \frac{x(1-x)}{k^2} \,\mathrm{d}x = \frac{1}{12k^2},
+    \]
+    so $ \sum a_k$ converges. Let $ A = \exp\left( 1- \sum_{k=1}^{\infty}a_k\right) $, then 
+    \[
+        n! = n^n e^{-n} \sqrt{n} A \exp \left( \sum_{k=n}^{\infty}a_k \right),
+    \]
+    so 
+    \[
+        \frac{n!}{n^n e^{-n} \sqrt{n}} \to A \Longleftrightarrow n! \sim n^n e^{-n} \sqrt{n}\cdot A.
+    \]
+    To finish the proof we need to show $ A=\sqrt{2\pi} $. Note that 
+    \[
+        2^{-2n}\binom{2n}{n} = 2^{-2n}\frac{(2n)!}{(n!)^2}\sim \frac{(2n)^{2n} e^{-2n} \sqrt{2n}\cdot A}{(n^n e^{-n} \sqrt{n}\cdot A)^2} = \frac{\sqrt{2}}{A\sqrt{n}}.
+    \]
+    On the other hand, by lemma \ref{lma:stirling2} we have 
+    \[
+        2^{-2n}\binom{2n}{n}\sim \frac{1}{\sqrt{\pi n}},
+    \]
+    so $ A=\sqrt{2\pi} $ and
+    \[
+        n! \sim n^n \sqrt{2\pi n}e^{-n},
+    \]
+    as claimed.
+\end{proof}
+
+\subsection{Properties of probability measures}
+
+Let $ (\Omega,\mathcal{F},\mathbb{P}) $ be a probability space.
+
+\begin{proposition}[Countable subadditivity]\label{prop:Countable subadditivity}
+    Let $ (A_n)_{n\ge 1} $ be a sequence of events in $ \mathcal{F} $, then 
+\[
+    \mathbb{P}\left( \bigcup_{n=1}^{\infty}A_n \right)\le \sum_{n=1}^{\infty}\mathbb{P}(A_n).
+\]
+\end{proposition}
+\begin{proof}
+    Define 
+    \[
+        B_1=A_1 \text{ and } B_n = A_n \setminus \left( \bigcup_{k=1}^{n-1}A_k \right)\text{ for }n\ge 2.
+    \]
+    Then $ (B_n)_{n\ge 1} $ is a disjoint sequence of events in $ \mathcal{F} $. Also
+    \[
+        \bigcup_{n=1}^{\infty}A_n=\bigcup_{n=1}^{\infty}B_n,
+    \]
+    so that
+    \[
+        \mathbb{P}\left( \bigcup_{n=1}^{\infty}A_n \right) = \mathbb{P}\left( \bigcup_{n=1}^{\infty}B_n \right).
+    \]
+    
+    Note that 
+    \[
+        \mathbb{P}\left( \bigcup_{n=1}^{\infty}B_n \right) = \sum_{n=1}^{\infty}\mathbb{P}(B_n).
+    \]
+    But $ B_n \subseteq A_n $, so $ \mathbb{P}(B_n)\le \mathbb{P}(A_n) $, and thus 
+    \[
+        \mathbb{P}\left( \bigcup_{n=1}^{\infty}A_n \right) = \mathbb{P}\left( \bigcup_{n=1}^{\infty}B_n \right)=\sum_{n=1}^{\infty}\mathbb{P}(B_n)\le \sum_{n=1}^{\infty}\mathbb{P}(A_n),
+    \]
+    as required.
+\end{proof}

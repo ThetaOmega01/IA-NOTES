@@ -6,11 +6,12 @@
 \usepackage{sidenotes,fancyhdr,titlesec,geometry}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[many]{tcolorbox}
+\usepackage{ifthen}
 \usepackage{mathtools,amssymb,amsfonts,amsthm,bm}   % Math Presets
 \usepackage{array,tabularx,booktabs}                % Table Presets
 \usepackage{graphicx,wrapfig,float,caption}         % Figure Presets
 \usepackage{setspace,multicol}                      % Text Presets
-\usepackage{tikz,physics,cancel,tkz-euclide,pgfplots}                    % Physics Presets
+\usepackage{tikz,physics,cancel,tkz-euclide,pgfplots,tikz-3dplot}                    % Physics Presets
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{decorations.markings}
 \usetikzlibrary{decorations.pathmorphing}
@@ -36,7 +37,7 @@
                                    mark=at position #1 with {\arrowreversed[scale=1.6]{latex'}}},
                        postaction={decorate}}}
 \tikzset{->>/.style = {decoration={markings,
-                                  mark=at position 1 with {\arrow[scale=1.6]{latex'}}},
+                                  mark=at position 1 with {\arrow[scale=1.6]{twolatex'}}},
                       postaction={decorate}}}
 \tikzset{<<-/.style = {decoration={markings,
                                   mark=at position 0 with {\arrowreversed[scale=1.6]{twolatex'}}},
@@ -51,6 +52,25 @@
 \tikzset{-<<-/.style = {decoration={markings,
                                    mark=at position #1 with {\arrowreversed[scale=1.6]{twolatex'}}},
                        postaction={decorate}}}
+
+\tikzset{
+set arrow inside/.code={\pgfqkeys{/tikz/arrow inside}{#1}},
+set arrow inside={end/.initial=>, opt/.initial=},
+/pgf/decoration/Mark/.style={
+    mark/.expanded=at position #1 with
+    {
+        \noexpand\arrow[\pgfkeysvalueof{/tikz/arrow inside/opt}]{\pgfkeysvalueof{/tikz/arrow inside/end}}
+    }
+},
+arrow inside/.style 2 args={
+    set arrow inside={#1},
+    postaction={
+        decorate,decoration={
+            markings,Mark/.list={#2}
+        }
+    }
+},
+}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
