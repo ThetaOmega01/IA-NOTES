@@ -151,3 +151,135 @@ Similarly it holds for $ \frac{\mathrm{d}t}{\mathrm{d}\tau}<0  $. Hence
 \begin{proposition}[Change of parametrisations]\label{prop:change of parametrisations}
     $ \displaystyle \int_{C} f(\bfx) \,\mathrm{d}s $ is \textit{invariant} under different parametrisations.
 \end{proposition}
+
+Note that we can parametrise curves in various ways. Define \textbf{arc-length} function for curve $ [a,b]\ni t \mapsto \mathbf{x}(t) $ by 
+\[
+    s(t) = \int_{a}^{t} \left| \bfx'(\tau) \right| \,\mathrm{d}\tau,
+\]
+so that $s(a)=0$ and $ s(b)=\ell (C) $. Also 
+\[
+    \frac{\mathrm{d}s}{\mathrm{d}t} = \left| \bfx'(t) \right| \ge 0, 
+\]
+so for regular curves we have $ \rmd s/\rmd t\>0 $, so we can invert relationship between $s$ and $t$ to find $t=t(s)$. So we can parametrise \textit{regular} curves with respect to arc-length. Write $ \mathbf{r}(s)=\mathbf{x}(t(s)) $ where $ 0\le s\le \ell (C) $, then by chain rule, 
+\[
+    \frac{\mathrm{d}t}{\mathrm{d}s} = \frac{1}{\rmd s/\rmd t} = \frac{1}{\left| \mathbf{x}'(t(s)) \right| }
+\]
+and 
+\begin{align*}
+    \mathbf{r}'(s)&= \frac{\mathrm{d}}{\mathrm{d}s}\mathbf{x}(t(s))=\frac{\mathrm{d}t}{\mathrm{d}s}\mathbf{x}'(t(s))\\ 
+    &= \frac{\mathbf{x}'(t(s))}{\left| \mathbf{x}'(t(s)) \right|} \Longrightarrow \left| \bfr'(s) \right| =1. \\ 
+\end{align*}
+This gives 
+\[
+    \ell (C) = \int_{0}^{\ell (C)} \left| \bfr'(s) \right| \,\mathrm{d}s = \int_{0}^{\ell (C)} \,\mathrm{d}s
+\]
+
+\subsection{Curvature and torsion}
+Throughout this subsection we tak about generic \textit{regular curves} $C$ parametrised by \textit{arc-length} and write as $ s \mapsto \mathbf{r}(s) $. Define \textbf{tangent vector} $ \bft(s)=\mathbf{r}'(s) $, then $ |\bft(s)|=1 $. Since $ |\bft(s)| $ does not change, $ \bfr''(s)=\bft'(s) $ only measures change in \textit{direction}.
+
+\begin{definition}[Curvature]
+    The \textbf{curvature} of a curve $C$ at $s$ is 
+    \[
+        \kappa(s) = \left| \bfr''(s) \right| = \left| \bft'(s) \right|.
+    \]
+\end{definition}
+
+Note that $ (\bft \cdot \bft =1)' \Rightarrow \bft \cdot \bft'=0 $.
+\begin{definition}[Principal normal]
+    The \textbf{principal normal} is defined by 
+    \[
+        \bft'=\kappa \bfn.
+    \]
+    Note that $ \bft \cdot \bfn=0 $ so $\bfn$ normal to $C$.
+\end{definition}
+
+\begin{definition}[Binormal]
+    The \textbf{binormal} is defined as 
+    \[
+        \bfb = \bft \times \bfn.
+    \]
+\end{definition}
+
+$ \{\bft,\bfn,\bfb\} $ is an orthonormal basis for $ \mathbb{R}^{3} $. Note that $ \bfb' \cdot \bfb=0 $ and $ \bft \cdot \bfb'=0 $\footnote{Verify this.}, so $ \bfb' \perp \bfb,\bft $ so $ \bfb' \parallel \bfn $.
+
+\begin{definition}[Torsion]
+    Define \textbf{torsion} $ \tau $ by $ \bfb' = -\tau \bfn $.
+\end{definition}
+
+\begin{proposition}
+    The curvature $ \kappa(s) $ and torsion $ \tau(s)$ define a curve up to translation and/or orientation.
+\end{proposition}
+\begin{proof}
+    Note that
+    \[
+        \bft'=\kappa (\bfb\times \bft)\quad \text{and}\quad \bfb'=-\tau(\bfb\times \bft).
+    \]
+    This is 6 equations for 6 unknowns. Hence given $ \kappa(s),\tau(s),\bft(0),\bfb(0) $ can construct $ \bft(s),\bfb(s) $ and hence $\bfn=\bfb\times \bft$. Hence the result.
+\end{proof}
+
+\subsection{Radius of curvature}
+Taylor expand $ \mathbf{r}(s) $ about $s=0$(write $ \bft=\bft(0) $, etc.):
+\begin{align*}
+    \bfr(s)&= \mathbf{r}(0)+s \mathbf{r}'(0)+\frac{1}{2}s^2 \bfr''(0)+o(s^2)\\
+    &= \mathbf{r}+s\bft+\frac{1}{2}s^2 \kappa \bfn + o(s^2).\tag{$*$}\label{eq:1.3.1}
+\end{align*}
+
+Suppose wlog that $\bft$ is horizontal. What cirle that goes through the curve \textit{tangentially} at $ \bfr=\bfr(0) $ is \textit{best fit}?
+\begin{center}
+    \begin{tikzpicture}
+      \draw[color=red] circle [radius = 1];
+      \draw [<->] (0, 0) -- (0.707, 0.707) node [anchor = south east, pos = 0.5] {$R$};
+      \draw [->] (-2, -2) -- (0, -1) node [anchor = south east, pos = 0.5] {$\mathbf{r}(0)$};
+      \draw [->] (0, -1) -- (0.5, -1) node [right] {$\mathbf{t}$};
+      \draw [->] (0, -1) -- (0, -0.5) node [left] {$\mathbf{n}$};
+      \draw [dashed] (0, 0) -- (0, -1);
+      \draw [dashed] (0, 0) -- (0.707, -0.707);
+      \draw (0, -0.5) arc (270:315:0.5);
+      \node at (0.2, -0.6) {$\theta$};
+      \draw (-2, 0) parabola bend (0, -1) (2, 0);
+    \end{tikzpicture}
+\end{center}
+The equation of the circle is given by
+\[
+    \mathbf{x}(\theta) = \mathbf{r} + R(1-\cos \theta)\bfn+R \sin \theta \bft.\footnote{Verify this.}
+\]
+Expand for $ |\theta| $ small:
+\[
+    \mathbf{x}(\theta) = \mathbf{r}+R \theta\bft+\frac{1}{2}R\theta^2 \bfn+o(\theta^2).
+\]
+Arc length on the circle is $ s=R\theta $:
+\[
+    \mathbf{x}(\theta)=\mathbf{r}+s\bft+\frac{2}{R}s^2\bfn+o(s^2).
+\]
+Hence to match with (\ref{eq:1.3.1}) up to 2nd order, we need
+\[
+    R=\frac{1}{\kappa}.
+\]
+
+\begin{definition}[Radius of curvature]
+    The \textbf{radius of curvature} is defined as 
+    \[
+        R(s)=\frac{1}{\kappa(s)}.
+    \]
+\end{definition}
+
+\subsection{Gaussian curvature}
+
+\begin{definition}[Gaussian curvature]
+    Consider a surface $S$. The \textbf{Gaussian curvature} $ \kappa_G $ is defined by 
+    \[
+        \kappa_G=\kappa_{\text{min}}\cdot \kappa_{\text{max}},
+    \]
+    where $ \kappa_{\text{min}} $ and $ \kappa_{\text{max}} $ are the minimum and maximum curvatures of the curves obtained by intersecting the surface with a plane containing the normal of the surface.
+\end{definition}
+
+\begin{example}
+    The Gaussian curvatrue of a plane is 0.
+\end{example}
+\begin{example}
+    The Gaussian curvature of a sphere with radius $R$ is $ 1/R^2 $.
+\end{example}
+
+\begin{theorem}[Gauss]\label{thm:Gauss}
+    Gaussian curvature of surface $S$ is invariant if you bend the surface without streching it.
+\end{theorem}
