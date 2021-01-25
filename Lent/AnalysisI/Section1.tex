@@ -1,5 +1,5 @@
 \section{Limits and convergence}
-\subsubsection*{Review for Numbers and Sets}
+\subsection{Review for Numbers and Sets}
 \begin{enumerate}[align=left]
     \item[\textit{Sequences}.] $ a_n, (a_n)_{n=1}^{\infty}, a_n\in \mathbb{R}  $. $ a_n\to a $ as $n\to \infty$ if $ \forall \epsilon>0, \exists N $ such that $ \forall n\ge N, |a_n-a|<\epsilon $. $N$ dependents on $\epsilon$. 
     \item[\textit{Monotone sequences}.] $ a_n\le a_{n+1} $ or $ a_n\ge a_{n+1} $. No ``equal'' is in the relation if we add ``strictly''.
@@ -24,4 +24,122 @@ Several useful deductions:
 \end{lemma}
 \begin{proof}
     See Numbers and Sets.
+\end{proof}
+
+\subsection{Properties of the reals}
+\begin{theorem}[Bolzano-Weierstrass]\label{thm:bolzano-weierstrass}
+    If $ x_n\in \mathbb{R} $ and there exists $K$ such that
+    \[
+        \left| x_n \right| \le K,\quad \forall n,
+    \]
+    then we can find $ n_1<n_2<\cdots $ and $x\in \bbR$ such that 
+    \[
+        x_{n_j} \to x, \quad \text{as } j\to \infty.
+    \]
+    In other words, \textit{every bounded sequence has a convergent subsequence}.
+\end{theorem}
+\begin{remark}
+    This says \textit{nothing} about uniqueness of the limit. e.g. $x_n=(-1)^n$.
+\end{remark}
+\begin{proof}
+    Set $ [a_1,b_1] = [-K,K] $ and $ c=(a_1+b_1)/2 $. Consider the following alternatives:
+    \begin{enumerate}
+        \item $ x_n\in [a_1,c] $ for \textit{infinitely} many values of $n$.
+        \item $ x_n\in [c,b_1] $ for \textit{infinitely} many values of $n$.
+    \end{enumerate}
+    Note that 1. and 2. could hold at the same time. If 1. holds, we set $a_2=a_1, b_2=c$. If 1. fails, then 2. must hold and we set $a_2=c,b_2=b_1$. Inductively, we construct sequences $ a_n,b_n $ such that $ x_m\in [a_n,b_n] $ for infinitely many values of $m$. By construction, 
+    \begin{equation}\label{eq:bolzano-weierstrass-proof}\tag{$*$}
+        a_{n-1}\le a_n\le b_n\le b_{n-1}\quad\text{and}\quad b_n-a_n = \frac{b_{n-1}-a_{n-1}}{2}.
+    \end{equation}
+    Now $a_n \nearrow$, $b_n \searrow$ and both are bounded, we know that 
+    \[
+        a_n\to a\in [a_1,b_1] \quad \text{and}\quad b_n \to b\in [a_1,b_1].
+    \]
+    By (\ref{eq:bolzano-weierstrass-proof}), $ b-a=\frac{b-a}{2} \Rightarrow b=a $.
+
+    Since every $[a_n,b_n]$ has infinitely many $x_m$, having chosen $ x_{n_j}\in [a_j,b_j] $, $ \exists n_{j+1}>n_j $ such that $ x_{n_{j+1}}\in [a_{j+1},b_{j+1}] $. Hence 
+    \[
+        a_j\le x_{n_j}\le b_j \Rightarrow x_{n_j}\to a.
+    \]
+    This is a convergent subsequence, as required.
+\end{proof}
+
+\begin{definition}[Cauchy sequences]
+    $a_n\in \bbR$ is called a \textbf{Cauchy sequence} if 
+    \[
+        \forall \epsilon>0, \exists N>0: \forall n,m\ge N, \left| a_n-a_m \right| <\epsilon.
+    \]
+\end{definition}
+
+\begin{lemma}\label{lma:convergent -> cauchy}
+    A convergent sequence is a Cauchy sequence.
+\end{lemma}
+\begin{proof}
+    Given $ a_n\to a $, $ \forall \epsilon>0, \exists N: \forall n\ge N, |a_n-a|<\frac{\epsilon}{2} $. Take $m,n\ge N$ and by triangular inequality,
+    \[
+        |a_n-a_m|\le |a_n-a|+|a_m-a|<\epsilon.
+    \]
+\end{proof}
+
+\begin{theorem}\label{thm:cauchy -> convergent}
+    Every Cauchy sequence converges.
+\end{theorem}
+\begin{proof}
+    Claim that Cauchy sequences are bounded. Let $a_n$ be a Cauchy sequence. Take $\epsilon=1$ and $N=N(1)$, then $ \forall n,m\ge N, |a_n-a_m|<1 $. Then
+    \[
+        |a_m|\le |a_m-a_N|+|a_N|<1+|a_N|, \quad \forall m\ge N.
+    \]
+    Take $ K= \max\{|a_1|,\dots,|a_{N-1}|, 1+|a_N|\} $, then $|a_n|\le K$.
+
+    By the Bolzano-Weierstrass theorem, $ a_{n_j}\to a $. Claim that $a_n\to a$. Indeed, given $ \epsilon>0 $, $ \exists j_0 $ such that $ \forall j\ge j_0, |a_{n_j}-a|<\epsilon/2 $. Also $ \exists N(\epsilon) $ such that $ \forall m,n\ge N, |a_m-a_n|<\epsilon/2 $. Therefore, take $j$ such that $ n_j\ge \max \{N, n_{j_0}\} $ we have
+    \[
+        \left| a_n-a \right| \le \left| a_n-a_{n_j} \right| + \left| a_{n_j} -a\right| < \epsilon,
+    \]
+    as required.
+\end{proof}
+\begin{note}
+    Thus on $ \mathbb{R} $, $ \text{convergent} \Leftrightarrow \text{Cauchy} $. This is known as the \textbf{general principle of convergence}.
+\end{note}
+
+\subsection{Series}
+
+\begin{definition}[Series]
+    Let $ a_n\in \mathbb{R} \text{ or } \mathbb{C} $. We say that 
+    \[
+        \sum_{j=1}^{\infty}a_j \text{ converges to } s \Longleftrightarrow s_N = \sum_{j=1}^{N} a_j \to s \text{ as }N\to \infty.
+    \]
+    We write 
+    \[
+        \sum_{j=1}^{\infty} a_j=s.
+    \]
+    If $s_N$ diverges, we say that $\sum_{j=1}^{\infty} a_j$ diverges.
+\end{definition}
+\begin{remark}
+    Any problem in series can be turned into a problem in sequences by considering partial sums.
+\end{remark}
+
+\begin{lemma}\label{lma:1.6} 
+    Let $ a_n,b_n\in \mathbb{C} $.
+    \begin{enumerate}
+        \item If $\displaystyle \sum_{j=1}^{\infty}a_j,\sum_{j=1}^{\infty}b_j$ converge, then so does $\displaystyle \sum_{j=1}^{\infty}\lambda a_j+\mu b_j$, where $ \lambda,\mu\in \mathbb{C} $.
+        \item Suppose $ \exists N $ such that $ \forall j\ge N, a_j=b_j $, then either $\displaystyle \sum_{j=1}^{\infty}a_j,\sum_{j=1}^{\infty}b_j$ both converge or they both diverge\footnote{Initial terms do not matter.}.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    For 1. note that 
+    \begin{align*}
+        s_N &= \sum_{j=1}^{N}\lambda a_j+\mu b_j = \lambda \sum_{j=1}^{N}a_j + \mu \sum_{j=1}^{N}b_j\\ 
+        &= \lambda c_N + \mu d_N \to \lambda c+ \mu d.
+    \end{align*}
+
+    For 2. let $n\ge N$,
+    \begin{align*}
+        s_n &= \sum_{j=1}^{n} a_j = \sum_{j=1}^{N-1}a_j+\sum_{j=N}^{n}a_j,\\ 
+        t_n &= \sum_{j=1}^{n} b_j = \sum_{j=1}^{N-1}b_j+\sum_{j=N}^{n}b_j.
+    \end{align*}
+    Hence 
+    \[
+        s_n-t_n = \sum_{j=1}^{N-1}a_j-\sum_{j=1}^{N-1}b_j=\text{constant}.
+    \]
+    Therefore they both converge or diverge.
 \end{proof}
