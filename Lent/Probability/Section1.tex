@@ -267,3 +267,112 @@ Let $ (\Omega,\mathcal{F},\mathbb{P}) $ be a probability space.
     \]
     as required.
 \end{proof}
+
+\begin{proposition}[Continuity]\label{prop:continuity}
+    Let $A_n$ be an increasing sequence in $ \mathcal{F} $: $ A_{n}\in \mathcal{F} \land A_n \subseteq A_{n+1} $, then $ \mathbb{P}(A_n) \le \mathbb{P}(A_{n+1}) $ so $ \mathbb{P}(A_n) $ converges. We have
+    \[
+        \lim_{n \to \infty} \mathbb{P}(A_n) = \mathbb{P}\left( \bigcup_{n=1}^{\infty}A_n \right).
+    \]
+\end{proposition}
+\begin{proof}
+    Define 
+    \[
+        B_1=A_1 \text{ and } B_n = A_n \setminus \left( \bigcup_{k=1}^{n-1}A_k \right)\text{ for }n\ge 2.
+    \]
+    Then $ A_n = \bigcup_{k=1}^{n}B_k $ and $ \bigcup_{k=1}^{\infty}B_k= \bigcup_{k=1}^{\infty}A_k$. Hence 
+    \[
+        \mathbb{P}(A_n) = \mathbb{P}\left( \bigcup_{k=1}^{n}B_k \right) = \sum_{k=1}^{n}\mathbb{P}(B_k)\to \sum_{k=1}^{\infty}\mathbb{P}(B_k).
+    \]
+    On the other hand,
+    \[
+        \mathbb{P}\left( \bigcup_{k=1}^{\infty}A_k \right)=\mathbb{P}\left( \bigcup_{k=1}^{\infty}B_k \right) = \sum_{k=1}^{\infty}\mathbb{P}(B_k).
+    \]
+    The result follows.
+\end{proof}
+
+Similarly 
+\begin{corollary}\label{col:continuity2}
+    If $ A_n $ is a \textit{decreasing} sequence in $ \mathcal{F} $, then 
+    \[
+        \mathbb{P}(A_n)\to \mathbb{P}\left( \bigcap_{n=1}^{\infty}A_n \right).
+    \]
+\end{corollary}
+\begin{proof}
+    Set $ A_n' = A_n^{\complement} $ in proposition \ref{prop:continuity}.
+\end{proof}
+
+\begin{proposition}[Inclusion-exclusion formula]\label{prop:Inclusion-exclusion formula}
+    Let $ A_1,A_2, \dots, A_n\in \mathcal{F} $, then 
+    \begin{align*}
+        \mathbb{P}\left( \bigcup_{i=1}^{n}A_i \right) &= \sum_{i=1}^{n}\mathbb{P}(A_i) - \sum_{i_1<i_2} \mathbb{P}(A_{i_1}\cap A_{i_2})+\sum_{i_1<i_2<i_3}\mathbb{P}(A_{i_1}\cap A_{i_2}\cap A_{i_3})\\ 
+        &-\cdots+ (-1)^{n+1} \mathbb{P}(A_1 \cap \cdots \cap A_n)\\ 
+        &=\sum_{k=1}^{n}(-1)^{k+1} \sum_{i_1<i_2<\cdots<i_k}\mathbb{P}\left( A_{i_1}\cap \cdots \cap A_{i_k} \right).
+    \end{align*}
+\end{proposition}
+\begin{proof}[Proof by induction]
+    It holds for $n=2$. Assume it holds $n-1$ events, note that 
+    \begin{align*}
+        \mathbb{P}(A_1 \cup \cdots \cup A_n)&= \mathbb{P}\left( (A_1 \cup \cdots \cup A_{n-1}) \cup A_n \right)\\ 
+        &= \mathbb{P}(A_1 \cup \cdots \cup A_{n-1})+\mathbb{P}(A_n)-\mathbb{P}((A_1 \cup \cdots \cup A_{n-1})\cap A_n)\\ 
+        &= \mathbb{P}(A_1 \cup \cdots \cup A_{n-1})+\mathbb{P}(A_n)-\mathbb{P}(\cup_i (A_i\cap A_n)).
+    \end{align*}
+    Set $ B_i=A_i\cap A_n $. By the induction hypothesis,
+    \[
+        \mathbb{P}(\cup A_i)=\sum_{k=1}^{n-1}(-1)^{k+1} \sum_{i_1<i_2<\cdots<i_k}\mathbb{P}\left( A_{i_1}\cap \cdots \cap A_{i_k} \right)
+    \]
+    and 
+    \[
+        \mathbb{P}(\cup B_i)=\sum_{k=1}^{n-1}(-1)^{k+1} \sum_{i_1<i_2<\cdots<i_k}\mathbb{P}\left( B_{i_1}\cap \cdots \cap B_{i_k} \right).
+    \]
+    Subsituting back proves the theorem.
+\end{proof}
+\begin{corollary}\label{col:inclusion-exclusion2}
+        Let $ (\Omega,\mathcal{F},\mathbb{P}) $ with $ |\Omega|<\infty  $ and $ \mathbb{P}(A)=|A|/|\Omega| $. Let $ A_1,\dots,A_n\in \mathcal{F} $, then 
+        \[
+            \left| \bigcup_{i=1}^{n}A_i \right| = \sum_{k=1}^{n}(-1)^{k+1} \sum_{i_1<i_2<\cdots<i_k}\left| A_{i_1}\cap \cdots \cap A_{i_k} \right|.
+        \]
+\end{corollary}
+
+\begin{proposition}[Bonferroni inequalities]\label{prop:Bonferroni inequalities}
+    If $r$ is odd, then 
+    \[
+        \mathbb{P}\left( \bigcup_{i=1}^{n}A_i \right)\le \sum_{k=1}^{r}(-1)^{k+1} \sum_{i_1<i_2<\cdots<i_k}\mathbb{P}\left( A_{i_1}\cap \cdots \cap A_{i_k} \right).
+    \]
+    If $r$ is even, then 
+    \[
+        \mathbb{P}\left( \bigcup_{i=1}^{n}A_i \right)\ge \sum_{k=1}^{r}(-1)^{k+1} \sum_{i_1<i_2<\cdots<i_k}\mathbb{P}\left( A_{i_1}\cap \cdots \cap A_{i_k} \right).
+    \]
+\end{proposition}
+\begin{proof}[Proof by induction]
+    Clearly $ \mathbb{P}(A \cup B)\le \mathbb{P}(A)+\mathbb{P}(B) $. Assume it holds for $n-1$ events.
+
+    Suppose $r$ is odd. Then 
+    \[
+        \mathbb{P}(A_1 \cup \cdots \cup A_n) = \mathbb{P}(A_1 \cup \cdots \cup A_{n-1})+\mathbb{P}(A_n)-\mathbb{P}(B_1 \cup \cdots \cup B_{n-1})
+    \]
+    where $ B_i=A_i\cap A_n $. We have 
+    \[
+        \mathbb{P}\left( \bigcup_{i=1}^{n-1}B_i \right)\ge \sum_{k=1}^{r-1}(-1)^{k+1} \sum_{i_1<i_2<\cdots<i_k}\mathbb{P}\left( B_{i_1}\cap \cdots \cap B_{i_k} \right).
+    \]
+    Therefore 
+    \[
+        \mathbb{P}\left( \bigcup_{i=1}^{n}A_i \right)\le \sum_{k=1}^{r}(-1)^{k+1} \sum_{i_1<i_2<\cdots<i_k}\mathbb{P}\left( A_{i_1}\cap \cdots \cap A_{i_k} \right),
+    \]
+    as claimed. It is similar if $r$ is even.
+\end{proof}
+
+\begin{example}
+    Number of surjections $ f: \{1,\dots,n\}\to \{1,\dots,m\} $.
+
+    Let $ \Omega = \{f: \{1,\dots,n\}\to \{1,\dots,m\}\} $ and $ A=\{f\in \Omega: f \text{ is a surjection}\} $. Given $ i\in \{1,\dots,m\} $, define $ A_i=\{f\in\Omega: i\notin \{f(1),\dots,f(n)\}\} $. Then 
+    \[
+        A = (A_1 \cup \cdots \cup A_m)^{\complement}.
+    \]
+    Hence 
+    \begin{align*}
+        |A|&= |\Omega|-|A_1 \cup \cdots \cup A_m|=m^n-|A_1 \cup \cdots \cup A_m|\\ 
+        &= m^n-\sum_{k=1}^{m}(-1)^{k+1} \sum_{i_1<i_2<\cdots<i_k}\left| A_{i_1}\cap \cdots \cap A_{i_k} \right|\\ 
+        &= m^n-\sum_{k=1}^{m}(-1)^{k+1} \binom{m}{k}(m-k)^n\\ 
+        &= \sum_{k=0}^{m}(-1)^k \binom{m}{k}(m-k)^n.
+    \end{align*}
+\end{example}

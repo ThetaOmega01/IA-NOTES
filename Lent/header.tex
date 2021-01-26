@@ -72,6 +72,8 @@ arrow inside/.style 2 args={
 },
 }
 
+\tikzstyle{circ}=[fill=black, draw=black, shape=circle]
+
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -365,6 +367,8 @@ arrow inside/.style 2 args={
 
 \renewcommand{\ge}{\geqslant}
 \renewcommand{\le}{\leqslant}
+
+\setlength{\parindent}{0pt}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%boxed enviroment for final layout%%%%%%%%%%%%%
@@ -474,23 +478,23 @@ arrow inside/.style 2 args={
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 
 %layout full
-% \geometry{%
-%   a4paper,
-%   lmargin=2cm,
-%   rmargin=2.5cm,
-%   tmargin=3.5cm,
-%   bmargin=2.5cm,
-%   footskip=12pt,
-%   headheight=24pt}
+\geometry{%
+  a4paper,
+  lmargin=2cm,
+  rmargin=2.5cm,
+  tmargin=3.5cm,
+  bmargin=2.5cm,
+  footskip=12pt,
+  headheight=24pt}
 %layout trim
-\geometry{
-papersize={379pt, 699pt},
-textwidth=345pt,
-textheight=596pt,
-left=17pt,
-top=54pt,
-right=17pt
-}
+% \geometry{
+% papersize={379pt, 699pt},
+% textwidth=345pt,
+% textheight=596pt,
+% left=17pt,
+% top=54pt,
+% right=17pt
+% }
 \pagestyle{fancy}
 \theoremstyle{plain}
 
