@@ -121,8 +121,8 @@ Several useful deductions:
 \begin{lemma}\label{lma:1.6} 
     Let $ a_n,b_n\in \mathbb{C} $.
     \begin{enumerate}
-        \item If $\displaystyle \sum_{j=1}^{\infty}a_j,\sum_{j=1}^{\infty}b_j$ converge, then so does $\displaystyle \sum_{j=1}^{\infty}\lambda a_j+\mu b_j$, where $ \lambda,\mu\in \mathbb{C} $.
-        \item Suppose $ \exists N $ such that $ \forall j\ge N, a_j=b_j $, then either $\displaystyle \sum_{j=1}^{\infty}a_j,\sum_{j=1}^{\infty}b_j$ both converge or they both diverge\footnote{Initial terms do not matter.}.
+        \item If $ \sum_{j=1}^{\infty}a_j,\sum_{j=1}^{\infty}b_j$ converge, then so does $ \sum_{j=1}^{\infty}\lambda a_j+\mu b_j$, where $ \lambda,\mu\in \mathbb{C} $.
+        \item Suppose $ \exists N $ such that $ \forall j\ge N, a_j=b_j $, then either $ \sum_{j=1}^{\infty}a_j,\sum_{j=1}^{\infty}b_j$ both converge or they both diverge\footnote{Initial terms do not matter.}.
     \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -142,4 +142,116 @@ Several useful deductions:
         s_n-t_n = \sum_{j=1}^{N-1}a_j-\sum_{j=1}^{N-1}b_j=\text{constant}.
     \]
     Therefore they both converge or diverge.
+\end{proof}
+
+\begin{sprop}
+    $ x^n\to 0 $ if $|x|<1$.
+\end{sprop}
+\begin{proof}
+    Wlog, let $0<x<1$. Write $ 1/x=1+\delta $, where $ \delta>0 $. Then 
+    \[
+        x^n = \frac{1}{(1+\delta)^n}\le \frac{1}{1+n\delta}\to 0,
+    \]
+    where the last inequality comes from the fact that 
+    \[
+        (1+\delta)^{n} = \sum_{i=0}^{n} \binom{n}{i}\delta^i\ge 1+\binom{n}{1}\delta=1+n\delta,
+    \]
+    known as the \textbf{Bernoulli's inequality}.
+\end{proof}
+
+\begin{example}[Geometric series]
+    Set $a_n=x^{n-1}$, then 
+    \[
+        s_n=\sum_{j=1}^{n}a_j=\sum_{j=0}^{n-1}x^j= \begin{cases}
+        \frac{1-x^n}{1-x} &\text{if } x\neq 1\\
+        n &\text{if }x=1\\
+        \end{cases}
+        \to \begin{cases}
+            \frac{1}{1-x} &\text{if } |x|<1,\\
+            \infty &\text{if } x\ge 1,\\
+            \text{oscillates} &\text{if } x\le -1.\\
+            \end{cases} 
+    \]
+    Thus a geometric series converges if and only if $|x|<1$.
+\end{example}
+\begin{note}
+    $s_n\to \infty(-\infty): \forall A>0, \exists N: \forall n\ge N, s_n>(<)A(-A) $. If $s_n$ does not converge or $\to \pm \infty$, we say $s_n$ \textit{oscillates}.
+\end{note}
+
+\begin{lemma}\label{lma:1.7}
+    If $ \sum_{n=1}^{\infty}a_n$ converges, then $ \lim_{n \to \infty} a_n=0$. 
+\end{lemma}
+\begin{proof}
+    Note that $ a_n=s_{n}-s_{n-1}\to 0 $.
+\end{proof}
+\begin{remark}
+    If $ \lim_{n \to \infty} a_n=0$, it is \textit{not} generally true that $ \sum_{n=1}^{\infty}a_n$ converges.
+\end{remark}
+\begin{sprop}[Harmonic series]
+    $ \displaystyle \sum_{n=1}^{\infty}\frac{1}{n} $ diverges.
+\end{sprop}
+\begin{proof}
+    Note that 
+    \[
+        s_{2n}=s_{n}+\frac{1}{n+1}+\cdots +\frac{1}{2n}>s_{n}+\sum_{k=n+1}^{2n}\frac{1}{2n}=s_n+\frac{1}{2},
+    \]
+    so it diverges.
+\end{proof}
+
+\subsubsection*{Series of non-negative terms}
+Throughout this part, assume $a_n\ge 0$.
+
+\begin{theorem}[Comparison test]\label{thm:Comparison test}
+    Suppose $ 0\le b_n\le a_n, \forall n $. Then if $ \sum_{n=1}^{\infty} a_n $ converges, so does $\sum_{n=1}^{\infty} b_n$.
+\end{theorem}
+\begin{proof}
+    Let $ s_N=\sum_{n=1}^{N}a_n, b_N=\sum_{n=1}^{N}b_n $, then $ d_N\le s_N $. But $s_N\to s$, then 
+    \[
+        d_N\le s_N\le s, \quad\forall N.
+    \]
+    Also $ d_N $ is increasing, so it converges.
+\end{proof}
+
+\begin{example}
+    Consider $ \sum_{n=1}^{\infty}\frac{1}{n^2} $. Note that 
+    \[
+        \frac{1}{n^2}<\frac{1}{n(n-1)} = \frac{1}{n-1}-\frac{1}{n} = a_n
+    \]
+    for $n\ge 2$, and that
+    \[
+        \sum_{n=2}^{N} a_n = 1-\frac{1}{N}\to 1,
+    \]
+    so $ \sum_{n=1}^{\infty}a_n $ converges and thus $ \sum_{n=1}^{\infty}\frac{1}{n^2} $ converges\footnote{See \href{https://www.cnblogs.com/misaka01034/p/BaselProof.html}{this article} and \href{https://www.math.cmu.edu/~bwsulliv/basel-problem.pdf}{this article}.}.
+\end{example}
+
+\begin{theorem}[Root test/Cauchy's test]\label{thm:Root test}
+    Assume $a_n\ge 0$ and $ (a_n)^{1/n}\to a $, then if $a<1$, then $ \sum_{n=1}^{\infty}a_n$ converges. If $ a>1 $, then $\sum_{n=1}^{\infty}a_n$ diverges.
+\end{theorem}
+\begin{remark}
+    If $a=1$, then the root test does not work.
+\end{remark}
+\begin{proof}
+    If $ a<1 $, choose $r$ such that $a<r<1$. Then there exists $N$ that 
+    \[
+        \forall n\ge N, (a_n)^{1/n}<r \Longrightarrow a_n<r^n.
+    \]
+    Since $ \sum r^n $ converges, $\sum a_n$ converges by comparison test. If $a>1$ then $a_n>1\nrightarrow 0$, so $\sum a_n$ diverges.
+\end{proof}
+
+\begin{theorem}[Ratio test/D'Alembert's test]\label{thm:Ratio test}
+    Suppose $a_n>0$ and $ \frac{a_{n+1}}{a_n}\to \ell $. If $ \ell <1 $, then $ \sum a_n $ converges and if $ \ell >1 $, $ \sum a_n $ diverges.
+\end{theorem}
+\begin{note}
+    If $\ell=1$, the ratio test does not work.
+\end{note}
+\begin{proof}
+    Suppose $\ell<1$ and choose $\ell<r<1$. Then
+    \[
+        \exists N, \forall n\ge N: \frac{a_{n+1}}{a_n}<r \Longrightarrow a_n = \frac{a_n}{a_{n-1}}\frac{a_{n-1}}{a_{n-2}}\cdots \frac{a_{N+1}}{a_{N}}a_N<a_N r^{n-N} .
+    \]
+    By comparison test, $ \sum a_n $ converges. If $ \ell >1 $, choose $\ell>r>1$. Then $ \exists N, \forall n\ge N, \frac{a_{n+1}}{a_n}>r $, so 
+    \[
+        a_n = \frac{a_n}{a_{n-1}}\frac{a_{n-1}}{a_{n-2}}\cdots \frac{a_{N+1}}{a_{N}}a_N>a_N r^{n-N}\to \infty.
+    \]
+    Hence $ \sum a_n $ diverges.
 \end{proof}

@@ -91,7 +91,7 @@ So
 \end{align*}
 
 \begin{definition}[Detailed definition of lengths]
-    The length of $C$ can be computed explicitely as 
+    The length of $C$ can be computed explicitly as 
     \[
         \ell (C) = \lim_{\Delta t \to 0} \sum_{i=0}^{N-1} \left| \mathbf{x}'(t_i) \right| \Delta t_i = \int_{a}^{b} \left| \mathbf{x}'(t) \right|  \,\mathrm{d}t.
     \]
@@ -152,6 +152,7 @@ Similarly it holds for $ \frac{\mathrm{d}t}{\mathrm{d}\tau}<0  $. Hence
     $ \displaystyle \int_{C} f(\bfx) \,\mathrm{d}s $ is \textit{invariant} under different parametrisations.
 \end{proposition}
 
+\subsubsection*{Parametrisation by arc-length}
 Note that we can parametrise curves in various ways. Define \textbf{arc-length} function for curve $ [a,b]\ni t \mapsto \mathbf{x}(t) $ by 
 \[
     s(t) = \int_{a}^{t} \left| \bfx'(\tau) \right| \,\mathrm{d}\tau,
@@ -160,7 +161,7 @@ so that $s(a)=0$ and $ s(b)=\ell (C) $. Also
 \[
     \frac{\mathrm{d}s}{\mathrm{d}t} = \left| \bfx'(t) \right| \ge 0, 
 \]
-so for regular curves we have $ \rmd s/\rmd t\>0 $, so we can invert relationship between $s$ and $t$ to find $t=t(s)$. So we can parametrise \textit{regular} curves with respect to arc-length. Write $ \mathbf{r}(s)=\mathbf{x}(t(s)) $ where $ 0\le s\le \ell (C) $, then by chain rule, 
+so for regular curves we have $ \rmd s/\rmd t >0 $, and we can revert relationship between $s$ and $t$ to find $t=t(s)$. So we can parametrise \textit{regular} curves with respect to arc-length. Write $ \mathbf{r}(s)=\mathbf{x}(t(s)) $ where $ 0\le s\le \ell (C) $, then by chain rule, 
 \[
     \frac{\mathrm{d}t}{\mathrm{d}s} = \frac{1}{\rmd s/\rmd t} = \frac{1}{\left| \mathbf{x}'(t(s)) \right| }
 \]
@@ -186,7 +187,7 @@ Throughout this subsection we tak about generic \textit{regular curves} $C$ para
 
 Note that $ (\bft \cdot \bft =1)' \Rightarrow \bft \cdot \bft'=0 $.
 \begin{definition}[Principal normal]
-    The \textbf{principal normal} is defined by 
+    The \textbf{principal normal} $\bfn$ is defined by 
     \[
         \bft'=\kappa \bfn.
     \]

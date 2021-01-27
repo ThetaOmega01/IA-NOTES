@@ -1,0 +1,200 @@
+\section{Coordinates, Differentials, Gradients}
+\subsection{Differentials and first order changes}
+
+Recall that for $ f(u_1,\dots,u_n) $ we define the \textbf{differential} of $f$ to be 
+\[
+    \rmd f = \frac{\partial f}{\partial u_i} \dd u_i, 
+\]
+assuming summation convention. Call $ \{\rmd u_i\} $ \textbf{differential forms}. They are defined to be \textit{linearly independent}, i.e. $ \alpha_i \dd u_i =0 \Rightarrow \alpha_i=0 $.
+\begin{definition}[Differential of vectors]
+    Let $\bfx = \bfx(u_1,\dots,u_n)$. Define
+    \[
+        \rmd \bfx= \frac{\partial \bfx}{\partial u_i} \dd u_i. 
+    \]
+\end{definition}
+
+\begin{example}
+    If $f(u,v,w)=u^2+w\sin v$, then $ \rmd f = 2u\dd u+w \cos v \dd v+ \sin v \dd w $. If 
+    \[
+        \mathbf{x}(u,v,w)=\begin{pmatrix}
+            u^2-v^2 \\ w \\ e^v
+        \end{pmatrix},
+    \] 
+    then 
+    \[
+        \rmd \mathbf{x} = \begin{pmatrix}
+            2u \\ 0 \\ 0
+        \end{pmatrix}\dd u+ \begin{pmatrix}
+            -2v \\ 0 \\ e^v
+        \end{pmatrix}\dd v+\begin{pmatrix}
+            0 \\ 1 \\ 0
+        \end{pmatrix}\dd w.
+    \]
+\end{example}
+
+\subsubsection*{Differentials and the chain rule}
+Let $ f: \mathbb{R}^{n}\to \mathbb{R} $, $\bfu=(u_1,\dots,u_n)$ and $ \delta\bfu=(\delta u_1,\dots,\delta u_n) $, then we have 
+\[
+    \delta f=f(\bfu+\delta\bfu)-f(\bfu)=\frac{\partial f}{\partial u_i}\delta u_i +o(\delta\bfu),
+\]
+where $ \frac{o(\delta\bfu)}{|\delta\bfu|}\to 0 $ as $ |\delta\bfu|\to 0 $.
+
+Similarly for vector fields
+\[
+    \delta\bfx = \frac{\partial \bfx}{\partial u_i}\delta u_i+o(\delta\bfu). 
+\]
+
+Now consider a function $ F(u_1,\dots,u_n)=f(x_1,\dots,x_n) $, where $ x_i=x_i(u_1,\dots,u_n) $ are functions of $u_i$. Clearly $ \rmd F=\rmd f $, so 
+\[
+    \frac{\partial F}{\partial u_i} \dd u_i=\rmd F = \rmd f= \frac{\partial f}{\partial x_j}\dd x_j = \frac{\partial f}{\partial x_j}\frac{\partial x_j}{\partial u_i}\dd u_i.  
+\]
+Since $\rmd u_i$ are a basis, we have the \textbf{chain rule}
+\[
+    \frac{\partial F}{\partial u_i}=\frac{\partial f}{\partial x_j}\frac{\partial x_j}{\partial u_i}.
+\]
+
+\subsection{Coordinates and line elements}
+Recall that the Cartesian coordinates $ (x,y) $ and the polar coordinates $ (r,\theta) $ are related by an invertible(not at $O$ but that does not cause problems) relation
+\[
+    x=r \cos \theta,\quad y= r\sin \theta.
+\]
+A general set of coordinates $ (u,v) $ on $\bbR^2$ can be specified by their relationship to $(x,y)$, i.e. specify smooth functions
+\[
+    x=x(u,v),\quad y=y(u,v),
+\]
+and inverted smooth functions 
+\[
+    u=u(x,y),\quad v=v(x,y).
+\]
+
+Similarly for $ \mathbb{R}^{3} $, $(u,v,w)$ is specified by 
+\[
+    x=x(u,v,w),\quad y=y(u,v,w),\quad z=z(u,v,w).
+\]
+
+\begin{example}[Cartesian coordinates]
+    $ \bfx(x,y)=\begin{pmatrix}
+        x \\ y
+    \end{pmatrix}=x\bfe_x+y\bfe_y $ where $ \{\bfe_x,\bfe_y\} $ are orthonormal and \textit{fixed}. Said differently,
+    \[
+        \bfe_x = \frac{\frac{\partial }{\partial x}\bfx(x,y) }{\left| \frac{\partial }{\partial x}\bfx(x,y) \right| },\quad \bfe_y=\frac{\frac{\partial }{\partial y}\bfx(x,y) }{\left| \frac{\partial }{\partial y}\bfx(x,y) \right| }.
+    \]
+\end{example}
+
+Note that 
+\[
+    \rmd \bfx=\frac{\partial \bfx}{\partial x}\dd x+\frac{\partial \bfx}{\partial y}\dd y=\rmd x\bfe_x+\rmd y\bfe_y,  
+\]
+i.e. change in coordinates $ x \mapsto x+\delta x $, then the vector changes(to the first order) by $ \bfx \mapsto \bfx+\delta x\bfe_x .$
+
+\begin{definition}[Line element]
+    Call $ \rmd \bfx $ the \textbf{line element}. This tells us how small changes in coordinates produce changes in position vectors.
+\end{definition}
+
+\begin{example}[Polar coordinates]
+    $ \mathbf{x}(r,\theta)=\begin{pmatrix}
+        r\cos \theta \\ r\sin\theta
+    \end{pmatrix}\equiv r\bfe_r $. We use basis vectors $ \bfe_r,\bfe_\theta $ such that 
+    \[
+        \bfe_r=\begin{pmatrix}
+            \cos\theta \\ \sin\theta
+        \end{pmatrix},\quad \bfe_\theta = \begin{pmatrix}
+            -\sin \theta  \\\cos \theta 
+        \end{pmatrix}.
+    \]
+    Note that $ \{\bfe_r,\bfe_\theta\} $ are orthonormal at each $ (r,\theta) $, but \textit{not} the same for each $ (r,\theta) $. As before,
+    \[
+        \bfe_r = \frac{\frac{\partial }{\partial r}\bfx(r,\theta) }{\left| \frac{\partial }{\partial r}\bfx(r,\theta) \right| },\quad \bfe_\theta=\frac{\frac{\partial }{\partial \theta}\bfx(r,\theta) }{\left| \frac{\partial }{\partial \theta}\bfx(r,\theta) \right| }
+    \]
+    Since $ \{\bfe_r,\bfe_\theta\} $ are orthogonal, we call $ (r,\theta) $ \textbf{orthogonal curvilinear coordinates}. The line element is 
+    \begin{align*}
+        \rmd \bfx&= \frac{\partial \bfx}{\partial r}\dd r+\frac{\partial \bfx}{\partial \theta}\dd \theta = \frac{\partial r\bfe_r}{\partial r}\dd r+\frac{\partial r\bfe_r}{\partial \theta}\dd \theta\\ 
+        &= \bfe_r \dd r+ r\bfe_\theta\dd \theta.
+    \end{align*}
+    A change $ \theta \mapsto \theta+ \delta \theta $ produces a (first order) change $ \mathbf{x}\mapsto \mathbf{x}+r\delta \theta\bfe_\theta  $.
+\end{example}
+
+\subsubsection{Orthogonal curvilinear coordinates}
+In general we say that $(u, v, w)$ are a set of \textbf{orthogonal curvilinear coordinates} if the vectors
+\[
+    \bfe_u = \frac{\partial \bfx/\partial u }{\left| \partial \bfx/\partial u \right| },\quad \bfe_v=\frac{\partial \bfx/\partial v }{\left| \partial \bfx/\partial v \right| },\quad \bfe_w=\frac{\partial \bfx/\partial w }{\left| \partial \bfx/\partial w \right| }
+\]
+form a \textit{right-handed orthonormal} basis ($ \bfe_u\times\bfe_v=\bfe_w $ etc.). Note that $ \bfe_u,\bfe_v,\bfe_w $ need \textit{not} be fixed.
+
+It is standard to write 
+\[
+    h_u = \left| \frac{\partial \bfx}{\partial u}  \right| ,\quad h_v=\left| \frac{\partial \bfx}{\partial v}  \right|,\quad h_w=\left| \frac{\partial \bfx}{\partial w}  \right|
+\]
+called \textbf{scale factors}. They are called so because 
+\[
+    \rmd x = \frac{\partial \bfx}{\partial u}\dd u+ \frac{\partial \bfx}{\partial v}\dd v+\frac{\partial \bfx}{\partial w}\dd w=h_u \dd u \bfe_u+h_v \dd v \bfe_v+h_w \dd w \bfe_w.
+\]
+They describe how small changes in $ (u,v,w) $ scale up (to 1st order) to changes in $\bfx$ wrt $ \bfe_u,\bfe_v,\bfe_w $.
+
+\subsubsection{Cylindrical polar coordinates}
+Cylindrical polar coordinates $ (\rho,\phi,z) $ are defined by 
+\[
+    \bfx(\rho,\phi,z)= \begin{pmatrix}
+        \rho\cos \phi \\ \rho \sin \phi \\ z
+    \end{pmatrix}, \quad\begin{matrix}
+        0\le \rho< \infty, \\ 0\le \phi<2\pi,\\ -\infty <z<\infty,
+    \end{matrix}
+\]
+with 
+\[
+    \bfe_\rho=\begin{pmatrix}
+        \cos \phi \\ \sin \phi \\ 0
+    \end{pmatrix},\quad
+    \bfe_\phi=\begin{pmatrix}
+        -\sin\phi \\ \cos \phi \\ 0
+    \end{pmatrix},\quad
+    \bfe_z=\begin{pmatrix}
+        0 \\ 0 \\ 1
+    \end{pmatrix},
+\]
+scale factors
+\[
+    h_\rho=1,\quad,h_\phi=\rho,\quad h_z=1,
+\]
+and line element
+\[
+    \rmd \bfx = \rmd \rho\, \bfe_\rho+\rho\dd \phi \, \bfe_\phi+\rmd z \, \bfe_z.
+\]
+\begin{note}
+    \[
+        \bfx=\begin{pmatrix}
+            \rho\cos \phi \\ \rho \sin \phi \\ z
+        \end{pmatrix}=\rho\begin{pmatrix}
+            \cos \phi \\  \sin \phi \\ 0
+        \end{pmatrix}+z \begin{pmatrix}
+            0 \\ 0 \\ 1
+        \end{pmatrix}=\rho\, \bfe_\rho+z\, \bfe_z.
+    \]
+\end{note}
+
+See \href{http://jt775.user.srcf.net/IA-Lent/handouts/vc_handout1.pdf}{handout 1} for detailed diagrams.
+
+\subsubsection{Spherical polar coordinates}
+Define $ (r,\theta,\phi) $ by 
+\[
+    \bfx(r,\theta,\phi) = \begin{pmatrix}
+        r \cos \phi \sin \theta \\ r \sin \phi \sin \theta \\ r \cos \theta 
+    \end{pmatrix},\quad \begin{matrix}
+        0\le r\le \infty, \\ 0\le \theta<\pi,\\ 0 \le \phi< 2\pi,
+    \end{matrix}
+\]
+with 
+\[
+    \bfe_r = \begin{pmatrix}
+        \cos \phi \sin \theta \\ \sin \phi \sin \theta\\ \cos \theta 
+    \end{pmatrix},\quad \bfe_\theta = \begin{pmatrix}
+        \cos \phi \cos \theta \\ \sin \phi \cos \theta \\ -\sin \theta 
+    \end{pmatrix},\quad \bfe_\phi = \begin{pmatrix}
+        - \sin \phi \\ \cos \phi \\ 0
+    \end{pmatrix},
+\]
+and scale factors $ h_r=1,h_\theta=r,h_\phi=r \sin \theta $. Line element is 
+\[
+    \rmd \bfx = \rmd r\,\bfe_r+ r\dd \theta\,\bfe_\theta+r \sin \theta\dd \phi\,\bfe_\phi,
+\]
+and $ \bfx=r\bfe_r $. See \href{http://jt775.user.srcf.net/IA-Lent/handouts/vc_handout1.pdf}{handout 1} for detailed diagrams. 
