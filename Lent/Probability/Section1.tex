@@ -324,7 +324,7 @@ Similarly
     \[
         \mathbb{P}(\cup B_i)=\sum_{k=1}^{n-1}(-1)^{k+1} \sum_{i_1<i_2<\cdots<i_k}\mathbb{P}\left( B_{i_1}\cap \cdots \cap B_{i_k} \right).
     \]
-    Subsituting back proves the theorem.
+    Substituting back proves the theorem.
 \end{proof}
 \begin{corollary}\label{col:inclusion-exclusion2}
         Let $ (\Omega,\mathcal{F},\mathbb{P}) $ with $ |\Omega|<\infty  $ and $ \mathbb{P}(A)=|A|/|\Omega| $. Let $ A_1,\dots,A_n\in \mathcal{F} $, then 
@@ -376,3 +376,100 @@ Similarly
         &= \sum_{k=0}^{m}(-1)^k \binom{m}{k}(m-k)^n.
     \end{align*}
 \end{example}
+
+\begin{example}[Counting derangements]
+    Let $ \Omega=\{\text{permutations of }\{1,\dots,n\}\} $, and
+    \[
+        A = \{f\in\Omega: f(i)\neq i, \forall i\}.
+    \]
+    Pick a permutation at random. What is the probability it is in $A$?
+
+    Define $ A_i = \{f\in \Omega: f(i)=i\} $, then 
+    \[
+        A=\bigcap A_i^{\complement} = \Omega\setminus \bigcup A_i \quad \text{and}\quad \mathbb{P}(A)=1-\mathbb{P}\left( \bigcup A_i \right).
+    \]
+    Note that 
+    \begin{align*}
+        \mathbb{P}\left( \bigcup A_i \right)&= \sum_{k=1}^{n}(-1)^{k+1} \sum_{i_1<i_2<\cdots<i_k}\mathbb{P}\left( A_{i_1}\cap \cdots \cap A_{i_k} \right)\\ 
+        &= \sum_{k=1}^{n}(-1)^{k+1}\binom{n}{k}\frac{(n-k)!}{n!}\\ 
+        &= \sum_{k=1}^{n}(-1)^{k+1}\frac{1}{k!},
+    \end{align*}
+    and thus 
+    \[
+        \mathbb{P}(A) = 1+\sum_{k=1}^{n}(-1)^{k}\frac{1}{k!} = \sum_{k=0}^{n}\frac{(-1)^k}{k!}\to e^{-1}\approx 0.3678.
+    \]
+\end{example}
+
+\subsection{Independence}
+
+\begin{definition}[Independence]
+    Let $ A,B\in \mathcal{F} $. They are called \textbf{independent} ($ A \independent B $) if 
+    \[
+        \mathbb{P}(A \cap B) = \mathbb{P}(A)\mathbb{P}(B).
+    \]
+
+    A \textit{countable} collection of events $ (A_n) $ is said to be independent if for any $ i_1,\dots,i_k $ distinct, we have 
+    \[
+        \mathbb{P}(A_{i_1}\cap \cdots A_{i_k}) = \prod_{j=1}^{k}\mathbb{P}(A_{i_j}).
+    \]
+\end{definition}
+\begin{remark}
+    \textit{Pairwise} independence \textit{does not} imply independence. Toss a fair coin twice. Note that.
+    \[
+        \Omega=\{(0,0),(0,1),(1,0),(1,1)\}, \mathbb{P}(\{\omega\})=\frac{1}{4}.
+    \]
+    Define $ A=\{(0,0),(0,1)\} $, $ B=\{(0,0),(0,1)\} $ and $ C=\{(1,0),(0,1)\} $. Then $ \mathbb{P}(A)=\mathbb{P}(B)=\mathbb{P}(C)=\frac{1}{2} $. It can be checked that $A,B,C$ are pairwise independent. However $ A \cap B \cap C= \varnothing  $ so $ \mathbb{P}(A \cap B \cap C)=0 $, and thus $A,B,C$ are not independent.
+\end{remark}
+
+\begin{claim}
+    If $A$ is independent of $B$, then $A$ is also independent of $ B^\complement $.
+\end{claim}
+\begin{proof}
+    $ \mathbb{P}(A\cap B^\complement)=\mathbb{P}(A)-\mathbb{P}(A \cap B)  =\mathbb{P}(A)(1-\mathbb{P}(B))=\mathbb{P}(A)\mathbb{P}(B^\complement) $.
+\end{proof}
+
+\begin{definition}[Conditional probability]
+    Let $ B\in \mathcal{F} $ with $ \mathbb{P}(B)>0 $, and $ A\in \mathcal{F} $. Define the \textit{conditional probability} of $A$ given $B$ by 
+    \[
+        \mathbb{P}(A|B)=\frac{\bbP(A\cap B)}{\bbP(B)}.
+    \]
+    If $ A \independent B $, then $ \mathbb{P}(A|B)=\mathbb{P}(A) $.
+\end{definition}
+
+\begin{proposition}[Countable additivity for conditional probability]\label{prop:Countable additivity for conditional probability}
+    Suppose $ (A_n) $ is a disjoint sequence in $ \mcF $. Then 
+    \[
+        \mathbb{P}\left( \bigcup_{n=1}^{\infty}A_n\Big|B \right) = \sum_{n=1}^{\infty}\mathbb{P}(A_n|B).
+    \]
+\end{proposition}
+\begin{proof}
+    \[
+        \mathbb{P}(\cup A_n|B) = \frac{\mathbb{P}((\cup A_n)\cap B)}{\bbP(B)} = \frac{\bbP(\cup(A_n\cap B))}{\mathbb{P}(B)}=\sum_{n=1}^{\infty}\frac{\bbP(A_n\cap B)}{\mathbb{P}(B)}=\sum_{n=1}^{\infty}\mathbb{P}(A_n|B).
+    \]
+\end{proof}
+
+\begin{proposition}[Law of total probability]\label{prop:Law of total probability}
+    Suppose $ (B_n)_{n\ge 1} $ is a disjoint collection in $ \mathcal{F} $, $ \cup B_n=\Omega $ and $ \forall n, \mathbb{P}(B_n)>0 $. Let $ A\in \mathcal{F} $. Then 
+    \[
+        \bbP(A)=\sum_{n=1}^{\infty}\mathbb{P}(A|B_n)\mathbb{P}(B_n).
+    \]
+\end{proposition}
+\begin{proof}
+    \begin{align*}
+        \mathbb{P}(A)&= \mathbb{P}(A\cap \Omega) = \mathbb{P}(A\cap (\cup B_n))\\ 
+        &= \mathbb{P}(\cup (A\cap B_n)) = \sum_{n=1}^{\infty} \mathbb{P}(A\cap B_n)=\sum_{n=1}^{\infty}\mathbb{P}(A|B_n)\mathbb{P}(B_n).
+    \end{align*}
+\end{proof}
+
+\begin{corollary}[Bayes' formula]\label{thm:Bayes' formula}
+    If: disjoint $ (B_n)_{n\ge 1} $, $ \cup B_n=\Omega $, $ \mathbb{P}(B_n)>0, \forall n $, then 
+    \[
+        \mathbb{P}(B_n|A) = \frac{\mathbb{P}(A|B_n)\mathbb{P}(B_n)}{\sum_{k=1}^{\infty}\mathbb{P}(A|B_k)\mathbb{P}(B_k)}.
+    \]
+\end{corollary}
+\begin{proof}
+    \[
+        \mathbb{P}(B_n|A) = \frac{\bbP(B_n\cap A)}{\bbP(A)}= \frac{\mathbb{P}(A|B_n)\mathbb{P}(B_n)}{\sum_{k=1}^{\infty}\mathbb{P}(A|B_k)\mathbb{P}(B_k)}.
+    \]
+\end{proof}
+This formula is the basis of Bayesian statistics. We know the probabilities of the events $ B_k $ and we have a model which gives $ \mathbb{P}(A|B_n) $. Bayes' formula tells how to calculate the posterior probabilities of $ B_n $ given $A$.

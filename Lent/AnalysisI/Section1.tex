@@ -228,7 +228,11 @@ Throughout this part, assume $a_n\ge 0$.
     Assume $a_n\ge 0$ and $ (a_n)^{1/n}\to a $, then if $a<1$, then $ \sum_{n=1}^{\infty}a_n$ converges. If $ a>1 $, then $\sum_{n=1}^{\infty}a_n$ diverges.
 \end{theorem}
 \begin{remark}
-    If $a=1$, then the root test does not work.
+    If $a=1$, then the root test does not work. e.g. $ n^{1/n}\to 1 $ but $\sum n$ certainly diverges. To see this limit, write
+    \[
+        n^{1/n} = 1+\delta_n, \quad \delta_n>0.
+    \]
+    Then $ n = (1+\delta_n)^n\ge \frac{n(n-1)}{2}\delta_n^2 $, and thus $ \delta_n^2<\frac{2}{n-1}\to 0 $.
 \end{remark}
 \begin{proof}
     If $ a<1 $, choose $r$ such that $a<r<1$. Then there exists $N$ that 
@@ -255,3 +259,76 @@ Throughout this part, assume $a_n\ge 0$.
     \]
     Hence $ \sum a_n $ diverges.
 \end{proof}
+
+\begin{theorem}[Cauchy's condensation test]\label{thm:Cauchy's condensation test}
+    Let $ a_n \searrow, a_n>0 $, then $ \sum_{n=1}^{\infty}a_n $ converges if and only if 
+    \[
+        \sum_{n=1}^{\infty}2^n a_{2^n}
+    \]
+    converges.
+\end{theorem}
+\begin{proof}
+    Observe that 
+    \begin{equation}\label{eq:condensation_test}\tag{$ * $}
+        a_{2^k}\le a_{2^{k-1}+i}\le a_{2^{k-1}},\quad \forall k\ge 1, \forall 1\le i\le 2^{k-1}.
+    \end{equation}
+
+    Assume that $ \sum a_n $ converges to $A$, then by (\ref{eq:condensation_test}),
+    \[
+        2^{n-1}a_{2^n}\le \sum_{m=2^{n-1}+1}^{2^n}a_m \Longrightarrow \sum_{n=1}^{N}2^{n-1}a_{2^n}\le \sum_{n=1}^{N}\sum_{m=2^{n-1}+1}^{2^n}a_m = \sum_{m=2}^{2^N}a_m.
+    \]
+    Therefore we have 
+    \[
+        \sum_{n=1}^{N}2^n a_{2^n} \le 2 \sum_{m=2}^{2^N}a_m\le 2(A-a_1).
+    \]
+    Thus it converges.
+
+    Conversely assume that $ \sum_{n=1}^{\infty}2^na_{2^n} $ converges. Then 
+    \[
+        \sum_{m=2^{n-1}+1}^{2^n}a_m\le \sum_{m=2^{n-1}+1}^{2^n}a_{2^{n-1}} = 2^{n-1}a_{2^{n-1}}.
+    \]
+    Therefore 
+    \[
+        \sum_{m=2}^{N}a_m = \sum_{n=1}^{N}\sum_{m=2^{n-1}+1}^{2^n} a_m \le \sum_{n=1}^{N}2^{n-1}a_{2^{n-1}}\le B.
+    \]
+    Hence $ \sum_{m=2}^{N}a_m $ is bounded and increasing, thus converges.
+\end{proof}
+
+\begin{theorem}[Alternating series test]\label{thm:Alternating series test}
+    If $a_n\searrow$ and $ \to 0 $, then $ \sum_{n=1}^{\infty}(-1)^{n+1}a_n $ converges.
+\end{theorem}
+\begin{proof}
+    Define $ s_n = a_1-a_2+\cdots+(-1)^{n+1}a_n $. Note that 
+    \[
+        s_{2n} = (a_1-a_2)+\cdots+(a_{2n-1}-a_{2n})\ge s_{2n-2},
+    \]
+    and 
+    \[
+        s_{2n} = a_1 - (a_2-a_3)-\cdots-(a_{2n-2}-a_{2n-1}) - a_{2n},
+    \]
+    so $ s_{2n} \nearrow $ and bounded above, so $ s_{2n}\to s $. Also
+    \[
+        s_{2n+1}=s_{2n}+a_{2n+1}\to s.
+    \]
+    Therefore $ s_n\to 0 $.
+\end{proof}
+
+\begin{example}
+    Consider the following series: 
+    \[ 
+        \text{(1). } \sum_{n=1}^{\infty} = \frac{n}{2^n};\quad \text{(2). } \sum_{n=1}^{\infty}\left( \frac{n+1}{3n+5} \right)^{n}; \quad \text{(3). } \sum_{n=1}^{\infty}\frac{1}{n^k}\ (k\in \mathbb{R}).
+    \]
+
+    \begin{enumerate}[(1).]
+        \item Note that $ \frac{n+1}{2^{n+1}}\frac{2^n}{n}=\frac{n+1}{2n}\to \frac{1}{2}<1 $, so it converges by ratio test.
+        \item $ \frac{n+1}{3n+5}\to \frac{1}{3}<1 $, so it converges by root test.
+        \item Claim that it converges if and only if $k>1$. The case when $ k\le 0 $ is obvious, so we only need to consider $k>0$. Note that 
+        \[
+            2^na_{2^n} = 2^{n-nk}=(2^{1-k})^n
+        \]
+        Therefore by condensation test, it converges if and only if $ 1-k<0 \Leftrightarrow k>1 $. We can also deduce it from 
+        \[
+            \frac{1}{(n+1)^k}<\frac{1}{n^k} \Longrightarrow \left( \frac{n}{n+1} \right)^k<1.
+        \]
+    \end{enumerate}
+\end{example}

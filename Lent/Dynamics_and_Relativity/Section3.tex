@@ -1,0 +1,102 @@
+\section{Forces}
+\subsection{Force \& potential energy in 1D}
+
+Consider a mass $m$ moving in a straight line with position $x(t)$. Suppose the force \textit{only} depends on $x$.
+\begin{definition}[Potential energy]
+    Define \textit{potential energy} $ V(x) $ as 
+    \[
+        F(x) = -\frac{\mathrm{d}V}{\mathrm{d}x} \Longrightarrow V(x) = \int^{x}F(x')\dd x.
+    \]
+\end{definition}
+
+The equation of motion is
+\[
+    m \ddot{x}=-\frac{\mathrm{d}V}{\mathrm{d}x} .
+\]
+
+\begin{definition}[Kinetic energy]
+    $T=\frac{1}{2}m \dot{x}^2$, generalised as $ T=\frac{1}{2}m|\dot{\bfx}|^2 $. 
+\end{definition}
+\begin{definition}[Total energy]
+    $ E=T+V = \frac{1}{2}m \dot{x}^2+V(x) $.
+\end{definition}
+\begin{proposition}
+    The total energy is conserved. That is, 
+    \[
+        \frac{\mathrm{d}E}{\mathrm{d}t}=0. 
+    \]
+\end{proposition}
+\begin{proof}
+    Remind that $F$ \textit{only} depends on position $x$.
+    \begin{align*}
+        \frac{\mathrm{d}E}{\mathrm{d}t} &= \frac{\mathrm{d}}{\mathrm{d}t}\left( \frac{1}{2} m \dot{x}^2+V(x) \right) = m \dot{x} \ddot{x} + \frac{\mathrm{d}V}{\mathrm{d}x} \dot{x}\\
+        &= \dot{x} \left( m \ddot{x} + \frac{\mathrm{d}V}{\mathrm{d}x}  \right) = 0.
+    \end{align*}
+\end{proof}
+
+\begin{note}
+    For conservation of $ \frac{1}{2} m \dot{x}^2 + \Phi $ we require 
+    \[
+        \dot{x}F = -\frac{\mathrm{d}\Phi}{\mathrm{d}t}. 
+    \]
+    In principle $ \Phi $ may depend on $ x, \dot{x}, t $. It is usually the case that there is no such $ \Phi $ if $F$ depends on $ \dot{x} $ and/or $t$.
+\end{note}
+
+\begin{example}[Harmonic oscillator]
+    $ F=-kx $. Then 
+    \[
+        V(x) = - \int^{x} -kx' \,\mathrm{d}x' = \frac{1}{2}k x^2,\text{ wlog}.
+    \]
+    Since $ m \ddot{x} = -kx $, $ x(t) = A \cos \omega t+B \sin \omega t $ and $ \dot{x}(t) = -\omega A \sin \omega t+\omega B \cos \omega t $ for suitable constant $ A,B $ and $ \omega=\sqrt{k/m} $.
+
+    Can check $E$ is indeed conserved.
+\end{example}
+
+\subsubsection*{Quantitative insight}
+In 1D conservation of energy gives useful information about motion. Conservation of energy is a 1st integration of Newton's 2nd law. Since 
+\[
+    E= \frac{1}{2}m \dot{x}^2 + V(x) \Longrightarrow \dot{x} = \pm \sqrt{\frac{2}{m}(E-V(x))},
+\]
+we can use this to derive $x$:
+\[
+    \pm \int_{x_0}^{x} \frac{\mathrm{d}x'}{\sqrt{\frac{2}{m}(E-V(x'))}} = t-t_0.
+\]
+This is an implicit solution for $x(t)$. In principle we can evaluate the integral and find $x(t)$.
+
+\subsubsection*{Qualitative insight}
+\begin{example}
+    $ V(x) = \lambda(x^3-3\beta^2 x) $, where $ \lambda,\beta>0 $.
+    \begin{center}
+        \begin{tikzpicture}
+          \draw [->] (-3, 0) -- (3, 0) node [right] {$x$};
+          \draw [domain=-2.2:2.2, samples=50, red] plot (\x, {0.5*(\x*\x*\x - 3*\x)}) node[above, red] {$V(x)$};
+          \draw [->] (0, -2) -- (0, 2) node [above] {$V$};
+          \node [anchor = north east] {$O$};
+          \draw (1, 0) -- (1, -0.1) node [below] {$\beta$};
+          \draw (2, 0) -- (2, -0.1) node [below] {$2\beta$};
+          \draw (-1, 0) -- (-1, -0.1) node [below] {$-\beta$};
+          \draw (-2, 0) -- (-2, -0.1) node [below] {$-2\beta$};
+          \draw [dashed, blue] (-1,0) -- (-1,1) -- (2,1) -- (2,0);
+          \draw [dashed, purple] (-2,0) -- (-2,-1) -- (1,-1) -- (1,0);
+        \end{tikzpicture}
+      \end{center}
+
+      Imagine $V(x)$ as a track and a particle moves on $V(x)$. We can view it as a problem of gravity. What happens if we release the particle from rest at $x=x_0$?
+
+      Inspection of the equation of motion shows that in subsequence motion $ V(x)\le V(x_0) $\footnote{This indeed matches with the case of gravitiy.},
+
+      \begin{enumerate}[align=left]
+          \item[\textbf{Case 1: $ x_0<-\beta $.}] In this case the particle drops to $ -\infty $ as $ t\to \infty $.
+          \item[\textbf{Case 2: $ -\beta< x_0< 2\beta $.}] The particle remains confined to $ -\beta<x(t)<2\beta $.
+          \item[\textbf{Case 3: $ x_0>2\beta $.}] $ x\to -\infty $ as $ t\to \infty  $.
+          \item[\textbf{Special case 1: $ x_0=-\beta $.}] $ x\equiv -\beta $.
+          \item[\textbf{Special case 2: $ x_0=\beta $.}] $ x\equiv \beta $.
+          \item[\textbf{Special case 3: $ x_0=2\beta $.}] The particle moves to left and comes to rest at $x=-\beta$. 
+      \end{enumerate}
+
+      Consider the time taken in special case 3. We have 
+      \[
+          \int_{x(t)}^{2\beta} \frac{\mathrm{d}\tilde{x}}{(\tilde{x}+\beta)\sqrt{\frac{2\lambda}{m}(2\beta-\tilde{x})}} = t, \quad \text{suppose }  x(0)=2\beta .
+      \]
+      As $ x\to -\beta $, LHS $\to \infty  $ (logarithmically) so it takes an infinite amount of time to reach $x=-\beta$.
+\end{example}

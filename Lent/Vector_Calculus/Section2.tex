@@ -32,7 +32,7 @@ assuming summation convention. Call $ \{\rmd u_i\} $ \textbf{differential forms}
     \]
 \end{example}
 
-\subsubsection*{Differentials and the chain rule}
+\subsubsection{Differentials and the chain rule}
 Let $ f: \mathbb{R}^{n}\to \mathbb{R} $, $\bfu=(u_1,\dots,u_n)$ and $ \delta\bfu=(\delta u_1,\dots,\delta u_n) $, then we have 
 \[
     \delta f=f(\bfu+\delta\bfu)-f(\bfu)=\frac{\partial f}{\partial u_i}\delta u_i +o(\delta\bfu),
@@ -197,4 +197,141 @@ and scale factors $ h_r=1,h_\theta=r,h_\phi=r \sin \theta $. Line element is
 \[
     \rmd \bfx = \rmd r\,\bfe_r+ r\dd \theta\,\bfe_\theta+r \sin \theta\dd \phi\,\bfe_\phi,
 \]
-and $ \bfx=r\bfe_r $. See \href{http://jt775.user.srcf.net/IA-Lent/handouts/vc_handout1.pdf}{handout 1} for detailed diagrams. 
+and $ \bfx=r\bfe_r $. See \href{http://jt775.user.srcf.net/IA-Lent/handouts/vc_handout1.pdf}{handout 1} for detailed diagrams.
+
+\subsection{The gradient operator}
+\begin{definition}[Gradient]
+    For $ f: \mathbb{R}^{3}\to \mathbb{R} $, define \textbf{gradient} of $f$ by 
+    \begin{equation}\label{eq:gradient}\tag{$ * $}
+        \nabla f : f(\bfx+\bfh) = f(\bfx)+ \nabla f(\bfx) \cdot \bfh+o(\bfh)\quad (|\bfh|\to 0).
+    \end{equation}
+\end{definition}
+\begin{definition}[Directional derivative]
+    The \textbf{directional derivative} of $f$ in direction $\bfv$, denoted by $ D_\bfv f $ or $ \partial f/\partial \bfv  $ is defined by 
+    \[
+        D_\bfv f(\bfx) = \lim_{t \to 0} \frac{f(\bfx+t\bfv)-f(\bfv)}{t}, 
+    \]
+    i.e.
+    \begin{equation}\label{eq:direc deriv}\tag{$ ** $}
+        f(\bfx+t\bfv)=f(\bfx)+t D_\bfv f(\bfx)+o(t),\quad t\to 0. 
+    \end{equation}
+\end{definition}
+
+Set $ \bfh=t\bfv $ in (\ref{eq:gradient}), we get 
+\[
+    f(\bfx+t\bfv) = f(\bfx)+t \nabla f(\bfx) \cdot \bfv + o(t),\quad t\to 0.
+\]
+Comparing to (\ref{eq:direc deriv}), we get 
+\[
+    D_\bfv f = \bfv \cdot \nabla f.
+\]
+By Cauchy-Schwarz, $ \nabla f $ points in direction of greatest increase of $f$. Similarly $ - \nabla f $ points in direction of greatest decrease of $f$.
+
+\begin{example}
+    Suppose $ f(\bfx) = \frac{1}{2}|\bfx|^2 $. Then 
+    \begin{align*}
+        f(\bfx+\bfh) &= \frac{1}{2}(\bfx+\bfh)\cdot (\bfx+\bfh)\\ 
+        &= \frac{1}{2}|\bfx|^2+ \bfx \cdot \bfh+\frac{1}{2}|\bfh|^2\\ 
+        &= \frac{1}{2}|\bfx|^2+\bfx \cdot \bfh+o(\bfh),\quad |\bfh|\to 0,
+    \end{align*}
+    so $ \nabla f =\bfx $.
+\end{example}
+
+\subsubsection{Gradient along a curve}
+Suppose we have a curve $ t \mapsto \bfx(t) $. How does $f$ change as we move along this curve?
+
+Write $ F(t) = f(\bfx(t)) $, $ \delta\bfx = \bfx(t+\delta t)-\bfx(t) $.
+\begin{align*}
+    F(t+\delta t) &= f(\bfx(t+\delta t)) = f(\bfx(t)+\delta \bfx)\\ 
+    &= f(\bfx(t))+\nabla f(\bfx(t)) \cdot \delta\bfx +o(\delta \bfx),\quad |\delta\bfx| \to 0.
+\end{align*}
+Since $ \delta\bfx = \delta t\, \bfx'(t)+o(\delta t) $, 
+\begin{align*}
+    &F(t+\delta t)= F(t)+\bfx'(t) \cdot \nabla f(\bfx(t)) \delta t+o(\delta t)\\ 
+    \Longrightarrow & \boxed{\frac{\mathrm{d}F}{\mathrm{d}t} = \frac{\mathrm{d}}{\mathrm{d}t}f(\bfx(t)) = \frac{\mathrm{d}\bfx}{\mathrm{d}t} \cdot \nabla f(\bfx(t))}.
+\end{align*}
+
+\subsubsection{Gradient as the normal of a surface}
+Suppose a surface $S$ is defined implicitly by 
+\[
+    S = \{\bfx\in \mathbb{R}^{3}: f(\bfx)=0\}.
+\]
+If $ t \mapsto \bfx(t) $ is \textit{any} curve \textit{in} $S$, then $ f(\bfx(t))=0 $ and 
+\[
+    0 = \frac{\mathrm{d}}{\mathrm{d}t}f(\bfx(t)) =  \frac{\mathrm{d}\bfx}{\mathrm{d}t} \cdot \nabla f(\bfx(t)),
+\]
+so $ \nabla f $ is \textit{orthogonal} to tangent vector of \textit{any curve} in $S$, and thus is \textit{normal} to $S$ at $ \bfx $.
+
+\subsection{Computing the gradient}
+\subsubsection{In Cartesian coordinates}
+To get $ \bfx \mapsto \bfx+\bfh $, simply let $ x \mapsto x+h_1 $ etc. and 
+\begin{align*}
+    f(\bfx+\bfh) &= f(x+h_1,y+h_2,z+h_3)\\ 
+    &= f(\bfx) + \frac{\partial f}{\partial x}h_1+\frac{\partial f}{\partial y}h_2+\frac{\partial f}{\partial z}h_3 +o(\bfh)\\ 
+    &= f(\bfx)+ \begin{pmatrix}
+        \partial f/\partial x  \\ \partial f/\partial y  \\ \partial f/\partial z 
+    \end{pmatrix}\cdot \bfh+o(\bfh),
+\end{align*}
+so 
+\[
+    \nabla f = \begin{pmatrix}
+        \partial f/\partial x  \\ \partial f/\partial y  \\ \partial f/\partial z 
+    \end{pmatrix} \Longleftrightarrow \nabla f = \bfe_i \frac{\partial f}{\partial x_i}.
+\]
+We see that $ \nabla $ is a ``vector differential operator'' and in Cartesian coordinates
+\[
+    \nabla = \bfe_i \frac{\partial }{\partial x_i} . 
+\]
+
+\begin{example}
+    Let $ f=\frac{1}{2}|\bfx|^2 = \frac{1}{2}(x^2+y^2+z^2) $. Then $ \nabla f = (x,y,z) $.
+\end{example}
+
+\subsubsection{In orthogonal curvilinear coordinates}
+Recall in Cartesian coordinates $ \rmd \bfx = \rmd x_i \bfe_i $ and $ \rmd f = (\partial f/\partial x_i ) x_i $. Notice that
+\[
+    \nabla f \cdot \rmd \bfx = \left( \bfe_i \frac{\partial f}{\partial x_i}  \right) \cdot \left( \bfe_j \dd x_j \right) = \frac{\partial f}{\partial x_i}(\bfe_i\cdot \bfe_j) \dd x_j = \frac{\partial f}{\partial x_i}\dd x_i = \rmd f.  
+\]
+Thus in \textit{any} coordinates, 
+\[
+    \boxed{\nabla f\cdot \rmd \bfx = \rmd f}
+\] 
+
+\begin{proposition}\label{prop:2.1}
+    If $ (u,v,w) $ are OCC\footnote{orthogonal curvilinear coordinates} and $f=f(u,v,w)$, then 
+    \[
+        \nabla f = \frac{1}{h_u}\frac{\partial f}{\partial u}\bfe_u + \frac{1}{h_v}\frac{\partial f}{\partial v}\bfe_v + \frac{1}{h_w}\frac{\partial f}{\partial w}\bfe_w.
+    \] 
+\end{proposition}
+\begin{proof}
+    If $ f=f(u,v,w) $ and $ \bfx = \bfx(u,v,w) $, then 
+    \[
+        \rmd f = \frac{\partial f}{\partial u}\dd u +\frac{\partial f}{\partial v}\dd v +\frac{\partial f}{\partial w}\dd w,\ \rmd \bfx = h_u\dd u\bfe_u+h_v\dd v\bfe_v+h_w\dd w\bfe_w.
+    \]
+    Using $\nabla f\cdot \rmd \bfx = \rmd f$ and writing $ \nabla f = (\nabla f)_u\bfe_u+(\nabla f)_v\bfe_v+(\nabla f)_w\bfe_w $, we get 
+    \[
+        \frac{\partial f}{\partial u}\dd u +\frac{\partial f}{\partial v}\dd v +\frac{\partial f}{\partial w}\dd w = h_u(\nabla f)_u \dd u+h_v(\nabla f)_v \dd v+h_w(\nabla f)_w \dd w.
+    \]
+    Since $ \rmd u, \rmd v,\rmd w $ are linearly independent, comparing coefficients gives the result.
+\end{proof}
+
+Hence in cylindrical polars,
+\[
+    \nabla f = \frac{\partial f}{\partial \rho}\bfe_\rho+\frac{1}{\rho} \frac{\partial f}{\partial \phi}\bfe_\phi+\frac{\partial f}{\partial z}\bfe_z,  
+\]
+in spherical polars,
+\[
+    \nabla f = \frac{\partial f}{\partial r}\bfe_r+\frac{1}{r}\frac{\partial f}{\partial \theta}\bfe_\theta+\frac{1}{r\sin\theta}\frac{\partial f}{\partial \phi}\bfe_\phi.   
+\]
+\begin{example}
+    Let $ f(\bfx)= \frac{1}{2}|\bfx|^2 $, then 
+    \[
+        f = \begin{cases}
+        \frac{1}{2}(x^2+y^2+z^2) &\text{Cartesian}\\
+        \frac{1}{2}(\rho^2+z^2) &\text{Cylindrical}\\
+        \frac{1}{2}r^2 &\text{Spherical}
+        \end{cases} 
+    \]
+    Can check $ \nabla f $ gives correct results.
+\end{example}
+Check page 17 of \href{https://www.vle.cam.ac.uk/pluginfile.php/19798882/mod_resource/content/2/vc_notes1.pdf}{this note} for summary.

@@ -6,12 +6,23 @@
 \usepackage{sidenotes,fancyhdr,titlesec,geometry}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[many]{tcolorbox}
-\usepackage{ifthen}
+\usepackage{xifthen}
+\usepackage{import}
+\usepackage{parskip}
+\usepackage{pdfpages}
+\usepackage{transparent}
 \usepackage{mathtools,amssymb,amsfonts,amsthm,bm}   % Math Presets
 \usepackage{array,tabularx,booktabs}                % Table Presets
 \usepackage{graphicx,wrapfig,float,caption}         % Figure Presets
 \usepackage{setspace,multicol}                      % Text Presets
 \usepackage{tikz,physics,cancel,tkz-euclide,pgfplots,tikz-3dplot}                    % Physics Presets
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{hyperref}
+\usepackage{lipsum}
+
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{decorations.markings}
 \usetikzlibrary{decorations.pathmorphing}
@@ -74,13 +85,6 @@ arrow inside/.style 2 args={
 
 \tikzstyle{circ}=[fill=black, draw=black, shape=circle]
 
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{mathrsfs}
-\usepackage{enumerate}
-\usepackage{enumitem}
-\usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
@@ -368,7 +372,15 @@ arrow inside/.style 2 args={
 \renewcommand{\ge}{\geqslant}
 \renewcommand{\le}{\leqslant}
 
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
 \setlength{\parindent}{0pt}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{0.4\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%boxed enviroment for final layout%%%%%%%%%%%%%
@@ -486,7 +498,7 @@ arrow inside/.style 2 args={
   bmargin=2.5cm,
   footskip=12pt,
   headheight=24pt}
-%layout trim
+% layout trim
 % \geometry{
 % papersize={379pt, 699pt},
 % textwidth=345pt,
