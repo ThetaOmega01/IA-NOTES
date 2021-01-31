@@ -52,7 +52,7 @@ The equation of motion is
     Can check $E$ is indeed conserved.
 \end{example}
 
-\subsubsection*{Quantitative insight}
+\subsubsection{Quantitative insight}
 In 1D conservation of energy gives useful information about motion. Conservation of energy is a 1st integration of Newton's 2nd law. Since 
 \[
     E= \frac{1}{2}m \dot{x}^2 + V(x) \Longrightarrow \dot{x} = \pm \sqrt{\frac{2}{m}(E-V(x))},
@@ -63,7 +63,7 @@ we can use this to derive $x$:
 \]
 This is an implicit solution for $x(t)$. In principle we can evaluate the integral and find $x(t)$.
 
-\subsubsection*{Qualitative insight}
+\subsubsection{Qualitative insight}
 \begin{example}
     $ V(x) = \lambda(x^3-3\beta^2 x) $, where $ \lambda,\beta>0 $.
     \begin{center}
@@ -100,3 +100,119 @@ This is an implicit solution for $x(t)$. In principle we can evaluate the integr
       \]
       As $ x\to -\beta $, LHS $\to \infty  $ (logarithmically) so it takes an infinite amount of time to reach $x=-\beta$.
 \end{example}
+
+\subsection{Equilibrium Analysis}
+\begin{definition}[Equilibrium point]
+    A point at which a particle can stay at rest for all time. General condition is $ V'(x)=0 $. 
+\end{definition}
+Analyse motion near equilibrium at $ x=x_0 $, so $ V(x_0)=0 $. Assume $x-x_0$ is small. Taylor expand $V(x)$:
+\begin{align*}
+    V(x) &= V(x_0)+(x-x_0)V'(x_0)+\frac{1}{2}(x-x_0)^2V''(x_0)+o((x-x_0)^2)\\ 
+    &= V(x_0)+\frac{1}{2}(x-x_0)^2V''(x_0)+o((x-x_0)^2).
+\end{align*}
+Equation of motion is 
+\[
+    m \ddot{x} = -V'(x) \approx - (x-x_0)V''(x_0).
+\]
+
+\begin{itemize}
+    \item If $ V''(x_0)>0 $, then $x_0$ is a local minimum of $V$ and thus it is the \textit{harmonic oscillator} equation. The frequency is $ \omega = \sqrt{k/m} = \sqrt{V''(x_0)/N} $. This is called a \textbf{stable equilibrium}. Start close $\Rightarrow$ stay close.
+    \item If $ V''(x_0)<0 $, then $x_0$ is a local maximum of $V$ and thus it increases/decays exponentially. The growth rate is $ \sqrt{-V''(x_0)/m} $. This is called an \textbf{unstable equilibrium}. 
+    \item If $ V''(x_0)=0 $, need to consider higher terms.
+\end{itemize}
+
+\begin{example}[Pendulum]
+    Refer to example \ref{eg:simple pendulum}. By consider acceleration perpendicular to the string,
+    \[
+        ml \ddot{\theta} = -mg \sin \theta = - \frac{\mathrm{d}}{\mathrm{d}\theta}(-mg \cos \theta) .
+    \]
+    Hence 
+    \[
+        E=T+V = \frac{1}{2}ml^2 \theta^2-mgl \cos \theta \Longrightarrow \dot{E}=0.
+    \]
+    The $V$-$\theta$ plot is
+    \begin{center}
+        \begin{tikzpicture}
+          \draw [domain=0:2, red, samples=70] plot ({2*\x}, {-1 * cos(180 * \x)});
+          \draw [domain=2:3, dashed, red, samples=70] plot ({2*\x}, {-1 * cos(180 * \x)});
+          \draw [->] (-0.3, 0) -- (6.2, 0) node [right] {$\theta$};
+          \draw [->] (0, -1.2) -- (0, 1.5) node [above] {$V(\theta)$};
+          \draw [dashed] (0,1) -- (6,1);
+          \draw [dashed] (0,-1) -- (4,-1);
+          \node [anchor = north east] at (0, 1) {$mgl$};
+          \node [anchor = north east] at (0, -1) {$-mgl$};
+          \draw [dashed] (2,1) -- (2,0) node [below] {$ \pi $};
+        \end{tikzpicture}
+      \end{center} 
+      We see that $ 0 $ is stable but $ \pi $ is unstable. If $ -mgl<E<mgl $, so the pendulum s=oscillates about a position of stable equilibrium. If $E>mgl$, then either $ \dot{\theta}>0 $ or $ \dot{\theta}<0 $ for all time.
+
+      Now consider its period. Since $ p = 4\times $ the time taken $ \theta_0\to 0 $, so 
+      \[
+        p = 4 \int_{0}^{\theta_0} \frac{\mathrm{d}\theta}{\left( \frac{2gl}{l^2}(\cos \theta-\cos \theta_0) \right)^{1/2}} = 4 \left( \frac{l}{g} \right)^{1/2}\int_{0}^{\theta_0} \frac{\mathrm{d}\theta}{\left( 2\cos \theta-2\cos \theta_0 \right)^{1/2}}
+      \]
+      from energy equation. Denote it $ 4\left( \frac{l}{g} \right)^{1/2} F(\theta_0) $. This matches with dimensional analysis since $d,l$ determine $\theta_0$. For small $ \theta_0 $,
+      \[
+          F(\theta_0) \approx \int_{0}^{\theta_0} \frac{\mathrm{d}\theta}{(\theta_0^2-\theta^2)^{1/2}} = \frac{\pi}{2}.
+      \]
+      Hence $ p \approx 2\pi\sqrt{l/g} $.
+\end{example}
+
+\subsection{Forces \& potential in 3D}
+Consider a particle under a force $ \bfF $. We have
+\begin{enumerate}[align=left]
+    \item[\textit{Kinetic energy}.] $ T = \frac{1}{2}m|\dot{\bfr}|^2 = \frac{1}{2}m |\bfu|^2 $, $ \dot{T}= m \dot{\bfr}\cdot \ddot{\bfr}=\bfF \cdot \dot{\bfr} $.
+    \item[\textit{Newton's 2nd law}.] $ m \ddot{\bfr}=\bfF $.   
+\end{enumerate}
+Consider total work done by force on the particle as it moves along a \textit{finite path}.
+\begin{center}
+    \begin{tikzpicture}[scale=0.6]
+        \node [style=circ] (0) at (-3, -2) {};
+        \node [style=circ] (1) at (4, 3) {};
+        \node [below] at (-3,-2.4) {$ \bfr_1 = \bfr(t_1) $};
+        \node [right] at (4.4,3) {$ \bfr_2 = \bfr(t_2) $};
+        \node (2) at (0, -2) {};
+        \node (3) at (2, 1) {};
+        \draw [in=-135, out=0, ->-=0.5] (0) to (2.center);
+        \draw [in=-180, out=45, ->-=0.5] (2.center) to (3.center);
+        \draw [in=-105, out=-6, looseness=1.50, ->-=0.4] (3.center) to (1);
+        \node at (1.5,-1) {$ C$};
+    \end{tikzpicture}
+\end{center}
+The total work done is
+\[
+    \int_{t_1}^{t_2} \bfF \cdot \dot{\bfr} \,\mathrm{d}t = \int_C \bfF \cdot \mathrm{d}\bfr=\int_{\bfr_1}^{\bfr_2} \bfF \cdot \mathrm{d}\bfr=\int_C F_x\dd x+F_y\dd y+F_z\dd z..
+\]
+Now suppose that $\bfF$ is a function of $\bfr$ only. $ \bfF(\bfr) $ defines a \textbf{force field}
+
+\begin{definition}[Conservative force field]
+    $ \bfF(\bfr) = - \nabla V(\bfr) $ for some function $ V(\bfr) $.
+\end{definition}
+
+\begin{proposition}
+    If $\bfF$ is conservative, then $ E=T+V $ is conserved.
+\end{proposition}
+\begin{proof}
+    $ \dot{E}=\dot{T}+\dot{V} = \dot{\bfr}\cdot(m  \ddot{\bfr}+ \nabla V)=\dot{\bfr}\cdot(m  \ddot{\bfr}-\bfF)=0$.
+\end{proof}
+\begin{proposition}
+    For \textit{conservative force fields}, total work done is the change in potential energy.
+\end{proposition}
+\begin{proof}
+    Total work done by a conservative force is 
+    \[
+        W = \int_{C} \bfF \cdot\mathrm{d}\mathbf{r} = -\int_{C} \nabla V \cdot\mathrm{d}\mathbf{r} = V(\bfr_1)-V(\bfr_2).
+    \]
+\end{proof}
+\begin{corollary}
+    If $C$ is closed, then no work is done by the force.
+\end{corollary}
+\begin{note}
+    The condition for $ \bfF(\bfr) $ to be conservative is 
+    \[
+        \nabla \times \bfF(\bfr) = \mathbf{0}.
+    \]
+    This is called the \textbf{curl} operator. See Vector Calculus for details.
+\end{note}
+\begin{remark}
+    In general, a given $ \bfF(\bfr) $ is not necessarily conservative, and the above laws does not work.
+\end{remark}

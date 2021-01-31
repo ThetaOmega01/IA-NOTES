@@ -473,3 +473,64 @@ Similarly
     \]
 \end{proof}
 This formula is the basis of Bayesian statistics. We know the probabilities of the events $ B_k $ and we have a model which gives $ \mathbb{P}(A|B_n) $. Bayes' formula tells how to calculate the posterior probabilities of $ B_n $ given $A$.
+
+\begin{example}[False positive for a rare condition]
+    Suppose that a disease $A$ affects 0.1\% of the poplulation. We have a medical test which is positive for 98\% of the affected population and 1\% of the unaffected population. Pick an individual at random. What is the probability they has $A$ given that they are positive?
+
+    Define 
+    \[
+        A = \{\text{individuals with A}\},\quad P=\{\text{individuals tested positive}\},
+    \]
+    want to find $\bbP(A|P)$. Note that $ \mathbb{P}(A)=0.001, \mathbb{P}(P|A) = 0.98, \mathbb{P}(P|A^\complement)=0.01 $. By Bayes' formula,
+    \[
+        \mathbb{P}(A|P) = \frac{\mathbb{P}(P|A)\mathbb{P}(A)}{\mathbb{P}(P|A)\mathbb{P}(A)+\mathbb{P}(P|A^\complement)\mathbb{P}(A^\complement)} \approx 0.09.
+    \]
+    This is quite low since $ \mathbb{P}(P|A^\complement)\gg \mathbb{P}(A) $.
+\end{example}
+\begin{example}
+    We have 3 statements:
+    \begin{enumerate}[(a).]
+        \item I have 2 children, one of whom is a boy.
+        \item I have 2 children, the eldest is a boy.
+        \item I have 2 children, one of whom is a boy born on a Thursday.
+    \end{enumerate}
+    Let $ A = \{\text{I have 2 boys}\} $. Then $\mathbb{P}(A|a) = \frac{1}{3},\mathbb{P}(A|b) = \frac{1}{2}$, and 
+    \[
+        \mathbb{P}(A|c) = \frac{\frac{1}{4}\times \frac{1}{49}+2 \times \frac{1}{4}\times \frac{6}{49}}{\frac{1}{4}\times \frac{1}{49}+2 \times \frac{1}{4}\times \frac{6}{49}+\frac{1}{2}\times \frac{1}{7}} = \frac{13}{27}.
+    \]
+\end{example}
+\begin{example}[Simpson's paradox]
+    There are $50$ men and $50$ women applying to a college.
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|}
+            \hline
+            All applicants&Admitted&Rejected&Success Rate\\
+            \hline
+            State&25&25&50\%\\
+            Indep&28&22&56\%\\
+            \hline
+            Men Only&Admitted&Rejected&Success Rate\\
+            \hline
+            State&15&22&41\%\\
+            Indep&5&8&38\%\\
+            \hline
+            Women Only&Admitted&Rejected&Success Rate\\
+            \hline
+            State&10&3&77\%\\
+            Indep&23&14&68\%\\ 
+            \hline
+        \end{tabular}
+    \end{center}
+    This phenomenon is called \textbf{confounding} in statistics. It arises when we aggregate data from disparate populations. Let $ A = \{\text{individual is admitted}\} $, $ B = \{\text{individual is a man}\} $, and $ C = \{\text{individual comes from a state school}\} $. We see that 
+    \[
+        \mathbb{P}(A|B \cap C)>\mathbb{P}(A|B \cap C^\complement)\quad \text{and}\quad \mathbb{P}(A|B^\complement \cap C)> \mathbb{P}(A| B^\complement \cap C^\complement),
+    \]
+    but $ \mathbb{P}(A|C^\complement)>\mathbb{P}(A|C) $. Note that
+    \begin{align*}
+        \mathbb{P}(A|C) &= \mathbb{P}(A \cap B|C)+\mathbb{P}(A \cap B^\complement|C)\\ 
+        &= \frac{\bbP(A\cap B\cap C)}{\bbP(C)}+\frac{\bbP(A\cap B^\complement\cap C)}{\bbP(C)}\\ 
+        &= \mathbb{P}(A|B\cap C)\mathbb{P}(B|C)+\mathbb{P}(A|B^\complement \cap C)\mathbb{P}(B^\complement|C)\\ 
+        &> \mathbb{P}(A|B\cap C^\complement)\mathbb{P}(B|C)+\mathbb{P}(A|B^\complement \cap C^\complement)\mathbb{P}(B^\complement|C).
+    \end{align*}
+    \textit{Assume} further that $ \mathbb{P}(B|C) = \mathbb{P}(B|C^\complement) $, then $ \mathbb{P}(A|C)>\mathbb{P}(A|C^\complement) $. However, in this case it is not true that $ \mathbb{P}(B|C) = \mathbb{P}(B|C^\complement) $, so we see $ \mathbb{P}(A|C^\complement)>\mathbb{P}(A|C) $.
+\end{example}
