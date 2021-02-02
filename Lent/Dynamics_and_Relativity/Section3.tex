@@ -1,4 +1,5 @@
 \section{Forces}
+
 \subsection{Force \& potential energy in 1D}
 
 Consider a mass $m$ moving in a straight line with position $x(t)$. Suppose the force \textit{only} depends on $x$.
@@ -267,7 +268,7 @@ We can also expand this to a \textit{continuous} mass distribution.
 \end{definition}
 
 \begin{proposition}
-    Inertial mass and gravitational mass are the same (within $ 10^{-12} $)\footnote{This is called the \href{http://www.damtp.cam.ac.uk/user/tong/gr/gr.pdf#page=26}{equivalence principle}.}.
+    Inertial mass and gravitational mass are the same (within $ 10^{-12} $)\footnote{This is called the \href{http://www.damtp.cam.ac.uk/user/tong/gr/gr.pdf\#page=26}{equivalence principle}.}.
 \end{proposition}
 
 \subsubsection{Simple results on gravity}
@@ -286,7 +287,7 @@ Note that on earth, $ g\approx 9.8\rmm\rms^{-2} $.
 \[
     E = T+V = \frac{1}{2}mv^2-\frac{GMm}{R}.
 \]
-For any energy $E < 0$, we will eventually come to rest at position $r = −GMm/E$, before falling back. If we want to escape the planet, we will need $ E\ge 0 $, i.e. 
+For any energy $E < 0$, we will eventually come to rest at position $r = -GMm/E$, before falling back. If we want to escape the planet, we will need $ E\ge 0 $, i.e. 
 \[
     v\ge \sqrt{\frac{2GM}{R}}.
 \]
@@ -296,10 +297,10 @@ For any energy $E < 0$, we will eventually come to rest at position $r = −GMm/
         \draw [->] (0,-2) -- (0,2) node [above] {$ V(r) $};
         \draw [domain=0.5:5.5, samples=50, blue] plot (\x, {-1/\x});
         \draw (0.8,0) -- (0.8,0.1) node [above] {$ r=R $};
-        \draw [dashed] (0.8,0) -- (0.8,-1/0.8) node [red, dot=3pt];
+        \draw [dashed] (0.8,0) -- (0.8,-1/0.8) node [red, dot=3pt] {};
         \draw (2,0) -- (2,0.1) node [above] {$ \max r $};
         \draw [dashed] (2,-0.5) -- (0,-0.5) node [left] {$ E_1 $};
-        \draw [dashed] (2,0) -- (2,-0.5) node [red, dot=3pt] node [below right] {comes to rest at finite distance};
+        \draw [dashed] (2,0) -- (2,-0.5) node [red, dot=3pt] {} node [below right] {comes to rest at finite distance};
         \draw [dashed, red] (5,1.1) -- (0,1.1) node [left] {$ E_2 $} node [right,black] at (5,1.1) {escapes};
     \end{tikzpicture}
 \end{center}
