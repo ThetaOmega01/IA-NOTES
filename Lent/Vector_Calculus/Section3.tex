@@ -1,0 +1,216 @@
+\section{Integration over lines, surfaces, and volumns}
+\subsection{Line integrals}
+\begin{definition}
+    For vector field $ \mathbf{F} = \mathbf{F}(\mathbf{x}) $ and \textit{piecewise smooth} parametrised curve $ C= [a,b]\ni t \mapsto \mathbf{x}(t) $, we define the \textbf{line integral}
+    \[
+        \int_{C} \mathbf{F} \cdot\mathrm{d}\mathbf{x} = \int_{a}^{b} \mathbf{F}(\mathbf{x}(t)) \cdot \frac{\mathrm{d}\bfx}{\mathrm{d}t}\dd t. 
+    \]
+    If we want to integrate in opposite direction, write 
+    \[
+        \int_{-C} \mathbf{F} \cdot\mathrm{d}\mathbf{x}.
+    \]
+\end{definition}
+\begin{note}
+    We can intepret it as the work done by a particle moving along $C$ in presence of a force $ \mathbf{F}. $
+\end{note}
+
+Note that
+\[
+    \int_{C} F \cdot\mathrm{d}\mathbf{x} \approx \sum_{i} \mathbf{F}(\bfx_i) \cdot \Delta \bfx_i,
+\]
+where $ \Delta\bfx_i = \bfx_{i+1}-\bfx_{i} $.
+
+\begin{center}
+    \begin{tikzpicture}[scale=0.7]
+        \node [dot] (0) at (-4, -2) {};
+        \node [below] at (0) {$ \bfx_0 $};
+        \node [dot] (1) at (5, 3) {};
+        \node [right] at (1) {$ \cdots $};
+        \node [dot] (2) at (-2, 2) {};
+        \node [above] at (2) {$ \bfx_1 $};
+        \node (3) at (1, -1) {};
+        \node [dot] (4) at (-0.55, 0.5) {};
+        \node [below left] at (4) {$ \bfx_2 $};
+        \node [dot] (5) at (2.225, 0) {};
+        \node [below right] at (5) {$ \bfx_3 $};
+        \draw [in=-165, out=75, looseness=0.75] (0) to (2.center);
+        \draw [in=-165, out=0, looseness=0.75] (2.center) to (3.center);
+        \draw [in=-180, out=15, looseness=0.75] (3.center) to (1);
+        \draw [->-=0.5,blue] (0) to (2.center);
+        \draw [->-=0.5,blue] (2.center) to (4.center);
+        \draw [->-=0.5,blue] (4.center) to (5.center);
+        \draw [->-=0.5,blue] (5.center) to (1);
+    \end{tikzpicture}
+\end{center}
+
+\begin{example}\label{eg:3.1}
+    Consider $ \mathbf{F} = (x^2y,yz,2zx) $ and consider two curves connecting origin to $ (1,1,1) $:
+    \[
+        C_1: [0,1]\ni t \mapsto \begin{pmatrix}
+            t \\ t \\ t
+        \end{pmatrix},\quad 
+        C_2 : [0,1]\ni \mapsto \begin{pmatrix}
+            t \\ t \\ t^2
+        \end{pmatrix},
+    \]
+    so 
+    \[
+        \int_{C_1} \mathbf{F} \cdot\mathrm{d}\mathbf{x} = \int_{0}^{1} \begin{pmatrix}
+            t^3 \\ t^2 \\ 2t^2
+        \end{pmatrix}\cdot \begin{pmatrix}
+            1 \\ 1 \\ 1
+        \end{pmatrix} \,\mathrm{d}t = \frac{5}{4},
+    \]
+    and 
+    \[
+        \int_{C_2} \bfF \cdot\mathrm{d}\mathbf{r} = \int_{0}^{1} \begin{pmatrix}
+            t^3 \\ t^3 \\ 2t^3
+        \end{pmatrix}\cdot \begin{pmatrix}
+            1 \\ 1 \\ 2t
+        \end{pmatrix} \,\mathrm{d}t = \frac{13}{10}.
+    \]
+    We see that in general, line integrals between 2 points depend on paths taken.
+\end{example}
+\begin{example}
+    A particle at $ \bfx $ experiences force in cylindrical polars by
+    \[
+        \mathbf{F}(\mathbf{x}) = z\rho\bfe_\phi.
+    \]
+    Calculate the work done by travelling along the path
+    \[
+        C: [0,2\pi]\ni t \mapsto \begin{pmatrix}
+            a\cos t \\ a\sin t \\ t
+        \end{pmatrix}(a>0).
+    \]
+    Recall the line element in cylindrical polars
+    \[
+        \rmd \mathbf{x} = \rmd \rho\,\bfe_\rho+\rho\dd \phi\,\bfe_\phi+\rmd z\,\bfe_z,
+    \]
+    so $ \mathbf{F}\cdot \rmd \mathbf{x} = z\rho^2 \dd  \phi $. Also on the path, $ (\rho,\phi,z) = (a,t,t) $, so $ (\rmd \rho,\rmd \phi,\rmd z) = (0,\rmd t,\rmd t) $, and thus $ \mathbf{F}\cdot \rmd \bfx = a^2t\dd t $. Hence
+    \[
+        \int_{C} \mathbf{F} \cdot\mathrm{d}\mathbf{x} = a^2 \int_{0}^{2\pi} t \,\mathrm{d}t = 2\pi^2 a^2.
+    \]
+\end{example}
+
+A curve may be \textbf{closed}. That is $ \bfx(a)=\bfx(b) $. In this case we write 
+\[
+    \oint_{C}\bfF\cdot \rmd\bfx.
+\]
+We call this kind of integral the \textbf{circulation} of $\bfF$ about $C$.
+
+\begin{example}
+    Take exmaple \ref{eg:3.1} with $ C=C_1-C_2 $.
+    \begin{center}
+        \begin{tikzpicture}
+          \node [dot] {};
+          \node [left] {$O$};
+          \node at (2, 2) [dot] {};
+          \node at (2, 2) [right] {$(1,1,1)$};
+          \draw [-<-=0.4] (0, 0) parabola (2, 2);
+          \node at (1.8, 1) {$C_2$};
+          \draw [-<-=0.4] (2, 2) -- (0, 0) node [pos = 0.5, anchor = south east] {$C_1$};;
+        \end{tikzpicture}
+      \end{center}
+      Then 
+      \[
+          \oint_{C} \bfF \cdot\mathrm{d}\mathbf{x} = \int_{C_1} \bfF \cdot\mathrm{d}\mathbf{x}-\int_{C_2} \bfF \cdot\mathrm{d}\mathbf{x} = -\frac{2}{15}.
+      \]
+\end{example}
+
+\subsection{Conservative forces and exact differentials}
+We have seen how to interpret $ \bfF\cdot\rmd\bfx $. This is another example of \textbf{differential form}.
+\begin{definition}[Exact differential, conservative fields]
+    We say $\bfF\cdot\rmd\bfx$ is \textbf{exact} if 
+    \[
+        \bfF\cdot\rmd\bfx = \rmd f
+    \]
+    for some scalar function $f$. Recall that $ \rmd f = \nabla f\cdot\rmd\bfx $. So $ \bfF\cdot\rmd\bfx $ is exact if and only if $ \bfF = \nabla f $ for some scalar function $f$. We call such vector fields $\bfF$ \textbf{conservative}.
+\end{definition}
+So we have 
+\[
+    \bfF\cdot\rmd\bfx \text{ is exact }\Longleftrightarrow \bfF \text{ is conservative}.
+\]
+
+\begin{proposition}
+    If $ \theta $ is exact, then 
+    \[
+        \oint_{C} \theta =0
+    \]
+    for any \textit{close} curve $C$. Equivalently, if $\bfF$ is conservative, then the circulation of $\bfF$ vanishes.
+\end{proposition}
+\begin{proof}
+    By previous, if $ \theta $ exact then $ \theta=\nabla f \cdot \rmd\bfx $ for some $f$. If $ C: [a,b]\ni t \mapsto \bfx(t) $ is close, then 
+    \begin{align*}
+        \oint_{C}\theta &= \oint_{C}\nabla f\cdot \bfx = \int_{a}^{b} \nabla f((\bfx(t))) \cdot \frac{\mathrm{d}\bfx}{\mathrm{d}t}  \,\mathrm{d}t \\
+       & = \int_{a}^{b} \frac{\mathrm{d}}{\mathrm{d}t}\left( f(\bfx(t)) \right)  = f(\bfx(b))-f(\bfx(a)) = 0
+    \end{align*}
+    by fundamental theorem of calculus.
+\end{proof}
+\begin{note}
+    Might think e.g. in cylindrical polars, that $f(\rho,\phi,z)=\phi$ is a nice ``function'' on $ \mathbb{R}^{3} $. Note that it is infact multivalued at given position.
+\end{note}
+
+\begin{corollary}
+    If $\bfF$ is conservative, then line integrals of $\bfF$ are independent of the paths taken.
+\end{corollary}
+\begin{proof}
+    Indeed, if $ C_1,C_2 $ are two such paths, then $ C=C_1-C_2 $ is closed and thus
+    \[
+        \oint_{C}\bfF\cdot\rmd\bfx = 0 \Longleftrightarrow \int_{C_1} \bfF \cdot\mathrm{d}\mathbf{x} = \int_{C_2} \mathbf{F} \cdot\mathrm{d}\mathbf{x}.
+    \]
+\end{proof}
+
+\begin{proposition}
+    Let $(u_1, u_2, u_3) \equiv (u, v, w)$ be an arbitrary set of OCC and let
+    \[
+        \mathbf{F} \cdot \rmd\bfx = \theta = A(u, v, w) \dd u + B(u, v, w) \dd v + C(u, v, w) \dd w \equiv \theta_i \dd u_i.
+    \]
+    A \textit{necessary} condition for $ \theta $ to be exact is
+    \begin{equation}\label{eq:3.3}\tag{$\dagger$}
+        \frac{\partial \theta_i}{\partial u_j}= \frac{\partial \theta_j}{\partial u_i}\quad \text{for each }i,j.  
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    Indeed, if $ \theta $ is exact, then $ \theta=\rmd f $ and 
+    \[
+        \theta = \frac{\partial f}{\partial u_i}\dd u_i \Longleftrightarrow \theta_i = \frac{\partial f}{\partial u_i}  
+    \]
+    so 
+    \[
+        \frac{\partial \theta_i}{\partial u_j}= \frac{\partial^2 f}{\partial u_j u_i} =   \frac{\partial^2 f}{\partial u_i u_j} = \frac{\partial \theta_j}{\partial u_i}.
+    \]
+\end{proof}
+\begin{definition}[Closed differentials]
+    If a differential form $ \theta = \theta_i\dd u_i $ obeys (\ref{eq:3.3}), it is said to be \textbf{closed}.
+\end{definition}
+Hence $ \theta $ exact $ \Rightarrow \theta $ closed. The reverse implication is true if the domain $ \Omega\in \mathbb{R}^{3} $ on which $ \theta $ is defined is \textit{simply connected}\footnote{$ \Omega $ is simply connected if all closed \textit{loops} in $ \theta $ can be continuously shrunk to any \textit{point} inside $ \Omega $ without leaving it. Refer to \href{https://www.mv.helsinki.fi/home/pankka/deRham2013}{this note} for details.}.
+
+\begin{example}
+    Let $ \theta=y\dd x-x\dd y $. Note that $ \partial y/\partial y=1\neq -1=\partial (-x)/\partial x   $, so it is \textit{not} exact. 
+\end{example}
+
+\begin{example}
+    Compute 
+    \[
+        \oint_C 3x^2y\dd x+x^3\dd y,\quad C:[\alpha_1,\alpha_{100}] \ni t \mapsto \begin{pmatrix}
+            \cos \left(\Im\left(\zeta\left(\frac{1}{2}+it\right)\right)\right) \\ \sin \left(\Re\left(\zeta\left(\frac{1}{2}+it\right)\right)\right)  \\ 0
+        \end{pmatrix},
+    \]
+    where $ \alpha_1,\alpha_{100} $ are the 1st and 100th zeros of $ \zeta(\frac{1}{2}+it) $. Note that $ 3x^2y\dd x+x^3\dd y=\rmd(x^3y) $ and $C$ is closed, so it is 0.
+\end{example}
+
+\begin{example}
+    The work done $ \int_{C} \mathbf{F} \cdot\mathrm{d}\mathbf{x} $, where $ C:[a,b]\ni t\mapsto \bfx(t) $ is 
+    \[
+        \int_{C} \mathbf{F} \cdot\mathrm{d}\mathbf{x}= m \int_{a}^{b} \ddot{\bfx}\cdot \dot{\bfx} \,\mathrm{d}t = \left[ \frac{1}{2}m |\dot{\bfx}|^2 \right].
+    \]
+    If $\bfF = -\nabla V$ is conservative, then 
+    \[
+        \int_{C} \mathbf{F} \cdot\mathrm{d}\mathbf{x} = - \int_{C} \nabla V \cdot\mathrm{d}\mathbf{x} = V(\bfx(a))-V(\bfx(b)).
+    \]
+    Hence
+    \[
+        \frac{1}{2}m |\dot{\bfx}(a)|^2+V(\bfx(a))=\frac{1}{2}m |\dot{\bfx}(b)|^2+V(\bfx(b)),
+    \]
+    i.e. total energy is conserved.
+\end{example}

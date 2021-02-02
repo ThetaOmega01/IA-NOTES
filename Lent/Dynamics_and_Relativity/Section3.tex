@@ -216,3 +216,119 @@ Now suppose that $\bfF$ is a function of $\bfr$ only. $ \bfF(\bfr) $ defines a \
 \begin{remark}
     In general, a given $ \bfF(\bfr) $ is not necessarily conservative, and the above laws does not work.
 \end{remark}
+
+\subsection{Gravity}
+We have seen previously that the gravitational force is 
+\[
+    \mathbf{F}(\mathbf{r}) = -\frac{GMm}{|\bfr|^3}\cdot \bfr = -\frac{GMm}{r^2}\hat{\bfr},
+\]
+where $\bfr$ is the relative position of $m$ to $M$. In fact, 
+\[
+    \mathbf{F}(\bfr) = - \nabla V,\quad V(\bfr) = -\frac{GMm}{r},
+\]
+so
+\begin{proposition}
+    Gravitational force is conservative.
+\end{proposition}
+
+\begin{definition}[Gravitational potential, field]
+    We often define a ``gravitational potential'' and a ``gravitational field''
+\[
+    \Phi_g(\bfr) = -\frac{GM}{r},\quad \bfg = - \nabla \Phi_g(\bfr) = \frac{-GM}{r^2}\hat{\bfr}.
+\]
+\end{definition}
+These are properties of mass $M$ alone. Effect on $m$ is described as
+\[
+    V(\bfr) = m\Phi_g(\bfr),\quad \mathbf{F}(\bfr) = m\bfg.
+\]
+We can generalise to gravitational potential with many masses $M_i$ with positions $ \bfr_i $:
+\[
+    \Phi_g(\bfr) = -\sum_{i} \frac{GM_i}{|\bfr-\bfr_i|},\quad \bfg = \sum_i \frac{GM_i}{|\bfr-\bfr_i|^3}(\bfr-\bfr_i).
+\]
+We can also expand this to a \textit{continuous} mass distribution.
+\begin{example}[Uniform spherical mass]
+    Consider a uniform spherical mass centred at origin, then outside mass distribution we have 
+    \[
+        \Phi_g(\bfr) = -\frac{GM}{r},
+    \]
+    where $M$ is the total mass. See \href{http://www.damtp.cam.ac.uk/user/tong/relativity/dynrel.pdf#page=29}{the proof} as well as Vector Calculus.
+\end{example}
+
+\subsubsection{Gravitational mass vs. Inertial mass}
+\begin{definition}[Inertial mass]
+    Newton's 2nd law says that $ {\color{blue}m} \ddot{\bfr}=\bfF $, this ${\color{blue}m}$ is the \textbf{inertial mass}.
+\end{definition}
+\begin{definition}[Gravitational mass]
+    Newton's law of gravitation says that 
+    \[
+        \mathbf{F} = -\frac{GM{\color{violet}m}}{r^2}\hat{\bfr}.
+    \]
+    The ${\color{violet}m}$ is called the \textbf{gravitational mass}.
+\end{definition}
+
+\begin{proposition}
+    Inertial mass and gravitational mass are the same (within $ 10^{-12} $)\footnote{This is called the \href{http://www.damtp.cam.ac.uk/user/tong/gr/gr.pdf#page=26}{equivalence principle}.}.
+\end{proposition}
+
+\subsubsection{Simple results on gravity}
+
+\paragraph{1D approximation.} Consider a mass $m$ at some height $z$ about surface of planet of mass $M$ and radius $R$. Assume $z\ll R $. The potential energy is 
+\[
+    V(R+z) = -\frac{GMm}{R+z} = -\frac{GMm}{R}+\frac{GMm}{R^2}z+o(z).
+\]
+Let $ g = GM/R^2 $ and since $ GMm/R $ is constant, we can approximate the potential energy in uniform gravitational field with $g$ as 
+\[
+    V\approx mgz.
+\]
+Note that on earth, $ g\approx 9.8\rmm\rms^{-2} $.
+
+\paragraph{Escape velocity.} Consider leaving surface of a planet with velocity $v$. By conservation of energy,
+\[
+    E = T+V = \frac{1}{2}mv^2-\frac{GMm}{R}.
+\]
+For any energy $E < 0$, we will eventually come to rest at position $r = −GMm/E$, before falling back. If we want to escape the planet, we will need $ E\ge 0 $, i.e. 
+\[
+    v\ge \sqrt{\frac{2GM}{R}}.
+\]
+\begin{center}
+    \begin{tikzpicture}
+        \draw [->] (-0.3,0) -- (6,0) node [right] {$ r $};
+        \draw [->] (0,-2) -- (0,2) node [above] {$ V(r) $};
+        \draw [domain=0.5:5.5, samples=50, blue] plot (\x, {-1/\x});
+        \draw (0.8,0) -- (0.8,0.1) node [above] {$ r=R $};
+        \draw [dashed] (0.8,0) -- (0.8,-1/0.8) node [red, dot=3pt];
+        \draw (2,0) -- (2,0.1) node [above] {$ \max r $};
+        \draw [dashed] (2,-0.5) -- (0,-0.5) node [left] {$ E_1 $};
+        \draw [dashed] (2,0) -- (2,-0.5) node [red, dot=3pt] node [below right] {comes to rest at finite distance};
+        \draw [dashed, red] (5,1.1) -- (0,1.1) node [left] {$ E_2 $} node [right,black] at (5,1.1) {escapes};
+    \end{tikzpicture}
+\end{center}
+
+\subsection{Electromagnetic forces}
+Recall the Lorentz force law: $ \mathbf{F} = q(\bfE+\bfu \times \bfB) $. In this subsection we restrict $\bfE,\bfB$ to time independent $ \bfE(\bfr),\bfB(\bfr) $. In this case we can write(similar to gravity) $ \bfE = - \nabla \Phi_e(\bfr) $, where $ \Phi_e $ is called the \textbf{electrostatic potential}. $\bfF=q\bfE$ is then conservative.
+
+\begin{proposition}
+    For time independent $ \bfE,\bfB $, the energy of a particle moving under the Lorentz force law is \textit{constant}.
+\end{proposition}
+\begin{proof}
+    $ E = \frac{1}{2}m|\dot{\bfr}|^2+q\Phi_e(\bfr) $, so $ \dot{E}=m \dot{\bfr} \cdot \ddot{\bfr}+q \dot{\bfr}\cdot \nabla \Phi_e = \dot{\bfr}\cdot (q \dot{\bfr}\times \bfB) =0. $
+\end{proof}
+\begin{note}
+    Rate of working of magnetic field is 0.
+\end{note}
+
+\subsubsection{Point charges}
+A particle with charge $Q$ located at origin generates electrostatic potential and electric field
+\[
+    \Phi_e(\bfr) = \frac{Q}{4\pi \epsilon_0 r},\quad \bfE(\bfr) = -\nabla \Phi_e = \frac{Q}{4\pi \epsilon_0 r^2} \hat{\bfr},
+\]
+where $ \epsilon_0 \approx 8.85 \times 10^{-12}\rmm^{-3}\mathrm{kg}^{-1}\rms^2\rmC^2 $, where $ \rmC $ is the unit of \textit{charge}, is called the \textbf{electric constant}.
+
+The force on a particle with charge $q$ located at $\bfr$ is 
+\[
+    \mathbf{F} = -q \nabla \Phi_e = \frac{Qq}{4\pi \epsilon_0 r^2}\hat{\bfr},
+\]
+known as \textbf{Coulomb force}. Different from gravity, the direction of $\bfF$ depends on signs of charges. $ Qq>0 $-repulsive, $ Qq<0 $-attractive.
+
+\subsubsection{Magnetic field}
+Recall that a particle moves in helical motion in constant magnetic field.

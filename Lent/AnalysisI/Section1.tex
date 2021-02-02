@@ -102,6 +102,7 @@ Several useful deductions:
 \end{note}
 
 \subsection{Series}
+\subsubsection{Series in general}
 
 \begin{definition}[Series]
     Let $ a_n\in \mathbb{R} \text{ or } \mathbb{C} $. We say that 
@@ -198,7 +199,7 @@ Several useful deductions:
     so it diverges.
 \end{proof}
 
-\subsubsection*{Series of non-negative terms}
+\subsubsection{Series of non-negative terms}
 Throughout this part, assume $a_n\ge 0$.
 
 \begin{theorem}[Comparison test]\label{thm:Comparison test}
@@ -295,7 +296,7 @@ Throughout this part, assume $a_n\ge 0$.
 \end{proof}
 
 \begin{theorem}[Alternating series test]\label{thm:Alternating series test}
-    If $a_n\searrow$ and $ \to 0 $, then $ \sum_{n=1}^{\infty}(-1)^{n+1}a_n $ converges.
+    If $a_n\searrow$ and $a_n \to 0 $, then $ \sum_{n=1}^{\infty}(-1)^{n+1}a_n $ converges.
 \end{theorem}
 \begin{proof}
     Define $ s_n = a_1-a_2+\cdots+(-1)^{n+1}a_n $. Note that 
@@ -332,3 +333,79 @@ Throughout this part, assume $a_n\ge 0$.
         \]
     \end{enumerate}
 \end{example}
+
+\subsubsection{Absolute convergence}
+\begin{definition}[Absolute convergence]
+    Take $ a_n\in \mathbb{C}  $. If $ \sum_{n=1}^{\infty}|a_n| $ is convergent, then the series is \textbf{absolutely convergent}
+\end{definition}
+\begin{note}
+    Since $ |a_n|\ge 0 $, we can use previous tests to check absolute convergence. This is particularly useful for \textit{complex} numbers.
+\end{note}
+
+\begin{theorem}\label{thm:absolute convergence -> convergence}
+    If $ \sum a_n $ is \textit{absolutely convergent}, it is \textit{convergent}.
+\end{theorem}
+\begin{proof}
+    Suppose first that $ a_n\in \mathbb{R} $. Let 
+    \[
+        v_n = \begin{cases}
+        a_n &\text{if }a_n\ge 0\\
+        0 &\text{if }a_n<0\\
+        \end{cases} \quad \text{and}\quad w_n = \begin{cases}
+            0 &\text{if }a_n\ge 0\\
+            -a_n &\text{if }a_n<0\\
+        \end{cases},
+    \]
+    so that 
+    \[
+        v_n = \frac{|a_n|+a_n}{2},\quad w_n = \frac{|a_n|-a_n}{2}.
+    \]
+    Clearly, $ v_n,w_n\ge 0 $, $ a_n = v_n-w_n $, and $ |a_n|=v_n+w_n\ge v_n,w_n $.
+
+    If $ \sum |a_n| $ converges, by comparison test, $ \sum v_n,\sum w_n $ converge, and thus $ \sum a_n $ converges.
+
+    If $ a_n\in \mathbb{C}  $, write $ a_n = x_n+ i y_n $. Note that 
+    \[
+        |x_n|,|y_n|\le |a_n|,
+    \]
+    so $ \sum |x_n|,\sum |y_n| $ converge and thus $ \sum x_n,\sum y_n $ converge. Therefore $ \sum a_n $ converges.
+\end{proof}
+
+\begin{example}
+    \begin{enumerate}
+        \item $ \sum (-1)^n/n $ is convergent but not absolutely convergent.
+        \item $ \sum z^n/2^n, z\in \mathbb{C} $. Note that $ \sum |z^n/2^n| = \sum (|z|/2)^n $, so if $ |z|<2 $, it is absolutely convergent, thus convergent. If $ |z|\ge 2 $, then $ |z^n/2^n|\ge 1 $, so $ a_n \nrightarrow 0 $ and thus $\sum z^n/2^n$ diverges.
+    \end{enumerate}
+\end{example}
+
+\begin{definition}[Conditional convergence]
+    We say that $ \sum a_n $ is \textbf{conditionally convergent} if $ \sum a_n $ converges but $ \sum |a_n| $ does not.
+\end{definition}
+\begin{note}
+``Conditional'' because the sum to which the series converges is \textit{conditional} on the \textit{order} in which the elements of the sequence are taking. If rearranged, the sum could be altered.
+\end{note}
+
+\begin{definition}[Rearrangement]
+    Let $ \sigma $ be a bijection of $ \mathbb{N} $, then 
+    \[
+        a_n'=a_{\sigma(n)}
+    \]
+    is called a \textbf{rearrangement}.
+\end{definition}
+\begin{theorem}\label{thm:absolute convergence -> rearr convergence}
+    If $ \sum a_n, a_n\in \mathbb{C} $ is absolutely convergent, then for any rearrangement $ \sigma $,
+    \[
+        \sum_{n=1}^{\infty}a_{\sigma(n)} = \sum_{n=1}^{\infty} a_n.
+    \]
+\end{theorem}
+\begin{proof}
+    First assume $ a_n\in \mathbb{R} $. Let $ \sum a_n' $ be a rearrangement of $ \sum a_n $, and let $ s_n,t_n $ be the partial sums of $ \sum a_n,\sum a_n' $ respectively. 
+    
+    Suppose first that $a_n\ge 0$. Given $n$, there exists $s_q$ such that every term of $t_n$ is in $s_q$. Thus $ t_n\le s_q\le s $, where $ s = \sum a_n $. Note that $ t_n \nearrow $, so $ t_n\to t $ and $ t\le s $. Now we can reverse the process to find $t_p$ such that every term in $s_n$ is in $t_p$, so by the same arguments, $ s\le t $ and thus $ s=t $.
+    
+    If $ a_n $ has any sign, consider $ v_n,w_n $ from the proof of theorem \ref{thm:absolute convergence -> convergence}. Consider $ \sum a_n'$, $\sum v_n'$, $\sum w_n' $. Since $ \sum |a_n| $ converges, $ \sum v_n,\sum w_n $ converge. Since $v_n,w_m\ge 0$,
+    \[
+        \sum_{n=1}^{\infty} v_n' = \sum_{n=1}^{\infty} v_n,\quad\sum_{n=1}^{\infty} w_n'=\sum_{n=1}^{\infty} w_n
+    \]
+    by previous arguments. Therefore $ \sum a_n' = \sum a_n $. For the case $ a_n\in \mathbb{C}  $, write $ a_n = x_n+iy_n $ and note that $ |x_n|,|y_n|\le |a_n| $, so that $ \sum x_n,\sum y_n $ are absolutely convergent. Hence $ \sum a_n' = \sum x_n'+iy_n'=\sum a_n $.
+\end{proof}
