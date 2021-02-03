@@ -1,0 +1,100 @@
+\section{Discrete probability distributions}
+\subsection{Examples of discrete distributions}
+This section we talk about $ (\Omega,\mathscr{F},\mathbb{P}) $ such that $ \Omega=\{\omega_1,\omega_2,\dots\} $ is countable and $ \mathscr{F} = 2^{\Omega} $. If we know $ \mathbb{P}(\{\omega_i\}) $, then this determines $\bbP$. Indeed, let $ A \subseteq \Omega $, then
+\[
+    \mathbb{P}(A) = \mathbb{P}\left( \bigcup_{\omega_i\in A}\{\omega_i\} \right) = \sum_{i} \mathbb{P}(\{\omega_i\}).
+\]
+\begin{definition}
+    We write $ p_i = \mathbb{P}(\{\omega_i\}) $ and we call it a \textbf{discrete probability distribution}.
+\end{definition}
+\begin{proposition}
+    $ \forall i,p_i\ge 0 $ and $ \sum_i p_i=1 $.
+\end{proposition}
+
+\begin{example}[Bernoulli distribution]
+    Model the outcome of the toss of a coin. $ \Omega = \{0,1\} $, $ p_1=p,p_0=1-p $.
+\end{example}
+
+\begin{example}[Binomial distribution]
+    $ B(N,p),N\in \mathbb{N}, p\in [0,1] $. Toss a $p$-coin $N$ times independently. $ \mathbb{P}(k\text{ heads}) = \binom{N}{k}p^k(1-p)^{N-k} $. Here $ \Omega=\{0,1,\dots,N\},p_k=\binom{N}{k}p^k(1-p)^{N-k} $
+\end{example}
+
+\begin{example}[Multinomial distribution]
+    $ M(N,p_1,p_2,\dots,p_k), N\in \mathbb{N}, p_1,\dots,p_k\ge 0,\sum p_i=1 $. We have $k$ boxes and $N$ balls with $ \mathbb{P}(\text{pick box }i)=p_i $. Partition the balls into the boxes. Here $ \Omega = \{(n_1,\dots,n_k)\in \mathbb{N}^k: \sum n_i=N\} $ and 
+    \[
+        \mathbb{P}(n_i \text{ in box }i \text{ for } i=1,\dots,k) = \binom{N}{n_1,\dots,n_k}p_1^{n_1}p_2^{n_2}\cdots p_k^{n_k}.
+    \]
+\end{example}
+
+\begin{example}[Geometric distribution]
+    Toss a $p$-coin until the first head appears. $ \Omega=\{1,2,\dots\} $ and
+    \[
+        p_k=\mathbb{P}(\text{head appears at time }k)=(1-p)^{k-1}p.
+    \]
+    We can also model this as $ \Omega=\{0,1,\dots\} $ and $ \mathbb{P}(k \text{ tails before first head})=p_k'=(1-p)^{k}p $.
+\end{example}
+
+\begin{example}[Poisson distribution]
+    Used to model the number of occurences of an event in a given intergal of time. e.g. \# of customers that enter a shop in a day. $ \Omega=\{0,1,2,\dots,\} $ and $ p_k = e^{-\lambda}\frac{\lambda^k}{k!}, k\in \Omega, \lambda>0 $. We write it as $ P(\lambda) $. Note that 
+    \[
+        \sum_{k=0}^{\infty}p_k=\sum_{k=0}^{\infty} e^{-\lambda}\sum_{k=0}^{\infty}\frac{\lambda^k}{k!}=e^{-\lambda}e^\lambda=1.
+    \]
+\end{example}
+
+Consider the partition of $[0,1]$ in $n$ intervals of length $1/n$ and in each interval customer arrives with probability $p$ and at most $n$ customers will arrive, then
+$$\mathbb P(\text{$k$ customers arrived})=\binom{n}{k}p^k(1-p)^{n-k}$$
+which is $B(n,p)$.
+But if we take $p=\lambda/n$, we have
+\begin{proposition}
+    $B(n,\lambda/n)\to P(\lambda)$ as $n\to\infty$.
+\end{proposition}
+\begin{proof}
+    Fix $k$, then
+    \begin{align*}
+        p_k&=\binom{n}{k}\frac{\lambda^k}{n^k}\left(1-\frac{\lambda}{n}\right)^{n-k}\\
+        &=\frac{\lambda^k}{k!}\frac{n!}{n^k(n-k)!}(1+\frac{-\lambda}{n})^{n-k}\\
+        &\to\frac{\lambda^k}{k!}e^{-\lambda}
+    \end{align*}
+    as $n\to\infty$, which is exactly the Poisson distribution.
+\end{proof}
+
+\subsection{Random variables}
+\begin{definition}
+    Let $ (\Omega,\mathscr{F},\mathbb{P}) $ be a probability space. A \textbf{random variable} $X$ is a function $ X: \Omega\to \mathbb{R} $ satisfying 
+    \[
+        \{\omega\in \Omega: X(\omega)\le x\}\in \mathscr{F},\quad \forall x\in \mathbb{R}.
+    \]
+    For simplicity, write $ \{X\in A\}:= \{\omega:X(\omega)\in A\} $, where $A \subseteq \bbR$.
+\end{definition}
+
+\begin{definition}
+    Given $ A\in \mathscr{F} $, define the \textbf{indicator} of $A$ to be 
+    \[
+        1_A (\omega) = \begin{cases}
+        1 &\text{if } \omega\in A\\
+        0 &\text{otherwise.}\\
+        \end{cases} 
+    \]
+\end{definition}
+We see that $1_A$ is a random variable.
+
+\begin{definition}
+    Suppose $X$ is a random variable. Define the \textbf{probability distribution function}(pdf) of $X$ to be 
+    \[
+        F_X(x) = \mathbb{P}(X\le x),\quad F_X: \mathbb{R} \to [0,1].
+    \]
+\end{definition}
+
+\begin{definition}
+    $ (X_1,\dots,X_n) $ is called a \textbf{random variable} in $ \mathbb{R}^{n} $ if $ (X_1,\dots,X_n): \Omega\to \mathbb{R}^{n} $ and $ \forall x_1,\dots,x_n\in \mathbb{R}  $ we have 
+    \[
+        \{X_1\le x_1,\dots,X_n\le x_n\} \in \mathscr{F}.
+    \]
+\end{definition}
+
+\begin{claim}
+    This definition is equivalent to saying that $ X_1,\dots,X_n $ are random variables in $\bbR$.
+\end{claim}
+\begin{proof}[Indeed,]
+    $ \{X_1\le x_1,\dots,X_n\le x_n\} = \{X_1\le x_1\}\cap\dots,\cap \{X_n\le x_n \} \in \mathscr{F}$.
+\end{proof}

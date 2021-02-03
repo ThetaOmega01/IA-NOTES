@@ -1,0 +1,88 @@
+\section{Continuity}
+In this section, we talk about $ f:E \to \mathbb{C}  $ where $ E \subseteq \mathbb{C}  $.
+\subsection{Continuity of real- and complex-valued functions}
+\subsubsection{Definitions}
+
+There are two definitions for continuity.
+
+\begin{definition}[Sequence definition]
+    $f$ is continuous at $ a\in E $ if for every sequence $ z_n\in E\to a $, we have $ f(z_n)\to f(a) $.
+\end{definition}
+
+\begin{definition}[Epsilon-delta definition]
+    $f$ is continuous at $a\in E$ if given $ \epsilon>0 $, $ \exists \delta>0 $ such that if $ z\in E, |z-a|<\delta $, then $ |f(z)-f(a)|<\epsilon $.
+\end{definition}
+
+\begin{sprop}
+    Sequence definition $ \Longleftrightarrow $ Epsilon-delta definition.
+\end{sprop}
+\begin{proof}
+    ($ \Leftarrow $) We know that $ \forall \epsilon,\exists \delta: |z-a|<\delta \Rightarrow |f(z)-f(a)|<\epsilon $. Let $ z_n\in E \to a $, then $ \exists n_0 $ such that $ \forall n\ge n_0 $, we have
+    \[
+        |z_n-a|<\delta \Longrightarrow |f(z_n)-f(a)|<\epsilon \Longrightarrow f(z_n) \to f(a).
+    \]
+
+    ($ \Rightarrow $) Assume that $ f(z_n)\to f(a) $ whenever $E\ni z_n\to a $. Suppose $f$ is \textit{not} continunous at $a$ by definition 2.2. Then
+    \[
+        \exists \epsilon>0, \forall \delta>0, \exists z\in E: |z-a|<\delta,\text{ but } |f(z)-f(a)|\ge \epsilon.
+    \]
+    Take $ \delta=1/n $, then $ \exists  z_n $ such that $ |z_n-a|<1/n $ and $ |f(z_n)-f(a)|\ge \epsilon $. Clearly $ z_n\to a $, but $ f(z_n)\nrightarrow f(a) $, \#.
+\end{proof}
+
+\subsubsection{Arithmetic of continuous functions}
+
+\begin{proposition}\label{prop:2.1}
+    Let $a\in E$ and $ g,f:E\to \mathbb{C} $ be continuous at $a$. Then so are the functions $ f+g $, $fz$ and $\lambda f$ for any constant $ \lambda\in \mathbb{C} $. In addition, if $f(z)\neq 0 \forall z\in \mathbb{C} $, then $ 1/f $ is continuous at $a$.
+\end{proposition}
+\begin{proof}
+    It becomes obvious if we use the sequence definition and by lemma \ref{lma:1.1}.
+\end{proof}
+
+\begin{example}
+    $ f(z)=z $ is continuous. Thus every polynomial is continuous at every point, and every rational function is continuous at every point on \textit{domain}.
+\end{example}
+
+\begin{note}
+    We say that $f$ is continuous on $E$ if $ \forall a\in E $, $f$ is continuous at $a$.
+\end{note}
+\begin{remark}
+    Still it is instructive to prove proposition \ref{prop:2.1} from $ \epsilon $-$ \delta $ language.
+\end{remark}
+
+\begin{theorem}\label{thm:2.2}
+    Let $f:A\to \bbC$ and $g:B\to \bbC$ be 2 functions such that $ f(A) \subseteq B $. Suppose $f$ is continuous at $a\in A$ and $g$ is continuous at $f(a)\in B$, then $ g \circ f:A\to \mathbb{C}  $ is continuous at $a$.
+\end{theorem}
+\begin{proof}
+    Take $ z_n\to a\in A $. By assumption, $ B\ni w_n:=f(z_n)\to f(a) $ so $ g(w_n)=g(f(z_n))\to g(f(a)) $, as expected.
+\end{proof}
+
+\begin{example}
+    Let $ f:\mathbb{R} \to \mathbb{R}  $ be such that
+    \[
+        f(x) = \begin{cases}
+            \sin \left( 1/x \right) & \text{if } x\neq 0, \\
+            0                       & \text{if }x=0.      \\
+        \end{cases}
+    \]
+    Note that $ \sin x $ is continuous(to be proved later). If $x\neq 0$ then $f$ is continuous at $x$. Take $ x_n = 1/((2n+1/2)\pi) $, then $ f(x_n)\equiv 1\nrightarrow 0 $, so $f$ is discontinuous at 0.
+
+    Now let $g:\mathbb{R} \to \mathbb{R} $ be such that
+    \[
+        g(x)=\begin{cases}
+            x\sin \left( 1/x \right) & \text{if } x\neq 0, \\
+            0                        & \text{if }x=0.      \\
+        \end{cases}
+    \]
+    $g$ is continuous at 0 since taking $ x_n\to 0 $, we have $ |f(x_n)|\le |x_n| $ since $ |\sin x|\le 1 $(to be proved later). Hence $ f(x_n)\to 0 $.
+\end{example}
+
+\begin{example}[Dirichlet function]
+    Consider 
+    \[
+        f(x) = \begin{cases}
+        1 &\text{if }x\in \mathbb{Q}, \\
+        0 &\text{if }x\in \bbQ^\complement.\\
+        \end{cases} 
+    \]
+    It is discontinuous at every point. Indeed, if $x\in \bbQ$, take $x_n\to x$ with $ x_n\in \bbQ^\complement,\forall n $, then $ f(x_n)\equiv 0 \nrightarrow f(x)=1 $. Similar for $ x\in \bbQ^\complement $.
+\end{example}
