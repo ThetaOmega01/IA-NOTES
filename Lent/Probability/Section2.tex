@@ -20,7 +20,7 @@ This section we talk about $ (\Omega,\mathscr{F},\mathbb{P}) $ such that $ \Omeg
 \end{example}
 
 \begin{example}[Multinomial distribution]
-    $ M(N,p_1,p_2,\dots,p_k), N\in \mathbb{N}, p_1,\dots,p_k\ge 0,\sum p_i=1 $. We have $k$ boxes and $N$ balls with $ \mathbb{P}(\text{pick box }i)=p_i $. Partition the balls into the boxes. Here $ \Omega = \{(n_1,\dots,n_k)\in \mathbb{N}^k: \sum n_i=N\} $ and 
+    $ M(N,p_1,p_2,\dots,p_k), N\in \mathbb{N}$, $p_i\ge 0$,$\sum p_i=1 $. We have $k$ boxes and $N$ balls with $ \mathbb{P}(\text{pick box }i)=p_i $. Partition the balls into the boxes. Here $ \Omega = \{(n_1,\dots,n_k)\in \mathbb{N}^k: \sum n_i=N\} $ and 
     \[
         \mathbb{P}(n_i \text{ in box }i \text{ for } i=1,\dots,k) = \binom{N}{n_1,\dots,n_k}p_1^{n_1}p_2^{n_2}\cdots p_k^{n_k}.
     \]
@@ -62,7 +62,7 @@ But if we take $p=\lambda/n$, we have
 \begin{definition}
     Let $ (\Omega,\mathscr{F},\mathbb{P}) $ be a probability space. A \textbf{random variable} $X$ is a function $ X: \Omega\to \mathbb{R} $ satisfying 
     \[
-        \{\omega\in \Omega: X(\omega)\le x\}\in \mathscr{F},\quad \forall x\in \mathbb{R}.
+        \{X\le x\}=\{\omega\in \Omega: X(\omega)\le x\}\in \mathscr{F},\quad \forall x\in \mathbb{R}.
     \]
     For simplicity, write $ \{X\in A\}:= \{\omega:X(\omega)\in A\} $, where $A \subseteq \bbR$.
 \end{definition}
@@ -86,7 +86,7 @@ We see that $1_A$ is a random variable.
 \end{definition}
 
 \begin{definition}
-    $ (X_1,\dots,X_n) $ is called a \textbf{random variable} in $ \mathbb{R}^{n} $ if $ (X_1,\dots,X_n): \Omega\to \mathbb{R}^{n} $ and $ \forall x_1,\dots,x_n\in \mathbb{R}  $ we have 
+    $ (X_1,\dots,X_n) $ is called a \textbf{random variable} in $ \mathbb{R}^{n} $ if it is a function $\Omega\to \mathbb{R}^{n}$ and for any $ x_1,\dots,x_n\in \mathbb{R}  $ we have 
     \[
         \{X_1\le x_1,\dots,X_n\le x_n\} \in \mathscr{F}.
     \]
@@ -98,3 +98,107 @@ We see that $1_A$ is a random variable.
 \begin{proof}[Indeed,]
     $ \{X_1\le x_1,\dots,X_n\le x_n\} = \{X_1\le x_1\}\cap\dots,\cap \{X_n\le x_n \} \in \mathscr{F}$.
 \end{proof}
+
+\begin{definition}
+    A r.v. $X$ is called \textbf{discrete} if it takes falues in a \textit{countable} set.
+    Suppose $X$ takes values in a countable set $S$. For every $x\in S$ we write
+    \[
+        p_x=\mathbb{P}(X=x) = \mathbb{P}(\{\omega:X(\omega)=x\}).
+    \]
+    We call $ (p_x)_{x\in S} $ the \textbf{probability mass function}, of $X$ (pmf) or the \textbf{distribution} of $X$.
+\end{definition}
+
+\begin{note}
+    If $(p_x)$ is Bernoulli etc., we say that $X$ is a \textit{Bernoulli r.v.} or $X$ has the \textit{Bernoulli distribution}.
+\end{note}
+
+\begin{definition}
+    Suppose that $X_1,\dots,X_n$ are discrete random variables taking values in $S_1,\dots,S_n$. We say $X_1,\dots,X_n$ are \textbf{independent} if 
+    \[
+        \mathbb{P}(X_1=x_1,\dots,X_n=x_n)=\mathbb{P}(X_1=x_1)\cdots \mathbb{P}(X_n=x_n), \quad \forall x_i\in S_i.
+    \]
+\end{definition}
+
+\begin{example}
+    Toss a $p$-coin $N$ times independently. Let $H=1,T=0$ and take $ \Omega=\{0,1\}^N $. Consider $ \omega = \{\omega_1,\dots,\omega_N\}\in \Omega $, we have 
+    \[
+        p_\omega = \prod_{k=1}^{N} p^{\omega_k} (1-p)^{1-\omega_k}.
+    \]
+    Define $ X_k(\omega)=\omega_k, k=1,\dots,N,\omega\in \Omega $, so $X_k$ is a discrete r.v. and gives the $k$th toss. Now 
+    \[
+        p_1 = \mathbb{P}(X_k=1) = \mathbb{P}(\omega_k=1)=p\quad \text{and}\quad p_0 = (1-p).
+    \]
+    Hence $X_k$ is Bernoulli with parameter $p$. Claim that $X_i$ are independent. Indeed, 
+    \begin{align*}
+        \mathbb{P}(X_1=x_1,\dots,X_N=x_N) &= \mathbb{P}(\omega = (x_1,\dots,x_N)) \\
+        &= \prod_{k=1}^{N}p^{x_k} (1-p)^{1-x_k}=\prod_{k=1}^{N}\mathbb{P}(X_k=x_k).
+    \end{align*}
+\end{example}
+
+Define $ S_N(\omega) = X_1(\omega)+\dots+X_N(\omega) $, \# of heads in $N$ tosses, then $ S_N:\Omega\to \{0,\dots,N\} $ and 
+\[
+    p_k=\mathbb{P}(S_N=k) = \binom{N}{k} p^k(1-p)^{N-k}
+\]
+so $S_N\sim B(N,p)$.
+
+\subsection{Expectation}
+\begin{definition}
+    $ (\Omega,\mathscr{F},\mathbb{P}) $ and assume $\Omega$ is finite or countable. Let $ X:\Omega\to \mathbb{R}  $ be a r.v. so that $X$ is discrete. We say $X$ is \textbf{non-negative} if $ X\ge 0 $. Define the \textbf{expectation} $ \bbE[X] $ as 
+    \[
+        \bbE[X] = \sum_{\omega\in \Omega} X(\omega) \mathbb{P}(\{\omega\}).
+    \]
+\end{definition}
+
+Let $ \Omega_X=\{X(\omega):\omega\in \Omega\} $, so $ \Omega = \bigcup_{x\in \Omega_X}\{X=x\} $. Now 
+\begin{align*}
+    \bbE[X]&=\sum_\omega X(\omega)\bbP(\{\omega\}) = \sum_{x\in \Omega_X} \sum_{\omega\in \{X=x\}}X(\omega)\bbP(\{\omega\})\\ 
+    &=\sum_{x\in \Omega_X} \sum_{\omega\in \{X=x\}}x\bbP(\{\omega\})=\sum_{x\in \Omega_X}x \bbP(X=x).
+\end{align*}
+So the expectation of $X$ (also called average value or mean) is an average of the values taken by $X$ with weights $\bbP(X=x)$. So 
+\[
+    \bbE[X] = \sum_{x\in \Omega_X}x\cdot p_x.
+\]
+
+\begin{example}
+    Suppose $ X\sim B(N,p) $.
+    \begin{align*}
+        \bbE[X]&= \sum_{k=0}^{N} kP(X=k)=\sum_{k=0}^{N}k \binom{N}{k}p^k (1-p)^{N-k}\\ 
+        &= \sum_{k=0}^{N}\frac{kN!}{k!(N-k)!}p^k (1-p)^{N-k}\\ 
+        &= \sum_{k=1}^{N} \frac{(N-1)!Np}{(k-1)!(N-k)!}p^{k-1}(1-p)^{N-k}\\ 
+        &= Np \sum_{k=1}^{N} \binom{N-1}{k-1}p^{k-1}(1-p)^{(N-1)-(k-1)}\\ 
+        &= Np.
+    \end{align*}
+\end{example}
+
+\begin{example}
+    Let $ X\sim P(\lambda) $.
+    \begin{align*}
+        \bbE[X]&=\sum_{k=0}^{\infty} k e^{-\lambda} \frac{\lambda^k}{k!} = \sum_{k=1}^{\infty} e^{-\lambda}\frac{\lambda^{k-1}}{(k-1)!}\lambda\\
+        &= \lambda \sum_{k=1}^{\infty} e^{-\lambda}\frac{\lambda^{k-1}}{(k-1)!} = \lambda.
+    \end{align*}
+\end{example}
+
+\begin{definition}
+    Let $X$ be a general discrete r.v. We define $ X_+=\max \{X,0\} $ and $ X_-=\max \{-X,0\} $. Then $X=X_+-X_-$ and $ |X|=X_++X_- $. If at least 1 of $ \bbE[X_+],\bbE[X_-] $ is finite, then we define 
+    \[
+        \bbE[X] = \bbE[X_+]-\bbE[X_-].
+    \]
+    If both are infinity, then we say the expectation of $X$ is not defined. Whenever we write $ \bbE[X] $ it is assumed to be well-defined. If $ \bbE[|X|]<\infty  $, we say $X$ is \textbf{integrable}.
+\end{definition}
+When $ \bbE[X] $ is well-defined, we have again that 
+\[
+    \bbE[X] = \sum_{x\in \Omega_X}x \mathbb{P}(X=x).
+\]
+
+\begin{proposition}\label{prop:properties of expectation}
+    \begin{enumerate}
+        \item If $ X\ge 0 $, then $ \bbE[X]\ge 0 $.
+        \item If $X\ge 0 $ and $ \bbE[X]=0 $ then $ \mathbb{P}(X=0)=1$.
+        \item If $ c\in \mathbb{R} $, then $ \bbE[cX]=c\bbE[X] $ and $ \bbE[c+X]=c+\bbE[X] $.
+        \item If $ X,Y $ are r.v.s that are integrable, then $ \bbE[X+Y]=\bbE[X]+\bbE[Y] $.
+        \item Let $ c_n\dots,c_n\in \mathbb{R}  $ and $ X_1,\dots,X_n $ are r.v.s that are integrable, then 
+        \[
+            \bbE\left[ \sum_{i=1}^{n}c_iX_i \right] = \sum_{i=1}^{n} c_i\bbE[X_i].
+        \]
+    \end{enumerate}
+\end{proposition}

@@ -46,7 +46,7 @@
     \underline{Picking balls from a bag.} Suppose we have $n$ balls with $n$ labels $ \{1,\dots,n\} $ so they are distinct. Pick $k\le n$ balls at ramdom \textit{without replacement}. Take $ \Omega = \{A \subseteq \{1,\dots,n\}: |A|=k\} $, so $ |\Omega|=\binom{n}{k} $. $ \mathbb{P}(\{\omega\}) = 1/|\Omega| = 1/\binom{n}{k} $.
 \end{example}
 \begin{example}
-    \underline{Deck of cards.} Take a \textit{well-shuffled} deck of 52 cards. Well-shuffled means all possible permutations are equally likely. Let $ \Omega = \{\text{all permutations of 52 cards}\}, |\Omega|=52! $. Now $ \mathbb{P}(\text{top 2 cards are aces}) = 4 \cdot 3 \cdot 50!/52! = 1/221$.
+    \underline{Deck of cards.} Take a \textit{well-shuffled} deck of 52 cards. Well-shuffled means all possible permutations are equally likely. We see that $ \Omega = \{\text{all permutations of 52 cards}\}$, $|\Omega|=52! $. Now $ \mathbb{P}(\text{top 2 cards are aces}) = 4 \cdot 3 \cdot 50!/52! = 1/221$.
 \end{example}
 \begin{example}
     \underline{Largest digit.} Consider a string of $n$ random digits from 0 to 9. $ \Omega = \{0,\dots,9\}^n $, $ |\Omega| = 10^n, \mathscr{F}=2^\Omega  $. Let 
@@ -378,7 +378,7 @@ Similarly
 \end{example}
 
 \begin{example}[Counting derangements]
-    Let $ \Omega=\{\text{permutations of }\{1,\dots,n\}\} $, and
+    $ \Omega=\{\text{permutations of }\{1,\dots,n\}\} $,
     \[
         A = \{f\in\Omega: f(i)\neq i, \forall i\}.
     \]
@@ -443,9 +443,10 @@ Similarly
     \]
 \end{proposition}
 \begin{proof}
-    \[
-        \mathbb{P}(\cup A_n|B) = \frac{\mathbb{P}((\cup A_n)\cap B)}{\bbP(B)} = \frac{\bbP(\cup(A_n\cap B))}{\mathbb{P}(B)}=\sum_{n=1}^{\infty}\frac{\bbP(A_n\cap B)}{\mathbb{P}(B)}=\sum_{n=1}^{\infty}\mathbb{P}(A_n|B).
-    \]
+    \begin{align*}
+        \mathbb{P}(\cup A_n|B) &= \frac{\mathbb{P}((\cup A_n)\cap B)}{\bbP(B)} = \frac{\bbP(\cup(A_n\cap B))}{\mathbb{P}(B)}\\ 
+        &=\sum_{n=1}^{\infty}\frac{\bbP(A_n\cap B)}{\mathbb{P}(B)}=\sum_{n=1}^{\infty}\mathbb{P}(A_n|B).
+    \end{align*}
 \end{proof}
 
 \begin{proposition}[Law of total probability]\label{prop:Law of total probability}
@@ -521,7 +522,13 @@ This formula is the basis of Bayesian statistics. We know the probabilities of t
             \hline
         \end{tabular}
     \end{center}
-    This phenomenon is called \textbf{confounding} in statistics. It arises when we aggregate data from disparate populations. Let $ A = \{\text{individual is admitted}\} $, $ B = \{\text{individual is a man}\} $, and $ C = \{\text{individual comes from a state school}\} $. We see that 
+    This phenomenon is called \textbf{confounding} in statistics. It arises when we aggregate data from disparate populations. Let 
+    \begin{align*}
+        A &= \{\text{individual is admitted}\} , \\
+        B &= \{\text{individual is a man}\}, \\
+        C &= \{\text{individual comes from a state school}\}.
+    \end{align*}
+    We see that 
     \[
         \mathbb{P}(A|B \cap C)>\mathbb{P}(A|B \cap C^\complement)\quad \text{and}\quad \mathbb{P}(A|B^\complement \cap C)> \mathbb{P}(A| B^\complement \cap C^\complement),
     \]

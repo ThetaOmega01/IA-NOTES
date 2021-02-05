@@ -214,3 +214,221 @@ Hence $ \theta $ exact $ \Rightarrow \theta $ closed. The reverse implication is
     \]
     i.e. total energy is conserved.
 \end{example}
+
+\subsection{Integration in $ \mathbb{R}^{2} $}
+\subsubsection{Definition}
+We want to integrate over bounded region $ D \subseteq \mathbb{R}^{2} $. To do this, cover $D$ with small disjoint $A_{ij}$ with areas $ \delta A_{ij} $, each contained in a disc of radius $ \epsilon>0 $. Let $ (x_i,y_i) $ be points contained in each $A_{ij}$.
+\begin{center}
+    \begin{tikzpicture}
+      \draw [->] (0, 0) -- (6, 0) node [right] {$x$};
+      \draw [->] (0, 0) -- (0, 4) node [above] {$y$};
+      \draw (2, 1.6) -- (3.6, 1.6);
+      \draw (2, 2) -- (3.6, 2);
+      \draw (2, 2.4) -- (3.6, 2.4);
+      \draw (2, 2.8) -- (3.6, 2.8);
+      \draw (2.2, 1.4) -- (2.2, 3);
+      \draw (2.6, 1.4) -- (2.6, 3);
+      \draw (3, 1.4) -- (3, 3);
+      \draw (3.4, 1.4) -- (3.4, 3);
+      \draw plot [smooth cycle] coordinates {(1, 1) (2.5, 1.2) (4, 0.9) (4.2, 3.2) (1.5, 3)};
+      \node at (4.2, 3.2) [anchor = south west] {$D$};
+    \end{tikzpicture}
+\end{center}
+
+\begin{definition}[Surface integral]
+    Define 
+    \[
+        \int_{D} f(\bfx) \,\mathrm{d}A = \lim_{\epsilon \to 0} \sum_{i,j} f(x_i,y_j) \delta A_{ij}.
+    \]
+    We say the integral exists if it is independent of choice $A_{ij}$ and choice $ (x_i,y_j) $.
+\end{definition}
+
+\subsubsection{Compute surface integrals}
+
+One obvious choice is to use \textit{rectangles} with $ \delta A_{ij} = \delta x \delta y $.
+\begin{center}
+    \begin{tikzpicture}
+      \draw [->] (0, 0) -- (6, 0) node [right] {$x$};
+      \draw [->] (0, 0) -- (0, 4) node [above] {$y$};
+      \draw (1.08, 2.2) node [anchor = south east] {$\delta y$} -- (4.34, 2.2);
+      \draw (1.22, 2.6) -- (4.36, 2.6);
+      \draw [dashed] (1.08, 2.2) -- (1.08, 0);
+      \draw [dashed] (4.34, 2.2) -- (4.34, 0);
+      \draw [dashed] (1.08, 2.2) -- (0, 2.2) node [left] {$y$};
+      \draw [->] (2.4, -0.5) -- (1.08, -0.5);
+      \draw [->] (3, -0.5) node [left] {$x_y$} -- (4.34, -0.5);
+      \draw plot [smooth cycle] coordinates {(1, 1) (2.5, 1.2) (4, 0.9) (4.2, 3.2) (1.5, 3)};
+      \draw [dashed] (3.5, 3.36) -- (0, 3.36);
+      \draw [dashed] (3.9, 0.82) -- (0, 0.82);
+      \draw [->] (-0.5, 2.4) -- (-0.5, 3.36);
+      \draw [->] (-0.5, 1.8) node [above] {$Y$} -- (-0.5, 0.82);
+      \node at (4.2, 3.2) [anchor = south west] {$D$};
+    \end{tikzpicture}
+\end{center}
+
+Sum over horizontal strips of width $ \delta y $, and take limit as $ \delta x\to 0 $:
+\[
+    \delta y \int_{x_y} f(x,y)\dd x, \text{ where } x_y = \{x:(x,y)\in D\}.
+\]
+Summing over each such strip, taking $ \delta y\to 0 $:
+\begin{proposition}
+    \[
+        \int_{D} f(x,y) \,\mathrm{d}A = \int_{Y} \left( \int_{x_y} f(x,y) \,\mathrm{d}x \right) \,\mathrm{d}y,\text{ where } Y=[\min y,\max y].
+    \]
+\end{proposition}
+
+If we instead sum over \textit{vertical} strips,
+\begin{proposition}
+    \[
+        \int_{D} f(x,y) \,\mathrm{d}A = \int_{X} \left( \int_{y_x} f(x,y) \,\mathrm{d}y \right) \,\mathrm{d}x.
+    \]
+\end{proposition}
+\begin{center}
+    \begin{tikzpicture}
+      \draw [->] (0, 0) -- (6, 0) node [right] {$x$};
+      \draw [->] (0, 0) -- (0, 4) node [above] {$y$};
+      \draw plot [smooth cycle] coordinates {(1, 1) (4, 0.8) (4.2, 1.1) (3, 2) (4.1, 3) (1.2, 2.7)};
+      \draw (3.2, 0.8) -- (3.2, 1.76);
+      \draw (3.4, 0.8) -- (3.4, 1.61);
+      \draw (3.2, 2.24) -- (3.2, 3.02);
+      \draw (3.4, 2.4) -- (3.4, 3.04);
+    \end{tikzpicture}
+\end{center}
+
+More concisely, we have $ \rmd A = \rmd x\dd y=\rmd y\dd x $.
+\begin{theorem}[Fubini's theorem]\label{thm:Fubini's theorem}
+    If
+    \[
+        \int_{D} \left| f(x,y) \right| \,\mathrm{d}A<\infty,
+    \]
+    then 
+    \[
+        \iint f\dd x\dd y = \iint f\dd y\dd x = \iint_{D}f(x,y)\dd A.
+    \]
+\end{theorem}
+See \href{https://dec41.user.srcf.net/notes/II_M/probability_and_measure.pdf\#page=50}{this proof}.
+
+\begin{example}
+    Let $D$ be a triangle with vertices $(0,0),(1,0),(0,1)$. If $f(x,y)=xy^2$, then if we integrate over horizontal strips,
+    \begin{align*}
+        \int_{D} f \,\mathrm{d}A &= \int_{0}^{1} \left( \int_{0}^{1-y} xy^2 \,\mathrm{d}x \right) \,\mathrm{d}y\\ 
+        &= \int_{0}^{1} \frac{1}{2}y^2(1-y)^2 \,\mathrm{d}y = \frac{1}{60}.
+    \end{align*}
+    With vertical strips 
+    \begin{align*}
+        \int_{D} f \,\mathrm{d}A &= \int_{0}^{1} \left( \int_{0}^{1-x} xy^2 \,\mathrm{d}y \right) \,\mathrm{d}x\\ 
+        &= \int_{0}^{1} \frac{1}{3}x(1-x)^3 \,\mathrm{d}x = \frac{1}{60}.
+    \end{align*}
+\end{example}
+
+\begin{proposition}
+    If $f(x,y)=g(x)h(y)$ and $ D=\{(x,y):a\le x\le b,c\le y\le d\} $ is a rectangle, then 
+    \[
+        \int_{D} f(x,y) \,\mathrm{d}A = \left( \int_{a}^{b} g(x) \,\mathrm{d}x \right) \left( \int_{c}^{d} h(y) \,\mathrm{d}y \right).
+    \]
+\end{proposition}
+
+\subsubsection{Change of variables}
+
+It is often useful to introduce change of variables to compute $ \int_{a}^{b} f(x) \,\mathrm{d}x $. If we introduce $ x=x(u) $ with $ x(a)=\alpha $ and $ x(b)=\beta $. Then 
+\[
+    \int_{a}^{b} f(x) \,\mathrm{d}x = \begin{cases}
+    \displaystyle+\int_{\alpha}^{\beta} f(x(u))\frac{\mathrm{d}x}{\mathrm{d}u}  \,\mathrm{d}u &\displaystyle(\beta>\alpha),\frac{\mathrm{d}x}{\mathrm{d}u}>0, \\
+    \\
+    \displaystyle-\int_{\beta}^{\alpha} f(x(u))\frac{\mathrm{d}x}{\mathrm{d}u}\dd u &\displaystyle(\alpha>\beta),\frac{\mathrm{d}x}{\mathrm{d}u}<0. \\
+    \end{cases} 
+\]
+If $I=[a,b]$ and $I'=x(I)$,
+\[
+    \int_{I} f(x) \,\mathrm{d}x = \int_{I'} f(x(u)) \left| \frac{\mathrm{d}x}{\mathrm{d}u}  \right|  \,\mathrm{d}u.
+\]
+
+Similar formula in 2D:
+\begin{proposition}
+    Let $ x=x(u,v),y=y(u,v) $ be a smooth invertible transformation with smooth inverse that maps the region $D'$ in $u$-$v$ plane to $D$ in $x$-$y$ plane. Write $ \bfx=\bfx(u,v) $, then 
+    \[
+        \iint_{D}f(x,y)\dd x\dd y = \iint_{D'} f(x(u,v),y(u,v)) \left| \frac{\partial (x,y)}{\partial (u,v)}  \right| \dd u\dd v,
+    \]
+    where 
+    \[
+        J:=\frac{\partial (x,y)}{\partial (u,v)} = \det \begin{pmatrix}
+            \partial x/\partial u  & \partial x/\partial v  \\
+            \partial y/\partial u  & \partial y/\partial v  \\
+        \end{pmatrix}
+    \]
+    is called the \textbf{Jacobian}. Short version is $ \dd x\dd y = |J| \dd u\dd v. $
+\end{proposition}
+
+\begin{proof}
+    For partition in $D$ using the \textit{image} of a rectangular partition of $D'$, note that $ \delta A_{ij}'=\delta u \delta v $ and by Taylor's theorem,
+    \[
+        \delta x = x(u + \delta u, v + \delta v) - x(u, v) \approx \frac{\partial x}{\partial u}\delta u + \frac{\partial x}{\partial v}\delta v.
+    \]
+    We have a similar expression for $\delta y$ and we obtain
+    \[
+        \begin{pmatrix}
+        \delta x\\
+        \delta y
+        \end{pmatrix}
+        \approx
+        \begin{pmatrix}
+        \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v}\\
+        \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v}\\
+        \end{pmatrix}
+        \begin{pmatrix}
+        \delta u\\
+        \delta v
+        \end{pmatrix}
+    \]
+    Recall from Vectors and Matrices that the determinant of the matrix is how much it scales up an area. So the area formed by $\delta x$ and $\delta y$ is $|J|$ times the area formed by $\delta u$ and $\delta v$. Hence
+    \[
+        \rmd x\dd y = |J| \dd u\dd v.\qedhere
+    \]
+\end{proof}
+For details, see \href{http://jt775.user.srcf.net/IA-Lent/handouts/vc_handout2.pdf}{handout 2}.
+
+\begin{example}[Poisson integration]
+    Use $ (\rho,\phi) $ that $ x(\rho,\phi)=\rho \cos \phi,y(\rho,\phi)=\rho \sin \phi $, we get 
+    \[
+        |J| = \left| \det \begin{pmatrix}
+            \cos \phi & -\rho \sin \phi \\
+            \sin \phi & \rho \cos \phi \\
+        \end{pmatrix} \right| = |\rho|=\rho.
+    \]
+    If $ D=\{(x,y):x,y>0, x^2+y^2<R^2\} $, then $ D'=\{(\rho,\phi):0<\rho<R,0<\phi<\pi/2\} $.
+    \begin{center}
+        \begin{tikzpicture}
+          \draw [->] (0, 0) -- (2.5, 0) node [right] {$x$};
+          \draw [->] (0, 0) -- (0, 2.5) node [above] {$y$};
+          \draw [fill=gray] (0, 0) -- (2, 0) arc (0:90:2) -- cycle;
+          \node at (1.4, 1.4) [anchor=south west] {$D$};
+          \draw [->] (2.8,1.5) -- (4,1.5);
+          \fill[gray] (4.5,0) rectangle (6.5,1.6);
+          \draw [->] (4.5, 0) -- (7, 0) node [right] {$\rho$};
+          \draw [->] (4.5, 0) -- (4.5, 2.5) node [above] {$\phi$};
+          \draw (4.5,1.6) -- (6.5,1.6) -- (6.5,0);
+          \node [above right] at (6.5,1.6) {$ D' $};
+        \end{tikzpicture}
+      \end{center}
+      Hence $ \dd x\dd y=\rho\dd \rho\dd \phi $
+      \[
+          \iint_{D}f(x,y)\dd x\dd y = \iint_{D'}f(\rho \cos \phi,\rho \sin \phi)\rho \dd \rho\dd \phi.
+      \]
+      Take $ R\to \infty $,
+      \[
+          \int_{x=0}^{\infty} \int_{y=0}^{\infty} f(x,y) \,\mathrm{d}y \,\mathrm{d}x = \int_{\phi=0}^{\pi/2} \int_{\rho=0}^{\infty} f(\rho \cos \phi,\rho \sin \phi) \rho \,\mathrm{d}\rho \,\mathrm{d}\phi.
+      \]
+
+      Now consider 
+      \[
+          I = \int_{0}^{\infty} e^{-x^2} \,\mathrm{d}x.
+      \]
+      Have 
+      \begin{align*}
+          I^2 &= \int_{0}^{\infty} e^{-x^2} \,\mathrm{d}x \cdot \int_{0}^{\infty} e^{-y^2} \,\mathrm{d}y \\ 
+          &= \int_{x=0}^{\infty} \int_{y=0}^{\infty} e^{-(x^2+y^2)} \,\mathrm{d}y \,\mathrm{d}x\\ 
+          &= \int_{\phi=0}^{\pi/2} \int_{\rho=0}^{\infty} e^{-\rho^2} \rho \,\mathrm{d}\rho \,\mathrm{d}\phi \\
+          &= \frac{\pi}{2} \int_{0}^{\infty} \frac{\mathrm{d}}{\mathrm{d}\rho}\left( -\frac{1}{2}e^{-\rho^2} \right)  \,\mathrm{d}\rho = \frac{\pi}{4}.
+      \end{align*}
+      Hence $ I=\sqrt{\pi}/2 $.
+\end{example}

@@ -118,7 +118,7 @@ Equation of motion is
 
 \begin{itemize}
     \item If $ V''(x_0)>0 $, then $x_0$ is a local minimum of $V$ and thus it is the \textit{harmonic oscillator} equation. The frequency is $ \omega = \sqrt{k/m} = \sqrt{V''(x_0)/N} $. This is called a \textbf{stable equilibrium}. Start close $\Rightarrow$ stay close.
-    \item If $ V''(x_0)<0 $, then $x_0$ is a local maximum of $V$ and thus it increases/decays exponentially. The growth rate is $ \sqrt{-V''(x_0)/m} $. This is called an \textbf{unstable equilibrium}. 
+    \item If $ V''(x_0)<0 $, then $x_0$ is a local maximum of $V$ and thus it increases(or decays) exponentially. The growth rate is $ \sqrt{-V''(x_0)/m} $. This is called an \textbf{unstable equilibrium}. 
     \item If $ V''(x_0)=0 $, need to consider higher terms.
 \end{itemize}
 
@@ -145,7 +145,7 @@ Equation of motion is
           \draw [dashed] (2,1) -- (2,0) node [below] {$ \pi $};
         \end{tikzpicture}
       \end{center} 
-      We see that $ 0 $ is stable but $ \pi $ is unstable. If $ -mgl<E<mgl $, so the pendulum s=oscillates about a position of stable equilibrium. If $E>mgl$, then either $ \dot{\theta}>0 $ or $ \dot{\theta}<0 $ for all time.
+      We see that $ 0 $ is stable but $ \pi $ is unstable. If $ -mgl<E<mgl $, so the pendulums oscillates about a position of stable equilibrium. If $E>mgl$, then either $ \dot{\theta}>0 $ or $ \dot{\theta}<0 $ for all time.
 
       Now consider its period. Since $ p = 4\times $ the time taken $ \theta_0\to 0 $, so 
       \[
@@ -287,7 +287,7 @@ Note that on earth, $ g\approx 9.8\rmm\rms^{-2} $.
 \[
     E = T+V = \frac{1}{2}mv^2-\frac{GMm}{R}.
 \]
-For any energy $E < 0$, we will eventually come to rest at position $r = -GMm/E$, before falling back. If we want to escape the planet, we will need $ E\ge 0 $, i.e. 
+For any energy $E < 0$, we will eventually come to rest at position $r = -\frac{GMm}{E}$, before falling back. If we want to escape the planet, we will need $ E\ge 0 $, i.e. 
 \[
     v\ge \sqrt{\frac{2GM}{R}}.
 \]
@@ -333,3 +333,129 @@ known as \textbf{Coulomb force}. Different from gravity, the direction of $\bfF$
 
 \subsubsection{Magnetic field}
 Recall that a particle moves in helical motion in constant magnetic field.
+
+\subsection{Frictions}
+\begin{definition}
+    \textbf{Friction} is a constant force between two \textit{solid bodies} in contact, or between a solid body and a surrounding fluid.
+\end{definition}
+\begin{note}
+    Friction is a convenient description of complicated molecular phenomena. Note that friction is \textit{note} a fundamental force.
+\end{note}
+
+\subsubsection{Dry friction}
+There are two important force:
+\begin{enumerate}[align=left]
+    \item[\textit{Normal force}.] $ \perp $ to contact surface that prevents intermingling of solid bodies in contact,
+    \item[\textit{Tangential force.}] Resists tangential relative motion. 
+\end{enumerate}
+\begin{center}
+    \begin{tikzpicture}[rotate = 30]
+      \draw [fill=gray] (-2, 0) rectangle (2, -0.2);
+      \draw (-1, 1) rectangle (1, 0);
+      \draw [->>] (0, 0) -- (0, 1.3) node [above] {$\mathbf{N}$};
+      \draw [->>] (0, 0.13) -- (1, 0.13) node [anchor = south west] {$\!\!\mathbf{F}$};
+      \draw [->>] (0, 0.5) -- (-0.577, -0.5) node [below] {$m\mathbf{g}$};
+    \end{tikzpicture}
+\end{center}
+
+\begin{definition}
+    The friction is called \textbf{static friction} if no sliding occurs between surfaces.
+\end{definition}
+
+If static friction is exerted, $\bfF$ obeys 
+\[
+    |\bfF|\le \mu_s|\bfN|,
+\]
+where $\mu_s$ is called the \textbf{coefficient of static friction}. Block can remain static provided $ \alpha\le \arctan \mu_s $, where $ \alpha $ is the angle relative to the ground.
+
+\begin{definition}
+    If the block starts to slide, there is a \textbf{kinetic friction}.
+\end{definition}
+Here
+\[
+    |\bfF| = \mu_k|\bfN|
+\]
+where $ \mu_k $ is the \textbf{coefficient of kinetic friction}. In general, $ \mu_s>\mu_k>0 $, and their values depend on materials in contact. e.g. $ \mu_s\approx \mu_k\approx 0.8 $ between rubber and asphalt, and between teflons $ \mu_s\approx \mu_k\approx 0.04 $.
+
+\subsubsection{Fluid drag}
+This happens when a solid body moves through a fluid. There are two important regimes for drag:
+\begin{enumerate}[align=left]
+    \item[\textbf{Linear drag}.] This happens when `small' objects moving through \textit{viscous} fluid, e.g. bacteria moving in body fluid. We have 
+    \[
+        \mathbf{F} = -k_1\bfu.
+    \]
+    If this object is a sphere with radius $R$, then \textit{Stokes force law} tells us that
+    \[
+        k_1 = 6\pi \eta R
+    \]
+    where $\eta$ is the viscosity of the fluid.
+    \item[\textbf{Quadratic drag}.] This happens when large bodies are moving through less viscous fluids, e.g. a large fish swimming in water, cars, aircrafts, etc. We have 
+    \[
+        \mathbf{F} = -k_2 |\bfu|\bfu.
+    \]
+    Typically $k_2$ is given by 
+    \[
+        k_2 = \rho_{\text{fluid}}C_{\text{drag}}R^2,
+    \]
+    where $ \rho $ is the fluid density, $C$ is the drag coefficient, and $R$ is the size scale of the object.
+\end{enumerate}
+
+A body loses kinetic energy as a result of a drag force. Rates of working are 
+\begin{align*}
+    \bfF\cdot\bfu &= -k_1|\bfu|^2\quad \text{linear drag,}\\
+    &= -k_2|\bfu|^3\quad \text{quadratic drag.} 
+\end{align*}
+In latter total work done $ \propto |\bfu|^2\cdot x $. The fluid gains energy as a result of drags.
+
+\begin{example}
+    Damped oscillator met in DEs. We have $ m \ddot{x} = -kx - \lambda \dot{x} $.
+\end{example}
+\begin{example}
+    Consider a projectile moving under a uniform gravity and experiencing linear drag force.
+    \[
+        m \ddot{\bfx} = m\bfg -k \dot{\bfx},
+    \]
+    with initial conditions given by $ \bfx(0) = 0 $ and $ \dot{\bfx}(0)=\bfu_0 $. Solve for $ \dot{\bfx} $:
+    \[
+        \frac{\mathrm{d}}{\mathrm{d}t} (\dot{\bfx} e^{kt/m})=mge^{kt/m} \Longrightarrow \dot{\bfx} = \frac{m\bfg}{k}+\bfC e^{-kt/m} = \frac{m\bfg}{k}+\left( \bfu_0-\frac{m\bfg}{k} \right)e^{-kt/m}.
+    \]
+    Hence 
+    \[
+        \bfx = \frac{m\bfg}{k}t+\frac{m}{k}\left( \bfu_0-\frac{m\bfg}{k} \right)(1-e^{-kt/m}).
+    \]
+    Now consider components:
+    \[
+        \bfx=(x,y,z),\quad \bfu= (\bfu_1,\bfu_2,\bfu_3).
+    \]
+    Choose
+    \[
+        \bfu_0 = (u_0 \cos \theta,0,u_0 \sin \theta),\quad \bfg = (0,0,-g),
+    \]
+    then
+    \begin{align*}
+        u_1 &= u_0 \cos \theta e^{-kt/m},\\ 
+        u_2 &= 0,\\
+        u_3 &= \left( u_0\sin \theta+\frac{mg}{k} \right)e^{-kt/m}-\frac{mg}{k}.
+    \end{align*}
+    We see that $ u_1,u_2\to 0,u_3\to -\frac{mg}{k} $, so the \textbf{terminal velocity} is $ (0,0,-mg/k) $. This is achieved on a time scale $ m/k $. We also have 
+    \begin{align*}
+        x&= m u_0\frac{\cos \theta}{k}(1-e^{-kt/m}),\\ 
+        y&= 0,\\ 
+        z&= -\frac{mgt}{k}+\frac{m}{k}\left( u_0 \sin \theta+\frac{mg}{k} \right)(1-e^{-kt/m}).
+    \end{align*}
+
+    Now consider the \textbf{range} of the projectile: $x$ when $z$ returns to 0. We see that 
+    \[
+        R = R(u_0,\theta,m,k,g).
+    \]
+    Note that we can form a \textit{dimensionless group} such that 
+    \[
+        \frac{ku_0}{mg} = \frac{u_0/g}{m/k},
+    \]
+    where $u_0/g$ is time taken to reduce initial velocity by gravity, and $m/k$ is the time taken to achieve terminal velocity. Dimensional analysis gives 
+    \[
+        R = \frac{u_0^2}{g}F\left( \theta,\frac{ku_0}{mg} \right).
+    \] 
+    When the friction is weak, $ ku_0/mg\ll 1 $ and $ R = \frac{2u_0^2}{g}\sin \theta \cos \theta  $. When the friction is large, $ ku_0/mg\gg 1 $ and $ R=\frac{U^2}{g}\left( \frac{mg}{ku_0}\cos \theta \right) $.
+\end{example}
+The lecturer talked quite badly about this example and \href{http://www.damtp.cam.ac.uk/user/tong/relativity/two.pdf\#page=27}{this page} gives a better illustration.
