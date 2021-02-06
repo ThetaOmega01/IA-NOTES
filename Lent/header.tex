@@ -1,8 +1,3 @@
-%%%%%%% custom fonts%%%%%%%%%
-\usepackage{crimson}
-\usepackage[T1]{fontenc}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \usepackage{sidenotes,fancyhdr,titlesec,geometry}
 \usepackage[dvipsnames]{xcolor}
 \usepackage[many]{tcolorbox}
@@ -22,6 +17,7 @@
 \usepackage[shortlabels]{enumitem}
 \usepackage{hyperref}
 \usepackage{lipsum}
+\tdplotsetmaincoords{60}{120}
 
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{decorations.markings}
@@ -493,6 +489,11 @@ dot/.default = 5pt% size of the circle diameter
 % \tcolorboxenvironment{proposition}{ boxrule=0pt, boxsep=0pt, colback={White!90!Yellow}, enhanced jigsaw, borderline west={2pt}{0pt}{Yellow}, sharp corners, before skip=10pt, after skip=10pt, breakable, }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%% custom fonts%%%%%%%%%
+\usepackage{crimson}
+\usepackage[T1]{fontenc}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %layout full
 % \geometry{%
@@ -503,7 +504,7 @@ dot/.default = 5pt% size of the circle diameter
 %   bmargin=2.5cm,
 %   footskip=12pt,
 %   headheight=24pt}
-% layout trim
+layout trim
 \geometry{
 papersize={379pt, 699pt},
 textwidth=345pt,

@@ -79,10 +79,76 @@ There are two definitions for continuity.
 \begin{example}[Dirichlet function]
     Consider 
     \[
-        f(x) = \begin{cases}
+        D(x) = \begin{cases}
         1 &\text{if }x\in \mathbb{Q}, \\
         0 &\text{if }x\in \bbQ^\complement.\\
         \end{cases} 
     \]
-    It is discontinuous at every point. Indeed, if $x\in \bbQ$, take $x_n\to x$ with $ x_n\in \bbQ^\complement,\forall n $, then $ f(x_n)\equiv 0 \nrightarrow f(x)=1 $. Similar for $ x\in \bbQ^\complement $.
+    It is discontinuous at every point. Indeed, if $x\in \bbQ$, take $x_n\to x$ with $ x_n\in \bbQ^\complement,\forall n $, then $ D(x_n)\equiv 0 \nrightarrow D(x)=1 $. Similar for $ x\in \bbQ^\complement $.
+\end{example}
+
+\subsection{Limit of a function}
+\begin{definition}[Limit point]
+    Let $ E\in \mathbb{C} $ and $ a\in \mathbb{C} $. We say $a$ is a \textbf{limit point} of $E$ if $ \forall \delta>0, \exists z\in E: 0<\left| z-a \right| <\delta $.
+    \begin{center}
+        \begin{tikzpicture}[scale=0.7]
+            \filldraw[color=black!60, fill=black!5, dashed](0,0) circle (2);
+            \fill [black] (0,0) circle (2pt) node [below] {$a$};
+            \draw (0,0) -- (1.732,1) node [pos=0.5,above left] {$ \delta $};
+            \fill [black] (-1,-1) circle (2pt) node [above] {$z$};
+        \end{tikzpicture}
+    \end{center}
+\end{definition}
+\begin{remark}
+    $a$ is a limit point if and only if $ \exists z_n\in E $ such that $ z_n\to a $ and $ z_n\neq a $ for all $n$. Can check this is equivalent to the definition.
+\end{remark}
+
+\begin{definition}[Limit of a function]
+    $ f:E\to \mathbb{C} $ and let $ a\in \mathbb{C} $ be a limit point of $E$.We say 
+    \[
+        \lim_{z \to a} f(z) = L \Longleftrightarrow \forall \epsilon>0, \exists \delta>0, \forall \left| z-a \right| <\delta: \left| f(z)-L \right| \epsilon.
+    \]
+    Equivalently,
+    \[
+        \lim_{z \to a} f(z)=L \Leftrightarrow \forall (z_n)_{n\in\bbN} \subseteq E, z_n\neq a \land z_n\to a: f(z_n)\to L.
+    \]
+\end{definition}
+
+\begin{remark}
+    Immediate from definition, If $ a\in E $ is a limit point, then $ \lim_{z \to a} f(z)=f(a) $ if and only if $f$ is continuous at $a$. If $a$ is isolated(i.e. $a\in E$ and is not a limit point), continuity of $f$ at $a$ is trivially true.
+\end{remark}
+
+\begin{sprop}
+    Limits of functions have similar properties to limits of sequences.
+    \begin{enumerate}
+        \item It is unique.
+        \item $f(z)g(z)\to AB$.
+        \item If $B\neq 0$, $ f(z)/g(z)\to A/B $.
+    \end{enumerate}
+\end{sprop}
+Proof is exercise.
+
+\subsection{Intermediate value theorem}
+\begin{theorem}[Intermediate value theorem]\label{thm:intermediate value theorem}
+    If $ f:[a,b]\to \mathbb{R}  $ is continuous and $ f(a)\neq f(b) $, then $f$ takes every value bewteen $f(a)$ and $f(b)$.
+\end{theorem}
+\begin{proof}
+    Wlog suppose $ f(a)<f(b) $. Take $ \eta\in (f(a),f(b)) $. Let 
+    \[
+        S = \{x\in [a,b]:f(x)<\eta \}.
+    \]
+    Note that $a\in S$ and $S$ is clearly bounded above (by $b$), so $ \exists c = \sup S\le b $. 
+    
+    Claim that $f(c)=\eta$. Indeed, by definition of supremum, $ \forall n $, $ \exists x_n\in S$ such that $ c-\frac{1}{n}<x_n\le c $. Clearly $x_n\to c$. Since $ x_n\in S, f(x_n)<\eta $. By continuity of $f$, $f(x_n)\to f(c)\le \eta$. 
+
+    Now observe that $ c\neq b $, otherwise we have $ f(b)\le \eta $ which is impossible. Then for $n$ large, $ c+\frac{1}{n}\in [a,b] $ and $ c+\frac{1}{n}\to c $. By continuity, $ f(c+\frac{1}{n})\to f(c)\ge \eta $.
+
+    Therefore $ f(c)=\eta $, as claimed.
+\end{proof}
+\begin{remark}
+    The theorem is very useful for finding zeros of fixed points.
+\end{remark}
+
+\begin{example}[Existence of the $N$th root of a positive real number]
+    Let $ f(x)=x^N, x\ge 0 $. $f$ is continuous and pick $y>0$. By intermediate value theorem, $f$ takes every value $ [0,f(y)+1] $. Therefore $ \exists x, x^N=y $. If $ d^N=y,d\neq x $, wlog suppose $d<x$ so $ d^N<x^N \Rightarrow y<y $ which is absurd. Hence it is unique. 
 \end{example}

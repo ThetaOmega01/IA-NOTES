@@ -330,7 +330,7 @@ See \href{https://dec41.user.srcf.net/notes/II_M/probability_and_measure.pdf\#pa
 
 \subsubsection{Change of variables}
 
-It is often useful to introduce change of variables to compute $ \int_{a}^{b} f(x) \,\mathrm{d}x $. If we introduce $ x=x(u) $ with $ x(a)=\alpha $ and $ x(b)=\beta $. Then 
+It is often useful to introduce change of variables to compute $ \int_{a}^{b} f(x) \,\mathrm{d}x $. If we introduce $ x=x(u) $ with $ x(\alpha)=a $ and $ x(\beta)=b $. Then 
 \[
     \int_{a}^{b} f(x) \,\mathrm{d}x = \begin{cases}
     \displaystyle+\int_{\alpha}^{\beta} f(x(u))\frac{\mathrm{d}x}{\mathrm{d}u}  \,\mathrm{d}u &\displaystyle(\beta>\alpha),\frac{\mathrm{d}x}{\mathrm{d}u}>0, \\
@@ -432,3 +432,99 @@ For details, see \href{http://jt775.user.srcf.net/IA-Lent/handouts/vc_handout2.p
       \end{align*}
       Hence $ I=\sqrt{\pi}/2 $.
 \end{example}
+
+\subsection{Integration in $ \mathbb{R}^{3} $}
+\subsubsection{Compute volumn integrals}
+
+To integrate over region $V$ in $ \mathbb{R}^{3}$, use similar ideas to those in $ \mathbb{R}^{2} $. Let 
+\[
+    \int_{V} f(\bfx) \,\mathrm{d}V = \lim_{\epsilon \to 0} \sum_{i,j,k} f(x_i,y_j,z_k)\delta V_{ijk},
+\]
+where $ V_{ijk} $ are small volumns contained in balls of radius $\epsilon$. In this case the \textbf{volumn element} $ \rmd V = \rmd x\dd y\dd z $ and they are commutative.
+
+\begin{example}
+    Let $V$ be the region bounded by the planes $ x+y+z=1 $ and $ x=0,y=0,z=0 $.
+    \[
+        \int_{V} \,\mathrm{d}V = \int_{0}^{1} \int_{y=0}^{1-x} \int_{z=0}^{1-x-y}  \,\mathrm{d}z \,\mathrm{d}y \,\mathrm{d}x
+        = \frac{1}{6}.
+    \]
+    We could compute the centre of mass assuming it has constant density $ \rho=1 $. 
+    \begin{align*}
+        \bfX &= \frac{1}{M} \int_{V} \rho\bfx \,\mathrm{d}V = \frac{1}{4}\begin{pmatrix}
+            1 \\ 1 \\ 1
+        \end{pmatrix}.
+    \end{align*}
+\end{example}
+
+\subsubsection{Change of variables}
+\begin{proposition}
+    Let $ x(u,v,w) $, etc. be a continuously differentiable bijection with continuously differentiable inverse $ V'\mapsto V $. Then 
+    \[
+        \iiint_{V} f(x,y,z)\dd x\dd y\dd v = \iiint_{V} g(u,v,w)|J|\dd u\dd v\dd w,
+    \]
+    where $ g(u,v,w)= f(x(u,v,w),y(u,v,w),z(u,v,w))$ and
+    \[
+        J = \frac{\partial (x,y,z)}{\partial (u,v,w)} = \det \left(\!\!\! \begin{array}{c|c|c}
+           \displaystyle \frac{\partial \bfx}{\partial u}\!\!\!&\!\!\displaystyle\frac{\partial \bfx}{\partial v}\!\!\!&\!\!\displaystyle\frac{\partial\bfx}{\partial w}
+        \end{array}\!\!\! \right),\quad \bfx = \begin{pmatrix}
+            x(u,v,w) \\ y(u,v,w) \\ z(u,v,w)
+        \end{pmatrix}.
+    \]
+    Short version is $ \rmd x\dd y\dd z = |J|\dd u\dd v\dd w $. Similar to 2D, $|J|$ is the volumn scaled by mapping.
+\end{proposition}
+
+\begin{example}
+    In cylindrical polars $ (\rho,\phi,z) $, 
+    \[
+        \rmd V= \rho\dd\rho \dd \phi\dd z,
+    \]
+    and in spherical polars, 
+    \[
+        \rmd V = r^2 \sin \theta\dd r\dd \theta \dd \phi.
+    \]
+\end{example}
+\begin{example}
+    Consider $ V=\{(x,y,z):x^2+y^2+z^2\le R^2\} $. It is very complicated to do it in Cartesians, so we do it in spherical polars. $V'= \{(r,\theta,\phi): r\in[0,R], \theta\in [0,\pi],\phi\in [0,2\pi]\} $ and we have 
+    \begin{align*}
+        \int_{V} \,\mathrm{d}V &= \int_{V'} \,\mathrm{d}V = \iiint_{V'}r^2 \sin \theta\dd r\dd \theta\dd \phi\\ 
+        &= \int_{\phi=0}^{2\pi}\int_{\theta=0}^{\pi}\int_{r=0}^{R} r \sin^2\theta \,\mathrm{d}r \,\mathrm{d}\theta \,\mathrm{d}\phi \\ 
+        &= \int_{\theta=0}^{\pi} \frac{2\pi R^3}{3}\sin \theta \,\mathrm{d}\theta\\ 
+        &=\frac{4}{3}\pi R^3,
+    \end{align*}
+    as expected.
+\end{example}
+\begin{example}
+    Consider a ball of radius $a$ with a cylinder of radius $b<a$ removed. Note that the shape is symmetric about $z$ axis, so try cylindrical polars.
+    \begin{center}
+        \begin{tikzpicture}
+          \begin{scope}
+            \clip (-.99, 2) rectangle (-3, -2.1) (.99, 2) rectangle (3, -2.1);
+            \draw circle [radius=2];
+          \end{scope}
+          \draw (0, 1.72) circle [x radius=1, y radius = 0.15];
+          \draw [dash pattern= on 4pt off 4pt] (1, -1.72) arc (0: 180:1 and 0.15);
+          \draw (-1, -1.72) arc (180: 360:1 and 0.15);
+          \draw [dash pattern= on 4pt off 4pt] (1, 1.72) -- (1, -1.72);
+          \draw [dash pattern= on 4pt off 4pt] (-1, 1.72) -- (-1, -1.72);
+          \draw [dash pattern= on 2pt off 2pt] (0, 0) -- (1, 1.72) node [pos = 0.5, anchor = north west] {$a$};
+          \draw [dash pattern= on 2pt off 2pt] (0, 0) -- (-1, 0) node [pos = 0.5, above] {$b$};
+        \end{tikzpicture}
+    \end{center}
+    In cylindrical polars, $ V=\{(\rho,\phi,z): \rho\in [b,a],z^2+\rho^2\in[0,a],\phi\in [0,2\pi]\} $.
+
+    So the volume is
+    \begin{align*}
+        \iiint_V \,\rmd V &= \int_{\rho=b}^a\int_{\phi=0}^{2\pi}\int_{z=-\sqrt{a^2 - \rho^2}}^{\sqrt{a^2 - \rho^2}}\rho\,\rmd z\,\rmd \phi\,\rmd \rho \\
+        &= 2\pi\int_b^a 2\rho\sqrt{a^2 - \rho^2}\,\rmd \rho\\
+        &= 2\pi \left[\frac{2}{3}(a^2 - \rho^2)^{3/2}\right]^a_b\\
+        &= \frac{4}{3}\pi (a^2 - b^2)^{3/2}.
+    \end{align*}
+\end{example}
+
+\subsection{Talks on Riemann \& Lebesgue integrals}
+In Riemann integrals $ \int_{D} f \,\mathrm{d}x $, we arbitrarily partition the domain $D$ into small pieces, sum up the small rectangles, and take limit. For surface integrals $ \int_{D} f \,\mathrm{d}A $, we partition arbitrarily the domain $D$ and carry out the same process. However, it has lots of limitations. e.g. for the Dirichlet function (see Analysis I) $D(x)$, $ \int_{0}^{1} D(x) \,\mathrm{d}x $ does not exist in Riemann definition.
+
+However, in Lebesgue's theorey of integration, $D(x)$ becomes integrable. In Lebesgue integrals we partition the \textit{range} of the function, sum up small ``strips'', and take limit. In this definition,
+\[
+    \int_{0}^{1} D(x) \,\mathrm{d}x=0.
+\]
