@@ -1,0 +1,104 @@
+\section{Orbits}
+The basic problem: consider a particle moving in a force that depends \textit{only} on the radius.
+\[
+    m \ddot{\bfr} = - \nabla V(r).
+\]
+We see that force is directed towards (or away) from the origin. Assume that the central mass (relative to orbiting mass) is remaining fixed. This is well approximated if the central mass is much larger than the orbiting mass $m$.
+
+\subsection{Central forces}
+\begin{definition}
+    \textbf{Central forces} are a special class of conservative forces with $ V(\bfr) = V(r) $. 
+\end{definition}
+Note that $ \bfF(\bfr) = - \nabla V(r) = -\frac{\mathrm{d}V}{\mathrm{d}r}\hat{\bfr}  $, where $ |\hat{\bfr}|=1 $ is a unit vector directed away from the origin.
+\begin{center}
+    \begin{tikzpicture}
+        \draw [->-=0.5] (0,0) -- (2,0) node [pos=0, circ] {} node [pos=0.5,below] {$ \bfr $} node [pos=1, below] {$m$} node [pos=1, dot=4pt] {};
+        \draw [->>, blue] (2,0) -- (3.2,0) node [right] {$ \bfF $}; 
+    \end{tikzpicture}
+\end{center}
+
+\begin{proposition}
+    Angular momentum about $O$ is conserved for a central force.
+\end{proposition}
+\begin{proof}
+    Consider the angular momentum $\bfL$ about $O$: 
+    \[
+        \dot{\bfL} = \bfr \times \bfF = \bfr \times \left( -\frac{\mathrm{d}V}{\mathrm{d}r} \hat{\bfr} \right) = \mathbf{0}.\qedhere
+    \]
+\end{proof}
+\begin{proposition}
+    The motion of a particle under a central force is in a plane through the origin, with orientation determined by $\bfL$.
+\end{proposition}
+\begin{proof}
+    We have $ \bfL = \text{constant} $ and $ \bfL \cdot \bfr=0 $, which is the equation of a plane through $O$.
+\end{proof}
+Hence we reduce a 3D problem to a 2D problem.
+
+\subsection{Polar coordinates}
+Choose $z$ axis so that the orbit lies in $z=0$ plane. To describe the orbit, we introduce polar coordinates $(r, \theta)$:
+\[
+  x = r\cos\theta, \quad y = r\sin \theta.
+\]
+Our object is to separate the motion of the particle into radial and angular components. We do so by defining unit vectors in the directions of increasing $r$ and increasing $\theta$:
+\begin{center}
+  \begin{tikzpicture}
+    \node at (-4.5,1.5) {$\bfe_r = \begin{pmatrix}\cos \theta\\ \sin \theta\end{pmatrix}$,};
+    \node at (-2,1.5) {$\bfe_\theta = \begin{pmatrix}-\sin \theta\\\cos\theta \end{pmatrix}$.};
+    \draw [->] (0, 0) -- (4, 0) node [right] {$x$};
+    \draw [->] (0, 0) -- (0, 3) node [above] {$y$};
+    \draw (0, 0) -- (2, 1.5) node [dot=3pt]{} node [pos = 0.5, anchor = south east] {$r$};
+    \draw [->] (2, 1.5) -- (2.5, 1.875) node [anchor = south west] {$\bfe_r$};
+    \draw [->] (2, 1.5) -- (1.625, 2) node [anchor = south east] {$\bfe_\theta$};
+    \draw (0.7, 0) arc (0:36.87:0.7);
+    \node at (0.9, 0.3) {$\theta$};
+  \end{tikzpicture}
+\end{center}
+$ \bfe_r,\bfr_\theta $ form an orthonormal basis at any point, but orientation depends on position. Note that 
+\[
+    \frac{\mathrm{d}}{\mathrm{d}\theta}\bfe_r = \bfe_\theta ,\quad \frac{\mathrm{d}}{\mathrm{d}\theta}\bfe_\theta=-\bfe_r. 
+\]
+For a moving particle $ \theta $ is a function of position and hence of time. If coordinates are $ (r(t),\theta(t)) $ then
+\[
+    \dot{\bfe}_r = \dot{\theta}\ \frac{\mathrm{d}\bfe_r}{\mathrm{d}\theta} = \dot{\theta}\bfe_\theta .
+\]
+Similarly
+\[
+    \dot{\bfe}_\theta = - \dot{\theta}\bfe_r.
+\]
+
+\subsubsection*{Motion in terms of polars}
+We have
+\[
+    \bfr = r\bfe_r,\quad \dot{\bfr} = \dot{r} \bfe_r + r \dot{\bfe}_r = \dot{r}\bfe_r+r\dot{\theta}\bfe_\theta.
+\]
+Hence we can decompose $ \dot{\bfr} $ into \textbf{radial velocity} $ \dot{r} $ and \textbf{angular velocity} $ r\dot{\theta} $. Note that $ [\dot{\theta}] = T^{-1} $. The acceleration is given by
+\begin{align*}
+    \ddot{\bfr} &= \frac{\mathrm{d}}{\mathrm{d}t}\left( \dot{r}\bfe_r+r\dot{\theta}\bfe_\theta  \right)\\
+    &=  \ddot{r}\bfe_r+\dot{r}\dot{\bfe}_r+\dot{r}\dot{\theta}\bfe_\theta+r \ddot{\theta}\bfe_\theta+r \dot{\theta}\dot{\bfe}_\theta\\ 
+    &= \left( \ddot{r}-r\dot{\theta}^2 \right)\bfe_r+\left( 2 \dot{r}\dot{\theta}+r \ddot{\theta} \right)\bfe_\theta.
+\end{align*}
+\begin{example}[Circular motion with constant angular velocity]
+    Here $ r=a $ is constant, and $ \dot{\theta} = \omega $ is constant. It follows that $ \dot{r}=\ddot{r}=\ddot{\theta}=0 $, so 
+    \[
+        \dot{\bfr} = a \omega \bfe_\theta,\quad \ddot{\bfr} = -a\omega^2\bfe_r.
+    \]
+    $ \ddot{\bfr} $ is also called the \textbf{centripetal acceleration}. Newton's 2nd law implies that a \textbf{centripetal force} is required to maintain this circular motion.
+
+    \begin{center}
+        \begin{tikzpicture}
+            \node [left] at (0,0) {$O$};
+            \draw [dashed] (0,0) -- (1.732,1);
+            \node [circ] at (1.732,1) {};
+            \node at (2.132,1.2) {$m$};
+            \draw [dashed] (0,0) -- (2,0);
+            \draw (0.5,0) arc (0:30:0.5) node [pos=0.7, right] {$\theta$}; 
+            \draw [dashed] (0,0) circle (2);
+            \draw [->] (0,-0.7) -- (0,0);
+            \draw [->] (0,-1.3) -- (0,-2);
+            \node at (0,-1) {$a$};
+            \centerarc[blue,->](0,0)(20:40:2.8);
+            \node [above right,blue] at (2.42,1.4) {$ a\omega $};
+            \draw [->>,blue] (2.26,0.82) -- (1.5,0.55) node [pos=0.4, below] {$ -a\omega^2\bfe_r$};
+        \end{tikzpicture}
+    \end{center}
+\end{example}

@@ -53,7 +53,7 @@ The equation of motion is
     Can check $E$ is indeed conserved.
 \end{example}
 
-\subsubsection{Quantitative insight}
+\subsubsection*{Quantitative insight}
 In 1D conservation of energy gives useful information about motion. Conservation of energy is a 1st integration of Newton's 2nd law. Since 
 \[
     E= \frac{1}{2}m \dot{x}^2 + V(x) \Longrightarrow \dot{x} = \pm \sqrt{\frac{2}{m}(E-V(x))},
@@ -64,7 +64,7 @@ we can use this to derive $x$:
 \]
 This is an implicit solution for $x(t)$. In principle we can evaluate the integral and find $x(t)$.
 
-\subsubsection{Qualitative insight}
+\subsubsection*{Qualitative insight}
 \begin{example}
     $ V(x) = \lambda(x^3-3\beta^2 x) $, where $ \lambda,\beta>0 $.
     \begin{center}
@@ -255,7 +255,7 @@ We can also expand this to a \textit{continuous} mass distribution.
     where $M$ is the total mass. See \href{http://www.damtp.cam.ac.uk/user/tong/relativity/dynrel.pdf#page=29}{the proof} as well as Vector Calculus.
 \end{example}
 
-\subsubsection{Gravitational mass vs. Inertial mass}
+\subsubsection*{Gravitational mass vs. Inertial mass}
 \begin{definition}[Inertial mass]
     Newton's 2nd law says that $ {\color{blue}m} \ddot{\bfr}=\bfF $, this ${\color{blue}m}$ is the \textbf{inertial mass}.
 \end{definition}
@@ -271,7 +271,7 @@ We can also expand this to a \textit{continuous} mass distribution.
     Inertial mass and gravitational mass are the same (within $ 10^{-12} $)\footnote{This is called the \href{http://www.damtp.cam.ac.uk/user/tong/gr/gr.pdf\#page=26}{equivalence principle}.}.
 \end{proposition}
 
-\subsubsection{Simple results on gravity}
+\subsubsection*{Simple results on gravity}
 
 \paragraph{1D approximation.} Consider a mass $m$ at some height $z$ about surface of planet of mass $M$ and radius $R$. Assume $z\ll R $. The potential energy is 
 \[
@@ -318,7 +318,7 @@ Recall the Lorentz force law: $ \mathbf{F} = q(\bfE+\bfu \times \bfB) $. In this
     Rate of working of magnetic field is 0.
 \end{note}
 
-\subsubsection{Point charges}
+\subsubsection*{Point charges}
 A particle with charge $Q$ located at origin generates electrostatic potential and electric field
 \[
     \Phi_e(\bfr) = \frac{Q}{4\pi \epsilon_0 r},\quad \bfE(\bfr) = -\nabla \Phi_e = \frac{Q}{4\pi \epsilon_0 r^2} \hat{\bfr},
@@ -331,7 +331,7 @@ The force on a particle with charge $q$ located at $\bfr$ is
 \]
 known as \textbf{Coulomb force}. Different from gravity, the direction of $\bfF$ depends on signs of charges. $ Qq>0 $-repulsive, $ Qq<0 $-attractive.
 
-\subsubsection{Magnetic field}
+\subsubsection*{Magnetic field}
 Recall that a particle moves in helical motion in constant magnetic field.
 
 \subsection{Frictions}
@@ -342,7 +342,7 @@ Recall that a particle moves in helical motion in constant magnetic field.
     Friction is a convenient description of complicated molecular phenomena. Note that friction is \textit{note} a fundamental force.
 \end{note}
 
-\subsubsection{Dry friction}
+\subsubsection*{Dry friction}
 There are two important force:
 \begin{enumerate}[align=left]
     \item[\textit{Normal force}.] $ \perp $ to contact surface that prevents intermingling of solid bodies in contact,
@@ -377,7 +377,7 @@ Here
 \]
 where $ \mu_k $ is the \textbf{coefficient of kinetic friction}. In general, $ \mu_s>\mu_k>0 $, and their values depend on materials in contact. e.g. $ \mu_s\approx \mu_k\approx 0.8 $ between rubber and asphalt, and between teflons $ \mu_s\approx \mu_k\approx 0.04 $.
 
-\subsubsection{Fluid drag}
+\subsubsection*{Fluid drag}
 This happens when a solid body moves through a fluid. There are two important regimes for drag:
 \begin{enumerate}[align=left]
     \item[\textbf{Linear drag}.] This happens when `small' objects moving through \textit{viscous} fluid, e.g. bacteria moving in body fluid. We have 
@@ -459,3 +459,18 @@ In latter total work done $ \propto |\bfu|^2\cdot x $. The fluid gains energy as
     When the friction is weak, $ ku_0/mg\ll 1 $ and $ R = \frac{2u_0^2}{g}\sin \theta \cos \theta  $. When the friction is large, $ ku_0/mg\gg 1 $ and $ R=\frac{U^2}{g}\left( \frac{mg}{ku_0}\cos \theta \right) $.
 \end{example}
 The lecturer talked quite badly about this example and \href{http://www.damtp.cam.ac.uk/user/tong/relativity/two.pdf\#page=27}{this page} gives a better illustration.
+
+\subsection{Angular momentum}
+\begin{definition}
+    The \textbf{angular momentum} for a particle of mass $m$ moving under influence of a force $ \bfF $, with position vector $\bfr(t)$ and velocity $ \dot{\bfr}(t) $, is defined to be 
+    \[
+        \bfL = \bfr \times \bfp = \bfr \times m \dot{\bfr}.
+    \]
+    Note that $ \dot{\bfL} = m \dot{\bfr}\times \dot{\bfr}+m\bfr \times \ddot{\bfr} = \bfr \times \bfF $. Define the \textbf{torque}(or \textbf{moment} of $\bfF$) to be $ \bfG = \bfr \times \bfF = \dot{\bfL} $.
+\end{definition}
+\begin{note}
+    Values of $ \bfL,\bfG $ depend on choice of origin. We can say `about the origin' or `about any specified point'.
+\end{note}
+\begin{note}
+    If $ \bfr \times \bfF =\bfG= \mathbf{0} $, then the angular momentum is constant. We say that the angular momentum is \textbf{conserved}. For the same system, we can choose the origin wisely so that the angular momentum is conserved.
+\end{note}

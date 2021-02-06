@@ -86,6 +86,9 @@ dot/.style = {circle, fill, minimum size=#1,
 dot/.default = 5pt% size of the circle diameter 
 }
 
+\def\centerarc[#1](#2)(#3:#4:#5)% Syntax: [draw options] (center) (initial angle:final angle:radius)
+    { \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); }
+
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
@@ -496,23 +499,23 @@ dot/.default = 5pt% size of the circle diameter
 
 
 %layout full
-% \geometry{%
-%   a4paper,
-%   lmargin=2cm,
-%   rmargin=2.5cm,
-%   tmargin=3.5cm,
-%   bmargin=2.5cm,
-%   footskip=12pt,
-%   headheight=24pt}
-layout trim
-\geometry{
-papersize={379pt, 699pt},
-textwidth=345pt,
-textheight=596pt,
-left=17pt,
-top=54pt,
-right=17pt
-}
+\geometry{%
+  a4paper,
+  lmargin=2cm,
+  rmargin=2.5cm,
+  tmargin=3.5cm,
+  bmargin=2.5cm,
+  footskip=12pt,
+  headheight=24pt}
+% layout trim
+% \geometry{
+% papersize={379pt, 699pt},
+% textwidth=345pt,
+% textheight=596pt,
+% left=17pt,
+% top=54pt,
+% right=17pt
+% }
 \pagestyle{fancy}
 \theoremstyle{plain}
 
