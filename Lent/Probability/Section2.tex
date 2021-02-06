@@ -202,3 +202,139 @@ When $ \bbE[X] $ is well-defined, we have again that
         \]
     \end{enumerate}
 \end{proposition}
+
+\subsubsection*{More properties of expectation}
+\begin{proposition}
+    Suppose $ X_1,X_2,\dots $ are non-negative r.v.s. Then 
+    \[
+        \bbE \left[ \sum_n X_n \right] = \sum_n \bbE[X_n].
+    \]
+\end{proposition}
+\begin{proof}
+    Suppose $\Omega$ is countable. Note that 
+    \begin{align*}
+        \bbE\left[ \sum_n X_n \right] &= \sum_\omega \sum_n X_n(\omega)\mathbb{P}(\{\omega\})\\ 
+        &= \sum_n\sum_\omega X_n(\omega)\mathbb{P}(\{\omega\}) = \sum_n\bbE[X_n].
+    \end{align*}
+\end{proof}
+
+\begin{proposition}
+    If $ X=1_A,A\in \mathscr{F} $, then $ \bbE[X]=\mathbb{P}(A) $.
+\end{proposition}
+\begin{proposition}
+    If $g:\bbR\to \bbR$, define $ g(X) $ to be the r.v. $ g(X)(\omega)=g(X(\omega)) $. Then 
+    \[
+        \bbE[g(X)] = \sum_{x\in \Omega_X} g(x)\mathbb{P}(X=x).
+    \]
+\end{proposition}
+\begin{proof}
+    Set $Y=g(X)$. 
+    \[
+        \bbE[Y] = y \mathbb{P}(Y=y).
+    \]
+    Note that $ \{Y=y\} = \{\omega:Y(\omega=y)\} = \{\omega:X(\omega)\in g^{-1}(\{y\})\} = \{X\in g^{-1}(y)\} $. So 
+    \begin{align*}
+        \bbE[Y]&= \sum_{y\in \Omega_Y}y \mathbb{P}(X\in g^{-1}(\{y\}))=\sum_{y\in \Omega_Y}y \sum_{x\in g^{-1}(\{y\})}\mathbb{P}(X=x)\\
+        &= \sum_{y\in \Omega_Y}\sum_{x\in g^{-1}(\{y\})}g(x)\mathbb{P}(X=x)= \sum_{x\in \Omega_X} g(x)\mathbb{P}(X=x).\qedhere
+    \end{align*}
+\end{proof}
+
+\begin{proposition}
+    If $ X\ge 0 $ and takes integer values, then 
+    \[
+        \bbE[X] = \sum_{k=1}^{\infty} \mathbb{P}(X\ge k) = \sum_{k=0}^{\infty}\mathbb{P}(X>k).
+    \]
+\end{proposition}
+\begin{proof}
+    Since $X$ takes non-negative integer values, 
+    \[
+        X = \sum_{k=1}^{\infty}1(X\ge k) = \sum_{k=0}^{\infty}1(X>k).
+    \]
+    Note also that 
+    \[
+        x = \sum_{k=1}^{x}1 = \sum_{k=1}^{\infty} 1(x\ge k),
+    \]
+    so taking expectation gives 
+    \begin{align*}
+        \bbE[X] &= \sum_{k=1}^{\infty}\bbE[1(X\ge k)] = \sum_{k=0}^{\infty}\bbE[1(X>k)]\\ 
+        &= \sum_{k=1}^{\infty} \mathbb{P}(X\ge k) = \sum_{k=0}^{\infty}\mathbb{P}(X>k).\qedhere
+    \end{align*}
+\end{proof}
+
+\subsubsection*{Another proof of the inclusion-exclusion formula}
+\begin{proposition}[Properties of indicator]
+    \begin{itemize}
+        \item $ 1(A^\complement) = 1-1(A) $.
+        \item $ 1(A \cap B) = 1(A)\cdot 1(B) $.
+        \item $ 1(A \cup B) = 1-(1-1(A))(1-1(B)) $. More generally,
+        \begin{align*}
+            &1(A_1\cup \cdots \cup A_n) = 1-\prod_{i=1}^{n}(1-1(A_i))\\ 
+            &= \sum_{i=1}^{n}1(A_i) -\sum_{i_1<i_2} 1(A_{i_1}\cap A_{i_2})+\cdots+(-1)^{n+1}1(A_1\cap \cdots\cap A_n).
+        \end{align*}
+    \end{itemize}
+\end{proposition}
+\begin{proof}
+    Do it yourself.
+\end{proof}
+Taking $\bbE$ on both sides we get 
+\[
+    \mathbb{P}{A_1\cup\cdots\cup A_n} = \sum_{i=1}^{n}\mathbb{P}(A_i)-\sum_{i_1<i_2} \mathbb{P}(A_{i_1}\cap A_{i_2})+\cdots+(-1)^{n+1}\mathbb{P}(A_1\cap\cdots\cap A_n),
+\]
+which is exactly the inclusion-exclusion formula.
+
+\subsection{Variance}
+\begin{definition}
+    Let $X$ be a r.v. and $ r\in \mathbb{N} $. We call $ \bbE[X^r] $ (as long as it is well-defined) the \textbf{$r$th moment} of $X$.
+\end{definition}
+\begin{definition}
+    The \textbf{variance} of $X$, denoted as $ \var(X) $, is defined to be 
+    \[
+        \var(X) = \bbE[(X-\bbE[X])^2].
+    \]
+    The variance is a measure of how concentrated $X$ is around its expectation.
+
+    Define $ \sigma=\sqrt{\var(X)} $ the \textbf{standard deviation} of $X$.
+\end{definition}
+\subsubsection*{Properties of variance}
+\begin{proposition}
+    \begin{enumerate}
+        \item $ \var(X)\ge 0 $. If $ \var(X)=0 $ then $ \mathbb{P}(X=\bbE[X])=1 $.
+        \item If $c\in \bbR$ then $ \var(cX)=c^2\var(X) $ and $ \var(X+c)=\var(X) $.
+        \item $ \var(X)=\bbE[X^2]-(\bbE[X])^2 $.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    We only prove 3 since other are trivial. Note that 
+    \begin{align*}
+        \var(X)&= \bbE[(X-\bbE[x])^2] = \bbE[X^2-2X\bbE[X]+(\bbE[X])^2]\\ 
+        &= \bbE[X^2]-2\bbE[X]\bbE[X]+(\bbE[X])^2=\bbE[X^2]-(\bbE[X])^2,
+    \end{align*}
+    as claimed.
+\end{proof}
+
+\begin{proposition}
+    $ \displaystyle \var(X) = \min_{c\in \bbR}\bbE[(X-c)^2] $ and the min is achieved for $ c=\bbE[X] $.
+\end{proposition}
+\begin{proof}
+    Let $ f(c)=\bbE[(X-c)^2] = \bbE[X^2]-2c\bbE[X]+c^2 $. Using usual algebras gives the result.
+\end{proof}
+
+\begin{example}
+    \begin{enumerate}
+        \item Suppose $ X\sim B(n,p) $, so $ \bbE[X]=np $.
+        \begin{align*}
+            \var(X) &= \bbE[X^2]-(\bbE[X])^2 = \bbE[X(X-1)]+\bbE[X]-(\bbE[X])^2\\ 
+            &= \sum_{k=2}^{n}k(k-1) \binom{n}{k}p^k (1-p)^{n-k} +np-n^2p^2\\ 
+            &= n(n-1)p^2 \sum_{k=2}^{n}\binom{n-2}{k-2}p^{k-2}(1-p)^{n-k}+np-n^2p^2\\ 
+            &= n(n-1)p^2+np-n^2p^2\\ 
+            &= np(1-p).
+        \end{align*}
+        \item $ X\sim P(\lambda) $, then 
+        \begin{align*}
+            \var(X) &= \bbE[X^2]-\lambda^2 = \bbE[X(X-1)]+\bbE[X]-\lambda^2\\ 
+            &= \sum_{k=2}^{\infty} k(k-1)e^{-\lambda}\frac{\lambda^k}{k!}+\lambda-\lambda^2\\ 
+            &= e^{-\lambda}\lambda^2\sum_{k=2}^{\infty}\frac{\lambda^{k-2}}{(k-2)!}+\lambda-\lambda^2\\ 
+            &= \lambda.
+        \end{align*}
+    \end{enumerate}
+\end{example}
