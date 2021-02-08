@@ -216,7 +216,7 @@ Hence $ \theta $ exact $ \Rightarrow \theta $ closed. The reverse implication is
 \end{example}
 
 \subsection{Integration in $ \mathbb{R}^{2} $}
-\subsubsection{Definition}
+\subsubsection*{Definition}
 We want to integrate over bounded region $ D \subseteq \mathbb{R}^{2} $. To do this, cover $D$ with small disjoint $A_{ij}$ with areas $ \delta A_{ij} $, each contained in a disc of radius $ \epsilon>0 $. Let $ (x_i,y_i) $ be points contained in each $A_{ij}$.
 \begin{center}
     \begin{tikzpicture}
@@ -243,7 +243,7 @@ We want to integrate over bounded region $ D \subseteq \mathbb{R}^{2} $. To do t
     We say the integral exists if it is independent of choice $A_{ij}$ and choice $ (x_i,y_j) $.
 \end{definition}
 
-\subsubsection{Compute surface integrals}
+\subsubsection*{Compute surface integrals}
 
 One obvious choice is to use \textit{rectangles} with $ \delta A_{ij} = \delta x \delta y $.
 \begin{center}
@@ -328,7 +328,7 @@ See \href{https://dec41.user.srcf.net/notes/II_M/probability_and_measure.pdf\#pa
     \]
 \end{proposition}
 
-\subsubsection{Change of variables}
+\subsubsection*{Change of variables}
 
 It is often useful to introduce change of variables to compute $ \int_{a}^{b} f(x) \,\mathrm{d}x $. If we introduce $ x=x(u) $ with $ x(\alpha)=a $ and $ x(\beta)=b $. Then 
 \[
@@ -434,7 +434,7 @@ For details, see \href{http://jt775.user.srcf.net/IA-Lent/handouts/vc_handout2.p
 \end{example}
 
 \subsection{Integration in $ \mathbb{R}^{3} $}
-\subsubsection{Compute volumn integrals}
+\subsubsection*{Compute volumn integrals}
 
 To integrate over region $V$ in $ \mathbb{R}^{3}$, use similar ideas to those in $ \mathbb{R}^{2} $. Let 
 \[
@@ -456,7 +456,7 @@ where $ V_{ijk} $ are small volumns contained in balls of radius $\epsilon$. In 
     \end{align*}
 \end{example}
 
-\subsubsection{Change of variables}
+\subsubsection*{Change of variables}
 \begin{proposition}
     Let $ x(u,v,w) $, etc. be a continuously differentiable bijection with continuously differentiable inverse $ V'\mapsto V $. Then 
     \[
@@ -521,10 +521,256 @@ where $ V_{ijk} $ are small volumns contained in balls of radius $\epsilon$. In 
     \end{align*}
 \end{example}
 
-\subsection{Talks on Riemann \& Lebesgue integrals}
+\subsection*{Talks on Riemann \& Lebesgue integrals}
 In Riemann integrals $ \int_{D} f \,\mathrm{d}x $, we arbitrarily partition the domain $D$ into small pieces, sum up the small rectangles, and take limit. For surface integrals $ \int_{D} f \,\mathrm{d}A $, we partition arbitrarily the domain $D$ and carry out the same process. However, it has lots of limitations. e.g. for the Dirichlet function (see Analysis I) $D(x)$, $ \int_{0}^{1} D(x) \,\mathrm{d}x $ does not exist in Riemann definition.
 
 However, in Lebesgue's theorey of integration, $D(x)$ becomes integrable. In Lebesgue integrals we partition the \textit{range} of the function, sum up small ``strips'', and take limit. In this definition,
 \[
     \int_{0}^{1} D(x) \,\mathrm{d}x=0.
 \]
+
+\subsection{Integration over surfaces}
+\subsubsection*{Surfaces in $ \mathbb{R}^{3} $}
+A 2D surface in $ \mathbb{R}^{3} $ can be defined using a function $ f: \mathbb{R}^{3}\to \mathbb{R}  $ as 
+\[
+    S = \{\bfx\in \mathbb{R}^{3}:f(\bfx)=0\}.
+\]
+The normal to $S$ at $\bfx$ is parallel to $ \nabla f(\bfx) $. 
+\begin{definition}
+    Call a surface \textbf{regular} if $ \nabla f(\bfx)\neq \mathbf{0} $ for $ \bfx\in S $.
+\end{definition}
+
+\begin{example}
+    $ S = \{(x,y,z):x^2+y^2+z^2-1=0\} $. So 
+    \[
+        \nabla f(\bfx) = \begin{pmatrix}
+            2x \\ 2y \\ 2z
+        \end{pmatrix}\neq \mathbf{0},
+    \]
+    so a sphere in $\bbR^3$ is regular.
+\end{example}
+
+Some surfaces have a \textbf{boundary}, e.g. hemisphere. Label the boundary by $ \partial S $. In this course a surface $S$ will either have no boundary or it will have a boundary made of piecewise \textit{smooth} curves.
+\begin{center}
+    \begin{tikzpicture}[scale=0.7]
+        \node (0) at (1, 3) {};
+        \node (1) at (2, 2) {};
+        \node (2) at (1, -3) {};
+        \node (3) at (2, -2) {};
+        \node (4) at (-3, 1) {};
+        \node (5) at (-3, 0) {};
+        \node (6) at (2, 3) {$ \partial S $};
+        \node (7) at (2, -3) {$ \partial S $};
+        \node (8) at (-3.6, 0.5) {$ \partial S $};
+        \draw [bend left, looseness=1.50] (0.center) to (4.center);
+		\draw [in=375, out=105, looseness=1.25] (2.center) to (5.center);
+		\draw [bend left=45, looseness=1.25] (3.center) to (1.center);
+		\draw [red, bend left, looseness=1.25] (0.center) to (1.center);
+		\draw [red, bend right, looseness=1.25] (2.center) to (3.center);
+		\draw [red, bend right=45] (4.center) to (5.center);
+		\draw [red, bend right=15, looseness=1.25] (0.center) to (1.center);
+		\draw [red, bend left, looseness=1.25] (2.center) to (3.center);
+		\draw [red, bend left, looseness=0.75] (4.center) to (5.center);
+    \end{tikzpicture}
+\end{center}
+\begin{definition}
+    If $S$ has no boundary, we say $S$ is a \textbf{closed} surface.
+\end{definition}
+
+\subsubsection*{Parametrisation of surfaces}
+
+It is often useful to parametrise a surface using some coordinates $(u,v)$:
+\[
+    S = \{\bfx=(u,v):(u,v)\in D\}
+\]
+where $D$ is some region in $ (u,v) $ plane.
+\begin{example}
+    Consider a hemisphere. By using spherical polars, 
+    \[
+        S = \{\bfx = \bfx(\theta,\phi),\theta\in [0,\pi/2],\phi\in [0,2\pi]\},\quad \bfx(\theta,\phi) = \begin{pmatrix}
+            \sin \theta \cos \phi \\ \sin \theta \sin \phi \\ \cos \theta
+        \end{pmatrix}.
+    \]
+\end{example}
+
+\begin{definition}
+    Call a parametrisation of $S$ \textbf{regular} if 
+    \[
+        \frac{\partial \bfx}{\partial u} \times \frac{\partial \bfx}{\partial v}\neq \mathbf{0}\quad\text{on }S.  
+    \]
+    In this case, we can define the \textbf{normal} to $S$ by 
+    \[
+        \bfn = \frac{\dfrac{\partial \bfx}{\partial u}\times \dfrac{\partial \bfx}{\partial v}  }{\left| \dfrac{\partial \bfx}{\partial u}\times \dfrac{\partial \bfx}{\partial v} \right| }.
+    \]
+\end{definition}
+\begin{note}
+    This normal will vary smoothly(or piecewise smoothly) wrt $(u,v)$.
+\end{note}
+
+Choosing a normal consistently over $S$ gives us a way of orientating the boundary $ \partial S $: make the convention that normal vectors in your immediate vicinity shound be on your \textit{left} as traverse $ \partial S $.
+\begin{center}
+    \begin{tikzpicture}[scale = 0.7]
+        \node (0) at (-3, 2) {};
+        \node (1) at (-2, 3) {};
+        \node (2) at (2, 3) {};
+        \node (3) at (3, 1.5) {};
+        \node (4) at (-3, -2) {};
+        \node (5) at (4, -2) {};
+        \node (6) at (0.25, 1.25) {};
+        \node (7) at (-2, -0.25) {};
+        \node (8) at (3, -0.75) {};
+        \node (9) at (0.25, 2.75) {};
+        \node (10) at (4.25, 0.25) {};
+        \node (11) at (-3.25, 0.5) {};
+        \draw [red, bend left, ->-=0.6] (0.center) to (1.center);
+        \draw [red, bend left, looseness=1.25,-<-=0.4] (2.center) to (3.center);
+        \draw [red, bend right=90, looseness=0.25,arrow inside={end=latex',opt={red,scale=1.6}}{0.25,0.5,0.75}] (4.center) to (5.center);
+        \draw [bend right=45, looseness=1.50] (1.center) to (2.center);
+        \draw [in=75, out=-30, looseness=1.25] (0.center) to (4.center);
+        \draw [in=105, out=-135, looseness=2.00] (3.center) to (5.center);
+        \draw [red, bend left,->-=0.6] (1.center) to (0.center);
+        \draw [dashed,red, bend left, -<-=0.4] (3.center) to (2.center);
+        \draw [dashed,red, bend right=90, looseness=0.25, arrow inside={end=latex',opt={red,scale=1.6}}{0.25,0.5,0.75}] (5.center) to (4.center);
+        \draw [->] (6.center) -- (9.center) node [pos=0, dot=3pt] {} node [above] {$ \bfn $};
+        \draw [->] (8.center) -- (10.center) node [pos=0, dot=3pt] {} node [above right] {$ \bfn $};
+        \draw [->] (7.center) -- (11.center) node [pos=0, dot=3pt] {} node [above left] {$ \bfn $};
+    \end{tikzpicture}    
+\end{center}
+\subsubsection*{Compute the area}
+How should we compute the area of $S$? We might think that it would be 
+\[
+    \iint_{D} \dd u\dd v,
+\]
+which is \textit{wrong} since $ \delta u \,\delta v $ on $D$ does not necessarily give the area $ \delta u \,\delta v $ on $S$.
+
+\begin{center}
+    \begin{tikzpicture}
+        \node (0) at (1, 1) {};
+        \node (1) at (5, 1) {};
+        \node (2) at (0, -2) {};
+        \node (3) at (4, -2) {};
+        \node (4) at (1.5, -0.25) {};
+        \node (5) at (3.25, -0.25) {};
+        \node (6) at (1, -1.5) {};
+        \node (7) at (2.75, -1.5) {};
+        \node (8) at (3.25, -0.25) {};
+        \node (9) at (2, -3.5) {};
+        \node (10) at (5.25, -1) {};
+        \node (11) at (1.75, -1.75) {};
+        \node (12) at (2.95, -1) {};
+        \node (13) at (-3.25, -0.75) {};
+		\node (14) at (2, -1) {};
+        \node at (4,0) {$S$};
+        \draw [in=-135, out=-45, looseness=0.75] (0.center) to (1.center);
+        \draw (1.center) to (3.center);
+        \draw (0.center) to (2.center);
+        \draw [in=-150, out=-30] (2.center) to (3.center);
+        \draw [dashed, bend right,thick] (4.center) to (8.center);
+        \draw [dashed,thick] (8.center) to (7.center);
+        \draw [dashed,thick] (4.center) to (6.center);
+        \draw [dashed, bend right,thick] (6.center) to (7.center);
+        \draw [->, in=-105, out=135] (9.center) to (11) node [below] at (9) {$ \bfx(u+\delta u,v)-\bfx(u,v) $};
+        \draw [->, bend left=330] (10.center) to (12) node [below] at (10) {$ \bfx(u,v+\delta v)-\bfx(u,v) $};
+        \path [fill=black!20] (4.center) to [bend right] (8.center) -- (7.center) to [bend left] (6.center) -- (4.center) ;
+        \filldraw [color=black, fill=black!20, dashed] (-4,-1.5) rectangle (-2.5,0);
+        \draw (-2.5,0) -- (-2.5,0.5);
+        \draw (-2.5,0) -- (-2,0);
+        \draw (-4,-1.5) -- (-4.5,-1.5);
+        \draw (-4,-1.5) -- (-4,-2);
+        \draw (-4,0) -- (-4.5,0);
+        \draw (-4,0) -- (-4,0.5);
+        \draw (-2.5,-1.5) -- (-2.5,-2);
+        \draw (-2.5,-1.5) -- (-2,-1.5);
+        \node at (-3.25,0.5) {$D$};
+        \draw [->] (-3.5,-1.75) --(-4,-1.75);
+        \draw [->] (-3,-1.75) -- (-2.5,-1.75);
+        \node at (-3.25,-1.75) {$\delta u$};
+        \draw [->] (-4.25,-0.5) -- (-4.25,0);
+        \draw [->] (-4.25,-1) -- (-4.25,-1.5);
+        \node at (-4.25,-0.75) {$ \delta v $};
+        \draw [->, bend left=15] (13.center) to (14.center);
+    \end{tikzpicture}
+\end{center}
+
+Note that small changes $ u \mapsto u+\delta u,v \mapsto v+\delta v $ produce 
+\[
+    \bfx(u+\delta u,v)-\bfx(u,v) \approx \frac{\partial \bfx}{\partial u}\delta u ,\quad \bfx(u,v+\delta v)-\bfx(u,v) \approx \frac{\partial \bfx}{\partial v}\delta v.
+\]
+So the patch of area $ \delta u \delta v $ in $D$ corresponds (to 1st order) to a parallelogram of area of sides $ \frac{\partial \bfx}{\partial u}\delta u  $ and $ \frac{\partial \bfx}{\partial v}\delta v  $ with area 
+\[
+    \left| \frac{\partial \bfx}{\partial u}\times \frac{\partial \bfx}{\partial v} \right| \delta u \,\delta v.
+\]
+
+This leads us to define the \textbf{scalar area element} and \textbf{vector area element}
+\[
+    \rmd S = \left| \frac{\partial \bfx}{\partial u}\times \frac{\partial \bfx}{\partial v} \right| \delta u \,\delta v,\quad \rmd \bfS = \frac{\partial \bfx}{\partial u}\times \frac{\partial \bfx}{\partial v}  \delta u \,\delta v.
+\]
+So the surface area of $S$ is 
+\[
+    \operatorname{area} S = \int_{S} \,\mathrm{d}S = \iint_{D} \left| \frac{\partial \bfx}{\partial u}\times \frac{\partial \bfx}{\partial v} \right| \dd u \dd v,
+\]
+and integration of $f$ over $S$ is 
+\[
+    \int_{S} f \,\mathrm{d}S = \iint_{D} f(\bfx(u,v)) \left| \frac{\partial \bfx}{\partial u}\times \frac{\partial \bfx}{\partial v} \right| \dd u \dd v.
+\]
+
+\begin{example}
+    Consider a hemisphere of radius $R$:
+    \[
+        S = \left\{ \bfx(\theta,\phi) = \begin{pmatrix}
+           R \sin \theta \cos \phi \\ R\sin \theta \sin \phi \\ R\cos \theta
+        \end{pmatrix}=R\bfe_r,\theta\in [0,\pi/2],\phi\in [0,2\pi]\right\}.
+    \]
+    We see that 
+    \[
+        \frac{\partial \bfx}{\partial \theta} =  \begin{pmatrix}
+            R \cos \theta \cos \phi \\ R\cos \theta \sin \phi \\ -R\sin \theta
+         \end{pmatrix}=R\bfe_\theta,\quad
+        \frac{\partial \bfx}{\partial \phi}= \begin{pmatrix}
+            -R \sin \theta \sin \phi \\ R\sin \theta \cos \phi \\ 0
+         \end{pmatrix}=R \sin \theta \bfe_\phi.
+    \]
+    Therefore 
+    \[
+        \rmd S = R^2 \sin \theta |\bfe_\theta\times \bfe_\phi| \dd \theta\dd \phi = R^2 \sin \theta\dd \theta\dd \phi.
+    \]
+    Hence 
+    \begin{align*}
+        \operatorname{area}(S) &= \int_{\theta=0}^{\pi/2} \int_{\phi=0}^{2\pi} R^2 \sin \theta \,\mathrm{d}\phi  \,\mathrm{d}\phi\\ 
+        &= 2\pi R.
+    \end{align*}
+\end{example}
+
+\begin{example}
+    Suppose velocity of fluid is written $ \bfu=\bfu(\bfx) $. Given $S$, how to calculate how much fluid passes through it per unit time?
+
+    On small patch $ \delta S $ on $S$, the fluid passing through would be $ (\bfu \cdot \delta\bfS)\delta t$ in time $ \delta t $. So the amount of fluid passing through $S$ in $ \delta t $ is 
+    \[
+        \delta t \int_{S} \bfu \cdot \mathrm{d}\bfS.
+    \]
+    This is called \textbf{flux integral}.
+\end{example}
+
+\subsubsection*{Change of parametrisations}
+Let $ \bfx=\bfx(u,v) $ and $ \bfx = \tilde{\bfx}(\tilde{u},\tilde{v}) $ be two different parametrisations of $S$ with $ (u,v)\in D $ and $ (\tilde{u},\tilde{v})\in \tilde{D} $. We have the (smooth invertible) relationship 
+\[
+    \bfx(u,v) = \tilde{\bfx}(\tilde{u}(u,v),\tilde{v}(u,v)).
+\]
+By chain rule,
+\begin{align*}
+    \frac{\partial \bfx}{\partial u}\times \frac{\partial \bfx}{\partial v} &= \left( \frac{\partial \tilde{\bfx}}{\partial \tilde{u}}\frac{\partial \tilde{u}}{\partial u}+ \frac{\partial \tilde{\bfx}}{\partial \tilde{v}}\frac{\partial \tilde{v}}{\partial u}  \right) \times \left( \frac{\partial \tilde{\bfx}}{\partial \tilde{u}}\frac{\partial \tilde{u}}{\partial v}+\frac{\partial \tilde{\bfx}}{\partial \tilde{v}}\frac{\partial \tilde{v}}{\partial v} \right)\\ 
+    &= \left( \frac{\partial \tilde{u}}{\partial u}\frac{\partial \tilde{v}}{\partial v}-\frac{\partial \tilde{u}}{\partial v}\frac{\partial \tilde{v}}{\partial u} \right)\frac{\partial \tilde{\bfx}}{\partial \tilde{u}}\times \frac{\partial \tilde{\bfx}}{\partial \tilde{v}}\\ 
+    &=\frac{\partial (\tilde{u},\tilde{v})}{\partial (u,v)} \frac{\partial \tilde{\bfx}}{\partial \tilde{u}}\times \frac{\partial \tilde{\bfx}}{\partial \tilde{v}}\\ 
+    &= J\,\frac{\partial \tilde{\bfx}}{\partial \tilde{u}}\times \frac{\partial \tilde{\bfx}}{\partial \tilde{v}}.
+\end{align*}
+
+Therefore with change of variables $ \tilde{u}=\tilde{u}(u,v),\tilde{v}=\tilde{v}(u,v) $,
+\begin{align*}
+    \int_{S} f \,\mathrm{d}S &= \iint_{\tilde{D}} f(\tilde{\bfx}(\tilde{u},\tilde{v})) \left|\frac{\partial \tilde{\bfx}}{\partial \tilde{u}}\times \frac{\partial \tilde{\bfx}}{\partial \tilde{v}}  \right| \dd \tilde{u}\dd \tilde{v}\\ 
+    &= \iint_{D} f(\bfx(u,v)) \left|\frac{\partial \tilde{\bfx}}{\partial \tilde{u}}\times \frac{\partial \tilde{\bfx}}{\partial \tilde{v}}  \right| \left| \frac{\partial (\tilde{u},\tilde{v})}{\partial (u,v)} \right| \dd u\dd v\\ 
+    &= \iint_{D} f(\bfx(u,v)) \left| \frac{\partial \bfx}{\partial u}\times \frac{\partial \bfx}{\partial v} \right| \dd u \dd v.
+\end{align*}
+
+\begin{proposition}
+    $\displaystyle \int_{S} f \,\mathrm{d}S$ is independent of parametrisations of $S$.
+\end{proposition}

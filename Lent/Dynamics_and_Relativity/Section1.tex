@@ -208,7 +208,7 @@ Need to provide initial position and velocity $ \mathbf{r}(t_0),\dot{\bfr}(t_0) 
     \begin{center}
         \begin{tikzpicture}
             \begin{axis}[view={60}{30},ticks=none]
-            \addplot3[domain=6*pi:0, samples = 200, samples y=0, color=red, arrow inside={end=stealth,opt={red,scale=2}}{0.1,0.24,0.433,0.572,0.766,1}]
+            \addplot3[domain=6*pi:0, samples = 200, samples y=0, color=red, arrow inside={end=latex',opt={red,scale=2}}{0.1,0.24,0.433,0.572,0.766,1}]
             ({sin(deg(x))},{cos(deg(x))},{x});
             \end{axis}
             \end{tikzpicture}

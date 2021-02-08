@@ -32,7 +32,7 @@ assuming summation convention. Call $ \{\rmd u_i\} $ \textbf{differential forms}
     \]
 \end{example}
 
-\subsubsection{Differentials and the chain rule}
+\subsubsection*{Differentials and the chain rule}
 Let $ f: \mathbb{R}^{n}\to \mathbb{R} $, $\bfu=(u_1,\dots,u_n)$ and $ \delta\bfu=(\delta u_1,\dots,\delta u_n) $, then we have 
 \[
     \delta f=f(\bfu+\delta\bfu)-f(\bfu)=\frac{\partial f}{\partial u_i}\delta u_i +o(\delta\bfu),
@@ -114,7 +114,7 @@ i.e. change in coordinates $ x \mapsto x+\delta x $, then the vector changes(to 
     A change $ \theta \mapsto \theta+ \delta \theta $ produces a (first order) change $ \mathbf{x}\mapsto \mathbf{x}+r\delta \theta\bfe_\theta  $.
 \end{example}
 
-\subsubsection{Orthogonal curvilinear coordinates}
+\subsubsection*{Orthogonal curvilinear coordinates}
 In general we say that $(u, v, w)$ are a set of \textbf{orthogonal curvilinear coordinates} if the vectors
 \[
     \bfe_u = \frac{\partial \bfx/\partial u }{\left| \partial \bfx/\partial u \right| },\quad \bfe_v=\frac{\partial \bfx/\partial v }{\left| \partial \bfx/\partial v \right| },\quad \bfe_w=\frac{\partial \bfx/\partial w }{\left| \partial \bfx/\partial w \right| }
@@ -131,7 +131,7 @@ called \textbf{scale factors}. They are called so because
 \]
 They describe how small changes in $ (u,v,w) $ scale up (to 1st order) to changes in $\bfx$ wrt $ \bfe_u,\bfe_v,\bfe_w $.
 
-\subsubsection{Cylindrical polar coordinates}
+\subsubsection*{Cylindrical polar coordinates}
 Cylindrical polar coordinates $ (\rho,\phi,z) $ are defined by 
 \[
     \bfx(\rho,\phi,z)= \begin{pmatrix}
@@ -174,7 +174,7 @@ and line element
 
 See \href{http://jt775.user.srcf.net/IA-Lent/handouts/vc_handout1.pdf}{handout 1} for detailed diagrams.
 
-\subsubsection{Spherical polar coordinates}
+\subsubsection*{Spherical polar coordinates}
 Define $ (r,\theta,\phi) $ by 
 \[
     \bfx(r,\theta,\phi) = \begin{pmatrix}
@@ -237,7 +237,7 @@ By Cauchy-Schwarz, $ \nabla f $ points in direction of greatest increase of $f$.
     so $ \nabla f =\bfx $.
 \end{example}
 
-\subsubsection{Gradient along a curve}
+\subsubsection*{Gradient along a curve}
 Suppose we have a curve $ t \mapsto \bfx(t) $. How does $f$ change as we move along this curve?
 
 Write $ F(t) = f(\bfx(t)) $, $ \delta\bfx = \bfx(t+\delta t)-\bfx(t) $.
@@ -251,7 +251,7 @@ Since $ \delta\bfx = \delta t\, \bfx'(t)+o(\delta t) $,
     \Longrightarrow & \boxed{\frac{\mathrm{d}F}{\mathrm{d}t} = \frac{\mathrm{d}}{\mathrm{d}t}f(\bfx(t)) = \frac{\mathrm{d}\bfx}{\mathrm{d}t} \cdot \nabla f(\bfx(t))}.
 \end{align*}
 
-\subsubsection{Gradient as the normal of a surface}
+\subsubsection*{Gradient as the normal of a surface}
 Suppose a surface $S$ is defined implicitly by 
 \[
     S = \{\bfx\in \mathbb{R}^{3}: f(\bfx)=0\}.
@@ -263,7 +263,7 @@ If $ t \mapsto \bfx(t) $ is \textit{any} curve \textit{in} $S$, then $ f(\bfx(t)
 so $ \nabla f $ is \textit{orthogonal} to tangent vector of \textit{any curve} in $S$, and thus is \textit{normal} to $S$ at $ \bfx $.
 
 \subsection{Computing the gradient}
-\subsubsection{In Cartesian coordinates}
+\subsubsection*{In Cartesian coordinates}
 To get $ \bfx \mapsto \bfx+\bfh $, simply let $ x \mapsto x+h_1 $ etc. and 
 \begin{align*}
     f(\bfx+\bfh) &= f(x+h_1,y+h_2,z+h_3)\\ 
@@ -287,7 +287,7 @@ We see that $ \nabla $ is a ``vector differential operator'' and in Cartesian co
     Let $ f=\frac{1}{2}|\bfx|^2 = \frac{1}{2}(x^2+y^2+z^2) $. Then $ \nabla f = (x,y,z) $.
 \end{example}
 
-\subsubsection{In orthogonal curvilinear coordinates}
+\subsubsection*{In orthogonal curvilinear coordinates}
 Recall in Cartesian coordinates $ \rmd \bfx = \rmd x_i \bfe_i $ and $ \rmd f = (\partial f/\partial x_i ) x_i $. Notice that
 \[
     \nabla f \cdot \rmd \bfx = \left( \bfe_i \frac{\partial f}{\partial x_i}  \right) \cdot \left( \bfe_j \dd x_j \right) = \frac{\partial f}{\partial x_i}(\bfe_i\cdot \bfe_j) \dd x_j = \frac{\partial f}{\partial x_i}\dd x_i = \rmd f.  
