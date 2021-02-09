@@ -39,7 +39,7 @@ Choose $z$ axis so that the orbit lies in $z=0$ plane. To describe the orbit, we
 \[
   x = r\cos\theta, \quad y = r\sin \theta.
 \]
-Our object is to separate the motion of the particle into radial and angular components. We do so by defining unit vectors in the directions of increasing $r$ and increasing $\theta$:
+Our object is to separate the motion of the particle into radial and angular components. We do so by definitionning unit vectors in the directions of increasing $r$ and increasing $\theta$:
 \begin{center}
   \begin{tikzpicture}
     \node at (-4.5,1.5) {$\bfe_r = \begin{pmatrix}\cos \theta\\ \sin \theta\end{pmatrix}$,};
@@ -102,3 +102,139 @@ Hence we can decompose $ \dot{\bfr} $ into \textbf{radial velocity} $ \dot{r} $ 
         \end{tikzpicture}
     \end{center}
 \end{example}
+
+\subsection{Motion in a central force field}
+\subsubsection*{Equation of motion}
+By Newton's 2nd law,
+\[
+    m \ddot{\bfr} = \bfF = - \nabla V = -\frac{\mathrm{d}V}{\mathrm{d}r}\bfe_r. 
+\]
+By previous results,
+\[
+    m\left( \ddot{r}-r\dot{\theta}^2 \right)\bfe_r+m\left( 2 \dot{r}\dot{\theta}+r \ddot{\theta} \right)\bfe_\theta=-\frac{\mathrm{d}V}{\mathrm{d}r}\bfe_r. 
+\]
+Consider angular component: 
+\[
+    m\left( 2 \dot{r}\dot{\theta}+r \ddot{\theta} \right) =0
+    \Longrightarrow\frac{m}{r}\frac{\mathrm{d}}{\mathrm{d}t}\left( r^2\dot{\theta} \right)=0,
+\]
+which is equivalent to 
+\[
+    m r^2 \dot{\theta} = \text{const}.
+\]
+Consider the angular momentum 
+\[
+    \bfL = m\bfr \times \dot{\bfr} = mr\bfe_r \times (\dot{r}\bfe_r+r \dot{\theta}\bfe_\theta) =mr^2 \dot{\theta}\bfe_z.
+\]
+i.e. magnitude of angular momentum is constant: $ r^2 \dot{\theta}=h $ constant.
+
+Consider radial component: 
+\begin{equation}\label{eq:radial component}\tag{$*$}
+    m\left( \ddot{r}-r\dot{\theta}^2 \right) = -\frac{\mathrm{d}V}{\mathrm{d}r} \Longrightarrow m \ddot{r}=-\frac{\mathrm{d}V}{\mathrm{d}r}+\frac{mh^2}{r^3}=: -\frac{\mathrm{d}V_{\text{eff}}}{\mathrm{d}r},  
+\end{equation}
+where $ V_{\text{eff}}(r)=V(r)+\frac{mh^2}{2r^2} $ is called the \textbf{effective potential}. This means that motion of particle is equivalent to 1D motion under $ V_{\text{eff}} $.
+\subsubsection*{Equation of energy}
+Consider energy of the particle:
+\[
+    T+V(r) = \frac{1}{2}m \left( \dot{r}^2+r^2 \dot{\theta}^2 \right) +V(r) = \frac{1}{2}m \dot{r}^2+\underbrace{\frac{1}{2}m\frac{h^2}{r^2}+V(r)}_{V_{\text{eff}}(r)}.
+\]
+This indeed matches with the definitionnition before.
+
+\begin{example}[Inverse square law force]
+    Consider 
+    \[
+        V(r) = -\frac{GMm}{r},\quad V_{\text{eff}}(r) = -\frac{GMm}{r}+\frac{mh^2}{2r^2},
+    \]
+    given $h$.
+    \begin{center}
+        \begin{tikzpicture}[xscale=0.5]
+          \draw [->] (0, 0) -- (8, 0) node [right] {$r$};
+          \draw [->] (0, -2) -- (0, 2) node [above] {$V_{\text{eff}}$};
+          \draw [red,samples=70, domain=0.5:7.8] plot (\x, {-3/\x + 2/(\x*\x)});
+    
+          \draw [dashed] (1.33, -1.125) -- (0, -1.125) node [left] {$E_{\min}$};
+          \draw [dashed] (1.33, -1.125) -- (1.33, 0) node [above] {$r_*$};
+        \end{tikzpicture}
+    \end{center}
+    Let $ V_{\text{eff}}(r_0)=0, V_{\text{eff}}'(r_{*})=0 $. Then
+    \[
+        r_0=\frac{h^2}{2gm},r_*=\frac{h^2}{gm}, E_{\text{min}}=-\frac{m(GM)^2}{2h^2} .
+    \]
+    \begin{itemize}
+        \item $ E=E_{\text{min}} $. Then $ r(t)\equiv r_* $. Note that $ \dot{\theta} = h/r_*^2 $ so the particle reaches an equilibrium and does circular motion with constant angular velocity.
+        \item $E_{\min} < E < 0$. Then $r$ oscillates and $\dot{\theta}=h/r^2$ does also. This is a non-circular, bounded orbit.
+        \item $E \geq 0$. Then $ r(t)\to \infty $ as $ t\to \infty  $. The particle escapes and the orbit is unbounded.
+    \end{itemize}
+\end{example}
+
+
+\begin{definition}[Periapsis, apoapsis and apsides]
+    The points of minimum and maximum $r$ in such an orbit are called the \textbf{periapsis} and \textbf{apoapsis}. They are collectively known as the \textbf{apsides}.
+\end{definition}
+
+\begin{definition}[Perihelion and aphelion]
+For an orbit around the Sun, the periapsis and apoapsis are known as the \textbf{perihelion} and \textbf{aphelion}.
+\end{definition}
+
+In particular
+\begin{definition}[Perigee and apogee]
+The perihelion and aphelion of the Earth are known as the \textbf{perigee} and \textbf{apogee}.
+\end{definition}
+
+\subsection{Stability of circular orbits}
+Consider a genreral potential $V(r)$. Does a circular orbit exists and is it stable? Assume that angular momentum is given and non-zero.
+
+For a circular orbit, $r(t)=r_*=\text{const}$ requires $ \ddot{r}=0 $ and hence $ {\color{blue}V_{\text{eff}}'(r_*)=0} $. It is stable if $ V_{\text{eff}} $ has a minimum at $r_*$ and unstable if $V_{\text{eff}}$ has a maximum at $r_*$. Hence it is stable if $ {\color{blue}V_{\text{eff}}''(r_*)>0} $ and is unstable $ {\color{blue}V_{\text{eff}}''(r_*)<0} $. 
+
+Write in terms of $V(r)$: 
+\[
+    V'(r_*)-\frac{mh^2}{r_*^3}=0.
+\]
+Therefore it is stable if
+\[
+    V''(r_*)+\frac{3mh^2}{r_*^4}>0 \Longrightarrow {\color{blue}V''(r_*)+\frac{3V'(r_*)}{r_*}>0}.
+\]
+
+\begin{example}
+    Consider $ V(r)=-km/r^p,p>0,k>0 $. For circular motion,
+    \[
+        \frac{pkm}{r_*^{p+1}}-\frac{mh^2}{r_*^3}=0 \Longrightarrow r_*^{p-2}=\frac{pk}{h^2}.
+    \]
+    Hence it is circular for all $h$ except $p=2$. Stability check:
+    \begin{align*}
+        V''(r_*) + \frac{3}{r_*}V'(r_*) &= \big( -p(p + 1) + 3p\big)\frac{mk}{r_*^{p + 2}}\\
+        &= p(2-p)\frac{mk}{r_*^{p + 2}} \begin{cases}
+            >0 &\text{if }0<p<2,\text{ stable}.\\
+            <0 &\text{if }p>2,\text{ unstable}.\\
+            \end{cases} 
+    \end{align*}
+    \begin{center}
+        \begin{tikzpicture}[xscale=0.5]
+          \draw (0, 0) -- (8, 0);
+          \draw (0, -2) -- (0, 2) node [above] {$V_{\text{eff}}$};
+          \draw [blue, samples=10, domain=0.5:1.5] plot (\x, {-3/\x + 2/(\x*\x)});
+          \draw [blue, domain=1.5:7.8] plot (\x, {-3/\x + 2/(\x*\x)}) node [right] {$p = 1$};
+          \draw [red, dashed, samples=70, domain=0.4:7.8] plot (\x, {-0.6/(\x*\x*\x) + 1.2/(\x*\x)}) node [right] {$p = 3$};
+        \end{tikzpicture}
+    \end{center}
+\end{example}
+
+\subsection{The orbit equation}
+The shape of the orbit is determined by the joint variants of $ r(t),\theta(t) $. In principle we could determine $r(t)$ via 
+\[
+    E=\frac{1}{2}m \dot{r}^2+V_{\text{eff}}(r)=\text{const} \Longrightarrow t = \pm \frac{m}{2}\int^{r} \frac{\rmd r'}{\sqrt{E-V_{\text{eff}}(r')}},
+\]
+giving $r(t)$. Then we use $ r(t)^2 \dot{\theta}=h $ to obtain $\theta$. In practice this is not very helpful, e.g . analytic solutions are possible only for a small family of $ V_{\text{eff}}(r) $. A better approach is to use $ \theta $ is the independent variable, by writing
+\[
+    \frac{\mathrm{d}}{\mathrm{d}t} = \frac{\mathrm{d}\theta}{\mathrm{d}t}\frac{\mathrm{d}}{\mathrm{d}\theta} = \frac{h}{r^2}\frac{\mathrm{d}}{\mathrm{d}\theta}.    
+\]
+Apply Newton's 2nd law: 
+\[
+    m \left( \frac{h}{r^2}\frac{\mathrm{d}}{\mathrm{d}\theta} \right)^2(r)-\frac{mh^2}{r^3}=F(r)
+\]
+(refer to (\ref{eq:radial component})) for some $F(r)$. This suggests using $u=1/r$: 
+\begin{align*}
+    &mhu^2 \frac{\mathrm{d}}{\mathrm{d}\theta}\left( -h \frac{\mathrm{d}u}{\mathrm{d}\theta}  \right) -mh^2u^3=F(u^{-1})\\ 
+    \Longrightarrow & {\color{blue}\frac{\mathrm{d}^2 u}{\mathrm{d}\theta^2}+u = -\frac{1}{mh^2u^2} F(u^{-1})}.
+\end{align*}
+This is called the \textbf{orbit equation} or \textbf{Binet equation}. Solve this to find $ u(\theta) $, then use $ \dot{\theta} = hu^2 $ to get $ \theta(t) $ and thus $ r(t) $.

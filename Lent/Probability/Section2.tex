@@ -278,7 +278,7 @@ When $ \bbE[X] $ is well-defined, we have again that
 \end{proof}
 Taking $\bbE$ on both sides we get 
 \[
-    \mathbb{P}{A_1\cup\cdots\cup A_n} = \sum_{i=1}^{n}\mathbb{P}(A_i)-\sum_{i_1<i_2} \mathbb{P}(A_{i_1}\cap A_{i_2})+\cdots+(-1)^{n+1}\mathbb{P}(A_1\cap\cdots\cap A_n),
+    \mathbb{P}{(A_1\cup\cdots\cup A_n)} = \sum_{i=1}^{n}\mathbb{P}(A_i)-\sum_{i_1<i_2} \mathbb{P}(A_{i_1}\cap A_{i_2})+\cdots+(-1)^{n+1}\mathbb{P}(A_1\cap\cdots\cap A_n),
 \]
 which is exactly the inclusion-exclusion formula.
 
@@ -338,3 +338,151 @@ which is exactly the inclusion-exclusion formula.
         \end{align*}
     \end{enumerate}
 \end{example}
+
+\subsection{Covariance}
+\begin{definition}
+    Let $X,Y$ be r.v.s. Their \textbf{covariance} is defined as 
+    \[
+        \cov (X,Y) = \bbE[(X-\bbE[X])(Y-\bbE[Y])].
+    \]
+    It is a measure of how dependent $X,Y$ are.
+\end{definition}
+\begin{proposition}
+    \begin{enumerate}
+        \item $ \cov(X,Y)=\cov(Y,X) $.
+        \item $ \cov(X,X)=\var(X) $.
+        \item $ \cov(X,Y) = \bbE[XY]-\bbE[X]\bbE[Y] $.
+        \item Let $c\in \bbR$, Then $ \cov(cX,Y) = c\cov(X,Y) $ and $ \cov(c+X,Y)=\cov(X,Y) $.
+        \item $ \var(X+Y) = \var(X)+\var(Y)+2\cov(X,Y) $.
+        \item $ \forall c\in \mathbb{R}, \cov(c,X)=0 $.
+        \item If $ X,Y,Z $ are r.v.s, then 
+        \[
+            \cov(X+Y,Z) = \cov(X,Z)+\cov(Y,Z).
+        \]
+        More generally, for $ c_1,\dots,c_n,d_1,\dots,d_n\in \mathbb{R}, X_1,\dots,X_n,Y_1,\dots,Y_n $ r.v.s, we have 
+        \[
+            \cov \left( \sum_{i=1}^{n}c_i X_i,\sum_{i=1}^{n}d_i Y_i \right) = \sum_{i=1}^{n}\sum_{j=1}^{n}c_i d_j\cov(X_i,Y_j).
+        \]
+        In particular, 
+        \[
+            \var\left( \sum_{i=1}^{n}X_i \right) = \sum_{i=1}^{n}\var(X_i)+\sum_{i\neq j} \cov(X_i,X_j).
+        \]
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    Note that 
+    \[
+        (X-\bbE[X])(Y-\bbE[Y]) = XY-X\bbE[Y]-Y\bbE[X]+\bbE[X]\bbE[Y].\tag{$*$}
+    \]
+    \begin{enumerate}
+        \item It follows by changing the order of $X,Y$ in ($*$).
+        \item Replace $Y$ by $X$ in ($*$).
+        \item Take expectation on ($*$).
+        \item Replace $X$ by $cX,c+X$ and take expectation on ($*$).
+        \item Note that 
+        \begin{align*}
+            \var(X+Y)&= \bbE[(X+Y)^2]-(\bbE[X+Y])^2\\ 
+            &= \bbE[X^2]+\bbE[Y^2]+2\bbE[XY]-(\bbE[X]+\bbE[Y])^2\\ 
+            &= \var(X)+\var(Y)+2\cov(X,Y).
+        \end{align*}
+        \item Replace $Y$ with $c$.
+        \item By substitution in ($*$) and linearity of $ \bbE $.
+    \end{enumerate}
+\end{proof}
+
+Recall that $ X\independent Y \Leftrightarrow \mathbb{P}(X=x,Y=y)=\mathbb{P}(X=x)\mathbb{P}(Y=y), \forall x,y $.
+
+\begin{proposition}
+    Let $X,Y$ be 2 independent r.v.s and let $ f,g:\mathbb{R} \to \mathbb{R} $ such that $ \bbE[f(X)g(Y)],\bbE[f(X)],\bbE[g(Y)] $ are well-defined. Then
+    \[
+        \bbE[f(X)g(Y)] = \bbE[f(X)]\bbE[g(Y)].
+    \]
+\end{proposition}
+\begin{proof}
+    \begin{align*}
+        \bbE[f(X)g(Y)]&= \sum_{x,y} f(x)g(y) \mathbb{P}(X=x,Y=y)\\ 
+        &= \sum_{x,y} f(x)g(y) \mathbb{P}(X=x)\mathbb{P}(Y=y)\\ 
+        &= \sum_{x} f(x)\mathbb{P}(X=x) \sum_y g(y)\mathbb{P}(Y=y)\\ 
+        &= \bbE[f(X)]\bbE[g(Y)].\qedhere
+    \end{align*}
+\end{proof}
+
+\begin{proposition}
+    If $ X \independent Y $, then $ \cov(X,Y)=0 $.
+\end{proposition}
+\begin{proof}
+    \begin{align*}
+        \cov(X,Y) &= \bbE[(X-\bbE[X])(Y-\bbE[Y])] \\
+        &= \bbE[(X-\bbE[X])]\bbE[(Y-\bbE[Y])]\\ 
+        &= 0.\qedhere
+    \end{align*}
+\end{proof}
+\begin{note}
+    If $ \cov(X,Y)=0 $, it is not generally true that $ X \independent Y $. Let $ X_1,X_2,X_3 $ be independent r.v.s such that $ X_i\sim B(1/2) $. Define 
+    \[
+        \begin{aligned}
+            Y_1 &= 2X_1-1,\  Y_2 = 2X_2-1,\\ 
+            Z_1&=X_3Y_1,\ Z_2 =X_3Y_2.
+        \end{aligned}
+    \]
+    We see that $ \bbE[Y_1]=\bbE[Y_2]=\bbE[Z_1]=\bbE[Z_2]=0 $, and $ \cov(Z_1,Z_2) = \bbE[Z_1Z_2] = \bbE[X_3^2Y_1Y_2]=0 $. However, $ Z_1,Z_2 $ are not independent since 
+    \[
+        \mathbb{P}(Z_1=0,Z_2=0) = \mathbb{P}(Z_3=0) = \frac{1}{2}
+    \]
+    but 
+    \[
+        \mathbb{P}(Z_1=0)\mathbb{P}(Z_2=0) = \mathbb{P}(X_3=0)^2=\frac{1}{4}.
+    \]
+\end{note}
+\begin{corollary}
+    If $ X,Y $ are independent, then $ \var(X+Y) = \var(X)+\var(Y) $.
+\end{corollary}
+
+\subsection{Inequalities}
+\begin{proposition}[Markov's inequality]\label{prop:Markov's inequality}
+    Suppose $ X\ge 0 $ is a r.v, then $ \forall a>0 $, 
+    \[
+        \mathbb{P}(X\ge a) \le \frac{\bbE[X]}{a}.
+    \]
+\end{proposition}
+\begin{proof}
+    Observe that $ X\ge a \cdot 1(X\ge a) $. Taking expectations get 
+    \[
+        \bbE[X]\ge \bbE[a \cdot 1(X\ge a)] = a \mathbb{P}(X\ge a) \Longrightarrow \mathbb{P}(X\ge a)\le \frac{\bbE[X]}{a}.\qedhere
+    \]
+\end{proof}
+\begin{proposition}[Chebyshev's inequality]\label{prop:Chebyshev's inequality}
+    Let $X$ be a r.v. with $ \bbE[X]<\infty  $. Then $ \forall a>0 $,
+    \[
+        \mathbb{P}(|X-\bbE[X]|\ge a)\le \frac{\var(X)}{a^2}.
+    \]
+\end{proposition}
+\begin{proof}
+    \begin{align*}
+        \mathbb{P}(|X-\bbE[X]|\ge a) &= \mathbb{P}(|X-\bbE[X]|^2\ge a^2)\\ 
+        &\le \frac{\bbE\left[ |X-\bbE[X]|^2 \right]}{a^2} = \frac{\var(X)}{a^2}.\qedhere
+    \end{align*}
+\end{proof}
+
+\begin{proposition}[Cauchy-Schwartz inequality]\label{prop:Cauchy-Schwartz inequality}
+    If $X,Y$ are r.v.s, then 
+    \[
+        \bbE[|XY|]\le \sqrt{\bbE[X^2]\bbE[Y^2]}.
+    \]
+\end{proposition}
+\begin{proof}
+    It suffice to prove it for $ \bbE[X^2],\bbE[X^2]<\infty $ and $ X,Y\ge 0 $. Note that 
+    \[
+        XY\le \frac{1}{2}(X^2+Y^2) \Longrightarrow \bbE[XY] = \frac{1}{2}\left( \bbE[X^2]+\bbE[Y^2] \right)<\infty .
+    \]
+    Assume $ \bbE[X^2],\bbE[Y^2]>0 $, otherwise the result it trivial since either $ \bbE[X^2],\bbE[Y^2]=0 $ inplies $XY\equiv 0$. Let $t\in \bbR$ and consider 
+    \begin{align*}
+        &\ 0\le (X-tY^2) = X^2-2tXY-t^2Y^2\\ 
+        \Longrightarrow &\  f(t) = \bbE[X^2]-2t\bbE[XY]+t^2\bbE[Y^2]\ge 0\\ 
+        \Longrightarrow &\  \min f(t)\quad\text{for}\quad t_0 = \frac{\bbE[XY]}{\bbE[Y^2]} \\ 
+        \Longrightarrow &\  f(t_0)=\bbE[X^2]-\frac{2\bbE[XY]^2}{\bbE[Y^2]}+\frac{\bbE[XY]^2}{\bbE[Y^2]}\ge 0\\ 
+        \Longrightarrow &\  \bbE[XY]^2\le \bbE[X^2]\bbE[Y^2]\\ 
+        \Longrightarrow &\  \bbE[|XY|]\le \sqrt{\bbE[X^2]\bbE[Y^2]},
+    \end{align*}
+    as claimed.
+\end{proof}

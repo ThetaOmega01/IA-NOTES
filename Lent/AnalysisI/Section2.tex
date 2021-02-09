@@ -1,7 +1,7 @@
 \section{Continuity}
 In this section, we talk about $ f:E \to \mathbb{C}  $ where $ E \subseteq \mathbb{C}  $.
 \subsection{Continuity of real- and complex-valued functions}
-\subsubsection{Definitions}
+\subsubsection*{Definitions}
 
 There are two definitions for continuity.
 
@@ -29,7 +29,7 @@ There are two definitions for continuity.
     Take $ \delta=1/n $, then $ \exists  z_n $ such that $ |z_n-a|<1/n $ and $ |f(z_n)-f(a)|\ge \epsilon $. Clearly $ z_n\to a $, but $ f(z_n)\nrightarrow f(a) $, \#.
 \end{proof}
 
-\subsubsection{Arithmetic of continuous functions}
+\subsubsection*{Arithmetic of continuous functions}
 
 \begin{proposition}\label{prop:2.1}
     Let $a\in E$ and $ g,f:E\to \mathbb{C} $ be continuous at $a$. Then so are the functions $ f+g $, $fz$ and $\lambda f$ for any constant $ \lambda\in \mathbb{C} $. In addition, if $f(z)\neq 0 \forall z\in \mathbb{C} $, then $ 1/f $ is continuous at $a$.
@@ -152,3 +152,55 @@ Proof is exercise.
 \begin{example}[Existence of the $N$th root of a positive real number]
     Let $ f(x)=x^N, x\ge 0 $. $f$ is continuous and pick $y>0$. By intermediate value theorem, $f$ takes every value $ [0,f(y)+1] $. Therefore $ \exists x, x^N=y $. If $ d^N=y,d\neq x $, wlog suppose $d<x$ so $ d^N<x^N \Rightarrow y<y $ which is absurd. Hence it is unique. 
 \end{example}
+
+\subsection{Bounds of a continuous function}
+\begin{theorem}\label{thm:continuous function is bounded}
+    Let $f[a,b]\in \bbR$ be continuous. Then $ \exists K\in \mathbb{R}  $ such that $ |f(x)|\le K, \forall x\in [a,b] $.
+\end{theorem}
+\begin{proof}
+    Suppose the statement is \textit{false}. Then given any integer $ n\ge 1 $, $ \exists x_n\in[a,b] $ such that $ |f(x_n)|> n $. By Bolzano-Weierstrass, $x_n$ has a convergent subsequence $ x_{n_j}\to x\in [a,b] $. By continuity, $ f(x_{n_j})\to f(x) $ but $f(x_{n_j})>n_j\to \infty$, a contradiction.
+\end{proof}
+
+\begin{theorem}\label{thm:continuous function attachs the bounds}
+    Let $ f:[a,b]\to \bbR $ be continuous. Then $ \exists x_1,x_2\in [a,b] $ such that 
+    \[
+        f(x_1)\le f(x)\le f(x_2),\quad \forall x\in [a,b].
+    \]
+\end{theorem}
+\begin{proof}
+    Let $ A = \{f(x):x\in [a,b]\}=: f([a,b]) $. By theorem \ref{thm:continuous function is bounded}, $A$ is bounded. Since it is clearly nonempty, $ \exists m = \sup A $. By definition of supremum, given $ \mathbb{N} \ni n\ge 1$, $ \exists x_n\in [a,b] $ such that 
+    \[
+        M-\frac{1}{n}<f(x_n)\le M.
+    \]
+    By Bolzano-Weierstrass, $ \exists x_{n_j}\to x_2\in [a,b] $. Hence we have $ f(x_{n_j})\to f(x_2) = M $. Similarly for the minimum.
+\end{proof}
+
+\begin{proof}[Alternative proof]
+    Let $A,M$ be defined as in the previous proof. Suppose $\nexists x_2$ such that $ f(x_2)=M $. Let 
+    \[
+        g(x) = \frac{1}{M-f(x)},\quad x\in [a,b],
+    \]
+    so $g$ is well-defined and continuous. By theorem \ref{thm:continuous function is bounded}, $ \exists K>0, g(x)\le K,\forall x\in [a,b] $. This implies $ f(x)\le M-1/K $, a contradiction.
+\end{proof}
+\begin{note}
+    Theorems \ref{thm:continuous function is bounded} and \ref{thm:continuous function attachs the bounds} are false if the interval is not closed. A counterexample is $ (0,1], f(x)=1/x $.
+\end{note}
+
+\subsection{Inverse functions}
+\begin{definition}
+    $f$ is \textbf{increasing} for $ x\in [a,b] $ if $ f(x_1)\le f(x_2) $ for all $x_1\le x_2\in [a,b]$. If $ \le \Rightarrow < $ we say that $f$ is \textbf{strictly increasing}. Similarly for decreasing and strictly decreasing functions.
+\end{definition}
+
+\begin{theorem}\label{thm:existence of inverse function}
+    Let $f:[a,b]\to \bbR$ be continuous and strictly increasing. For $ x\in [a,b] $, let $ c=f(a),d=f(b) $ so that $ f:[a,b] \mapsto [c,d] $ is bijective and the inverse $g:=f^{-1}:[c,d]\mapsto [a,b]$ is continuous and strictly increasing. 
+\end{theorem}
+\begin{remark}
+    A similar theorem holds for strictly decreasing functions.
+\end{remark}
+\begin{proof}
+    Take $ c<k<d $. From the intermediate value theorem, $ \exists h,f(h)=k $. Since $f$ is strictly increasing, $h$ is unique. Define $ g(k) = h $. As $k$ varies in $[c,d]$, this gives a well-defined inverse $ g:[c,d] \mapsto [a,b] $ of $f$. 
+    
+    Take $y_1<y_2\in [c,d]$. Then $ \exists x_1,x_2, y_1=f(x_1),y_2=f(x_2) $. If $ x_2\le x_1 $, since $f$ is strictly increasing, $ f(x_2)\le f(x_1) \Rightarrow y_2\le y_1 $, which is absurd. Hence $g$ is strictly increasing.
+
+    Let $ \epsilon>0,k_1=f(h-\epsilon),k_2=f(h+\epsilon) $, then $ k_1<k<k_2 $. If $ k_1<y<k_2 $ then $ h-\epsilon<g(y)<h+\epsilon \Leftrightarrow |g(y)-h|<\epsilon $. Hence taking $ \delta = \min \{k_2-k,k-k_1\} $ gives continuity on $(c,d)$. A similar argument establishes continuity at $c,d$\footnote{Check it!}.
+\end{proof}
