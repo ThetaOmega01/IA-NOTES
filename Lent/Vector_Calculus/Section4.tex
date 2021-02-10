@@ -1,0 +1,302 @@
+\section{Divergence, Curl, Laplacian}
+\subsection{Definitions}
+\begin{definition}[Gradient]
+    The \textbf{gradient} operator, as seen before, acts on $ f:\mathbb{R}^{3}\to \mathbb{R}  $. In Cartesian coordinates,
+    \[
+        \nabla  = \mathbf{e}_i \frac{\partial }{\partial x_i}. 
+    \]
+\end{definition}
+\begin{definition}[Divergence]
+    For a vector field $ \bfF: \mathbb{R}^{3}\to \mathbb{R}^{3} $, define the \textbf{divergence} of $\bfF$ by 
+    \[
+        \operatorname{div} (\bfF) = \div \bfF.
+    \]
+\end{definition}
+
+\begin{center}
+    \begin{tikzpicture}[scale=0.8]
+        \node [dot] (0) at (-3, 0) {};
+        \node [above right] at (0) {$\bfx$};
+        \node (1) at (-3, 0.5) {};
+        \node (2) at (-3, 2) {};
+        \node (3) at (-2.5, 0) {};
+        \node (4) at (-1, 0) {};
+        \node (5) at (-3, -0.5) {};
+        \node (6) at (-3, -2) {};
+        \node (7) at (-3.5, 0) {};
+        \node (8) at (-5, 0) {};
+        \node (9) at (-2.5, 0.5) {};
+        \node (11) at (-2.5, -0.5) {};
+        \node (12) at (-1.5, -1.5) {};
+        \node (13) at (-1.5, 1.5) {};
+        \node (14) at (-4.5, 1.5) {};
+        \node (15) at (-3.5, 0.5) {};
+        \node (16) at (-3.5, -0.5) {};
+		\node (17) at (-4.5, -1.5) {};
+		\node [dot] (18) at (2, 0) {};
+        \node [above right] at (18) {$\bfx$};
+		\node (19) at (2, 0.5) {};
+		\node (20) at (2, 2) {};
+		\node (21) at (2.5, 0) {};
+		\node (22) at (4, 0) {};
+		\node (23) at (2, -0.5) {};
+		\node (24) at (2, -2) {};
+		\node (25) at (1.5, 0) {};
+		\node (26) at (0, 0) {};
+		\node (27) at (2.5, 0.5) {};
+		\node (28) at (2.5, -0.5) {};
+		\node (29) at (3.5, -1.5) {};
+		\node (30) at (3.5, 1.5) {};
+		\node (31) at (0.5, 1.5) {};
+		\node (32) at (1.5, 0.5) {};
+		\node (33) at (1.5, -0.5) {};
+		\node (34) at (0.5, -1.5) {};
+		\node (35) at (-3, -2.5) {$\div \bfF(\bfx)>0$};
+		\node (36) at (2, -2.5) {$\div \bfF(\bfx)<0$};
+		\node [dot] (37) at (7, 0) {};
+        \node [above right] at (37) {$\bfx$};
+		\node (38) at (7, 0.5) {};
+		\node (39) at (7, 2) {};
+		\node (40) at (7.5, 0) {};
+		\node (41) at (9, 0) {};
+		\node (42) at (7, -0.5) {};
+		\node (43) at (7, -2) {};
+		\node (44) at (6.5, 0) {};
+		\node (45) at (5, 0) {};
+		\node (46) at (7.5, 0.5) {};
+		\node (47) at (7.5, -0.5) {};
+		\node (48) at (8.5, -1.5) {};
+		\node (49) at (8.5, 1.5) {};
+		\node (50) at (5.5, 1.5) {};
+		\node (51) at (6.5, 0.5) {};
+		\node (52) at (6.5, -0.5) {};
+		\node (53) at (5.5, -1.5) {};
+		\node (54) at (7, -2.5) {$\div \bfF(\bfx)=0$};
+        \draw [->-=0.6] (1.center) to (2.center);
+        \draw [->-=0.6] (9.center) to (13.center);
+        \draw [->-=0.6] (3.center) to (4.center);
+        \draw [->-=0.6] (11.center) to (12.center);
+        \draw [->-=0.6] (5.center) to (6.center);
+        \draw [->-=0.6] (16.center) to (17.center);
+        \draw [->-=0.6] (7.center) to (8.center);
+        \draw [->-=0.6] (15.center) to (14.center);
+        \draw [-<-=0.4] (19.center) to (20.center);
+        \draw [-<-=0.4] (27.center) to (30.center);
+        \draw [-<-=0.4] (21.center) to (22.center);
+        \draw [-<-=0.4] (28.center) to (29.center);
+        \draw [-<-=0.4] (23.center) to (24.center);
+        \draw [-<-=0.4] (33.center) to (34.center);
+        \draw [-<-=0.4] (25.center) to (26.center);
+        \draw [-<-=0.4] (32.center) to (31.center);
+        \draw [-<-=0.4] (38.center) to (39.center);
+		\draw [-<-=0.4] (46.center) to (49.center);
+		\draw [-<-=0.4] (40.center) to (41.center);
+		\draw [->-=0.6] (42.center) to (43.center);
+		\draw [->-=0.6] (52.center) to (53.center);
+		\draw [->-=0.6] (44.center) to (45.center);
+    \end{tikzpicture}    
+\end{center}
+\begin{note}
+    In Cartesian coordinates, 
+    \begin{align*}
+        \div \bfF &= \left( \mathbf{e}_i \frac{\partial }{\partial x_i} \right)\cdot (F_j\bfe_j) = \bfe_i \cdot \left( \frac{\partial }{\partial x_i}(F_j\bfe_j)  \right)\\ 
+        &= (\mathbf{e}_i \cdot \mathbf{e}_j)\frac{\partial F_j}{\partial x_i} = \delta_{ij}\frac{\partial F_j}{\partial x_i} = \boxed{\frac{\partial F_i}{\partial x_i} } 
+    \end{align*}
+    assuming summation convention. Note that divergence of vector field is a \textit{scalar field}.
+\end{note}
+
+\begin{definition}[Curl]
+    For $ \bfF:\mathbb{R}^{3}\to \mathbb{R}^{3} $, define the \textbf{curl} of $\bfF$ by 
+    \[
+        \operatorname{curl}(F):= \curl \bfF.
+    \]
+\end{definition}
+
+\begin{center}
+    \begin{tikzpicture}[yscale=0.7,xscale=0.95]
+        \node (0) at (-3, 1) {};
+        \node (1) at (0, 1) {};
+        \node (2) at (-1, -1) {};
+        \node (3) at (-4, -1) {};
+        \node [dot] (4) at (-2, 0) {};
+        \node [right] at (4) {$\bfx$};
+        \node [above] (5) at (-2, 2) {$\bfe_3$};
+        \node (6) at (-2.5, 0.5) {};
+        \node (7) at (-1, 0.5) {};
+        \node (8) at (-1.5, -0.5) {};
+        \node (9) at (-3, -0.5) {};
+        \node (10) at (0, 1) {};
+        \node (11) at (-2.25, -1.5) {$[\curl\bfF(\bfx)]_3>0$};
+        \node (12) at (1, 1) {};
+        \node (13) at (4, 1) {};
+        \node (14) at (3, -1) {};
+        \node (15) at (0, -1) {};
+        \node [dot] (16) at (2, 0) {};
+        \node [right] at (16) {$\bfx$};
+        \node [above] (17) at (2, 2) {$\bfe_3$};
+        \node (18) at (1.5, 0.5) {};
+        \node (19) at (3, 0.5) {};
+        \node (20) at (2.5, -0.5) {};
+        \node (21) at (1, -0.5) {};
+        \node (22) at (4, 1) {};
+        \node (23) at (1.75, -1.5) {$[\curl\bfF(\bfx)]_3<0$};
+        \node (24) at (5, 1) {};
+        \node (25) at (8, 1) {};
+        \node (26) at (7, -1) {};
+        \node (27) at (4, -1) {};
+        \node [dot] (28) at (6, 0) {};
+        \node [below right] at (28) {$\bfx$};
+        \node [above] (29) at (6, 2) {$\bfe_3$};
+        \node (34) at (8, 1) {};
+        \node (35) at (5.75, -1.5) {$[\curl\bfF(\bfx)]_3=0$};
+        \node (36) at (6.375, 0.75) {};
+        \node (37) at (6.95, 0) {};
+        \node (38) at (5.6, -0.725) {};
+        \node (39) at (5.05, 0) {};
+        \draw (0.center) to (10.center);
+        \draw (10.center) to (2.center);
+        \draw (2.center) to (3.center);
+        \draw (3.center) to (0.center);
+        \draw [->] (8) to (7);
+        \draw [->] (7) to (6);
+        \draw [->] (6) to (9);
+        \draw [->] (9) to (8);
+        \draw [->] (4) to (5);
+        \draw (12.center) to (22.center);
+        \draw (22.center) to (14.center);
+        \draw (14.center) to (15.center);
+        \draw (15.center) to (12.center);
+        \draw [->] (16) to (17);
+        \draw (24.center) to (34.center);
+        \draw (34.center) to (26.center);
+        \draw (26.center) to (27.center);
+        \draw (27.center) to (24.center);
+        \draw [->] (28) to (29);
+        \draw [->] (28) to (36.center);
+        \draw [->] (28) to (37.center);
+        \draw [->] (28) to (38.center);
+        \draw [->] (28) to (39.center);
+        \draw [->] (18) to (19);
+        \draw [->] (19) to (20);
+        \draw [->] (20) to (21);
+        \draw [->] (21) to (18);
+    \end{tikzpicture}
+\end{center}
+
+\begin{note}
+    In Cartesian coordinates, 
+    \begin{align*}
+        \curl \bfF&= \left( \mathbf{e}_j \frac{\partial }{\partial x_j} \right)\times (F_k\bfe_k)=\bfe_j \times \left( \frac{\partial }{\partial x_j}(F_k\bfe_k)  \right)\\ 
+        &= (\mathbf{e}_j \times \mathbf{e}_k)\frac{\partial F_k}{\partial x_j} = \epsilon_{ijk} {\color{blue}\frac{\partial {\color{violet}F_k}}{\partial x_j}} \ {\color{Sepia}\bfe_i},
+    \end{align*}
+    assuming summation convention. So in Cartesian coordinates,
+    \[
+        [\curl \bfF]_{i} = \epsilon_{ijk}\frac{\partial F_k}{\partial x_j}. 
+    \]
+    Note that $ \curl \bfF $ is a \textit{vector field}.
+\end{note}
+Notice that $ \curl \bfF $ can be written in determinant form:
+\[
+    \curl \bfF = \det \begin{pmatrix}
+        \bfe_1 & \bfe_2 & \bfe_3 \\
+        \partial /\partial x_1  & \partial /\partial x_2  & \partial /\partial x_3  \\
+        F_1 & F_2 & F_3 \\
+    \end{pmatrix}.
+\]
+
+\begin{definition}[Laplacian]
+    For $ f:\mathbb{R}^{3}\to \mathbb{R} $, define the \textbf{Laplacian} of $f$ as 
+    \[
+        \laplacian f:= \div \nabla f.
+    \]
+\end{definition}
+\begin{note}
+    In Cartesian coordinates, 
+    \[
+        \laplacian f = \frac{\partial ^2 f}{\partial x_i \partial x_i}, 
+    \]
+    assuming summation convention.
+\end{note}
+
+For summary, see \href{http://jt775.user.srcf.net/IA-Lent/handouts/vc_handout3.pdf}{this handout}.
+
+\begin{example}
+    Consider $ \bfF(\bfx) = \bfx $. Then using Cartesians, 
+    \begin{align*}
+        &\div \bfF= \frac{\partial x_i}{\partial x_i} = 3,\\ 
+        &[\curl \bfF]_{i} = \epsilon_{ijk}\frac{\partial x_k}{\partial x_j}=\epsilon_{ijk}\delta_{jk} = 0. \\  
+    \end{align*}
+\end{example}
+\begin{proposition}
+    For $f,g$ scalar fields and $ \bfF,\bfG $ vector fields,
+    \begin{align*}
+      \nabla(fg) &= (\nabla f)g + f(\nabla g)\\\
+      \nabla\cdot (f\mathbf{F}) &= (\nabla f)\cdot \mathbf{F} + f(\nabla\cdot \mathbf{F})\\
+      \nabla\times (f\mathbf{F}) &= (\nabla f)\times \mathbf{F} + f(\nabla\times \mathbf{F})\\
+      \nabla(\mathbf{F}\cdot \mathbf{G}) &= \mathbf{F}\times (\nabla \times \mathbf{G}) + \mathbf{G}\times (\nabla \times \mathbf{F}) + (\mathbf{F}\cdot \nabla)\mathbf{G} + (\mathbf{G}\cdot \nabla) \mathbf{F}\\
+      \nabla \times (\mathbf{F}\times \mathbf{G}) &= \mathbf{F}(\nabla\cdot \mathbf{G}) - \mathbf{G}(\nabla\cdot \mathbf{F}) + (\mathbf{G}\cdot \nabla)\mathbf{F} - (\mathbf{F}\cdot \nabla)\mathbf{G}\\
+      \nabla\cdot (\mathbf{F}\times \mathbf{G}) &= (\nabla\times \mathbf{F})\cdot \mathbf{G} - \mathbf{F}\cdot (\nabla\times \mathbf{G})
+    \end{align*}
+\end{proposition}
+\begin{proof}
+    See \href{https://www.vle.cam.ac.uk/pluginfile.php/19798882/mod_resource/content/9/vc_notes1.pdf#page=32}{this}.
+\end{proof}
+All these identities hold in any OCC, but they are most easily established using Cartesian coordinates. For general OCC, divergence is defined by the same formula $ \div \bfF $, i.e. \footnote{Note the ordering: the differential operator acts first. So you interpret such terms as, for example
+\[
+    \left( \bfe_u \frac{\partial }{\partial u}  \right) \cdot (F_v\bfe_v)= \bfe_u \cdot \left( \frac{\partial }{\partial u}(F_v\bfe_v)  \right) = \bfe_u \cdot \left( \frac{F_v}{u}\bfe_v+F_v \frac{\partial \bfe_v}{\partial u}  \right)=F_v\left( \bfe_u \cdot \frac{\partial \bfe_v}{\partial u}  \right).
+\]}
+\[
+    \div \bfF = \left( \bfe_u \frac{1}{h_u}\frac{\partial }{\partial u} +\bfe_v \frac{1}{h_v}\frac{\partial }{\partial v}+\bfe_w \frac{1}{h_w}\frac{\partial }{\partial w}\right)\cdot (F_u\bfe_u+F_v\bfe_v+F_w\bfe_w).
+\]
+It gets quite messy to simplify this since $ \{\bfe_u,\bfe_v,\bfe_w\} $ is dependent on $u,v,w$, so we'd rather state the result here:
+\begin{align*}
+    \div \bfF&=\frac{1}{h_uh_vh_w}\left(\sum_{\text{cyc}} \frac{\partial }{\partial u}(h_vh_wF_u)\right),\\ 
+    \curl \bfF &= \sum_{\text{cyc}} \frac{1}{h_vh_w}\left( \frac{\partial }{\partial v}(h_wF_w)-\frac{\partial }{\partial w}(h_vF_v)   \right)\bfe_u\\ 
+    &= \frac{1}{h_uh_vh_w}\det \begin{pmatrix}
+        h_u\bfe_u & h_v\bfe_v & h_w\bfe_w \\
+        \partial /\partial u  & \partial /\partial v & \partial /\partial w \\
+        h_uF_u & h_vF_v & h_wF_w \\
+    \end{pmatrix},\\ 
+    \laplacian f &= \frac{1}{h_uh_vh_w}\left( \sum_{\text{cyc}}\frac{\partial }{\partial u}\left( \frac{h_vh_w}{h_u}\frac{\partial f}{\partial u}  \right)  \right).
+\end{align*}
+
+\begin{example}
+    In cylindrical polars,
+    \[
+        \laplacian f = \frac{1}{\rho} \frac{\partial }{\partial \rho}\left( \rho \frac{\partial f}{\partial \rho}  \right) +\frac{1}{\rho^2}\frac{\partial ^2 f}{\partial \phi^2} +\frac{\partial ^2f}{\partial z^2}. 
+    \]
+    In spherical polars,
+    \[
+        \laplacian f = \frac{1}{r^2}\frac{\partial }{\partial r}\left( r^2 \frac{\partial f}{\partial r} \right)+\frac{1}{r^2\sin \theta}\frac{\partial }{\partial \theta}\left( \sin\theta\frac{\partial f}{\partial \theta}  \right)+\frac{1}{r^2\sin\theta}\frac{\partial ^2 f}{\partial \theta^2}.   
+    \]
+\end{example}
+
+Might think the laplacian of a vector field as $ \div (\nabla \bfF) $, but we haven't defined what $ \nabla \bfF $ means. However, in Cartesian the basis vectors are independent, we can define 
+\[
+    \laplacian \bfF = (\laplacian F_i) \bfe_i.
+\]
+Then one can check, for example, that in Cartesians
+\[
+    \laplacian \mathbf{F} = \nabla (\div \bfF) - \curl (\curl \bfF).\tag{$\dagger$}
+\]
+Since RHS is well-defined in any OCC, we use it as a definition.
+\begin{definition}
+    The \textbf{laplacian} of a vector field is defined as in ($\dagger$).
+\end{definition}
+
+\subsubsection*{Talks on harmonic functions and laplacians}
+We say $f$ is \textbf{harmonic} if $ \laplacian f=0 $, and \textbf{analytic} if $f$ can be written in the (convergent) form 
+\[
+    f(x_1,\dots,x_n)=\sum_{m_1,\dots,m_n} c_{m_1,\dots,m_n}x_1^{m_1}\cdots x_n^{m_n}.
+\]
+If $f$ is harmonic, amazingly, $f$ is \textit{analytic}. Note that for example we can write 
+\[
+    \laplacian f = 0 \Longleftrightarrow \frac{\partial ^2 f}{\partial x^2}+\frac{\partial ^2 f}{\partial y^2}=0.
+\]
+This is an example of \textbf{elliptic problems}.
+
+However if, for example in $ \mathbb{R}^{2} $,
+\[
+    \frac{\partial ^2 f}{\partial x^2}-\frac{\partial ^2 f}{\partial y^2}=0,  
+\]
+we cannot say much about $f$. This is an example of \textbf{hyperbolic problems}. Generally elliptic problems are nicer than hyperbolic problems.

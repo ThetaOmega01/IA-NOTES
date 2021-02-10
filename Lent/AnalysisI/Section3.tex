@@ -1,0 +1,96 @@
+\section{Differentiability}
+\subsection{Several definitions}
+\begin{definition}
+    Let $ f:E \subseteq \mathbb{C} \to \mathbb{C}  $. Let $ x $ be a limit point. $f$ is said to be \textbf{differentiable} at $x$ with \textbf{derivative} $f'(x)$ if 
+    \[
+        \lim_{y \to x} \frac{f(y)-f(x)}{y-x} = f'(x).
+    \]
+    If $f$ is differentiable on every point in $E$, then $f$ is differentiable on $E$. (Think $E$ as an interval or a disc)
+\end{definition}
+\begin{remark}
+    Other common notations are $\frac{\mathrm{d}y}{\mathrm{d}x},\frac{\mathrm{d}f}{\mathrm{d}x},\text{ etc.}  $.
+    Note also that 
+    \[
+        f'(x) = \lim_{h \to 0} \frac{f(x+h)-f(x)}{h}.
+    \]
+\end{remark}
+\begin{remark}
+    ``Another look'' at the definition: Let 
+    \[
+        \epsilon(h) = f(x+h)-f(x)-hf'(x),
+    \]
+    then $ \lim_{h \to 0} \frac{\epsilon(h)}{h}=0 $ and thus 
+    \[
+        f(x+h) = f(x)+hf'(x)+\epsilon(h).
+    \]
+\end{remark}
+\begin{definition}[Alternative definition]
+    $f$ is differentiable at $x$ if $ \exists A,\epsilon $ that 
+    \[
+        f(x+h) = f(x)+hA+\epsilon(h),\quad \lim_{h \to 0} \frac{\epsilon(h)}{h}=0.
+    \]
+\end{definition}
+\begin{note}
+    If such $A$ exists then it is unique, since 
+    \[
+        A = \lim_{h \to 0} \frac{f(x+h)-f(x)}{h}.
+    \]
+\end{note}
+\begin{remark}
+    Another alternative way of writing things is 
+    \[
+        f(x+h) = f(x)+hf'(x)+h\epsilon_f(h),\quad \epsilon_f(h)\to 0 \text{ as }h\to 0,
+    \]
+    or 
+    \[
+        f(x) = f(a)+(x-a)f'(a)+(x-a)\epsilon_f(x), \quad \lim_{x \to a} \epsilon_f(x)=0.
+    \]
+\end{remark}
+\begin{sprop}
+    If $f$ is differentiable at $x$, then it is continuous at $x$. 
+\end{sprop}
+\begin{proof}
+    Refer to the alternative definition.
+\end{proof}
+
+\begin{example}
+    Take $f(x)=|x|$. Clearly $f'(x)=1$ if $x>0$, $f'(x)=-1$ if $x=-1$. Take $ h_n\downarrow 0 $,
+    \[
+        \lim_{n \to \infty} \frac{f(h_n)-0}{h_1}=1,
+    \]
+    but with $ h_n \uparrow 0 $,
+    \[
+        \lim_{n \to \infty} \frac{f(h_n)-0}{h_n}=-1.
+    \]
+    Hence $f$ is not differentiable at $x=0$.
+\end{example}
+\subsection{Arithmetic of differentiation}
+\begin{proposition}
+    \begin{enumerate}
+        \item If $f(x)=c,x\in E$, then $f$ is differentiable and $f'(x)=0$.
+        \item If $f,g$ are differentialbe at $x$, then $f+g$ is differentiable with
+        \[
+            (f(x)+g(x))' = f'(x)+g'(x).
+        \]
+        \item If $f,g$ are differentialbe at $x$, then $f\cdot g$ is differentiable with
+        \[
+            (f(x)g(x))'=f'(x)g(x)+f(x)g'(x).
+        \]
+        \item If $f$ is differentiable at $x$ and $ \forall x\in E,f(x)\neq 0 $, then $ 1/f $ is differentiable with 
+        \[
+            \left( \frac{1}{f(x)} \right)' = -\frac{f'(x)}{f(x)^2}.
+        \]
+        \item If $f,g$ are differentialbe at $x$, then $f/ g$ is differentiable with
+        \[
+            \left( \frac{f(x)}{g(x)} \right)' = \frac{f'(x)g(x)-f(x)g'(x)}{g(x)^2}.
+        \]
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    1-3 are trivial and 5 is a consequence of 3 and 4, so we only prove 4 here. Let $ \phi(x) = 1/f(x) $. 
+    \begin{align*}
+        \frac{\phi(x+h)-\phi(x)}{h} &= \frac{1/f(x+h)-1/f(x)}{h}=\frac{f(x)-f(x+h)}{hf(x)f(x+h)}  \\ 
+        &= \frac{f(x)-f(x+h)}{h}\cdot \frac{1}{f(x)f(x+h)}\\ 
+        &\to -\frac{f'(x)}{f(x)^2}.
+    \end{align*}
+\end{proof}
