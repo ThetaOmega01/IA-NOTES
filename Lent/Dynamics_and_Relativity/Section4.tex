@@ -1,4 +1,19 @@
 \section{Orbits}
+\subsection{Angular momentum}
+\begin{definition}
+    The \textbf{angular momentum} for a particle of mass $m$ moving under influence of a force $ \bfF $, with position vector $\bfr(t)$ and velocity $ \dot{\bfr}(t) $, is defined to be 
+    \[
+        \bfL = \bfr \times \bfp = \bfr \times m \dot{\bfr}.
+    \]
+    Note that $ \dot{\bfL} = m \dot{\bfr}\times \dot{\bfr}+m\bfr \times \ddot{\bfr} = \bfr \times \bfF $. Define the \textbf{torque}(or \textbf{moment} of $\bfF$) to be $ \bfG = \bfr \times \bfF = \dot{\bfL} $.
+\end{definition}
+\begin{note}
+    Values of $ \bfL,\bfG $ depend on choice of origin. We can say `about the origin' or `about any specified point'.
+\end{note}
+\begin{note}
+    If $ \bfr \times \bfF =\bfG= \mathbf{0} $, then the angular momentum is constant. We say that the angular momentum is \textbf{conserved}. For the same system, we can choose the origin wisely so that the angular momentum is conserved.
+\end{note}
+
 The basic problem: consider a particle moving in a force that depends \textit{only} on the radius.
 \[
     m \ddot{\bfr} = - \nabla V(r).
@@ -238,3 +253,140 @@ Apply Newton's 2nd law:
     \Longrightarrow & {\color{blue}\frac{\mathrm{d}^2 u}{\mathrm{d}\theta^2}+u = -\frac{1}{mh^2u^2} F(u^{-1})}.
 \end{align*}
 This is called the \textbf{orbit equation} or \textbf{Binet equation}. Solve this to find $ u(\theta) $, then use $ \dot{\theta} = hu^2 $ to get $ \theta(t) $ and thus $ r(t) $.
+
+\subsection{The Kepler problem}
+\subsubsection*{General shapes}
+This is the orbit problem for the special case of a gravitational central force, such that 
+\[
+    F(r) = -\frac{mk}{r^2}.
+\]
+From the previous section we know that 
+\[
+    \frac{\mathrm{d}^2 u}{\mathrm{d}\theta^2}+u = \frac{1}{mh^2u^2} \cdot mku^2 = \frac{k}{h^2},
+\]
+which is linear in $u$. This is a simple harmonic problem and the solution is 
+\[
+    u = \frac{k}{h^2}A \cos (\theta-\theta_0)
+\]
+for some $A$ and $ \theta_0 $ to be determined by I.C.s. 
+
+Assume wlog that $ A\ge 0 $.
+\begin{itemize}
+    \item If $ A=0,u=k/h^2 $ so we have a \textit{circular orbit}.
+    \item If $A>0$, $u$ is maximised when $ \theta=\theta_0 $ and $r$ is minimised (periapsis).
+\end{itemize}
+
+Now choose I.C.s so that $ \theta_0=0 $. Let 
+\[
+    r = \frac{1}{u} = \frac{l}{1+e \cos \theta},\quad \text{where }l=\frac{h^2}{k},e=\frac{Ah^2}{k}.
+\]
+Thus we get the polar form of \textbf{conic sections}. $e$ is called the \textbf{eccentricity}, and it determines the shape of the curve.
+\subsubsection*{Rewrite in Cartesians}
+In Cartesian coordinates, $r(1+e\cos\theta)=l \Rightarrow r+ex=l \Rightarrow r=l-ex$. Squaring both sides gives $ x^2+y^2=(l-ex)^2 $, and thus 
+\begin{equation}\label{eq:kepler}\tag{$\dagger$}
+    (1-e^2)x^2+y^2+2elx = l^2.
+\end{equation} 
+\begin{itemize}
+    \item $ 0\le e<1 $. Ellipse - orbit is bounded. We have 
+    \[
+        \frac{1}{1+e}\le r(\theta)\le \frac{l}{1-e}.
+    \]
+    Note that (\ref{eq:kepler}) can be standardised:
+    \[
+        \frac{(x+ea)^2}{a^2}+\frac{y^2}{b^2}=1,\quad \text{where }a = \frac{l}{1-e^2},\ b=\frac{l}{\sqrt{1-e^2}},\ b\le a.
+    \]
+    When $e=0$, $a=b=$ radius of the circle. When $e>0$, the origin lies at one of the foci. Note that $e,l$ will determine $a,b$ and vice versa.
+    \begin{center}
+        \begin{tikzpicture}[xscale=1.5]
+          \draw [gray] (-2, 0) -- (2, 0);
+          \draw [gray] (0, -1.6) -- (0, 1.6);
+          \draw [gray, ->] (0.7, -0.2) -- (0, -0.2) node [gray!50!black, pos = 0.5, below] {$ae$};
+          \draw [gray, ->] (0, -0.2) -- (0.7, -0.2);
+          \draw [gray, ->] (-0.2, 0) -- (-0.2, 1.6) node [gray!50!black, pos = 0.5, left] {$b$};
+          \draw [gray, ->] (-0.2, 1.6) -- (-0.2, 0);
+  
+          \draw [gray, ->] (0, -0.2) -- (-2, -0.2) node [gray!50!black, pos = 0.5, below] {$a$};
+          \draw [gray, ->] (-2, -0.2) -- (0, -0.2);
+          \draw [gray, dashed] (0.7, 0) -- (0.7, 1.5) node [gray!50!black, pos = 0.5, right] {$l$};
+          \draw (.7, 0) node [anchor = south west] {$O$} node [dot=8pt] {};
+          \draw [->-=0.1] (0, 0) circle [x radius = 2, y radius = 1.6];
+        \end{tikzpicture}
+    \end{center} 
+    \item $e>1$. Then the orbit is hyperbolic and $r\to \infty$ as $ \theta\to \pm \alpha $, where $ \alpha=\arccos (-1/e)\in (\pi/2,\pi) $. We can standardise (\ref{eq:kepler}) as 
+    \[
+        \frac{(x-ea)^2}{a^2}-\frac{y^2}{b^2}=1,\quad a = \frac{l}{e^2-1},\ b=\frac{l}{\sqrt{e^2-1}}.
+    \]
+    This represents an incoming body with large velocity which is deflected by gravity. The asymptotes are 
+    \[
+        y = \pm \frac{b}{a}(x-ea) \Longleftrightarrow bx\mp ay=eba.
+    \]
+    The normal vectors are $ \bfn= \frac{1}{\sqrt{a^2+b^2}}(b,\mp a) $. The perpendicular distance between incoming trajectory and $O$ is $ \bfr \cdot \bfn = \frac{bx\mp ay}{\sqrt{a^2+b^2}}= \frac{eba}{\sqrt{a^2+b^2}}=b$, which is often called the \textbf{impact parameter}. 
+    \begin{center}
+    \begin{tikzpicture}
+        \draw [gray] (-3, -2) -- (3, 2);
+        \draw [gray] (3, -2) -- (-3, 2);
+        \draw [->-=0.3] (-3, -1.9) .. controls (-0.2, 0) .. (-3, 1.9);
+        \draw [gray, ->] (0, 0) -- (-0.9, 0);
+        \draw [gray, ->] (-0.9, 0) -- (0, 0) node [pos = 0.5, above] {$a$};
+        \node at (-2, 0) [dot=6pt] {};
+        \node at (-2, 0) [left] {$O$};
+        \draw [gray, dashed] (-2, 0) -- (-2, 1.2) node [pos = 0.5, left] {$\ell$};
+        \draw [gray, dashed] (-2, 0) -- (-1.38462, -0.923077) node [pos = 0.5, right] {$b$};
+    \end{tikzpicture}
+    \end{center}
+    \item $e=1$. Then the orbit is parabolic and the equation is given by 
+    \[
+        r=\frac{l}{1+\cos \theta}.
+    \]
+    Note that $ r\to \infty $ as $ \theta\to \pm \pi $. In Cartesians,
+    \[
+        y^2=2l(l-x).
+    \]
+\end{itemize}
+
+\subsubsection*{Energy and eccentricity}
+Recall that in polars,
+\begin{align*}
+    E&=\frac{1}{2}m \left( \dot{r}^2+r^2 \dot{\theta}^2 \right) - \frac{mk}{r}=\frac{1}{2}mh^2\left( \left( \frac{\mathrm{d}u}{\mathrm{d}\theta} \right)^2+u^2  \right)-mku\\
+    &= \frac{mh^2}{2l^2}\left( e^2 \sin ^2 \theta+(1+e \cos\theta)^2 \right)-\frac{mk}{l}(1+ \cos \theta)\\ 
+    &= \frac{mk}{2l}(e^2-1).
+\end{align*}
+Hence the orbit is bounded if $ E<0 \Leftrightarrow e<1 $, and unbounded if $ e>1 \Leftrightarrow E>0 $. We have a parabola if $ e=1 \Leftrightarrow E=0 $, the marginal case. (Note also that $ e=\sqrt{\frac{2lE}{mk}+1}$.)
+
+\subsubsection*{Kepler's laws of planetary motion}
+When Kepler first studied the laws of planetary motion, he took a telescope, observed actual planets, and came up with his famous three laws of motion. We are now going to derive the laws with pen and paper instead.
+
+\begin{law}[Kepler's first law]
+  The orbit of each planet is an ellipse with the Sun at one focus.
+\end{law}
+
+\begin{law}[Kepler's second law]
+  The line between the planet and the sun sweeps out equal areas in equal times.
+\end{law}
+
+\begin{law}[Kepler's third law]
+  The square of the orbital period is proportional to the cube of the semi-major axis, or
+  \[
+    P^2 \propto a^3.
+  \]
+\end{law}
+
+Law 1 is consistent with our solution of orbit equation. Law 2 follows simply from the conservation of angular momentum: The area swept out by moving $\rmd \theta$ is $\rmd A = \frac{1}{2}r^2\;\rmd \theta$ (area of sector of circle). So
+\[
+  \frac{\rmd A}{\rmd t} = \frac{1}{2}r^2\dot{\theta} = \frac{h}{2} = \text{const}.
+\]
+and is true for \emph{any} central force.
+
+Law 3 follows from this: the total area of the ellipse is $A = \pi ab = \frac{h}{2}P$ (by the second law). But $b^2 = a^2( 1 - e^2)$ and $h^2 = k\ell = ka(1 - e^2)$ (check!). So
+\[
+  P^2 = \frac{(2\pi)^2a^4(1 - e^2)}{ka(1 - e^2)} = \frac{(2\pi)^2 a^3}{k}.
+\]
+Note that the third law is very easy to prove directly for circular orbits. Since the radius is constant, $\ddot{r} = 0$. So the equations of motion give
+\[
+  -r \dot{\theta}^2 = -\frac{k}{r^2}
+\]
+So
+\[
+  r^3 \dot{\theta}^2 = k
+\]
+Since $\dot{\theta}\propto P^{-1}$, the result follows.

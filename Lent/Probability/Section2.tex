@@ -486,3 +486,96 @@ Recall that $ X\independent Y \Leftrightarrow \mathbb{P}(X=x,Y=y)=\mathbb{P}(X=x
     \end{align*}
     as claimed.
 \end{proof}
+\begin{remark}
+    Equality occurs when $ \bbE[(X-tY)^2]=0 $ for $ t=\bbE[XY]/\bbE[Y^2] $. Notice that 
+    \[
+        \bbE[(X-tY)^2]=0 \Longrightarrow \mathbb{P}(X=tY)=1.
+    \]
+\end{remark}
+\begin{definition}[\href{https://www.princeton.edu/~aaa/Public/Teaching/ORF523/S16/ORF523_S16_Lec7_gh.pdf}{Convex functions}]
+    A function $ f:\mathbb{R} \to \mathbb{R} $ is \textbf{convex} if $ \forall x,y\in \mathbb{R}  $ and $ \forall t\in [0,1] $,
+    \[
+        f(tx+(1-t)y)\le tf(x)+(1-t)f(y).
+    \]
+\end{definition}
+\begin{lemma}\label{lma:Jensen}
+    Let $ f:\mathbb{R} \to \mathbb{R}  $ be convex, then $f$ is the supremum of all the lines lying below it. In other words,
+    \[
+        \forall m\in \mathbb{R}, \exists a,b\in \mathbb{R}, f(m)=am+b \land f(x)\ge ax+b,\forall x.
+    \]
+\end{lemma}
+\begin{proof}
+    Let $m\in \bbR$ and $ x<m<y $. Then $ \exists t\in [0,1], m=tx+(1-t)y $. By convexity, $ f(m)=tf(m)+(1-t)f(m)\le tf(x)+(1-t)f(y) $. Therefore 
+    \[
+        t(f(m)-f(x))\le (1-t)(f(y)-f(m)) \Longrightarrow \frac{f(m)-f(x)}{m-x}\le \frac{f(y)-f(m)}{y-m}.
+    \]
+    So there exists
+    \[
+        a= \sup_{x<m} \frac{f(m)-f(x)}{m-x},  \ \frac{f(m)-f(x)}{m-x}\le a\le \frac{f(y)-f(m)}{y-m},\ \forall x<m<y.
+    \]
+    Rearranging gives 
+    \[
+        f(x)\ge a(x \underbrace{-m)+f(m)}_{b},
+    \]
+    as claimed.
+\end{proof}
+\begin{proposition}[Jensen's inequality]\label{prop:Jensen's inequality}
+    Let $X$ be a r.v. and let $f$ be a convex function. Then 
+    \[
+        \bbE[f(X)]\ge f(\bbE[X]).
+    \]
+\end{proposition}
+\begin{note}
+    Notice that $ \var(X)=\bbE[(X-\bbE[X])^2]=\bbE[X^2]-(\bbE[X])^2\ge 0 $, so $ \bbE[X^2]\ge (\bbE[X])^2 $. This is a way to remember the direction of the inequality.
+\end{note}
+\begin{proof}
+    Set $ m=\bbE[X] $ in lemma \ref{lma:Jensen}. Then $ \exists a,b\in \mathbb{R} $, 
+    \[
+        f(m)=am+b \Longleftrightarrow f(\bbE[X])=a\bbE[X]+b
+    \]
+    and $ f(X)\ge aX+b $. Taking expectation we get 
+    \[
+        \bbE[f(X)]\ge a\bbE[X]+b=f(\bbE[X]).\qedhere
+    \]
+\end{proof}
+\begin{remark}
+    The equality holds for $ X\equiv \bbE[X] $ (check it!).
+\end{remark}
+\begin{corollary}
+    Let $f$ be a convex function and let $ x_1,\dots,x_n\in \mathbb{R}  $. Then 
+    \[
+        \frac{1}{n}\sum_{k=1}^{n} f(x_k)\ge f\left( \frac{1}{n}\sum_{k=1}^{n}x_k \right).
+    \]
+\end{corollary}
+\begin{proof}
+    Define $X$ to be r.v. taking $ \{x_1,\dots,x_n\} $ with equal probability, and use Jensen's inequality.
+\end{proof}
+\begin{corollary}[AM-GM inequality]\label{prop:AM-GM inequality}
+    Let $ x_1,\dots,x_n\in \mathbb{R}  $, then 
+    \[
+        \left( \prod_{k=1}^{n} x_k\right)^{\frac1n}\le \frac{1}{n}\sum_{k=1}^{n}x_k.
+    \]
+\end{corollary}
+\begin{proof}
+    Take $f(x)=-\log x$.
+\end{proof}
+\subsection{Conditional expectation}
+\begin{definition}[Conditional expectation]
+    Let $B\in \mathscr{F},\bbP(B)>0$ and let $ X $ be a r.v. Define the \textbf{conditional expectation} as
+    \[
+        \bbE[X|B] = \frac{\bbE[X\cdot 1(B)]}{\bbP(B)}.
+    \]
+\end{definition}
+\begin{proposition}[Law of total expectation]\label{prop:Law of total expectation}
+    Suppose $X\ge 0$ and let $ (\Omega_n) $ be a partition of $\Omega$ into disjoint events. Then 
+    \[
+        \bbE[X] = \sum_{n} \bbE[X|\Omega_n]\mathbb{P}(\Omega_n).
+    \]
+\end{proposition}
+\begin{proof}
+    Note that $ X=X \cdot 1(\Omega)=\sum_{n} X \cdot 1(\Omega_n) $. Taking expectation gives
+    \[
+    \bbE[X] = \bbE\left[ \sum_{n} X \cdot 1(\Omega_n) \right] = \sum_{n}\bbE[X\cdot 1(\Omega_n)]=\sum_{n} \bbE[X|\Omega_n]\mathbb{P}(\Omega_n),
+    \]
+    as claimed.
+\end{proof}
