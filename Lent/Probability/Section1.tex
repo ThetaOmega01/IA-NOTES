@@ -46,7 +46,10 @@
     \underline{Picking balls from a bag.} Suppose we have $n$ balls with $n$ labels $ \{1,\dots,n\} $ so they are distinct. Pick $k\le n$ balls at ramdom \textit{without replacement}. Take $ \Omega = \{A \subseteq \{1,\dots,n\}: |A|=k\} $, so $ |\Omega|=\binom{n}{k} $. $ \mathbb{P}(\{\omega\}) = 1/|\Omega| = 1/\binom{n}{k} $.
 \end{example}
 \begin{example}
-    \underline{Deck of cards.} Take a \textit{well-shuffled} deck of 52 cards. Well-shuffled means all possible permutations are equally likely. We see that $ \Omega = \{\text{all permutations of 52 cards}\}$, $|\Omega|=52! $. Now $ \mathbb{P}(\text{top 2 cards are aces}) = 4 \cdot 3 \cdot 50!/52! = 1/221$.
+    \underline{Deck of cards.} Take a \textit{well-shuffled} deck of 52 cards. Well-shuffled means all possible permutations are equally likely. We see that $ \Omega = \{\text{all permutations of 52 cards}\}$, $|\Omega|=52! $. Now
+    \[
+        \mathbb{P}(\text{top 2 cards are aces}) = 4 \cdot 3 \cdot \frac{50!}{52!} =\frac{1}{221}.
+    \]
 \end{example}
 \begin{example}
     \underline{Largest digit.} Consider a string of $n$ random digits from 0 to 9. $ \Omega = \{0,\dots,9\}^n $, $ |\Omega| = 10^n, \mathscr{F}=2^\Omega  $. Let 

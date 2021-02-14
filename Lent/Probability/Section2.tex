@@ -35,7 +35,7 @@ This section we talk about $ (\Omega,\mathscr{F},\mathbb{P}) $ such that $ \Omeg
 \end{example}
 
 \begin{example}[Poisson distribution]
-    Used to model the number of occurences of an event in a given intergal of time. e.g. \# of customers that enter a shop in a day. $ \Omega=\{0,1,2,\dots,\} $ and $ p_k = e^{-\lambda}\frac{\lambda^k}{k!}, k\in \Omega, \lambda>0 $. We write it as $ P(\lambda) $. Note that 
+    Used to model the number of occurences of an event in a given interval of time. e.g. \# of customers that enter a shop in a day. $ \Omega=\{0,1,2,\dots,\} $ and $ p_k = e^{-\lambda}\frac{\lambda^k}{k!}, k\in \Omega, \lambda>0 $. We write it as $ P(\lambda) $. Note that 
     \[
         \sum_{k=0}^{\infty}p_k=\sum_{k=0}^{\infty} e^{-\lambda}\sum_{k=0}^{\infty}\frac{\lambda^k}{k!}=e^{-\lambda}e^\lambda=1.
     \]
@@ -100,7 +100,7 @@ We see that $1_A$ is a random variable.
 \end{proof}
 
 \begin{definition}
-    A r.v. $X$ is called \textbf{discrete} if it takes falues in a \textit{countable} set.
+    A r.v. $X$ is called \textbf{discrete} if it takes values in a \textit{countable} set.
     Suppose $X$ takes values in a countable set $S$. For every $x\in S$ we write
     \[
         p_x=\mathbb{P}(X=x) = \mathbb{P}(\{\omega:X(\omega)=x\}).
@@ -393,7 +393,11 @@ which is exactly the inclusion-exclusion formula.
 Recall that $ X\independent Y \Leftrightarrow \mathbb{P}(X=x,Y=y)=\mathbb{P}(X=x)\mathbb{P}(Y=y), \forall x,y $.
 
 \begin{proposition}
-    Let $X,Y$ be 2 independent r.v.s and let $ f,g:\mathbb{R} \to \mathbb{R} $ such that $ \bbE[f(X)g(Y)],\bbE[f(X)],\bbE[g(Y)] $ are well-defined. Then
+    Let $X,Y$ be 2 independent r.v.s and let $ f,g:\mathbb{R} \to \mathbb{R} $ such that
+    \[
+        \bbE[f(X)g(Y)],\bbE[f(X)],\bbE[g(Y)]
+    \]
+    are well-defined. Then
     \[
         \bbE[f(X)g(Y)] = \bbE[f(X)]\bbE[g(Y)].
     \]
