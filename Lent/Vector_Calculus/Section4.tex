@@ -300,3 +300,69 @@ However if, for example in $ \mathbb{R}^{2} $,
     \frac{\partial ^2 f}{\partial x^2}-\frac{\partial ^2 f}{\partial y^2}=0,  
 \]
 we cannot say much about $f$. This is an example of \textbf{hyperbolic problems}. Generally elliptic problems are nicer than hyperbolic problems.
+
+\subsection{Relations between div, grad, and curl}
+\begin{definition}
+    Recall that $\bfF$ was \textit{conservative} if $ \bfF=\nabla f $. We say $\bfF$ is \textbf{irrotational} if $ \curl \bfF= \mathbf{0} $.
+\end{definition}
+\begin{definition}
+    We call $\bfA$ a \textbf{vector potential} for $\bfF$ if $ \bfF = \curl \bfA $.
+\end{definition}
+\begin{definition}
+    We say $\bfF$ is \textbf{solenoidal} if $ \div\bfF = 0 $.
+\end{definition}
+\begin{proposition}
+    For scalar field $f$ and vector field $ \bfF $, we have 
+    \[
+        \curl \nabla f = 0,\quad \div (\curl \bfF) = 0.
+    \]
+\end{proposition}
+\begin{proof}
+    Using Cartesians,
+    \[
+        [\nabla \times \nabla f]_{i}=\epsilon_{i j k} \frac{\partial}{\partial x_{j}}\left(\frac{\partial f}{\partial x_{k}}\right)=\epsilon_{i j k} \frac{\partial^{2} f}{\partial x_{j} \partial x_{k}}=0,
+    \]
+    and similarly 
+    \[
+        \nabla \cdot(\nabla \times \mathbf{F})=\frac{\partial}{\partial x_{i}}\left(\epsilon_{i j k} \frac{\partial F_{k}}{\partial x_{j}}\right)=\epsilon_{i j k} \frac{\partial^{2} F_{k}}{\partial x_{i} \partial x_{j}}=0.
+    \]
+\end{proof}
+\begin{corollary}
+    If $\bfF$ is conservative, then $\bfF$ is irrotational. Reverse implication is true \textit{if} domain of $\bfF$ is \textit{simply connected}(1-connected). 
+\end{corollary}
+\begin{corollary}
+    If there is a vector potential for $\bfF$, then $ \div\bfF = 0 $.
+\end{corollary}
+\begin{corollary}
+    If vector potential of $\bfF$ exists, then $\bfF$ is solenoidal. Reverse implication is true if the domain $ \Omega $ of $\bfF$ is 2-connected, i.e. is 1-connected and every sphere in $ \Omega $ can be continuously shrunk to any point in $ \Omega $. 
+\end{corollary}
+\subsection{Topology via calculus}
+For $ \Omega \subseteq \mathbb{R}^{3} $, consider a vector field $ \bfF:\Omega\to \mathbb{R}^{3} $. We know that 
+\[
+    \bfF \text{ irrotational} \land \Omega \text{ 1-connected} \Longrightarrow \bfF \text{ conservative}.
+\]
+Using this result we can get results about topology without doing any topology.
+\begin{example}
+    Is $ \Omega = \mathbb{R}^{3}\setminus \{z\text{-axis}\} $ simply connected?
+
+    Consider the vector field $F : \Omega\to \mathbb{R}^{3}$ defined by
+    \[
+        \bfF(\bfx) = \frac{1}{x^2+y^2}\begin{pmatrix}
+            -y \\ x \\ 0
+        \end{pmatrix}.
+    \]
+    Clearly $\bfF$ is well-defined on $\Omega$ and $ \curl\bfF=\mathbf{0} $. If $ \Omega $ is simply connected, then $\bfF$ must be conservative. Suppose $ \bfF = \nabla f $ for some $f$. Then for any closed loop $C\in \Omega$, we have 
+    \[
+        \oint_{C} \bfF\cdot\rmd \bfx = \oint_C \nabla f \cdot \rmd \bfx = 0,
+    \]
+    while taking $ C:[0,2\pi]\ni t \mapsto (\cos t,\sin t,0) $, we have
+    \[
+        \oint_{C} \bfF\cdot\rmd\bfx = \int_{0}^{2\pi} \begin{pmatrix}
+            -\sin t \\ \cos t \\ 0
+        \end{pmatrix} \cdot \begin{pmatrix}
+            -\sin t \\ \cos t \\ 0
+        \end{pmatrix} \,\mathrm{d}t = \int_{0}^{2\pi}  \,\mathrm{d}t=2\pi\neq 0.
+    \]
+    This is a contradiction so $\Omega$ is \textit{not} simply connected.
+\end{example}
+See Algebraic Topology for details.

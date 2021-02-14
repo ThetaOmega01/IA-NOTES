@@ -1,0 +1,63 @@
+\section{Integral Theorems}
+\subsection{Green's theorem}
+\begin{theorem}[Green]\label{thm:Green}
+    If $P = P(x, y)$ and $Q = Q(x, y)$ are continuously differentiable functions on $A \cup \partial A$ and $\partial A$ is \textit{piecewise smooth}, then
+    \[
+        \oint_{\partial A} P \mathrm{~d} x+Q \mathrm{~d} y=\iint_{A}\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right) \mathrm{d} x \mathrm{~d} y.
+    \]
+    Orientation of $ \partial A $ is such that $A$ lies to your left as you traverse it.
+\end{theorem}
+\begin{center}
+    \begin{tikzpicture}
+        \filldraw [color=black, thick, fill=black!20, arrow inside={end=latex',opt={black,scale=1.6}}{0,0.25,0.5,0.75}] (0,0) circle (1.5);
+        \filldraw [color=black, thick, fill=white,<-] (0,0) circle (0.75);
+    \end{tikzpicture}
+\end{center}
+\begin{note}
+    It is easy to establish the result for a rectangle. Let 
+    \[
+        A = \{(x,y):a\le x\le b,c\le y\le d\}.
+    \]
+    In this case, RHS is 
+    \begin{align*}
+        &\int_{c}^{d} \int_{a}^{b} \frac{\partial Q}{\partial x}  \,\mathrm{d}x \,\mathrm{d}y-\int_{a}^{b} \int_{c}^{d} \frac{\partial P}{\partial y}  \,\mathrm{d}y \,\mathrm{d}x\\ 
+        =& \int_{c}^{d} Q(b,y)-Q(a,y) \,\mathrm{d}y+\int_{a}^{b} P(x,c)-P(x,d) \,\mathrm{d}x\\ 
+        =& \oint_{\partial A} P\dd x+Q\dd y.
+    \end{align*}
+    \begin{center}
+        \begin{tikzpicture}
+            \fill [black!20] (-2, -1) rectangle (1, 1);
+            \node at (-0.5, 0) {$A$};
+            \node [below] at (-1, -2) {$\dd y=0,y=c$};
+            \node [above] at (0, 2) {$\dd y=0,y=d$};
+            \node [right] at (2,0.5) {$ \dd x=0,x=b$};
+            \node [left] at (-3,-0.5) {$ \dd x=0,x=b$};
+            \draw [->-=0.5,thick] (-2, -1) -- (1, -1);
+            \draw [->-=0.5,thick] (1, -1) -- (1, 1);
+            \draw [->-=0.5,thick] (1, 1) -- (-2, 1);
+            \draw [->-=0.5,thick] (-2, 1) -- (-2, -1);
+            \draw [->] (0, 2) -- (0, 1) ;
+            \draw [->] (-1, -2) -- (-1, -1);
+            \draw [->] (2,0.5) -- (1,0.5);
+            \draw [->] (-3,-0.5) -- (-2,-0.5);
+        \end{tikzpicture}
+    \end{center}
+\end{note}
+\begin{example}
+    Let $(P, Q)=\left(-\frac{1}{2} y, \frac{1}{2} x\right) .$ Then Green's theorem tells us
+    \[
+    \operatorname{area}(A)=\iint_{A} \mathrm{~d} x \mathrm{~d} y=\frac{1}{2} \oint_{\partial A} x \mathrm{~d} y-y \mathrm{~d} x
+    \]
+    Let $A$ be the ellipse $x^{2} / a^{2}+y^{2} / b^{2} \leq 1$ so that $\partial A$ has parametrisation
+    \[
+    [0,2 \pi] \ni t \mapsto \begin{pmatrix}
+        a \cos t \\
+        b \sin t
+    \end{pmatrix}
+    \]
+    Then
+    \[
+    \operatorname{area}(A)=\frac{1}{2} \int_{0}^{2 \pi}\left(a b \cos ^{2} t+a b \sin ^{2} t\right) \mathrm{d} t=\pi a b,
+    \]
+    as expected.
+\end{example}

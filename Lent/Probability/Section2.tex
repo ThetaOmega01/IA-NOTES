@@ -583,3 +583,140 @@ Recall that $ X\independent Y \Leftrightarrow \mathbb{P}(X=x,Y=y)=\mathbb{P}(X=x
     \]
     as claimed.
 \end{proof}
+
+\begin{definition}
+    Let $ X_1,\dots,X_n $ be discrete r.v.s. Their \textbf{joint distribution} is defined to be 
+    \[
+        \mathbb{P}(X_1=x_1,\dots,X_n=x_n), \quad \forall x_i\in \Omega_{X_i}.
+    \]
+\end{definition}
+
+Note that 
+\begin{align*}
+    \mathbb{P}(X_1=x_1) &= \mathbb{P}\left( \{X_1=x_1\} \cap \left( \bigcup_{i=2}^{n} \bigcup_{x_i} \{X_i=x_i\} \right) \right)\\ 
+    &= \sum_{x_2,\dots,x_n} \mathbb{P}(X_1=x_1,\dots,X_n=x_n),
+\end{align*}
+and similarly 
+\begin{align*}
+    \mathbb{P}(X_i=x_i) &= \mathbb{P}\left( \{X_1=x_1\} \cap \left( \bigcup_{i=2}^{n} \bigcup_{x_i} \{X_i=x_i\} \right) \right)\\ 
+    &= \sum_{\{x_j\}_{j=1}^n\setminus\{x_i\}} \mathbb{P}(X_1=x_1,\dots,X_n=x_n).
+\end{align*}
+\begin{definition}
+    Call $ (\mathbb{P}(X_i=x_i) )_{x_i}$ then \textbf{marginal distribution} of $X_i$.
+\end{definition}
+
+\begin{definition}
+    Let $X,Y$ be 2 r.v.s. The \textbf{conditional distribution} of $X$ given $ Y=y\ (y\in \Omega_Y) $ is defined to be 
+    \[
+        \mathbb{P}(X=x|Y=y),\quad x\in \Omega_X.
+    \]
+\end{definition}
+Note that 
+\[
+    \mathbb{P}(X=x) = \sum_{y} \mathbb{P}(X=x,Y=y) = \sum_{y} \mathbb{P}(X=x|Y=x)\mathbb{P}(Y=y),
+\]
+which is the law of total probability.
+\subsubsection*{Distribution of the sum of independent r.v.s}
+Let $ X,Y $ be 2 independent discrete r.v.s. Consider 
+\begin{align*}
+    \mathbb{P}(X+Y=z) &= \sum_{y} \mathbb{P}(X+y=z,Y=y)\\ 
+    &= \sum_{y} \mathbb{P}(X=z-y,Y=y)\\ 
+    &= \sum_{y} \mathbb{P}(X=z-y)\mathbb{P}(Y=y).
+\end{align*}
+This last sum is called the \textbf{convolution} of the distributions $X,Y$.
+
+Similarly,
+\[
+    \mathbb{P}(X+Y=z)=\sum_{x} \mathbb{P}(X=x)\mathbb{P}(Y=z-x).
+\]
+\begin{example}
+    Let $ X \sim P(\lambda) $ and $ Y \sim P(\mu) $ be independent.
+    \begin{align*}
+        \mathbb{P}(X+Y=n)&= \sum_{r=0}^{n}\mathbb{P}(X=r)\mathbb{P}(Y=n-r)\\ 
+        &= \sum_{r=0}^{n}e^{-\lambda}\cdot \frac{\lambda^r}{r!}\cdot e^{-\mu}\frac{\mu^{n-r}}{(n-r)!}\\ 
+        &= \frac{e^{-(\lambda+\mu)}}{n!}\sum_{r=0}^{n} \binom{n}{r} \lambda^r \mu^{n-r}\\ 
+        &= \frac{(\lambda+\mu)^n}{n!}e^{-(\lambda+\mu)},
+    \end{align*}
+    so $ X+Y \sim P(\lambda+\mu) $.
+\end{example}
+\begin{definition}
+    Let $ X,Y $ be 2 discrete r.v.s. The \textbf{conditional expectation} of $X$ given $Y=y$ is $ \bbE[X|Y=y]=\bbE[X\cdot 1(Y=y)]/\mathbb{P}(Y=y) $.
+\end{definition}
+Note that 
+\begin{align*}
+    \bbE[X|Y=y] &= \frac{\bbE[X\cdot 1(Y=y)]}{\mathbb{P}(Y=y)}\\
+     &= \frac{1}{\mathbb{P}(Y=y)}\sum_{x} x \cdot \mathbb{P}(X=x,Y=y)
+     \\ &= \sum_{x} x \cdot \mathbb{P}(X=x|Y=y).
+\end{align*}
+We observe that for every $y\in \Omega_Y$, $\bbE[X|Y=y]$ is a function of $y$ only. Set $ g(y)=\bbE[X|Y=y] $.
+
+\begin{definition}
+    Define the conditional expectation of $X$ given $Y$, written as $ \bbE[X|Y] $ for the random variable $g(Y)$.
+\end{definition}
+\begin{remark}
+    $ \bbE[X|Y] $ is a \textit{random variable} and depends only on $y$.
+\end{remark}
+Now 
+\begin{align*}
+    \bbE[X|Y] &= g(Y)\cdot 1 = g(Y) \sum_{y} 1(Y=y) = \sum_{y} g(Y)1(Y=y)\\ 
+    &= \sum_{y} g(y)1(Y=y)=\sum_{y} \bbE[X|Y=y]1(Y=y).
+\end{align*}
+\begin{example}
+    Toss a $p$-coin $n$ times independently. Write 
+    \[
+        X_i = 1(i\text{th toss is a H}),\quad i=1,\dots,n,\quad Y_n=X_1+\cdots+X_n.
+    \]
+    What is $ \bbE[X_1|Y] $?
+
+    Set $ g(y)=\bbE[X_1|Y_n=y] $, then $g(Y_n)=\bbE[X_1|Y_n]$. Let $ y\in \{0,\dots,n\} $. Then $g(y) = \bbE[X_1|Y_n=y] = \mathbb{P}(X_1=1|Y_n=y).$ 
+
+    If $ y=0 $, $\mathbb{P}(X_1=1|Y_n=0)=0$. If $ y\neq 0 $, we have 
+    \begin{align*}
+        \mathbb{P}(X_1=1|Y_n=y) &= \frac{\bbP(X_1=1,Y_n=y)}{\bbP(Y_n=y)}\\ 
+        &= \frac{\bbP(X_1=1,X_2+\cdots+X_n=y-1)}{\bbP(Y_n=y)}.
+    \end{align*}
+    Since $X_i$ are iid, we have 
+    \begin{align*}
+        \mathbb{P}(X_1=1,X_2+\cdots+X_n=y-1)&= \mathbb{P}(X_1=1)\cdot \mathbb{P}(X_2+\cdots+X_n=y-1)\\ 
+        &= p \cdot \binom{n-1}{y-1}p^{y-1}(1-p)^{n-y}.
+    \end{align*}
+    On the other hand, $ \mathbb{P}(Y_n=y) = \binom{n}{y}p^{y}(1-p)^{n-y} $, so 
+    \[
+        \mathbb{P}(X_1=1|Y_n=y) = \frac{p \cdot \binom{n-1}{y-1}p^{y-1}(1-p)^{n-y}}{\binom{n}{y}p^{y}(1-p)^{n-y}} = \frac{y}{n} = g(y).
+    \]
+    Therefore 
+    \[
+        \bbE[X_1|Y_n] = g(Y_n) = \frac{Y_n}{n}.
+    \]
+\end{example}
+
+\begin{proposition}[Properties of conditional expectation]\label{prop:Properties of conditional expectation}\ 
+    \begin{itemize}
+        \item $ \forall c\in \mathbb{R},\ \bbE[cX|Y]=c \cdot [X|Y] $ and $ \bbE[c|Y]=c $.
+        \item If $ X_1,\dots,X_n $ are r.v.s, then 
+        \[
+            \bbE\left[ \sum_{i=1}^{n}X_i|Y \right] = \sum_{i=1}^{n} \bbE[X_i|Y].
+        \]
+        \item $ \bbE[\bbE[X|Y]]=\bbE[X] $.
+        \item Let $X,Y$ be 2 independent r.v.s, then $ \bbE[X|Y]=\bbE[X] $.
+    \end{itemize}
+\end{proposition}
+\begin{proof}[Proof of 3]
+    Note that $ \bbE[X|Y]=\sum_{y} 1(Y=y)\bbE[X|Y=y] $. Taking expectation gives 
+    \begin{align*}
+        \bbE[\bbE[X|Y]]&= \sum_{y} \bbE[X|Y=y] \cdot \bbE[1(Y=y)]\\
+        &= \sum_{y} \bbE[X|Y=y] \bbP(Y=y) = \sum_{y} \frac{\bbE[X\cdot 1(Y=y)]}{\bbP(Y=y)}\bbP(Y=y)\\ 
+        &= \sum_{y} \bbE[X\cdot 1(Y=y)] = \bbE\left[ X\cdot \sum_{y} 1(Y=y) \right] = \bbE[X].
+    \end{align*}
+    Alternatively, 
+    \[
+        \sum_{y} \bbE[X|Y=y] \bbP(Y=y) = \sum_{x,y} x\bbP(X=x|Y=y)\mathbb{P}(Y=y)=\bbE[X].\qedhere
+    \]
+\end{proof}
+\begin{proof}[Proof of 4]
+    \begin{align*}
+        \bbE[X|Y]&= \sum_{y} 1(Y=y) \cdot \bbE[X|Y=y]\\ 
+        &= \sum_{y} 1(Y=y) \sum_{x} x \cdot \bbP(X=x|Y=y)\\
+        &= \sum_{y} 1(Y=y) \sum_{x} x \cdot \mathbb{P}(X=x) = \bbE[X].\qedhere
+    \end{align*}
+\end{proof}

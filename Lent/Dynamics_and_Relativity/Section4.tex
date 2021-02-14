@@ -330,7 +330,7 @@ In Cartesian coordinates, $r(1+e\cos\theta)=l \Rightarrow r+ex=l \Rightarrow r=l
         \draw [gray, ->] (-0.9, 0) -- (0, 0) node [pos = 0.5, above] {$a$};
         \node at (-2, 0) [dot=6pt] {};
         \node at (-2, 0) [left] {$O$};
-        \draw [gray, dashed] (-2, 0) -- (-2, 1.2) node [pos = 0.5, left] {$\ell$};
+        \draw [gray, dashed] (-2, 0) -- (-2, 1.2) node [pos = 0.5, left] {$l$};
         \draw [gray, dashed] (-2, 0) -- (-1.38462, -0.923077) node [pos = 0.5, right] {$b$};
     \end{tikzpicture}
     \end{center}
@@ -390,3 +390,54 @@ So
   r^3 \dot{\theta}^2 = k
 \]
 Since $\dot{\theta}\propto P^{-1}$, the result follows.
+\subsection{Rutherford scattering}
+
+Consider a positive charge fixed towards another fixed positive charge. What is the scattering angle $ \beta $?
+
+Consider motion in a \textit{repulsive} square law force
+\[
+    V(r) = \frac{mk}{r},\quad F(r) = \frac{mk}{r^2}.
+\]
+The solution orbit equation is 
+\[
+    u = -\frac{k}{h^2}+ a \cos (\theta-\theta_0).
+\]
+Wlog suppose $ \theta_0=0,A\ge 0 $. Rewrite as 
+\[
+    r = \frac{l}{e\cos \theta-1 },\quad l=\frac{h^2}{k},e=\frac{Ah^2}{k}.
+\]
+We require $ e>1 $ for $r>0$ and for some $ \theta $. Then $ r\to \infty $ as $ \theta\to \pm \alpha $ with $ \alpha=\arccos (1/e)\in (0,\pi/2) $. This represents a hyperbola. In Cartesians,
+\[
+    \frac{(x-ea)^2}{a^2}-\frac{y^2}{b^2}=1,\quad a=\frac{l}{e^2-1},b=\frac{l}{\sqrt{e^2-1}}.
+\]
+\begin{center}
+    \begin{tikzpicture}
+      \draw [gray] (-3, -2) -- (3, 2);
+      \draw [gray] (3, -2) -- (-3, 2);
+      \draw [->-=0.3] (3, -1.9) .. controls (0.2, 0) .. (3, 1.9);
+      \node at (-2, 0) [dot] {};
+      \node at (-2, 0) [left] {$O$};
+      \draw [dashed] (-2, 0) -- (-1.38462, 0.923077) node [pos = 0.5, right] {$b$};
+      \draw (0.3, 0) arc (0:-33:0.3);
+      \draw (0.3, 0) arc (0:33:0.3);
+      \node at (0.3, 0) [right] {$2\alpha$};
+      \draw (0, 0.4) arc (90:33:0.4);
+      \draw (0, 0.4) arc (90:147:0.4);
+      \node at (0, 0.4) [above] {$\beta$};
+    \end{tikzpicture}
+\end{center}
+It seems as if the particle is deflected by $O$.
+
+We can characterize the path of the particle by the impact parameter $b$ and the incident speed $v$ (i.e.\ the speed when far away from the origin). We know that the angular momentum per unit mass is $h = bv$ (velocity $\times$ perpendicular distance to $O$).
+
+How does the scattering angle $\beta = \pi - 2\alpha$ depend on the impact parameter $b$ and the incident speed $v$?
+
+Recall that the angle $\alpha$ is given by $\alpha = \cos^{-1} (1/e)$. So we obtain
+\[
+  \frac{1}{e} = \cos \alpha = \cos \left(\frac{\pi}{2} - \frac{\beta}{2}\right) = \sin\left(\frac{\beta}{2}\right),
+\]
+So
+\[
+  b = \frac{l}{\sqrt{e^2 - 1}} = \frac{(bv)^2}{k}\tan \frac{\beta}{2}\Longrightarrow \beta = 2\tan^{-1}\left(\frac{k}{bv^2}\right).
+\]
+We see that if we have a small impact parameter, i.e.\ $b \ll k/v^2$, then we can have a scattering angle approaching $\pi$.

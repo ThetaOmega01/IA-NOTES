@@ -1,0 +1,56 @@
+\section{Rotating frames of reference}
+Recall that Newton's laws are only valid in \textit{inertial} frames. A rotating frame is non-inertial and therefore the equation of motion needs to be modified.
+
+Let $S$ is an inertial frame and $S'$ a rotating frame about the $z$-axis in $S$ with angular velocity $ \omega $. Denote the basis vectors for $S$ as 
+\[
+    \bfe_i = \{\hat{\bfx},\hat{\bfy},\hat{\bfz}\},
+\]
+and for $S'$ 
+\[
+    \bfe_i' = \{\hat{\bfx}',\hat{\bfy}',\hat{\bfz}'\}.
+\]
+Consider a particle at rest in $S$. Its velocity viewed in $S$ is 
+\[
+    \left( \frac{\mathrm{d}\bfv}{\mathrm{d}t}  \right)_S = \boldsymbol{\omega} \times \mathbf{r},\quad \text{where $ \boldsymbol{\omega}=\omega \hat{\bfz} $}.
+\]
+The angular velocity vector is aligned with the axis of rotation, and with the magnitude equal to scalar angular velocity. In convention, $z$-axis is chosen so that viewed from the direction of the angular velocity, the rotation is anti-clockwise.
+
+Same formula applies to any vector fixed in $S'$, in particular to the basis vectors $ \bfe_i' $:
+\[
+    \left( \frac{\mathrm{d}\bfe_i'}{\mathrm{d}t}  \right)_S = \boldsymbol{\omega}\times \bfe_i'.
+\]
+
+Consider a general time-dependent vector $ \mathbf{a} $. In $ S' $ we can write
+\[
+    \mathbf{a}(t) = \sum_{i=1}^{3} a_i'(t)\bfe_i'(t).
+\]
+Now consider rate of change of $ \mathbf{a} $:
+\[
+    \left( \frac{\mathrm{d}\bfa(t)}{\mathrm{d}t}  \right)_{S'} = \sum_{i=1}^{3}\frac{\mathrm{d}(a_i'(t))}{\mathrm{d}t}\bfe_i'(t) ,
+\] 
+and in $S$ 
+\begin{align*}
+    \left( \frac{\mathrm{d}\bfa(t)}{\mathrm{d}t} \right)_S 
+    &= \sum_{i=1}^{3}\frac{\mathrm{d}(a_i'(t))}{\mathrm{d}t}\bfe_i'(t) + \sum_{i=1}^{3} a_i'(t) \left( \frac{\mathrm{d}}{\mathrm{d}t}\bfe_i'(t) \right)_S \\ 
+    &= \left( \frac{\mathrm{d}\bfa(t)}{\mathrm{d}t}  \right)_{S'}+\omega \times \bfa.
+\end{align*}
+Applying to position vector $\bfr$  gives
+\[
+    \left( \frac{\mathrm{d}\bfr(t)}{\mathrm{d}t} \right)_S=\left( \frac{\mathrm{d}\bfr(t)}{\mathrm{d}t}  \right)_{S'}+\omega \times \bfr.
+\]
+Note that the difference depends on position. Now apply the same identity to velocity(assume $ \boldsymbol{\omega} $ is time-dependent):
+\begin{align*}
+    \left( \frac{\mathrm{d}^2r}{\mathrm{d}t^2}  \right)_S &= \left( \left( \frac{\mathrm{d}}{\mathrm{d}t}  \right)_{S'}+\boldsymbol{\omega}\times  \right)\left( \left( \frac{\mathrm{d}}{\mathrm{d}t}  \right)_{S'}+\boldsymbol{\omega}\times  \right)\bfr\\ 
+    &=\left( \frac{\mathrm{d}^2\bfr}{\mathrm{d}t^2}  \right)_{S'}+2 \boldsymbol{\omega}\times \left( \frac{\mathrm{d}\bfr}{\mathrm{d}t}  \right)_{S'}+\dot{\boldsymbol{\omega}}\times \mathbf{r}+\boldsymbol{\omega} \times (\boldsymbol{\omega} \times \mathbf{r}).
+\end{align*}
+Therefore the equation of motion in a rotating frame is 
+\begin{align*}
+    &m \left( \frac{\mathrm{d}^2r}{\mathrm{d}t^2}  \right)_S =\bfF\\ 
+    \Longrightarrow &\bfF= m\left( \left( \frac{\mathrm{d}^2\bfr}{\mathrm{d}t^2}  \right)_{S'}+2 \boldsymbol{\omega}\times \left( \frac{\mathrm{d}\bfr}{\mathrm{d}t}  \right)_{S'}+\dot{\boldsymbol{\omega}}\times \mathbf{r}+\boldsymbol{\omega} \times (\boldsymbol{\omega} \times \mathbf{r}) \right).
+\end{align*}
+Need to take account of fictitious forces to explain motion observed in the rotating frame:
+\begin{enumerate}[align=left]
+    \item[\textbf{Coriolis force}:] $\displaystyle -2m\boldsymbol{\omega}\times \left( \frac{\mathrm{d}\bfr}{\mathrm{d}t}  \right)_{S'}$.
+    \item[\textbf{Euler force}:] $\displaystyle -m\dot{\boldsymbol{\omega}}\times \mathbf{r}$, in many applications, take this to be zero.
+    \item[\textbf{Centrifugal force}:] $\displaystyle -m\boldsymbol{\omega} \times (\boldsymbol{\omega} \times \mathbf{r})$.
+\end{enumerate}
