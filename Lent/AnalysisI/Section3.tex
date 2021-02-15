@@ -92,6 +92,151 @@
         \frac{\phi(x+h)-\phi(x)}{h} &= \frac{1/f(x+h)-1/f(x)}{h}=\frac{f(x)-f(x+h)}{hf(x)f(x+h)}  \\ 
         &= \frac{f(x)-f(x+h)}{h}\cdot \frac{1}{f(x)f(x+h)}\\ 
         &\to -\frac{f'(x)}{f(x)^2}.\qedhere
-    \end{align*}
+    \end{align*} 
 \end{proof}
 
+\begin{example}
+    Let $ f(x) = x^n, n\in \mathbb{Z}, n>0 $. If $n=1$, clearly $f(x)=x,f'(x)$=1. Claim that $ f'(x) = nx^{n-1} $. Note that $ f'(x) = (x \cdot x^{n})' = x^{n}+nx^{n-1} \cdot x = (n+1) x^{n} $, so it follows inductively. 
+\end{example}
+\begin{example}
+    Let $ f(x) = x^{-n},n\in \mathbb{N} $. It can be checked that $ f'(x)=-nx^{-n-1} $.
+\end{example}
+By using proposition \ref{prop:2.1}, we know how to differentiate polynomials and rational functions.
+
+\begin{theorem}[Chain rule]\label{thm:Chain rule}
+    Let $ f:U\to \mathbb{C}  $ such that $ f(x)\in V,\forall x\in U $. If $f$ is differentiable at $a\in U$ and $ g:V\to \bbC $ is differentiable at $f(a)\in V$, then $g\circ f$ is differentiable at $x=a$ and
+    \[
+        (g \circ f)'(a) = g'(f(a))f'(a).
+    \]
+\end{theorem}
+\begin{proof}
+    Since $f$ is differentiable at $a$, we have 
+    \[
+        f(x) = f(a) + (x-a) f'(x) +\epsilon_f(x)(x-a),
+    \]
+    and since $g$ is differentiable at $b=f(a)$, 
+    \[
+        g(y) = g(b) + (y-b) g'(b) + \epsilon_g(y) (y-b).
+    \]
+    Set $ \epsilon_f(a)=\epsilon_g(b)=0 $ to make them continuous at $a,b$. Substituting $y=f(x)$ gives 
+    \begin{align*}
+        g(f(x)) &= g(b) + (f(x)-b)g'(b)+\epsilon_g(f(x))(f(x)-b)\\ 
+        &= g(b) + ((x-a)f'(x)+\epsilon_f(x)(x-a))(g'(b)+\epsilon_g(f(x))) \\ 
+        &= g(f(a)) + (x-a) f'(a)g'(b)+(x-a)\sigma(x),
+    \end{align*} 
+    where
+    \[
+        \sigma(x) = \epsilon_f(x)g'(b)+\epsilon_g(f(x))(f'(a)+\epsilon_f(x)).
+    \]
+    Now 
+    \begin{align*}
+        \lim_{x \to a} \sigma(x) &= \lim_{x \to a}\epsilon_f(x)g'(b)+\lim_{x \to a}\epsilon_g(f(x))(f'(a)+\epsilon_f(x))\\ 
+        &=\lim_{x \to a}\epsilon_g(f(x))\lim_{x \to a}(f'(a)+\epsilon_f(x))\\ 
+        &= 0.
+    \end{align*}
+    Hence $ \sigma(x) $ is of the form in the alternative definition, and thus 
+    \[
+        (g \circ f)'(x)=g'(f(x))f'(x),
+    \]
+    as required.
+\end{proof}
+\begin{example}
+    $ \sin (x^2)'=2x \cos (x^2) $.
+\end{example}
+\begin{example}
+    Let 
+    \[
+        f(x) = \begin{cases}
+        x\sin(1/x) &\text{if }x\neq 0\\
+        0 &\text{if }x=0\\
+        \end{cases} 
+    \]
+    It is continuous on $\bbR$. By previous result, $f(x)$ is differentiable on $ \bbR\setminus \{0\} $. At $x=0$, 
+    \[
+        \frac{f(x)-f(0)}{x-0} = \sin (1/x),
+    \]
+    which has no limit as $ x\to 0 $. Therefore $f$ is \textit{not} differentiable at $0$.
+\end{example}
+\subsection{Theorems of differentiation}
+\begin{theorem}[Rolle]\label{thm:Rolle}
+    Suppose $ f:[a,b]\to \mathbb{R} $ is continuous on $[a,b]$ and differentiable on $(a,b)$. If $f(a)=f(b)$, then $ \exists c\in (a,b) $ such that $f'(c)=0$. 
+\end{theorem}
+\begin{proof}
+    Let $ M=\max_{x\in [a,b]}f(x),m=\min_{x\in [a,b]}f(x) $. From theorem \ref{thm:continuous function attachs the bounds} we know that $M,m$ are indeed achieved. Let $k=f(a)$. If $M=m=k$, then $f$ is constant so clearly there is a $c$ that $f'(c)=0$. Hence $ M>k $ or $ m<k $. Suppose $M>k$. $ \exists c\in (a,b), f(c)=M $. Claim that $f'(c)=0$. If $f'(c)> 0$ wlog, then
+    \[
+        f(c+h) -f(c) = h(f'(c)+\epsilon(h)).
+    \]
+    For $h$ positive and small, $\text{RHS}>0$ and thus $ \exists h+c>c,f(h+c)>f(c) $, contradiction. Similarly for $f'(c)<0$.
+\end{proof}
+\begin{theorem}[Mean Value Theorem]\label{thm:Mean Value Theorem}
+    Let $ f:[a,b]\to \mathbb{R} $ be continuous on $[a,b]$ and differentiable on $(a,b)$. Then $ \exists c\in (a,b) $ such that 
+    \[
+        f(b)-f(a) = f'(c)(b-a).
+    \]
+\end{theorem}
+\begin{proof}
+    Apply Rolle's theorem on 
+    \[
+        \phi(x) = f(x) - \frac{f(b)-f(a)}{b-a} x.\footnote{This can be obtained by considering $ \phi(x)=f(x)-kx $ such that $ \phi(a)=\phi(b) $.}\qedhere
+    \]
+\end{proof}
+\begin{remark}
+    We will often write
+    \[
+        f(a+h)=f(a)+hf'(a+\theta h),\quad 0<\theta<1.
+    \]
+\end{remark}
+
+\begin{corollary}\label{col:3.5}
+        If $ f:[a,b]\to \mathbb{R} $ is continuous on $[a,b]$ and differentiable on $(a,b)$, then 
+        \begin{enumerate}
+            \item If $ f'(x)>0,\ \forall x\in (a,b) $, then $f$ is strictly increasing on $[a,b]$.
+            \item If $ f'(x)\ge0,\ \forall x\in (a,b) $, then $f$ is increasing.
+            \item If $ f'(x)\equiv 0 $, then $f$ is constant. 
+        \end{enumerate}
+\end{corollary}
+\begin{proof}
+    These are immediate from MVT.
+\end{proof}
+
+\begin{theorem}[Inverse function theorem]\label{thm:Inverse function theorem}
+    If $ f:[a,b]\to \mathbb{R}  $ is continuous on $[a,b]$ and differentiable on $ (a,b) $ with $ f'(x)>0 $. Let $f(a)=c,f(b)=d$. Then the function $ f:[a,b]\to [c,d] $ is bijective and $ f^{-1} $ is differentiable on $(c,d)$ with 
+    \[
+        (f^{-1})'(x)=\frac{1}{f'(f^{-1}(x))}.
+    \]
+\end{theorem}
+\begin{proof}
+    By corollary \ref{col:3.5} $f$ is strictly increasing on $[a,b]$. By theorem \ref{thm:existence of inverse function} $ \exists g:[c,d]\to [a,b] $ which is continuous strictly increasing inverse of $f$. If $k\neq 0$ is given, let $ h $ be such that $ y+k = f(x+h) \Leftrightarrow g(y+k)=x+h $, $ h\neq 0 $. Then 
+    \[
+        \frac{g(y+k)-g(y)}{k} = \frac{x+h-x}{f(x+h)-f(x)}= \frac{h}{f(x+h)-f(x)}.
+    \]
+    Note that since $g$ is continuous, $ h\to 0 $ as $ k\to 0 $. Hence
+    \[
+        g'(y) = \lim_{k \to 0} \frac{g(y+k)-g(y)}{k} = \lim_{h \to 0} \frac{h}{f(x+h)-f(x)} = \frac{1}{f'(x)}.\qedhere
+    \]
+\end{proof}
+\begin{example}
+    Let $ g(x)=x^{1/n},x>0,n\in \mathbb{N} $. $ g^{-1}(x)=x^{n} $, so
+    \[
+        g'(x) = 1/(g^{-1})'(x)=\frac{1}{n}x^{\frac{1}{n}-1}.
+    \]
+    More generally,
+    \[
+        \left( x^{p/q} \right)'=\frac{p}{q}x^{p/q-1},\quad p,q\in \mathbb{Z}.
+    \]
+\end{example}
+
+Suppose $ f,g: [a,b] \to \mathbb{R} $ are continuous on $[a,b]$ and differentiable on $(a,b)$ and $g(a)\neq g(b)$. Then MVT gives that $ \exists s,t\in (a,b) $ such that 
+\[
+    \frac{f(b)-f(a)}{g(b)-g(a)}=\frac{(b-a)f'(s)}{(b-a)g'(t)}=\frac{f'(s)}{g'(t)}.
+\]
+Cauchy showed that one can take $s=t$.
+\begin{theorem}[Cauchy's MVT]\label{thm:Cauchy}
+    Let $f,g:[a,b]\to \bbR$ be continuous on $[a,b]$ and differentiable on $(a,b)$, then $ \exists t\in (a,b) $ such that 
+    \[
+        (f(b)-f(a))g'(t)=f'(t)(g(b)-g(a)).
+    \]
+\end{theorem}
+\begin{note}
+    We recover MVT if take $g(x)=x$.
+\end{note}
