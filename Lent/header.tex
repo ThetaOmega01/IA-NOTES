@@ -27,6 +27,8 @@
 \usetikzlibrary{intersections}
 \usetikzlibrary{cd}
 \usetikzlibrary{patterns}
+\usetikzlibrary{shapes.arrows}
+\usepgfplotslibrary{colormaps, external}
 \pgfarrowsdeclarecombine{twolatex'}{twolatex'}{latex'}{latex'}{latex'}{latex'}
 \tikzset{->/.style = {decoration={markings,
                                   mark=at position 1 with {\arrow[scale=1.6]{latex'}}},
@@ -501,23 +503,23 @@ dot/.default = 5pt% size of the circle diameter
 
 
 %layout full
-% \geometry{%
-%   a4paper,
-%   lmargin=2cm,
-%   rmargin=2.5cm,
-%   tmargin=3.5cm,
-%   bmargin=2.5cm,
-%   footskip=12pt,
-%   headheight=24pt}
+\geometry{%
+  a4paper,
+  lmargin=2cm,
+  rmargin=2.5cm,
+  tmargin=3.5cm,
+  bmargin=2.5cm,
+  footskip=12pt,
+  headheight=24pt}
 % layout trim
-\geometry{
-papersize={379pt, 699pt},
-textwidth=345pt,
-textheight=596pt,
-left=17pt,
-top=54pt,
-right=17pt
-}
+% \geometry{
+% papersize={379pt, 699pt},
+% textwidth=345pt,
+% textheight=596pt,
+% left=17pt,
+% top=54pt,
+% right=17pt
+% }
 \pagestyle{fancy}
 \theoremstyle{plain}
 
