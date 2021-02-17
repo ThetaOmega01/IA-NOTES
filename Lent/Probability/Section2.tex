@@ -661,7 +661,7 @@ Now
     \bbE[X|Y] &= g(Y)\cdot 1 = g(Y) \sum_{y} 1(Y=y) = \sum_{y} g(Y)1(Y=y)\\ 
     &= \sum_{y} g(y)1(Y=y)=\sum_{y} \bbE[X|Y=y]1(Y=y).
 \end{align*}
-\begin{example}
+\begin{example}\label{eg:2.11}
     Toss a $p$-coin $n$ times independently. Write 
     \[
         X_i = 1(i\text{th toss is a H}),\quad i=1,\dots,n,\quad Y_n=X_1+\cdots+X_n.
@@ -689,13 +689,13 @@ Now
         \bbE[X_1|Y_n] = g(Y_n) = \frac{Y_n}{n}.
     \]
 \end{example}
-
-\begin{proposition}[Properties of conditional expectation]\label{prop:Properties of conditional expectation}\ 
+\subsubsection*{Properties of conditional expectation}
+\begin{proposition}\label{prop:Properties of conditional expectation}\ 
     \begin{itemize}
         \item $ \forall c\in \mathbb{R},\ \bbE[cX|Y]=c \cdot [X|Y] $ and $ \bbE[c|Y]=c $.
         \item If $ X_1,\dots,X_n $ are r.v.s, then 
         \[
-            \bbE\left[ \sum_{i=1}^{n}X_i|Y \right] = \sum_{i=1}^{n} \bbE[X_i|Y].
+            \bbE\left[ \sum_{i=1}^{n}X_i\Big|Y \right] = \sum_{i=1}^{n} \bbE[X_i|Y].
         \]
         \item $ \bbE[\bbE[X|Y]]=\bbE[X] $.
         \item Let $X,Y$ be 2 independent r.v.s, then $ \bbE[X|Y]=\bbE[X] $.
@@ -708,7 +708,7 @@ Now
         &= \sum_{y} \bbE[X|Y=y] \bbP(Y=y) = \sum_{y} \frac{\bbE[X\cdot 1(Y=y)]}{\bbP(Y=y)}\bbP(Y=y)\\ 
         &= \sum_{y} \bbE[X\cdot 1(Y=y)] = \bbE\left[ X\cdot \sum_{y} 1(Y=y) \right] = \bbE[X].
     \end{align*}
-    Alternatively, 
+    Alternatively,
     \[
         \sum_{y} \bbE[X|Y=y] \bbP(Y=y) = \sum_{x,y} x\bbP(X=x|Y=y)\mathbb{P}(Y=y)=\bbE[X].\qedhere
     \]
@@ -720,3 +720,122 @@ Now
         &= \sum_{y} 1(Y=y) \sum_{x} x \cdot \mathbb{P}(X=x) = \bbE[X].\qedhere
     \end{align*}
 \end{proof}
+\begin{lemma}\label{lma:2.25}
+    If $ Y \independent Z $, then for any function $f$ we have $ f(Y) \independent Z $.
+\end{lemma}
+\begin{proof}[Indeed,]
+    for any function $f$, we have
+    \begin{align*}
+        \mathbb{P}(f(Y)=r,Z=z)&= \mathbb{P}(Y\in f^{-1}(\{r\})), Z=z)\\ 
+        &= \sum_{y\in f^{-1}(\{r\})} \mathbb{P}(Y=y,Z=z)\\ 
+        &= \sum_{y\in f^{-1}(\{r\})} \mathbb{P}(Y=y) \mathbb{P}(Z=z)\\ 
+        &= \mathbb{P}(f(Y)=r)\mathbb{P}(Z=z).\qedhere
+    \end{align*}
+\end{proof}
+\begin{proposition}
+    Suppose $Y,Z$ are independent r.v.s, then 
+    \[
+        \bbE[\bbE[X|Y]|Z] = \bbE[X].
+    \]
+\end{proposition}
+\begin{proof}
+    We have $ \bbE[X|Y] = g(Y) $, where $g(Y)$ is defined before. If $ Y \independent Z $, then $ g(Y) \independent Z $ by lemma \ref{lma:2.25}. From proposition \ref{prop:Properties of conditional expectation}, 
+    \[
+        \bbE[g(Y)|Z] = \bbE[g(Y)] = \bbE[\bbE[X|Y]] = \bbE[X].\qedhere
+    \]
+\end{proof}
+
+\begin{proposition}
+    Suppose $h:\bbR\to\bbR$, then 
+    \[
+        \bbE[h(Y) \cdot X|Y] = h(Y) \cdot \bbE[X|Y].
+    \]
+\end{proposition}
+\begin{proof}
+    Note that 
+    \[
+        \bbE[h(Y)\cdot X|Y=y]=\bbE[h(y)\cdot X|Y=y] = h(y)\bbE[X|Y=y],
+    \]
+    so plugging in $Y$ gives the result.
+\end{proof}
+\begin{corollary}
+    $ \bbE[\bbE[X|Y]|Y]=\bbE[X|Y] $ and $ \bbE[X|X]=X $.
+\end{corollary}
+
+\begin{example}
+    Refer to example \ref{eg:2.11}. We can prove it by the properties now: By symmetry for all $i$, 
+    \[
+        \bbE[X_i|Y_n]=\bbE[X_1|Y_n].
+    \]
+    Now note that 
+    \[
+        \bbE\left[ \sum_{i=1}^{n}X_i\Big|Y_n \right] = \sum_{i=1}^{n}\bbE[X_i|Y_n] = n \bbE[X_1|Y_n].
+    \]
+    Since $ \sum X_i = Y_n $, we have 
+    \[
+        \bbE[X_1|Y_n] = \frac{1}{n}\bbE[Y_n|Y_n] = \frac{Y_n}{n}.\qedhere
+    \]
+\end{example}
+
+\subsection{Random walks}
+\begin{definition}
+    A \textbf{random process}(or stochasic process) is a sequence of random variables $ (X_n)_{n\in \mathbb{N}} $.
+\end{definition}
+\begin{definition}
+    A \textbf{random walk} is a random process that can be expressed in the following way: 
+    \[
+        X_n = x+Y_1+\cdots+Y_n,
+    \]
+    where $Y_i$ are iid rvs and $x$ is a deterministic number.
+\end{definition}
+\begin{definition}
+    A random walk on $\bbZ$ is defined by 
+    \[
+        \bbP(Y_i=1) = p,\quad \mathbb{P}(Y_i=-1)=q=1-p.
+    \]
+    The random walk is \textbf{symmetric} if $p=q=1/2$.
+\end{definition}
+
+\begin{notation}
+    We write $ \mathbb{P}_x $ for the probability measure $ \mathbb{P}(\cdot | X_0=x) $, i.e. for $ A\in \mathscr{F}, \mathbb{P}_x(A) = \mathbb{P}(A|X_0=x) $. Also write $ \bbE_x $ for $ \bbE[\cdot|X_0=x] $.
+\end{notation}
+
+We can think of $X_n$ as the fortune of a gambler who bets 1 at every step and either doubles it with probability $p$ or loses it with probability $q$.
+\begin{example}[Gambler's ruin estimate]
+    Suppose the gambler starts with \pounds$ x $ at time 0. What is the probability he reaches $a$ before going bankrupt?
+
+    Define $ h(x) = \mathbb{P}_x(X_n \text{ hits }a \text{ before hitting }0) $. By the law of total probability, we have
+    \begin{align*}
+        h(x)&=\bbP_x(\cdots|Y_1=1)\mathbb{P}(Y_1=1)+\mathbb{P}_x(\cdots|Y_1=-1)\mathbb{P}(Y_1=-1)\\ 
+       &= p h(x+1)+q h(x-1).
+    \end{align*}
+    Note that $ h(0)=0,h(a)=1$.
+    \begin{itemize}
+        \item If $ p=q=1/2 $, then $ h(x)-h(x+1)=h(x-1)-h(x) $, so $ h(x) = x/a $.
+        \item If $ p\neq q $, the characteristic equation is $ p\lambda^2-\lambda+q=0 \Rightarrow \lambda=1,\frac{q}{p} $. So the general solution is 
+        \[
+            h(x) = A+B\left( \frac{q}{p} \right)^n = \frac{\left( \frac{q}{p} \right)^x-1}{\left( \frac{q}{p} \right)^a-1}.
+        \]
+    \end{itemize}
+\end{example}
+\begin{example}[Expected time to absorption]
+    Define $ T =\min \{n\ge 0: X_n\in \{0,a\}\} $. i.e. $T$ is the \textit{first} time $X$ hits $0$ or $a$. What is $ \tau_x = \bbE_x[T] $? Here $ 0<x<a $.
+
+    By the law of total expectation\footnote{We are calculating the \textit{time} it takes, so we have to take $Y_1$ into account.},
+    \begin{align*}
+        \tau_x &= p\bbE_x[T|Y_1=1]+q\bbE_x[T|Y_1=-1]\\ 
+        &= p(1+\bbE_{x+1}[T])+q(1+\bbE_{x-1}[T])\\ 
+        &= 1+ p \tau_{x+1}+q \tau_{x-1}
+    \end{align*}
+    with I.C.s $ \tau_0=\tau_a=0 $.
+    \begin{itemize}
+        \item If $ p=q=1/2 $, trying solution of the form $ Ax^2 $ gives $A=-1$, and thus the general solution is 
+        \[
+            \tau_x = Ax^2+Bx+C = x(a-x).
+        \]
+        \item If $ p\neq q $, trying particular solution $ Cx $ gives $ C=\frac{1}{q-p} $ and (by previous homogeneous case) the general solution is 
+        \[
+            \tau_x = \frac{x}{q-p}+A+B\left( \frac{q}{p} \right)^x = \frac{x}{q-p}-\frac{q}{q-p}\frac{\left( \frac{q}{p} \right)^x-1}{\left( \frac{q}{p} \right)^a-1}.
+        \]
+    \end{itemize}
+\end{example}
