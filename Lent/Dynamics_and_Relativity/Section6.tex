@@ -1,0 +1,94 @@
+\section{System of particles}
+Consider $n$ particles of masses $ m_i $, positions $ \bfr_i(t) $ and momentum $ \bfp_i(t) = m_i \dot{\bfr}_i $. Newton's 2nd law applies to the $i$th particle individually: 
+\[
+    m_i \ddot{\bfr}_i = \dot{\bfp}_i = \bfF_i,
+\]
+where $\bfF_i$ is total force applied to the $i$th particle. Distinguish between external and internal forces: 
+\[
+    \bfF_i = \bfF_i^{\text{ext}}+\sum_{j\neq i}\bfF_{ij},
+\]
+where $\bfF_{ij}$ is the force applied to the $ i $th particle by the $j$th particle and $ \bfF_i^{\text{ext}} $ is the external force exerted to the $i$th particle.
+
+By Newton's 3rd law, $ \bfF_{ij}=-\bfF_{ji} $, which can be checked in gravity.
+
+\subsection{Centre of mass}
+Consider $n$ particles with total mass $ M=\sum_{i=1}^{n}m_i $. The \textbf{centre of mass} is located at 
+\[
+    \bfR = \frac{1}{M} \sum_{i=1}^{n} m_i \mathbf{r}_i.
+\]
+Consider the total linear momentum: 
+\[
+    \bfP = \sum_{i=1}^{n} m_i \dot{\bfr}_i = \sum_{i=1}^{n} \bfp_i = M \dot{\bfR},
+\]
+i.e. total linear momentum is equivalent to that of a point mass $M$ located at $\bfR$. Then 
+\[
+    \dot{\bfP} = M \ddot{\bfR} = \sum_{i=1}^{n}\dot{\bfp}_i = \sum_{i=1}^{n} \bfF_i^{\text{ext}}+\sum_{i=1}^{n}\sum_{j\neq i}\bfF_{ij}\footnote{By considering parwise sums, $\sum_{i=1}^{n}\sum_{j\neq i}\bfF_{ij}=\mathbf{0}$.} =\bfF^{\text{ext}} .
+\]
+i.e. centre of mass moves as if it is the position of a mass $M$ under the influence of a force $ \bfF^{\text{ext}} $, extending Newton's 2nd law to a system of particles. If $ \bfF^{\text{ext}}=\mathbf{0} $ then $ \dot{\bfP}=\mathbf{0} $ and thus total momentum is conserved. There will be a ``centre of mass'' frame with origin at $ \bfR $, which is inertial. In this frame $ \dot{\bfR}=\mathbf{0} $, e.g. take $ \bfR=\mathbf{0} $.
+
+\subsection{Motion relative to centre of mass}
+Let $ \bfr_i = \bfR+\bfs_i $, where $\bfs_i$ are position vectors relative to centre of mass. Note that 
+\[
+    \sum_{i=1}^{n}m_i\bfs_i = \sum_{i=1}^{n}m_i(\bfr_i-\bfR) = \sum_{i=1}^{n}m_i\bfr_i-\bfR \sum_{i=1}^{n}m_i = \mathbf{0},
+\]
+so 
+\[
+    \frac{\mathrm{d}}{\mathrm{d}t} \sum_{i=1}^{n} m_i \bfs_i = \mathbf{0}. 
+\]
+The total linear momentum is 
+\[
+    \bfP = \sum_{i=1}^{n}m_i (\dot{\bfR}+\dot{\bfs}_i) = \sum_{i=1}^{n}m_i \dot{\bfR} = M \dot{\bfR},
+\]
+which is indeed consistent.
+
+\subsection{Angular momentum}
+Total angular momentum about origin is 
+\[
+    \bfL = \sum_{i=1}^{n} \bfr_i \times \bfp_i,
+\]
+so
+\begin{align*}
+    \dot{\bfL} &= \sum_{i=1}^{n}\dot{\bfr}_i \times \bfp_i + \sum_{i=1}^{n} \bfr_i \times \dot{\bfp}_i = \sum_{i=1}^{n} \bfr_i \times \dot{\bfp}_i\\ 
+    &= \sum_{i=1}^{n}\mathbf{r}_i \times \bfF_i^{\text{ext}}+\sum_{i=1}^{n}\mathbf{r}_i \times \sum_{j=1}^{n}\bfF_{ij}\\ 
+    &= \sum_{i=1}^{n}\mathbf{r}_i \times \bfF_i^{\text{ext}}+\frac{1}{2}\sum_{i,j=1}^{n} (\bfr_i-\bfr_j)\times \bfF_{ij}.
+\end{align*}
+The latter is $\mathbf{0}$ if, e.g. $ \bfF_{ij}\parallel \bfr_i-\bfr_j $. In this case 
+\[
+    \dot{\bfL} = \sum_{i=1}^{n}\mathbf{r}_i \times \bfF_i^{\text{ext}} = \bfG^{\text{ext}},
+\]
+the total external torque acting on the system.
+
+Relative to the centre of mass, total angular momentum is given by 
+\begin{align*}
+    \bfL &= \sum_{i=1}^{n} m_i(\bfR+\bfs_i) \times (\dot{\bfR}+\dot{\bfs}_i)\\ 
+    &= \sum_{i=1}^{n}m_i (\bfR \times \dot{\bfR})+\sum_{i=1}^{n}m_i \bfs_i \times \dot{\bfs}_i.
+\end{align*}
+This is the angular momentum of a particle of mass $M$ at $ \bfR $ moving with velocity $ \dot{\bfR} $ and angular momentum associsated with motion of particles relative to the centre of mass.
+
+\subsection{Energy}
+Total kinetic energy $T$ is 
+\begin{align*}
+    T &= \sum_{i=1}^{n}\frac{1}{2}m_i \dot{\bfr}_i^2 = \sum_{i=1}^{n} \frac{1}{2}m_i (\dot{\bfR}+\dot{\bfs}_i)^2\\ 
+    &= \frac{1}{2} \dot{\bfR}^2 \sum_{i=1}^{n}m_i+\frac{1}{2}\sum_{i=1}^{n}m_i \dot{\bfs}_i^2,
+\end{align*}
+which is the KE of a particle of mass $M$ with velocity $ \dot{\bfR} $. KE is associsated with particle motions relative to the centre of mass.
+
+Is energy conserved? Consider 
+\begin{align*}
+    \frac{\mathrm{d}T}{\mathrm{d}t} &= \frac{\mathrm{d}}{\mathrm{d}t}\sum_{i=1}^{n}\frac{1}{2}m_i \dot{\bfr}_i^2 = \sum_{i=1}^{n}m_i \dot{\bfr}_i \cdot \ddot{\bfr}_i\\
+    &= \sum_{i=1}^{n} \dot{\bfr}_i \cdot \bfF_i^{\text{ext}}+\sum_{i=1}^{n}\dot{\bfr}_i \cdot \sum_{j=1}^{n}\bfF_{ij}\\ 
+    &= \sum_{i=1}^{n} \dot{\bfr}_i \cdot \bfF_i^{\text{ext}}+ \sum_{j>i} (\dot{\bfr}_i-\dot{\bfr}_j)\cdot \bfF_{ij}.
+\end{align*}
+If external forces are defined by a potential 
+\[
+    \bfF_{i}^{\text{ext}} = - \nabla_{\bfr_i} V_i^{\text{ext}},
+\]
+and internal forces are defined by a potential 
+\[
+    \bfF_{ij} = -\nabla _{\bfr_i} V(\bfr_i-\bfr_j),
+\]
+we get 
+\[
+    \frac{\mathrm{d}T}{\mathrm{d}t} = - \frac{\mathrm{d}}{\mathrm{d}t}\sum_{i=1}^{n}V^{\text{ext}}(\bfr_i) - \frac{\mathrm{d}}{\mathrm{d}t}\sum_{i=1}^{n}\sum_{j>i} V(\bfr_i-\bfr_j).
+\]
+i.e. we have conservation of energy if the above conditions hold.

@@ -155,7 +155,7 @@ Proof is exercise.
 
 \subsection{Bounds of a continuous function}
 \begin{theorem}\label{thm:continuous function is bounded}
-    Let $f:[a,b]\in \bbR$ be continuous. Then $ \exists K\in \mathbb{R}  $ such that $ |f(x)|\le K, \forall x\in [a,b] $.
+    Let $f:[a,b]\to \bbR$ be continuous. Then $ \exists K\in \mathbb{R}  $ such that $ |f(x)|\le K, \forall x\in [a,b] $.
 \end{theorem}
 \begin{proof}
     Suppose the statement is \textit{false}. Then given any integer $ n\ge 1 $, $ \exists x_n\in[a,b] $ such that $ |f(x_n)|> n $. By Bolzano-Weierstrass, $x_n$ has a convergent subsequence $ x_{n_j}\to x\in [a,b] $. By continuity, $ f(x_{n_j})\to f(x) $ but $f(x_{n_j})>n_j\to \infty$, a contradiction.

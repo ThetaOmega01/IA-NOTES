@@ -1,4 +1,4 @@
-\section{Discrete probability distributions}
+\section{Discrete Probability Distributions}
 \subsection{Examples of discrete distributions}
 This section we talk about $ (\Omega,\mathscr{F},\mathbb{P}) $ such that $ \Omega=\{\omega_1,\omega_2,\dots\} $ is countable and $ \mathscr{F} = 2^{\Omega} $. If we know $ \mathbb{P}(\{\omega_i\}) $, then this determines $\bbP$. Indeed, let $ A \subseteq \Omega $, then
 \[
@@ -839,3 +839,143 @@ We can think of $X_n$ as the fortune of a gambler who bets 1 at every step and e
         \]
     \end{itemize}
 \end{example}
+
+\subsection{Probability generating functions}
+\begin{definition}
+    Let $X$ be a r.v. with values in $ \mathbb{N} $. Let $ p_r = \mathbb{P}(X=r), r\in \mathbb{N} $ be its probability mass function. The pgf of $X$ is defined to be 
+    \[
+        p(z) = \sum_{r=0}^{\infty} p_r z^r = \bbE[z^X],\quad |z|\le 1.
+    \]
+\end{definition}
+
+\begin{claim}
+    When $ |z|\le 1 $, the pgf converges absolutely.
+\end{claim}
+\begin{proof}[Indeed,]
+    we have 
+    \[
+        \left| \sum_{r=0}^{\infty} p_r z^r \right| \le \sum_{r=0}^{\infty} p_r |z|^r\le \sum_{r=0}^{\infty}p_r=1.
+    \]
+\end{proof}
+So $ p(z) $ is well-defined and has radius of convergence at least 1.
+
+\begin{theorem}
+    The pgf \textit{uniquely} determines the distribution of $X$.
+\end{theorem}
+\begin{proof}[Prove by induction.]
+    Suppose $(p_r),(q_r)$ are 2 pmf with 
+    \[
+        \sum_{r=0}^{\infty} p_r z^r = \sum_{r=0}^{\infty}q_rz^r,\quad \forall |z|\le 1.
+    \]
+    Set $z=0$, then $ p_0=q_0 $. Suppose $ p_r=q_r,\ \forall r\le n $, then 
+    \[
+        \sum_{r=n+1}^{\infty}p_rz^r = \sum_{r=n+1}^{\infty} q_rz^r.
+    \]
+    Dividing both sides by $ z^{n+1} $ and take limit as $ z\to 0  $ gives $ p_{n+1}=q_{n+1} $, as claimed.
+\end{proof}
+
+\begin{theorem}
+    $\displaystyle \lim_{z \uparrow 1} p'(z)=p'(1-)=\bbE[X]$. 
+\end{theorem}
+\begin{proof}
+    Assume first that $ \bbE[X]< \infty $. Let $ 0<z<1 $. Since the series converges absolutely, we can differentiate $ p(z) $ term by term to get 
+    \[
+        p'(z) = \sum_{r=1}^{\infty} r p_r z^{r-1}\le \sum_{r=1}^{\infty}rp_r = \bbE[X].
+    \]
+    Since $ 0<z<1 $, $ p'(z) $ is an increasing function of $z$. So 
+    \[
+        \lim_{z \uparrow 1} p'(z)\le \bbE[X].
+    \]
+    Let $ \epsilon>0 $ and $N$ be large enough such that 
+    \[
+        \sum_{r=0}^{N}rp_r\ge \bbE[X]-\epsilon.
+    \]
+    Also 
+    \[
+        p'(z)\ge \sum_{r=1}^{N}rp_rz^{r-1},
+    \]
+    so 
+    \[
+        \lim_{z \uparrow 1} p'(z) \ge \sum_{r=1}^{N}rp_r\ge \bbE[X]-\epsilon \Longrightarrow \lim_{z \uparrow 1} p'(z) \ge \bbE[X].
+    \]
+    Hence $\lim_{z \uparrow 1} p'(z)=p'(1-)\bbE[X]$ as required.
+
+    Assume $ \bbE[X]=\infty $. For any $M$ take $N$ large such that 
+    \[
+        \sum_{r=0}^{N}rp_r\ge M.
+    \]
+    From previous result,
+    \[
+        \lim_{z \uparrow 1} p'(z)\ge \sum_{r=1}^{N}rp_r\ge M,\quad \forall M>0,
+    \]
+    so $ \lim_{z \uparrow 1} p'(z)=\infty =\bbE[X]$.
+\end{proof}
+In exactly the same way, one can prove 
+\begin{theorem}
+    \begin{align*}
+        p''&(1-)=\lim_{z \uparrow 1}p''(z)=\bbE[X(X-1)],\\
+        \forall k>0\quad  p^{(k)}&(1-)=\lim_{z \uparrow 1}p^{(k)}(z) = \bbE[X(X-1)\cdots(X-k+1)].
+    \end{align*}
+    In particular, $ \var(X)=p''(1)+p'(1-)-(p'(1-))^2. $ 
+\end{theorem}
+
+\begin{proposition}
+    $\displaystyle \mathbb{P}(X=n) = \frac{1}{n!}\frac{\mathrm{d}^n}{\mathrm{d}z^n}\Big|_{z=0}p(z) .$ 
+\end{proposition}
+
+\begin{example}
+    Suppose that $ X_1,\dots,X_n $ are independent r.v.s with pgfs $ q_1,\dots,q_n $. What is 
+    \[
+        p(z) = \bbE[z^{X_1+\cdots+X_n}]?
+    \]
+    Since $ X_1\dots,X_n $ are independent, 
+    \[
+        p(z)= \bbE[z^{X_1+\cdots+X_n}] = \bbE[z^{X_1}]\cdots \bbE[z^{X_n}]=q_1(z)\cdots q_n(z).
+    \]
+    If $X_i$ are iid, then $p(z)=q(z)^n$. Check the follows:
+    \begin{enumerate}
+        \item $ X \sim B(n,p) $. $ p(z) = (pz+1-p)^n $.
+        \item Let $ X \sim B(n,p), Y \sim B(m,p), X \independent Y $. $ p(z) = (pz+1-p)^{n+m} $, so $ X+Y \sim B(n+m,p) $.
+        \item $ X \sim G(p) $\footnote{geometric distribution}. $\displaystyle p(z) = \frac{p}{1-z(1-p)} $.
+        \item $ X \sim P(\lambda) $. $p(z) = e^{\lambda(z-1)} $.
+        \item Let $ X \sim P(\lambda), Y \sim P(\mu),X \independent Y $, then $ p(z)=e^{(\lambda+\mu)(1-z)} $, so $ X+Y \sim P(\lambda+\mu) $.
+    \end{enumerate}
+\end{example}
+
+\begin{definition}
+    Let $ X_1,\dots, $ be iid rvs and let $N$ be an independent r.v. with values in $\bbN$. Define $S_n = X_1+\cdots+X_n,\forall n$. Then $ S_N=X_1+\cdots+X_N $, i.e. $ \forall \omega\in \Omega $, 
+    \[
+        S_N(\omega) = X_1(\omega)+\cdots+X_{N(\omega)}(\omega) = \sum_{i=1}^{N(\omega)}X_i(\omega).
+    \]
+\end{definition}
+Sum of a random number of r.v.s
+\begin{proposition}
+    Let $q$ be the pgf of $N$, $p$ the pgf of $X_i$, and $r$ the pgf of $S_N$. Then $ r(z)=q(p(z)) $.
+\end{proposition} 
+\begin{proof}
+    \begin{align*}
+        r(z)&= \bbE[z^{S_N}] = \bbE[z^{X_1+\cdots+X_N}]\\ 
+        &= \sum_{n} \bbE[z^{X_1+\cdots+X_N} \cdot 1(N=n)]\\ 
+        &= \sum_{n} \bbE[z^{X_1+\cdots+X_n} \cdot 1(N=n)]\\ 
+        &= \sum_n \bbE[z^{X_1+\cdots+X_n}] \cdot \mathbb{P}(N=n)\\ 
+        &= \sum_n p(z)^n \mathbb{P}(N=n) = q(p(z)).\qedhere
+    \end{align*}
+\end{proof}
+\begin{proof}[Alternative proof]
+    Note that $ r(z)= \bbE[z^{X_1+\cdots+X_N}] = \bbE[\bbE[z^{X_1+\cdots+X_N}|N]] $. Also 
+    \[
+        \bbE[\bbE[z^{X_1+\cdots+X_N}|N=n]]=\bbE[\bbE[z^{X_1+\cdots+X_n}|N=n]]=\bbE[z^{X_1}]^n = p(z)^n,
+    \]
+    so $ r(z)=\bbE[p(z)^N] = q(p(z)) $, as claimed.
+\end{proof}
+
+\begin{corollary}
+    $ \bbE[S_N] =\bbE[N]\bbE[X_1] $.
+\end{corollary}
+\begin{proof}
+    $ \bbE[S_N]= q'(p(1-)) p'(1-)=q'(1-)p'(1-)=\bbE[N]\bbE[X_1]$.
+\end{proof}
+Similarly,
+\begin{corollary}
+    $ \var(S_N)=\bbE[N]\var(X_1)+\var(N)\bbE[X_1]^2 . $
+\end{corollary}

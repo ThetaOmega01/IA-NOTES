@@ -240,3 +240,145 @@ Cauchy showed that one can take $s=t$.
 \begin{note}
     We recover MVT if take $g(x)=x$.
 \end{note}
+\begin{proof}
+    Let 
+    \[
+        \phi(x) = \begin{vmatrix}
+            1 & 1 & 1 \\
+            f(a) & f(x) & f(b) \\
+            g(a) & g(x) & g(b) \\
+        \end{vmatrix}.
+    \]
+    Then $ \phi(x) $ is continuous on $[a,b]$ and differentiable on $(a,b)$. Also $ \phi(a)=\phi(b)=0 $. By Rolle's theorem, $ \exists t\in(a,b) $ such that $ \phi'(t)=0 $, thus gives the result.
+\end{proof}
+\begin{example}[L'H\^{o}pital's rule]
+    Find the limit of 
+    \[
+        \lim_{x \to 0} \frac{e^x-1}{\sin x}.
+    \]
+    By Cauchy's MVT, $\exists t$ that
+    \[
+        \frac{e^x-e^0}{\sin x-\sin 0} = \frac{e^t}{\cos t}.
+    \]
+    As $x\to 0$, $t\to 0$ and the limit is 1.
+\end{example}
+
+\subsubsection*{Extension to higher order derivatives}
+\begin{theorem}[Taylor's theorem with Lagrange remainder]\label{thm:Taylor}
+    Suppose $f$ and its derivatives up to order $n-1$ are continuous on $[a,a+h]$ and $ f^{(n)} $ exists for $ x\in (a,a+h) $. Then 
+    \begin{align*}
+        f(a+h) &= f(a)+hf'(a) +\cdots+\frac{h^{n-1}}{(n-1)!}f^{(n-1)}(a)+\frac{h^n}{n!}f^{(n)}(a+\theta h)\\ 
+        &= \sum_{k=0}^{n-1}\frac{h^k}{k!}f^{(k)}(a)+ \underbrace{\frac{h^n}{n!}f^{(n)}(a+\theta h)}_{R_n} ,\quad \theta\in (0,1).
+    \end{align*}
+\end{theorem}
+\begin{note}
+    \begin{enumerate}
+        \item For $n=1$, it is exactly the MVT. In this sense, it is a $n$th order MVT.
+        \item $R_n$ is known as Lagrange's remainder.
+    \end{enumerate}
+\end{note}
+\begin{proof}
+    Define for $0\le t\le h$
+    \[
+        \phi(t) = f(a+t)-\sum_{k=0}^{n-1}\frac{t^k}{k!}f^{(k)}(a)-\frac{t^n}{n!}B\tag{$*$}
+    \]
+    where $B$ is chosen such that $\phi(h)=0$\footnote{Recall in the proof of MVT that we used $ f(x)-kx $ to apply Rolle's theorem.}. Then 
+    \[
+        \phi(0) = \phi'(0)= \cdots = \phi^{(n-1)}(0)=0.
+    \]
+    By using Rolle's theorem on $ \phi^{(k)}(0) $ and $ \phi^{(k)}(h) $ for all $k$, $ \exists \phi^{(k)}(h_k)=0, \forall k $. Hence at the final step, $ \exists h_n, 0<h_n<h_{n-1}<\cdots<h_1<h $ such that $ \phi^{(n)}(h_n)=0 $. Clearly we can write $ h_n = \theta h $ for $ \theta\in (0,1) $, so 
+    \[
+        \phi^{(n)}(\theta h) = f^{(n)}(a+\theta h)-B=0 \Longrightarrow B=f^{(n)}(a+\theta h).
+    \]
+    Setting $ t=h,\phi(h)=0, B=f^{(n)}(a+\theta h) $ in ($*$) gives the proof.
+\end{proof}
+
+\begin{theorem}[Taylor's theorem with Cauchy's remainder]\label{thm:Taylor,Cauchy remainder}
+    With the same hypotheses as in theorem \ref{thm:Taylor} and (wlog) $a=0$, we have 
+    \[
+        f(h) = \sum_{k=0}^{n-1}\frac{h^k}{k!}f^{(k)}(0)+\underbrace{\frac{h^n(1-\theta)^{n-1}}{(n-1)!}f^{(n)}(\theta h)}_{R_n},\quad \theta\in (0,1).
+    \]
+\end{theorem}
+
+\begin{proof}
+    Define for $ t\in [0,h] $ 
+    \[
+        F(t) = f(h)-\sum_{k=0}^{n-1}\frac{t^k}{k!}f^{(k)}(t).
+    \]
+    Check that 
+    \[
+        F'(t) = - \frac{(h-t)^{n-1}}{(n-1)!}f^{(n)}(t).
+    \]
+    Set 
+    \[
+        \phi(t) = F(t) - \left( \frac{h-t}{h} \right)^p F(0),\quad \bbN\ni p \in [1,n].
+    \]
+    Check that $ \phi(0)=\phi(h)=0 $. By Rolle's theorem, $ \exists \theta\in (0,1), \phi'(\theta h)=0$. Hence
+    \begin{align*}
+        &\phi'(\theta h) = F'(\theta h) +\frac{p(1-\theta)^{p-1}}{h} F(0)=0\\ 
+        \xRightarrow{\text{check}} &R_n=\frac{h^n(1-\theta)^{n-1}}{(n-1)!p(1-\theta)^{p-1}}f^{(n)}(\theta h).
+    \end{align*}
+    If $p=n$ we get Lagrange and if $p=1$ we get Cauchy.
+\end{proof}
+\begin{remark}
+    \begin{align*}
+        &\text{Lagrange's remainder}\qquad  \frac{h^n}{n!}f^{(n)}(a+\theta h)\\ 
+        &\text{Cauchy's remainder}\qquad  \frac{h^n(1-\theta)^{n-1}}{(n-1)!}f^{(n)}(\theta h)
+    \end{align*}
+\end{remark}
+\begin{remark}
+    These 2 theorems work equally well in $ [a+h,a],h<0 $.
+\end{remark}
+\begin{example}[Binomial series]
+    Let $ f(x) = (1+x)^r,r\in \mathbb{Q} $. Then if $ |x|<1 $, 
+    \[
+        (1+x)^r = 1 + \binom{r}{1}x+ \cdots + \binom{r}{n}x^n+ \cdots ,
+    \]
+    where the binomial coefficients are extended to $\bbQ$ in the usual way.
+
+    \begin{proof}[Indeed,]
+        $ f^{(n)}(x) = r(r-1)\cdots (r-n+1)(1+x)^{r-n} $. If $ r\in \mathbb{Z},r\ge 0 $, then $ f^{(r+k)}=0,\forall k\ge 1 $, so we have a polynomial of degree $r$. If otherwise, in general
+        \[
+            R_n = \frac{x^n}{n!}f^{(n)}(\theta x) = \binom{r}{n}\frac{x^n}{(1+\theta x)^{n-r}}.
+        \]
+        Note that in principle $ \theta=\theta(x,n) $. 
+        
+        For $ 0<x<1, (1+\theta x)^{n-r}>1 $ for $n>r$. Note also that the series $ \sum_{n=0}^{\infty}\binom{r}{n}x^n $ converges absolutely for $ |x|<1 $. Indeed, it can be checked by ratio test. Hence $ \binom{r}{n}x^n<1 $ for $ |x|<1 $. Hence for $n>r$ and $0<x<1$ we have 
+        \[
+            |R_n|\le \left| \binom{r}{n}x^n \right|\to 0. 
+        \]
+        So the claim is proved for $ 0<x<1 $.
+    
+        If $ -1<x<0 $, the above argument does not work, so we try Cauchy's form.
+        \begin{align*}
+            R_n &= \frac{(1-\theta)^{n-1}}{(n-1)!}r(r-1)\cdots (r-n+1)(1+\theta h)^{r-n}x^n\\ 
+            &= \frac{r(r-1)\cdots (r-n+1)}{(n-1)}\frac{(1-\theta)^{n-1}}{(1+\theta x)^{n-r}}x^n\\ 
+            &=  r \binom{r-1}{n-1}x^n \cdot \frac{(1-\theta)^{n-1}}{(1+\theta x)^{n-r}}\\ 
+            &= r \binom{r-1}{n-1}x^n \cdot(1+\theta x)^{r-1}\left( \frac{1-\theta}{1+\theta x} \right)^{n-1}
+        \end{align*}
+        Hence
+        \[
+            \left| R_n \right| \le \left| r\binom{r-1}{n-1}x^n \right| (1+\theta x)^{r-1} {\color{blue}\overset{\text{check}}{<}}  \left| r\binom{r-1}{n-1}x^n \right| \max \{1,(1+x)^{r-1}\}.
+        \]
+        Let $ K_r = |r| \max \{1,(1+x)^{r-1}\} $, so that $K_r$ is \textit{independent} from $n$. Hence 
+        \[
+            |R_n|\le K_r \left| \binom{r-1}{n-1}x^n \right| \to 0.
+        \]
+        Hence $ R_n\to 0 $ if $|x|<1$, as claimed.
+    \end{proof}
+\end{example}
+
+\subsection{Remarks on complex differentiation}
+Formally we have the same properties regarding sums, products, and chain rule, etc. But it is \textit{much more} restrictive than differentiability of functions on the real line.
+
+\begin{example}
+    Let $ f(z) = \bar{z} $. Claim that $f$ is \textit{nowhere} differentiable. Take $ z_n=z+\frac{1}{n}\to z $, then 
+    \[
+        \frac{f(z_n)-f(z)}{z_n-z}\equiv 1.
+    \]
+    If take $ z_n = z+\frac{i}{n} $, then 
+    \[
+        \frac{f(z_n)-f(z)}{z_n-z}\equiv -1.
+    \]
+    Hence $f$ is nowhere differentiable. On the other hand, $ f(x,y)= (x,-y) $ is certainly differentiable. See IB Complex Analysis.
+\end{example}
