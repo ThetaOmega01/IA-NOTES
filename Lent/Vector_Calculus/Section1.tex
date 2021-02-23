@@ -35,7 +35,7 @@ Recall that $x_i(t)$ is differentiable at $t$ if
     \]
     where $o(h)$ is a vector for which $ |o(h)|/h\to 0 $.
 \end{definition}
-\   *{Finding lengths}
+\subsubsection*{Finding lengths}
 
 Approximate $C$ using straight lines. Introduce a \textit{partition} $P$ of $[a,b]$ that $ t_0 = a, t_N = b $,
 \[
@@ -176,7 +176,7 @@ This gives
 \]
 
 \subsection{Curvature and torsion}
-Throughout this subsection we tak about generic \textit{regular curves} $C$ parametrised by \textit{arc-length} and write as $ s \mapsto \mathbf{r}(s) $. Define \textbf{tangent vector} $ \bft(s)=\mathbf{r}'(s) $, then $ |\bft(s)|=1 $. Since $ |\bft(s)| $ does not change, $ \bfr''(s)=\bft'(s) $ only measures change in \textit{direction}.
+Throughout this subsection we talk about generic \textit{regular curves} $C$ parametrised by \textit{arc-length} and write as $ s \mapsto \mathbf{r}(s) $. Define \textbf{tangent vector} $ \bft(s)=\mathbf{r}'(s) $, then $ |\bft(s)|=1 $. Since $ |\bft(s)| $ does not change, $ \bfr''(s)=\bft'(s) $ only measures change in \textit{direction}.
 
 \begin{definition}[Curvature]
     The \textbf{curvature} of a curve $C$ at $s$ is 
@@ -250,7 +250,7 @@ Expand for $ |\theta| $ small:
 \]
 Arc length on the circle is $ s=R\theta $:
 \[
-    \mathbf{x}(\theta)=\mathbf{r}+s\bft+\frac{2}{R}s^2\bfn+o(s^2).
+    \mathbf{x}(\theta)=\mathbf{r}+s\bft+\frac{1}{2R}s^2\bfn+o(s^2).
 \]
 Hence to match with (\ref{eq:1.3.1}) up to 2nd order, we need
 \[

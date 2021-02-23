@@ -1,0 +1,137 @@
+\section{Maxwell's Equations}
+\subsection{Brief introduction to electromagnetism}
+\begin{definition}
+    Denote by $ \bfB = \bfB(\bfx,t) $ the \textbf{magnetic field} and by $ \bfE=\bfE(\bfx,t) $ the \textbf{electric field}. These fields will depend on \textbf{charge density} $ \rho = \rho(\bfx,t) $ (electric charge per unit volumn) and on \textbf{current density} $ \bfJ = \bfJ(\bfx,t) $ (electric current per unit area).
+\end{definition}
+The \textbf{Maxwell's equations} are 
+\begin{align}
+    \div \bfE &= \frac{\rho}{\epsilon_0}\\ 
+    \div\bfB&= 0\\ 
+    \curl\bfE+\frac{\partial \bfB}{\partial t}&=\mathbf{0} \\ 
+    \curl\bfB-\mu_0 \epsilon_0 \frac{\partial \bfE}{\partial t}&=\mu_0 \bfJ 
+\end{align}
+The constants $ \epsilon_0,\mu_0 $ are the \textbf{permittivity} and \textbf{permeability} of free space, which obey 
+\[
+    \frac{1}{\mu_0 \epsilon_0}=c^2.
+\]
+Taking the divergence of (4) and use $ \div\curl\bfB=0 $ gives
+\[
+    0 = \mu_0 \epsilon_0 \frac{\partial }{\partial t}(\div\bfE)+\mu_0 \div\bfJ \Longrightarrow \frac{\partial \rho}{\partial t}+\div\bfJ=0,  
+\]
+which is the \textit{conservation of charge}. By Noether's theorem there is a symmetry to it, which turned out to be ``gauge symmetry''.
+
+\subsection{Integral formulations}
+\subsubsection*{Integration of (1)}
+By divergence theorem, we get the Gauss’ law for electric fields
+\[
+    \int_{V} \div\bfE \,\mathrm{d}V  =  \int_{V} \frac{\rho}{\epsilon_0} \,\mathrm{d}V 
+    \Longrightarrow  \int_{\partial V} \bfE \cdot\mathrm{d}\mathbf{S} =\frac{1}{\epsilon_0} \int_{V} \rho \,\mathrm{d}V = \frac{Q}{\epsilon_0} .
+\]
+\subsubsection*{Integration of (2)}
+\[
+    \int_{\partial V} \bfB \cdot\mathrm{d}\mathbf{S} = 0.
+\]
+There is no net magnetic flux over any closed surface $ \partial V $. That is to say, there are no magnetic monopoles
+\subsubsection*{Integration of (3)}
+Integrate over a surface $S$ and use Stokes theorem
+\[
+    \oint_{\partial S} \bfE\cdot\rmd\bfx = - \int_{S} \frac{\partial \bfB}{\partial t}  \cdot\mathrm{d}\mathbf{S} = -\frac{\mathrm{d}}{\mathrm{d}t} \int_{S} \bfB \cdot\mathrm{d}\mathbf{S} .
+\]
+So the rate of change of magnetic flux across the surface $S$ produces a circulation of the electric field $\bfE$ about $\partial S$. In other words, a changing magnetic field will induce a current.
+
+\subsubsection*{Integration of (4)}
+Integrate over $S$ and use Stokes' theorem 
+\[
+    \oint_{\partial S} \bfB \cdot\mathrm{d}\mathbf{x} = \mu \cdot \int_{S} \bfJ \cdot\mathrm{d}\mathbf{S} + \mu_0 \epsilon_0 \frac{\mathrm{d}}{\mathrm{d}t}\int_{S} \bfE \cdot\mathrm{d}\mathbf{S} .
+\]
+We see that electric current produces circulation of the magnetic field about the axis of direction of the current. So if current flows along a wire, a magnetic field will be produced that circulated the wire in the positive sense.
+
+\subsection{Electromagnetic waves}
+In \textit{empty space}, $ \rho=0,\bfJ=\mathbf{0} $, so the Maxwell's equations become
+\begin{align*}
+    \div \bfE &= 0\\ 
+    \div\bfB&= 0\\ 
+    \curl\bfE+\frac{\partial \bfB}{\partial t}&=\mathbf{0} \\ 
+    \curl\bfB-\mu_0 \epsilon_0 \frac{\partial \bfE}{\partial t}&=\mathbf{0}
+\end{align*}
+
+Recall that the Laplacian of a vector field is defined by
+\[
+    \nabla^{2} \mathbf{E}=\nabla(\nabla \cdot \mathbf{E})-\nabla \times(\nabla \times \mathbf{E}).
+\]
+So from Maxwell's equations (1), (3) and (4) we get
+\[
+    \nabla^{2} \mathbf{E}=-\nabla \times(\nabla \times \mathbf{E})=\nabla \times \frac{\partial \mathbf{B}}{\partial t}=\frac{\partial}{\partial t}(\nabla \times \mathbf{B})=\mu_{0} \epsilon_{0} \frac{\partial^{2} \mathbf{E}}{\partial t^{2}}.
+\]
+If we set $\mu_{0} \epsilon_{0}=1 / c^{2},$ we get the \textit{wave equation} for the electric field
+\[
+    \boxed{\nabla^{2} \mathbf{E}-\frac{1}{c^{2}} \frac{\partial^{2} \mathbf{E}}{\partial t^{2}}=0}
+\]
+This tells us that, in a vacuum, the electric field travels at the speed of light. Similarly, using Maxwell's equations (2), (3) and (4) we find
+\[
+    \nabla^{2} \mathbf{B}=-\nabla \times(\nabla \times \mathbf{B})=-\mu_{0} \epsilon_{0} \nabla \times \frac{\partial \mathbf{E}}{\partial t}=-\mu_{0} \epsilon_{0} \frac{\partial}{\partial t}(\nabla \times \mathbf{E})=\mu_{0} \epsilon_{0} \frac{\partial^{2} \mathbf{B}}{\partial t^{2}}.
+\]
+So again we get the wave equation, but this time for the magnetic field
+\[
+    \boxed{\nabla^{2} \mathbf{B}-\frac{1}{c^{2}} \frac{\partial^{2} \mathbf{B}}{\partial t^{2}}=0}
+\]
+
+\subsection{Electrostatics and magnetostatics}
+Suppose all fields and source terms are independent of $t$. Then Maxwell's equations are decouple into 
+\[
+    (\text{A})\left\{ \begin{aligned}
+         &\div\bfE = \frac{\rho}{\epsilon_0},\\ 
+         &\curl\bfE = \mathbf{0},
+    \end{aligned} \right. ~~~~~~~~ (\text{B})\left\{ \begin{aligned}
+        &\div\bfB = 0,\\[3pt]
+        &\curl\bfB = \mu_0\bfJ.
+   \end{aligned} \right.
+\]
+If we are working on $ \mathbb{R}^{3} $ which is 2-connected, then $ \curl\bfE = \mathbf{0},\div\bfB=0 $ implies 
+\[
+    \bfE = - \nabla_\phi\quad \text{and}\quad \bfB = \curl\bfA.
+\]
+Here $ \phi $ is called the \textbf{electric potential} for $\bfE$ and $ \bfA $ is called the \textbf{magnetic potential} for $ \bfB $. Then (A), (B) become
+\[
+    -\nabla^{2} \phi=\frac{\rho}{\epsilon_{0}}, \quad \nabla \times(\nabla \times \mathbf{A})=\mu_{0} \mathbf{J}.
+\]
+The first it called \textbf{Poisson's equation}. See Section 7.
+
+\subsection{Gauge invariance}
+Let us return to the case of the magnetic potential. Since we always have from (2) that
+$$
+    \nabla \cdot \mathbf{B}=0
+$$
+we can always write $\mathbf{B}=\nabla \times \mathbf{A}$ for some vector potential $\bfA$, assuming we work on all of $\mathbf{R}^{3}$. Important observation: this definition does not define $\bfA$ uniquely, because we can always change $ \bfA \mapsto \bfA + \nabla_\chi $, where $\chi$ is a scalar function. Doing so does not change the value of $\mathbf{B}=\nabla \times \mathbf{A}$ since $\nabla \times \nabla \chi=\mathbf{0}$. This is called \textbf{gauge invariance}. We have a certain amount of freedom in how we define $\bfA$. This invariance encapsulates the precise symmetry that generates conservation of charge, via Noether's theorem. Using $\mathbf{B}=\nabla \times \mathbf{A}$ in (3) we see
+$$
+    \nabla \times\left(\mathbf{E}+\frac{\partial \mathbf{A}}{\partial t}\right)=\mathbf{0}.
+$$
+This implies the existence of a scalar potential $\phi$ such that
+$$
+    \mathbf{E}=-\nabla \phi-\frac{\partial \mathbf{A}}{\partial t}.
+$$
+So we can reduce Maxwell's equations down to
+$$
+    (1) \Longrightarrow -\nabla^{2} \phi-\frac{\partial}{\partial t}(\nabla \cdot \mathbf{A})=\frac{\rho}{\varepsilon_{0}},
+$$
+and
+$$
+    (4) \Longrightarrow \nabla \times(\nabla \times \mathbf{A})+\mu_{0} \varepsilon_{0} \nabla\left(\frac{\partial \phi}{\partial t}\right)+\mu_{0} \varepsilon_{0} \frac{\partial^{2} \mathbf{A}}{\partial t^{2}}=\mu_{0} \mathbf{J}.
+$$
+Recalling that $\nabla \times(\nabla \times \mathbf{A})=\nabla(\nabla \cdot \mathbf{A})-\nabla^{2} \mathbf{A}$ and $\mu_{0} \varepsilon_{0}=1 / c^{2}$ we find that the second
+of these equations can be rewritten in the form
+$$
+    -\left(\nabla^{2} \mathbf{A}-\frac{1}{c^{2}} \frac{\partial^{2} \mathbf{A}}{\partial t^{2}}\right)+\nabla\left(\nabla \cdot \mathbf{A}+\frac{1}{c^{2}} \frac{\partial \phi}{\partial t}\right)=\mu_{0} \mathbf{J}.
+$$
+Now we can exploit gauge freedom: without loss of generality we can assume that
+\[
+    \nabla \cdot \mathbf{A}+\frac{1}{c^{2}} \frac{\partial \phi}{\partial t}=0
+\]
+Indeed, by changing $\mathbf{A}$ to $\mathbf{A}+\nabla \chi$ we can make sure this term vanishes, using a suitable function $\chi$. Maxwell's equations are then reduced to
+\[
+    -\nabla^{2} \phi+\frac{1}{c^{2}} \frac{\partial^{2} \phi}{\partial t^{2}}=\frac{\rho}{\varepsilon_{0}} \quad \text { and } \quad-\nabla^{2} \mathbf{A}+\frac{1}{c^{2}} \frac{\partial^{2} \mathbf{A}}{\partial t^{2}}=\mu_{0} \mathbf{J}.
+\]
+These are called Maxwell's equations in Lorenz gauge. The electric and magnetic fields can be recovered from the formulas
+\[
+    \mathbf{E}=-\nabla \phi-\frac{\partial \mathbf{A}}{\partial t} \quad \text { and } \quad \mathbf{B}=\nabla \times \mathbf{A}.
+\]

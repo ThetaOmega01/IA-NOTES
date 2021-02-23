@@ -92,3 +92,112 @@ we get
     \frac{\mathrm{d}T}{\mathrm{d}t} = - \frac{\mathrm{d}}{\mathrm{d}t}\sum_{i=1}^{n}V^{\text{ext}}(\bfr_i) - \frac{\mathrm{d}}{\mathrm{d}t}\sum_{i=1}^{n}\sum_{j>i} V(\bfr_i-\bfr_j).
 \]
 i.e. we have conservation of energy if the above conditions hold.
+
+\subsection{Two body problem}
+Consider two particles with no external force acting. The centre of mass is at 
+\[
+    \bfR = \frac{1}{M}(m_1\bfr_1+m_2\bfr_2).
+\]
+\begin{center}
+    \begin{tikzpicture}[rotate=30]
+      \node [dot] {};
+      \node [anchor = south east] {$\mathbf{r}_2$};
+  
+      \node at (3, 0) [dot, minimum size = 4] {};
+      \node at (3, 0) [anchor = south east] {$\mathbf{r}_1$};
+  
+      \node at (2, 0) [dot, minimum size = 3] {};
+      \node at (2, 0) [anchor = south east] {$\mathbf{R}$};
+      \draw [->-=0.5] (0, 0) -- (3, 0) node [pos =0.5, anchor = south east] {$\mathbf{r}$};
+    \end{tikzpicture}
+\end{center}
+The separation vector between these 2 particles is $ \bfr=\bfr_1-\bfr_2. $ Since $ \bfF^{\text{ext}}=0, \ddot{\bfR}=\mathbf{0} $. Hence CoM moves with constant velocity. Note that 
+\[
+    \ddot{\bfr} = \ddot{\bfr}_1-\ddot{\bfr}_2 = \frac{\bfF_{12}}{m_1}-\frac{\bfF_{21}}{m_2} = \left( \frac{1}{m_1}+\frac{1}{m_2} \right)\bfF_{12} ,
+\]
+equivalently 
+\[
+    \mu \ddot{\bfr} = \bfF_{12},\quad \mu = \frac{m_1m_2}{m_1+m_2}.
+\]
+$ \mu $ is called the ``reduced mass'' (note that $ \mu<m_1,\mu<m_2 $). This is the standard Newton's 2nd law to a particle of mass $ \mu $.
+
+Now consider gravitational force: 
+\[
+    \mu \ddot{\bfr} = -\frac{Gm_1m_2}{|\bfr|^3}\bfr \Longrightarrow \ddot{\bfr} = -G(m_1+m_2)\frac{\bfr}{|\bfr|^3}.
+\]
+This is the motion of a particle under effect of gravitational force due to mass $ M=m_1+m_2 $ fixed at the \textit{origin}.
+
+Consider Earth-Sun orbit: both move about the centre of mass, both orbits have the same shape, but the sizes of orbits are different. Ratio of masses Earth/Sun is $ 3\times 10^{-4} $, Earth-Sun orbit is about $ 1.5\times 10^7 \mathrm{km} $, hence Sun's displacement is about $ 450\mathrm{km} $.
+
+It can be shown that
+\begin{align*}
+  \mathbf{L} &= M\mathbf{R} \times \dot{\mathbf{R}} + \mu \mathbf{r}\times \dot{\mathbf{r}}\\
+  T &= \frac{1}{2} M|\dot{\mathbf{R}}|^2 + \frac{1}{2}\mu |\dot{\mathbf{r}}|^2
+\end{align*}
+by expressing $\mathbf{r}_1$ and $\mathbf{r}_2$ in terms of $\mathbf{r}$ and $\mathbf{R}$.
+
+\subsection{Variable-mass problem}
+All systems we've studied so far have fixed mass. However, in real life, many objects have changing mass, such as rockets, fireworks, falling raindrops and rolling snowballs.
+
+Again, we will use Newton's second law, which states that
+\[
+  \frac{\rmd \mathbf{p}}{\rmd t} = \mathbf{F},\quad\text{with }\mathbf{p} = m\dot{\mathbf{r}}.
+\]
+We will consider a rocket moving in one dimension with mass $m(t)$ and velocity $v(t)$. The rocket propels itself forwards by burning fuel and ejecting the exhaust at velocity $-u$ relative to the rocket.
+
+At time $t$, the rocket looks like this:
+\begin{center}
+  \begin{tikzpicture}
+    \draw (0, 0.5) rectangle (3, -0.5);
+    \node at (1.5, 0) {$m(t)$};
+    \draw [->] (1, 0.7) -- (2, 0.7) node [pos = 0.5, above] {$v(t)$};
+  \end{tikzpicture}
+\end{center}
+At time $t + \delta t$, it ejects exhaust of mass $m(t) - m(t + \delta t)$ with velocity $v(t) - u + O(\delta t)$.
+\begin{center}
+  \begin{tikzpicture}
+    \draw (0, 0.5) rectangle (3, -0.5);
+    \node at (1.5, 0) {$m(t)$};
+    \draw [->] (1, 0.7) -- (2, 0.7) node [pos = 0.5, above] {$v(t)$};
+    \node at (-1, 0) [dot] {$m$};
+    \draw [->] (-1.33, 0) -- (-2, 0) node [left] {$v(t) - u$};
+  \end{tikzpicture}
+\end{center}
+The change in total momentum of the system (rocket + exhaust) is
+\begin{align*}
+  \delta p &= m(t + \delta t)v(t + \delta t) + [m(t) - m(t + \delta t)][v(t) - u(t) + O(\delta t)] - m(t)v(t)\\
+  &= (m + \dot{m}\delta t + O(\delta t^2))(v + \dot{v} \delta t + O(\delta t^2)) - \dot{m}\delta t(v - u) + O(\delta t^2) - mv\\
+  &= (\dot{m}v + m\dot{v} - \dot{m}v + \dot{m}u)\delta t + O(\delta t^2)\\
+  &= (m\dot{v} + \dot{m}u)\delta t + O(\delta t^2).
+\end{align*}
+Newton's second law gives
+\[
+  \lim_{\delta \to 0} \frac{\delta p}{\delta t} = F
+\]
+where $F$ is the external force on the rocket. So we obtain
+\begin{proposition}[Rocket equation]
+  \[
+    m\frac{\rmd v}{\rmd t} + u\frac{\rmd m}{\rmd t} = F.
+  \]
+\end{proposition}
+\begin{example}
+  Suppose that we travel in space with $F = 0$. Assume also that $u$ is constant. Then we have
+  \[
+    m\frac{\rmd v}{\rmd t} = -u\frac{\rmd m}{d t}.
+  \]
+  So
+  \[
+    v = v_0 + u \log \left(\frac{m_0}{m(t)}\right),
+  \]
+  Note that we are expressing things in terms of the mass remaining $m$, not time $t$.
+
+  Note also that the velocity does not depend on the rate at which mass is ejected, only the velocity at which it is ejected. Of course, if we expressed $v$ as a function of time, then the velocity at a specific time \emph{does} depend on the rate at which mass is ejected.
+\end{example}
+
+\begin{example}
+  Consider a falling raindrop of mass $m(t)$, gathering mass from a stationary cloud. In this case, $u = v$. So
+  \[
+    m\frac{\rmd v}{\rmd t} + v\frac{\rmd m}{\rmd t} = \frac{\rmd }{\rmd t}(mv) = mg,
+  \]
+  with $v$ measured downwards. To obtain a solution of this, we will need a model to determine the rate at which the raindrop gathers mass.
+\end{example}

@@ -792,7 +792,7 @@ Now
     A random walk on $\bbZ$ is defined by 
     \[
         \bbP(Y_i=1) = p,\quad \mathbb{P}(Y_i=-1)=q=1-p.
-    \]
+    \] 
     The random walk is \textbf{symmetric} if $p=q=1/2$.
 \end{definition}
 
@@ -979,3 +979,93 @@ Similarly,
 \begin{corollary}
     $ \var(S_N)=\bbE[N]\var(X_1)+\var(N)\bbE[X_1]^2 . $
 \end{corollary}
+
+\subsection{Branching process}
+Also known as Bienaym\'{e}/Galton-Watson process. Consider a species that has $X_n$ individuals in generation $n$. Let $ X_0=1 $. The individual in generation 0 produces a random number of offspring with distribution $ g_k = \mathbb{P}(X_1=k),k=0,1,\dots $ Every individual in generation 1 produces an independent number of offspring with the same distribution. We continue this process iteratively.
+
+Let $ (Y_{k,n}: k\ge 1,n\ge 0) $ be and iid sequence with distribution $ g_k $. $Y_{k,n}$ is \# of offspring of $k$th individual in generation $n$. Clearly 
+\[
+    X_{n+1} = \begin{cases}
+    Y_{1,n}+\cdots+Y_{X_n,n} &\text{if } X_n\ge 1\\
+    0 &\text{otherwise}\\
+    \end{cases} 
+\]
+
+\begin{theorem}
+    $ \bbE[X_n] = (\bbE[X_1])^n,\ \forall n\ge 1 $.
+\end{theorem}
+\begin{proof}
+    Note that $ \bbE[X_{n+1}]=\bbE[\bbE[X_{n+1}|X_n]] $. Note also that 
+    \begin{align*}
+        \bbE[X_{n+1}|X_n=m] &= \bbE[Y_{1,n}+\cdots +Y_{X_n,n}|X_n=m]\\ 
+        &= \bbE[Y_{1,n}+\cdots +Y_{m,n}|X_n=m]\\ 
+        &= m\bbE[X_1].
+    \end{align*}
+    So $ \bbE[X_{n+1}|X_n] = X_n\bbE[X_1] $ and thus $ \bbE[X_{n+1}]=\bbE[X_1]\bbE[X_n] $. The result follows.
+\end{proof}
+\begin{theorem}
+    Let $ G(z) = \bbE[z^{X_1}] $ and $ G_n(z)=\bbE[z^{X_n}] $. Then 
+    \[
+        G_{n+1}(z) = G(G_n(z)) = G^{n+1}(z)=G_n(G(z)),
+    \]
+    where $G^{n+1}$ is $G$ composite $n+1$ times.
+\end{theorem}
+\begin{proof}
+    Use a similar trick: $ G_{n+1}(z) = \bbE[z^{X_{n+1}}]=\bbE[\bbE[z^{X_{n+1}}|X_n]] $. Note that 
+    \begin{align*}
+        \bbE[z^{X_{n+1}}|X_n=m] &= \bbE\left[ z^{Y_{1,n}+\cdots+Y_{m,n}}|X_n=m \right]\\ 
+        &= \left( \bbE[z^{X_1}] \right)^m = G(z)^m.
+    \end{align*}
+    So 
+    \[
+        \bbE[\bbE[z^{X_{n+1}}|X_n]] = \bbE[G(z)^{X_n}] = G_n(G(z)).\qedhere
+    \]
+\end{proof}
+
+\subsubsection*{Extinction probability} 
+Let $ \mathbb{P}(X_n=0 \text{ for some }n\ge 1)=q $ be the probability of extinction. Let $ q_n=\mathbb{P}(X_n=0) $. Let $ A_n=\{X_n=0\} $, then $ A_n \subseteq A_{n+1} $ so $A_n$ is an increasing sequence of events. By continuity of $\bbP$, $ \mathbb{P}(A_n) \to \mathbb{P}\left( \bigcup_{n} A_n \right) $. But 
+\[
+    \bigcup_{n} A_n = \{X_n=0\text{ for some }n\ge 1\},
+\]
+so $ q_n\to q $ as $n\to \infty$.
+
+\begin{claim}
+    $ q_{n+1}=G(q_n) $ and $ q=G(q) $.
+\end{claim}
+\begin{proof}
+    $ q_{n+1}=\mathbb{P}(X_{n+1}=0) = G_{n+1}(0) = G(G_{n}(0))=G(q_n) $. Since $G$ is continuous, taking $ n\to \infty $ gives $ G(q)=q $.
+\end{proof}
+\begin{proof}[Alternatively,]
+    conditional on $X_1=m$ we get $m$ independent branching process. So we can write 
+    \[
+        X_{n+1}=X_n^{(1)}+ \cdots +X_n^{(m)}
+    \]
+    where $ X_i^{(j)} $ are iid branching processes with the same offspring distribution. So by law of total probability,
+    \begin{align*}
+        q_{n+1}=\bbP(X_{n+1}=0)& = \sum_{m} \bbP(X_{n+1}=0|X_1=m)\bbP(X_1=m)\\ 
+        &= \sum_{m} \bbP(X_n^{(1)}=0,\dots,X_n^{(m)}=0|X_1=m)\bbP(X_1=m)\\ 
+        &= \sum_m \bbP(X_n^{(1)}=0)^m \cdot \bbP(X_1=m)\\ 
+        &= \sum_m q_n^m\bbP(X_1=m) = G(q_n).\qedhere
+    \end{align*}
+\end{proof}
+We have two cases: $G(z)$ intersects $z$ only at $(1,1)$ and $G(z)$ intersects $z$ at $ (q,q), 0<q<1 $.
+\begin{center}
+    \begin{tikzpicture}
+      \draw (0, 0) -- (4, 0) node [right] {$z$};
+      \draw (0, 0) -- (0, 4) node [above] {$G(z)$};
+      \draw [dashed] (0, 0) -- (4, 4);
+      \draw (0, 2.3) parabola (4, 4);
+      \draw (5, 0) -- (9, 0) node [right] {$z$};
+      \draw (5, 0) -- (5, 4) node [above] {$G(z)$};
+      \draw [dashed] (5, 0) -- (9, 4);
+      \draw (5, 1) parabola (9, 4);
+    \end{tikzpicture}
+\end{center}
+The tangent to the graph of $G$ at 1 in the first case has slope $ <1 $. The slope $ G'(1-)=\bbE[X_1]<1 $. In the second case, the slope is $ G'(1-)=\bbE[X_1]>1 $, and we see that $q<1$.
+
+\begin{theorem}
+    Assume $ \mathbb{P}(X_1=1)<1 $. Then the extinction probability is the minimal non-negative solution to the equation $t=G(t)$. We also have $ q<1 $ if and only if $ \bbE[X_1]>1 $.
+\end{theorem}
+\begin{proof}
+    Minimality: Take $t$ to be the smallest non-negative solution to $x=G(x)$. Clearly $ q_0=\bbP(X_0=0)=0\le t $. Suppose $ q_n\le t $. Note that $q_{n+1}=G(q_n)$, $G$ is an increasing function on $[0,1]$, and since $ q_n\le t $ we get $ q_{n+1}=G(q_n)\le G(t)=t $. Hence by induction $ q_n\le t,\forall n $. Taking limit shows that $ q\le t $. Since $t$ is the minimal root, $ q=t $ as required.
+\end{proof}

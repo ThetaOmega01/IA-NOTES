@@ -348,11 +348,11 @@ This shows us that Stokes' theorem is not applicable if the surface is \textit{n
         \int_{S_R} \bfF \cdot\mathrm{d}\mathbf{S} = \int_{z=-h}^{h} \int_{\phi=0}^{2\pi} R^2 \,\mathrm{d}\phi \,\mathrm{d}z = 4\pi R^2 h.
     \]
     On $ S_{\pm}, \dd \bfS = \pm \bfe_z \rho\dd \rho\dd \phi $ and $ \bfx \cdot \bfe_z = \pm h $, so 
-    \[
+    \[ 
         \int_{S_\pm} \bfF \cdot\mathrm{d}\mathbf{S} = \int_{\phi=0}^{2\pi} \int_{\rho=0}^{R} h\rho \,\mathrm{d}\rho \,\mathrm{d}\phi = \pi R^2 h.
     \]
     Hence 
-    \begin{align*}
+    \begin{align*} 
         \int_{\partial V} \bfF \cdot\mathrm{d}\mathbf{S} &= \left( \int_{S_R}+\int_{S_+}+\int_{S_-} \right) \bfF\cdot\rmd\bfS\\ 
         &= 4\pi R^2 h+ 2 \pi R^2 h = 6\pi R^2 h,
     \end{align*}
@@ -415,7 +415,7 @@ So if a vector field has zero net flux through any closed surface, then it is so
         &= 0.
     \end{align*}
     So ($ \dagger $) gives ``conservation of charge''.
-\end{example}
+\end{example} 
 
 \subsection{Noether's theorem}
 There is a beautiful theorem of mathematical physics, called Noether’s theorem, that says that the existence of a conservation law is equivalent to the existence of a symmetry in your underlying set of equations. Emmy Noether proved this theorem in 1918. It pulls together results from the theory of Lie groups, Lie algebras, infinite prolongations of group actions, Lagrangian mechanics and gives an amazing insight into why things are the way they are. Many physics and applied maths books give a loose version of this result, but the full version, which is essentially what Noether proved herself back in 1918, can be found in Peter Olver’s excellent
@@ -432,3 +432,159 @@ us that, to each of these symmetries, there is a conservation law. We’ve ended
 Emmy Noether taught us this.
 
 For example, for symmetry $ \bfx \mapsto \bfx+\bfa $, \textit{linear momentum} is conserved, and for symmetry $ \bfx \mapsto R\bfx $, where $R$ is a rotation matrix, \textit{angular momentum }is conserved. For symmetry $ t \mapsto t+\epsilon $, \textit{energy} is conserved.
+
+\subsection{Sketch proofs}
+\begin{proof}[Proof of divergence theorem]
+    We proceed by three components: $ \bfF = \bfF_x+\bfF_y+\bfF_z $. For $z$ component, we wish to prove that 
+    \[
+        {\color{gray}\left( \int_{V} \div \bfF_z \,\mathrm{d}V = \right)} \int_{V} \frac{\partial F_z}{\partial z}  \,\mathrm{d}V = \int_{\partial V} F_z \mathbf{e}_z \cdot\mathrm{d}\mathbf{S}.
+    \]
+    Consider the projection of $ \partial V $ to $x$-$y$ plane. We assume that $V$ is simple, so that the map is 2-1. Clearly, $ \partial V $ has a simple upper and lower side. 
+    \begin{center}
+        \begin{tikzpicture}[scale=0.8]
+            \node (0) at (0, 0) {};
+            \node [left] at (0) {$O$};
+            \node (1) at (5, 0) {};
+            \node [right] at (1) {$y$};
+            \node (3) at (-1.5, -2) {};
+            \node [below left] at (3) {$x$};
+            \node (4) at (0, 5) {};
+            \node [above] at (4) {$z$};
+            \node (5) at (0.5, 2) {};
+            \node (6) at (4, 2) {};
+            \node (7) at (0.5, -1.25) {};
+            \node (8) at (4, -1.25) {};
+            \node (9) at (2, 3.5) {};
+            \node (10) at (1.5, 1) {};
+            \node (11) at (2, 4.5) {};
+            \node [above] at (11) {$\bfn$};
+            \node (12) at (1.25, 0.25) {};
+            \node [right] at (12) {$\bfn$};
+            \node (13) at (3, 3.25) {};
+            \node (14) at (4.25, 3.75) {};` '
+            \node [right] at (14) {$S_+$};
+            \node (15) at (3.5, 0.5) {};
+            \node [below] at (15) {$S_-$};
+            \node (16) at (2.575, 1.1) {};
+            \node (17) at (2.25, -1.25) {$A$};
+            \draw [->] (0.center) to (4.center);
+            \draw [->] (0.center) to (1.center);
+            \draw [->] (0.center) to (3.center);
+            \draw [in=180, out=90] (5.center) to (9.center);
+            \draw [in=90, out=0, looseness=0.75] (9.center) to (6.center);
+            \draw [in=-180, out=-90, looseness=1.25] (5.center) to (10.center);
+            \draw [in=-90, out=15] (10.center) to (6.center);
+            \draw [dashed, bend left=90, looseness=0.50] (5.center) to (6.center);
+            \draw [dashed, bend right=90, looseness=0.50] (5.center) to (6.center);
+            \draw [dashed, in=90, out=90, looseness=0.50] (7.center) to (8.center);
+            \draw [dashed, bend right=90, looseness=0.50] (7.center) to (8.center);
+            \draw [->] (9.center) to (11.center);
+            \draw [->] (10.center) to (12.center);
+            \draw [->, bend right] (14.center) to (13.center);
+            \draw [->, bend right=330] (15.center) to (16.center);
+            \draw [dashed] (5.center) to (7.center);
+            \draw [dashed] (6.center) to (8.center);
+        \end{tikzpicture}
+    \end{center}
+    Denote the upper and lower sides as 
+    \[
+        S_{\pm}=\left\{\mathbf{x}(x, y)=\begin{pmatrix}
+            x \\
+            y \\
+            g_{\pm}(x, y)
+        \end{pmatrix},(x, y) \in A\right\}.
+    \]
+    Then the volumn integral is 
+    \begin{align*}
+        \int_{V} \frac{\partial F_{z}}{\partial z} \mathrm{~d} V &=\iint_{A}\left[\int_{g_{-}(x, y)}^{g_{+}(x, y)} \frac{\partial F_{z}}{\partial z} \mathrm{~d} z\right] \mathrm{d} x \mathrm{~d} y \\
+        &=\iint_{A}\left[F_{z}\left(x, y, g_{+}(x, y)\right)-F_{z}\left(x, y, g_{-}(x, y)\right)\right] \mathrm{d} x \mathrm{~d} y .\tag{$*$}
+    \end{align*}
+    On surfaces $ S_{\pm} $, we have 
+    \[
+        \mathrm{d} \mathbf{S}=\frac{\partial \mathbf{x}}{\partial x} \times \frac{\partial \mathbf{x}}{\partial y} \mathrm{~d} x \mathrm{~d} y=\begin{pmatrix}
+            -\partial g_{\pm} / \partial x \\
+            -\partial g_{\pm} / \partial y \\
+            1 
+        \end{pmatrix} \mathrm{d} x \mathrm{~d} y.
+    \]
+    By choosing suitable normals, we have
+    \[
+        \mathrm{d} \mathbf{S}=\pm\begin{pmatrix}
+            -\partial g_{\pm} / \partial x \\
+            -\partial g_{\pm} / \partial y \\
+            1
+        \end{pmatrix} \mathrm{d} x \mathrm{~d} y.
+    \]
+    Hence 
+    \begin{align*}
+        \int_{\partial V} F_{z} \mathbf{e}_{z} \cdot \mathrm{d} \mathbf{S} &=\left[\int_{S_{+}}+\int_{S_{-}}\right] F_{z} \mathbf{e}_{z} \cdot \mathrm{d} \mathbf{S} \\
+        &=\iint_{A} F_{z}\left(x, y, g_{+}(x, y)\right) \mathrm{d} x \mathrm{~d} y-\iint_{A} F_{z}\left(x, y, g_{-}(x, y)\right) \mathrm{d} x \mathrm{~d} y \\
+        &=\int_{V} \frac{\partial F_{z}}{\partial z} \mathrm{~d} V\quad \text{from ($*$)} .
+    \end{align*}
+    In exactly the same way, 
+    \[
+        \int_{V} \frac{\partial F_{x}}{\partial x} \mathrm{~d} V=\int_{\partial V} F_{x} \mathbf{e}_{x} \cdot \mathrm{d} \mathbf{S}, \quad \int_{V} \frac{\partial F_{y}}{\partial y} \mathrm{~d} V=\int_{\partial V} F_{y} \mathbf{e}_{y} \cdot \mathrm{d} \mathbf{S} .
+    \]
+    Summing up gives the result. The same method of proof holds for the two dimensional version of the divergence theorem. Our proof only holds for simple regions (e.g. convex), but can be modified so that it works on much more complex regions.
+\end{proof}
+
+We prove Green's theorem and Stokes' theorem by introducing 
+\begin{proposition}
+    Divergence theorem $ \Longrightarrow  $ Green's theorem.
+\end{proposition}
+\begin{proposition}
+    Green's theorem $ \Longrightarrow  $ Stokes' theorem.
+\end{proposition}
+\begin{proof}[Proof of proposition 1.7]
+    Use 2D divergence theorem on $ \bfF = (Q,-P) $, we get 
+    \[
+        \iint_{A} \left( \frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}   \right)\dd x\dd y = \int_{A} \div\bfF \,\mathrm{d}A  = \oint_{\partial A} \bfF \cdot \mathbf{n}\dd s.
+    \]
+    If $ \partial A $ is parametrised wrt arc-length, then unit tangent vector is given by $ \bft=(x'(s),y'(s)) $. Hence the normal vector must be $ \bfn = (y'(s),-x'(s)) $ (check). So 
+    \[
+        \bfF \cdot \mathbf{n} \dd s = Q \frac{\mathrm{d}y}{\mathrm{d}s}\dd s+ P \frac{\mathrm{d}x}{\mathrm{d}s}\dd s = P\dd x+Q\dd y,
+    \]
+    giving Green's theorem.
+\end{proof}
+\begin{proof}[Proof of proposition 1.8]
+    Consider a regular surface 
+    \[
+        S = \{\bfx=\bfx(u,v): (u,v)\in A\}.
+    \]
+    Then the boundary is (see Analysis and Topology)
+    \[
+        \partial S = \{\bfx=\bfx(u,v): (u,v)\in \partial A\}.
+    \]
+    Green's theorem gives 
+    \[
+        \oint_{\partial A} P\dd u+Q\dd v = \iint_{A} \left( \frac{\partial Q}{\partial u}-\frac{\partial P}{\partial v}   \right)\dd u\dd v.
+    \]
+    Make choices 
+    \[
+        P(u,v) = \bfF(\bfx(u,v)) \cdot \frac{\partial \bfx}{\partial u},\quad Q(u,v) = \bfF(\bfx(u,v)) \cdot \frac{\partial \bfx}{\partial v}.  
+    \]
+    Then 
+    \[
+        P \mathrm{~d} u+Q \mathrm{~d} v=\mathbf{F}(\mathbf{x}(u, v)) \cdot\left(\frac{\partial \mathbf{x}}{\partial u} \mathrm{~d} u+\frac{\partial \mathbf{x}}{\partial v} \mathrm{~d} v\right)=\mathbf{F}(\mathbf{x}(u, v)) \cdot \mathrm{d} \mathbf{x}(u, v)
+    \]
+    which gives 
+    \[
+        \oint_{\partial A} P\dd u+Q\dd v = \oint_{\partial S} \bfF \cdot \rmd\bfx.
+    \]
+    For the other side of Stokes, 
+    \[
+        \frac{\partial Q}{\partial u}=\frac{\partial x_{j}}{\partial u} \frac{\partial F_{i}}{\partial x_{j}} \frac{\partial x_{i}}{\partial v}+F_{i} \frac{\partial^{2} x_{i}}{\partial u \partial v}\quad \frac{\partial P}{\partial v}=\frac{\partial x_{j}}{\partial v} \frac{\partial F_{i}}{\partial x_{j}} \frac{\partial x_{i}}{\partial u}+F_{i} \frac{\partial^{2} x_{i}}{\partial u \partial v}.
+    \]
+    This gives
+    \begin{align*}
+        \frac{\partial Q}{\partial u}-\frac{\partial P}{\partial v} &=\left(\frac{\partial x_{i}}{\partial v} \frac{\partial x_{j}}{\partial u}-\frac{\partial x_{i}}{\partial u} \frac{\partial x_{j}}{\partial v}\right) \frac{\partial F_{i}}{\partial x_{j}} \\
+        &=\left(\delta_{i p} \delta_{j q}-\delta_{i q} \delta_{j p}\right) \frac{\partial F_{i}}{\partial x_{j}} \frac{\partial x_{p}}{\partial v} \frac{\partial x_{q}}{\partial u} \\
+        &=\epsilon_{i j k} \epsilon_{p q k} \frac{\partial F_{i}}{\partial x_{j}} \frac{\partial x_{p}}{\partial v} \frac{\partial x_{q}}{\partial u} \\
+        &=(\nabla \times \mathbf{F}) \cdot\left(\frac{\partial \mathbf{x}}{\partial u} \times \frac{\partial \mathbf{x}}{\partial v}\right)
+    \end{align*}
+    meaning that
+    \[
+        \iint_{A}\left(\frac{\partial Q}{\partial u}-\frac{\partial P}{\partial v}\right) \mathrm{d} u \mathrm{~d} v=\iint_{A}(\nabla \times \mathbf{F}) \cdot\left(\frac{\partial \mathbf{x}}{\partial u} \times \frac{\partial \mathbf{x}}{\partial v}\right) \mathrm{d} u \mathrm{~d} v=\int_{S}(\nabla \times \mathbf{F}) \cdot \mathrm{d} \mathbf{S} .
+    \]
+    So we have Stokes' theorem from Green's theorem. Note that this proof also works if the boundary of $A$ is a collection of disjoint curves.
+\end{proof}
