@@ -1,0 +1,77 @@
+\section{Power Series}
+We look at series in the form 
+\[
+    \sum_{n=0}^{\infty} a_nz^n,\quad z\in \mathbb{C}, a_n\in \mathbb{C}.
+\]
+Or, for $ z_0 $ fixed, we look at 
+\[
+    \sum_{n=0}^{\infty} a_n(z-z_0)^n.
+\]
+\begin{lemma}
+    If $ \sum_{n=0}^{\infty} a_n z_1^n$ converges, and $ |z|<|z_1| $, then $ \sum_{n=0}^{\infty} a_n z^n $ converges absolutely.
+\end{lemma}
+\begin{proof}
+    Since $ \sum_{n=0}^{\infty} a_n z_1^n$ converges, $a_nz_1^n\to 0$. Thus $ \{a_nz_1^n\} $ is bounded by $K>0$. Now 
+    \[
+        \left| a_nz^n \right| \le K \left| \frac{z}{z_1} \right| ^n.
+    \]
+    Since the sum of RHS converges, the lemma follows by comparison.
+\end{proof}
+Using this lemma we will show that every power series has a radius of convergence.
+\begin{theorem}\label{thm:4.2}
+    A power series either
+    \begin{enumerate}
+        \item converges absolutely for all $z$, or
+        \item converges absolutely for all $z$ inside a circle $ |z|=R, R> 0 $, and diverges for all $ |z|>R $, or 
+        \item converges for $R=0$ only.
+    \end{enumerate}
+\end{theorem}
+\begin{definition}[Radius of convergence]
+    The circle $ |z|=R $ is called the \textbf{circle of convergence} and $R$ is the \textbf{radius of convergence}.
+\end{definition}
+\begin{proof}
+    Let $ S = \{x\in \mathbb{R}: x\ge 0 \land \sum a_n x^n \text{ converges}\} $. Clearly $0\in S$. If $ x_1\in S, [0,1]\in S $. If $ S=[0,\infty) $ then we have case 1. If not, $ \exists R = \sup S \ge 0 $ finite.
+
+    If $ R>0 $, We will prove that if $ |z_1|<R $ then $ \sum a_nz_1^n $ converges absolutely. Choose $ R_0 $ such that $ |z_1|<R_0<R $. Then $ R_0\in S $ by definition of sup, and the series converges for $ z=R_0 $. By lemma, $ \sum |a_n z^n| $ converges.
+
+    Finally we show that if $ |z_2|>R\ge 0 $, then the series does not converge. Take $ R_0 $ such that $ R<R_0<|z_2| $. If $ \sum a_nz_2^n $ converges, then $ \sum a_n R_0^n $ converges, contradicting with the choice of $R_0$.
+\end{proof}
+
+The following lemma is useful for finding $R$: 
+\begin{lemma}\label{lma:4.3}
+    If $ |a_{n+1}/a_n|\to \ell $, then $ R = 1/\ell $.
+\end{lemma}
+\begin{proof}
+    By ratio test, we have absolute convergence if 
+    \[
+        \lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n}\frac{z^{n+1}}{z^n} \right| <1, 
+    \]
+    so if $ |z|<\frac{1}{\ell} $, we have absolute convergence. If $ |z|>\frac{1}{\ell} $, then the series diverges.
+\end{proof}
+\begin{remark}
+    One can also use root test to get that $ |a_n|^{1/n}\to \ell $, then $ R = 1/\ell $.
+\end{remark}
+\begin{example}
+    \begin{enumerate}
+        \item $\displaystyle \sum_{n=0}^{\infty}\frac{z^n}{n!}$. Note that 
+        \[
+            \left| \frac{a_{n+1}}{a_n} \right|  = \frac{1}{n+1}\to 0=\ell,
+        \]
+        so $ R=\infty $.
+        \item $\displaystyle \sum_{n=0}^{\infty}z^n$. Immediately $ R=1 $. Note that on the circle we have divergence.
+        \item $\displaystyle \sum_{n=0}^{\infty}n!z^n$. Clearly $ R=0 $.
+        \item $\displaystyle \sum_{n=1}^{\infty}\frac{z^n}{n}$. $ R=1 $. But it diverges for $z=1$. If $ |z|=1,z\neq 1 $, it converges by Abel's test (see example sheet 1). Alternatively, consider 
+        \[
+            \sum_{n=1}^{\infty}\frac{z^n}{n}(1-z) \Longrightarrow \begin{aligned}
+                s_N &= \sum_{n=1}^{N}\left( \frac{z^n-z^{n+1}}{n} \right) = \sum_{n=1}^{N}\frac{z^n}{n}-\sum_{n=2}^{N+1}\frac{z^{n}}{n-1}\\ 
+                &= z-\frac{z^{N+1}}{N}+ \sum_{n=2}^{N+1}\frac{-z^n}{n(n-1)}.
+            \end{aligned}
+        \]
+        If $ |z|=1 $, then $ \frac{z^{N+1}}{N}\to 0 $ and $ \sum_{n=2}^{\infty}\frac{1}{n(n-1)} $, so $s_N$ converges.
+        \item $\displaystyle \sum_{n=1}^{\infty} \frac{z^n}{n^2}$. $ R=1 $ and it converges for all $z$ with $|z|=1$.
+        \item $\displaystyle \sum_{n=0}^{\infty} nz^n$. $ R=1 $ but it diverges for all $ |z|=1 $.  
+    \end{enumerate}
+\end{example}
+\begin{remark}
+    \textit{No} claim is made \textit{on} the circle of convergence. Within the radius of convergence, power series will behave as if they were polynomials.
+\end{remark}
