@@ -1064,8 +1064,20 @@ We have two cases: $G(z)$ intersects $z$ only at $(1,1)$ and $G(z)$ intersects $
 The tangent to the graph of $G$ at 1 in the first case has slope $ <1 $. The slope $ G'(1-)=\bbE[X_1]<1 $. In the second case, the slope is $ G'(1-)=\bbE[X_1]>1 $, and we see that $q<1$.
 
 \begin{theorem}
-    Assume $ \mathbb{P}(X_1=1)<1 $. Then the extinction probability is the minimal non-negative solution to the equation $t=G(t)$. We also have $ q<1 $ if and only if $ \bbE[X_1]>1 $.
+    The extinction probability is the minimal non-negative solution to the equation $t=G(t)$. Assume $ \mathbb{P}(X_1=1)<1 $. We also have $ q<1 $ if and only if $ \bbE[X_1]>1 $.
 \end{theorem}
 \begin{proof}
     Minimality: Take $t$ to be the smallest non-negative solution to $x=G(x)$. Clearly $ q_0=\bbP(X_0=0)=0\le t $. Suppose $ q_n\le t $. Note that $q_{n+1}=G(q_n)$, $G$ is an increasing function on $[0,1]$, and since $ q_n\le t $ we get $ q_{n+1}=G(q_n)\le G(t)=t $. Hence by induction $ q_n\le t,\forall n $. Taking limit shows that $ q\le t $. Since $t$ is the minimal root, $ q=t $ as required.
+
+    Now consider $H(z)=G(z)-z$, then $H^{\prime\prime}(z)=\sum_{r=2}^\infty r(r-1)g_rz^{r-2}$.
+    We can assume $g_0+g_1<1$ , since if not, then $ \bbP(X_1\le 1)=1 $ and thus $ \bbE[X_1]=\bbP(X_1=1)=1 $. In this case $ G(z)=1-\bbE[X_1]+\bbE[X_1]z $ and $ q=1 $.
+
+    Then $H^{\prime\prime}(z)>0$ for any $z\in (0,1)$, therefore $H^\prime$ is strictly increasing in $[0,1]$, which means (by Rolle's Theorem) that $H$ can have at most one solution other than $1$ in $[0,1]$.
+    If $H$ has no root in $[0,1)$, then since $H(0)=G(0)\ge 0$, $\forall z\in [0,1],H(z)\ge 0$.
+    Now
+    $$H^\prime(1-)=\lim_{z \uparrow 1}\frac{H(1)-H(z)}{1-z}=\lim_{z \uparrow 1}-\frac{H(z)}{1-z}\le 0.$$
+    So $\bbE[X_1]=G^\prime(1-)=H^\prime(1-)+1\le1$.
+    Otherwise, let $r$ be a root of $H$ in $[0,1)$, then $G(r)=r$.
+    But $G^\prime$ is strictly increasing, so $H^\prime$ must have a root $z$ in $(r,1)$ by Rolle's theorem.
+    Hence $G^\prime(z)=1$, but $G^\prime$ is increasing (check), so $\bbE[X_1]=G^\prime(1-)>G^\prime(z)=1$.
 \end{proof}

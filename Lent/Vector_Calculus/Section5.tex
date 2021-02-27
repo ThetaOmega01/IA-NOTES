@@ -191,7 +191,7 @@
     \]
     So 
     \[
-        \int_{\partial S} \bfF \cdot\mathrm{d}\mathbf{x} = \sin^4 \alpha \int_{0}^{2\pi} (-\cos^2 t \sin t)(-\sin t) \,\mathrm{d}t=\frac{\pi}{4}\sin^4 t.
+        \int_{\partial S} \bfF \cdot\mathrm{d}\mathbf{x} = \sin^4 \alpha \int_{0}^{2\pi} (-\cos^2 t \sin t)(-\sin t) \,\mathrm{d}t=\frac{\pi}{4}\sin^4 \alpha.
     \]
 \end{example}
 \begin{example}
@@ -208,13 +208,13 @@
     then $ \curl \bfF=\mathbf{0} $. So $\bfF$ irrotational if (and only if\footnote{This can be deduced by considering Stokes' theorem and results on curl.}) $\bfF$ has zero circulation around any closed loop.
 \end{proposition}
 \begin{proof}
-    Assume the result is false. i.e. $ \exists \bfk $ unit vector such that $ \bfk \cdot \curl\bfF(\bfx_0)>0 $ for some $ \bfx_0 $. So there exists an $\epsilon > 0$ such that $ \bfk \cdot \curl\bfF(\bfx_0)=\epsilon>0 $. By continuity, small $ \delta>0 $ we have
+    Assume the result is false. i.e. $ \exists \bfk $ unit vector such that $ \bfk \cdot \curl\bfF(\bfx_0)>0 $ for some $ \bfx_0 $. So there exists an $\epsilon > 0$ such that $ \bfk \cdot \curl\bfF(\bfx_0)=\epsilon>0 $. By continuity, for small $ \delta>0 $ we have
     \[
         \bfk \cdot \curl\bfF(\bfx_0)>\frac{1}{2}\epsilon,\quad |\bfx-\bfx_0|<\delta.
     \]
     Take loop in $ \{\bfx:|\bfx-\bfx_0|<\delta\} $ that lies entirely in a plane with normal $\bfk$:
     \[
-        0=\int_{S} (\curl \bfF) \cdot\mathrm{d}\mathbf{S} = \int_{S} (\curl\bfF) \cdot\mathrm{d}\mathbf{S} = \int_{S} \bfk \cdot (\curl\bfF) \,\mathrm{d}S>\frac{1}{2}\epsilon \int_{S}  \,\mathrm{d}S\neq 0,
+        0=\oint_{\partial S} \bfF \cdot\mathrm{d}\mathbf{x} = \int_{S} (\curl\bfF) \cdot\mathrm{d}\mathbf{S} = \int_{S} \bfk \cdot (\curl\bfF) \,\mathrm{d}S>\frac{1}{2}\epsilon \int_{S}  \,\mathrm{d}S\neq 0,
     \]
     a contradiction.
 \end{proof}

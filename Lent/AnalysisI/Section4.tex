@@ -7,6 +7,7 @@ Or, for $ z_0 $ fixed, we look at
 \[
     \sum_{n=0}^{\infty} a_n(z-z_0)^n.
 \]
+\subsection{Radius of convergence}
 \begin{lemma}
     If $ \sum_{n=0}^{\infty} a_n z_1^n$ converges, and $ |z|<|z_1| $, then $ \sum_{n=0}^{\infty} a_n z^n $ converges absolutely.
 \end{lemma}
@@ -75,3 +76,110 @@ The following lemma is useful for finding $R$:
 \begin{remark}
     \textit{No} claim is made \textit{on} the circle of convergence. Within the radius of convergence, power series will behave as if they were polynomials.
 \end{remark}
+
+\subsection{Differentiation}
+\begin{theorem}\label{thm:4.4}
+    Suppose the series
+    \[
+        f(z) = \sum_{n=0}^{\infty}a_n z^n
+    \]
+    has radius of convergence $R$. Then $f$ is differentiable at all points $ |z|<R $ with derivative 
+    \[
+        f'(z) = \sum_{n=1}^\infty na_n z^{n-1}.
+    \]
+\end{theorem}
+\begin{proof}
+    We need 2 lemmas:
+    \begin{lemma}\label{lma:4.5}
+        If $ \sum_0^\infty a_nz^n $ has radius of convergence $R$, then so do $ \sum_{1}^{\infty}na_n z^{n-1} $ and $ \sum_{2}^\infty n(n-1)a_n z^{n-2} $.
+    \end{lemma}
+    \begin{lemma}\label{lma:4.6}
+        \begin{enumerate}
+            \item For all $2\le r\le n$, $\displaystyle \binom{n}{r}\le n(n-1) \binom{n-2}{r-2}$.
+            \item $ \left| (z+h)^n-z^n-nhz^{n-1} \right| \le n(n-1)(|z|+|h|)^{n-2}|h|^2,\ \forall z,h\in \bbC $. 
+        \end{enumerate}
+    \end{lemma}
+
+    By lemma 4.5 we may define 
+    \[
+        f'(z) := \sum_{n=1}^{\infty} na_n z^{n-1},\quad |z|<R.
+    \]
+    We are required to prove that 
+    \[
+        \lim_{h \to 0} I = \lim_{h \to 0} \frac{f(z+h)-f(z)-hf'(z)}{h}=0.
+    \]
+    Note that (by lemma 4.6),
+    \begin{IEEEeqnarray*}{rCl}
+        I &=& \frac{1}{h}\sum_{n=0}^{\infty} a_n((z+h)^n-z^n-hnz^{n-1})\\ 
+        \Longrightarrow  |I| &=& \frac{1}{|h|}\left| \lim_{N \to \infty} \sum_{n=0}^{N} a_n((z+h)^n-z^n-hnz^{n-1})\right|\\ 
+        &=& \frac{1}{|h|}\lim_{N \to \infty}\left|  \sum_{n=0}^{N} a_n((z+h)^n-z^n-hnz^{n-1})\right|\\ 
+        &\le& \frac{1}{|h|}\sum_{n=0}^{\infty} |a_n||(z+h)^n-z^n-hnz^{n-1}|\\ 
+        &\le& \frac{1}{|h|}\sum_{n=2}^{\infty}|a_n|\cdot n(n-1)(|z|+|h|)^{n-2}|h|^2\\ 
+        &=& |h|\sum_{n=2}^{\infty} |a_n| \cdot n(n-1)(|z|+|h|)^{n-2}
+    \end{IEEEeqnarray*}
+    By lemma 4.5, for $|h|$ small enough, 
+    \[
+        \sum_{n=2}^{\infty} |a_n| \cdot n(n-1)(|z|+|h|)^{n-2}
+    \]
+    converges to $A(h)$, but $A(h)\le A(r)$ for $r$ such that $|h|<r$ and $ |z|+r<R $. Hence 
+    \[
+        0\le |I|\le |h|A(h) \le |h|A(r)\to 0 \quad \text{as}\quad h\to 0,
+    \]
+    as required.
+\end{proof}
+\begin{proof}[Proof of lemma 4.5]
+    The lemma holds trivially for $z=0$.
+    Take $z,R_0$ such that $ 0<|z|<R_0<R $. Since $ a_nR_0^n\to 0 $, $ \exists K $ such that $ |a_n R_0^n|\le K, \forall n\ge 0 $. Thus 
+    \[
+        \left| a_n n z^{n-1} \right| = \frac{n}{|z|} \left| a_n R_0^n \right| \left| \frac{z}{R_0} \right|^n \le \frac{Kn}{|z|}\left| \frac{z}{R_0} \right|^n.
+    \]
+    But the series $\sum \frac{n}{|z|}| \frac{z}{R_0} |^n$ converges by the ratio test (check it), so $ \sum a_n n z^{n-1} $ converges absolutely by comparison, thus converges.
+
+    If $ |z|>R $, then $ |a_nz^n| $ is \textit{unbounded} (check \href{https://math.stackexchange.com/questions/799481/absolute-sequence-unbounded-within-radius-of-convergence}{this}), and so is $ n|a_nz^n| $, so $ \sum na_n z^{n-1} $ diverges. The same proof applies to $\sum_{2}^\infty n(n-1)a_n z^{n-2}$.
+\end{proof}
+\begin{proof}[Proof of lemma 4.6]
+    Part 1 follows by direct check. For part 2, note that
+    \[
+        (z+h)^n-z^n-nhz^{n-1} = \sum_{r=2}^{n}\binom{n}{r} z^{n-r}h^r.
+    \] 
+    Thus 
+    \begin{align*}
+        \left| (z+h)^n-z^n-nhz^{n-1} \right| &\le \sum_{r=2}^{n}\binom{n}{r} |z|^{n-r}|h|^r \\ 
+        &\le |h|^2 n(n-1) \sum_{r=2}^{n}\binom{n-2}{r-2}|z|^{n-r}|h|^{r-2}\\
+        &= n(n-1)(|z|+|h|)^{n-2}|h|^2. \qedhere
+    \end{align*}
+\end{proof}
+
+\subsection{The standard functions}
+We have already seen that 
+\[
+    \sum_{n=0}^{\infty} \frac{z^n}{n!}
+\]
+has $ R=\infty $.
+\begin{definition}
+    The \textbf{exponential function} is defined by $ e:\bbC\to\bbC $, where
+    \[
+        e(z) = \sum_{n=0}^{\infty} \frac{z^n}{n!}.
+    \]
+\end{definition}
+Straight from theorem \ref{thm:4.4}, $ e $ is differentiable and $ e'(z)=e(z) $.
+
+\begin{sprop}
+    If $ F:\bbC\to\bbC $ has $ F'(z)=0, \forall z\in \bbC $, then $F$ is constant.
+\end{sprop}
+\begin{proof}
+    Consider $g(t)=F(tz)=u(t)+iv(t)$. By chain rule,
+    \[
+        g'(t)=F'(tz)z=0=\footnote{Check}u'(t)+iv'(t) \Longrightarrow u'=v'=0.
+    \]
+    Hence $u,v$ are constant by corollary \ref{col:3.5}, thus $F$ is constant.
+\end{proof}
+
+Now let $a,b\in \bbC$ and consider 
+\[
+    F(z) = e(a+b-z)e(z) \Longrightarrow F'(z) = 0.
+\]
+So $F$ is constant and $e(a+b-z)e(z)=e(a+b).$ Set $z=b$ gives 
+\[
+    \boxed{e(a)e(b)=e(a+b)} 
+\]
