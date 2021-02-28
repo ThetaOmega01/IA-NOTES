@@ -151,6 +151,7 @@ The following lemma is useful for finding $R$:
 \end{proof}
 
 \subsection{The standard functions}
+\subsubsection*{Exponentials and logarithms}
 We have already seen that 
 \[
     \sum_{n=0}^{\infty} \frac{z^n}{n!}
@@ -183,3 +184,89 @@ So $F$ is constant and $e(a+b-z)e(z)=e(a+b).$ Set $z=b$ gives
 \[
     \boxed{e(a)e(b)=e(a+b)} 
 \]
+
+Now we restrict $ e:\mathbb{R} \to \mathbb{R} $.
+
+\begin{theorem}[Properties of the exponential]\label{thm:4.7}\
+    \begin{enumerate}
+        \item $ e:\bbR\to\bbR $ is differentiable on $\bbR$ with $ e'(x)=e(x) $.
+        \item $ e(x+y)=e(x)e(y) $.
+        \item $ e(x)>0 $.
+        \item $ e $ is strictly increasing.
+        \item $ e(x)\to \infty $ as $ x\to \infty $, $ e(x)\to 0 $ as $ x\to -\infty  $.
+        \item $ e:\mathbb{R} \to (0,\infty) $ is a bijection.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    1 and 2 are done by previous. 3: clearly $ e(x)>0, \forall x\ge 0 $ and $ e(0)=1>0 $. By property 2, $ e(x)>0, \forall x<0 $, and hence $ e(x)>0, \forall x\in \mathbb{R} $. 4: $ e'(x)=e(x)>0 $, so $e$ is strictly increasing. 5: from the definition of $e(x)$, $ e(x)>1+x $. As $ x\to \infty, 1+x\to \infty   $ and thus $ e(x)\to \infty $. Also since $ e(-x)=1/e(x) $ by property 2, $ e(x)\to 0, x\to -\infty  $. 6: injectivity follows by strict increasing property. Take $ y\in (0,\infty ) $. By property 5, $ \exists a,b \in \mathbb{R} $ such that $ e(a)<y<e(b) $. By IVT, $ \exists x\in \mathbb{R}, e(x)=y $, so $e$ is surjective, hence bijective.
+\end{proof}
+\begin{remark}
+    $ e:(\mathbb{R} ,+)\to ((0,\infty ),\times ) $ is an isomorphism.
+\end{remark}
+
+\begin{definition}
+    The \textbf{logarithm} is defined by the inverse of exponential: $ l:(0,\infty )\to \bbR  $.
+\end{definition}
+\begin{theorem}[Properties of logarithm]\label{thm:4.8}\
+    \begin{enumerate}
+        \item $ l:(0,\infty )t\to \mathbb{R}  $ is a bijection and $ l(e(x))=x, \forall x\in \mathbb{R} $, $ e(l(t))=t,\forall t\in (0,\infty ) $.
+        \item $l$ is differentiable with derivative $ e'(t)=1/t $.
+        \item $ l(xy)=l(x)+l(y),\forall x,y\in (0,\infty ) $.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Exercise.
+\end{proof}
+
+\subsubsection*{Power functions}
+
+\begin{definition}
+    Given $ \alpha\in \mathbb{R}, x>0 $, define the \textbf{power function} $ r_\alpha:\mathbb{R} \to \mathbb{R} $ as 
+    \[
+        r_\alpha(x) := e(\alpha l(x)).
+    \]
+\end{definition}
+\begin{theorem}[Properties of powers]\label{thm:4.9}
+    Suppose $ x,y>0,\alpha,\beta\in \mathbb{R} $. Then 
+    \begin{enumerate}
+        \item $ r_\alpha(xy)=r_\alpha(x)r_\alpha(y) $.
+        \item $ r_{\alpha+\beta}(x)r_\alpha(x)r_\beta(x) $.
+        \item $ r_\alpha(r_\beta(x))=r_{\alpha\beta}(x) $.
+        \item $ r_1(x)=x,r_0(x)=1 $.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Exercise.
+\end{proof}
+
+In particular, $ r_n(x)=r_1(x)^n=x^n $, and $ r_{-1}(x)=1/x $, and thus $ r_{-n}(x)=1/x^n $. Similar process can be applied to $ r_q(x),q\in \mathbb{Q} $.
+
+Now we do a ``Baptism Ceremony'':
+\[
+    \begin{cases}
+    \exp (x):=e(x) &x\in \mathbb{R} \\
+    \log x :=l(x) &x\in (0,\infty )\\
+    x^{\alpha}:= r_\alpha(x) & x\in (0,\infty ),\alpha\in \mathbb{R}
+    \end{cases} 
+\]
+One can deduce, for example, that 
+\[
+    \exp (x)=\exp (x \log \exp (1) ) = r_x(\exp (1)) = (\exp (1))^x.
+\]
+Thus $\exp(x)$ is also a power and we can define 
+\[
+    \boxed{e:= \exp (1) = \sum_{n=0}^{\infty}\frac{1}{n!}}
+\]
+We may denote 
+\[
+    e^x:= \exp (x).
+\]
+\begin{sprop}
+    $ (x^\alpha)'=\alpha x^{\alpha-1} $.
+\end{sprop}
+\begin{proof}
+    $ (x^\alpha)'=(e^{\alpha \log x})'=e^{\alpha \log x}\cdot \alpha/x = \alpha x^{\alpha-1} $.
+\end{proof}
+\begin{note}
+    If we let $ f(x)=a^x,a>0 $, then $ f'(x)=a^x\log a $.
+\end{note}

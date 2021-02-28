@@ -111,7 +111,7 @@ It is important to interpret the boundary conditions in an appropriate way: we a
             \draw (12.center) to (8.center);
         \end{tikzpicture}
     \end{center}
-    The error would be $ \| f-\tilde{f} \| $, which we want to be \textit{small}. i.e. we want $ \|\varphi-\tilde{\varphi}\| $. In this course we mainly care about 2.
+    The error would be $ \| f-\tilde{f} \| $, which we want to be \textit{small}. i.e. we want $ \|\varphi-\tilde{\varphi}\| $ to be small. In this course we mainly care about 2.
 \end{note}
 
 We only want to solve problems that have a unique, or almost unique solution. Let us consider a generic \textit{linear} problem of the form
@@ -145,7 +145,7 @@ If we can show that the only solution to this problem is $\psi=0$, we will have 
         B \psi=0 & \text {on } \partial \Omega
     \end{cases} 
     \]
-    where $B \psi \equiv \psi$ (Dirichlet) or $B \psi \equiv \frac{\partial \psi}{\partial n}$ (Neumann). Consider the non-negative functional
+    where $B \psi \equiv \psi$ (Dirichlet) or $B \psi \equiv \frac{\partial \psi}{\partial \bfn}$ (Neumann). Consider the non-negative functional
     \[
         I[\psi]=\int_{\Omega}|\nabla \psi|^{2} \mathrm{~d} V \ge 0
     \]
@@ -190,3 +190,143 @@ If we can show that the only solution to this problem is $\psi=0$, we will have 
 \end{example}
 
 The same example holds if we replace electrostatics with gravity. We’ve essentially just proved \textbf{Newton’s shell theorem}: there is no net gravitational field anywhere inside a spherical shell. Newton’s proof was significantly more involved, but only used elementary concepts from geometry. It’s also not very rigorous.
+
+\subsection{Gauss’ flux method}
+A very clever way of getting solutions to Poisson's equation is to use the Gauss method. Suppose the source term $F$ is spherically symmetric, i.e. $F=F(r)$ where $r=|\mathbf{x}| .$ Re-write our problem as
+\[
+    \nabla \cdot \nabla \varphi=F(r),\quad \Omega = \mathbb{R}^{3}.
+\]
+Since the right hand side only depends on $r,$ the same is true of the left hand side. So we can assume $\varphi=\varphi(r)$ also, and in particular $\nabla \varphi=\varphi^{\prime}(r) \mathbf{e}_{r} .$ Integrating our equation
+over a sphere of radius $R>0$ and using the divergence theorem gives
+\[
+    \int_{|\mathbf{x}|=R} \nabla \varphi \cdot \mathrm{d} \mathbf{S}=\int_{|\mathbf{x}|<R} F(r) \mathrm{~d} V = Q(R),
+\]
+where $Q(R)$ denotes the total amount of ``stuff'' with density $F(r)$ in $|\mathbf{x}|<R$.
+
+Recall that on a sphere of radius $R$, 
+\[
+    \rmd\bfS = \bfe_r R^3 \sin \theta \dd \theta\dd \phi.
+\]
+So on $ |\bfx|=R $ we have
+\begin{align*}
+    \nabla \varphi \cdot \rmd\bfS&= \varphi'(r)\bfe_r \cdot (\bfe_r R^2 \sin \theta \dd \theta\dd \phi )\Big|_{|\bfx|=R}\\ 
+    &= \varphi'(R)R^2 \sin \theta \dd \theta\dd \phi\\ 
+    &= \varphi'(R)\dd S.
+\end{align*}
+Hence 
+\[
+    Q(R) = \int_{|\bfx|=R} \varphi'(R) \,\mathrm{d}S = \varphi'(R)\int_{|\bfx|=R}  \,\mathrm{d}S = 4\pi R^2 \varphi'(R).
+\]
+In summary,
+\[
+    \varphi'(R) = \frac{Q(R)}{4\pi R^2},\ \forall R>0 \Longrightarrow  \boxed{\nabla\varphi = \frac{Q(r)}{4\pi r^2}\bfe_r}
+\]
+
+\begin{example}
+    We find the electric field produced by the spherically symmetric charge density
+    \[
+    \rho(r)=\begin{cases}
+        \rho_{0} & 0 \le r \le a \\
+        0 & r>a
+    \end{cases} 
+    \]
+    Recall that the electric potential $\phi$ defined by $\mathbf{E}=-\nabla \phi .$ Use Maxwell's first equation
+    \[
+    \nabla \cdot \mathbf{E}=\frac{\rho}{\epsilon_{0}} \quad \text { i.e. } \quad \nabla^{2} \phi=-\frac{\rho}{\epsilon_{0}}.
+    \]
+    By the previous formula we find
+    \[
+    \phi^{\prime}(r)=-\frac{1}{4 \pi \epsilon_{0}} \frac{Q(r)}{r^{2}}.
+    \]
+    Note that if $r>a$ then $Q(r)=Q(a)=Q,$ where $Q$ denotes the total charge. We get
+    \[
+    \mathbf{E}(\mathbf{x})=-\phi^{\prime}(r) \mathbf{e}_{r}=\begin{cases}
+        \dfrac{1}{4 \pi \epsilon_{0}} \dfrac{Q(r)}{r^{2}} \mathbf{e}_{r} & r \le a \\[10pt]
+        \dfrac{1}{4 \pi \epsilon_{0}} \dfrac{Q}{r^{2}} \mathbf{e}_{r} & r>a
+    \end{cases} 
+    \]
+    Taking $a \rightarrow 0$ we deduce that the electric field to a point charge $Q$ at the origin is
+    \[
+    \mathbf{E}(\mathbf{x})=\frac{Q}{4 \pi \epsilon_{0}} \frac{\mathbf{x}}{|\mathbf{x}|^{3}}.
+    \]
+    In this case the relevant charge density is $\rho(\mathbf{x})=Q \delta(\mathbf{x})$ and the corresponding electric
+    potential is
+    \[
+    \phi(\mathbf{x})=\frac{Q}{4 \pi \epsilon_{0}} \frac{1}{|\mathbf{x}|}.
+    \]
+    Gauss' method also works if there is cylindrical symmetry. Suppose our problem takes
+    the form
+    \[
+    \nabla^{2} \varphi=F(\rho)
+    \]
+    where $\rho^{2}=x^{2}+y^{2}$. We can let $ \varphi=\varphi(\rho) $, so that $ \nabla \varphi=\varphi'(\rho)\bfe_\rho $. Now 
+    \[
+        \int_{\partial ~\begin{tikzpicture}[scale=0.35]
+            \draw (0,0.1) ellipse (0.2 and 0.1);
+            \draw (0,-0.3) ellipse (0.2 and 0.1);
+            \draw (-0.2,0.1) -- (-0.2,-0.3);
+            \draw (0.2,0.1) -- (0.2,-0.3); 
+        \end{tikzpicture}} \nabla \varphi \cdot\mathrm{d}\mathbf{S}=\int_{~\begin{tikzpicture}[scale=0.5]
+            \draw (0,0.1) ellipse (0.2 and 0.1);
+            \draw (0,-0.3) ellipse (0.2 and 0.1);
+            \draw (-0.2,0.1) -- (-0.2,-0.3);
+            \draw (0.2,0.1) -- (0.2,-0.3); 
+        \end{tikzpicture}} \div \nabla \varphi \,\mathrm{d}V = \int_{~\begin{tikzpicture}[scale=0.5]
+            \draw (0,0.1) ellipse (0.2 and 0.1);
+            \draw (0,-0.3) ellipse (0.2 and 0.1);
+            \draw (-0.2,0.1) -- (-0.2,-0.3);
+            \draw (0.2,0.1) -- (0.2,-0.3); 
+        \end{tikzpicture}} F(\rho) \,\mathrm{d}V.
+    \]
+    Note that we don't get any contribution from the ends of the cylinder because $\mathbf{n} \cdot \mathbf{e}_{\rho}=0$ on them. We have 
+    \[
+        \int_{\partial ~\begin{tikzpicture}[scale=0.35]
+            \draw (0,0.1) ellipse (0.2 and 0.1);
+            \draw (0,-0.3) ellipse (0.2 and 0.1);
+            \draw (-0.2,0.1) -- (-0.2,-0.3);
+            \draw (0.2,0.1) -- (0.2,-0.3); 
+        \end{tikzpicture}} \nabla \varphi \cdot\mathrm{d}\mathbf{S}=\int_{\phi=0}^{2\pi} \int_{z=z_0}^{z_0+a} \varphi'(R)R \,\mathrm{d}z \,\mathrm{d}\phi = 2\pi a R \varphi'(R).
+    \]
+    So 
+    \[
+        \varphi'(R)=\frac{1}{R}\frac{1}{2\pi a}\int_{~\begin{tikzpicture}[scale=0.5]
+            \draw (0,0.1) ellipse (0.2 and 0.1);
+            \draw (0,-0.3) ellipse (0.2 and 0.1);
+            \draw (-0.2,0.1) -- (-0.2,-0.3);
+            \draw (0.2,0.1) -- (0.2,-0.3); 
+        \end{tikzpicture}} F(\rho) \,\mathrm{d}V=\frac{1}{R}\frac{1}{2\pi a} I,\quad \forall R>0.
+    \]
+    Note that 
+    \[
+        I = \int_{z=z_0}^{z_0+a} \int_{\phi=0}^{2\pi} \int_{\rho=0}^{R} F(\rho)\rho \,\mathrm{d}\rho \,\mathrm{d}\phi \,\mathrm{d}z = 2\pi a \int_{0}^{R} F(\rho)\rho \,\mathrm{d}\rho.
+    \]
+    In conclusion, 
+    \[
+        \boxed{\varphi'(\rho)=\frac{1}{\rho}\int_{0}^{\rho} sF(s) \,\mathrm{d}s}
+    \]
+\end{example}
+
+\begin{example}
+    How might we describe a \textit{line} of charge density with constant charge density $ \lambda $ per unit length?
+
+    We could proceed as before, consider cylinder of radius $a$ with constant charge density. Take $a\to 0$ and keep charge per unit length fixed (exercise).
+
+    Alternatively, let $ F(\rho) $ be the desired charge density. So if we integrate over \textit{any} cylinder of length 1, should have total charge contained $ \lambda $.
+    \begin{align*}
+        \lambda&= \int_{V} F(\rho) \,\mathrm{d}V\\ 
+        &= \int_{z=z_0}^{z_0+1} \int_{\phi=0}^{2\pi} \int_{\rho=0}^{R} F(\rho)\rho \,\mathrm{d}\rho \,\mathrm{d}x \,\mathrm{d}z\\ 
+        &= 2\pi \int_{0}^{R} F(\rho)\rho \,\mathrm{d}\rho .
+    \end{align*}
+    So we see that chossing 
+    \[
+        F(\rho)=\frac{\lambda \delta(\rho)}{2\pi \rho}
+    \]
+    the electric potential would satisfy
+    \[
+        \phi^{\prime}(\rho)=-\frac{1}{\epsilon_{0} \rho} \int_{0}^{\rho} \frac{\lambda}{2 \pi} \delta(s) \,\mathrm{d} s=-\frac{\lambda}{2 \pi \epsilon_{0} \rho}.
+    \]
+    The electric field is then
+    \[
+        \mathbf{E}(\mathbf{x})=\frac{\lambda}{2 \pi \varepsilon_{0} \rho} \mathbf{e}_{\rho}.
+    \]
+\end{example}
