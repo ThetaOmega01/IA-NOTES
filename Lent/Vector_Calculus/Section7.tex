@@ -327,6 +327,116 @@ In summary,
     \]
     The electric field is then
     \[
-        \mathbf{E}(\mathbf{x})=\frac{\lambda}{2 \pi \varepsilon_{0} \rho} \mathbf{e}_{\rho}.
+        \mathbf{E}(\mathbf{x})=\frac{\lambda}{2 \pi \epsilon_{0} \rho} \mathbf{e}_{\rho}.
     \]
 \end{example}
+
+\subsection{Superposition principle}
+\textit{Linear} problems are relatively easy because of the following: 
+\[
+    L \psi_n = F_n,\quad n=1,2,\dots \Longrightarrow 
+    L\left( \sum_{n} \psi_n \right) = \sum_{n} F_n.
+\]
+i.e. we can \textit{superpose} solutions. Can often break up forcing term $ F=\sum_n F_n $, solve each problem 
+\[
+    L \psi_n=F_n
+\]
+to get solution to $ L \psi=F $ with $ \psi=\sum_n \psi_n $.
+
+\begin{example}
+    Consider electric potential due to \textit{pair} of point charges $ Q_a $ at $ \bfx=\bfa $, and $ Q_b $ at $ \bfx=\bfb $. Charge densities are
+    \[
+        \rho(\bfx)=Q_a \delta(\bfx-\bfa),\ Q_b \delta(\bfx-\bfb).
+    \]
+    For a point charge, the electric potential obeys 
+    \[
+        -\laplacian \phi = \frac{Q_a}{\epsilon_0}\delta(\bfx-\bfa).
+    \]
+    Solution would be 
+    \[
+        \phi(\bfx) = \frac{Q_a}{4\pi \epsilon_0}\frac{1}{|\bfx-\bfa|}.
+    \]
+    So by superposition principle, electric potential due to point charges at $ \bfx=\bfa $ and $ \bfx=\bfb $ is 
+    \[
+        \phi(\bfx)=\frac{Q_a}{4\pi \epsilon_0}\frac{1}{|\bfx-\bfa|}+\frac{Q_b}{4\pi \epsilon_0}\frac{1}{|\bfx-\bfb|}.
+    \]
+\end{example}
+
+\begin{example}
+    Consider electric potential outside ball of radius $ |\bfx|<R $ of uniform charge density $ \rho_0 $. Suppose the ball has several balls removed from its interior
+    \[
+        |\bfx-\bfa_i|<R_i,\quad i=1,\dots,N,
+    \]
+    where $ |\bfa_i|+R_i<R $ and $ \forall i,j, |\bfa_i-\bfa_j|>R_i+R_j $.
+
+    Use superposition principle: represent each hold to be a ball of uniform charge density $ -\rho_0 $. Effective potential in $ |\bfx|>R $ from each hole is 
+    \[
+        \phi(\bfx) = -\frac{1}{4\pi \epsilon_0}\frac{Q_i}{|\bfx-\bfa_i|},
+    \]
+    where $Q_{i}=\left(4 \pi R_{i}^{3} / 3\right) \rho_{0}$. Using $ Q=\left(4 \pi R^{3} / 3\right) \rho_{0} $, by superposition principle, 
+    \[
+        \phi(\mathbf{x})=\frac{1}{4 \pi \epsilon_{0}}\left[\frac{Q}{|\mathbf{x}|}-\sum_{i=1}^{N} \frac{Q_{i}}{\left|\mathbf{x}-\mathbf{a}_{i}\right|}\right].
+    \]
+\end{example}
+
+\subsection{Integral solutions}
+We know electric potential due to a point charge at $ \bfx=\bfa $ is \textit{proportional} to 
+\[
+    \frac{1}{|\bfx-\bfa|}
+\]
+We also know that a sum of point charges has, via the superposition principle, an electric potential consisting of a sum
+\[
+    \sum_{i=1}^{N}\frac{Q_i}{|\bfx-\bfa_i|}.
+\]
+This leads us to consider very general superposition of potentials of the form
+\[
+    \int_{\bbR^3} \frac{F(\bfy)}{|\bfx-\bfy|} \,\mathrm{d}V(\bfy).
+\]
+\begin{proposition}
+    Assume $F\to 0$ rapidly as $ |\bfx|\to \infty $. The unique solution to the Dirichlet problem
+    \[
+        \begin{cases}
+        \laplacian\phi=F &\bfx\in\bbR^3\\
+        |\phi|\to 0 &|\bfx|\to \infty\\
+        \end{cases} 
+    \]
+    is given by 
+    \[
+        \phi(\bfx) = -\frac{1}{4\pi}\int_{\bbR^3} \frac{F(\bfy)}{|\bfx-\bfy|} \,\mathrm{d}V(\bfy).
+    \]
+\end{proposition}
+
+This result is equivalent to saying
+\[
+    \nabla^{2}\left(-\frac{1}{4 \pi} \frac{1}{|\mathbf{x}|}\right)=\delta(\mathbf{x})
+\]
+since by differentiating (with respect to the $\bfx$-variables) under the integral sign
+\[
+    \int_{\mathbb{R}^{3}} \nabla^{2}\left(-\frac{1}{4 \pi} \frac{1}{|\mathbf{x}-\mathbf{y}|}\right) F(\mathbf{y}) \,\mathrm{d} V=\int_{\mathbb{R}^{3}} \delta(\mathbf{x}-\mathbf{y}) F(\mathbf{y}) \,\mathrm{d} V=F(\mathbf{x})
+\]
+
+You can prove this rigorously on Example Sheet 3, on one of the additional problems. Using suffix notation and Cartesian coordinates we have for $r \neq 0$
+\[
+\frac{\partial^{2}}{\partial x_{i} \partial x_{i}}\left(\frac{1}{r}\right)=\frac{\partial}{\partial x_{i}}\left(-\frac{x_{i}}{r^{3}}\right)=-\frac{\delta_{i i}}{r^{3}}+\frac{3 x_{i} x_{i}}{r^{5}}=0.
+\]
+So certainly
+\[
+\nabla^{2}\left(-\frac{1}{4 \pi} \frac{1}{|\mathbf{x}|}\right)=\delta(\mathbf{x}) \quad \text { for } \mathbf{x} \neq \mathbf{0}.
+\]
+If we assume the divergence theorem works with $ \delta $ functions, then for any ball $|\mathbf{x}|<R$
+\[
+\begin{aligned}
+\int_{|\mathbf{x}|<R} \nabla^{2}\left(\frac{1}{|\mathbf{x}|}\right) \mathrm{d} V &=\int_{|\mathbf{x}|=R} \nabla\left(\frac{1}{r}\right) \cdot \mathrm{d} \mathbf{S} \\
+&=\int_{\theta=0}^{\pi} \int_{\phi=0}^{2 \pi}\left(-\frac{\mathbf{e}_{r}}{R^{2}}\right) \cdot \mathbf{e}_{r} R^{2} \sin \theta \,\mathrm{d} \phi \,\mathrm{d} \theta \\
+&=-4 \pi.
+\end{aligned}
+\]
+So for any $R>0$ we have
+\[
+\int_{|\mathbf{x}|<R} \nabla^{2}\left(-\frac{1}{4 \pi} \frac{1}{|\mathbf{x}|}\right) \mathrm{d} V=1=\int_{|\mathbf{x}|<R} \delta(\mathbf{x}) \,\mathrm{d} V.
+\]
+This is exactly the same behaviour as the delta function $\delta(\mathbf{x}) .$ So we conclude
+\[
+\nabla^{2}\left(-\frac{1}{4 \pi} \frac{1}{|\mathbf{x}|}\right)=\delta(\mathbf{x})
+\]
+and the result in the proposition follows. This is an example of a Green's function. You will see a lot more of these in the IB Methods.

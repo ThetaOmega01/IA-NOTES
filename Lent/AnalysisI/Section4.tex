@@ -270,3 +270,71 @@ We may denote
 \begin{note}
     If we let $ f(x)=a^x,a>0 $, then $ f'(x)=a^x\log a $.
 \end{note}
+
+\begin{sprop}[Exponentials beat polynomials]
+    $\displaystyle \lim_{x \to \infty} \frac{e^x}{x^k}\to \infty, \forall k\in \mathbb{Z}$. 
+\end{sprop}
+\begin{proof}
+    Wlog suppose $x>0$. Let $n>k$ such that 
+    \[
+        e^x = \sum_{j=0}^{\infty} \frac{x^j}{j!}>\frac{x^n}{n!}.
+    \]
+    Hence 
+    \[
+        \frac{e^x}{x^k}>\frac{x^{n-k}}{n!}\to \infty,\quad \text{as }x\to \infty .\qedhere
+    \]
+\end{proof}
+
+\subsection{Trignometric functions}
+\begin{definition}
+    Define $ \sin ,\cos : \mathbb{C} \to \mathbb{C} $ as 
+    \begin{align*}
+        \cos z &= 1-\frac{z^2}{2!}+\frac{z^4}{4!}-\cdots = \sum_{k=0}^{\infty} \frac{(-1)^k z^{2k}}{(2k)!},\\ 
+        \sin z &= z-\frac{z^3}{3!}+\frac{z^5}{5!}-\cdots = \sum_{k=0}^{\infty}\frac{(-1)^k z^{2k+1}}{(2k+1)!}.
+    \end{align*}
+\end{definition}
+
+\begin{sprop}
+    \begin{enumerate}
+        \item     $ \sin z,\cos z $ has infinite radius of convergence and are differentiable with $ \sin(z)'= \cos(z) $ and $ \cos(z)'=-\sin (z) $.
+        \item $ e^{iz}=\cos z+i \sin z $ and $ e^{-iz}=\cos z-i \sin z $.
+        \item $\displaystyle \cos z=\frac{1}{2}\left( e^{iz}+e^{-iz} \right)$, and $\displaystyle \sin z = \frac{1}{2i}\left( e^{iz}-e^{-iz} \right)$. 
+        \item $\forall z\in \mathbb{C},\ \sin ^2 z+ \cos ^2 z=1 $.
+        \item All trignometric identities hold.
+        \item $ \bbR\ni y\to \infty,\ \cos(iy)\to \infty $.
+        \item If $ x\in \mathbb{R},\ \sin x, \cos x\in \mathbb{R} $.
+        \item $ \forall x\in \mathbb{R},\ |\sin x|,|\cos x|\le 1 $.
+    \end{enumerate}
+\end{sprop}
+
+\begin{proposition}\label{prop:4.10}
+    $ \exists \omega\in \mathbb{R},\ \sqrt{2}<\omega/2<\sqrt{3} $, such that 
+    \[
+        \cos \frac{\omega}{2}=0.
+    \]
+\end{proposition}
+\begin{proof}
+    It is clear that if $0<x<2$, $ \sin x>0 $. So for $0<x<2$, $ (\cos x)'=- \sin x<0 $, so $\cos x$ is strictly decreasing on $ (0,2) $. Claim that $ \cos \sqrt{2}>0, \cos \sqrt{3}<0 $, so by IVT the existence of $ \omega $ follows. Indeed, 
+    \begin{align*}
+        \cos \sqrt{2}&= \left( \frac{(\sqrt{2})^4}{4!}- \frac{(\sqrt{2})^6}{6!}\right)+\cdots>0\\ 
+        \cos \sqrt{3}&= -\frac{1}{8}- \left( \frac{(\sqrt{2})^6}{6!}-\frac{(\sqrt{2})^8}{8!} \right)- \cdots <0.\qedhere
+    \end{align*}
+\end{proof}
+
+\begin{definition}
+    Define $ \pi=\omega $.
+\end{definition}
+
+\begin{theorem}\label{thm:4.12}
+    \begin{enumerate}
+        \item $ \sin (z+\pi/2)=\cos z $, $ \cos (z+\pi/2)=-\sin z $.
+        \item $ \sin (z+\pi)=-\sin z,\ \cos (z+\pi)=-\cos z $.
+        \item $ \sin (z+2\pi)=\sin z,\ \cos (z+2\pi)=\cos z $.
+    \end{enumerate}
+\end{theorem}
+
+This implies 
+\[
+    e^{iz+2\pi i}=\cos (z+2\pi)+i \sin (z+2\pi)= e^{iz},
+\]
+so $e^z$ is periodic with period $ 2\pi i $.

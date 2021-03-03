@@ -226,7 +226,7 @@ We have something stronger:
     Since it holds for all $ \epsilon $, we must have $ \mathbb{P}(T>t)=e^{-\lambda t} $, as claimed.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{thm:3.6}
     Let $X$ be a continuous random variable with density $f$.
     Let $g$ be a continuous, strictly monotone function with $g^{-1}$ differentiable.
     Then $g(X)$ is a continuous random variable with density
@@ -299,3 +299,160 @@ We have something stronger:
         \mathbb{P}(X\le x)=1-\mathbb{P}(X\le -x).
     \]
 \end{example}
+
+\begin{example}[Composition of normal distributions]
+    Let $ X \sim \mcN( \mu,\sigma^2) $. Let $ a,b\in \mathbb{R} $ such that $ a\neq 0 $. Set $ g(x)=ax+b $ and define 
+    \[
+        Y= g(X).
+    \]
+    What is the density of $Y$?
+
+    Note that $g$ is strictly monotone and $ g^{-1}(x)=\frac{x-b}{a} $ is differentiable. Hence by theorem \ref{thm:3.6}, the density of $y$ is 
+    \begin{align*}
+        f_Y(y)&= f_X(g^{-1}(y)) \left| \frac{\mathrm{d}}{\mathrm{d}y} g^{-1}(y)  \right| \\ 
+        &= \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(\frac{y-b}{a} - \mu)^2}{2\sigma^2}\right) \frac{1}{|a|}\\ 
+        &= \frac{1}{\sqrt{2\pi a^2\sigma^2}} \exp \left( -\frac{(y-b - a\mu)^2}{2a^2\sigma^2} \right).
+    \end{align*}
+    So 
+    \[
+        Y \sim \mcN\left( a\mu+b, a^2\sigma ^2 \right).
+    \]
+    The importance here is that 
+    \[
+        \boxed{X \sim \mcN(\mu,\sigma^2) \Longrightarrow \frac{X-\mu}{\sigma}\sim \mcN(0,1)}
+    \]
+    Notice that 
+    \[
+        \mathbb{P}(-2\sigma<X-\mu<2\sigma)=\mathbb{P}\left( -2<\frac{X-\mu}{\sigma}<2 \right)=\Phi(2)-\Phi(-2)\ge 0.95,
+    \]
+    so 
+    \begin{quote}
+        \textit{With probability $ 95\% $ the normal is within 2 standard deviations of the mean.}
+    \end{quote}
+\end{example}
+\subsection{Median and mode}
+\begin{definition}
+    Suppose $X$ is a continous r.v. The \textbf{median} of $X$, $m$, is the number satisfying 
+    \[
+        \mathbb{P}(X\le m)=\mathbb{P}(X\ge m)=\frac{1}{2}.
+    \]
+    In other words,
+    \[
+        \int_{-\infty}^{m} f(x) \,\mathrm{d}x=\int_{m}^{\infty} f(x) \,\mathrm{d}x = \frac{1}{2}.
+    \]
+\end{definition}
+\begin{example}[Median of normal]
+    Let $ X \sim \mcN(\mu,\sigma^2) $. Check that $ m=\mu $.
+\end{example}
+\begin{definition}[Mode]
+    Given a pdf $f(x)$, we call $\hat x$ a \textbf{mode} if
+    \[
+        f(\hat x) \geq f(x)
+    \]
+    for all $x$. Note that a distribution can have many modes. For example, in the uniform distribution, all $x$ are modes.
+\end{definition}
+\subsection{Multivariate density functions}
+\begin{definition}
+    Let $ \bfX = (X_1,\dots,X_n)\in \mathbb{R}^{n} $ be a r.v. We say that $\bfX$ has density $f$ if 
+    \begin{align*}
+        F(x_1,\dots,x_n) &= \mathbb{P}(X_1\le x_1,\dots X_n\le x_n)\\ &= \int_{-\infty}^{x_n} \cdots \int_{-\infty}^{x_1} f(y_1,\dots,y_n)\dd y_1\cdots\dd y_n.
+    \end{align*}
+\end{definition}
+\begin{note}
+    Then 
+    \[
+        f(x_1,\dots,x_n) = \frac{\partial^n }{\partial x_1 \cdots \partial x_n}F(x_1,\dots,x_n). 
+    \]
+    We can generalise to any\footnote{Not quite. See II Probability and Measure.} $ B \subseteq \mathbb{R}^{n} $: 
+    \[
+        \mathbb{P}(\bfX\in B) = \int_B f(y_1,\dots,y_n)\dd y_1\cdots\dd y_n.
+    \]
+\end{note}
+\begin{definition}[Independence]
+    We say $X_1,\dots,X_n$ are \textbf{independent} if $ \forall x_1,\dots,x_n\in \mathbb{R} $, 
+    \[
+        \mathbb{P}(X_1\le x_1,\dots, X_n\le x_n) = \mathbb{P}(X_1\le x_1)\cdots \mathbb{P}(X_n\le x_n).
+    \]
+\end{definition}
+\begin{theorem}\label{thm:3.9}
+    Let $ \bfX = (X_1,\dots,X_n) $ have density $f$.
+    \begin{enumerate}
+        \item If $ X_1,\dots,X_n $ are independent with densities $ f_i $, then 
+        \[
+            f(x_1,\dots,x_n)=f_1(x_1) \cdots f_n(x_n).
+        \]
+        \item If $f$ factorises to the above equation, then $ X_1,\dots,X_n $ are independent with densities proportional to $ f_i $.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \begin{enumerate}
+        \item Suppose $ X_1,\dots,X_n $ are independent with densities $ f_i $. By definition, 
+        \begin{align*}
+            &\mathbb{P}(X_1\le x_1,\dots, X_n\le x_n) = \mathbb{P}(X_1\le x_1)\cdots \mathbb{P}(X_n\le x_n)\\ 
+            =& \prod_{i=1}^{n} \int_{-\infty}^{x_i} f_i(y_i) \,\mathrm{d}y_i
+            = \int_{-\infty}^{x_n} \cdots \int_{-\infty}^{x_1} \prod_{i=1}^{n}f_i(y_i)\dd y_1\cdots\dd y_n.\ 
+        \end{align*}
+        Hence the density of $\bfX$ is $\prod f_i $.
+        \item By assumption, if $ B_i\in \mathbb{R}, $ then 
+        \[
+            \mathbb{P}(X_i\in B_i) = \int_{B_n} \cdots \int_{B_1} \prod_{i=1}^{n}f_i(y_i) \,\mathrm{d}y_1\cdots \,\mathrm{d}y_n.
+        \]
+        Let $ B_j=\mathbb{R}, j\neq i $, then 
+        \[
+            \mathbb{P}(X_i\in B_i)= \int_{B_i} f_i(y_i) \,\mathrm{d}y_i \prod_{j\neq i} \int_{\bbR} f_j(y_j) \,\mathrm{d}y_j.
+        \]
+        Note that 
+        \[
+            \prod_{i=1}^{n}\int_{\bbR} f_i(y_i) \,\mathrm{d}y_i=1,
+        \]
+        so we have 
+        \[
+            \mathbb{P}(X_i\in B_i) = \frac{\int_{B_i} f_i(y_i) \,\mathrm{d}y_i}{\int_{\bbR} f_i(y_i) \,\mathrm{d}y_i},
+        \]
+        and the density of $X_i$ is 
+        \[
+            \frac{f_i}{\int_{\bbR} f_i(y_i) \,\mathrm{d}y_i}.
+        \]
+        To check $X_i$ are independent, note that 
+        \begin{align*}
+            \mathbb{P}(X_i\le x_i)&= \frac{\int_{-\infty}^{x_1} f_1(y_1) \,\mathrm{d}y_1 \cdots \int_{-\infty}^{x_n} f_n(y_n) \,\mathrm{d}y_n}{\int_{\bbR} f_1(y_1) \,\mathrm{d}y_1 \cdots \int_{\bbR} f_n(y_n) \,\mathrm{d}y_n}\\ 
+            &= \mathbb{P}(X_1\le x_1)\cdots \mathbb{P}(X_n\le x_n).\qedhere
+        \end{align*}
+    \end{enumerate}
+\end{proof}
+
+Suppose $ (X_1,\dots,X_n) $ has density $f$. Then 
+\begin{align*}
+    \mathbb{P}(X_1\le x)&= \mathbb{P}(X_1\le x,X_2\in \mathbb{R}, \dots, X_n \in \mathbb{R})\\ 
+    &= \int_{\bbR} \cdots \int_{-\infty}^{x} f(x_1,\dots,x_n) \,\mathrm{d}x_1 \, \cdots \mathrm{d}x_n\\ 
+    &= \int_{-\infty}^{x} \left( \int_{\bbR}\cdots \int_{\bbR} f(x_1,\dots,x_n) \,\mathrm{d}x_2 \,\cdots\mathrm{d}x_n \right) \,\mathrm{d}x_1.
+\end{align*}
+\begin{definition}
+    The \textbf{marginal density} of $X_1$ is defined by 
+    \[
+        f_{X_1}(x) = \int_{\bbR}\cdots \int_{\bbR} f(x_1,\dots,x_n) \,\mathrm{d}x_2\cdots \,\mathrm{d}x_n.
+    \]
+\end{definition}
+\subsection{Density of the sum of independent r.v.s}
+\begin{proposition}\label{prop:3.10}
+    Suppose $ X,Y $ are independent r.v.s with densities $ f_X,f_Y $. Then the density of $ X+Y $ is 
+    \[
+        \int_\bbR f_Y(y-x)f_X(x)\dd x .
+    \]
+\end{proposition}
+\begin{proof}
+    Let $A=\{x+y\le z\}$.
+    \begin{align*}
+        \mathbb{P}(X+Y\le z)&=\iint_A f_{X,Y}(x,y)\dd x\dd y\\ 
+        &= \int_{-\infty}^{z-x} \,\mathrm{d}y \int_{\bbR} \,\mathrm{d}x\ f_X(x)f_Y(y)\\ 
+        &= \int_{\bbR} \,\mathrm{d}x \int_{-\infty}^{z} \,\mathrm{d}y\ f_X(x)f_Y(y-x)\\ 
+        &= \int_{-\infty}^{z} \,\mathrm{d}y \left( \int_{\bbR} f_X(x)f_Y(y-x)\,\mathrm{d}x \right).\qedhere
+    \end{align*}
+\end{proof}
+
+\begin{definition}
+    For 2 densities $f,g$, the \textbf{convolution} of $f,g$ is 
+    \[
+        \int_\bbR f(x-y)g(y)\dd y.
+    \]
+\end{definition}
