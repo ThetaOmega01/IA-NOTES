@@ -1,0 +1,77 @@
+\section{Integration}
+\subsection{The Riemann Integral}
+Our goal is the following: for a ``sufficiently nice'' function $f:[a,b]\to\mathbb R$ we want to define its integral
+$$\int_a^bf(x)\,\mathrm dx$$
+We would like to think of this as the area under the graph of $y=f(x)$, which motivates the Riemann integral.
+\begin{definition}
+    $f:[a,b]\to \mathbb{R}$ is called \textbf{bounded} if $ \exists K,\ \forall x\in [a,b],\ |f(x)|\le K $. 
+\end{definition}
+\begin{definition}
+    A dissection(or partition) of the interval $[a,b]$ is a finite subset $D\subseteq [a,b]$ such that $a,b\in D$.
+    If $D$ is a dissection, we can write $D=\{a_0,\ldots,a_n\}$ where $a=a_0<a_1<\cdots<a_n=b$.
+\end{definition}
+Note that if $D,D'$ are both dissections, so is $D\cup D'$.
+\begin{definition}
+    If $f:[a,b]\to\mathbb R$ is bounded and a dissection $D$ consists of $a=a_0<a_1<\cdots<a_n=b$, then we define the \textbf{upper} and \textbf{lower} \textbf{Riemann sums} wrt $D$ by
+    respectively.
+    \begin{align*}
+        U(f,D)&=\sum_{i=1}^n(a_i-a_{i-1})\sup_{x\in [a_{i-1},a_i]}f(x),\\ 
+        L(f,D)&=\sum_{i=1}^n(a_i-a_{i-1})\inf_{x\in [a_{i-1},a_i]}f(x).
+    \end{align*}
+    They exists as $f$ is bounded.
+\end{definition}
+Clearly $ L(f,D)\le U(f,D),\ \forall D $.
+\begin{lemma}
+    If $D\subseteq D'$ are dissections of $[a,b]$, then 
+    \[
+        U(f,D)\ge U(f,D')\ge L(f,D')\ge L(f,D).
+    \]
+\end{lemma}
+\begin{proof}
+    $U(f,D')\ge L(f,D')$ is obvious. Suppose $ D' $ contains an extra point than $D$, say $ y\in (x_{r-1},x_r) $. Clearly 
+    \[
+        \sup_{x\in [x_{r-1},y]}f(x),\sup_{x\in [y,x_r]}f(x)\le \sup_{x\in [x_{r-1},x_r]}f(x),
+    \]
+    so 
+    \[
+        (x_r-x_{r-1})\sup_{x\in [x_{r-1},x_r]}f(x)\ge (y-x_{r-1})\sup_{x\in [x_{r-1},y]}f(x)+(x_r-y)\sup_{x\in [y,x_r]}f(x).
+    \]
+    Summing over gives the result. Similarly for $D'$ with more extra points and $ L $.
+\end{proof}
+\begin{lemma}
+    If $D_1,D_2$ are dissections of $[a,b]$, then
+    \[
+        U(f,D_1)\ge U(f,D_1 \cup D_2)\ge L(f,D_1 \cup D_2)\ge L(f,D_2).
+    \]
+\end{lemma}
+\begin{proof}
+    Take $ D'=D_1 \cup D_2 $ in the previous lemma.
+\end{proof}
+
+\begin{definition}
+    The \textbf{upper integral} of $f$ is defined as 
+    \[
+        U(f) = \inf_D U(f,D),
+    \]
+    and the \textbf{lower integral} of $f$ is defined as 
+    \[
+        L(f) = \sup_D L(f,D).
+    \]
+    They both exists since $ U(f,D),L(f,D) $ are bounded.
+\end{definition}
+Hence 
+\begin{sprop}
+    $U(f)\ge L(f)$.
+\end{sprop}
+
+\begin{definition}
+    A bounded function $ f:[a,b]\to \mathbb{R}  $ is said to be \textbf{Riemann integrable} on $[a,b]$ if $ U(f)=L(f) $ and we set
+    $$\int_a^bf(x)\,\mathrm dx=L(f)=U(f) = \int_{a}^{b} f.$$
+\end{definition}
+\begin{example}\
+    \begin{enumerate}
+        \item Consider $f(x)=c$ for a constant $c$ for all $x\in [a,b]$, then consider $D=\{a,b\}$, then $U(f,D)=c(b-a)=L(f,D)$, hence $U(f)=c(b-a)=L(f)$, therefore $f$ is Riemann integrable and
+        $$\int_a^bf(x)\,\mathrm dx=c(b-a).$$
+        \item $f:[a,b]\to\mathbb R$ by $f(x)=0$ if $x\in\mathbb Q$ and $f(x)=1$ if $x\in\mathbb R\setminus\mathbb Q$. Note that if $a_{i-1}<a_i$, then $[a_{i-1},a_i]$ contains both rational and irrational numbers, so it follows that $U(f,D)=b-a$ and $L(f,D)=0$ for any dissection $D$ of $[a,b]$, therefore $U(f)=b-a\neq 0=L(f)$, hence $f$ is not Riemann integrable.
+    \end{enumerate}
+\end{example}

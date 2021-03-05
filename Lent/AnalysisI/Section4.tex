@@ -338,3 +338,32 @@ This implies
     e^{iz+2\pi i}=\cos (z+2\pi)+i \sin (z+2\pi)= e^{iz},
 \]
 so $e^z$ is periodic with period $ 2\pi i $.
+
+\begin{remark}[Relation with geometry]
+    Given 2 vectors $ \bfx,\bfy\in \mathbb{R}^{2} $, we have by Cauchy-Schwarz that $ |\bfx \cdot \bfy|<|bfx|\bfy| $. Thus for $ \bfx,\bfy\neq \mathbf{0} $, we have 
+    \[
+        -1\le \frac{\bfx\cdot\bfy}{|\bfx||\bfy|}\le 1.
+    \]
+    So we can define the \textbf{angle} between $\bfx,\bfy$ as $ \theta\in [0,2\pi] $ such that 
+    \[
+        \cos \theta=\frac{\bfx\cdot\bfy}{|\bfx||\bfy|}.
+    \]
+\end{remark}
+
+\subsection{Hyperbolic functions}
+\begin{definition}
+    Define $ \sinh ,\cosh : \mathbb{C} \to \mathbb{C} $ as 
+    \[
+        \sinh z = \frac{e^z-e^{-z}}{2},\quad \cosh z = \frac{e^z+e^{-z}}{2}.
+    \]
+\end{definition}
+One can easily check that 
+\begin{sprop}
+    \begin{enumerate}
+        \item $ \cosh z = \cos iz,\ \sinh z = -i \sin iz. $
+        \item $ (\cosh z)'=\sinh z,\ (\sinh z)'=\cosh z .$
+        \item $ \cosh^2 z-\sinh^2 z=1 $, etc.
+    \end{enumerate}
+\end{sprop}
+
+The rest of the trignometric functions are defined in the usual way.

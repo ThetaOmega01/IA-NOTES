@@ -456,3 +456,133 @@ Suppose $ (X_1,\dots,X_n) $ has density $f$. Then
         \int_\bbR f(x-y)g(y)\dd y.
     \]
 \end{definition}
+
+\subsection{Conditional density and expectation}
+\begin{definition}
+    Let $X$ and $Y$ be continous r.v.s with joint density $ f_{X,Y} $ and marginal densities $ f_X,f_Y $. The \textbf{conditional density} of $X$ given $ Y=y $ is defined as 
+    \[
+        f_{X|Y}(x|y) = \frac{f_{X,Y}(x,y)}{f_Y(y)}.
+    \]
+\end{definition}
+\begin{proposition}[Law of total probability]
+    \[
+        f_X(x) = \int_{-\infty}^{\infty} f_{X|Y}(x|y)f_Y(y) \,\mathrm{d}y.
+    \]
+\end{proposition}
+\begin{proof}
+    $ f_X(x) = \int_{-\infty}^{\infty} f_{X,Y}(x,y) \,\mathrm{d}y = \int_{-\infty}^{\infty} f_{X|Y}(x|y)f_Y(y) \,\mathrm{d}y. $
+\end{proof}
+
+\begin{definition}
+    Let 
+    \[
+        g(y)=\int_{-\infty}^{\infty} xf_{X|Y}(x|y) \,\mathrm{d}x,
+    \]
+    define the \textbf{conditional expectation} as $ \bbE[X|Y]=g(Y) $.
+\end{definition}
+
+\subsection{Transformation of multidimensional r.v.s}
+\begin{theorem}
+    Let $\bfX$ be a r.v. with values in $ D \subseteq \mathbb{R}^{d} $ with density $ f_\bfX: \mathbb{R}^{d}\to \mathbb{R} $. Let $\bfg: \mathbb{R}^{d}\to \mathbb{R}^{d}$ be a bijection $ D \to \bfg(D) $ that has a continous derivative on $D$ and $ \det \bfg'(\bfx)\neq 0,\ \forall \bfx\in D $. Then the r.v. $ \bfY=\bfg(\bfX) $ has density 
+    \[
+        f_\bfY(\bfy) = f_\bfX(\bfx) \cdot |J|,
+    \]
+    where $ \bfx=\bfg^{-1}(\bfy) $ and $J$ is the Jacobian of $ \bfx,\bfy $:
+    \[
+        J = \frac{\partial (x_1,\dots,x_d)}{\partial (y_1,\dots, y_d)}.
+    \]
+\end{theorem}
+\begin{proof}
+    Search Wikipedia or something.
+\end{proof}
+
+\begin{example}
+    Let $ X,Y $ be independent $ \mcN(0,1) $ r.v.s. What is the density of $ (R,\Theta) $, where $ R=\sqrt{X^2+Y^2} $ and $ \Theta = \arctan (Y/X) $?
+    \begin{center}
+        \begin{tikzpicture}
+            \draw (-0.5,0) -- (2,0);
+            \draw (0,-0.5) -- (0,2);
+            \draw [blue] (0,0) -- (1,1.732) node [dot=3pt] {} node [pos=0.5,above left] {{\color{red}$ R $}};
+            \node [above right] at (1,1.732) {$ (X,Y) $};
+            \centerarc[red](0,0)(0:60:0.3);
+            \node at (0.26,0.1) [above right] {{\color{red}$ \Theta $}};
+        \end{tikzpicture}
+    \end{center}
+    Clearly $ X=R \cos \Theta,Y=R \sin \Theta $, so by theorem 
+    \[
+        f_{R,\Theta}(r,\theta) = f_{X,Y}(r \cos \theta,r \sin \theta)|J|=rf_{X,Y}(r \cos \theta,r \sin \theta).
+    \]
+    By independence of $ X,Y $, can check that 
+    \[
+        f_{R,\Theta}(r,\theta) = \frac{1}{2\pi}re^{-r^2/2},\quad r>0, \theta\in [0,2\pi].
+    \]
+    Hence $R \independent \Theta$ and $ f_R=re^{-r^2/2},\ f_\Theta=1/2\pi $, i.e. $ \Theta \sim U[0,2\pi] $.
+\end{example}
+\subsection{Order statistics for random samples}
+\begin{definition}
+    Let $ X_1,\dots,X_n $ are iid rvs with distribution $ F $ and density $f$. Let $Y_1, \cdots, Y_n$ be $X_1, \cdots, X_n$ arranged in increasing order, i.e.\ $Y_1 \le Y_2 \le \cdots \le Y_n$. This is the \textbf{order statistics}.
+\end{definition}
+Immediately we get 
+\begin{align*}
+    \mathbb P(Y_1\le x)&=1-\mathbb P(Y_1>x)=1-(1-F(x))^n,\\ 
+    f_{Y_1}(x)&= nf(x)(1-F(x))^{n-1},\\
+    \mathbb P(Y_n\le x)&=(F(x))^n,\\ 
+    f_{Y_n}(x)&=nf(x)F(x)^{n-1}.
+\end{align*}
+\begin{proposition}
+    The joint density of $(Y_1,\ldots,Y_n)$ is given by 
+    \[
+        f_{Y_1,\dots,Y_n}(x_1,\ldots,x_n) = \begin{cases}
+            n!f(x_1)\cdots f(x_n) &\text{if } x_1<\cdots<x_n,\\
+         0&\text{otherwise}.\\
+        \end{cases} 
+    \]
+\end{proposition}
+\begin{proof}
+    Let $x_1<\cdots<x_n$, we have
+    \begin{align*}
+        \mathbb P(Y_1\le x_1,\ldots,Y_n\le x_n)&=\sum_{\sigma\in S_n}\mathbb P(X_1\le x_{\sigma(1)},\ldots X_n\le x_{\sigma(n)})\\
+        &=n!\mathbb P(X_1\le x_1,\ldots X_n\le x_n)\\
+        &=n!\int_{-\infty}^{x_1}f(u_1)\int_{-\infty}^{x_2}f(u_2)\cdots\int_{-\infty}^{x_n}f(u_n)\,\mathrm du_n\cdots\mathrm  du_1.
+    \end{align*}
+    Differentiating gives the result.
+\end{proof}
+\begin{example}
+    Let $ X \sim \operatorname{Exp}(\lambda),Y \sim \operatorname{Exp}(\mu) $ be independent r.v.s and let $ Z=\min (X,Y) $. i.e. let $X,Y$ denote 2 clocks whose distributions of rings are exponentials with parameters $ \lambda,\mu $, so $Z$ is the first ring. Then 
+    \[
+        \mathbb{P}(Z\ge z) = \mathbb{P}(X\ge z,Y\ge z) = e^{-(\lambda+\mu)z},
+    \]
+    so $ Z \sim \operatorname{Exp} (\lambda+\mu) $. More generally, if $ X_1,\dots,X_n $ are independent with $ X_i \sim \operatorname{Exp}(\lambda_i) $, then 
+    \[
+        \min (X_1,\dots,X_n) \sim \operatorname{Exp}\left( \sum_{i=1}^{n}\lambda_i \right).
+    \]
+\end{example}
+\begin{example}
+    Let $X_1,\ldots,X_n$ be iid $\operatorname{Exp}(\lambda)$ and $Y_i$ be the order statistics and $Z_1=Y_1,Z_i=Z_i-Z_{i-1}$ for $i=2,\ldots,n$.
+    i.e. let $X_1,\dots,X_n$ be $n$ clocks, $Y_i$ are ordered according to which rings first. Then $Z_1$ is the first ring, and $ Z_i $ are times between $ Z_i $ and $ Z_{i-1} $.
+
+    Then
+    $$\bfZ=\begin{pmatrix}
+        Z_1\\
+        \vdots\\
+        Z_n
+    \end{pmatrix}=A\begin{pmatrix}
+        Y_1\\
+        \vdots\\
+        Y_n
+    \end{pmatrix},A=\begin{pmatrix}
+        1&0&0&\cdots&0\\
+        -1&1&0&\cdots&0\\
+        0&-1&1&\cdots&0\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        0&0&0&\cdots&1
+    \end{pmatrix}$$
+    where we have $\det A=1$ and $Y_j=\sum_{i=1}^jZ_i$, so for $y_j=\sum_{i=1}^jz_i$, we have
+    \begin{align*}
+        f_{Z_1,\ldots,Z_n}(z_1,\ldots,z_n)&=f_{Y_1,\ldots,Y_n}(y_1,\ldots,y_n)|J|\\
+        &=n!e^{-\lambda y_1}\cdots e^{-\lambda y_n}\\
+        &=n!\lambda^ne^{-\lambda(nz_1+(n-1)z_2+\cdots +2z_{n-1}+z_n)}\\
+        &=\prod_{i=1}^n(n-i+1)\lambda e^{-\lambda(n-i+1)z_1}.
+    \end{align*}
+    So $(Z_1,\ldots,Z_n)$ are independent exponentials with $Z_i\sim\operatorname{Exp}(\lambda(n-i+1))$.
+\end{example}

@@ -55,7 +55,7 @@ It is important to interpret the boundary conditions in an appropriate way: we a
         \varphi=1 &\text{on }r=a\\
         \end{cases} 
     \]
-    The spherical symmetry suggests we look for a solution of the form $ \varphi=\varphi(r) $. Substituting in and using the fact for pherically symmetric $ \varphi $ we have 
+    The spherical symmetry suggests we look for a solution of the form $ \varphi=\varphi(r) $. Substituting in and using the fact for spherically symmetric $ \varphi $ we have 
     \[
         \nabla^{2} \varphi=\frac{1}{r^{2}} \frac{\mathrm{d}}{\mathrm{d} r}\left(r^{2} \frac{\mathrm{d} \varphi}{\mathrm{d} r}\right),
     \]
@@ -369,7 +369,7 @@ to get solution to $ L \psi=F $ with $ \psi=\sum_n \psi_n $.
     \]
     where $ |\bfa_i|+R_i<R $ and $ \forall i,j, |\bfa_i-\bfa_j|>R_i+R_j $.
 
-    Use superposition principle: represent each hold to be a ball of uniform charge density $ -\rho_0 $. Effective potential in $ |\bfx|>R $ from each hole is 
+    Use superposition principle: represent each hole to be a ball of uniform charge density $ -\rho_0 $. Effective potential in $ |\bfx|>R $ from each hole is 
     \[
         \phi(\bfx) = -\frac{1}{4\pi \epsilon_0}\frac{Q_i}{|\bfx-\bfa_i|},
     \]
@@ -440,3 +440,136 @@ This is exactly the same behaviour as the delta function $\delta(\mathbf{x}) .$ 
 \nabla^{2}\left(-\frac{1}{4 \pi} \frac{1}{|\mathbf{x}|}\right)=\delta(\mathbf{x})
 \]
 and the result in the proposition follows. This is an example of a Green's function. You will see a lot more of these in the IB Methods.
+
+\subsection{Harmonic functions}
+\begin{definition}[harmonic functions]
+    Recall that when the forcing term in Poisson's equation $ F=0 $, we call it Laplace's equation $ \laplacian \varphi=0 $. Solutions to Laplace's equation are called \textbf{harmonic functions}.
+\end{definition}
+\begin{proposition}[Mean Value Theorem/Property]
+    If $ \varphi $ is harmonic on $ \Omega \subseteq \mathbb{R}^3 $, then 
+    \[
+        \varphi(\bfa) = \frac{1}{4\pi r^2} \int_{|\bfx-\bfa|=r} \varphi(\bfx) \,\mathrm{d}S
+    \]
+    for $ \bfa\in \Omega $ and $r$ sufficiently small so that the ball $ |\bfx-\bfa| $ is in $ \Omega $.
+\end{proposition}
+\begin{note}
+    This says that $ \varphi(\bfa) $ can be evaluated as a mean of the values on the ball $ |\bfx-\bfa|=r $.
+\end{note}
+\begin{proof}
+    Let $ F(r)=\text{RHS} $. Then 
+    \begin{align}
+        F(r) &= \frac{1}{4\pi r^2} \int_{|\bfx|=r} \varphi(\bfa+\bfx) \,\mathrm{d}S\nonumber\\ \nonumber
+        &= \frac{1}{4\pi r^2} \int_{\phi=0}^{2\pi} \int_{\theta=0}^{\pi} \varphi(\bfa+r\bfe_r) r^2 \sin \theta \,\mathrm{d}\theta \,\mathrm{d}\phi\\ 
+        &= \frac{1}{4\pi} \int_{\phi=0}^{2\pi} \int_{\theta=0}^{\pi} \varphi(\bfa+r\bfe_r) \sin \theta \,\mathrm{d}\theta \,\mathrm{d}\phi.\tag{$*$}
+    \end{align}
+    Compute $ F'(r) $: 
+    \begin{align*}
+        F'(r)&= \frac{1}{4\pi r^2}\int_{\phi=0}^{2\pi} \int_{\theta=0}^{\pi} \bfe_r \cdot \nabla \varphi(\bfa+r\bfe_r) r^2 \sin \theta \,\mathrm{d}\theta \,\mathrm{d}\phi\\ 
+        &= \frac{1}{4\pi r^2} \int_{|\bfx|=r} \nabla \varphi(\bfa+r\bfe_r) \cdot \bfe_r \,\mathrm{d}S\\ 
+        &= \frac{1}{4\pi r^2} \int_{|\bfx-\bfa|=r} \nabla \varphi(\bfx)  \cdot \mathrm{d}\bfS = \frac{1}{4\pi r^2} \int_{|\bfx-\bfa|<r} \laplacian \varphi(\bfx) \,\mathrm{d}V\\ 
+        & =0.
+    \end{align*}
+    So $F(r)$ is constant. Take $ r\to 0 $ in ($ * $) we have $ F(r)=\varphi(\bfa) $, as claimed.
+\end{proof}
+
+Using idea in the proof, we can deduce what Laplacian is \textit{actually} meaning:
+\begin{proposition}
+    For any smooth $ \varphi: \mathbb{R}^{3}\to \mathbb{R} $, we have 
+    \[
+        \nabla^{2} \varphi(\mathbf{a})=\lim _{r \rightarrow 0} \frac{6}{r^{2}}\left[\frac{1}{4 \pi r^{2}} \int_{|\mathbf{x}-\mathbf{a}|=r} \varphi(\mathbf{x})\, \mathrm{d} S-\varphi(\mathbf{a})\right].
+    \]
+    In particular, \textit{$ \varphi $ is harmonic if and only if $ \varphi $ has the mean value property.}
+\end{proposition}
+\begin{proof}
+    Define 
+    \[
+        G(r) = \frac{1}{4 \pi r^{2}} \int_{|\mathbf{x}-\mathbf{a}|=r} \varphi(\mathbf{x})\, \mathrm{d} S-\varphi(\mathbf{a}).
+    \]
+    i.e. $G$ measures the error of $ \varphi(\bfa) $ to its average. From the previous proof,
+    \[
+        G'(r) = F'(r) = \frac{1}{4\pi r^2} \int_{|\bfx-\bfa|<r} \laplacian \varphi(\bfx) \,\mathrm{d}V,
+    \]
+    which will vanish if $ \varphi $ is harmonic. Note that we can approximate the integral as
+    \begin{align*}
+        \int_{|\bfx-\bfa|<r} &\laplacian \varphi(\bfx) \,\mathrm{d}V \\
+        &= \laplacian \varphi(\bfa)\int_{|\bfx-\bfa|<r} \,\mathrm{d}V + \int_{|\bfx-\bfa|<r} \left( \laplacian \varphi(\bfx)-\laplacian \varphi(\bfa) \right) \,\mathrm{d}V\\ 
+        &= \frac{4\pi}{3}r^3\laplacian \varphi(\bfa)+ o(r^3) \quad\left(r \to 0\right)
+    \end{align*} 
+    where the $o$ term comes from the fact that
+    \[
+        \begin{aligned}
+            &\left|\int_{|\mathbf{x}-\mathbf{a}|<r}\left(\nabla^{2} \varphi(\mathbf{x})-\nabla^{2} \varphi(\mathbf{a})\right) \,\mathrm{d} V\right|\\ 
+             \le& \sup _{|\mathbf{x}-\mathbf{a}|<r}\left|\nabla^{2} \varphi(\mathbf{x})-\nabla^{2} \varphi(\mathbf{a})\right| \int_{|\mathbf{x}-\mathbf{a}|<r} \mathrm{~d} V \\
+            =&\sup _{|\mathbf{x}-\mathbf{a}|<r}\left|\nabla^{2} \varphi(\mathbf{x})-\nabla^{2} \varphi(\mathbf{a})\right|\left(\frac{4 \pi r^{3}}{3}\right).
+        \end{aligned}
+    \]
+    So 
+    \begin{align*}
+        G'(r) &= \frac{1}{4\pi r^2}\int_{|\bfx-\bfa|<r} \laplacian \varphi(\bfx) \,\mathrm{d}V\\ 
+        &= \frac{1}{4\pi r^2}\left( \frac{4\pi}{3}r^3\laplacian \varphi(\bfa)+ o(r^3) \right)\\ 
+        &= \frac{r}{3}\laplacian \varphi(\bfa)+o(r) \quad\left(r \to 0\right).
+    \end{align*}
+    Consider the Taylor expansion of $ G'(r) $ near 0:
+    \[
+        G'(r) = G'(0)+rG''(r)+o(r) \quad\left(r \to 0\right),
+    \]
+    we deduce that 
+    \[
+        G'(0)=0,\quad G''(z) = \frac{1}{3}\laplacian \varphi(\bfa).
+    \]
+    Hence 
+    \begin{align*}
+        G(r) &= G(0) + r G'(0) + \frac{r^2}{2}G''(0)+ o(r^2)\\ 
+        &= \frac{r^2}{6}\laplacian \varphi(\bfa) + o(r^2) \quad\left(r \to 0\right).
+    \end{align*}
+    Hence 
+    \[
+        \laplacian\varphi(\bfa) = \lim_{r \to 0} \frac{6}{r^2}G(r)=\lim _{r \rightarrow 0} \frac{6}{r^{2}}\left[\frac{1}{4 \pi r^{2}} \int_{|\mathbf{x}-\mathbf{a}|=r} \varphi(\mathbf{x})\, \mathrm{d} S-\varphi(\mathbf{a})\right].\qedhere
+    \]
+\end{proof}
+
+\begin{proposition}[Maximum Principle]
+    If $ \varphi $ is harmonic on $ \Omega \subseteq \mathbb{R}^{3} $, then $ \varphi $ cannot have a maximum at any interior point of $ \Omega $ unless $ \varphi $ is constant.
+\end{proposition}
+\begin{proof}
+    Suppose $ \bfa $ is an interior point of $ \Omega $ such that $ \forall \bfx\in \Omega,\ \varphi(\bfa)\ge \varphi(\bfx) $. In particular, $ \exists \epsilon>0 $ such that $ \varphi(\bfa)\ge \varphi(\bfx),\ 0<|\bfx-\bfa|\le\epsilon $. By MVT, 
+    \[
+        \varphi(\bfa) = \frac{1}{4\pi \epsilon^2}\int_{|\bfx-\bfa|=\epsilon} \varphi(\bfx) \,\mathrm{d}S \Longrightarrow \frac{1}{4\pi \epsilon^2}\int_{|\bfx-\bfa|=\epsilon} \varphi(\bfa)-\varphi(\bfx) \,\mathrm{d}S=0.
+    \]
+    Since $ \varphi(\bfa)-\varphi(\bfx)\ge 0 $, we have $ \varphi(\bfa)=\varphi(\bfx) $ on $ |\bfx-\bfa|=\epsilon $. Since this also works for all $ \epsilon'<\epsilon $, we conclude that $ \varphi(\bfx)=\varphi(\bfa) $ on $ |\bfx-\bfa|\le \epsilon $.
+
+    Now pick any other point $\mathbf{y} \in \Omega$. Connect $\bfa$ to $\mathbf{y}$ with a bunch of overlapping balls such that the center of the $(n+1)$ th ball is contained in the $n$ th. On the first ball we know $\varphi(\mathbf{x})=\varphi(\mathbf{a})$. On the center of the second ball we must also have $\varphi(\mathbf{x})=\varphi(\mathbf{a})$, and so this holds all throughout the second ball by our previous argument. Continuing inductively we get that $\varphi(\mathbf{x})=\varphi(\mathbf{a})$ on a ball containing $\mathbf{y}$. So $\varphi(\mathbf{a})=\varphi(\mathbf{y}),$ and since $\mathbf{y} \in \Omega$ is arbitrary we conclude that $\varphi$ is constant throughout $\Omega$\footnote{There is a little concersquen about whether or not we’d have to keep making the balls smaller and smaller, so much so that we could never get to $\bfy$. This issue can be dealt with once you have learnt about \textit{compactness} in Metric \& Topological spaces. Our proof can be made rigorous with a couple of easy tweaks.}.
+\end{proof}
+\begin{proof}[Alternatively,]
+    Consider $ U \subseteq \Omega $ such that $ U=\{\bfx\in \Omega: \varphi(\bfx)=\varphi(\bfa)\} $. It is non-empty, open by MVT, and closed by continuity of $ \varphi $. So $ U=\Omega $. See Analysis and Topology.
+\end{proof}
+Immediately,
+\begin{corollary}
+    If $ \varphi $ is harmonic on $ \Omega $, then 
+    \[
+        \varphi(\mathbf{x}) \le \max _{\mathbf{x} \in \partial \Omega} \varphi(\mathbf{x}).
+    \]
+\end{corollary}
+
+\subsection{Discrete Laplacian and Liouville’s theorem}
+We've seen that the Laplacian of a function at $\mathbf{x}=\mathbf{a}$ can be thought of as measure of how much a function differs from its average on points around a. A natural definition of the Laplacian of a function on $\mathbb{Z}^{n}$ would be
+\[
+\nabla^{2} \varphi(\mathbf{d}):=\frac{\sum_{i=1}^{n} \varphi\left(\mathbf{d}+\mathbf{e}_{i}\right)+\sum_{i=1}^{n} \varphi\left(\mathbf{d}-\mathbf{e}_{i}\right)}{2 n}-\varphi(\mathbf{d}).
+\]
+where $\mathbf{e}_{i}$ are the standard Cartesian basis vectors. For example on $\mathbb{Z}^{2}$, $ \forall (i, j) \in \mathbb{Z}^{2} $ we have
+\[
+    \nabla^{2} \varphi(i, j)=\frac{\varphi(i+1, j)+\varphi(i, j+1)+\varphi(i-1, j)+\varphi(i, j-1)}{4}-\varphi(i, j).
+\]
+Liouville's theorem for the discrete Laplcian is as follows.
+
+\begin{theorem}[Liouville]
+    If $\varphi: \mathbb{Z}^{n} \rightarrow \mathbb{Z}$ is bounded and $\nabla^{2} \varphi=0$ then $\varphi=$ const.
+\end{theorem}
+
+\begin{proof}
+    If $\varphi$ is bounded, then the set $\left\{\varphi(\mathbf{d}), \mathbf{d} \in \mathbb{Z}^{n}\right\}$ is finite and has a least element, $\alpha$ say. Suppose $\varphi(\mathbf{d})=\alpha$. Then either all the $\varphi\left(\mathbf{d} \pm \mathbf{e}_{i}\right)$ are the same, or at least one is less than $\alpha$ since $\nabla^{2} \varphi=0 .$ The latter can't happen, so we must have $\varphi\left(\mathbf{d} \pm \mathbf{e}_{i}\right)=\alpha$. Carrying on in this fashion we see that $\varphi(\mathbf{d})=\alpha$ for each $\mathbf{d} \in \mathbb{Z}^{n}$.
+\end{proof}
+
+\begin{sque}
+    Does the statement of the theorem remain true if $\varphi: \mathbb{Z}^{n} \rightarrow \mathbb{Z}$ is replaced with $\varphi: \mathbb{Z}^{n} \rightarrow \mathbb{R} ?$
+\end{sque}

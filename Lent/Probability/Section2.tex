@@ -479,9 +479,9 @@ Recall that $ X\independent Y \Leftrightarrow \mathbb{P}(X=x,Y=y)=\mathbb{P}(X=x
     \[
         XY\le \frac{1}{2}(X^2+Y^2) \Longrightarrow \bbE[XY] = \frac{1}{2}\left( \bbE[X^2]+\bbE[Y^2] \right)<\infty .
     \]
-    Assume $ \bbE[X^2],\bbE[Y^2]>0 $, otherwise the result it trivial since either $ \bbE[X^2],\bbE[Y^2]=0 $ inplies $XY\equiv 0$. Let $t\in \bbR$ and consider 
+    Assume $ \bbE[X^2],\bbE[Y^2]>0 $, otherwise the result it trivial since either $ \bbE[X^2],\bbE[Y^2]=0 $ implies $XY\equiv 0$. Let $t\in \bbR$ and consider 
     \begin{align*}
-        &\ 0\le (X-tY^2) = X^2-2tXY-t^2Y^2\\ 
+        &\ 0\le (X-tY)^2 = X^2-2tXY-t^2Y^2\\ 
         \Longrightarrow &\  f(t) = \bbE[X^2]-2t\bbE[XY]+t^2\bbE[Y^2]\ge 0\\ 
         \Longrightarrow &\  \min f(t)\quad\text{for}\quad t_0 = \frac{\bbE[XY]}{\bbE[Y^2]} \\ 
         \Longrightarrow &\  f(t_0)=\bbE[X^2]-\frac{2\bbE[XY]^2}{\bbE[Y^2]}+\frac{\bbE[XY]^2}{\bbE[Y^2]}\ge 0\\ 
@@ -602,7 +602,7 @@ and similarly
     &= \sum_{\{x_j\}_{j=1}^n\setminus\{x_i\}} \mathbb{P}(X_1=x_1,\dots,X_n=x_n).
 \end{align*}
 \begin{definition}
-    Call $ (\mathbb{P}(X_i=x_i) )_{x_i}$ then \textbf{marginal distribution} of $X_i$.
+    Call $ (\mathbb{P}(X_i=x_i) )_{x_i}$ the \textbf{marginal distribution} of $X_i$.
 \end{definition}
 
 \begin{definition}
@@ -666,7 +666,7 @@ Now
     \[
         X_i = 1(i\text{th toss is a H}),\quad i=1,\dots,n,\quad Y_n=X_1+\cdots+X_n.
     \]
-    What is $ \bbE[X_1|Y] $?
+    What is $ \bbE[X_1|Y_n] $?
 
     Set $ g(y)=\bbE[X_1|Y_n=y] $, then $g(Y_n)=\bbE[X_1|Y_n]$. Let $ y\in \{0,\dots,n\} $. Then $g(y) = \bbE[X_1|Y_n=y] = \mathbb{P}(X_1=1|Y_n=y).$ 
 
@@ -916,7 +916,7 @@ In exactly the same way, one can prove
         p''&(1-)=\lim_{z \uparrow 1}p''(z)=\bbE[X(X-1)],\\
         \forall k>0\quad  p^{(k)}&(1-)=\lim_{z \uparrow 1}p^{(k)}(z) = \bbE[X(X-1)\cdots(X-k+1)].
     \end{align*}
-    In particular, $ \var(X)=p''(1)+p'(1-)-(p'(1-))^2. $ 
+    In particular, $ \var(X)=p''(1-)+p'(1-)-(p'(1-))^2. $ 
 \end{theorem}
 
 \begin{proposition}
