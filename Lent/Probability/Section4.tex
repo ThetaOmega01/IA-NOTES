@@ -1,0 +1,45 @@
+\section{Limit Theorems}
+\subsection{Preliminaries}
+\begin{definition}
+    Let $(X_n,n\in\mathbb N)$ be a sequence of random variables, and let $X$ be a random variable. We say $X_n\to X$ in distribution if
+    $$F_{X_n}(x)\to F_X(x)\quad (F_{X_n}(x)=\mathbb P(X_n\le x),\quad F_X(x)=\mathbb P(X\le x))$$
+    for all $x\in\mathbb R$ such that $F_X$ is continuous at $x$.
+\end{definition}
+
+\begin{theorem}[Continuity Theorem for MGFs]
+    Let $X$ be a random variable with MGF $m$ and $m(\theta)<\infty$ for some $\theta\neq 0$.
+    Suppose we have
+    $$m_n(\theta)=\mathbb E[e^{\theta X_n}]\to \bbE[e^{\theta X}] = m(\theta),\quad\forall\theta\in\mathbb R.$$
+    Then $X_n\to X$ in distribution.
+\end{theorem}
+
+\begin{definition}
+    A sequence $(X_n)$ \textbf{converges to $X$ in probability}, written as
+    $$X_n\xrightarrow{\mathbb P}X,\quad \to\infty$$
+    if $\forall\epsilon>0,\mathbb P(|X_n-X|>\epsilon)\to 0$ as $n\to\infty$.
+\end{definition}
+
+\begin{definition}
+    $(X_n)$ converges to $X$ with probability $1$ (or ``almost surely'') if
+    $$\mathbb P\left(\lim_{n\to\infty}X_n=X\right)=1.$$
+\end{definition}
+
+\subsection{Weak law of large numbers}
+\begin{theorem}[Weak law of large numbers]\label{thm:Weak law of large numbers}
+    Let $(X_n:n\in\mathbb N)$ be an iid sequence of random variables with finite expectation $\mu$.
+    Set $S_n=X_1+\cdots+X_n$, then for any $\epsilon>0$, we have
+    $$\mathbb P\left( \left|\frac{S_n}{n}-\mu\right|>\epsilon \right)\to 0,\quad n\to\infty.$$
+\end{theorem}
+\begin{note}
+    Equivalently, it says that $S_n/n\xrightarrow{\mathbb P}\mu$ as $n\to\infty$.
+\end{note}
+\begin{proof}
+    We shall prove this assuming $\var (X_1)=\sigma^2<\infty$. Note that 
+    \[
+        \mathbb{P}\left( \left| \frac{S_n}{n}-\mu \right| >\epsilon \right) = \mathbb{P}\left( \left| S_n-n\mu \right| >n\epsilon \right) \le \frac{\var(S_n)}{n^2 \epsilon^2}
+    \]
+    by Chebyshev. Since $ S_n=X_1+\cdots+X_n $, $ \var(S_n)=n\sigma^2 $, so 
+    \[
+        \mathbb{P}\left( \left| \frac{S_n}{n}-\mu \right| >\epsilon \right)=\frac{\sigma^2}{n\epsilon^2}\to 0.\qedhere
+    \]
+\end{proof}

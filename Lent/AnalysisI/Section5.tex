@@ -21,7 +21,7 @@ Note that if $D,D'$ are both dissections, so is $D\cup D'$.
     They exists as $f$ is bounded.
 \end{definition}
 Clearly $ L(f,D)\le U(f,D),\ \forall D $.
-\begin{lemma}
+\begin{lemma}\label{lma:5.1}
     If $D\subseteq D'$ are dissections of $[a,b]$, then 
     \[
         U(f,D)\ge U(f,D')\ge L(f,D')\ge L(f,D).
@@ -75,3 +75,88 @@ Hence
         \item $f:[a,b]\to\mathbb R$ by $f(x)=0$ if $x\in\mathbb Q$ and $f(x)=1$ if $x\in\mathbb R\setminus\mathbb Q$. Note that if $a_{i-1}<a_i$, then $[a_{i-1},a_i]$ contains both rational and irrational numbers, so it follows that $U(f,D)=b-a$ and $L(f,D)=0$ for any dissection $D$ of $[a,b]$, therefore $U(f)=b-a\neq 0=L(f)$, hence $f$ is not Riemann integrable.
     \end{enumerate}
 \end{example}
+
+\subsection{Properties of riemann integrals}
+\begin{theorem}\label{thm:5.3}
+    Bounded $f:[a,b]\to\mathbb R$ is Riemann integrable on $[a,b]$ if and only if for every $\epsilon>0$, there is a dissection $D$ of $[a,b]$ such that 
+    \[
+        U(f,D)-L(f,D)<\epsilon.
+    \]
+\end{theorem}
+\begin{proof}
+    For every dissection $ D $ we have 
+    \[
+        0\le U(f)-L(f)\le U(f,D)-L(f,D).
+    \]
+    If the given condition holds, then 
+    \[
+        0\le U(f)-L(f)\le U(f,D)-L(f,D)<\epsilon,\quad \forall \epsilon>0.
+    \]
+    Immediately, $ L(f)=U(f) $.
+
+    Suppose conversely $ f $ is integrable, by definition of $ \sup ,\inf  $, $ \exists D_1,D_2 $ such that 
+    \begin{align*}
+        &\int_{a}^{b} f(x) \,\mathrm{d}x -\frac{\epsilon}{2} = L(f)-\frac{\epsilon}{2} < L(f,D_1),\\ 
+        &U(f,D_2)<U(f)+\frac{\epsilon}{2}=\int_{a}^{b} f(x) \,\mathrm{d}x+\frac{\epsilon}{2}.
+    \end{align*}
+    By lemma \ref{lma:5.1}, 
+    \[
+        U(f,D_1 \cup D_2)-L(f,D_1 \cup D_2)\le U(f,D_2)-L(f,D_1)<\epsilon.
+    \]
+\end{proof}
+\begin{theorem}\label{thm:5.4}
+    If $ f:[a,b]\to \mathbb{R} $ is monotonic, then $f$ is integrable.
+\end{theorem}
+\begin{proof}
+    Wlog suppose $ f \nearrow $. Then
+    \[
+        \sup_{x\in [x_{j-1},x_j]}f(x)=f(x_j)\quad \text{and}\quad \inf_{x\in [x_{j-1},x_j]}f(x)=f(x_{j-1}).
+    \]
+    Thus 
+    \[
+        U(f,D)-L(f,D) = \sum_{j=1}^{n}(x_j-x_{j-1})[f(x_j)-f(x_{j-1})].
+    \]
+    Now consider 
+    \[
+        D = \left\{ a,a+\frac{b-a}{n},\dots,b \right\}.
+    \]
+    We have 
+    \[
+        U(f,D)-L(f,D)=\frac{b-a}{n}(f(b)-f(a)).
+    \]
+    Take $n$ large enough so that $ U(f,D)-L(f,D)<\epsilon $, and use theorem \ref{thm:5.3}
+\end{proof}
+\begin{definition}[Uniform continuity]
+    $ f:[a,b]\to \mathbb{R} $ is called \textbf{uniformly continuous} if $ \forall \epsilon>0,\ \exists \delta>0,\ \forall x,y\in [a,b],\ |x-y|<\delta \Rightarrow |f(x)-f(y)|<\epsilon $.
+\end{definition}
+\begin{lemma}\label{lma:5.5}
+    If $ f:[a,b]\to \mathbb{R}  $ is continuous, then it is uniformly continuous.
+\end{lemma}
+\begin{proof}[Proof by contradiction.]
+    Suppose the claim is false. Then $ \exists \epsilon>0,\ \forall \delta>0,\ \exists x,y\in [a,b],\ |x-y|<\delta $ but $ |f(x)-f(y)|\ge \epsilon $. Take $ \delta=1/n $ to get $ x_n,y_n $ with such property. By Bolzano-Weierstrass, $ \exists x_{n_k}\to c $. Note that 
+    \[
+        |y_{n_k}-c|\le |y_{n_k}-x_{n_k}|+|x_{n_k}-c|\to 0 \Longleftrightarrow y_{n_k}\to c,
+    \]
+    but $ |f(x_{n_k})-f(y_{n_k})|\ge \epsilon $. Let $ k\to \infty $, by continuity, $ |f(x_{n_k})-f(y_{n_k})|\to 0 $, \#.
+\end{proof}
+
+\begin{theorem}\label{thm:5.6}
+    Let $f:[a,b]\to \mathbb{R}$ be continuous, then $f$ is integrable. 
+\end{theorem}
+\begin{proof}
+    By lemma, $ \forall \epsilon>0,\ \exists \delta>0,\ \forall x,y\in [a,b],\ |x-y|<\delta \Rightarrow |f(x)-f(y)|<\epsilon $. Let 
+    \[
+        D=\left\{ a+\frac{(b-a)j}{n}:j=0,\dots,n \right\}.
+    \]
+    Choose $n$ large so that $ (b-a)/n<\delta $. Then $\forall  x,y\in [x_{j-1},x_j] $, $ |f(x)-f(y)|<\epsilon $. This means that 
+    \[
+        \max_{x\in [x_{j-1},x_j]}f(x)-\min _{x\in [x_{j-1},x_j]}f(x)=f(p)-f(q),\quad p,q\in[x_{j-1},x_j]
+    \]
+    by continuity. Now 
+    \begin{align*}
+        U(f,D)-L(f,D)&= \sum_{j=1}^{n}(x_{j}-x_{j-1})\left( \max_{x\in [x_{j-1},x_j]}f(x)-\min _{x\in [x_{j-1},x_j]}f(x) \right)\\ 
+        &= \sum_{j=1}^{n}\frac{(b-a)}{n}(f(p_j)-f(q_j))\\ 
+        &<\epsilon(b-a).
+    \end{align*}
+    Hence $f$ is integrable by theorem \ref{thm:5.3}.
+\end{proof}

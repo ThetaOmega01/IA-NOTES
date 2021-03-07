@@ -1,0 +1,130 @@
+\section{Cartesian Tensors}
+\subsection{A closer look at vectors}
+Let $ \{\bfe_i\} $ be a right-handed orthonormal basis wrt a fixed set of Cartesian axes. When we write a vector as
+\[
+    \bfx = x_i\bfe_i,
+\]
+it is often tempting to identify the vector $ \bfx $ with the components $ x_i $. However, this would be wrong! Suppose someone else comes along and wants to describe the same vector, but with respect to their favourite set of right-handed Cartesian axes, which are different to yours but coincide at the origin. Denoting the basis vectors with respect to their Cartesian
+axes by $ \{\bfe_i'\} $ then the same vector will be described via
+\[
+    \bfx = x_i'\bfe_i'.
+\]
+We must have 
+\[
+    x_j\bfe_j=x_j'\bfe_j'.
+\]
+Since both $\left\{\mathbf{e}_{j}\right\}$ and $\left\{\mathbf{e}_{j}^{\prime}\right\}$ are an orthonormal set of vectors, we have
+\begin{equation}
+    \mathbf{e}_{i} \cdot \mathbf{e}_{j}=\delta_{i j} \quad \text { and } \quad \mathbf{e}_{i}^{\prime} \cdot \mathbf{e}_{j}^{\prime}=\delta_{i j}.\tag{$\star$}
+\end{equation}
+Dotting both sides of ($\star$) with $\mathbf{e}_{i}^{\prime}$ we find
+\[
+x_{i}^{\prime}=\delta_{i j} x_{j}^{\prime}=\left(\mathbf{e}_{i}^{\prime} \cdot \mathbf{e}_{j}^{\prime}\right) x_{j}^{\prime}=\mathbf{e}_{i}^{\prime} \cdot\left(\mathbf{e}_{j}^{\prime} x_{j}^{\prime}\right)=\left(\mathbf{e}_{i}^{\prime} \cdot \mathbf{e}_{j}\right) x_{j}.
+\]
+If we define $R_{i j}=\mathbf{e}_{i}^{\prime} \cdot \mathbf{e}_{j}$, then we have the simple relation
+\begin{equation}
+    x_{i}^{\prime}=R_{i j} x_{j}.\tag{$\dagger$}
+\end{equation}
+Equivalently, if we instead dot both sides of $(\star)$ with $\mathbf{e}_{i}$ we would have found
+\[
+x_{i}=\delta_{i j} x_{j}=\left(\mathbf{e}_{i} \cdot \mathbf{e}_{j}\right) x_{j}=\left(\mathbf{e}_{i} \cdot \mathbf{e}_{j}^{\prime}\right) x_{j}^{\prime}=\left(\mathbf{e}_{j}^{\prime} \cdot \mathbf{e}_{i}\right) x_{j}^{\prime}.
+\]
+i.e.
+\[
+x_{i}=R_{j i} x_{j}^{\prime} \Longleftrightarrow x_{j}=R_{k j} x_{k}^{\prime}.
+\]
+If we now use the relation ($\dagger$) in the form $x_{j}^{\prime}=R_{j k} x_{k}$ we get
+\[
+x_{i}=R_{j i} R_{j k} x_{k} \Longleftrightarrow \left(\delta_{i k}-R_{j i} R_{j k}\right) x_{k}=0.
+\]
+Since this is true for all choices of the numbers $\left(x_{1}, x_{2}, x_{3}\right)$ we conclude
+\[
+R_{i j} R_{k j}=\delta_{i k}.
+\]
+
+If we let $R$ denote the matrix with entries $R_{i j}$ then this reads $RR^{\top}=I .$ So $R_{i j}$ are the components of an orthogonal matrix. Since
+\[
+x_{j} \mathbf{e}_{j}=x_{i}^{\prime} \mathbf{e}_{i}^{\prime}=R_{i j} x_{j} \mathbf{e}_{i}^{\prime}
+\]
+must hold for all choices of $x_{j}$, we find that the basis vectors are related via
+\[
+\mathbf{e}_{j}=R_{i j} \mathbf{e}_{i}^{\prime}.
+\]
+In particular, since both systems are right handed
+\[
+1=\mathbf{e}_{1} \cdot\left(\mathbf{e}_{2} \times \mathbf{e}_{3}\right)=R_{i 1} R_{j 2} R_{k 3}\ \mathbf{e}_{i}^{\prime} \cdot\left(\mathbf{e}_{j}^{\prime} \times \mathbf{e}_{k}^{\prime}\right)=R_{i 1} R_{j 2} R_{k 3} \epsilon_{i j k}=\operatorname{det}(R).
+\]
+where we used $\mathbf{e}_{i}^{\prime} \cdot\left(\mathbf{e}_{j}^{\prime} \times \mathbf{e}_{k}^{\prime}\right)=\epsilon_{i j k}$ and the determinant formula you've seen for $3 \times 3$ matrices in IA Vectors \& Matrices
+\[
+\operatorname{det}(A)=\epsilon_{i j k} A_{i 1} A_{j 2} A_{k 3}
+\]
+So the matrix $R$ with entries $R_{i j}$ is orthogonal with $\operatorname{det}(R)=1 .$ So it is a rotation. 
+
+\textit{Moral of the story}: If we transform from one set of right-handed Cartesian basis vectors $\left\{\mathbf{e}_{i}\right\}$ to another $\left\{\mathbf{e}_{i}^{\prime}\right\}$ then the components of a vector $\mathbf{v}$ will transform according to
+\[
+    \boxed{v_{i}^{\prime}=R_{i j} v_{j}}
+\]
+where $R_{i j}=\mathbf{e}_{i}^{\prime} \cdot \mathbf{e}_{j}$ are the components of an rotation matrix $R,$ i.e. $R^{\top} R=RR^{\top}=I$
+and $\operatorname{det}(R)=1$. Objects whose components transform in this way are called \textbf{vectors} or \textbf{rank 1 Cartesian tensors}, or just \textbf{rank 1 tensors} for short. If you prefer a more abstract point of view: you can think of a rank 1 tensor as an equivalence class $\left[v_{i}\right]$, each element of which corresponds to the elements of the vector $\mathbf{v}$ in a given basis. Elements in the same equivalence class are related via a transformation of the above form.
+
+\subsection{A closer look at scalars}
+Consider the dot product
+\[
+    \sigma=\bfa \cdot \bfb
+\]
+for two fixed vectors $\mathbf{a}, \mathbf{b}$. This should be entirely independent of how we describe the basis vectors a and $\mathbf{b}$, since it has a geometric interpretation in terms of the lengths $|\mathbf{a}|,|\mathbf{b}|$ and the angle between them. In terms of the basis vectors $\left\{\mathbf{e}_{i}\right\}$ with $\mathbf{a}=a_{i} \mathbf{e}_{i}$ etc. we have
+\[
+\sigma=a_{i} b_{j}\left(\mathbf{e}_{i} \cdot \mathbf{e}_{j}\right)=a_{i} b_{j} \delta_{i j}=a_{i} b_{i}.
+\]
+If we instead used the basis $\left\{\mathbf{e}_{i}^{\prime}\right\}$ we would have found
+\[
+\sigma^{\prime}=a_{i}^{\prime} b_{i}^{\prime}
+\]
+where we've used $\sigma^{\prime}$ to denote the dot product, because we don't yet know if it will be the same in this basis. Using $a_{i}^{\prime}=R_{i p} a_{p}$ and $b_{i}^{\prime}=R_{i q} b_{q}$ we get
+\[
+\sigma^{\prime}=R_{i p} R_{i q} a_{p} b_{q}=\delta_{p q} a_{p} b_{q}=a_{p} b_{p}=\sigma
+\]
+We call objects that transform like this \textbf{scalars}, they do not change when we transform one set of right-handed Cartesian basis vectors $\left\{\mathbf{e}_{i}\right\}$ to another $\left\{\mathbf{e}_{i}^{\prime}\right\}$. 
+
+\textit{Moral of the story}: An object that transforms as
+\[
+    \boxed{\sigma^{\prime}=\sigma}
+\]
+when we change from one right-handed set of Cartesian basis vectors $\left\{\mathbf{e}_{i}\right\}$ to another $\left\{\mathbf{e}_{i}^{\prime}\right\}$ is called a \textbf{scalar} or \textbf{rank 0 tensor}. The abstract point of view in terms of equivalence classes is dull here: each $[\sigma]$ contains only one element.
+
+\subsection{A closer look at linear maps}
+Let $\mathbf{n}$ be a fixed unit vector in $\mathbb{R}^{3}$ and consider the linear map $T: \mathbb{R}^{3} \rightarrow \mathbb{R}^{3}$ defined by
+\[
+T: \mathbf{x} \mapsto \mathbf{y}=T(\mathbf{x})=\mathbf{x}-(\mathbf{x} \cdot \mathbf{n}) \mathbf{n}
+\]
+Note that the definition of $T$ does not depend on what basis we're using. The map $T$ gives an orthogonal projection of the vector $\mathbf{x}$ into the plane with normal $\mathbf{n}$. Note that it really is a linear map
+\[
+T(\alpha \mathbf{x}+\beta \mathbf{y})=\alpha \mathbf{x}+\beta \mathbf{y}-\alpha(\mathbf{x} \cdot \mathbf{n}) \mathbf{n}-\beta(\mathbf{y} \cdot \mathbf{n}) \mathbf{n}=\alpha T(\mathbf{x})+\beta T(\mathbf{y})
+\]
+for $\mathbf{x}, \mathbf{y} \in \mathbb{R}^{3}$ and scalars $\alpha, \beta$. Suppose we choose to use a Cartesian basis vectors $\left\{\mathbf{e}_{i}\right\}$. Then we can write $\mathbf{x}=x_{i} \mathbf{e}_{i}, \mathbf{y}=y_{i} \mathbf{e}_{i}$ and $\mathbf{n}=n_{i} \mathbf{e}_{i},$ so our definition gives
+\[
+y_{i} \mathbf{e}_{i}=T(\mathbf{x})=x_{j} T\left(\mathbf{e}_{j}\right)=x_{j}\left(\mathbf{e}_{j}-n_{j} n_{i} \mathbf{e}_{i}\right)=\left(\delta_{i j}-n_{i} n_{j}\right) x_{j} \mathbf{e}_{i}.
+\]
+Set $T_{i j}=\delta_{i j}-n_{i} n_{j} .$ These are referred to as the components of the linear map $T$ with respect to the basis $\left\{\mathbf{e}_{i}\right\}$. So that we've found
+\[
+y_{i}=T_{i j} x_{j}.
+\]
+If we did exactly the same thing but with a different set of orthonormal right-handed basis vectors $\left\{\mathbf{e}_{i}^{\prime}\right\},$ for which $\mathbf{x}=x_{i}^{\prime} \mathbf{e}_{i}^{\prime},$ etc. we would have found
+\[
+y_{i}^{\prime}=T_{i j}^{\prime} x_{j}^{\prime}
+\]
+where $T_{i j}^{\prime}=\delta_{i j}-n_{i}^{\prime} n_{j}^{\prime} .$ Using $n_{i}^{\prime}=R_{i j} n_{j}$ gives
+\[
+\begin{aligned}
+T_{i j}^{\prime} &=\delta_{i j}-R_{i p} R_{j q} n_{p} n_{q} \\
+&=R_{i p} R_{j q}\left(\delta_{p q}-n_{p} n_{q}\right) \\
+&=R_{i p} R_{j q} T_{p q}.
+\end{aligned}
+\]
+So we see the components of the linear map $T$ transform according to\footnote{If $T$ denotes the matrix with entries $T_{ij}$ etc, then this
+formula just says $ T'=RTR^{\top } $, which is exactly how a matrix transforms under a change of basis generated by an orthogonal transformation, i.e. $ R^{-1}=R^\top $.}
+\[
+    \boxed{T_{i j}^{\prime}=R_{i p} R_{j q} T_{p q}}
+\]
+Objects whose components transform in this way are called \textbf{rank 2 Cartesian tensors}, or simply \textbf{rank 2 tensors} for short\footnote{Some authors like to call these \textbf{dyads}, but we start to run out of words as the rank of the tensors increase, so we usually just call them rank 2 tensors.}. Again, if you like to think in terms of more abstract definitions, you can think of a rank 2 tensor as an equivalence class $\left[T_{i j}\right]$, each element of which corresponds to the components of a tensor $T$ in a given basis. Elements of the
+same equivalence class are related via a transformation of the above form.

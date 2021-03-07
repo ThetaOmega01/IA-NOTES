@@ -586,3 +586,119 @@ Immediately we get
     \end{align*}
     So $(Z_1,\ldots,Z_n)$ are independent exponentials with $Z_i\sim\operatorname{Exp}(\lambda(n-i+1))$.
 \end{example}
+
+\subsection{Moment generating functions}
+\subsubsection*{Single-variable}
+\begin{definition}
+    Let $X$ have density $f$, then the \textbf{moment generating function} (MGF) is defined by
+    $$m(\theta)=\mathbb E[e^{\theta X}]=\int_{-\infty}^\infty e^{\theta x}f(x)\,\mathrm dx$$
+    wherever it is finite.
+\end{definition}
+\begin{theorem}
+    The MGF uniquely determines the distribution of random variable provided it is defined on an open interval of $ \theta $.
+\end{theorem}
+\begin{theorem}
+    Suppose the MGF is defined for an open interval of $ \theta $, then
+    \[
+        m^{(r)}(0)=\mathbb E[X^r].
+    \]
+\end{theorem}
+\begin{example}[Gamma distribution]
+    We write $ X \sim \Gamma(n,\lambda) $, where $ \lambda>0, n\in \bbN $, if the density of $X$ is 
+    \[
+        f(x)=e^{-\lambda x}\lambda^n\frac{x^{n-1}}{(n-1)!},\quad x\ge 0.
+    \]
+    \begin{proof}[Check that $f$ is indeed a density.]
+        Denote 
+        \[
+            I_n = \int_{0}^{\infty} f(x) \,\mathrm{d}x.
+        \]
+        Then 
+        \begin{align*}
+            I_n &= \int_{0}^{\infty} e^{-\lambda x}\lambda^n\frac{x^{n-1}}{(n-1)!} \,\mathrm{d}x\\ 
+            &= \int_{0}^{\infty} e^{-\lambda x}\lambda^{n-1}\frac{x^{n-2}}{(n-2)!} \,\mathrm{d}x\\ 
+            &= I_{n-1}=\cdots = I_1.
+        \end{align*}
+        But 
+        \[
+            I_1 = \int_{0}^{\infty} \lambda e^{-\lambda x} \,\mathrm{d}x \leftrightarrow \operatorname{Exp}(\lambda),
+        \]
+        so $I_1=I_n=1$. 
+    \end{proof}
+    
+    The MGF is 
+    \begin{align*}
+        m(\theta)&=\mathbb E[e^{\theta X}]\\
+        &=\int_0^\infty e^{-(\lambda-\theta)x}\frac{\lambda^n}{(\lambda-\theta)^n}(\lambda-\theta)^n\frac{x^{n-1}}{(n-1)!}\,\mathrm dx\\
+        &=\left(\frac{\lambda}{\lambda-\theta} \right)^n.
+    \end{align*}
+    We see that to make the integral converge, we need $ \lambda>\theta $.
+
+    \begin{claim}
+        Suppose $ X_1,\dots,X_n $ are independent r.v.s, then 
+        \[
+            m(\theta)=\mathbb E[e^{\theta(X_1+\cdots+X_n)}]=\mathbb E[e^{\theta X_1}]\cdots\mathbb E[e^{\theta X_n}].
+        \]
+    \end{claim}
+
+    Then if $X\sim\Gamma(n,\lambda),Y\sim\Gamma(m,\lambda)$ are independent, then
+    \[
+        \mathbb E[e^{\theta(X+Y)}]=\left(\frac{\lambda}{\lambda-\theta} \right)^n\left(\frac{\lambda}{\lambda-\theta} \right)^m=\left(\frac{\lambda}{\lambda-\theta} \right)^{m+n},
+    \]
+    so $ X+Y \sim \Gamma(n+m,\lambda) $.
+    In particular, if $X_1,\ldots,X_n$ are iid $\operatorname{Exp}(\lambda)$, then $X_1+\cdots+X_n\sim\Gamma(n,\lambda)$.
+
+    The gamma distribution can be extended to the reals $ \Gamma(\alpha,\lambda),\ \alpha>0 $ by extending the factorial to the reals:
+    \[
+        (n-1)! \longrightarrow \Gamma(\alpha) = \int_{0}^{\infty} e^{-x}x^{\alpha-1} \,\mathrm{d}x.
+    \]
+\end{example}
+
+\begin{example}[Normal distribution]
+    Suppose $X\sim\mathcal N(\mu,\sigma^2)$, then the MGF of $X$ is
+    \begin{align*}
+        m(\theta)&=\mathbb E[e^{\theta X}]\\
+        &=\int_{-\infty}^\infty \frac{e^{\theta x}}{\sqrt{2\pi \sigma^2}}\exp\left( -\frac{(x-\mu)^2}{2\sigma^2}  \right)\,\mathrm dx\\
+        &=\exp \left( \mu\theta+\frac{\theta^2\sigma^2}{2} \right).
+    \end{align*}
+
+    Now if $X\sim\mathcal N(\mu,\sigma^2)$, then we know that $aX+b\sim\mathcal N(a\mu+b,a^2\sigma^2)$.
+    We can prove this again using MGF, indeed,
+    $$\mathbb E[e^{\theta(aX+b)}]=e^{\theta b}e^{a\theta\mu+(a\theta)^2\sigma^2/2}=e^{\theta(a\mu +b)+\theta^2(a^2\sigma^2)/2},$$
+    so $aX+b\sim\mathcal N(a\mu+b,a^2\sigma^2)$.
+
+    Now let $Y=\mathcal N(\nu,\tau^2)$ independent of $X$, then by using the same trick (MGF), we get
+    \[
+        \mathbb E[e^{\theta(X+Y)}]=e^{\theta(\mu+\nu)+\theta^2(\sigma^2+\tau^2)/2},
+    \]
+    so $X+Y\sim\mathcal N(\mu+\nu,\sigma^2+\tau^2)$.
+\end{example}
+\begin{example}[Cauchy's distribition]
+    Cauchy's distribition is obtained by
+    \[
+        f(x)=\frac{1}{\pi(1+x^2)},\quad x\in\mathbb R.
+    \]
+    Then 
+    \[
+        m(\theta) = \bbE[e^{\theta x}] = \int_{-\infty}^{\infty} \frac{e^{\theta x}}{\pi(1+x^2)} \,\mathrm{d}x \equiv \infty,\quad \forall \theta\neq 0.
+    \]
+    So if $X\sim f$ then $X,2X,\ldots$ all have the same MGF but not the same distribution.
+    So the assumption on $m(\theta)$ being finite on an open interval is essential.
+\end{example}
+
+\subsubsection*{Multi-variable}
+\begin{definition}
+    \begin{definition}
+        Let $\bfX=(X_1,\ldots,X_n)$ be a random variable in $\mathbb R^n$, then the MGF of $X$ is defined to be a function $m:\mathbb R^n\to\mathbb R$ with
+        $$m(\boldsymbol{\theta})=\mathbb E[e^{\theta^\top \bfX}]=\mathbb E[e^{\theta_1X_1+\cdots+\theta_nX_n}],$$
+        where $\boldsymbol{\theta}=(\theta_1,\ldots,\theta_n)^\top$.
+    \end{definition}
+\end{definition}
+\begin{theorem}
+    In this case provided MGF is finite for a range of values of $ \boldsymbol{\theta} $, then it uniquely determines the distribution of $ \bfX $. Also 
+    \[
+        \frac{\partial^rm}{\partial\theta_i^r}\Big|_{\boldsymbol{\theta}=\mathbf{0}}=\mathbb E[X_i^r],\quad \frac{\partial^{r+s}m}{\partial\theta_i^r\partial\theta_j^s}\Big|_{\boldsymbol{\theta}=\mathbf{0}}=\mathbb E[X_i^rX_j^s].
+    \]
+    Also $X_1,\ldots,X_n$ are independent if and only if 
+    $$m(\boldsymbol{\theta})=\prod_{i=1}^n\mathbb E[e^{\theta_iX_i}].$$
+\end{theorem}
