@@ -1,0 +1,24 @@
+\section{Multidimensional Gaussian r.v.s}
+\begin{definition}
+    A random variable $X$ in $\mathbb R$ is called \textbf{Gaussian} if $X=\mu+\sigma Z$ for $Z\sim\mathcal N(0,1)$ and $ \mu\in \mathbb{R}, \sigma\in [0,\infty) $.
+    It has density, as we have seen,
+    $$f_X(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-(x-\mu)^2/(2\sigma^2)}$$
+    and we denote this by $X\sim\mathcal N(\mu,\sigma^2)$.
+    We want to generalize this to higher dimensions.
+\end{definition}
+\begin{definition}
+    A random variable $\bfX=(X_1,\ldots,X_n)$ is \textbf{Gaussian} if for any $\bfu\in\mathbb R^n$, $\bfu^\top \bfX$ is Gaussian in $\mathbb R$.
+    We call $\bfX$ a \textbf{Gaussian vector}.
+\end{definition}
+
+\begin{example}
+    Suppose that $ \bfX $ is Gaussian and we have an $m\times n$ matrix $A$ and $\bfb\in\mathbb R^m$, then $A\bfX+\bfb$ is also Gaussian. Indeed, let $ \bfu\in \mathbb{R}^{m} $, then 
+    \[
+        \bfu^\top (A\bfX+\bfb) = (\bfu^\top A)\bfX+\bfb.
+    \]
+    Set $ \bfv = A^\top \bfu $, then 
+    \[
+        \bfu^\top (A\bfX+\bfb) = \bfv^\top \bfX + \bfu^\top \bfb.
+    \]
+    Since $\bfX$ is Gaussian, $ \bfv^\top \bfX $ is Gaussian and $ \bfv^\top \bfX + \bfu^\top \bfb $ is Gaussian.
+\end{example}

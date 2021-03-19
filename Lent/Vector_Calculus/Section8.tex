@@ -128,3 +128,273 @@ formula just says $ T'=RTR^{\top } $, which is exactly how a matrix transforms u
 \]
 Objects whose components transform in this way are called \textbf{rank 2 Cartesian tensors}, or simply \textbf{rank 2 tensors} for short\footnote{Some authors like to call these \textbf{dyads}, but we start to run out of words as the rank of the tensors increase, so we usually just call them rank 2 tensors.}. Again, if you like to think in terms of more abstract definitions, you can think of a rank 2 tensor as an equivalence class $\left[T_{i j}\right]$, each element of which corresponds to the components of a tensor $T$ in a given basis. Elements of the
 same equivalence class are related via a transformation of the above form.
+
+\subsection{Cartesian Tensors of rank $ n $}
+\begin{definition}
+    A tensor of rank $n$ has components $T_{i j \cdots k}$ (with $n$ indices) with respect to each Cartesian basis $\left\{\mathbf{e}_{i}\right\}$ that transform as
+    \[
+        T_{i j \cdots k}^{\prime}=R_{i p} R_{j q} \cdots R_{k r} T_{p q \cdots r}
+    \]
+    upon changing from from one right-handed Cartesian basis to another. Here the $R_{i j}=\bfe_i' \cdot \bfe_j$ represent components of an rotation matrix, so in particular $R_{i p} R_{j p}=\delta_{i j}$.
+\end{definition}
+
+We will be fast and loose with some of our language: we will refer to things like $T_{i j \cdots k}$ as a tensor, rather than the components of a tensor, knowing that these things will change depending on what basis we choose.
+\begin{example}
+    If $u_{i}, v_{j}, \dots, w_{k}$ are the components of $n$ vectors, then
+    \[
+    T_{i j \cdots k}=u_{i} v_{j} \cdots w_{k}
+    \]
+    define the components of an $n$ th rank tensor. We can check:
+    \[
+    T_{i j \cdots k}^{\prime}=u_{i}^{\prime} v_{j}^{\prime} \cdots w_{k}^{\prime}=R_{i p} R_{j q} \cdots R_{k r} u_{p} v_{q} \cdots w_{r}=R_{i p} R_{j q} \cdots R_{k r} T_{p q \cdots r}.
+    \]
+\end{example}
+\begin{example}
+    The Kronecker delta $\delta_{i j}$ has been defined without any reference to any basis
+    \[
+    \delta_{i j}=\begin{cases}
+        1, & i=j \\
+        0, & i \neq j
+    \end{cases} 
+    \]
+    So by definition it is the same, no matter what basis we happen to be using. Hence
+    \[
+    \delta_{i j}^{\prime}=\delta_{i j}
+    \]
+    But we also see that
+    \[
+    R_{i p} R_{j q} \delta_{p q}=R_{i p} R_{j p}=\delta_{i j}=\delta_{i j}^{\prime}
+    \]
+    Hence $\delta_{i j}^{\prime}=R_{i p} R_{j q} \delta_{p q},$ so $\delta_{i j}$ really is a rank 2 tensor.
+\end{example}
+\begin{example}
+    We have also defined the Levi Civita symbol without reference to any basis
+    \[
+    \epsilon_{i j k}=\begin{cases}
+        +1, & (i j k) \text { an even permutation of }(123), \\
+        -1, & (i j k) \text { an odd permutation of }(123), \\
+        0, & \text { otherwise. }
+    \end{cases} 
+    \]
+    So by definition $\epsilon_{i j k}=\epsilon_{i j k}^{\prime} .$ But we see that
+    \[
+    R_{i p} R_{j q} R_{k r} \epsilon_{p q r}=\operatorname{det}(R) \epsilon_{i j k}=\epsilon_{i j k}=\epsilon_{i j k}^{\prime}
+    \]
+    Hence $\epsilon_{i j k}^{\prime}=R_{i p} R_{j q} R_{k r} \epsilon_{p q r}$ really is a rank 3 tensor.
+\end{example}
+\begin{example}
+    Experimental evidence suggests that there is a linear relationship between the current $\mathbf{J}$ produced in a given medium that is subject to an electric field $\mathbf{E}$. Such a
+    relationship can be written $\mathbf{J}=\sigma \mathbf{E}$, or in suffix notation
+    \[
+    J_{i}=\sigma_{i j} E_{j}
+    \]
+    for some array of numbers $\left\{\sigma_{i j}\right\}$. Let's show that this thing is actually a tensor: known as the electrical conductivity tensor. Since $\mathbf{E}$ and $\mathbf{J}$ are vectors, if we change our coordinate frame we will find\footnote{Here we use $E_{j}^{\prime}=R_{j q} E_{q} \Leftrightarrow E_{q}=R_{j q} E_{j}^{\prime}$, which just reflects the fact that $R^{-1}=R^{\top } \text { for } R \in \SO_3$.}
+    \[
+    \sigma_{i j}^{\prime} E_{j}^{\prime}=J_{i}^{\prime}=R_{i p} J_{p}=R_{i p} \sigma_{p q} E_{q}=R_{i p} \sigma_{p q} R_{j q} E_{j}^{\prime}
+    \]
+    and since this must hold for all $E_{j}^{\prime}$ we conclude
+    \[
+    \sigma_{i j}^{\prime}=R_{i p} R_{j q} \sigma_{p q}
+    \]
+    so $\sigma$ is a second rank tensor. This is an example of the quotient theorem, which we will
+    prove in a few lectures.
+\end{example}
+\begin{example}
+    Not all things are tensors. Suppose that for a given Cartesian basis we define
+    the array
+    \[
+    \left(A_{i j}\right)=\begin{pmatrix}
+        1 & 0 & 3 \\
+    2 & 2 & 0 \\
+    8 & 4 & 7
+    \end{pmatrix}
+    \]
+    And we define $A_{i j}^{\prime}=0$ in all other Cartesian bases. Then $A_{i j}$ are not the components of
+    a tensor.
+\end{example}
+
+Tensors of the same rank can be added. 
+\begin{definition}
+    If $A$ and $B$ are $n$th rank tensors with components $A_{i j \cdots k}$ and $B_{i j \cdots k}$ (so $n$ indices on both) then we define
+    \[
+    (A+B)_{i j \cdots k}=A_{i j \cdots k}+B_{i j \cdots k}.
+    \]
+    If $\alpha$ is a scalar then we define
+    \[
+    (\alpha A)_{i j \cdots k}=\alpha A_{i j \cdots k}.
+    \]
+\end{definition}
+It is readily seen that both $A+B$ and $\alpha A$ are $n$ th rank tensors. \begin{definition}
+    We define the tensor
+    product of an $m$th \textbf{rank tensor} $U$ and an $n$ th rank tensor $V$ by
+    \[
+    (U \otimes V)_{i j \cdots k p q \cdots r}=U_{i j \cdots k} V_{p q \cdots r}
+    \]
+    where
+    \[
+    \underbrace{i j \cdots k}_{m \text { indices }} \underbrace{p q \cdots r}_{n \text { indices }}.
+    \]
+\end{definition}
+
+This defines a tensor of rank $n+m$, since
+\[
+\begin{aligned}
+(U \otimes V)_{i j \cdots k p q \cdots r}^{\prime} &=U_{i j \cdots k}^{\prime} V_{p q \cdots r}^{\prime} \\
+&=R_{i a} R_{j b} \cdots R_{k c} U_{a b \cdots c} R_{p d} R_{q e} \cdots R_{r f} V_{d e \cdots f} \\
+&=R_{i a} R_{j b} \cdots R_{k c} R_{p d} R_{q e} \cdots R_{r f}(U \otimes V)_{a b \cdots c d e \cdots f} .
+\end{aligned}
+\]
+
+\begin{definition}
+    Given an $n$ th rank tensor with components $T_{i j k \cdots l}$ we can define an $(n-2)$th rank tensor by \textbf{contracting} on two of the indices. For instance, contracting on $i$ and $j$ is defined by
+    \[
+    \delta_{i j} T_{i j k \cdots l}=T_{i i k \cdots l}.
+    \]
+\end{definition}
+
+This really is a tensor of rank $n-2$, since
+\[
+T_{i i k \cdots l}^{\prime}=R_{i p} R_{i q} R_{k r} \cdots R_{l s} T_{p q r \cdots s}=\delta_{p q} R_{k r} \cdots R_{l s} T_{p q r \cdots s}=R_{k r} \cdots R_{l s} T_{p p r \cdots s}.
+\]
+We can choose to contract on any pair of indices we like, not just the first two.
+
+\begin{definition}
+    
+We say a tensor $T_{i j \cdots k}$ is \textbf{symmetric} in $(i, j)$ if
+$$
+T_{i j \cdots k}=T_{j i \cdots k}
+$$
+\end{definition}
+This is a well-defined property of the tensor, i.e. it doesn't matter which coordinate frame choose, since if $T_{i j \cdots k}$ is symmetric in $(i, j)$ then
+\begin{align*}
+    T_{i j \cdots k}^{\prime}&=R_{i p} R_{j q} \cdots R_{k r} T_{p q \cdots r}=R_{i p} R_{j q} \cdots R_{k r} T_{q p \cdots r}\\&=R_{i q} R_{j p} \cdots R_{k r} T_{p q \cdots r}=T_{j i \cdots k}^{\prime}.
+\end{align*}
+i.e. $T_{i j \cdots k}^{\prime}$ is also symmetric in $(i, j)$. Similarly,
+\begin{definition}
+    We say $A_{i j \cdots k}$ is \textbf{anti-symmetric} in $(i, j)$ if $T_{i j \cdots k}=-T_{j i \cdots k} .$
+\end{definition}
+We could be talking about any particular pair of indices here $-$ it doesn't necessarily need to be the first and second.
+\begin{definition}
+    We say a tensor is \textbf{totally symmetric} (anti-symmetric) if it is symmetric (anti-symmetric) in \textit{each} pair of indices.
+\end{definition}
+
+\begin{example}
+    The tensors $\delta_{i j}$ and $a_{i} a_{j} a_{k}$ are totally symmetric tensors of rank two and three respectively. $\epsilon_{i j k}$ is totally anti-symmetric.
+\end{example}
+\begin{example}
+    In fact, the only totally anti-symmetric tensor on $\mathbb{R}^{3}$ of rank $n=3$ is proportional to $\epsilon_{i j k},$ and there aren't any (non-zero) ones of higher rank. 
+    Indeed, suppose $T_{i j \cdots k}$ is a totally anti-symmetric tensor of rank $n$. Then $T_{i j \cdots k}=0$ if any two indices are the same. If $n>3$ then there will always be at least two matching indices in $T_{i j \cdots k},$ by the pigeonhole principle. When $n=3,$ there are only only $3 !=6$ non-zero components, and if
+    \[
+    T_{123}=T_{231}=T_{312}=\lambda
+    \]
+    then $T_{213}=T_{321}=T_{132}=-\lambda$ by anti-symmetry. Hence $T_{i j k}=\lambda \epsilon_{i j k}$.
+\end{example}
+
+\subsection{Tensor calculus}
+Remember that a vector field is just a function that gives you a vector $\mathbf{v}(\mathbf{x})$ at each point $\mathbf{x} \in \mathbb{R}^{3}$. Said differently, a vector field gives you a rank 1 tensor at each $\mathbf{x} \in \mathbb{R}^{3}$. Similarly, a scalar field $\varphi(\mathbf{x})$ gives a scalar, or rank 0 tensor at each point. 
+\begin{definition}
+    We define a tensor field of rank $n, T_{i j \cdots k}(\mathbf{x})$ so that for each $\mathbf{x}_{0} \in \mathbb{R}^{3},$ $ T_{i j \cdots k}\left(\mathbf{x}_{0}\right)$ define the components of an $n$th rank Cartesian tensor.
+\end{definition}
+Recall that Cartesian coordinates transform as
+\[
+x_{i}^{\prime}=R_{i j} x_{j} \Longleftrightarrow x_{j}=R_{i j} x_{i}^{\prime}.
+\]
+Differentiating both sides with respect to $x_{k}^{\prime}$ we find
+\[
+\frac{\partial x_{j}}{\partial x_{k}^{\prime}}=R_{i j} \frac{\partial x_{i}^{\prime}}{\partial x_{k}^{\prime}}=R_{i j} \delta_{i k}=R_{k j}.
+\]
+So the chain rule gives
+\[
+\frac{\partial}{\partial x_{i}^{\prime}}=\frac{\partial x_{j}}{\partial x_{i}^{\prime}} \frac{1}{\partial x_{j}}=R_{i j} \frac{\partial}{\partial x_{j}}
+\]
+This gives us a good way of understanding how tensor fields change when we differentiate them. Note that the rotation matrix is constant.
+
+\begin{proposition}
+    If $T_{i j \ldots k}(\mathbf{x})$ is a tensor field of rank $n$, then
+    \[
+    \left(\frac{\partial}{\partial x_{p}}\right)\left(\frac{\partial}{\partial x_{q}}\right) \cdots\left(\frac{\partial}{\partial x_{r}}\right) T_{i j \cdots k}(\mathbf{x})
+    \]
+    (with $m$ derivatives in total) is a tensor field of rank $m+n$.
+\end{proposition}
+\begin{proof}
+    Denote the quantity by $A_{p q \cdots r i j \cdots k}$ so that
+    \[
+    \begin{aligned}
+    A_{p q \cdots r i j \cdots k}^{\prime} &=\left(\frac{\partial}{\partial x_{p}^{\prime}}\right)\left(\frac{\partial}{\partial x_{q}^{\prime}}\right) \cdots\left(\frac{\partial}{\partial x_{r}^{\prime}}\right) T_{i j \cdots k}^{\prime}(\mathbf{x}) \\
+    &=R_{p a} R_{q b} \cdots R_{r c}\left(\frac{\partial}{\partial x_{a}}\right)\left(\frac{\partial}{\partial x_{b}}\right) \cdots\left(\frac{\partial}{\partial x_{c}}\right) R_{i d} R_{j e} \cdots R_{k f} T_{d e \cdots f}(\mathbf{x}) \\
+    &=R_{p a} R_{q b} \cdots R_{r c} R_{i d} R_{j e} \cdots R_{k f} A_{a b \cdots c d e \cdots f},
+    \end{aligned}
+    \]
+    which is the transformation law for a rank $n+m$ tensors.
+\end{proof}
+\begin{example}
+    For a scalar field $\varphi=\varphi(\mathbf{x}),$ consider the gradient $\nabla \varphi(\mathbf{x}),$ or in components
+    \[
+    [\nabla \varphi]_{i}=\frac{\partial \varphi}{\partial x_{i}}.
+    \]
+    By the previous result, these are the components of a rank $0+1=1$ tensor field, or simply a vector field.
+\end{example}
+
+\begin{example}
+    For a vector field $\mathbf{v}=\mathbf{v}(\mathbf{x})$ we have the divergence
+    \[
+    \nabla \cdot \mathbf{v}=\frac{\partial v_{i}}{\partial x_{i}}.
+    \]
+    Not unsurprisingly, this transforms as a scalar field:
+    \[
+    \frac{\partial v_{i}^{\prime}}{\partial x_{i}^{\prime}}=R_{i p} \frac{\partial}{\partial x_{p}} R_{i q} v_{q}=R_{i p} R_{i q} \frac{\partial v_{q}}{\partial x_{p}}=\delta_{p q} \frac{\partial v_{q}}{\partial x_{p}}=\frac{\partial v_{p}}{\partial x_{p}}.
+    \]
+\end{example}
+\begin{example}
+    For a vector field $\mathbf{v}=\mathbf{v}(\mathbf{x})$ consider the curl $\nabla \times \mathbf{v}$. Then in components
+    \[
+    [\nabla \times \mathbf{v}]_{i}=\epsilon_{i j k} \frac{\partial v_{k}}{\partial x_{j}}.
+    \]
+    This transforms as a vector field, but it is not immediately obvious. We have
+    \[
+    \begin{aligned}
+    \epsilon_{i j k}^{\prime} \frac{\partial v_{k}^{\prime}}{\partial x_{j}^{\prime}} &=R_{i a} R_{j b} R_{k c} \epsilon_{a b c} R_{j p} \frac{\partial}{\partial x_{p}} R_{k q} v_{q} \\
+    &=R_{i a} \epsilon_{a b c} R_{j b} R_{j p} R_{k c} R_{k q} \frac{\partial v_{q}}{\partial x_{p}} \\
+    &=R_{i a} \epsilon_{a b c} \delta_{b p} \delta_{c q} \frac{\partial v_{q}}{\partial x_{p}} \\
+    &=R_{i a} \epsilon_{a b c} \frac{\partial v_{c}}{\partial x_{b}},
+    \end{aligned}
+    \]
+    so $[\nabla \times \mathbf{v}]_{i}$ does indeed transform like a vector field.
+\end{example}
+
+We can integrate tensor fields just as we can integrate vector fields. Recall the divergence theorem for vector fields, written using suffix notation
+\[
+\int_{V} \frac{\partial v_{i}}{\partial x_{i}} \mathrm{~d} V=\int_{\partial V} v_{i} n_{i} \mathrm{~d} S
+\]
+where $\mathbf{n}$ is the outward normal to the surface enclosing $V$. An analogous result holds for
+tensor fields.
+\begin{proposition}
+    For a smooth tensor field $T_{i j \cdots k \cdots l}(\mathbf{x})$ we have
+    \[
+    \int_{V} \frac{\partial T_{i j \cdots k \cdots l}}{\partial x_{k}} \mathrm{~d} V=\int_{\partial V} T_{i j \cdots k \cdots l} n_{k} \mathrm{~d} S,\tag{$*$}
+    \]
+    where $ n_k $ are components of the normal pointing outside $ \partial V $. Note that whatever $\frac{\partial}{\partial x_{k}}$ appears on the left is replaced with $n_{k}$ on the right.
+\end{proposition}
+\begin{proof}
+    Apply the usual divergence theorem to the vector field
+    \[
+    v_{k}:=a_{i} b_{j} \cdots c_{l} T_{i j \cdots k \cdots l}
+    \]
+    where $a_{i}, b_{j}, \ldots, c_{l}$ are components of constant vectors $\mathbf{a}, \mathbf{b}, \ldots, \mathbf{c} .$ On the right hand side the only free index is $k,$ since all of the others have been contracted with the components of one of the vectors $\mathbf{a}, \mathbf{b}, \cdots, \mathbf{c}$. This gives
+    \[
+    \int_{V} \frac{\partial v_{k}}{\partial x_{k}} \mathrm{~d} V=a_{i} b_{j} \cdots c_{l} \int_{V} \frac{\partial T_{i j \cdots k \cdots l}}{\partial x_{k}} \mathrm{~d} V
+    \]
+    and
+    \[
+    \int_{\partial V} v_{k} n_{k} \mathrm{~d} S=a_{i} b_{j} \cdots c_{l} \int_{\partial V} T_{i j \cdots k \cdots l} n_{k} \mathrm{~d} S .
+    \]
+    The result follows because the $\mathbf{a}, \mathbf{b}, \ldots, \mathbf{c}$ were arbitrary. Indeed, suppose we wanted to check $(*)$ for when all the free indices were equal to $1 .$ Then we would set
+    \[
+    a_{i}=\delta_{i 1}, \quad b_{j}=\delta_{j 1}, \quad \cdots \quad c_{l}=\delta_{l 1}
+    \]
+    so that both sides would reduce to
+    \[
+    \int_{V} \frac{\partial T_{11 \cdots k \cdots 1}}{\partial x_{k}} \mathrm{~d} V=\int_{\partial V} T_{11 \cdots k \cdots 1} n_{k} \mathrm{~d} S .
+    \]
+    A similar idea can be used for any other choice of the free indices.
+\end{proof}

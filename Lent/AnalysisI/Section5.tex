@@ -160,3 +160,150 @@ Hence
     \end{align*}
     Hence $f$ is integrable by theorem \ref{thm:5.3}.
 \end{proof}
+\begin{example}
+    Let $ f:[0,1]\to \bbR $ be defined by 
+    \[
+        f(x) = \begin{cases}
+        1/q & x = p/q \text{ in lowest form}\\
+        0 &\text{otherwise}\\
+        \end{cases} 
+    \]
+    Clearly $ L(f,D)=0,\ \forall D $. We will show that $ \forall \epsilon>0,\ \exists D,\ U(f,D)<\epsilon $. This implies $f$ is integrable with 
+    \[
+        \int_{0}^{1} f(x) \,\mathrm{d}x=0.
+    \]
+    Take $ N\in \mathbb{N} $ such that $ 1/N<\epsilon/2 $. Consider 
+    \[
+        \{x\in [0,1]: f(x)\ge 1/N\} = \{p/q:1\le q\le N \land 1\le p\le q\}.
+    \]
+    This is a finite set with $ 0<t_1<\cdots<t_R=1 $. Consider $D$ such that 
+    \begin{enumerate}
+        \item Each $ t_k $ is in some interval $ [x_{j-1},x_j] $.
+        \item $ \forall k $, the unique interval contaning $t_k$ has length at most $ \epsilon/2. $
+    \end{enumerate}
+    \begin{center}
+        \begin{tikzpicture}
+            \fill [black!20] (0,-0.15) rectangle (1,0.15);
+            \fill [black!20] (1.5,-0.15) rectangle (2.5,0.15);
+            \draw (0,0) -- (5,0);
+            \draw (0,-0.2) -- (0,0.2) node [pos=0,below] {$0$} node [pos=1,above] {$x_0$};
+            \draw (5,-0.2) -- (5,0.2) node [pos=0,below] {$1$};
+            \draw (0.5,-0.1) -- (0.5,0.1) node [pos=0,below] {$t_1$};
+            \draw (1,-0.15) -- (1,0.15) node [pos=1,above] {$x_1$};
+            \draw (2,-0.1) -- (2,0.1) node [pos=0,below] {$t_2$};
+            \draw (1.5,-0.15) -- (1.5,0.15) node [pos=1,above] {$x_2$};
+            \draw (2.5,-0.15) -- (2.5,0.15) node [pos=1,above] {$x_3$};
+            \node [below] at (4,0) {$ \cdots $};
+        \end{tikzpicture}        
+    \end{center}
+    Outside these intervals, $ f(x)<1/N $. Clearly $ f\le 1 $, so
+    \[
+        U(f,D)\le 1/N+\frac{\epsilon}{2}<\epsilon.
+    \]
+\end{example}
+
+\begin{proposition}
+    Suppose $f,g:[a,b]\to\mathbb R$ are integrable, then
+    \begin{enumerate}
+        \item If $\lambda\in\mathbb R$, then $f+\lambda g$ is integrable and
+        $$\int_a^bf(x)+\lambda g(x)\,\mathrm dx=\int_a^bf(x)\,\mathrm dx+\lambda\int_a^bg(x)\,\mathrm dx.$$
+        \item For any $c\in [a,b]$, $f|_{[a,c]},f|_{[c,b]}$ are integrable and
+        $$\int_a^cf(x)\,\mathrm dx+\int_c^bf(x)\,\mathrm dx=\int_a^bf(x)\,\mathrm dx.$$
+        \item If $f\ge g$ on $[a,b]$, then
+        $$\int_a^bf(x)\,\mathrm dx\ge\int_a^bg(x)\,\mathrm dx.$$
+        \item $|f|$ is integrable and
+        $$\left|\int_a^bf(x)\,\mathrm dx\right|\le\int_a^b|f(x)|\,\mathrm dx.$$
+        \item $fg$ is integrable.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    Exercise.
+\end{proof}
+\begin{notation}
+    If $a>b$, let 
+    \[
+        \int_{a}^{b} f(x) \,\mathrm{d}x = - \int_{b}^{a} f(x) \,\mathrm{d}x
+    \]
+    and if $a=b$, then let 
+    \[
+        \int_{a}^{a} f(x) \,\mathrm{d}x=0.
+    \]
+\end{notation}
+With this convention, if $|f|\le K$, then 
+\[
+    \left| \int_{a}^{b} f(x) \,\mathrm{d}x \right| \le K|b-a|.
+\]
+
+\subsection{Fundamental Theorem of Calculus}
+Let $f:[a,b]\to \mathbb{R} $ be bounded ($ |f(x)|\le K $) and integrable. Define 
+\[
+    F(x) = \int_{a}^{x} f(t) \,\mathrm{d}t.
+\]
+\begin{theorem}\label{thm:5.7}
+    $F$ is continuous.
+\end{theorem}
+\begin{proof}
+    Note that 
+    \[
+        \left| F(x+h)-F(x) \right|  = \left| \int_{x}^{x+h} f(t) \,\mathrm{d}t \right| \le K|h|.
+    \]
+    let $h\to 0$ gives the result.
+\end{proof}
+
+\begin{theorem}[FTC]\label{thm:5.8}
+    If $f$ is continuous at $x$, then $F$ is differentiable at $x$ and
+    \[
+        F'(x)=f(x).
+    \] 
+\end{theorem}
+\begin{proof}
+    Need to consider (for $ x+h\in [a,b],h\neq 0 $) that
+    \begin{align*}
+        \left| \frac{F(x+h)-F(x)}{h}-f(x) \right|&= \frac{1}{|h|}\left| \int_{x}^{x+h} f(t) \,\mathrm{d}t - h f(x) \right| \\ 
+        &= \frac{1}{|h|} \left| \int_{x}^{x+h} f(t)-f(x) \,\mathrm{d}t \right| .
+    \end{align*}
+    Since $f$ is continuous at $x$, given $ \epsilon>0,\ \exists \delta>0  $ such that if $ |t-x|<\delta $, then $ |f(t)-f(x)|<\epsilon$. So if $ |h|<\epsilon $, 
+    \[
+        \frac{1}{|h|} \left| \int_{x}^{x+h} f(t)-f(x) \,\mathrm{d}t \right|\le \frac{1}{|h|} \epsilon |h| = \epsilon.
+    \]
+    Which means 
+    \[
+        \lim_{h \to 0} \frac{F(x+h)-F(x)}{h} = F'(x) = f(x).\qedhere
+    \]
+\end{proof}
+\begin{example}
+    Let 
+    \[
+        f(x) = \begin{cases}
+        -1 &x\in [-1,0]\\
+        1 &x\in [0,1]\\
+        \end{cases} 
+    \]
+    Check that $f$ is integrable. Check also that $F(x)=-1+|x|$ is differentiable on $ [-1,1]\setminus \{0\} $.
+\end{example}
+\begin{corollary}[Integration is the inverse of differentiation]
+    If $f=g'$ is continuous on $[a,b]$, then 
+    \[
+        \int_{a}^{x} f(t) \,\mathrm{d}t = g(x)-g(a),\quad \forall x\in [a,b].
+    \]
+\end{corollary}
+\begin{proof}
+    By FTC, $(F-g)'=0$ on $ [a,b] $, so it is constant. Since $F(a)=0$, $ F(x)=g(x)-g(a) $ as claimed.
+\end{proof}
+
+\begin{note}
+    Every continuous function has an \textbf{indefinite integral} or \textbf{anti-derivative} written in 
+    \[
+        \int f(x) \,\mathrm{d}x
+    \]
+    which is determined up to a constant.
+\end{note}
+\begin{remark}
+    We actually have solved the ODE 
+    \[
+        \begin{cases}
+         y'(x)=f(x)\\
+         y(a)=y_0\\
+        \end{cases}
+    \]
+\end{remark}

@@ -24,7 +24,7 @@
     $$\mathbb P\left(\lim_{n\to\infty}X_n=X\right)=1.$$
 \end{definition}
 
-\subsection{Weak law of large numbers}
+\subsection{Laws of large numbers}
 \begin{theorem}[Weak law of large numbers]\label{thm:Weak law of large numbers}
     Let $(X_n:n\in\mathbb N)$ be an iid sequence of random variables with finite expectation $\mu$.
     Set $S_n=X_1+\cdots+X_n$, then for any $\epsilon>0$, we have
@@ -43,3 +43,188 @@
         \mathbb{P}\left( \left| \frac{S_n}{n}-\mu \right| >\epsilon \right)=\frac{\sigma^2}{n\epsilon^2}\to 0.\qedhere
     \]
 \end{proof}
+\begin{proposition}
+    Suppose $ X_n\to 0 $ almost surely. Then $ X_n \xrightarrow{\bbP} 0$.
+\end{proposition}
+\begin{proof}
+    Let $ \epsilon>0 $. Note that
+    \[
+        X_n \xrightarrow{\bbP}0 \Longleftrightarrow \bbP(X_n>\epsilon)\to 0 \Longleftrightarrow \mathbb{P}(|X_n|\le \epsilon)\to 1.
+    \]
+    Note also that 
+    \[
+        \mathbb{P}(|X_n|\le \epsilon)\ge \mathbb{P}\left( \bigcap_{m=n}^{\infty}\{|X_m|\le \epsilon\} \right) =: \mathbb{P}(A_n). 
+    \]
+    Clearly $A_n \subseteq A_{n+1}$, so by continuity, $ \mathbb{P}(A_n) \to \mathbb{P}(\cup A_n) $. Therefore 
+    \[
+        \lim_{n \to \infty} \mathbb{P}(|X_n|\le \epsilon) \ge \lim_{n \to \infty} \mathbb{P}(A_n) = \mathbb{P}(\cup A_n)\ge \mathbb{P}\left( \lim_{n \to \infty} X_n=0 \right)=1.\qedhere
+    \]
+\end{proof}
+\begin{theorem}[Strong law of large numbers]\label{thm:Strong law of large numbers}
+    Let $ (X_n) $ be an iid sequence of r.v.s with $ \mu=\bbE[X]<\infty  $. Then $ S_n=X_1+\cdots+X_n $ satisfies 
+    \[
+        \frac{S_n}{n}\to \mu\quad (n\to \infty) \quad \text{almost surely}.
+    \]
+\end{theorem}
+\begin{proof}
+    Assume further that $ \bbE[X_1^4]<\infty $. Set $ Y_i=X_i-\mu $, then $ \bbE[Y_i]=0,\ \bbE[Y_1^4]\le 2^4(\bbE[X_1^4]+\mu^4) $. So it suffices to prove $ S_n/n\to 0 $ where $ S_i=\sum X_i,\ \bbE[X_i]=0 $ and $ \bbE[X_i^4]<\infty  $. We have 
+    \[
+        S_n^4=\left( \sum_{i=1}^nX_i \right)^4=\sum_{i=1}^nX_i^4+6\sum_{1\le i<j\le n}X_i^2X_j^2+R,
+    \]
+    where $R$ is a sum of terms of the form $X_i^3X_j,X_i^2X_jX_k,X_iX_jX_kX_l$ for $i,j,k,l$ all distinct. Since $X_i$ are independent with zero mean, $\mathbb E[R]=0$, so
+    \begin{align*}
+        \mathbb E[S_n^4]&=n\mathbb E[X_1^4]+3n(n-1)\mathbb E[X_1^2]^2\\
+        &\le (n+3n(n-1))\mathbb E[X_1^4]\\
+        &\le 3n^2\mathbb E[X_1^4]
+    \end{align*}
+    Hence
+    $$\mathbb E\left[ \sum_{n=1}^\infty\left( \frac{S_n}{n} \right)^4 \right]=\sum_{n=1}^\infty\mathbb E\left[ \left( \frac{S_n}{n} \right)^4 \right]\le 3\mathbb E[X_1^4]\sum_{n=1}^\infty\frac{1}{n^2}<\infty.$$
+    So
+    $$\mathbb P\left(\sum_{n=1}^\infty\left( \frac{S_n}{n} \right)^4<\infty\right)=1\implies\mathbb P\left(\lim_{n\to\infty}\frac{S_n}{n}=0\right)=1$$
+    as claimed.
+\end{proof}
+\subsection{Central limit theorem}
+We saw $S_n/n-\mu\to 0$ almost surely from the law of large numbers.
+We know also that $\operatorname{Var}(S_n/n)=\sigma^2/n$ where $\sigma^2$ is the variance of $X_1$.
+So if we want to normalize,
+$$\frac{S_n/n-\mu}{\sqrt{\operatorname{Var}(S_n/n)}}=\frac{S_n-n\mu}{\sigma\sqrt{n}}$$
+from which we will expect
+\begin{theorem}[Central Limit Theorem]
+    Let $(X_n:n\in\mathbb N)$ be a sequence of iid random variables with mean $\mu$ and variance $\sigma^2$, then set $S_n=X_1+\cdots+X_n$ as before, we have
+    $$\mathbb P\left( \frac{S_n-n\mu}{\sigma\sqrt{n}}\le x \right)\to\Phi(x)=\int_{-\infty}^x\frac{e^{-y^2/2}}{\sqrt{2\pi}}\,\mathrm dy$$
+    for all $x\in\mathbb R$. In other words, 
+    \[
+        \frac{S_n-n\mu}{\sigma\sqrt{n}}\xrightarrow[n\to \infty]{\text{(d)}}Z,
+    \]
+    where (d) means ``in distribution'' and $ Z \sim \mcN(0,1) $.
+\end{theorem}
+\begin{note}
+    What this means is that for $n$ large enough, $S_n\approx n\mu+\sigma\sqrt{n}\,\mathcal N(0,1)=\mathcal N(\mu n,\sigma^2n)$.
+    In fact, not only does it converge, we can also estimate the rate of convergence, which is beyond the course.
+\end{note}
+\begin{proof}
+    Wlog $\mu=0,\sigma=1$ by considering $(X_i-\mu)/\sigma$.
+    Assume further that $\exists\delta>0,\mathbb E[e^{\pm\delta X_1}]<\infty$.
+    By continuity of MGFs, it suffices to show that, for $Z\sim\mathcal N(0,1)$ and for all $ \theta\in \mathbb{R} $,
+    $$\mathbb E[e^{\theta S_n/\sqrt{n}}]\to\mathbb E[e^{\theta Z}]=e^{\theta^2/2}.$$
+    Let $ m(\theta)=\bbE[e^{\theta X_1}] $. Then 
+    $$\mathbb E[e^{\theta S_n/\sqrt{n}}]=\mathbb E[e^{\theta X_n/\sqrt{n}}]^n=m(\theta/\sqrt{n})^n$$
+    Note that when $|\theta|<\delta/2$,
+    $$m(\theta)=\mathbb E\left[ \sum_{n=0}^\infty\frac{1}{n!}\theta^nX_1^n \right]=1+\frac{\theta^2}{2}+\mathbb E\left[  \sum_{n=3}^\infty\frac{1}{n!}\theta^nX_1^n \right]$$
+    We will prove that the last term is $o(|\theta|^2)$ as $\theta\to 0$, which immediately implies the result (Check). We have
+    \begin{align*}
+        \sum_{n=3}^\infty\frac{1}{n!}|\theta|^n|X_1|^n&=|\theta X_1|^3\sum_{k=0}^\infty\frac{|\theta X_1|^k}{(k+3)!}\\
+        &\le|\theta X_1|^3e^{\delta|X_1|/2}\\
+        &\le 3!\left( \frac{2\theta}{\delta} \right)^3e^{\delta|X_1|}.
+    \end{align*}
+    Now by Jensen's Inequality
+    \begin{align*}
+        \left|\mathbb E\left[  \sum_{n=3}^\infty\frac{1}{n!}\theta^nX_1^n \right]\right|&\le\mathbb E\left[ \sum_{n=3}^\infty\frac{1}{n!}|\theta|^n|X_1|^n \right]\\
+        &\le 3!\left( \frac{2\theta}{\delta} \right)^3\mathbb E[e^{\delta|X_1|}]\\
+        &\le 3!\left( \frac{2\theta}{\delta} \right)^3(\mathbb E[e^{\delta X_1}]+\mathbb E[e^{-\delta X_1}])\\
+        &=o(|\theta|^2)
+    \end{align*}
+    As desired.
+\end{proof}
+There are few important application of central limit theorem.
+\begin{example}[Normal approximation of binomials]
+    Let $(X_n)$ be iid $B(p)$ and hence $S_n\sim B(n,p)$.
+    Recall that $\mathbb E[S_n]=np$ and $\operatorname{Var}(S_n)=np(1-p)$, so
+    $$\frac{S_n-np}{\sqrt{np(1-p)}}\to\mathcal N(0,1)$$
+    in distribution.
+    So for $n$ large, $S_n\approx\mathcal N(np,np(1-p))$ for $n$ large.
+    In the Poisson approximation of the binomial, we scaled $p$ to $\lambda/n$, while in this approximation, we kept $p$ constant.
+\end{example}
+\begin{example}[Normal approximation of Poissons]
+    We now want $S_n\sim P(n)$, and to accomplish this we can write $S_n=X_1+\cdots+X_n$ where $(X_n)$ are iid $P(1)$.
+    So $(S_n-n)/\sqrt{n}\approx \mathcal N(0,1)$.
+\end{example}
+
+\subsection{Sampling error via CLT}
+A proportion $p$ of the population votes ``yes'' and $1-p$ votes ``no'' in a referendum.
+We want to estimate $p$ with error at most $\pm 4\%$ in probability at least $0.99$.
+We pick $N$ individuals at random.
+Let $S_N$ be the number of people who voted ``yes'', so we want to estimate $p$ by $\hat{p}_N=S_N/N$, so what we want is
+$$\mathbb P(|\hat{p}_N-p|\le 4\%)\ge 0.99$$
+Now $S_N\sim B(N,p)$, so by previous,
+$$\hat{p}_N=\frac{S_N}{N}\approx p+\sqrt{\frac{p(1-p)}{N}}Z,Z\sim\mathcal N(0,1)$$
+for $N$ large.
+So what we want is
+$$\mathbb P\left( \sqrt{\frac{p(1-p)}{N}}|Z|\le 4\% \right)\ge 0.99$$
+Now $\mathbb P(Z\ge z)=2(1-\Phi(z))$, then $\mathbb P(|Z|\ge 2.58)=0.01$.
+So in the worse case where $p=1/2$ gives $N\ge 1040$.
+\subsection{Buffon's Needle}
+Suppose we have parallel horizontal lines, each with distance $L$ apart from each other and we have a needle with length $ l \le L$.
+Throw the needle at random, then we want to know the probability that it intersects at least one line.
+
+Suppose we have dropped the needle, let $\Theta$ be its horizontal inclination and $X$ the distance between the distance between the left end to the line above.
+So we take $X\sim U[0,L]$ and $\Theta\sim U[0,\pi]$ and they are independent.
+Hence
+$$p=\mathbb P(\text{The needle intersects the lines})=\mathbb P(X\le l \sin\Theta).$$
+So we can now calculate this by
+\begin{align*}
+    p&=\mathbb P(\text{The needle intersects the lines})\\
+    &=\mathbb P(X\le l \sin\Theta)\\
+    &=\int_0^L\int_0^\pi 1(x\le l\sin\theta)f_{X,\Theta}(x,\theta)\,\mathrm d\theta\,\mathrm dx\\
+    &=\int_0^L\int_0^\pi  1(x\le l\sin\theta)\frac{1}{\pi L}\,\mathrm d\theta\,\mathrm dx\\
+    &=\frac{1}{\pi L}\int_0^\pi l \sin\theta\,\mathrm d\theta\\
+    &=\frac{2 l }{\pi L}.
+\end{align*}
+Hence
+\[
+    \pi=\frac{2l}{pL}.
+\]
+
+Now we want to approximate $\pi$ by this experiment.
+Throw $n$ needles independently and let $\hat{p}_n$ be the proportion of needles intersecting a line.
+We want to approximate $p$ by $\hat{p}_n$ thus approximate $\pi$ by $\hat\pi_n=2 l /(\hat{p}_nL)$.
+Suppose we want $\mathbb P(|\hat\pi_n-\pi|\le 0.001)\ge 0.99$, how large $n$ has to be?
+
+Let $S_n$ be the number of needles intersecting a line, then $S_n\sim B(n,p)$, so 
+\[
+    S_n\approx np+\sqrt{np(1-p)}Z,\quad Z \sim \mcN(0,1).
+\]
+So
+\[
+    \hat{p}_n-p\approx \sqrt{\frac{p(1-p)}{n}}Z.
+\]
+Define $f(x)=2 l /(xL)$, then $f(p)=\pi$ and $f^\prime(p)=-\pi/p$. Also $f(\hat{p}_n)=\hat\pi_n$.
+By Taylor's Theorem,
+$$\hat\pi_n=f(\hat{p}_n)\approx f(p)+(\hat{p}_n-p)f^\prime(p)=\pi-(\hat{p}_n-p)\frac{\pi}{p},$$
+substituting back gives
+$$\hat\pi_n-\pi\approx-\pi\sqrt{\frac{1-p}{pn}}Z.$$
+So
+$$\mathbb P(|\hat\pi_n-\pi|\le 0.001)=\mathbb P\left( \pi\sqrt{\frac{1-p}{pn}}|Z|<0.001 \right).$$
+Now $\mathbb P(|z|\ge 2.58)<0.01$.
+Also the variance of $\pi\sqrt{(1-p)/(pn)}Z$ is $\pi^2(1-p)/(pn)$ which is decreasing in $p$.
+We can minimize the variance by taking $ l =L$, so $p=2/\pi$ and the variance is $\pi^2(\pi/2-1)/n$, so in this case we need
+$$\sqrt{\frac{\pi^2}{n}(\frac{\pi}{2}-1)}2.58=0.001\implies n=3.75\times 10^7,$$
+which is quite large.
+
+\subsection{Bertrand's Paradox}
+We have a circle of radius $r$ and draw a chord at random.
+What is the probability that it has length at most $r$?
+
+There are two ways to do this.
+The first approach is let $X\sim U(0,r)$ to be the perpendicular distance between the chord and the center of the circle.
+Let $C$ be the length, then $ C = 2 \sqrt{r^2-X^2} $ and 
+\begin{align*}
+    \mathbb{P}(C\le r)&= \mathbb{P}(2 \sqrt{r^2-X^2}\le r)
+    = \mathbb{P}(4X^2\ge 3r^2)\\ 
+    &= \mathbb{P}\left( X\ge \frac{\sqrt{3}r}{2} \right)
+    = 1-\frac{\sqrt{3}}{2}\approx 0.134.
+\end{align*}
+
+There is a second approach.
+Fix one point of the chord and choose $\Theta\sim U[0,2\pi]$ to be the angle between this point and the other point of the chord. We have 2 cases for $C$:
+\begin{itemize}[align=left]
+    \item[$ 0\le \Theta\le \pi $.] Then $ C=2r \sin (\Theta/2) $,
+    \item[$ \pi\le \Theta\le 2\pi $.] Then $ C=2r \sin ((2\pi-\Theta)/2)=2r \sin (\Theta/2) $.
+\end{itemize}
+So 
+\begin{align*}
+    \mathbb{P}(C\le r)&= \mathbb{P}(2r \sin (\Theta/2)\le r)=\mathbb{P}(\sin (\Theta/2)\le 1/2)\\ 
+    &= \mathbb{P}(\Theta\le \pi/3) + \mathbb{P}(\Theta\ge 5\pi/3)\\ 
+    &= 1/6+1/6=1/3.
+\end{align*}
+This is far from $ 0.134 $, but this is not (technically) a paradox since we are using essentially different sample spaces.
