@@ -398,3 +398,166 @@ tensor fields.
     \]
     A similar idea can be used for any other choice of the free indices.
 \end{proof}
+
+\subsection{Rank 2 tensors}
+Particularly common in applied mathematics and physics are tensors of rank two. For any rank 2 tensor $T_{i j}$ we can always write
+\[
+\begin{aligned}
+T_{i j} &=\frac{1}{2}\left(T_{i j}+T_{j i}\right)+\frac{1}{2}\left(T_{i j}-T_{j i}\right) \\
+& \equiv S_{i j}+A_{i j}.
+\end{aligned}
+\]
+We see that $S_{i j}$ is \textbf{symmetric}
+\[
+S_{i j}=\frac{1}{2}\left(T_{j i}+T_{i j}\right)=S_{j i},
+\]
+whereas $A_{i j}$ is \textbf{anti-symmetric}
+\[
+A_{i j}=-\frac{1}{2}\left(T_{j i}-T_{i j}\right)=-A_{j i}.
+\]
+The original tensor has $3^{2}=9$ independent components. The components of a symmetric tensor $S_{i j}$ are completely determined by the entries with $i \geq j,$ of which there are
+\[
+1+2+3=6
+\]
+components. Whereas an anti-symmetric tensor $A_{i j}$ is completely determined by the components with $i>j$ (since the $i=j$ components are necessarily zero), of which there
+are
+\[
+1+2=3.
+\]
+This is good, because $6+3=9$. Since the anti-symmetric tensor $A_{i j}$ is completely determined by 3 of its components, we expect that all the information contained in $A_{i j}$ can be somehow encoded into a vector $\omega_{i}$.
+
+\begin{proposition}
+    Every rank two tensor can be decomposed uniquely as
+    \[
+    T_{i j}=S_{i j}+\epsilon_{i j k} \omega_{k},
+    \]
+    where the vector $\boldsymbol{\omega}$ is defined by $\omega_{i}=\frac{1}{2} \epsilon_{i j k} T_{j k}$ and $S_{i j}$ is symmetric.
+\end{proposition}
+\begin{proof}
+    Given our previous discussion, we can identify
+    \[
+    S_{i j}=\frac{1}{2}\left(T_{i j}+T_{j i}\right)
+    \]
+    and it remains to show that $\epsilon_{i j k} \omega_{k}=\frac{1}{2}\left(T_{i j}-T_{j i}\right) .$ We have
+    \[
+    \begin{aligned}
+    \epsilon_{i j k} \omega_{k} &=\frac{1}{2} \epsilon_{i j k} \epsilon_{k l m} T_{l m} \\
+    &=\frac{1}{2}\left(\delta_{i l} \delta_{j m}-\delta_{i m} \delta_{j l}\right) T_{l m} \\
+    &=\frac{1}{2}\left(T_{i j}-T_{j i}\right).
+    \end{aligned}
+    \]
+    If there were two such decompositions
+    \[
+    S_{i j}+\epsilon_{i j k} \omega_{k}=\tilde{S}_{i j}+\epsilon_{i j k} \tilde{\omega}_{k},
+    \]
+    then taking symmetric parts of both sides yields $S_{i j}=\tilde{S}_{i j},$ and so $\epsilon_{i j k} \omega_{k}=\epsilon_{i j k} \tilde{\omega}_{k} .$ The latter implies $\omega_{k}=\tilde{\omega}_{k},$ so the decomposition is unique.
+\end{proof}
+
+\begin{example}
+    Suppose that each point $\mathbf{x}$ in an elastic body undergoes a small displacement of $\mathbf{u}(\mathbf{x})$. Then two nearby points that were initially separated by $\delta \mathbf{x}$ become separated by
+    \[
+    (\mathbf{x}+\delta \mathbf{x}+\mathbf{u}(\mathbf{x}+\delta \mathbf{x}))-\mathbf{x}-\mathbf{u}(\mathbf{x})=\delta \mathbf{x}+\mathbf{u}(\mathbf{x}+\delta \mathbf{x})-\mathbf{u}(\mathbf{x}).
+    \]
+    So the change in displacement between the two points in the body is
+    \[
+    \mathbf{u}(\mathbf{x}+\delta \mathbf{x})-\mathbf{u}(\mathbf{x})
+    \]
+    This gives a measure of how much deformation happens to the body. Using Taylor's theorem with Cartesian coordinates and suffix notation
+    \[
+    u_{i}(\mathbf{x}+\delta \mathbf{x})-u_{i}(\mathbf{x})=\frac{\partial u_{i}}{\partial x_{j}} \delta x_{j}+o(\delta \mathbf{x}).
+    \]
+    We decompose the second rank tensor $\partial u_{i} / \partial x_{j}$ as
+    \[
+    \frac{\partial u_{i}}{\partial x_{j}}=e_{i j}+\epsilon_{i j k} \omega_{k},
+    \]
+    where $e_{i j}=\frac{1}{2}\left(\frac{\partial u_{i}}{\partial x_{j}}+\frac{\partial u_{j}}{\partial x_{i}}\right)$ is called the \textbf{linear strain tensor} and
+    \[
+    \omega_{i}=\frac{1}{2} \epsilon_{i j k} \frac{\partial u_{j}}{\partial x_{k}}=-\frac{1}{2}(\nabla \times \mathbf{u})_{i}
+    \]
+    This tells us that
+    \[
+    u_{i}(\mathbf{x}+\delta \mathbf{x})-u_{i}(\mathbf{x})=e_{i j} \delta x_{j}+[\boldsymbol{\omega} \times \delta \mathbf{x}]_{i}+o(\delta \mathbf{x})
+    \]
+    The second term is just a solid body rotation\footnote{Remember from IA Vectors \& Matrices that a rotation about $\mathbf{n}$ by $\theta$ is
+    \[
+    R \mathbf{x}=\mathbf{x} \cos \theta+(\mathbf{n} \times \mathbf{x}) \sin \theta+\mathbf{n}(\mathbf{n} \cdot \mathbf{x})(1-\cos \theta)=\mathbf{x}+\theta(\mathbf{n} \times \mathbf{x})+o(\theta), \quad \theta \rightarrow 0.
+    \]
+    So the change in displacement owing to a small rotation is $R \delta \mathbf{x}-\delta \mathbf{x}=\theta(\mathbf{n} \times \delta \mathbf{x})+o(\theta),$ hence the
+    identification of the second term with a solid rotation.} whereas the first term tells us about how
+    the material stretches and/or compresses internally.
+\end{example}
+
+\begin{example}
+    A well known symmetric rank 2 tensor is the \textbf{inertia tensor}. Suppose a body with uniform density $\rho(\mathbf{x})$ occupies a volume $V$. Suppose each point in the body is rotating with constant angular velocity $\boldsymbol{\omega}$ about the origin, so the velocity of a point at $\mathbf{x} \in V$ is $\mathbf{v}=\boldsymbol{\omega} \times \mathbf{x}$. Then the total angular momentum about the origin is
+    \[
+    \begin{aligned}
+    \mathbf{L} &=\int_{V}(\mathbf{x} \times \mathbf{v}) \rho(\mathbf{x}) \mathrm{d} V \\
+    &=\int_{V} \mathbf{x} \times(\boldsymbol{\omega} \times \mathbf{x}) \rho(\mathbf{x}) \mathrm{d} V.
+    \end{aligned}
+    \]
+    Using suffix notation we find
+    \[
+    L_{i}=\int_{\mathcal{V}} \rho(\mathbf{x})\left(x_{k} x_{k} \omega_{i}-x_{i} x_{j} \omega_{j}\right) \mathrm{d} V=I_{i j} \omega_{j}
+    \]
+    where we have defined the inertia tensor by
+    \[
+    I_{i j}=\int_{\mathcal{V}} \rho(\mathbf{x})\left(x_{k} x_{k} \delta_{i j}-x_{i} x_{j}\right) \mathrm{d} V
+    \]
+    and the integral is taken over $\mathcal{V}=\left\{\left(x_{1}, x_{2}, x_{3}\right): \mathbf{x}=x_{i} \mathbf{e}_{i} \in V\right\} .$ If we had used a different set of Cartesian basis vectors $\left\{\mathbf{e}_{i}^{\prime}\right\}$ with $\mathbf{x}=x_{i}^{\prime} \mathbf{e}_{i}^{\prime}$ etc we would have found
+    \begin{align*}
+        I_{i j}^{\prime}&=\int_{\mathcal{V}^{\prime}} \rho(\mathbf{x})\left(x_{k}^{\prime} x_{k}^{\prime} \delta_{i j}-x_{i}^{\prime} x_{j}^{\prime}\right) \mathrm{d} V\\ &=R_{i p} R_{j q} \int_{\mathcal{V}} \rho(\mathbf{x})\left(x_{k} x_{k} \delta_{p q}-x_{p} x_{q}\right) \mathrm{d} V\\ &=R_{i p} R_{j q} I_{p q}
+    \end{align*}
+    where $\mathcal{V}^{\prime}=\left\{\left(x_{1}^{\prime}, x_{2}^{\prime}, x_{3}^{\prime}\right): \mathbf{x}=x_{i}^{\prime} \mathbf{e}_{i}^{\prime} \in V\right\} .$ So it really is a symmetric tensor of rank 2 .
+\end{example}
+
+\begin{example}
+    Consider an ellipsoid given in a particular Cartesian coordinate system by
+    \[
+    \frac{x_{1}^{2}}{a^{2}}+\frac{x_{2}^{2}}{b^{2}}+\frac{x_{3}^{2}}{c^{2}} \le 1
+    \]
+    with uniform density $\rho_{0}$, so has mass $M=\frac{4 \pi a b c}{3} \rho_{0} .$ To compute the inertia tensor for this solid we use scaled spherical polar coordinates
+    \[
+    x_{1}=a r \cos \phi \sin \theta, \quad x_{2}=b r \sin \phi \sin \theta, \quad x_{3}=c r \cos \theta
+    \]
+    with $0 \le r \le 1$. Note that if $i \neq j$ then $ \int_{V} \rho_{0} x_{i} x_{j} \mathrm{~d} V=0 $ by symmetry. Also
+    \[
+    \begin{aligned}
+    I_{11} &=\rho_{0} \int_{V}\left(x_{2}^{2}+x_{3}^{2}\right) \mathrm{d} V \\
+    &=\rho_{0} a b c \int_{r=0}^{1} \int_{\theta=0}^{\pi} \int_{\phi=0}^{2 \pi} r^{2}\left(b^{2} \sin ^{2} \phi \sin ^{2} \theta+c^{2} \cos ^{2} \theta\right) r^{2} \sin \theta \mathrm{d} r \mathrm{~d} \theta \mathrm{d} \phi \\
+    &=\frac{\rho_{0} a b c}{5} \int_{0}^{\pi}\left(\pi b^{2} \sin ^{2} \theta+2 \pi c^{2} \cos ^{2} \theta\right) \sin \theta \mathrm{d} \theta \\
+    &=\frac{3 M}{4} \frac{1}{5} \int_{0}^{\pi}\left(b^{2} \sin \theta+\left(2 c^{2}-b^{2}\right) \cos ^{2} \theta \sin \theta\right) \mathrm{d} \theta \\
+    &=\frac{3 M}{20}\left(2 b^{2}+\frac{2}{3}\left(2 c^{2}-b^{2}\right)\right) \\
+    &=\frac{M}{5}\left(b^{2}+c^{2}\right)
+    \end{aligned}
+    \]
+    and by symmetry
+    \[
+    I_{22}=\frac{M}{5}\left(a^{2}+c^{2}\right), \quad I_{33}=\frac{M}{5}\left(a^{2}+b^{2}\right).
+    \]
+    So in the coordinate system aligned with the axes of symmetry of the ellipsoid
+    \[
+    \left(I_{i j}\right)=\frac{M}{5}\begin{pmatrix}
+        b^{2}+c^{2} & 0 & 0 \\
+    0 & a^{2}+c^{2} & 0 \\
+    0 & 0 & a^{2}+b^{2}
+    \end{pmatrix}.
+    \]
+    Note that if $a=b=c$ then $I_{i j}=\frac{2}{5} M \delta_{i j}$.
+\end{example}
+
+For symmetric, second rank tensors we also have the following result.
+\begin{proposition}
+    If $T_{i j}$ is a symmetric, second rank tensor then there exists a choice of right-handed Cartesian coordinates axes in which
+    \[
+    \left(T_{i j}\right)=\begin{pmatrix}
+        \alpha & 0 & 0 \\
+    0 & \beta & 0 \\
+    0 & 0 & \gamma
+    \end{pmatrix}.
+    \]
+    The corresponding Cartesian axes are called the \textbf{principal axes} for $T$.
+\end{proposition}
+\begin{proof}
+    This is a direct consequence of the fact that a real symmetric matrix can be diagonalised using orthogonal transformation $R,$ for which we can assume $\det(R)=1$ without loss of generality.
+\end{proof}
+In particular, for the inertia tensor $I_{i j}$ we can \textit{always} choose a set of axes so that the components form a diagonal array. These axes usually correspond to some obvious lines of symmetry on the body.

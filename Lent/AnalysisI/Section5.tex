@@ -302,8 +302,101 @@ Let $f:[a,b]\to \mathbb{R} $ be bounded ($ |f(x)|\le K $) and integrable. Define
     We actually have solved the ODE 
     \[
         \begin{cases}
-         y'(x)=f(x)\\
-         y(a)=y_0\\
+         y'(x)=f(x),\\
+         y(a)=y_0.\\
         \end{cases}
     \]
 \end{remark}
+
+\begin{corollary}[Integration by Part]
+    Suppose $f,g:[a,b]\to\mathbb R$ are continuously differentiable on $[a,b]$, then
+    $$\int_a^bg^\prime(t)h(t)\,\mathrm dt=g(b)h(b)-g(a)h(a)-\int_a^bg(t)h^\prime(t)\,\mathrm dt.$$
+\end{corollary}
+\begin{proof}
+    By product rule, $ (fg)'=f'g+fg' $ and by FTC,
+    \[
+        f(b)g(b)-f(a)g(a)=\int_{a}^{b} f'(x)g(x) \,\mathrm{d}x + \int_{a}^{b} f(x)g'(x) \,\mathrm{d}x.\qedhere
+    \]
+\end{proof}
+\begin{corollary}[Integration by substitution]
+    Suppose $f:[a,b]\to\mathbb R$ is continuous and $g:[\alpha,\beta]\to\mathbb R$ is continuously differentiable on $ [\alpha,\beta] $, and $g(\alpha)=a, g(\beta)=b$, then
+    $$\int_a^bf(x)\,\mathrm dx=\int_\alpha^\beta f(g(t))g^\prime(t)\,\mathrm dt.$$
+\end{corollary}
+\begin{proof}
+    Set 
+    \[
+        F(x) = \int_{a}^{x} f(t) \,\mathrm{d}t,\quad h(t) = F(g(t)).
+    \]
+    Then
+    \[
+        \int_{\alpha}^{\beta} f(g(t))g'(t) \,\mathrm{d}t = \int_{\alpha}^{\beta} F'(g(t))g'(t) \,\mathrm{d}t = \int_{\alpha}^{\beta} h'(t) \,\mathrm{d}t = h(\beta)-h(\alpha),
+    \]
+    which is exactly $ F(b)-F(a) $.
+\end{proof}
+
+We introduce a definition that makes our lives easier:
+\begin{definition}
+    $ f: \mathbb{R} \ni E \to \mathbb{R}  $ is said to be $ C^k,\ k\in \mathbb{N} $, if $ f^{(i)} $ exists and is continuous for all $i=1,\dots,k$. We say $f$ is $ C^\infty $ if $ f^{(n)} $ exists and is continuous for all $n\in \bbN$.
+\end{definition}
+
+\begin{theorem}[Taylor's theorem with integral remainder]
+    If $f$ is $C^n$ for $ x\in [0,h] $, then 
+    \[
+        f(h) = \sum_{k=0}^{n-1}\frac{h^k f^{(k)}(0)}{k!} + R_n,
+    \]
+    where $ R_n $ is the \textbf{integral remainder}
+    \[
+        R_n = \frac{h^n}{(n-1)!}\int_{0}^{1} (1-t)^{n-1}f^{(n)}(th) \,\mathrm{d}t.
+    \]
+\end{theorem}
+\begin{proof}
+    By substituting $ u=th $, 
+    \[
+        R_n = \frac{1}{(n-1)!}\int_{0}^{h} (h-u)^{n-1}f^{(n)}(u) \,\mathrm{d}u .
+    \]
+    Integrating by parts we get 
+    \begin{align*}
+        R_n&= -\frac{h^{n-1}f^{(n-1)}(0)}{(n-1)!}+\frac{1}{(n-2)!} \int_{0}^{h} (h-u)^{n-2}f^{(n-1)}(u) \,\mathrm{d}u\\ &= -\frac{h^{n-1}f^{(n-1)}(0)}{(n-1)!}+R_{n-1}\\ 
+        &= \cdots = - \sum_{k=1}^{n-1}\frac{h^kf^{(k)}(0)}{k!} + \int_{0}^{h} f'(u) \,\mathrm{d}u\\ 
+        &= - \sum_{k=1}^{n-1}\frac{h^kf^{(k)}(0)}{k!} +f(h)-f(0).\qedhere
+    \end{align*}
+\end{proof}
+We can use this to get Cauchy and Lagrange forms of remainders. However, note that the proof above uses continuity of $f^{(n)}$, not just mere existence as in section 3. But first,
+\begin{theorem}[Integral Mean Value Theorem]
+    If $ f,g:[a,b]\to \mathbb{R}  $ are continuous with $ g(x)\neq 0 $, then $ \exists c\in (a,b) $ such that 
+    \[
+        \int_{a}^{b} f(x)g(x) \,\mathrm{d}x = f(c) \int_{a}^{b} g(x) \,\mathrm{d}x.
+    \]
+\end{theorem}
+\begin{note}
+    If take $ g(x)=1 $ then 
+    \[
+        \int_{a}^{b} f(x) \,\mathrm{d}x = f(c)(b-a),
+    \]
+    which is the integral form of differential MVT.
+\end{note}
+\begin{proof}
+    Use Cauchy's MVT on 
+    \[
+        F(x) = \int_{a}^{x} f(x)g(x) \,\mathrm{d}t,\quad G(x)=\int_{a}^{x} g(t) \,\mathrm{d}t,
+    \]
+    $ \exists c\in (a,b) $ such that 
+    \begin{align*}
+        &(F(b)-F(a))G'(c)=F'(c)(G(b)-G(a))\\ 
+        \Longrightarrow & \left( \int_{a}^{b} f(x)g(x) \,\mathrm{d}x \right)g(c)=f(c)g(c)\left( \int_{a}^{b} g(x) \,\mathrm{d}x \right).
+    \end{align*}
+    Since $g(c)\neq 0$ by assumption, the result follows.
+\end{proof}
+
+Start from 
+\[
+    R_n = \frac{h^n}{(n-1)!}\int_{0}^{1} (1-t)^{n-1}f^{(n)}(th) \,\mathrm{d}t,
+\]
+by applying MVT with $g=1$ we get
+\[
+    R_n = \frac{h^n (1-\theta)^{n-1}}{(n-1)!}f^{(n)}(\theta h),\quad \theta\in (0,1),
+\]
+the Cauchy form. To get Lagrange, apply MVT with $ g(t)=(1-t)^{n-1}>0 $ for $ t\in (0,1)$
+\[
+    R_n=\frac{h^n}{(n-1)!} f^{(n)}(\theta h) \int_{0}^{1} (1-t)^{n-1} \,\mathrm{d}t = \frac{h^n }{n!}f^{(n)}(\theta h),\quad \theta\in (0,1). 
+\]

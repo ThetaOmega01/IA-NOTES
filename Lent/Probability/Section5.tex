@@ -1,4 +1,5 @@
 \section{Multidimensional Gaussian r.v.s}
+\subsection{Basic definitions}
 \begin{definition}
     A random variable $X$ in $\mathbb R$ is called \textbf{Gaussian} if $X=\mu+\sigma Z$ for $Z\sim\mathcal N(0,1)$ and $ \mu\in \mathbb{R}, \sigma\in [0,\infty) $.
     It has density, as we have seen,
@@ -22,3 +23,100 @@
     \]
     Since $\bfX$ is Gaussian, $ \bfv^\top \bfX $ is Gaussian and $ \bfv^\top \bfX + \bfu^\top \bfb $ is Gaussian.
 \end{example}
+\subsection{Mean, variance and covariance}
+
+\begin{definition}
+    The \textbf{mean} or \textbf{expectation} $ \boldsymbol{\mu} $ of $\bfX$ is defined by 
+    \[
+        \boldsymbol{\mu} = \bbE[\bfX] = \begin{pmatrix}
+            \bbE[X_1] \\ \vdots \\ \bbE[X_n]
+        \end{pmatrix},\quad \mu_i = \bbE[X_i].
+    \]
+    The \textbf{variance} $ V\in \mcM_{n \times n}(\bbR) $ of $ \bfX $ is defined by 
+    \begin{align*}
+        V &= \var(\bfX)= \bbE\left[ (\bfX-\boldsymbol{\mu})(\bfX-\boldsymbol{\mu})^\top \right] \\ 
+        &= (\bbE[(X_i-\mu_i)(X_j-\mu_j)])_{ij} = (\cov(X_i,X_j))_{i,j}.
+    \end{align*}
+\end{definition}
+We see that $V$ is a symmetric matrix since $ \cov(X_i,X_j)=\cov(X_j,X_i) $. Also $ \forall \bfu\in \mathbb{R}^{n} $,
+\[
+    \bbE[\bfu^\top\bfX] = \bfu^\top \boldsymbol{\mu},\quad \var(\bfu^\top \bfX) = \bfu^\top V \bfu, \Longrightarrow \boxed{\bfu^\top \bfX\sim\mathcal N(\bfu^\top \boldsymbol{\mu},\bfu^\top V\bfu)}
+\]
+\begin{proposition}
+    $V$ is a non-negative definite matrix. That is $ \forall \bfu\in \mathbb{R}^{n}, \bfu^\top V\bfu\ge 0 $.
+\end{proposition}
+\begin{proof}
+    Let $\bfu\in \mathbb{R}^{n}$. Then $ \var(\bfu^\top \bfX)=\bfu^\top V\bfu\ge 0 $.
+\end{proof}
+\subsection{Moment generating functions}
+\begin{definition}
+    Take any $ \boldsymbol{\lambda}\in \mathbb{R}^{n} $. Define the MGF of $\bfX$ as
+    \[
+        m(\boldsymbol{\lambda}) = \bbE[ e^{\boldsymbol{\lambda}^\top \bfX} ].
+    \]
+\end{definition}
+
+Since $ \boldsymbol{\lambda}^\top \bfX \sim \mcN(\boldsymbol{\lambda}^\top \boldsymbol{\mu}, \boldsymbol{\lambda}^\top V \boldsymbol{\lambda}) $,
+\[
+    m(\boldsymbol{\lambda}) = \bbE[ e^{\boldsymbol{\lambda}^\top \bfX} ]= e^{\boldsymbol{\lambda}^\top \boldsymbol{\mu}+ \boldsymbol{\lambda}^\top V \boldsymbol{\lambda}/2}.
+\]
+So by uniqueness of MGFs, we see that the distribution of a Gaussian vector is uniquely characterized by its mean $\boldsymbol{\mu}$ and variance $V$, so we write $\bfX\sim\mathcal N(\boldsymbol{\mu},V)$.
+
+\paragraph{Standard Gaussian distribution.} Let $ Z_1,\dots,Z_n \sim \mcN(0,1) $ be iid rvs. Set $ \bfZ = (Z_1,\dots,Z_n)^\top  $. Claim that $\bfZ$ is Gaussian. Indeed, given $ \bfu\in \mathbb{R}^{n} $, we want to show that
+\begin{align*}
+    \bfu^\top\bfZ &= \sum_{i=1}^{n} u_i Z_i
+\end{align*}
+is normal. We do this by considering expectation. Let $ \lambda\in \mathbb{R} $, 
+\begin{align*}
+    \bbE[ e^{\lambda \sum_{i=1}^{n}u_iZ_i}] &= \bbE \left[ \prod_{i=1}^{n} e^{\lambda u_i Z_i} \right] = \prod_{i=1}^{n}\bbE[e^{\lambda u_i Z_i}]\\ 
+    &= \prod_{i=1}^{n} e^{(\lambda u_i)^2/2} = e^{\lambda^2|\bfu|^2/2},
+\end{align*}
+so $ \bfu^\top \bfZ \sim \mcN(0,|\bfu|^2) $. Note that $ \bbE[\bfZ]=\mathbf{0},\ \var(\bfZ)= I $, where $I$ is the $n\times n$ identity matrix. So $ \bfZ = \mcN(\mathbf{0}, I) $.
+
+\paragraph{Construction from the standard.} Let $ \boldsymbol{\mu}\in \mathbb{R}^{n} $ and $ V $ a non-negative definite matrix. We want to construct a Gaussian vector with mean $ \boldsymbol{\mu} $ and variance $ V $ using the standard vector $ \bfZ $. When $n=1$ it is just the privious case $ X=\mu+\sigma Z \sim \mcN(\mu,\sigma^2) $. If $ n\ge 2 $, note that since $V$ is symmetric and non-negative definite, we can diagonalise $V$ as 
+\[
+    V = U^\top D U,\quad U^\top =U^{-1},\quad D= \begin{pmatrix}
+        \lambda_1 &  & 0 \\
+         & \ddots  &  \\
+        0 &  & \lambda_n \\
+    \end{pmatrix}
+\]
+where $ \lambda_i\ge 0 $. We defined the square root of $V$ to be $ \sigma\in \mcM_{n \times n}(\bbR) $ as 
+\[
+    \sigma = U^\top \sqrt{D} U,\quad \sqrt{D}= \begin{pmatrix}
+        \sqrt{\lambda_1} &  & 0 \\
+         & \ddots  &  \\
+        0 &  & \sqrt{\lambda_n} \\
+    \end{pmatrix}.
+\]
+Indeed we have $ \sigma \sigma = V $.
+
+Now we can construct our r.v. as 
+\[
+    \bfX = \boldsymbol{\mu}+ \sigma \bfZ.
+\]
+\begin{claim}
+    $ \bfX \sim \mcN(\boldsymbol{\mu},V) $.
+\end{claim}
+\begin{proof}
+    By example 5.1, $\bfX$ is Gaussian. Also $ \bbE[\bfX]=\boldsymbol{\mu} $ and
+    \begin{align*}
+        \var(\bfX)&= \bbE[(\bfX-\boldsymbol{\mu})(\bfX-\boldsymbol{\mu})^\top]=\bbE[(\sigma\bfZ)(\sigma\bfZ)^\top ]\\ 
+        &= \bbE[\sigma\bfZ \bfZ^\top \sigma^\top ] = \sigma \bbE[\bfZ \bfZ^\top]\sigma = \sigma I \sigma = V.\qedhere
+    \end{align*}
+\end{proof}
+
+\paragraph{Density of $ \bfX \sim \mcN(\boldsymbol{\mu},V) $.} Assume $V$ is positive definite, then $\det V=\prod_i\lambda_i>0$. Also since $\bfX=\boldsymbol{\mu}+\sigma \bfZ$, we can invert to get $\bfZ=\sigma^{-1}(\bfX-\boldsymbol{\mu})$, hence
+\begin{align*}
+    f_\bfX(\bfx)&=f_\bfZ(\bfz)|J|\\
+    &=\prod_{i=1}^n\frac{e^{-z_i^2/2}}{\sqrt{2\pi}}|\det(\sigma^{-1})|=\frac{1}{\sqrt{(2\pi)^n\det V}}e^{-\bfz^\top \bfz/2}\\
+    &=\frac{1}{\sqrt{(2\pi)^n\det V}}\exp \left( \frac{-(\bfx-\boldsymbol{\mu})^\top V^{-1}(\bfx-\boldsymbol{\mu})}{2} \right).
+\end{align*}
+If we only assume $V$ is nonnegative definite, then we can have $0$ eigenvalues hence $0$ determinant.
+In this case, we can change the basis to get something of the form
+$$\begin{pmatrix}
+    U&0\\
+    0&0
+\end{pmatrix}$$
+where $U$ is positive definite $m\times m$ matrix and $\boldsymbol{\mu}=(\boldsymbol{\lambda}^\top,\boldsymbol{\nu}^\top)^\top$ where $\boldsymbol{\lambda}\in\mathbb R^m,\boldsymbol{\nu}\in\mathbb R^{n-m}$, then we write $\bfX=(\bfY^\top,\boldsymbol{\nu}^\top)^\top$ where $\bfY$ has
+$$f_\bfY(\bfy)=\frac{1}{\sqrt{(2\pi)^n\det U}}\exp \left( \frac{-(\bfy-\boldsymbol{\lambda})^\top U^{-1}(\bfy-\boldsymbol{\lambda})}{2} \right).$$
