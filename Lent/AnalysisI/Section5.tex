@@ -400,3 +400,151 @@ the Cauchy form. To get Lagrange, apply MVT with $ g(t)=(1-t)^{n-1}>0 $ for $ t\
 \[
     R_n=\frac{h^n}{(n-1)!} f^{(n)}(\theta h) \int_{0}^{1} (1-t)^{n-1} \,\mathrm{d}t = \frac{h^n }{n!}f^{(n)}(\theta h),\quad \theta\in (0,1). 
 \]
+
+\begin{theorem}[Newton's Binomial Theorem]\label{gen_bin}
+    For $x\in (-1,1)$, $P(x)$ converges to $(1+x)^s$.
+\end{theorem}
+\begin{lemma}
+    $$k\binom{s}{k}=s\binom{s-1}{k-1},\binom{s}{k-1}+\binom{s}{k}=\binom{s+1}{k}$$ 
+\end{lemma}
+\begin{proof}
+    Trivial.
+\end{proof}
+\begin{proof}[Proof of Theorem \ref{gen_bin}]
+    By termwise differentiation,
+    $$(1+x)P^\prime(x)=(1+x)\sum_{i=0}^\infty i\binom{s}{i}x^{i-1}=sP(x)$$
+    by the preceding lemma.
+    So consider $h(x)=(1+x)^{-s}P(x)$, so $h^\prime(x)=0$ by the differential equation we obtained above, hence $h$ is constant in $(-1,1)$, hence $h\equiv h(0)=1$.
+    Therefore $P(x)=(1+x)^s$ for each $x\in (-1,1)$.
+\end{proof}
+
+\subsection{Improper integrals}
+
+Our definition of integral
+$$\int_a^bf(x)\,\mathrm dx$$
+requires $a,b<\infty$ and $f$ is defined and bounded in $[a,b]$.
+But we'd also like to think about things like
+$$\int_1^\infty\frac{\mathrm dx}{x^2+1},\int_0^1\frac{\mathrm dx}{\sqrt{x}}$$
+which are not defined in our previous definition of integral.
+
+Suppose $f:[a,b)\to\mathbb R$ is continuous and $b\in\mathbb R\cup\{\infty\}$.
+Then if $x\in [a,b)$, then
+$$\int_a^xf(t)\,\mathrm dt$$
+is well-defined since $f$ is continuous on $[a,x]$.
+
+\begin{definition}
+    If $f:[a,b)\to\mathbb R$ is continuous and
+    $$\lim_{x\to b^-}\int_a^x f(t)\,\mathrm dt$$
+    exists and equals to some $\ell\in\mathbb R$, we define
+    $$\int_a^bf(t)\,\mathrm dt=\ell $$
+    and say that this integral \textit{exists} and \textit{converges}.
+    If this limit does not exist, we say the integral diverges.
+
+    Similarly, if $f:(a,b]\to\mathbb R$ is continuous and
+    $$\lim_{x\to a^+}\int_x^bf(t)\,\mathrm dt$$
+    exists and equals to $\ell $, then we define
+    $$\int_a^bf(t)\,\mathrm dt=\ell $$
+    and say that this integral converges.
+    Otherwise we say this integral diverges.
+\end{definition}
+Note that by FTC this definition (whenever the integral converges) does coincide with our original definition of integrals.
+\begin{remark}
+    The last part is NOT the same as saying that the symmetric limit
+    \[
+        \lim_{R \to \infty} \int_{-R}^{R} f(x) \,\mathrm{d}x
+    \]
+    exists. It is a stronger statement. e.g. 
+    \[
+        \int_{-R}^{R} x \,\mathrm{d}x=0
+    \]
+    but $ \int_{0}^{\infty} x \,\mathrm{d}x $ and $ \int_{-\infty}^{0} x \,\mathrm{d}x $ both diverge. In order to make this a thing, we need to introduce concept of \textbf{principal value} and that is beyond this course.
+\end{remark}
+
+\begin{example}
+    Consider the integral
+    $$\int_1^\infty t^{-s}\,\mathrm dt$$
+    Then for $s>1$, then integral converges and equals $1/(s-1)$, and it diverges for $s\le 1$.
+    Similarly
+    $$\int_0^1 t^{-s}\,\mathrm dt$$
+    converges iff $s<1$.
+\end{example}
+Even more generally,
+\begin{definition}
+    If $f:(a,b)\to\mathbb R$ is continuous, then choose $c\in (a,b)$, then if
+    $$\int_a^cf(t)\,\mathrm dt,\int_c^bf(t)\,\mathrm dt$$
+    both converge, then we say the integral of $f(t)$ over $(a,b)$ converges and
+    $$\int_a^bf(t)\,\mathrm dt=\int_a^cf(t)\,\mathrm dt+\int_c^bf(t)\,\mathrm dt$$
+\end{definition}
+Note that this definition (both the convergence and the value of the integral) does not depend on the choice of $c$.
+
+\begin{remark}
+    The second definition is NOT the same as saying that, for example in $(-\infty,\infty) $ case, thatx the symmetric limit
+    \[
+        \lim_{R \to \infty} \int_{-R}^{R} f(x) \,\mathrm{d}x
+    \]
+    exists. It is a stronger statement.
+\end{remark}
+\begin{example}
+    We have
+    $$\int_{-\infty}^\infty\frac{\mathrm dx}{1+x^2}=\int_{-\infty}^0\frac{\mathrm dx}{1+x^2}+\int_{0}^\infty\frac{\mathrm dx}{1+x^2}=\pi$$
+    But
+    $$\int_{-\infty}^\infty t\,\mathrm dt$$
+    does not converge since
+    $$\int_0^\infty f(t)\,\mathrm dt$$
+    does not converge.
+    $$\int_0^\infty t^{-s}\,\mathrm dt=\int_0^1 t^{-s}\,\mathrm dt+\int_1^\infty t^{-s}\,\mathrm ds$$
+    never converges for any value of $s$.
+\end{example}
+\begin{sprop}
+    If $f,g\ge 0$ for $x\in [a,b)$ and $ f(x)\le Kg(x),\ \forall x\ge a, K $ constant, then 
+    \[
+        \int_{a}^{b} g(x) \,\mathrm{d}x \text{ converges} \Longrightarrow \int_{a}^{b} f(x) \,\mathrm{d}x \text{ converges},
+    \]
+    and 
+    \[
+        \int_{a}^{b} f(x) \,\mathrm{d}x\le K \int_{a}^{b} g(x) \,\mathrm{d}x.
+    \]
+\end{sprop}
+\begin{example}
+    Since $ e^{-x^2/2}\le e^{x/2} $ for $x\ge 1$, the integral over $ [0,\infty) $ of the first function is convergent.
+\end{example}
+\begin{remark}
+    We know that if $ \sum a_n $ converges then $ a_n\to 0 $. We have to be a little more careful with improper integrals. Construct a counterexample yourself!
+\end{remark}
+
+\begin{theorem}[The Integral Test]
+    Suppose $f:[1,\infty)\to[0,\infty)$ is continuous and decreasing, then
+    $$\sum_{n=1}^\infty f(n) \text{ converges} \Longleftrightarrow \int_1^\infty f(t)\,\mathrm dt \text{ converges}$$
+    and 
+    \[
+        \sum_{n=1}^\infty f(n) \text{ diverges} \Longleftrightarrow \int_1^\infty f(t)\,\mathrm dt \text{ diverges}.
+    \]
+    Also as $ n\to \infty $, 
+    \[
+        \sum_{r=1}^{n}f(r)-\int_{1}^{n} f(x) \,\mathrm{d}x\to \ell 
+    \]
+    such that $ 0\le \ell \le f(1) $.
+\end{theorem}
+\begin{proof}
+    Clearly that if $ n-1\le x\le n $, then $ f(n-1)\ge f(x)\ge f(n) $. Integrating gives 
+    \[
+        f(n-1)\ge \int_{n-1}^{n} f(x) \,\mathrm{d}x\ge f(n).
+    \]
+    Adding from $2$ to $n$ we get 
+    \[
+        \sum_{r=1}^{n-1}f(r) \ge \int_{1}^{n} f(x) \,\mathrm{d}x\ge \sum_{r=2}^{n}f(r).
+    \]
+    The first claim follows. For the proof of the second one, let
+    \[
+        \phi(n) = \sum_{r=1}^{n}f(r)-\int_{1}^{n} f(x) \,\mathrm{d}x.
+    \]
+    Observe that 
+    \[
+        \phi(n)-\phi(n-1) = f(n)-\int_{n-1}^{n} f(x) \,\mathrm{d}x\le 0
+    \]
+    by the first inequality. Also 
+    \[
+        0\le \phi(n)\le f(1)
+    \]
+    by the second inequality. The result follows.
+\end{proof}

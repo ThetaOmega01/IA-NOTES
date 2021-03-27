@@ -120,3 +120,91 @@ $$\begin{pmatrix}
 \end{pmatrix}$$
 where $U$ is positive definite $m\times m$ matrix and $\boldsymbol{\mu}=(\boldsymbol{\lambda}^\top,\boldsymbol{\nu}^\top)^\top$ where $\boldsymbol{\lambda}\in\mathbb R^m,\boldsymbol{\nu}\in\mathbb R^{n-m}$, then we write $\bfX=(\bfY^\top,\boldsymbol{\nu}^\top)^\top$ where $\bfY$ has
 $$f_\bfY(\bfy)=\frac{1}{\sqrt{(2\pi)^n\det U}}\exp \left( \frac{-(\bfy-\boldsymbol{\lambda})^\top U^{-1}(\bfy-\boldsymbol{\lambda})}{2} \right).$$
+
+\begin{lemma}
+    If $X_i$ are independent, then $V$ is diagonal.
+\end{lemma}
+\begin{proof}
+    Since $X_i$ are independent, $ \cov(X_i,X_j)=0,\ i\neq j $ so $ V $ is diagonal.
+\end{proof}
+\begin{proposition}
+    Let $\bfX=(X_1,\ldots,X_n)$ be Gaussian, and suppose that $\cov(X_i,X_j)=0$ when $i\neq j$, then $X_i$ are independent Gaussians.
+\end{proposition}
+\begin{proof}
+    It follows that $V$ is diagonal. Then $V^{-1}$ is also diagonal and the density $ f_{\bfX}(\bfx) $ factorises into a product. Indeed,
+    \[
+        (\bfx-\boldsymbol{\mu})^\top V^{-1} (\bfx-\boldsymbol{\mu}) = \sum_{i=1}^{n}\frac{(x_i-\mu_i)^2}{\lambda_i},
+    \]
+    so 
+    \[
+        f_{\bfx}(\bfx) = \frac{1}{\sqrt{(2\pi)^n\det V}} \exp \left( - \sum_{i=1}^{n}\frac{(x_i-\mu_i)^2}{2\lambda_i}\right).
+    \]
+    So $X_i$ are independent.
+\end{proof}
+\begin{proof}[Alternatively,]
+    note that $ m(\boldsymbol{\theta})=e^{\boldsymbol{\theta}^\top \boldsymbol{\mu}+ \boldsymbol{\theta}^\top V \boldsymbol{\theta}/2} = e^{\sum \theta_i \mu_i} \cdot e^{(\sum \theta_i^2 \lambda_i)/2} $, so $ m(\boldsymbol{\theta}) $ factorises into mgfs of Gaussians in $\bbR$. Hence $ X_i $ are independent Gaussians.
+\end{proof}
+
+So for Gaussian vectors, we have 
+\[
+    (X_1,\dots,X_n) \text{ independent} \Longleftrightarrow \cov(X_i,X_j)=0,\quad i\neq j.
+\]
+
+\subsection{Bivariate Gaussians}
+Set $ \bfX=(X_1,X_2)\in \mathbb{R}^{2} $ Gaussian. Let $ \mu_k=\bbE[X_k],\ k=1,2 $ and $ \sigma_k^2 = \var(X_k) $. Define
+$$\rho=\operatorname{Corr}(X_1,X_2)=\frac{\operatorname{Cov}(X_1,X_2)}{\sqrt{\operatorname{Var}(X_1)\operatorname{Var}(X_2)}}.$$
+
+\begin{claim}
+    $ \rho\in [-1,1] $.
+\end{claim}
+\begin{proof}
+    From Cauchy-Schwartz.
+\end{proof}
+
+Hence we have
+$$V=\operatorname{Var}(X)=\begin{pmatrix}
+    \sigma_1^2&\rho\sigma_1\sigma_2\\
+    \rho\sigma_1\sigma_2&\sigma_2^2
+\end{pmatrix}.$$
+
+
+\begin{claim}
+    For all $ \sigma_k>0,\rho\in [-1,1] $, $V$ is non-negative definite.
+\end{claim}
+Indeed, for any $\bfx=(x_1,x_2)$, we have $\bfx^\top V\bfx\ge 0$ by calculation. In particular, if $\rho=0$ and $\sigma_k>0$, then $f_{X_1,X_2}(x_1,x_2)$ can be found by multiplying the $\mathcal N(\mu_k,\sigma_k)$ since $X_1,X_2$ are independent as we have seen before.
+
+
+\begin{sque}
+    Let $ (X_1,X_2) $ be Gaussian. What is $ \bbE[X_2|X_1] $?
+\end{sque}
+
+Let $a\in\mathbb R$, then $\operatorname{Cov}(X_2-aX_1,X_1)=\operatorname{Cov}(X_1,X_2)-a\operatorname{Var}(X_1)=\rho\sigma_1\sigma_2-a\sigma_1^2$. Take $a=\rho\sigma_1/\sigma_2$ and $Y=X_2-aX_1$, then $\operatorname{Cov}(X_1,Y)=0$ and we can write
+$$\begin{pmatrix}
+    X_1\\
+    Y
+\end{pmatrix}=\begin{pmatrix}
+    1&0\\
+    -a&1
+\end{pmatrix}\begin{pmatrix}
+    X_1\\
+    X_2
+\end{pmatrix},$$
+so $(X_1,Y)$ is also Gaussian. So $X_1,Y$ are independent and we can write $X_2=Y+aX_1$ and
+\[
+    \boxed{\mathbb E[X_2|X_1]=\mathbb E[Y]+aX_2}
+\]
+\begin{note}
+    Note that if $ (X_1,X_2) $ is Gaussian, then $ (X_2-aX_1,X_1) $ is Gaussian and $ X_2-aX_1 \independent X_1 $. We can write $ X_2=X_2-aX_1+aX_1 $ and thus given $ X_1 $, 
+    \[
+        X_2 \sim \mcN (aX_1+\mu_2-a\mu_1, \var(X_2-aX_1)),
+    \]
+    where $ \var(X_2-aX_1) =\var(X_2)+a^2\var(X_1)-2a\cov(X_1,X_2)  $.
+\end{note}
+
+\begin{theorem}[Multivariate CLT]
+    Let $ \bfX $ be a random vector in $ \mathbb{R}^{k} $ with $ \boldsymbol{\mu}=\bbE[\bfX] $ and variance matrix $ \Sigma $. Let $ \bfX_1,\bfX_2,\dots $ be iid with the same distribution as $ \bfX $. Then 
+    \[
+        \bfS_n=\frac{1}{\sqrt{n}}\sum_{i=1}^n(\bfX_i-\mathbb E[\bfX_i])\xrightarrow{\text{(d)}}\mathcal N(\boldsymbol{\mu},\Sigma).
+    \]
+    Convergence in distribution means that $ \forall B \subseteq \mathbb{R}^{k} $, $ \mathbb{P}(S_n\in B) \to \mathbb{P}(\mcN(\boldsymbol{\mu},\Sigma)\in B) $.
+\end{theorem}

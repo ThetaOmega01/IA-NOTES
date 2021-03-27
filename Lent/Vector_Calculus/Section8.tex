@@ -561,3 +561,166 @@ For symmetric, second rank tensors we also have the following result.
     This is a direct consequence of the fact that a real symmetric matrix can be diagonalised using orthogonal transformation $R,$ for which we can assume $\det(R)=1$ without loss of generality.
 \end{proof}
 In particular, for the inertia tensor $I_{i j}$ we can \textit{always} choose a set of axes so that the components form a diagonal array. These axes usually correspond to some obvious lines of symmetry on the body.
+
+\subsection{Invariant and isotropic tensors}
+
+\begin{definition}
+    We say a tensor is \textbf{isotropic} if it is invariant under changes of Cartesian coordinates, i.e.
+    \[
+    T_{i j \cdots k}^{\prime}=R_{i p} R_{j q} \cdots R_{k r} T_{p q \cdots r}=T_{i j \cdots k}
+    \]
+    for any rotation matrix $R$.
+\end{definition}
+
+\begin{example}\
+    We have already seen three types of isotropic tensor:
+    \begin{enumerate}
+        \item Every tensor if rank 0 is isotropic.
+        \item The \textit{Kronecker delta} is isotropic
+        \[
+        \delta_{i j}^{\prime}=R_{i p} R_{j q} \delta_{p q}=R_{i p} R_{j p}=\delta_{i j}.
+        \]
+        \item The \textit{Levi-Civita tensor} is isotropic
+        \[
+        \epsilon_{i j k}^{\prime}=R_{i p} R_{j q} R_{k r} \epsilon_{p q r}=\operatorname{det}(R) \epsilon_{i j k}=\epsilon_{i j k}.
+        \]
+    \end{enumerate}
+\end{example}
+
+We can actually classify all isotropic tensors on $\mathbb{R}^{3} .$ The general result is due to Hermann Weyl, and is given in his book \textit{The Classical Groups}.
+
+\begin{proposition}
+    Isotropic tensors on $ \mathbb{R}^{3} $ are classified as follows:
+    \begin{enumerate}[(a)]
+        \item All rank 0 tensors are isotropic.
+        \item There are no non-zero isotropic tensors of rank 1.
+        \item The most general isotropic tensor of rank 2 is $ \alpha \delta_{ij} $ , with $ \alpha $ a scalar.
+        \item The most general isotropic tensor of rank 3 is $ \beta \epsilon_{ijk} $, with $ \beta $ scalar.
+        \item The most general isotropic tensor of rank 4 is 
+        \[
+            \alpha \delta_{ij}\delta_{kl}+\beta \delta_{ik}\delta_{jl}+\gamma \delta_{il}\delta_{jk},
+        \]
+        $ \alpha,\beta,\gamma $ scalars.
+        \item The most general isotropic tensor of rank $n \ge 4$ is a linear combination of products
+        of Kronecker deltas and Levi-Civita tensors.
+    \end{enumerate}
+\end{proposition}
+
+The full proof of this result is a little too involved for this course. However, we can
+certainly give the basic idea for rank $\le 3$.
+
+\begin{proof}[Sketch proof]
+    \begin{enumerate}[(a)]
+        \item Rank 0 tensors are isotropic by definition.
+        \item If $v_{i}$ are the components of an isotropic vector then
+        \[
+        v_{i}=R_{i j} v_{j}.
+        \]
+        for any rotation. We will use rotations by $\pi$ about each axis. Take
+        \[
+        \left(R_{i j}\right)=\begin{pmatrix}
+            -1 & 0 & 0 \\
+        0 & -1 & 0 \\
+        0 & 0 & 1
+        \end{pmatrix}.
+        \]
+        Then $v_{1}=T_{1 j} v_{j}=-v_{1},$ so $v_{1}=0$ and $v_{2}=T_{2 j} v_{j}=-v_{2}$ so $v_{2}=0 .$ Similarly, using
+        \[
+        \left(R_{i j}\right)=\begin{pmatrix}
+            1 & 0 & 0 \\
+        0 & -1 & 0 \\
+        0 & 0 & -1
+        \end{pmatrix}
+        \]
+        we find $v_{3}=T_{3 j} v_{j}=-v_{j}$ so $v_{3}=0,$ i.e. $v_{i}=0,$ and this holds in all frames.
+        \item If $T_{i j}$ is isotropic then $T_{i j}=R_{i p} R_{j q} T_{p q}$ for any $R $. We will use rotations by $\pi / 2$ about each axis. First we take
+        \[
+        \left(R_{i j}\right)=\begin{pmatrix}
+            0 & 1 & 0 \\
+        -1 & 0 & 0 \\
+        0 & 0 & 1
+        \end{pmatrix}
+        \]
+        Then
+        \begin{align*}
+            T_{13}&=R_{1 p} R_{3 q} T_{p q}=R_{12} R_{33} T_{23}=T_{23}, \\
+        T_{23}&=R_{2 p} R_{3 q} T_{p q}=R_{21} R_{33} T_{13}=-T_{13},
+        \end{align*}
+        so $T_{13}=T_{23}=0 .$ We also have
+        \[
+        T_{11}=R_{1 p} R_{1 q} T_{p q}=R_{12} R_{12} T_{22}=T_{22}.
+        \]
+        Next we take
+        \[
+        \left(R_{i j}\right)=\begin{pmatrix}
+            1 & 0 & 0 \\
+        0 & 0 & 1 \\
+        0 & -1 & 0
+        \end{pmatrix}.
+        \]
+        Then
+        \begin{align*}
+            T_{32}&=R_{3 p} R_{2 q} T_{p q}=R_{32} R_{23} T_{23}=-T_{23}=0 \\
+        T_{12}&=R_{1 p} R_{2 q} T_{p q}=R_{11} R_{23} T_{13}=-T_{13}=0 \\
+        T_{31}&=R_{3 p} R_{1 q} T_{p q}=R_{32} R_{11} T_{21}=-T_{21} \\
+        T_{21}&=R_{2 p} R_{1 q} T_{p q}=R_{23} R_{11} T_{31}=T_{31}
+        \end{align*}
+        so $T_{31}=T_{21}=0 .$ We also have
+        \[
+        T_{22}=R_{2 p} R_{2 q} T_{p q}=R_{23} R_{23} T_{33}=T_{33}.
+        \]
+        In conclusion $T_{i j}=0$ if $i \neq j$ and $T_{11}=T_{22}=T_{33}$. Hence $T_{i j}=\alpha \delta_{i j}$ for a scalar $\alpha$.
+        \item Similar, just more indices.
+
+    \end{enumerate}
+\end{proof}
+
+As an example of the use of isotropic tensors, consider integrals of the form
+\[
+T_{i j \cdots k}=\int_{|\mathbf{x}|<R} f(r) x_{i} x_{j} \cdots x_{k} \mathrm{~d} V(\mathbf{x}),
+\]
+where $|\mathbf{x}|=r$ and $\mathrm{d} V(\mathbf{x})=\mathrm{d} x_{1} \mathrm{~d} x_{2} \mathrm{~d} x_{3} .$ Then $f(r)$ and the domain $\{\mathbf{x}:|\mathbf{x}|<R\}$ are
+invariant under rotations. We have
+\[
+\begin{aligned}
+T_{i j \ldots k}^{\prime} &=\int_{|\mathbf{x}|<R} f(r) x_{i}^{\prime} x_{j}^{\prime} \cdots x_{k}^{\prime} \mathrm{d} V(\mathbf{x}) \\
+&=\int_{|\mathbf{x}|<R} f(r) R_{i p} x_{p} R_{j q} x_{q} \cdots R_{k r} x_{r} \mathrm{~d} V(\mathbf{x}).
+\end{aligned}
+\]
+Now make the substitution $y_{i}=R_{i j} x_{j}$ for $j=1,2,3$. Since it is a rotation the determinant of this transformation is $1 .$ Hence
+\[
+T_{i j \ldots k}^{\prime}=\int_{|\mathbf{y}|<R} f(r) y_{i} y_{j} \cdots y_{k} \mathrm{~d} V(\mathbf{y}),
+\]
+where $\mathrm{d} V(\mathbf{y})=\mathrm{d} y_{1} \mathrm{~d} y_{2} \mathrm{~d} y_{3} .$ Since $\mathbf{y}$ is just a dummy index
+\[
+T_{i j \ldots k}^{\prime}=\int_{|\mathbf{x}|<R} f(r) x_{i} x_{j} \cdots x_{k} \mathrm{~d} V(\mathbf{x})=T_{i j \cdots k}.
+\]
+So these are isotropic tensors! Taking $R \rightarrow \infty$ corresponds to integrating over all $\mathbb{R}^{3}$.
+
+\begin{example}
+    Consider the array
+    \[
+    T_{i j}=\int_{\mathbb{R}^{3}} e^{-r^{5}} x_{i} x_{j} \mathrm{~d} V
+    \]
+    By the previous discussion, we know that $T_{i j}$ is isotropic, so $T_{i j}=\alpha \delta_{i j}$ for some constant $\alpha$. Contracting on $i$ and $j$
+    \[
+    3 \alpha=\int_{\mathbb{R}^{3}} e^{-r^{5}} r^{2} \mathrm{~d} V=4 \pi \int_{0}^{\infty} r^{4} e^{-r^{5}} \mathrm{~d} r=\frac{4 \pi}{5}
+    \]
+    Hence $T_{i j}=\frac{4 \pi}{15} \delta_{i j}$
+\end{example}
+\begin{example}
+    The inertia tensor for a ball of radius $R$ and uniform density $\rho_{0}$ is
+    \[
+    I_{i j}=\int_{|\mathbf{x}|<R} \rho_{0}\left(x_{k} x_{k} \delta_{i j}-x_{i} x_{j}\right) \mathrm{d} V
+    \]
+    This is the sum of two isotropic tensors, so $I_{i j}=\alpha \delta_{i j}$ for some appropriate constant $\alpha$. Contracting on $i$ and $j$
+    \[
+    3 \alpha=\int_{|\mathbf{x}|<R} 2 \rho_{0} r^{2} \mathrm{~d} V=2 \rho_{0} \int_{r=0}^{R} \int_{\theta=0}^{\pi} \int_{\phi=0}^{2 \pi} r^{4} \sin \theta \mathrm{d} r \mathrm{~d} \theta \mathrm{d} \phi=\frac{8 \pi R^{5} \rho_{0}}{5}=\frac{6 M R^{2}}{5}
+    \]
+    where $M=\frac{4 \pi}{3} R^{3} \rho_{0}$ is the mass of the ball. Hence $I_{i j}=\frac{2}{5} M R^{2} \delta_{i j}$.
+\end{example}
+
+For a tensor $T_{i j}$ in a given Cartesian coordinate system, consider the bilinear map $t: \mathbb{R}^{3} \times \mathbb{R}^{3} \mapsto \mathbb{R}$ defined by
+\[
+t(\mathbf{a}, \mathbf{b}):=T_{i j} a_{i} b_{j}.
+\]
