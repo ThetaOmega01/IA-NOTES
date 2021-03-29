@@ -18,6 +18,13 @@
 \usepackage{hyperref}
 \usepackage{lipsum}
 \usepackage{IEEEtrantools}
+
+%%%%%%% custom fonts%%%%%%%%%
+\usepackage{crimson}
+\usepackage[T1]{fontenc}
+% \usepackage{lmodern,mathrsfs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \tdplotsetmaincoords{60}{120}
 
 \usetikzlibrary{arrows.meta}
@@ -392,136 +399,7 @@ dot/.default = 5pt% size of the circle diameter
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%boxed enviroment for final layout%%%%%%%%%%%%%
 
-% \tcolorboxenvironment{definition}{
-%   boxrule=0pt,
-%   boxsep=0pt,
-%   colback={White!90!Cerulean},
-%   enhanced jigsaw, 
-%   borderline west={2pt}{0pt}{Cerulean},
-%   sharp corners,
-%   before skip=10pt,
-%   after skip=10pt,
-%   breakable,
-% }
-
-% \tcolorboxenvironment{theorem}{
-%   boxrule=0pt,
-%   boxsep=0pt,
-%   colback={White!90!Dandelion},
-%   enhanced jigsaw, 
-%   borderline west={2pt}{0pt}{Dandelion},
-%   sharp corners,
-%   before skip=10pt,
-%   after skip=10pt,
-%   breakable,
-% }
-
-% \tcolorboxenvironment{lemma}{
-%   boxrule=0pt,
-%   boxsep=0pt,
-%   blanker,
-%   borderline west={2pt}{0pt}{Red},
-%   before skip=10pt,
-%   after skip=10pt,
-%   sharp corners,
-%   left=12pt,
-%   right=12pt,
-%   breakable,
-% }
-
-% \tcolorboxenvironment{corollary}{
-%   boxrule=0pt,
-%   boxsep=0pt,
-%   blanker,
-%   borderline west={2pt}{0pt}{Emerald},
-%   before skip=10pt,
-%   after skip=10pt,
-%   sharp corners,
-%   left=12pt,
-%   right=12pt,
-%   breakable,
-% }
-
-% \tcolorboxenvironment{proof}{
-%   boxrule=0pt,
-%   boxsep=0pt,
-%   blanker,
-%   borderline west={2pt}{0pt}{NavyBlue!80!white},
-%   before skip=10pt,
-%   after skip=10pt,
-%   left=12pt,
-%   right=12pt,
-%   breakable,
-% }
-
-% \tcolorboxenvironment{remark}{
-%   boxrule=0pt,
-%   boxsep=0pt,
-%   blanker,
-%   borderline west={2pt}{0pt}{Green},
-%   before skip=10pt,
-%   after skip=10pt,
-%   left=12pt,
-%   right=12pt,
-%   breakable,
-% }
-
-% \tcolorboxenvironment{note}{
-%   boxrule=0pt,
-%   boxsep=0pt,
-%   blanker,
-%   borderline west={2pt}{0pt}{Dark Green},
-%   before skip=10pt,
-%   after skip=10pt,
-%   left=12pt,
-%   right=12pt,
-%   breakable,
-% }
-
-
-% \tcolorboxenvironment{example}{
-%   boxrule=0pt,
-%   boxsep=0pt,
-%   blanker,
-%   borderline west={2pt}{0pt}{Black},
-%   sharp corners,
-%   before skip=10pt,
-%   after skip=10pt,
-%   left=12pt,
-%   right=12pt,
-%   breakable,
-% }
-
-% \tcolorboxenvironment{proposition}{ boxrule=0pt, boxsep=0pt, colback={White!90!Yellow}, enhanced jigsaw, borderline west={2pt}{0pt}{Yellow}, sharp corners, before skip=10pt, after skip=10pt, breakable, }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-%%%%%%% custom fonts%%%%%%%%%
-\usepackage{crimson}
-\usepackage[T1]{fontenc}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%layout full
-% \geometry{%
-%   a4paper,
-%   lmargin=2cm,
-%   rmargin=2.5cm,
-%   tmargin=3.5cm,
-%   bmargin=2.5cm,
-%   footskip=12pt,
-%   headheight=24pt}
-% layout trim
-\geometry{
-papersize={379pt, 542pt},
-textwidth=345pt,
-textheight=443pt,
-left=17pt,
-top=54pt,
-right=17pt
-}
-\pagestyle{fancy}
 \theoremstyle{plain}
 
 \theoremstyle{definition}
@@ -551,5 +429,213 @@ right=17pt
 \newtheorem*{remark}{Remark}
 \newtheorem*{note}{Note}
 
+%%%%%%%boxed enviroment for final layout%%%%%%%%%%%%%
+
+% \newtheoremstyle{mystyle}%
+%   {}%
+%   {}%
+%   {}%
+%   {}%
+%   {\sffamily\bfseries}%
+%   {.}%
+%   { }%
+%   {}%
+
+% % \renewenvironment{proof}{{\sffamily\bfseries Proof. }}{\qed}
+
+% \theoremstyle{mystyle}{
+%   \newtheorem{theorem}{Theorem}[section]
+%   \newtheorem{lemma}[theorem]{Lemma}
+%   \newtheorem{proposition}[theorem]{Proposition}
+%   \newtheorem{corollary}[theorem]{Corollary}
+%   \newtheorem{problem}[theorem]{Problem}
+%   \newtheorem*{claim}{Claim}
+%   \newtheorem*{slemma}{Lemma}
+%   \newtheorem*{sprop}{Proposition}
+%   \newtheorem*{notation}{Notation}
+
+%   \newtheorem{inquestion}{Question}
+%   \newtheorem*{sque}{Question}
+
+%   \newtheorem{definition}{Definition}[section]
+%   \newtheorem{conjecture}{Conjecture}[section]
+%   \newtheorem{example}{Example}[section]
+%   \newtheorem*{law}{Law}
+
+%   \newtheorem*{remark}{Remark}
+%   \newtheorem*{note}{Note}
+% }
+
+% \newenvironment{question}[1]
+% {\renewcommand\theinquestion{#1}\inquestion}
+% {\endinquestion}
+
+% \theoremstyle{definition}{
+%     \newtheorem*{exercise}{Exercise}}
+
+% \tcolorboxenvironment{definition}{
+%   boxrule=0pt,
+%   boxsep=2pt,
+%   colback={White!90!Cerulean},
+%   enhanced jigsaw, 
+%   borderline west={2pt}{0pt}{Cerulean},
+%   sharp corners,
+%   before skip=10pt,
+%   after skip=10pt,
+%   breakable,
+% }
+
+% \tcolorboxenvironment{notation}{
+%   boxrule=0pt,
+%   boxsep=2pt,
+%   colback={White!90!Cerulean},
+%   enhanced jigsaw, 
+%   borderline west={2pt}{0pt}{Cerulean},
+%   sharp corners,
+%   before skip=10pt,
+%   after skip=10pt,
+%   breakable,
+% }
+
+% \tcolorboxenvironment{proposition}{
+%   boxrule=0pt,
+%   boxsep=2pt,
+%   colback={White!90!Yellow},
+%   enhanced jigsaw, 
+%   borderline west={2pt}{0pt}{Yellow},
+%   sharp corners,
+%   before skip=10pt,
+%   after skip=10pt,
+%   breakable,
+% }
+
+% \tcolorboxenvironment{sprop}{
+%   boxrule=0pt,
+%   boxsep=2pt,
+%   colback={White!90!Yellow},
+%   enhanced jigsaw, 
+%   borderline west={2pt}{0pt}{Yellow},
+%   sharp corners,
+%   before skip=10pt,
+%   after skip=10pt,
+%   breakable,
+% }
+
+% \tcolorboxenvironment{theorem}{
+%   boxrule=0pt,
+%   boxsep=2pt,
+%   colback={White!90!Dandelion},
+%   enhanced jigsaw, 
+%   borderline west={2pt}{0pt}{Dandelion},
+%   sharp corners,
+%   before skip=10pt,
+%   after skip=10pt,
+%   breakable,
+% }
+
+% \tcolorboxenvironment{lemma}{
+%   boxrule=0pt,
+%   boxsep=2pt,
+%   blanker,
+%   borderline west={2pt}{0pt}{Red},
+%   before skip=10pt,
+%   after skip=10pt,
+%   sharp corners,
+%   left=12pt,
+%   right=12pt,
+%   breakable,
+% }
+
+% \tcolorboxenvironment{corollary}{
+%   boxrule=0pt,
+%   boxsep=2pt,
+%   blanker,
+%   borderline west={2pt}{0pt}{ForestGreen},
+%   before skip=10pt,
+%   after skip=10pt,
+%   sharp corners,
+%   left=12pt,
+%   right=12pt,
+%   breakable,
+% }
+
+% \tcolorboxenvironment{proof}{
+%   boxrule=0pt,
+%   boxsep=2pt,
+%   blanker,
+%   borderline west={2pt}{0pt}{NavyBlue!80!white},
+%   before skip=10pt,
+%   after skip=10pt,
+%   left=12pt,
+%   right=12pt,
+%   breakable,
+% }
+
+% \tcolorboxenvironment{remark}{
+%   boxrule=0pt,
+%   boxsep=2pt,
+%   blanker,
+%   borderline west={2pt}{0pt}{Green},
+%   before skip=10pt,
+%   after skip=10pt,
+%   left=12pt,
+%   right=12pt,
+%   breakable,
+% }
+
+% \tcolorboxenvironment{note}{
+%   boxrule=0pt,
+%   boxsep=2pt,
+%   blanker,
+%   borderline west={2pt}{0pt}{PineGreen},
+%   before skip=10pt,
+%   after skip=10pt,
+%   left=12pt,
+%   right=12pt,
+%   breakable,
+% }
+
+% \tcolorboxenvironment{example}{
+%   boxrule=0pt,
+%   boxsep=2pt,
+%   blanker,
+%   borderline west={2pt}{0pt}{Black},
+%   sharp corners,
+%   before skip=10pt,
+%   after skip=10pt,
+%   left=12pt,
+%   right=12pt,
+%   breakable,
+% }
+
+% \titleformat*{\section}{\Large\bfseries\sffamily}
+% \titleformat*{\subsection}{\large\bfseries\sffamily}
+% \titleformat*{\subsubsection}{\bfseries\sffamily}
+% \titleformat*{\paragraph}{\bfseries\sffamily}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+
+%layout full
+% \geometry{%
+%   a4paper,
+%   lmargin=2cm,
+%   rmargin=2.5cm,
+%   tmargin=3.5cm,
+%   bmargin=2.5cm,
+%   footskip=12pt,
+%   headheight=24pt}
+% layout trim
+\geometry{
+papersize={379pt, 542pt},
+textwidth=345pt,
+textheight=443pt,
+left=17pt,
+top=54pt,
+right=17pt
+}
+\pagestyle{fancy}
+% \rhead{\textsc{\triposcourse{}}}
+% \title{\textbf{\sffamily\triposcourse{} Notes}}
 \title{\textbf{\triposcourse{} Notes}}
 \author{jt775}

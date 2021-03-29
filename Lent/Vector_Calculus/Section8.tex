@@ -714,9 +714,9 @@ So these are isotropic tensors! Taking $R \rightarrow \infty$ corresponds to int
     I_{i j}=\int_{|\mathbf{x}|<R} \rho_{0}\left(x_{k} x_{k} \delta_{i j}-x_{i} x_{j}\right) \mathrm{d} V
     \]
     This is the sum of two isotropic tensors, so $I_{i j}=\alpha \delta_{i j}$ for some appropriate constant $\alpha$. Contracting on $i$ and $j$
-    \[
-    3 \alpha=\int_{|\mathbf{x}|<R} 2 \rho_{0} r^{2} \mathrm{~d} V=2 \rho_{0} \int_{r=0}^{R} \int_{\theta=0}^{\pi} \int_{\phi=0}^{2 \pi} r^{4} \sin \theta \mathrm{d} r \mathrm{~d} \theta \mathrm{d} \phi=\frac{8 \pi R^{5} \rho_{0}}{5}=\frac{6 M R^{2}}{5}
-    \]
+    \begin{align*}
+        3 \alpha&=\int_{|\mathbf{x}|<R} 2 \rho_{0} r^{2} \mathrm{~d} V=2 \rho_{0} \int_{r=0}^{R} \int_{\theta=0}^{\pi} \int_{\phi=0}^{2 \pi} r^{4} \sin \theta \mathrm{d} r \mathrm{~d} \theta \mathrm{d} \phi\\ &=\frac{8 \pi R^{5} \rho_{0}}{5}=\frac{6 M R^{2}}{5}
+    \end{align*}
     where $M=\frac{4 \pi}{3} R^{3} \rho_{0}$ is the mass of the ball. Hence $I_{i j}=\frac{2}{5} M R^{2} \delta_{i j}$.
 \end{example}
 

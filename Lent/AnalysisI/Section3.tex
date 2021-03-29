@@ -335,38 +335,37 @@ Cauchy showed that one can take $s=t$.
         (1+x)^r = 1 + \binom{r}{1}x+ \cdots + \binom{r}{n}x^n+ \cdots ,
     \]
     where the binomial coefficients are extended to $\bbQ$ in the usual way.
-
-    \begin{proof}[Indeed,]
-        $ f^{(n)}(x) = r(r-1)\cdots (r-n+1)(1+x)^{r-n} $. If $ r\in \mathbb{Z},r\ge 0 $, then $ f^{(r+k)}=0,\forall k\ge 1 $, so we have a polynomial of degree $r$. If otherwise, in general
-        \[
-            R_n = \frac{x^n}{n!}f^{(n)}(\theta x) = \binom{r}{n}\frac{x^n}{(1+\theta x)^{n-r}}.
-        \]
-        Note that in principle $ \theta=\theta(x,n) $. 
-        
-        For $ 0<x<1, (1+\theta x)^{n-r}>1 $ for $n>r$. Note also that the series $ \sum_{n=0}^{\infty}\binom{r}{n}x^n $ converges absolutely for $ |x|<1 $. Indeed, it can be checked by ratio test. Hence $ \binom{r}{n}x^n<1 $ for $ |x|<1 $. Hence for $n>r$ and $0<x<1$ we have 
-        \[
-            |R_n|\le \left| \binom{r}{n}x^n \right|\to 0. 
-        \]
-        So the claim is proved for $ 0<x<1 $.
-    
-        If $ -1<x<0 $, the above argument does not work, so we try Cauchy's form.
-        \begin{align*}
-            R_n &= \frac{(1-\theta)^{n-1}}{(n-1)!}r(r-1)\cdots (r-n+1)(1+\theta h)^{r-n}x^n\\ 
-            &= \frac{r(r-1)\cdots (r-n+1)}{(n-1)}\frac{(1-\theta)^{n-1}}{(1+\theta x)^{n-r}}x^n\\ 
-            &=  r \binom{r-1}{n-1}x^n \cdot \frac{(1-\theta)^{n-1}}{(1+\theta x)^{n-r}}\\ 
-            &= r \binom{r-1}{n-1}x^n \cdot(1+\theta x)^{r-1}\left( \frac{1-\theta}{1+\theta x} \right)^{n-1}
-        \end{align*}
-        Hence
-        \[
-            \left| R_n \right| \le \left| r\binom{r-1}{n-1}x^n \right| (1+\theta x)^{r-1} {\color{blue}\overset{\text{check}}{<}}  \left| r\binom{r-1}{n-1}x^n \right| \max \{1,(1+x)^{r-1}\}.
-        \]
-        Let $ K_r = |r| \max \{1,(1+x)^{r-1}\} $, so that $K_r$ is \textit{independent} from $n$. Hence 
-        \[
-            |R_n|\le K_r \left| \binom{r-1}{n-1}x^n \right| \to 0.
-        \]
-        Hence $ R_n\to 0 $ if $|x|<1$, as claimed.
-    \end{proof}
 \end{example}
+\begin{proof}[Indeed,]
+    $ f^{(n)}(x) = r(r-1)\cdots (r-n+1)(1+x)^{r-n} $. If $ r\in \mathbb{Z},r\ge 0 $, then $ f^{(r+k)}=0,\forall k\ge 1 $, so we have a polynomial of degree $r$. If otherwise, in general
+    \[
+        R_n = \frac{x^n}{n!}f^{(n)}(\theta x) = \binom{r}{n}\frac{x^n}{(1+\theta x)^{n-r}}.
+    \]
+    Note that in principle $ \theta=\theta(x,n) $. 
+    
+    For $ 0<x<1, (1+\theta x)^{n-r}>1 $ for $n>r$. Note also that the series $ \sum_{n=0}^{\infty}\binom{r}{n}x^n $ converges absolutely for $ |x|<1 $. Indeed, it can be checked by ratio test. Hence $ \binom{r}{n}x^n<1 $ for $ |x|<1 $. Hence for $n>r$ and $0<x<1$ we have 
+    \[
+        |R_n|\le \left| \binom{r}{n}x^n \right|\to 0. 
+    \]
+    So the claim is proved for $ 0<x<1 $.
+
+    If $ -1<x<0 $, the above argument does not work, so we try Cauchy's form.
+    \begin{align*}
+        R_n &= \frac{(1-\theta)^{n-1}}{(n-1)!}r(r-1)\cdots (r-n+1)(1+\theta h)^{r-n}x^n\\ 
+        &= \frac{r(r-1)\cdots (r-n+1)}{(n-1)}\frac{(1-\theta)^{n-1}}{(1+\theta x)^{n-r}}x^n\\ 
+        &=  r \binom{r-1}{n-1}x^n \cdot \frac{(1-\theta)^{n-1}}{(1+\theta x)^{n-r}}\\ 
+        &= r \binom{r-1}{n-1}x^n \cdot(1+\theta x)^{r-1}\left( \frac{1-\theta}{1+\theta x} \right)^{n-1}
+    \end{align*}
+    Hence
+    \[
+        \left| R_n \right| \le \left| r\binom{r-1}{n-1}x^n \right| (1+\theta x)^{r-1} {\color{blue}\overset{\text{check}}{<}}  \left| r\binom{r-1}{n-1}x^n \right| \max \{1,(1+x)^{r-1}\}.
+    \]
+    Let $ K_r = |r| \max \{1,(1+x)^{r-1}\} $, so that $K_r$ is \textit{independent} from $n$. Hence 
+    \[
+        |R_n|\le K_r \left| \binom{r-1}{n-1}x^n \right| \to 0.
+    \]
+    Hence $ R_n\to 0 $ if $|x|<1$, as claimed.
+\end{proof}
 
 \subsection{Remarks on complex differentiation}
 Formally we have the same properties regarding sums, products, and chain rule, etc. But it is \textit{much more} restrictive than differentiability of functions on the real line.
