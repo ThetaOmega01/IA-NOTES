@@ -208,3 +208,76 @@ so $(X_1,Y)$ is also Gaussian. So $X_1,Y$ are independent and we can write $X_2=
     \]
     Convergence in distribution means that $ \forall B \subseteq \mathbb{R}^{k} $, $ \mathbb{P}(S_n\in B) \to \mathbb{P}(\mcN(\boldsymbol{\mu},\Sigma)\in B) $.
 \end{theorem}
+
+
+\begin{example}
+    Let $ U \sim U[0,1] $ and set $ X=-\log U $. Note that 
+    \[
+        \bbP(X \leqslant x)=\bbP(-\log U \leqslant x)=\bbP\left(U \geqslant e^{-x}\right)=1-e^{-x} .
+    \]
+    So $ X \sim \operatorname{Exp}(1) $.
+\end{example}
+
+\begin{theorem}
+    Let $X$ be a continuous r.v. with distribution function $F$. Then if $ U \sim U[0,1] $ then $ f^{-1}(U) \sim F $.
+\end{theorem}
+\begin{proof}
+    Let $ Y=F^{-1}(U) $, then 
+    \[
+        \mathbb{P}(Y\le x) = \mathbb{P}(F^{-1}(U)\le x) = \mathbb{P}(U \le F(x)) = F(x).\qedhere
+    \]
+\end{proof}
+
+\subsection{Rejection sampling}
+
+Suppose $ A \subseteq [0,1]^d $. Define
+\[
+    f(x) = \frac{1(\bfx\in A)}{|A|}.
+\]
+Let $ \bfX $ have density $f$. How can we simulate $\bfX$?
+
+Let $ (\bfU_n)_{n\in \bbN} $ be an iid sequence of $d$-dimensional uniforms, i.e. 
+\[
+    \bfU_n = (U_{1,n},\dots,U_{d,n}),\quad U_{k,n} \text{ iid } \sim U[0,1].
+\]
+Let $ N= \min \{n\ge 1: \bfU_n\in A\} $.
+
+\begin{claim}
+    $ \bfU_N \sim f $.
+\end{claim}
+\begin{proof}
+    Take $ B \subseteq [0,1]^d $.
+    \begin{align*}
+        \mathbb{P}(\bfU_N\in B) &= \sum_{n=1}^{\infty }\mathbb{P}(\bfU_N\in B,N=n)\\ 
+        &= \sum_{n=1}^{\infty}\mathbb{P}(\bfU_n\in A \cap B,\bfU_{k}\notin A,\forall k=1,\dots,n-1)\\ 
+        &= \sum_{n=1}^{\infty}\mathbb{P}(\bfU_n\in A\cap B)\prod_{k=1}^{n-1}\mathbb{P}(\bfU_k\notin A)\\ 
+        &= \sum_{n=1}^{\infty}|A \cap B| (1-|A|)^{n-1} = \frac{|A\cap B|}{|A|}\\ 
+        &= \int_{A} \frac{(\bfx\in B)}{|A|} \,\mathrm{d}x = \int_{B}f(x) \,\mathrm{d}x.\qedhere
+    \end{align*}    
+\end{proof}
+
+Suppose $f$ is a density on $ [0,1]^{d-1} $ which is bounded by $ \lambda>0 $. We want to sample $ \bfX \sim f $. Consider 
+\[
+    A = \{(x_1,\dots,x_d)\in [0,1]^d:x_d\le f(x_1,\dots,x_{d-1}/\lambda)\}.
+\]
+From before, we know how to generate a uniform r.v. on $A$. Let $ \bfY=(X_1,\dots,X_d) $ be such a r.v. Set $ \bfX = (X_1,\dots,X_{d-1}) $.
+
+\begin{claim}
+    $ \bfX \sim f $.
+\end{claim}
+
+\begin{proof}
+    Take $ B \subseteq [0,1]^{d-1} $.
+    \begin{align*}
+        \mathbb{P}(\bfX\in B)&= \mathbb{P}((X_1,\dots,X_{d-1})\in B)=\mathbb{P}((X_1,\dots,X_d)\in (B \times [0,1])\cap A)\\ 
+        &= \frac{|B \times [0,1])\cap A|}{|A|} = \int 1((x_1,\dots,x_d)\in B \times [0,1])\cap A) \,\mathrm{d}x_1\cdots\dd x_d\\ 
+        &= \int 1((x_1,\dots,x_{d-1})\in B)1\left( x_d\le \frac{f(x_1,\dots,x_{d-1})}{\lambda} \right) \,\mathrm{d}x_1\cdots\dd x_d\\ 
+        &= \int 1((x_1,\dots,x_{d-1})\in B)\frac{f(x_1,\dots,x_{d-1})}{\lambda} \,\mathrm{d}x_1\cdots\dd x_{d-1}\\
+        &= \frac{1}{\lambda}\int_B f(x) \,\mathrm{d}x_1\cdots\dd x_{d-1}.
+    \end{align*}
+    Also 
+    \[
+        |A|=\frac{1}{\lambda}\int_{[0,1]^{d-1}} f(\bfx) \,\mathrm{d}\bfx=\frac{1}{\lambda}.
+    \]
+    The result follows.
+\end{proof}

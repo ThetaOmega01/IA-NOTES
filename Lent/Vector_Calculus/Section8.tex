@@ -724,3 +724,79 @@ For a tensor $T_{i j}$ in a given Cartesian coordinate system, consider the bili
 \[
 t(\mathbf{a}, \mathbf{b}):=T_{i j} a_{i} b_{j}.
 \]
+
+This map is well-defined, in the sense that it doesn't depend on what Cartesian basis we use. Indeed, the right hand side is a scalar, so invariant under change of Cartesian basis. So we can define a bilinear map from a rank two tensor.
+
+Conversely, if $t: \mathbb{R}^{3} \times \mathbb{R}^{3} \rightarrow \mathbb{R}$ is bilinear map, then for a given Cartesian basis $\left\{\mathbf{e}_{i}\right\}$ it defines an array $T_{i j}$ via
+\[
+t(\mathbf{a}, \mathbf{b})=a_{i} b_{j} t\left(\mathbf{e}_{i}, \mathbf{e}_{j}\right):=T_{i j} a_{i} b_{j}
+\]
+If we use a different Cartesian coordinate system $\left\{\mathbf{e}_{i}^{\prime}\right\}$ related to the old one via $\mathbf{e}_{i}^{\prime}=R_{i p} \mathbf{e}_{p}$ then, using bilinearity of $t,$ we see that the components of the array transform as
+\[
+T_{i j}^{\prime}=t\left(\mathbf{e}_{i}^{\prime}, \mathbf{e}_{j}^{\prime}\right)=R_{i p} R_{j q} t\left(\mathbf{e}_{p}, \mathbf{e}_{q}\right)=R_{i p} R_{j q} T_{p q}
+\]
+So the array $T_{i j}$ transforms as a rank 2 tensor. These observations can be used to construct an explicit, one-to-one correspondence between bilinear maps and rank 2 Cartesian tensor. In particular, if the map
+\[
+(\mathbf{a}, \mathbf{b}) \mapsto T_{i j} a_{i} b_{j}
+\]
+is genuinely a bilinear map (independent of basis), then the array $T_{i j}$ define a rank 2 tensor. Exactly the same idea works with tensors of higher rank: if the map
+\[
+(\mathbf{a}, \mathbf{b}, \ldots, \mathbf{c}) \mapsto T_{i j \cdots k} a_{i} b_{j} \cdots c_{k}
+\]
+genuinely defines a multilinear map (independent of basis), then the array $T_{i j \ldots k}$ transform as a tensor of the appropriate rank.
+
+This gives us a nice way of proving the \textbf{quotient theorem}. We saw earlier in this chapter,
+when looking at the conductivity tensor, that if $\mathbf{E}$ and $\mathbf{J}$ are vectors and $J_{i}=\sigma_{i j} E_{j},$ then $\sigma_{i j}$ were necessarily the components of a rank 2 tensor. The quotient theorem is the same as this, but for arbitrary rank.
+
+\begin{proposition}
+    Let $T_{i \cdots j p \cdots q}$ is an array of numbers defined in each Cartesian coordinate system such that
+    \[
+    v_{i \cdots j}:=T_{i \cdots j p \cdots q} u_{p \cdots q}
+    \]
+    is a tensor for each tensor $u_{p \cdots q},$ then $T_{i \cdots j p \cdots q}$ is a tensor.
+\end{proposition}
+\begin{proof}
+    Take the special case $u_{p \cdots q}=c_{p} \cdots d_{q}$ for vectors $\mathbf{c}, \ldots, \mathbf{d}$. Then
+    \[
+    v_{i \cdots j}:=T_{i \cdots j p \cdots q} c_{p} \cdots d_{q}
+    \]
+    is a tensor and in particular
+    \[
+    v_{i \cdots j} a_{i} \cdots b_{j}=T_{i \cdots j p \cdots q} a_{i} \cdots b_{j} c_{p} \cdots d_{q}
+    \]
+    is a scalar for each $\mathbf{a}, \ldots, \mathbf{b}, \mathbf{c}, \ldots, \mathbf{d}$. So the right hand side is a scalar (i.e. it is independent of Cartesian basis), and gives rise to a well-defined multi-linear map via
+    \[
+    t(\mathbf{a}, \ldots, \mathbf{b}, \mathbf{c}, \ldots, \mathbf{d}):=T_{i \cdots j p \cdots q} a_{i} \cdots b_{j} c_{p} \cdots d_{q}
+    \]
+    By our previous discussion we conclude that $T_{i \cdots j p \cdots q}$ is a tensor.
+\end{proof}
+
+\begin{example}
+    We have already seen the linear strain tensor
+    \[
+    e_{i j}=\frac{1}{2}\left(\frac{\partial u_{i}}{\partial x_{j}}+\frac{\partial u_{j}}{\partial x_{i}}\right)
+    \]
+    which measures the infinitesimal deformation of a body in which each point $\mathbf{x}$ undergoes a displacement of $\mathbf{u}(\mathbf{x})$. Experiment suggests that the stresses, or internal forces, experienced by a body depends linearly on the strain at each point. Stresses are measured by the stress tensor $\sigma_{i j} .$ So there should be a collection of $3^{4}=81$ numbers $c_{i j k l}$ such that
+    \[
+    \sigma_{i j}=c_{i j k l} e_{k l}
+    \]
+    We cannot immediately apply the quotient theorem, because $e_{k l}$ is not arbitrary: it is necessarily symmetric. However, if we assume $c_{i j k l}=c_{i j l k}$ then we can apply the quotient theorem (see example sheet 4). On this assumption, the array $c_{i j k l}$ must correspond to the components of a rank 4 tensor. It is called the stiffness tensor, and is a property of the material that is under stress. If the material is isotropic then we should write, for scalars $\lambda, \beta, \gamma$
+    \[
+    c_{i j k l}=\lambda \delta_{i j} \delta_{k l}+\beta \delta_{i k} \delta_{j l}+\gamma \delta_{i l} \delta_{k j}
+    \]
+    so that
+    \[
+    \begin{aligned}
+    \sigma_{i j} &=\lambda \delta_{i j} e_{k k}+\beta e_{i j}+\gamma e_{j i} \\
+    & \equiv \lambda \delta_{i j} e_{k k}+2 \mu e_{i j}
+    \end{aligned}
+    \]
+    where in the final line we used $e_{i j}=e_{j i}$ and defined $2 \mu=\beta+\gamma$. This is Hooke's law for an isotropic material. It is the higher dimensional analogue of the familiar equation $F=-k x$ for an elastic spring. We can use it to get the strain tensor in terms of the stress tensor. First contract on $i$ and $j$ so that
+    \[
+    \sigma_{i i}=(3 \lambda+2 \mu) e_{k k}, \quad \text { i.e. } \quad e_{k k}=\frac{\sigma_{k k}}{3 \lambda+2 \mu},
+    \]
+    assuming $3 \lambda \neq-2 \mu .$ Then we get
+    \[
+    2 \mu e_{i j}=\sigma_{i j}-\left(\frac{\lambda}{3 \lambda+2 \mu}\right) \sigma_{k k} \delta_{i j}.
+    \]
+\end{example}

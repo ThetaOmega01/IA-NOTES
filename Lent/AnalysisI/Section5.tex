@@ -548,3 +548,137 @@ Note that this definition (both the convergence and the value of the integral) d
     \]
     by the second inequality. The result follows.
 \end{proof}
+
+\begin{example}
+    \begin{enumerate}
+        \item By integral test, $ \sum n^{-k} $ converges if and only if $k>1$.
+        \item $ \sum 1/(n\log n) $ diverges by integral test.
+    \end{enumerate}
+\end{example}
+
+\begin{corollary}[Euler's constant $ \gamma $]
+    As $ n\to \infty $, 
+    \[
+        \sum_{r=1}^{n}\frac{1}{r}-\log {n} \to \gamma\in [0,1].
+    \]
+\end{corollary}
+\begin{proof}
+    Consequence of part 2 of the integral test.
+\end{proof}
+
+\begin{sque}
+    Is $ \gamma $ irrational?
+\end{sque}
+
+\subsection{Further integrability}
+We have seen that monotone and continuous functions are Riemann integrable. We can generalise to \textbf{piecewise continuous} functions.
+\begin{definition}
+    A function $ f:[a,b]\to \mathbb{R} $ is called \textbf{piecewise continuous} if there is a dissection $ D=\{x_0=a,x_1,\dots,x_n=b\} $ such that 
+    \begin{enumerate}
+        \item $ f $ is continuous on $ (x_{j-1},x_j),\ \forall j $,
+        \item The one-sided limits 
+        \[
+            \lim_{x \downarrow x_{j-1}} f(x),\quad \lim_{x \uparrow x_{j-1}} f(x)
+        \]
+        exist.
+    \end{enumerate}
+\end{definition}
+
+\begin{exercise}
+    Piecewise continuous functions are Riemann integrable.
+\end{exercise}
+Just check $ f|_{[x_{j-1},x_j]} $ is Riemann integrable and the endpoints do not matter, and use additivity.
+
+\begin{sque}
+    How large can the discontinuity set be while $f$ is still Riemann integrable?
+\end{sque}
+
+Recall the example 
+\[
+    f(x) = \begin{cases}
+    1/q &x=p/q\\
+    0 &\text{otherwise}\\
+    \end{cases} 
+\]
+which is integrable. The question is answered by Henri Lebesgue:
+\begin{definition}
+    Let $ \ell (I) $ be the length of an interval $I$. A subset $A \subseteq \mathbb{R}$ is said to have \textbf{measure} 0 if $ \forall \epsilon>0, \exists  $ a countable family of intervales such that 
+    \[
+        A \subseteq \bigcup_{j=1}^{\infty}I_j
+    \]
+    and 
+    \[
+        \sum_{j=1}^{\infty}\ell (I_j)<\epsilon.
+    \]
+\end{definition}
+\begin{lemma}
+    \begin{enumerate}
+        \item Every countable set has measure 0.
+        \item If $B$ has measure 0 and $ A \subseteq B $, then $A$ has measure 0.
+        \item If $A_k$ has measure 0 for all $ k\in \mathbb{N} $, then 
+        \[
+            \bigcup_{k\in \bbN} A_k
+        \]
+        has measure 0.
+    \end{enumerate}
+\end{lemma}
+\begin{theorem}[Characterisation of Riemann integrability]
+    Suppose $ f:[a,b]\to \mathbb{R} $ is bounded, then $f$ is Riemann integrable if and only if the set of discontinuities has measure 0.
+\end{theorem}
+The proof involves the concept of \textbf{oscillation} of $f$ on $I$:
+\[
+    \omega_f(I) := \sup_I f-\inf _I f.
+\]
+Oscillation of $f$ at $x$ is defined as 
+\[
+    \omega_f(x):=\lim_{\epsilon \to 0} \omega_f(x-\epsilon,x+\epsilon).
+\]
+\begin{lemma}
+    $f$ is continuous at $x$ if and only if $ \omega_f(x)=0 $.
+\end{lemma}
+
+\begin{proof}[Sketch proof of Lebesgue's criterion]
+    Let $ D=\{x\in [a,b]:f \text{ is discontinuous at }x\} = \{x\in [a,b]:\omega_f(x)>0\} $. 
+    
+    Suppose $f$ is Riemann integrable. Required to prove that $ D $ has measure 0. Let
+    \[
+        N(\alpha)=\{x\in [a,b]:\omega_f(x)\ge \alpha\}.
+    \]
+    We have 
+    \[
+        D= \bigcup_{k=1}^{\infty}N\left( \frac{1}{k} \right).
+    \]
+    We show that for fixed $ \alpha $, $ N(\alpha) $ has measure 0.
+
+    Let $ \epsilon>0, \exists D $ such that $ U(f,D)-L(f,D)<\epsilon \alpha/2$. Also 
+    \[
+        U(f,D)-L(f,D) = \sum_{j=1}^{n}\omega_f([x_{j-1},x_j])(x_{j}-x_{j-1}).
+    \]
+    Consider the set 
+    \[
+        F = \{j:(x_{j-1},x_j)\cap N(\alpha)\neq \varnothing \}.
+    \]
+    Then for each $j\in F$, $ \omega_f([x_{j-1},x_j])\ge \alpha $. So 
+    \[
+        \alpha \sum_{j\in F}(x_{j}-x_{j-1})\le \sum_{j\in F} \omega_f([x_{j-1},x_j])(x_{j}-x_{j-1})<\frac{\epsilon\alpha}{2}\Longrightarrow \sum_{j\in F}(x_{j}-x_{j-1})<\frac{\epsilon}{2}.
+    \]
+    So
+    \[
+        \bigcup_{j\in F} (x_{j-1},x_j)
+    \]
+    covers $N(\alpha)$ except a possible finite number of endpoints. But this can be covered by intervals of total length $ <\epsilon/2 $. So $ N(\alpha) $ can be covered by intervals of total length $ <\epsilon $. Hence measure 0.
+
+    Conversely, let $ \epsilon>0 $. We need to show that $ \exists D_0 $ such that $ U(f,D_0)-L(f,D_0)<\epsilon $. Let $D$ be the set of discontinuities as usual. Clearly $ N(\epsilon) \subseteq D $, so $N(\epsilon)$ has measure 0. It turns out that $N(\epsilon)$ is closed an bounded, so it is compact and can be covered with finitely many open sets of total lengths $ <\epsilon $:
+    \[
+        N(\epsilon) = \bigcup_{j=1}^{m}U_j,
+    \]  
+    where $ U_j $ are open. Let $ I_j= \overline{U}_i $, i.e. the closure, and wlog suppose $I_j$ are disjoint. The complement 
+    \[
+        K = [a,b] \setminus \bigcup_{i=1}^{m}U_i
+    \]
+    is compact, so it can be covered by finitely many disjoint closed intervals $ J_i $ such that $ \omega_f(J_i)<\epsilon $. Now the $I_j,J_i$ give a dissection of $[a,b]$ such that 
+    \[
+        \sum_{j=1}^{n}\omega_f([x_{j-1},x_j])(x_{j}-x_{j-1}) = \sum_{j=1}^{m}\omega_f(I_j)\ell(I_j)+\sum_{i=1}^{k}\omega(J_i)\ell (J_i)<\epsilon,
+    \]
+    as required.
+\end{proof}

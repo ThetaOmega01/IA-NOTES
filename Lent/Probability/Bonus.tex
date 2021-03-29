@@ -1,0 +1,133 @@
+\section{Bonus lectures}
+We have $n$ bins $1,2,\ldots,n$ and $n$ indistinguishable balls.
+For every ball, we pick a bin uniformly randomly and place it independently of other balls.
+Let $X_i$ be the number of balls in bin $i$.
+Define the maximum load to be $M_n=\max_{i\le n}X_i$.
+Now for every $i$, $X_i\sim B(n,1/n)$.
+We first want to find heuristically the value of $\mathbb P(M_n\ge x)$.
+Note that we have $\mathbb P(M_n\ge x)\le n\mathbb P(X_1\ge x)$.
+This is quite strict but works in this case.
+Now for large $n$, we approximate $X_1$ by $\operatorname{Pois}(1)$, so we can estimate (by something proved in example sheet) by $\mathbb P(\operatorname{Pois}(\lambda)\ge x)\le\exp(-x\log(x/\lambda)-\lambda+x)$, so
+$$\mathbb P(M_n\ge x)\le n\mathbb P(X_1\ge x)\approx n\mathbb P(\operatorname{Pois}(1)\ge x)\le \exp(-x\log(x)-1+x)$$
+So for $\mathbb P(M_n\ge x)\to 0$, we need $x=(1+\epsilon)\log n/\log\log n$.
+\begin{theorem}
+    We have
+    $$\frac{M_n}{\log n/\log\log n}\xrightarrow{\mathbb P}1$$
+    as $n\to\infty$.
+\end{theorem}
+Let $N\sim\operatorname{Pois}(\lambda)$ and let $X=\sum_{k=1}^N\xi_k$ where $\xi_k\sim\operatorname{Bern}(p)$, then $X\sim\operatorname{Pois}(\lambda p)$ and $N-X\sim\operatorname{Pois}(\lambda(1-p))$ and $X,N-X$ are independent, so
+$$\mathbb P(X=x,N-X=y)=e^{-\lambda}\frac{\lambda^{x+y}}{(x+y)!}\binom{x+y}{x}p^x(1-p)^y$$
+We cast a method called Poissonization.
+\begin{proof}
+    Suppose we throw $\operatorname{Pois}(n(1+\epsilon))$ balls instead and let $Y_i$ be the load of bin $i$, then $Y_i\sim\operatorname{Pois}(1+\epsilon)$ are i.i.d..
+    Set $\tilde{M}_n=\max_{i\le n}Y_i$, then
+    \begin{align*}
+        \mathbb P(M_n\ge x)&\le\mathbb P(\tilde{M}_n\ge x,\operatorname{Pois}(n(1+\epsilon))\ge n)+\mathbb P(\operatorname{Pois}(n(1+\epsilon))<n)\\
+        &\le\mathbb P(\tilde{M}_n\ge x)+\mathbb P(\operatorname{Pois}(n(1+\epsilon))<n)\\
+        &\le\mathbb P(\tilde{M}_n\ge x)+\exp(n\log (1+\epsilon)-\epsilon n)\\
+        &\le\mathbb P(\tilde{M}_n\ge x)+\exp\left( -\frac{n\epsilon^2}{10} \right)
+    \end{align*}
+    for $\epsilon\in(0,1)$.
+    Hence
+    $$\mathbb P\left(M_n\ge(1+\epsilon)\frac{\log n}{\log\log n}\right)\le\mathbb P\left(\tilde{M}_n\ge(1+\epsilon)\frac{\log n}{\log\log n}\right)+\exp\left( -\frac{n\epsilon^2}{10} \right)$$
+    Note that $\exp(-n\epsilon^2/10)\to 0$ as $n\to\infty$.
+    Now
+    $$P\left(\tilde{M}_n\ge(1+\epsilon)\frac{\log n}{\log\log n}\right)\le n\mathbb P\left( Y_1\ge (1+\epsilon)\frac{\log n}{\log\log n} \right)$$
+    which is bounded by
+    $$n\exp\left( -(1+\epsilon)\frac{\log n}{\log\log n}\log\left( \frac{\log n}{\log\log n} \right)-(1+\epsilon)+(1+\epsilon)\frac{\log n}{\log\log n} \right)$$
+    which is at most
+    $$n\exp\left( -(1+\epsilon)\log n+10\frac{\log n\log\log\log n}{\log\log n} \right)\to 0$$
+    as $n\to\infty$, hence
+    $$\lim_{n\to\infty}\mathbb P\left(M_n\ge(1+\epsilon)\frac{\log n}{\log\log n}\right)\to 0$$
+    which establishes the upper bound.\\
+    For the lower bound, we need to show that for all $\epsilon\in(0,1)$, we have
+    $$\lim_{n\to\infty}\mathbb P\left( M_n\le(1-\epsilon)\frac{\log n}{\log\log n} \right)\to 0$$
+    Note first that $\mathbb P(\operatorname{Pois}(n(1-\epsilon))>n)\le e^{-n\epsilon^2/10}$, so
+    $$\mathbb P\left( M_n\le(1-\epsilon)\frac{\log n}{\log\log n} \right)\le e^{-n\epsilon^2/10}+\mathbb P\left( \tilde{M}_n\le(1-\epsilon)\frac{\log n}{\log\log n} \right)$$
+    where $\tilde{M}_n=\max_{i\le n}\tilde{Y}_i$ with $\tilde{Y}_i$ are i.i.d. $\operatorname{Pois}(1-\epsilon)$.
+    So
+    $$P\left( \tilde{M}_n\le(1-\epsilon)\frac{\log n}{\log\log n}\right)=P\left( \tilde{Y}_1\le(1-\epsilon)\frac{\log n}{\log\log n} \right)^n$$
+    Now we have
+    $$P\left( \tilde{Y}_1\ge(1-\epsilon)\frac{\log n}{\log\log n}\right)\ge e^{-(1-\epsilon)}\frac{(1-\epsilon)^M}{M!},M=(1-\epsilon)\frac{\log n}{\log\log n}$$
+    Hence
+    \begin{align*}
+        \mathbb P(\tilde{M}_n<M)\le\left( 1-e^{-(1-\epsilon)}\frac{(1-\epsilon)^M}{M!} \right)^n\\
+        \le\exp\left(-ne^{-(1-\epsilon)}\frac{(1-\epsilon)^M}{M!}\right)
+    \end{align*}
+    Now $M!\le M(M/e)^M$ for large enough $M$, so we (finally!) get $\mathbb P(\tilde{M}_n<M)=o(1)$, whcih establishes the result.
+\end{proof}
+Throw $n$ balls into $n$ bins.
+Every time, we pick $d\ge 2$ bins at random and place the ball in the least loaded bin.
+\begin{theorem}
+    After all balls have been placed, the maximum load is
+    $$\frac{\log\log n}{\log d}+O(1)$$
+    with probability $1-o(1)$.
+\end{theorem}
+We will use the Chernoff inequality for binomials, i.e.
+$$\mathbb P(B(n,p)\ge 2np)\le e^{-np/3}$$
+The height of the ball is the number of balls already placed in the bin it is placed $+1$.
+Let $\nu_i$ be the number of bins with load $\ge i$ and $\mu_i$ is the number of bins with height $\ge i$, then $\nu_i\le \mu_i$.
+The idea is that we want to define a sequence $\beta_i$ such that $\nu_i\le\beta_i$ with high probability for all $i\le i^\star$ where $i^\star$ is to be determined and we will show that $i^\star=\log\log n/\log d$.
+Then at this time, $\beta_{i^\star}$ will have order $n$ and we can finish the proof easily from there.
+Suppose we condition on $\nu_i\le\beta_i$, then the probability that a ball has height at least $i+1$ is bounded by $(\beta_i/n)^d$ since all of the $d$ choices have to come from bins with load $\ge i$, so
+$$\mathbb P(\nu_{i+1}>k)\le\mathbb P(B(n,(\beta_i/n)^d))$$
+\begin{lemma}
+    Let $X_1,\ldots$ be a sequence of random variables and let $Y_i$ be a function of $X_1,\ldots,X_i$ that takes values in $\{0,1\}$.
+    If $\mathbb P(Y_i=1|X_1,\ldots,X_{i-1})\le p$, then
+    $$\mathbb P\left( \sum_{i=1}^nY_i>k \right)\le\mathbb P(B(n,p)>k)$$
+\end{lemma}
+\begin{proof}
+    Each $Y_i$ is upper bounded by $\operatorname{Bern}(p)$.
+    And for the sum we use induction.
+\end{proof}
+\begin{proof}[Proof of the Theorem]
+    Let $\nu_i(t)$ be the number of bins with load $\ge i$ at time $t$ (after the $t^{th}$ ball is placed).
+    Let $\mu_i(t)$ be the number of balls with height $\ge i$ at time $t$.
+    Write $\nu_i(n)=\nu_i$ and $\mu_i(n)=\mu_i$, so $\nu_i(t)\le\mu_i(t)$ for any $i,t$.
+    Now we want to find a sequence $\beta_i$ with $\nu_i\le\beta_i$ for $i< i^\star$ with high probability.
+    Let $\beta_4=n/4$ and $\beta_{i+1}=2n(\beta_i/n)^d$.
+    Define $E_i=\{\nu_i\le\beta_i\}$, so $\mathbb P(E_4)=1$.
+    Now we want to show that for all $4\le i<i^\star$ where $i^\star$ is to be determined, we have $\mathbb P(E_{i=1}^c)\le\mathbb P(E_i^c)+1/n^2$.
+    Define a sequence of binomial variables $Y_t=1_{h(t)\ge i+1,\nu_{i-1}\le\beta_i}$.
+    Let $\omega_j$ be bins selected by the $j^{th}$ ball.
+    Now
+    $$\mathbb P(Y_t=1|\omega_1,\ldots,\omega_{t-1})\le\left( \frac{\beta_i}{n} \right)^d=p_i$$
+    So by the preceding lemma, for any $k$,
+    $$\mathbb P\left( \sum_{t=1}^nY_t>k \right)\le\mathbb P(B(n,p)>k)$$
+    So
+    $$\mathbb P(E_{i+1}^c|E_i)=\mathbb P(\nu_{i+1}\ge\beta_{i+1}|E_i)\le\mathbb P(\mu_{i+1}>\beta_{i+1}|E_i)$$
+    Conditioned on $E_i$, $Y_t=1_{h(t)\ge i+1}$, so $\sum_{t=1}^nY_t=\mu_{i+1}$, so
+    \begin{align*}
+        \mathbb P(\mu_{i+1}>\beta_{i+1}|E_i)&=\mathbb P\left( \sum_{t=1}^nY_t>\beta_{i+1}\middle|E_i \right)\\
+        &=\frac{1}{\mathbb P(E_i)}\mathbb P\left( \sum_{t=1}^nY_t>\beta_{i+1},E_i \right)\\
+        &\le\frac{1}{\mathbb P(E_i)}\mathbb P\left( \sum_{t=1}^nY_t>\beta_{i+1}\right)\\
+        &\le\frac{1}{\mathbb P(E_i)}\mathbb P(B(n,p_i)>\beta_{i+1})\\
+        &\le\frac{e^{-np_i/3}}{\mathbb P(E_i)}
+    \end{align*}
+    Note that for any $i$ with $np_i\ge 6\log n$ we have
+    $$\mathbb P(E_{i+1}^c|E_i)\le\frac{1}{n^2\mathbb P(E_i)}\implies\mathbb P(E_{i+1}^c)\le\frac{1}{n^2}+\mathbb P(E_i^c)$$
+    Let $i^\star$ be the first $i$ such that $np_i<6\log n$.
+    Now we claim that
+    $$i^\star=\log\log n/\log d+O(1)$$
+    It suffices to show by induction that
+    $$\beta_{i+4}=\frac{n}{2^{2d^i}-\sum_{j=0}^{i-1}d^j}$$
+    Once we know that, we get $\beta_{i+4}\le n/2^{d^i}$, so $\mathbb P(E_{i^\star}^c)\le i^\star/n^2$, so $\beta_{i^\star+i}=2np_{i^\star}\le 2n(6\log n/n)=12\log n$
+    Now
+    
+    \begin{align*}
+        \mathbb P(\nu_{i^\star+1}>18\log n|E_{i^\star})&\le\mathbb P(\nu_{i^\star+1}>18\log n|E_{i^\star})\\
+        &\le\frac{\mathbb P(B(n,6\log n/n^2)>18\log n)}{\mathbb P(E_{i^\star})}\\
+        &\le e^{-2\log n}/\mathbb P(E_{i^\star})\\
+        &=\frac{1}{n^2\mathbb P(E_{i^\star})}
+    \end{align*}
+    So
+    $$\mathbb P(\nu_{i^\star+1}\ge 18\log n)\le\frac{1}{n^2}+\mathbb P(E_{i^\star}^c)\le\frac{i^\star+1}{n^2}$$
+    Now $\{\nu_{i^\star+1}\ge 1\}\subset\{\mu_{i^\star+1}\ge 1\}\subset\{\mu_{i^\star+2}\ge 2\}$.
+    \begin{align*}
+        \mathbb P(\mu_{i^\star+1}\ge 2|\nu_{i^\star+1}<18\log n)&\le\mathbb P(B(n,(8\log n/n)^d)\ge 2)/\mathbb P(\nu_{i^\star+1}<18\log n)\\
+        &\le\binom{n}{2}\left( \frac{18\log n}{n} \right)^{2d}+\frac{i^\star+1}{n^2}\\
+        &\le\frac{n^2}{n^{2d}}(18\log n)^{2d}+\frac{i^\star+1}{n^2}\\
+        &=o(1/n)
+    \end{align*}
+    and this shows what we wanted.
+\end{proof}
