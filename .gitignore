@@ -295,3 +295,4 @@ TSWLatexianTemp*
 
 # End of https://www.toptal.com/developers/gitignore/api/latex
 Lent/AnalysisI/.fuse_hidden0000307f00000001
+.DS_Store
