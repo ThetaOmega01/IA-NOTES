@@ -3,7 +3,13 @@
 \usepackage{NotesTeX,lipsum}
 \DeclareMathOperator{\im}{Im}
 \usepackage{IEEEtrantools}
-\usepackage{MnSymbol}
+\makeatletter
+\newsavebox{\@brx}
+\newcommand{\llangle}[1][]{\savebox{\@brx}{\(\m@th{#1\langle}\)}%
+  \mathopen{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\newcommand{\rrangle}[1][]{\savebox{\@brx}{\(\m@th{#1\rangle}\)}%
+  \mathclose{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\makeatother
 \def\d{{\mathrm d}}
 \def\e{{\mathrm e}}
 \def\g{{\mathrm g}}
