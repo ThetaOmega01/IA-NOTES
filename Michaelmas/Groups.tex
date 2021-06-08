@@ -108,7 +108,7 @@ skipped some takes irrelevant to contents\\
         Let $G$ be a group, then we have 
         \begin{enumerate}
             \item The identity is unique.
-            \item THe inverse is unique.
+            \item The inverse is unique.
             \item $ gh=g \land hg=g \Rightarrow h=e $.
             \item $ gh=e \Rightarrow hg=e, h=g^{-1} $.
             \item $ (g^{-1})^{-1}=g $.
@@ -146,8 +146,6 @@ skipped some takes irrelevant to contents\\
         The subgroups of $ (\mathbb{Z} ,+) $ are precisely $ (n \mathbb{Z} ,+) $.
     \end{proposition}
     Proved by considering the minimal element.
-
-    Usual laws:
     \begin{proposition}\label{prop:comparing_groups}
         \begin{enumerate}[(1)]
             \item Let $ H,K $ be subgroups of $G$ then $ H\cap K\le G $.
@@ -188,7 +186,7 @@ skipped some takes irrelevant to contents\\
         \begin{enumerate}[(1)]
             \item $ \varphi (e_H)=e_G $.
             \item $ \varphi (h^{-1})=\varphi (h)^{-1} $.
-            \item If $ \psi:G\to K $ is also a homomorphism, then $ \psi \varphi :H\to K $ is a homomorphism.
+            \item If $ \psi:G\to K $ is also a homomorphism, then $ \psi\circ \varphi :H\to K $ is a homomorphism.
         \end{enumerate}
     \end{proposition}
     \begin{proposition}\label{prop:isom_inverse_is_also_an_isom}
@@ -1417,7 +1415,7 @@ skipped some takes irrelevant to contents\\
       \end{proof}
       The kernel, orbits and stablisers have special names:
       \begin{definition}
-          The kernel of he conjugation action $ G \curvearrowright G $ is called \textit{center} $ Z(G) $ of $G$:
+          The kernel of the conjugation action $ G \curvearrowright G $ is called \textit{center} $ Z(G) $ of $G$:
           \[
               Z(G)=\left\{ g\in G: ghg^{-1}=h, \forall h \right\} \Longleftrightarrow Z(G)=\left\{ g\in G: gh=hg \right\}
           .\] 
@@ -1816,7 +1814,7 @@ skipped some takes irrelevant to contents\\
         as required.
     \end{proof}
     \begin{corollary}\label{col:6.12}
-        Four distinct points $_1,z_2,z_3,z_4\in \hat{\bbC}$ lie on a circle if and only if $[z_1,z_2,z_3,z_4]\in \bbR$.
+        Four distinct points $z_1,z_2,z_3,z_4\in \hat{\bbC}$ lie on a circle if and only if $[z_1,z_2,z_3,z_4]\in \bbR$.
     \end{corollary}
     \begin{proof}
         Let $f\in \mcM: (z_1,z_2,z_3)\mapsto (0,1,\infty )$, so that $ f(z_4)=[z_1,z_2,z_3,z_4] $. The circle $C$ through $z_1,z_2,z_3$ is sent to the circle through $0,1,\infty$, i.e., the real axis. Hence $z_4$ lies on the circle if and only if $f(z_4)$ is on the real line, i.e., $[z_1,z_2,z_3,z_4]\in \bbR \cup \{\infty\} \Leftrightarrow [z_1,z_2,z_3,z_4]\in \bbR$ since $f(z_3)=\infty$.
