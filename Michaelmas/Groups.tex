@@ -70,18 +70,23 @@ skipped some takes irrelevant to contents\\
     \section{Definition of Groups}
     \begin{definition}[Group]
         A group is a set $G$ together with a binary operation $ \ast: G\times G \to G $ that 
-        \begin{enumerate}
+        \begin{enumerate}[({G}1)]
+            \setcounter{enumi}{-1}
             \item (Closure) $ \forall g,h\in G, g\ast h $,
             \item (Identity)$ \exists e\in G, \forall g\in G, e*g = g*e = g $,
-            \item (Inverse)$ \forall g\in G, \exists g^{-1}\in G, g * g^{-1} = g^{-1}*g = e $,
+            \item (Inverse)$ \forall g\in G, \exists h\in G, g * h = h*g = e $,
             \item (Associativity)$ \forall g,h,k\in G, (g*h)*k = g*(h*k) $. 
         \end{enumerate}
     \end{definition}
     \begin{remark}
-        The inverse of $g$ is unique, for if there are two $g',g''$, both are inverses of $g$, we have 
-        \[
-            g' = g''*g*g' = g''
-        .\]
+        \begin{enumerate}[(1)]
+            \item         The inverse of $g$ is unique, for if there are two $g',g''$, both are inverses of $g$, we have 
+            \[
+                g' = g''*g*g' = g''
+            .\]
+            Hence we can write \textit{the} inverse of $g$ as $ g^{-1} $.
+            \item By induction, the law of associativity can be generalised to arbitrarily many elements.
+        \end{enumerate}
     \end{remark}
     \begin{example}
         \begin{enumerate}[(1)]
@@ -100,7 +105,7 @@ skipped some takes irrelevant to contents\\
             \item $ (\mathbb{Z}_n, +) $, since it is not closed,
             \item $ (\mathbb{Z} , \times) $, since some inverses do not exist,
             \item $ (\mathbb{R} , *) $, where $ r*s = r^2 s $, since there is no identity,
-            \item $ (\mathbb{N}, *), n*m = |n-m| $.\marginnote{Here $ \mathbb{N} $ is the set of all positive numbers, and it remains this definition unless specified otherwise.} Associativity fails.
+            \item $ (\mathbb{N}, *), n*m = |n-m| $. Here $ \mathbb{N} $ is the set of all positive numbers, and it remains this definition unless specified otherwise. Associativity fails.
         \end{enumerate}
     \end{example}
     \section{Properties of Groups}
@@ -175,7 +180,7 @@ skipped some takes irrelevant to contents\\
     \section{Homomorphisms}
     \subsection{Definition and basic properties}
     \begin{definition}
-        Let $ (G,*_G), (H,*_H) $ be groups. A function $ \varphi: H \to G $ is a \textit{homomorphism} if
+        Let $ (G,*_G), (H,*_H) $ be groups. A function $ \varphi: H \to G $ is called a \textit{homomorphism} if
         \[
             \forall a,b\in H, \varphi (a*_Hb)=\varphi (a)*_G \varphi (b)
         .\]
@@ -273,7 +278,7 @@ skipped some takes irrelevant to contents\\
         Let $ H,K\le G $ such that
         \begin{enumerate}[(1)]
             \item $ H \cap K=\left\{ e\right\} $: they are \textit{disjoint},
-            \item $ \forall h,k, hk=kh $: they are \textit{commutative},
+            \item $ \forall h\in H,k\in K, hk=kh $: they are \textit{commutative},
             \item $ \forall g\in G, \exists h\in H, k\in K, g=hk $: $ G=HK $.
         \end{enumerate}
         Then $ G \cong H \times K $.
@@ -353,6 +358,9 @@ skipped some takes irrelevant to contents\\
     \begin{definition}
         The \textit{dihedral group} $ D_{2n} $ is the group of symmetries of a regular $n$-gon, the operation is composition of symmetries.
     \end{definition}
+    \begin{remark}
+        Note that a symmetry is a function that is \textit{distance-preserving} (i.e. \textit{isometry}) and sends the $n$-gon to it self.
+    \end{remark}
     \begin{example}
         $ D_{6}= $ symmetries of $ \triangle $.
     \end{example}
