@@ -494,7 +494,7 @@ skipped some takes irrelevant to contents\\
         Any $ \sigma\in S_n $ can be written as a composition of disjoint cycles, and this representation is unique up to reordering cycles, and "cycling" of cycles.
     \end{theorem}
     \begin{proof}
-        Take $ \sigma\in S_n $ and consider $ 1,\sigma(1),\sigma^2(1),\dots $. Since $ \{1,2,\dots,n\} $ is finite, $ \exists a>b $, $ \sigma^a(1)=\sigma^b(1) $, so that $ \sigma^{a,b}(1)=1 $. Let $k$ be the smallest integer that $ \sigma^{k}(1)=1 $. Then $ \forall l>m\in [0,k] $, if $ \sigma^{l}(1)=\sigma^{m}(1) $ then $ \sigma^{l-m}=1 $, contradicting with the minimality of $k$, so $ 1,\sigma(1),\dots,\sigma^{k-1}(1) $ are distinct. This cycle 
+        Take $ \sigma\in S_n $ and consider $ 1,\sigma(1),\sigma^2(1),\dots $. Since $ \{1,2,\dots,n\} $ is finite, $ \exists a>b $, $ \sigma^a(1)=\sigma^b(1) $, so that $ \sigma^{a-b}(1)=1 $. Let $k$ be the smallest integer that $ \sigma^{k}(1)=1 $. Then $ \forall l>m\in [0,k] $, if $ \sigma^{l}(1)=\sigma^{m}(1) $ then $ \sigma^{l-m}=1 $, contradicting with the minimality of $k$, so $ 1,\sigma(1),\dots,\sigma^{k-1}(1) $ are distinct. This cycle 
         \[
             \begin{pmatrix}
                 1&\sigma(1)&\sigma^2(x)&\cdots&\sigma^{k-1}(1)
