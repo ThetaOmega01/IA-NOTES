@@ -1,0 +1,161 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{enumerate}
+\usepackage{multicol}
+
+\usepackage[flushleft]{paralist}
+
+
+
+\usepackage{geometry}
+\geometry{%
+  a4paper,
+  lmargin=2cm,
+  rmargin=2.5cm,
+  tmargin=3.5cm,
+  bmargin=2.5cm,
+  footskip=12pt,
+  headheight=24pt}
+
+
+\newcommand{\comment}[1]{{\bf Comment} {\it #1}}
+%\renewcommand{\comment}[1]{}
+\newcommand{\mobius}{{M\"{o}bius }}
+\newcommand{\bct}[1]{{\color{blue}#1}}
+%\renewcommand{\comment}[1]{}
+\newcommand{\rct}[1]{{\color{red}#1}}
+\newcommand{\mcM}{\mathcal{M}}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbF}{\mathbb{F}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Or}{\mathrm{O}}
+\newcommand{\PGL}{\mathrm{PGL}}
+\newcommand{\PSL}{\mathrm{PSL}}
+\newcommand{\PSO}{\mathrm{PSO}}
+\newcommand{\PSU}{\mathrm{PSU}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\Spin}{\mathrm{Spin}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\U}{\mathrm{U}}
+\newcommand{\Mat}{\mathrm{Mat}}
+
+% Matrix algebras
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\ort}{\mathfrak{o}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\uu}{\mathfrak{u}}
+\renewcommand{\sl}{\mathfrak{sl}}
+\DeclareMathOperator{\spn}{span}
+
+
+\setlength{\parskip}{10pt}
+\setlength{\parindent}{0pt}
+
+\newlength{\qspace}
+\setlength{\qspace}{15pt}
+
+
+\newcounter{qnumber}
+\setcounter{qnumber}{0}
+
+\newenvironment{question}%
+ {\vspace{\qspace}
+  \begin{enumerate}[\bfseries 1\quad][10]%
+    \setcounter{enumi}{\value{qnumber}}%
+    \item%
+ }
+{
+  \end{enumerate}
+  \filbreak
+  \stepcounter{qnumber}
+ }
+
+
+\newenvironment{questionparts}[1][1]%
+ {
+  \begin{enumerate}[\bfseries (i)]%
+    \setcounter{enumii}{#1}
+    \addtocounter{enumii}{-1}
+    % \setlength{\itemsep}{5mm}
+    \setlength{\parskip}{3pt}
+ }
+ {
+  \end{enumerate}
+ }
+
+
+
+\DeclareMathOperator{\cosec}{cosec}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\sym}{Sym}
+
+\def\le{\leqslant}
+\def\ge{\geqslant}
+\def\leq{\leqslant}
+\def\geq{\geqslant}
+
+\def\var{{\rm Var}\,}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+
+\title{\textbf{Numbers and Sets Important Examples}}
+\author{\texttt{jt775}}
+\date{\null}
+\begin{document}
+\maketitle
+\vspace{-1.5cm}
+\begin{question}\textit{Example sheet 1 Q9, Fermat numbers.}
+  
+  Prove that $2^{2^{n}}-1$ has at least $n$ distinct prime factors. Hence show that there are infinitely many primes.
+
+  Let $ F_n=2^{2^{n}}+1 $. 
+  \begin{questionparts}
+    \item Are $F_n$ all prime?
+    \item Show that 
+    \begin{enumerate}[(a)]
+      \item $F_{n}=\left(F_{n-1}-1\right)^{2}+1$, for $n \geq 1$,
+      \item $F_{n}=F_{0} \cdot F_{1} \cdot F_{2} \cdots F_{n-1}+2$, for $n \geq 1$,
+      \item $F_{n}=2^{2^{n-1}} F_{0} \cdot F_{1} \cdot F_{2} \cdots F_{n-2}+F_{n-1}$, for $n \geq 2$,
+      \item $F_{n}=F_{n-1}^{2}-2\left(F_{n-2}-1\right)^{2}$, for $n \geq 2$.
+    \end{enumerate}
+    \item Show that the number of digits in $F_{n}$ is approximately $\left\lfloor 2^{n} \log _{10}(2)+1\right\rfloor$.
+    \item Show that every $F_{n}(n \ge 1)$ is of the form $6 k-1$ for some integer $k$.
+    \item Show that no $F_{n}(n \geq 2)$ is a sum of two primes.
+    \item Show that every $F_{n}$ is the difference of two square integers.
+    \item Using Fermat-Euler Theorem on the possible prime factors of $F_{n}$, show that no $F_{n}$ is a perfect square. 
+    
+    \textit{[Hint: assume that $F_{n}$ is a perfect square. First show that if integers $a$ and $b$ both leave a remainder of 1 when divided by a certain integer $m$, then so does the integer $a b$. Now combine this results with Euler's description of the possible prime factors of $F_{n}$ to describe $\sqrt{F_{n}}$.]}
+  \end{questionparts}
+\end{question}
+
+\begin{question}\textit{Example sheet 1 Q10, fast-growing hierarchy.}
+  
+  We are given an operation $*$ on the positive integers, satisfying
+  \begin{enumerate}[(i)]
+    \item $1 * n=n+1$ for all $n$;
+    \item $m * 1=(m-1) * 2$ for all $m>1$;
+    \item $m * n=(m-1) *(m *(n-1))$ for all $m, n>1$. 
+  \end{enumerate}
+  Find the value of $5 * 5$.
+\end{question}
+
+\begin{question}\textit{Example sheet 1 Q14\&Q15, combinatorics.}
+
+\begin{questionparts}
+    \item Some red sweets and blue sweets are distributed among 99 bags. Gareth wants to select 50 of the bags in such a way that he obtains at least half of the red sweets and at least half of the blue sweets. Is he always able to do this?
+    \item Each of $n$ elderly dons knows a piece of information not known to any of the others. They communicate by telephone, and in each call the two dons concerned reveal to each other all the information they know so far. What is the smallest number of calls that can be made in such a way that, at the end, all the dons know all the information?
+\end{questionparts}
+\end{question}
+\end{document}
