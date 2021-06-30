@@ -1,0 +1,180 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{enumerate}
+\usepackage{multicol}
+
+\usepackage[flushleft]{paralist}
+
+
+
+\usepackage{geometry}
+\geometry{%
+  a4paper,
+  lmargin=2cm,
+  rmargin=2.5cm,
+  tmargin=3.5cm,
+  bmargin=2.5cm,
+  footskip=12pt,
+  headheight=24pt}
+
+
+\newcommand{\comment}[1]{{\bf Comment} {\it #1}}
+%\renewcommand{\comment}[1]{}
+\newcommand{\mobius}{{M\"{o}bius }}
+\newcommand{\bct}[1]{{\color{blue}#1}}
+%\renewcommand{\comment}[1]{}
+\newcommand{\rct}[1]{{\color{red}#1}}
+\newcommand{\mcM}{\mathcal{M}}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbF}{\mathbb{F}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Or}{\mathrm{O}}
+\newcommand{\PGL}{\mathrm{PGL}}
+\newcommand{\PSL}{\mathrm{PSL}}
+\newcommand{\PSO}{\mathrm{PSO}}
+\newcommand{\PSU}{\mathrm{PSU}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\Spin}{\mathrm{Spin}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\U}{\mathrm{U}}
+\newcommand{\Mat}{\mathrm{Mat}}
+
+% Matrix algebras
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\ort}{\mathfrak{o}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\uu}{\mathfrak{u}}
+\renewcommand{\sl}{\mathfrak{sl}}
+\DeclareMathOperator{\spn}{span}
+
+
+\setlength{\parskip}{10pt}
+\setlength{\parindent}{0pt}
+
+\newlength{\qspace}
+\setlength{\qspace}{15pt}
+
+
+\newcounter{qnumber}
+\setcounter{qnumber}{0}
+
+\newenvironment{question}%
+ {\vspace{\qspace}
+  \begin{enumerate}[\bfseries 1\quad][10]%
+    \setcounter{enumi}{\value{qnumber}}%
+    \item%
+ }
+{
+  \end{enumerate}
+  \filbreak
+  \stepcounter{qnumber}
+ }
+
+
+\newenvironment{questionparts}[1][1]%
+ {
+  \begin{enumerate}[\bfseries (i)]%
+    \setcounter{enumii}{#1}
+    \addtocounter{enumii}{-1}
+    % \setlength{\itemsep}{5mm}
+    \setlength{\parskip}{3pt}
+ }
+ {
+  \end{enumerate}
+ }
+
+
+
+\DeclareMathOperator{\cosec}{cosec}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\sym}{Sym}
+
+\def\le{\leqslant}
+\def\ge{\geqslant}
+\def\leq{\leqslant}
+\def\geq{\geqslant}
+
+\def\var{{\rm Var}\,}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+
+\title{\textbf{Differential Equations Important Examples}}
+\author{\texttt{jt775}}
+\date{\null}
+\begin{document}
+\maketitle
+\vspace{-1.5cm}
+\begin{question}\textit{Example sheet 1 Q9, Gini index.}
+
+    In a large population, the proportion with income between $x$ and $x+\mathrm{d} x$ is $f(x) \mathrm{d} x$. Express the mean (average) income $\mu$ as an integral, assuming that any positive income is possible.
+    Let $p=F(x)$ be the proportion of the population with income less than $x$, and $G(x)$ be the mean (average) income earned by people with income less than $x$. Further, let $\theta(p)$ be the proportion of the total income which is earned by people with income less than $x$ as a function of the proportion $p$ of the population which has income less than $x .$ Express $F(x)$ and $G(x)$ as integrals and thence derive an expression for $\theta(p)$, showing that
+    \[
+    \theta(0)=0, \quad \theta(1)=1
+    \]
+    and 
+    \[
+    \theta^{\prime}(p)=\frac{F^{-1}(p)}{\mu}, \quad \theta^{\prime \prime}(p)=\frac{1}{\mu f\left(F^{-1}(p)\right)}>0.
+    \]
+    Sketch the graph of a function $\theta(p)$ with these properties. Deduce that, if there is any variation in income, the bottom, (when ordered in terms of income) proportion $p$ of the population receive less than $p$ of the total income, for all positive values of $p$. Just how much less is quantified by the (in)famous ``Gini index'' beloved of economists, which is twice the area between the curve $\theta(p)$ and the diagonal line connecting $(0,0)$ and $(1,1)$.
+    
+    A particular population's income is described by the exponential distribution:
+    \[
+    f(x)=\lambda e^{-\lambda x} \text { for } x>0
+    \]
+    For some constant $\lambda>0$, using your expression for $\theta(p)$, compute the Gini index in this case. 
+    
+    \textit{Food for thought: To what extent does the Gini index capture the degree of income inequality for this distribution?}
+\end{question}
+
+\begin{question}\textit{Example sheet 1 Q12, Q13 \& Q14, practice techniques.}
+    
+    \begin{questionparts}
+        \item In thermodynamics, the pressure of a system, $p$, can be considered as a function of the variables $V$ (volume) and $T$ (temperature) or as a function of the variables $V$ and $S$ (entropy).
+        \begin{enumerate}[(a)]
+            \item By expressing $p(V, S)$ in the form $p(V, S(V, T))$ evaluate
+            \[
+            \left.\left(\frac{\partial p}{\partial V}\right)\right|_{T}-\left.\left(\frac{\partial p}{\partial V}\right)\right|_{S} \text { in terms of }\left.\left(\frac{\partial S}{\partial V}\right)\right|_{T} \text { and }\left.\left(\frac{\partial S}{\partial p}\right)\right|_{V} .
+            \]
+            \item Hence, using $T\,\mathrm d S=\mathrm d U+p \,\mathrm d V$ (conservation of energy with $U$ the internal energy), show that
+            \[
+            \left.\left(\frac{\partial \ln p}{\partial \ln V}\right)\right|_{T}-\left.\left(\frac{\partial \ln p}{\partial \ln V}\right)\right|_{S}=\left.\left(\frac{\partial(p V)}{\partial T}\right)\right|_{V}\left[\frac{\left.p^{-1}(\partial U / \partial V)\right|_{T}+1}{\left.(\partial U / \partial T)\right|_{V}}\right] .
+            \]
+            $\left[\text{Hint: }\left.\left.\left(\frac{\partial \ln p}{\partial \ln V}\right)\right|_{T}=\frac{V}{p}\left(\frac{\partial p}{\partial V}\right)\right|_{T}\right]$.
+        \end{enumerate}
+        \item By differentiating $I$ with respect to $\lambda$, show that
+        \[
+        I(\lambda, \alpha)=\int_{0}^{\infty} \frac{\sin \lambda x}{x} e^{-\alpha x} \,\mathrm d x=\tan ^{-1} \frac{\lambda}{\alpha}+c(\alpha).
+        \]
+        Show that $c(\alpha)$ is constant (independent of $\alpha$ ) and hence, by considering the limits $\alpha \rightarrow \infty$ and $\alpha \rightarrow 0$, show that, if $\lambda>0$,
+        \[
+        \int_{0}^{\infty} \frac{\sin \lambda x}{x} \,\mathrm d x=\frac{\pi}{2}.
+        \]
+        What is the value of the integral when $\lambda<0$?
+        \item Let $f(x)=\left[\int_{0}^{x} e^{-t^{2}} \mathrm{~d} t\right]^{2}$ and let $g(x)=\int_{0}^{1}\left[e^{-x^{2}\left(t^{2}+1\right)} /\left(1+t^{2}\right)\right] \mathrm{d} t$.
+        Show that
+        \[
+        f^{\prime}(x)+g^{\prime}(x)=0 .
+        \]
+        Deduce that
+        \[
+        f(x)+g(x)=\pi / 4
+        \]
+        and hence that
+        \[
+        \int_{0}^{\infty} e^{-t^{2}} \mathrm{~d} t=\frac{\sqrt{\pi}}{2}.
+        \]
+    \end{questionparts}
+\end{question}
+\end{document}
