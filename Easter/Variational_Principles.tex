@@ -1,0 +1,180 @@
+\documentclass[a4paper]{article}
+
+\newcommand{\triposcourse}{Variational Principles}
+\input{./header.tex}
+\graphicspath{ {./images/} }
+\pgfplotsset{compat=1.17}
+\begin{document}
+\maketitle
+\tableofcontents
+\setcounter{section}{-1}
+\newpage
+\part*{Lecture 1}
+\section{Motivation}
+The history of variational principles can be dated back to a pretty concrete classical problem known as the Brachistochrone problem:
+\begin{example}[The Brachistochrone Problem]
+    Consider a particle moving under the influence of gravity on a wire joining points $A$ and $B$.
+    What shape of the curve gives the shortest travel time of the particle given that it starts from rest?\\
+    Mathematically, we want to minimise the quantity
+    $$\tau=\int_A^B\mathrm dt=\int_A^B\frac{\mathrm dL}{v(x,y)}$$
+    This problem was first created by Johann Bernoulli in 1696, who posted the problem in a journal as a challenge to the world's mathematcians at the time.
+    And the answer given by Newton starts the study of calculus of variations.
+    We are not going to fully solve the problem in this section, but instead just give a taste of the whole picture.\\
+    Assuming $A$ is the origin and $B=(x_2,y_2)$
+    Using energy conservation,
+    $$\frac{1}{2}mv^2+mgy=0\implies v=\sqrt{-2gy}$$
+    Take $y$ as a function of $x$, then we are aiming at finding the minima of the functional
+    $$\tau[y]=\frac{1}{\sqrt{2g}}\int_0^{x_2}\frac{\sqrt{1+(y^\prime)^2}}{\sqrt{-y}}\,\mathrm dx$$
+    subject to
+    $$\begin{cases}
+        y(0)=0\\
+        y(x_2)=y_2
+    \end{cases}$$
+\end{example}
+Another very famous and very useful example is geodesics.
+\begin{example}[Geodesics]
+    On a surface $\Sigma$, a geodesics $\gamma$ is the path of least length joining two given points.
+    If $\Sigma$ is the Euclidean plane, it is well-known that $\gamma$ has to be a straight line.
+    Let $D[y]$ denote the length of the curve given by $y$ and assume that the curve traverse as a function $y(x)$ from $x_1,x_2$, then minimising the following integral 
+    $$D[y]=\int_{x_1}^{x_2}\sqrt{1+(y^\prime)^2}\,\mathrm dx$$
+    subject to $y(x_1)=y_1,y(x_2)=y_2$ would be our aim.
+\end{example}
+In general, the calculus of variations focus on solving optimisation problems of a functional (i.e. functions from a space of functions to the reals)
+$$F[y]=\int_{x_1}^{x_2}f(x,y(x),y^\prime(x))\,\mathrm dx$$
+among all (sufficiently smooth) functions $y$ subject to initial conditions.
+\begin{example}[Examples of Functionals]
+    1. For a function $y(x)$, we can define the functional calculating the area under the curve by setting $f(x,y,y^\prime)=y$.\\
+    2. We can also define the functional calculating length by
+    $$f(x,y,y^\prime)=\sqrt{1+(y^\prime)^2}$$
+\end{example}
+Notationally, we write $C(\mathbb R)$ as the space of continuous functions from $\mathbb R$ to $\mathbb R$.
+We write $C^k(\mathbb R)$ to denote the space of $k$-time differentiable functions with continuous $k^{th}$ derivative.
+And $C^k_{\alpha,\beta}(\mathbb R)$ is the space of functions $[\alpha,\beta]\to\mathbb R$ that are $C^k$ on $[\alpha,\beta]$ and vanishes at $\alpha,\beta$.
+One should know that these are these are all (infinite-dimensional) vector spaces over $\mathbb R$, the detail of analysis of which will be covered in functional analysis contexts.\\
+The reason why the course is called ``variational principles'' instead of ``calculus of variations'' is because what we are studying are principles in nature and laws of physics that follow from extremising functionals.
+\begin{example}[Fermat's Principle]
+    Light that travels between two points follow the path that extremise the travel time.
+\end{example}
+\begin{example}[Principle of Least Action]
+    Let $T,V$ be the kinetic and potential energies.
+    We define the functional on a path
+    $$S[\gamma]=\int_{t_1}^{t_2}(T-V)\,\mathrm dt$$
+    then the path that a particle travels from $t=t_1$ to $t=t_2$ is the one that extremises $S$.
+    Once we have developed our theory further, one can show that Newton's Second Law follows from this principle.\\
+    Leibniz's take on this principle is that we live in ``the best of all possible worlds''.
+    In some sense, we go from science to something like the field of theology.
+    Of course, this is not in the scope of this course.\\
+    Richard Feynman's take on this principle is that it is ``wrong''.
+    Indeed, in quantum physics, nothing takes a definitive path, but every paths are possible with some probability.
+    The principle under this framework, instead, is that the stationary path of a particle is, in fact, the interference along all paths.
+\end{example}
+What we shall show in this course are the follows:
+First, we will see some necessary conditions for a function to be an extrema, like the Euler-Lagrange equations.
+Secondly, we will bring this principle on problems in geometry, physics, and problem with constraints (like the isoperimetric inequality).
+We will also talk about what is called the ``second variation'' as an analog of the second derivative.
+\newpage
+\part*{Lecture 2}
+\section{Calculus for functions on $ \mathbb{R} ^n $}
+Let $C^2(\mathbb R^2)$ denote the collection of twice differentiable functions $\mathbb R^n\to\mathbb R$ with continuous second derivatives.
+\begin{definition}
+    Let $f\in C^2(\mathbb R^n)$.
+    A point $\mathbf{a}\in\mathbb R^n$ is stationary (or is a stationary point of $f$) if $\nabla f(\mathbf{a})=\mathbf{0}$.
+\end{definition}
+If we expand $f$ near one of its stationary points $\mathbf{x}=\mathbf{a}$, then
+\begin{align*}
+    f(\mathbf{x})&=f(\mathbf{a})+(\mathbf{x}-\mathbf{a})\cdot\nabla f+\frac{1}{2}(x_i-a_i)(x_j-a_j)\frac{\partial^2f}{\partial x_i\partial x_j}(\mathbf{a})+o(|\mathbf{x}-\mathbf{a}|^2)\\
+    &=f(\mathbf{a})+\frac{1}{2}(\mathbf{x}-\mathbf{a})^\top H(\mathbf{a})(\mathbf{x}-\mathbf{a}),
+\end{align*}
+Where $H_{ij}(\mathbf{a})=\partial^2f/\partial x_i\partial x_j(\mathbf{a})$ is the Hessian, which is a real symmetric matrix for every $\mathbf{a}$.
+
+Shift the origin to set $\mathbf{a}=\mathbf{0}$ and write $H=H(\mathbf{0})$.
+As $H$ is real symmetric, we know that in another orthonormal basis $H$ can be diagonalised to $H=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)$, hence in this new coordinate system,
+$$f(\mathbf{x})-f(\mathbf{0})=\frac{1}{2}\sum_{i=1}^n\lambda_ix_i^2+o(|x|^2).$$
+
+\begin{theorem}
+    Let $\lambda_i$ be as before, then 
+    \begin{enumerate}[(i)]
+        \item If $\forall i,\lambda_i>0$, then $\mathbf{0}$ is a local minimum.
+        \item If instead $\forall i,\lambda_i<0$, then $\mathbf{0}$ is a local maximum.
+        \item If some of the eigenvalues are positive and some are negative, then $ \mathbf{0} $ is a saddle point.
+        \item If for some $i$ has $\lambda_i=0$, then we need higher order terms. 
+    \end{enumerate}
+\end{theorem}
+
+In the special case where $n=2$, we have $\det H=\lambda_1\lambda_2$ and $\operatorname{tr} H=\lambda_1+\lambda_2$, both of which are easier to calculate than the actual eigenvalues, so we can formulate a corollary to make things easier.
+\begin{corollary}
+    \begin{enumerate}[(i)]
+        \item If $\det H>0,\operatorname{tr}H>0$, then it is a local minimum.
+        \item If $\det H>0,\operatorname{tr}H<0$, it is a local maximum.
+        \item If $\det H<0$, it is a saddle point.
+        \item If $ \det H=0 $, then we have to look at higher order terms.
+    \end{enumerate}
+\end{corollary}
+Despite these results, one should note that the actual (global) maxima and minima might occur at boundaries where we may not have $\nabla f=0$.
+
+Also, there are plenty of examples of functions who only have saddle points.
+Consider a harmonic function $f$ on $D\subset\mathbb R^2$, i.e. $f_{xx}+f_{yy}=0$, then at a stationary point we necessarily have $\operatorname{tr}H=0$, hence either $\det H=0$ or it is a saddle point.
+
+But of course, the theorem and corollary can help a lot in classifying stationary points.
+\begin{example}
+    Let $f(x,y)=x^3+y^3-3xy$, then $\nabla f=(3x^2-3y,3y^2-3x)^\top$, so the only stationary points are $(x,y)=(0,0),(1,1)$.
+    $$H=\begin{pmatrix}
+        6x&-3\\
+        -3&6y
+    \end{pmatrix}$$
+    Hence, by the above corollary, $(0,0)$ is a saddle point while $(1,1)$ is a minimum. Near $ f=0, f \sim -3xy $, and $f$ decreases on $y=x$, increases on $y=-x$.
+    \begin{center}\vspace{1ex}
+        \includegraphics[scale=0.1]{phase_1.1.jpeg}
+    \end{center}
+\end{example}
+
+\subsection{Constraints and Lagrange Multipliers}
+The optimisation problems in $\mathbb R^n$ are most likely coming with some sort of constraints.
+We first illustrate this by way of an example
+\begin{example}
+    Find the circle centered at $(0,0)$ with smallest radius which intersects the parabola $y=x^2-1$.
+
+    \begin{center}
+        \includegraphics[scale=0.14]{best_fit_circ.jpeg}
+    \end{center}
+    
+    Naturally, there are many ways to do this.
+    One can solve the problem directly by simply substitution
+    $$x^2+y^2=x^2+(x^2-1)^2=x^4-x^2+1$$
+    which minimum is $3/4$ by either calculus or completing square.
+    So the smallest radius is $\sqrt{3}/2$.
+
+    The second method to solve this probelm is called the \textit{Lagrange multipliers}.
+    Define a new function
+    $$h(x,y,\lambda)=f(x,y)-\lambda g(x,y)$$
+    where $f(x,y)=x^2+y^2$ is the function we want to minimise and $g(x,y)=y-x^2+1$ which vanishes if $(x,y)$ is on the parabola, i.e. $ g(x,y)=0 $ is the constraint.
+    $\lambda$ here is called the \textit{Lagrange multiplier}.
+    We now try to extremise $h$ over $x,y,\lambda$.
+    Naturally, we solve the partial derivatives
+    $$\begin{cases}
+        \partial h/\partial x=2x+2\lambda x=0\\
+        \partial h/\partial y=2y-\lambda=0\\
+        \partial h/\partial\lambda=y-x^2+1=0
+    \end{cases}$$
+    Hence the stationary point of $h$ are at $(x,y)=(0,-1),(\pm 1/\sqrt{2},-1/2)$.
+    Note that $ f(0,1)=1(\lambda=-2),\ f(\pm 1/\sqrt{2},-1/2)=3/4(\lambda=-1) $, so the result follows.
+\end{example}
+
+Why does the method of Lagrange multiplier work?
+
+Geometrically, if we want to minimise a function $f$ subject to $g=0$.
+Now $\nabla g$ is always perpendicular to $g=0$.
+Then, suppose the minimum of $f$ is $c$, then the graph of $f(x)=c$ would touch $g(x)=0$, therefore their gradients there are parallel, so $\nabla f=\lambda\nabla g$ for some $\lambda$ and hence $\nabla h=0$ (note that $\partial h/\partial\lambda=0$ iff $g=0$), which is exactly the system we want to solve in the last part.
+
+\begin{center}
+    \includegraphics[scale=0.15]{best_fit_circ2.jpeg}
+\end{center}
+
+If there are many constraints $g_\alpha(\mathbf{x})=0$ of the minimisation problem of $f:\mathbb R^k\to\mathbb R$ where $\alpha=1,\dots,k$, we can define an analogous
+$$h(x_1,\ldots,x_k,\lambda_1,\ldots,\lambda_k)=f(\mathbf{x})-\lambda_\alpha g_\alpha(\mathbf{x})$$
+with $k$ Lagrange multipliers. Then we can extremise $h$ by solving 
+\[
+    \frac{\partial h}{\partial x_i} = 0,\quad \frac{\partial h}{\partial \lambda_\alpha}=0.  
+\]
+It follows by substitution back to $f$.
+\end{document}

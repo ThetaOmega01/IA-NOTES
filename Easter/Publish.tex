@@ -1,0 +1,190 @@
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,mathrsfs}
+
+%%%%%%%boxed enviroment for final layout%%%%%%%%%%%%%
+
+\newtheoremstyle{mystyle}%
+  {}%
+  {}%
+  {}%
+  {}%
+  {\sffamily\bfseries}%
+  {.}%
+  { }%
+  {}%
+
+% \renewenvironment{proof}{{\sffamily\bfseries Proof. }}{\qed}
+
+\theoremstyle{mystyle}{
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \newtheorem{problem}[theorem]{Problem}
+  \newtheorem*{claim}{Claim}
+  \newtheorem*{slemma}{Lemma}
+  \newtheorem*{sprop}{Proposition}
+  \newtheorem*{notation}{Notation}
+
+  \newtheorem{inquestion}{Question}
+  \newtheorem*{sque}{Question}
+
+  \newtheorem{definition}{Definition}[section]
+  \newtheorem{conjecture}{Conjecture}[section]
+  \newtheorem{example}{Example}[section]
+  \newtheorem*{law}{Law}
+
+  \newtheorem*{remark}{Remark}
+  \newtheorem*{note}{Note}
+}
+
+\newenvironment{question}[1]
+{\renewcommand\theinquestion{#1}\inquestion}
+{\endinquestion}
+
+\theoremstyle{definition}{
+    \newtheorem*{exercise}{Exercise}}
+
+\tcolorboxenvironment{definition}{
+  boxrule=0pt,
+  boxsep=2pt,
+  colback={White!90!Cerulean},
+  enhanced jigsaw, 
+  borderline west={2pt}{0pt}{Cerulean},
+  sharp corners,
+  before skip=10pt,
+  after skip=10pt,
+  breakable,
+}
+
+\tcolorboxenvironment{notation}{
+  boxrule=0pt,
+  boxsep=2pt,
+  colback={White!90!Cerulean},
+  enhanced jigsaw, 
+  borderline west={2pt}{0pt}{Cerulean},
+  sharp corners,
+  before skip=10pt,
+  after skip=10pt,
+  breakable,
+}
+
+\tcolorboxenvironment{proposition}{
+  boxrule=0pt,
+  boxsep=2pt,
+  colback={White!90!Yellow},
+  enhanced jigsaw, 
+  borderline west={2pt}{0pt}{Yellow},
+  sharp corners,
+  before skip=10pt,
+  after skip=10pt,
+  breakable,
+}
+
+\tcolorboxenvironment{sprop}{
+  boxrule=0pt,
+  boxsep=2pt,
+  colback={White!90!Yellow},
+  enhanced jigsaw, 
+  borderline west={2pt}{0pt}{Yellow},
+  sharp corners,
+  before skip=10pt,
+  after skip=10pt,
+  breakable,
+}
+
+\tcolorboxenvironment{theorem}{
+  boxrule=0pt,
+  boxsep=2pt,
+  colback={White!90!Dandelion},
+  enhanced jigsaw, 
+  borderline west={2pt}{0pt}{Dandelion},
+  sharp corners,
+  before skip=10pt,
+  after skip=10pt,
+  breakable,
+}
+
+\tcolorboxenvironment{lemma}{
+  boxrule=0pt,
+  boxsep=2pt,
+  blanker,
+  borderline west={2pt}{0pt}{Red},
+  before skip=10pt,
+  after skip=10pt,
+  sharp corners,
+  left=12pt,
+  right=12pt,
+  breakable,
+}
+
+\tcolorboxenvironment{corollary}{
+  boxrule=0pt,
+  boxsep=2pt,
+  blanker,
+  borderline west={2pt}{0pt}{ForestGreen},
+  before skip=10pt,
+  after skip=10pt,
+  sharp corners,
+  left=12pt,
+  right=12pt,
+  breakable,
+}
+
+\tcolorboxenvironment{proof}{
+  boxrule=0pt,
+  boxsep=2pt,
+  blanker,
+  borderline west={2pt}{0pt}{NavyBlue!80!white},
+  before skip=10pt,
+  after skip=10pt,
+  left=12pt,
+  right=12pt,
+  breakable,
+}
+
+\tcolorboxenvironment{remark}{
+  boxrule=0pt,
+  boxsep=2pt,
+  blanker,
+  borderline west={2pt}{0pt}{Green},
+  before skip=10pt,
+  after skip=10pt,
+  left=12pt,
+  right=12pt,
+  breakable,
+}
+
+\tcolorboxenvironment{note}{
+  boxrule=0pt,
+  boxsep=2pt,
+  blanker,
+  borderline west={2pt}{0pt}{PineGreen},
+  before skip=10pt,
+  after skip=10pt,
+  left=12pt,
+  right=12pt,
+  breakable,
+}
+
+\tcolorboxenvironment{example}{
+  boxrule=0pt,
+  boxsep=2pt,
+  blanker,
+  borderline west={2pt}{0pt}{Black},
+  sharp corners,
+  before skip=10pt,
+  after skip=10pt,
+  left=12pt,
+  right=12pt,
+  breakable,
+}
+
+\titleformat*{\section}{\Large\bfseries\sffamily}
+\titleformat*{\subsection}{\large\bfseries\sffamily}
+\titleformat*{\subsubsection}{\bfseries\sffamily}
+\titleformat*{\paragraph}{\bfseries\sffamily}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{\textbf{\sffamily\triposcourse{} Notes}}

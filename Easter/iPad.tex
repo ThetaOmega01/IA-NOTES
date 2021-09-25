@@ -1,0 +1,33 @@
+\usepackage[T1]{fontenc}
+\usepackage{crimson}
+
+\theoremstyle{plain}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem*{claim}{Claim}
+\newtheorem*{slemma}{Lemma}
+\newtheorem*{sprop}{Proposition}
+\newtheorem*{notation}{Notation}
+\newtheorem*{exercise}{Exercise}
+
+\newtheorem{inquestion}{Question}
+\newtheorem*{sque}{Question}
+\newenvironment{question}[1]
+  {\renewcommand\theinquestion{#1}\inquestion}
+  {\endinquestion}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem*{law}{Law}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{note}{Note}
+
+\title{\textbf{\triposcourse{} Notes}}

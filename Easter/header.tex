@@ -139,7 +139,6 @@ dot/.default = 5pt% size of the circle diameter
 \DeclareMathOperator{\var}{Var}
 \DeclareMathOperator{\cov}{Cov}
 \DeclareMathOperator{\corr}{Corr}
-\DeclareMathOperator{\tr}{tr}
 
 \newcommand{\bfA}{{\bf A}}
 \newcommand{\bfB}{{\bf B}}
@@ -387,7 +386,6 @@ dot/.default = 5pt% size of the circle diameter
 \newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
 \def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
 
-\setlength{\parskip}{10pt}
 \setlength{\parindent}{0pt}
 
 \newcommand{\incfig}[1]{%
@@ -395,6 +393,10 @@ dot/.default = 5pt% size of the circle diameter
     \import{./figures/}{#1.pdf_tex}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{./Publish.tex}
+% \input{./iPad.tex}
+
 %layout full
 \geometry{%
   a4paper,
@@ -413,32 +415,6 @@ dot/.default = 5pt% size of the circle diameter
 % top=54pt,
 % right=17pt
 % }
-\theoremstyle{plain}
-
-\theoremstyle{definition}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{problem}[theorem]{Problem}
-\newtheorem*{claim}{Claim}
-\newtheorem*{slemma}{Lemma}
-\newtheorem*{sprop}{Proposition}
-\newtheorem*{notation}{Notation}
-\newtheorem*{exercise}{Exercise}
-
-\newtheorem{inquestion}{Question}
-\newtheorem*{sque}{Question}
-
-\newtheorem{definition}{Definition}[section]
-\newtheorem{conjecture}{Conjecture}[section]
-\newtheorem{example}{Example}[section]
-\newtheorem*{law}{Law}
-
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
-\newtheorem*{note}{Note}
-
-\title{\textbf{\triposcourse{} Revision}}
-\author{\texttt{jt775}}
-\date{\null}
+\pagestyle{fancy}
+\rhead{\textsc{\triposcourse{}}}
+\author{jt775}
