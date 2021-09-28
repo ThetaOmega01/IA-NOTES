@@ -177,4 +177,103 @@ with $k$ Lagrange multipliers. Then we can extremise $h$ by solving
     \frac{\partial h}{\partial x_i} = 0,\quad \frac{\partial h}{\partial \lambda_\alpha}=0.  
 \]
 It follows by substitution back to $f$.
+\newpage
+\part*{Lecture 3}
+\section{The Euler-Lagrange Equation}
+\subsection{Derivation of the Equation}
+We now move on to the most important theorem of the course, which gives a necessary condition to extremise a functional in the form
+$$F[y]=\int_\alpha^\beta f(x,y,y^\prime)\,\mathrm dx$$
+where $f$ is given, and $'$ denotes differentiation.
+In contexts of geometry and physics, $y$ is most likely to carry the meaning of the trajectory of some point.
+\begin{center}
+    \includegraphics[scale=0.12]{euler-lagrange1.jpeg}
+\end{center}
+We first assume that a extremum $y$ exists, then when we apply a small perturbation $y\mapsto y+\epsilon\eta(x)$ with $\eta(\alpha)=\eta(\beta)=0$ to keep the endpoint fixed.
+Now we want to compute $F[y+\epsilon\eta]$, but first of all we will need a lemma.
+
+\begin{lemma}\label{fund_lemma}
+    If $g:[\alpha,\beta]\to\mathbb R$ is continuous on $[\alpha,\beta]$ and
+    $$\int_\alpha^\beta g(x)\eta(x)\,\mathrm dx=0$$
+    for all $\eta\in C([\alpha,\beta])$ with $\eta(\alpha)=\eta(\beta)=0$, then $\forall x\in [\alpha,\beta],g(x)=0$.
+\end{lemma}
+\begin{proof}
+    Assume for sake of contradiction that there exists some $\bar{x}$ on $(\alpha,\beta)$ such that $g(\bar{x})\neq 0$.
+    wlog $g(\bar{x})>0$, then by continuity there is an interval $[x_1,x_2]\subset[\alpha,\beta]$ such that $\exists c>0,\forall x\in [x_1,x_2],g(x)>c$.
+    Set
+    $$\eta(x)=\begin{cases}
+        (x-x_1)(x_2-x)\text{, if $x\in [x_1,x_2]$}\\
+        0\text{, otherwise}
+    \end{cases}$$
+    Then
+    \begin{align*}
+        \int_\alpha^\beta g(x)\eta(x)\,\mathrm dx
+        &=\int_{x_1}^{x_2}g(x)(x-x_1)(x_2-x)\,\mathrm dx\\
+        &\ge\int_{x_1}^{x_2}c(x-x_1)(x_2-x)\,\mathrm dx>0.
+    \end{align*}
+    Contradiction.
+    So $g=0$ on $(\alpha,\beta)$, and it is also zero at $\alpha,\beta$ by continuity, hence $g=0$ on $[\alpha,\beta]$.
+\end{proof}
+\begin{remark}
+    The $\eta$ we have used above is called a bump function, which is $C^2$ as one can verify.
+    One can also make a $C^k$ bump function by considering
+    \footnote{It is also easy to construct a $C^{\infty}$ bump function.}
+    $$\eta(x)=\begin{cases}
+    ((x-x_1)(x_2-x))^{k+1}\text{, if $x\in [x_1,x_2]$}\\
+    0\text{, otherwise}
+\end{cases}$$
+\end{remark}
+Now back at $F[y+\epsilon\eta]$, we have
+\begin{align*}
+    F[y+\epsilon\eta]&=\int_\alpha^\beta f(x,y+\epsilon\eta,y^\prime+\epsilon\eta^\prime)\,\mathrm dx\\
+    &=F[y]+\epsilon\int_\alpha^\beta\left( \frac{\partial f}{\partial y}\eta+\frac{\partial f}{\partial y^\prime}\eta^\prime \right)\,\mathrm dx+O(\epsilon^2)
+\end{align*}
+We will analysis the $O(\epsilon^2)$ remainder later.
+
+For now, we just observe that for $y$ to be an extremum, the first-order term shall vanish, so we want something like 
+\[
+    \frac{\partial F[y+\epsilon \eta]}{\partial \epsilon} =0.
+\]
+Integrate the vanishing first-order coefficient by parts,
+\begin{align*}
+    0&=\left.\frac{\partial f}{\partial y^\prime}\eta\right|_\alpha^\beta+\int_\alpha^\beta\left( \frac{\partial f}{\partial y}\eta-\frac{\mathrm d}{\mathrm dx}\left( \frac{\partial f}{\partial y^\prime} \right)\eta \right)\,\mathrm dx\\
+    &=\int_\alpha^\beta\left( \frac{\partial f}{\partial y}-\frac{\mathrm d}{\mathrm dx}\frac{\partial f}{\partial y^\prime} \right)\eta\,\mathrm dx
+\end{align*}
+By the preceding lemma, we must have
+$$\boxed{\frac{\mathrm d}{\mathrm dx}\frac{\partial f}{\partial y^\prime}-\frac{\partial f}{\partial y}=0}$$
+This is known as the Euler-Lagrange equation, which is the \textit{necessary condition} for an extremum. This equation is first developed in 1745 in a letter from Lagrange to Euler.
+\begin{remark}\ 
+    \begin{enumerate}
+        \item The Euler-Lagrange equation is a second-order ODE with initial conditions $y(\alpha)=y_1,y(\beta)=y_2$.
+        \item Sometimes the LHS is denoted $\delta F[y]/\delta y(x)$ and is called the functional derivative.
+        Some author also write $\epsilon\eta=\delta y$, allowing one to write $F[y+\delta y]=F[y]+\delta F[y]$ where
+        $$\delta F[y]=\int_\alpha^\beta\frac{\delta F[y]}{\delta y(x)}\delta y(x)\,\mathrm dx$$
+        \item Other kinds of boundary conditions are possible, for example $ \frac{\partial f}{\partial y'}\Big|_{\alpha,\beta}=0  $.
+        \item Be careful with derivatives as the notation can be a bit confusing.
+        The $x,y,y^\prime$ are independent variables when we are talking about partial derivatives of $f(x,y,y^\prime)$.
+        \item For any $h(x,y,y^\prime)$, a somewhat useful formula is
+        $$\frac{\mathrm dh(x,y(x),y^\prime(x))}{\,\mathrm dx}=\frac{\partial h}{\partial x}+\frac{\partial h}{\partial y}y^\prime+\frac{\partial h}{\partial y^\prime}y^{\prime\prime}$$
+        For example, for $f(x,y,y^\prime)=x((y^\prime)^2-y^2)$, we have $\mathrm df/\mathrm dx=(y^\prime)^2-y^2-2xyy^\prime+2y^{\prime\prime}y^\prime x$.
+    \end{enumerate}
+\end{remark}
+\subsection{First Integrals of the Euler-Lagrange Equation}
+Now we move on to solve the Euler-Lagrange equations, which is a second order ODE.
+In some special cases, this is a quite easy thing to do.
+In particular, if $f$ does not explicitly depend on some of its variables, then we can simplify the equation to something that is easier to solve.
+These simplifications are often in the form of something being constant.
+Expressions like these are called the first integrals of the equations.
+Not only are they tools we can use to solve the equation, we can also view them as a conserved quantity of something that is described by a variational problem.
+We will discuss the former in this section.
+The latter will be mentioned later, when we discuss Noether's Theorem.
+
+Assume that $f$ does not explicitly depend on $y$, then $\partial f/\partial y=0$, so the Euler-Lagrange equation can be rewritten as
+$$\frac{\mathrm d}{\mathrm dx}\frac{\partial f}{\partial y^\prime}=0\implies \frac{\partial f}{\partial y^\prime}=\text{const,}$$
+which is a first order ODE.
+\begin{example}[Geodesics on the Euclidean plane]
+    Consider the geodesics on the Euclidean plane.
+    We know that we want to extremise the functional
+    $$F[y]=\int_\alpha^\beta\sqrt{1+(y^\prime)^2}\,\mathrm dx$$
+    In this case, the apparent $f$ does not depend on $y$, hence we can obtain the solution by just solving the first integral
+    $$\frac{y^\prime}{\sqrt{1+(y^\prime)^2}}=\text{const.}$$
+    Therefore $ y'=m $ and thus $y=mx+c$ for some constants $m,c$, which is our familiar formulation of a straight line, the geodesics of the plane.
+\end{example}
 \end{document}
