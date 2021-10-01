@@ -276,4 +276,158 @@ which is a first order ODE.
     $$\frac{y^\prime}{\sqrt{1+(y^\prime)^2}}=\text{const.}$$
     Therefore $ y'=m $ and thus $y=mx+c$ for some constants $m,c$, which is our familiar formulation of a straight line, the geodesics of the plane.
 \end{example}
+\newpage
+\part*{Lecture 4}
+\begin{example}[Geodesics on a Sphere]\ 
+    \begin{center}
+        \includegraphics[scale=0.13]{geodesics_sphere.jpeg}
+    \end{center}
+    Consider the two-dimensional unit sphere $S^2$ in $\mathbb R^3$.
+    Use the spherical polar coordinates
+    $$x=\sin\theta\sin\phi,y=\sin\theta\cos\phi,z=\cos\theta,\theta\in [0,2\pi),\theta\in[0,\pi)$$
+    The line element on $S^2$ inherited from $\mathbb R^3$ then gives
+    $$\mathrm ds^2=\mathrm dx^2+\mathrm dy^2+\mathrm dz^2=\mathrm d\theta^2+\sin^2\theta\,\mathrm d\phi^2$$
+    A path restricted on the sphere can then be parameterized in terms of $\theta,\phi$.
+    Suppose we parameterize the curve by $\phi(\theta)$, then the length functional is
+    $$F[\phi]=\int_{\theta_1}^{\theta_2}\sqrt{1+(\phi^\prime)^2\sin^2\theta}\,\mathrm d\theta$$
+    We observe that the integral inside does not depend on $\phi$, so we can rewrite the equation to
+    $$\frac{\phi^\prime\sin^2\theta}{\sqrt{1+(\phi^\prime)^2\sin^2\theta}}=\frac{\partial f}{\partial \phi^\prime}=\text{const.}=\kappa$$
+    Seperating the variables yields
+    $$(\phi^\prime)^2=\frac{\kappa^2}{\sin^2\theta(\sin^2\theta-\kappa^2)}\implies\phi=\pm\int\frac{\kappa\,\mathrm d\theta}{\sin\theta\sqrt{\sin^2\theta-\kappa^2}}$$
+    which shall produce two solutions, each going one way round.
+    To evaluate the integral, we do the substitution $u=\cot\theta$ which produces
+    $$\pm\frac{\sqrt{1-\kappa^2}}{\kappa}\cos(\phi-\phi_0)=\cot\theta$$
+    for a constant $\phi_0$.
+    By considering the geometrical meaning of this equation, it then follows that $\phi(\theta)$ describes a great circle, i.e. a circle in $\mathbb R^3$ which exists as the intersection of $S^2$ and a plane that goes through the origin.
+\end{example}
+
+Consider for general case of $f(x,y,y^\prime)$, we have
+\begin{align*}
+    \frac{\mathrm d}{\mathrm dx}\left( f-y^\prime\frac{\partial f}{\partial y^\prime} \right)&=\frac{\partial f}{\partial x}+\frac{\partial f}{\partial y}y^\prime+\frac{\partial f}{\partial y^\prime}y^{\prime\prime}-y^\prime\frac{\mathrm d}{\mathrm dx}\frac{\partial f}{\partial y^\prime}-y^{\prime\prime}\frac{\partial f}{\partial y^\prime}\\
+    &=y^\prime\left( \frac{\partial f}{\partial y}-\frac{\mathrm d}{\mathrm dx}\frac{\partial f}{\partial y^\prime} \right)+\frac{\partial f}{\partial x}
+    =\frac{\partial f}{\partial x}
+\end{align*}
+If $y$ satisfies the Euler-Lagrange Equation.
+So if $f$ does not depend explicitly on $x$, then the above indicates that
+$$f-y^\prime\frac{\partial f}{\partial y^\prime}=\text{const.}$$
+\begin{example}[The Brachistochrone Problem]
+    Consider the functional in the Brachistochrone Problem we defined before, with the initial point assumed to be the origin:
+    $$F[y]=\frac{1}{\sqrt{2g}}\int_0^\beta\frac{\sqrt{1+(y^\prime)^2}}{\sqrt{-y}}\,\mathrm dx$$
+    As $f$ in this case does not depend explicitly on $x$, we know that
+    $$\frac{\sqrt{1+(y^\prime)^2}}{\sqrt{-y}}-y^\prime\frac{y^\prime}{\sqrt{1+(y^\prime)^2}\sqrt{-y}}=\text{const.}=\kappa$$
+    So
+    $$y^\prime=\pm\frac{\sqrt{1+\kappa^2y}}{\kappa\sqrt{-y}}\implies x=\pm \kappa\int\frac{\sqrt{-y}}{\sqrt{1+\kappa^2y}}\,\mathrm dy$$
+    Set $y=-\kappa^{-2}\sin^2(\theta/2)$, so $\mathrm dy=-\kappa^{-2}\sin(\theta/2)\cos(\theta/2)$, so
+    \begin{align*}
+        x&=\pm \kappa\int(-1)\frac{1}{\kappa^3}\frac{\sin^2(\theta/2)\cos(\theta/2)}{\sqrt{1-\sin^2(\theta/2)}}\,\mathrm d\theta\\
+        &=\mp\frac{1}{2\kappa^2}\int(1-\cos\theta)\,\mathrm d\theta\\
+        &=\mp\frac{1}{2\kappa^2}(\theta-\sin\theta)+C
+    \end{align*}
+    where $C$ is a constant.
+    By our initial condition, $\theta(0)=0$, so $C=0$.
+    Substitute $\theta$ for both $x,y$ and we get the parameterised equations
+    $$\begin{cases}
+        x=(\theta-\sin\theta)/(2\kappa^2)\\
+        y=-\kappa^{-2}\sin^2(\theta/2)
+    \end{cases}$$
+    which is the equation of a cycloid, i.e. the path traversed by a fixed point on a wheel which rolls on the $x$-axis.
+    Hence, the Brachistochrone is a cycloid.
+
+    \begin{center}
+        \begin{tikzpicture}
+        \coordinate (O) at (0,0);
+        \coordinate (A) at (0,3);
+        \def\r{1} % radius
+        \def\c{1.4} % center
+        \coordinate (C) at (\c, \r);
+      
+      
+        \draw[-latex] (O) -- (A) node[anchor=south] {$y$};
+        \draw[-latex] (O) -- (2.6*pi,0) node[anchor=west] {$x$};
+        \draw[red,domain=-0.5*pi:2.5*pi,samples=50, line width=1] 
+             plot ({\x - sin(\x r)},{1 - cos(\x r)});
+        \draw[blue, line width=1] (C) circle (\r);
+        \draw[] (C) circle (\r);
+      
+        % coordinate x 
+        \def\x{0.4} % coordinate x
+        \def\y{0.83} % coordinate y
+        \def\xa{0.3} % coordinate x for arc left
+        \def\ya{1.2} % coordinate y for arc left
+        \coordinate (X) at (\x, 0 );
+        \coordinate (Y) at (0, \y );
+        \coordinate (XY) at (\x, \y );
+      
+        \node[anchor=north] at (X) {$x$} ;
+      
+        % draw center of circle
+        \draw[fill=blue] (C) circle (1pt);
+      
+        % draw radius of the circle
+        \draw[] (C) -- node[anchor=south] {\; $a$} (XY);
+      
+        % bottom of circle, radius to the bottom
+        \coordinate (B) at (\c, 0);
+        \draw[] (C) -- (B) node[anchor=north] {$a \, \theta$};
+      
+        % projections of point XY
+        \draw[dotted] (XY) -- (X);
+        \draw[dotted] (XY) -- (Y) node[anchor=east, xshift=1mm] {$\quad y$};
+      
+        % arc theta
+        % start arc
+        \coordinate (S) at (\c, 0.4);
+        \draw[->] (S) arc (-90:-165:0.6);
+        \node[xshift=-2mm, yshift=-2mm] at (C) {\scriptsize $\theta$};
+      
+        % arc above
+        \coordinate (AA) at (\xa, \ya);
+        \draw[-latex, rotate=25] (AA) arc (-220:-260:1.3);
+      
+        % arc below
+        \def\xb{2.5} % coordinate x for arc bottom
+        \def\yb{0.8} % coordinate y for arc bottom
+        \coordinate (AB) at (\xb, \yb);
+        \draw[-latex, rotate=-10] (AB) arc (-5:-45:1.3);
+      
+      
+      
+        % XY dot
+        \draw[fill=black] (XY) circle (1pt);
+      
+      
+        % top label
+        \coordinate (T) at (pi, 2);
+        \node[anchor=south] at (T)  {$(\pi a, 2 a )$} ;
+        \draw[fill=black] (T) circle (1pt);
+      
+        % equations
+        \coordinate (E) at ( 4,1.2);
+        \coordinate (F) at ( 4,0.9);
+        \node[] at (E) {\scriptsize $x=a(\theta - \sin \theta)$};
+        \node[] at (F) {\scriptsize $y=a(1 - \cos \theta)$};
+      
+        % label 2pi a
+        \coordinate (TPA) at (2*pi, 0);
+        \node[anchor=north] at (TPA) {$2 \pi a$};
+      
+      
+        \end{tikzpicture}
+      \end{center}
+\end{example}
+
+\subsection{Fermat's Principle}
+Fermat's Principle postulates that light (or sound) travels along paths between two points that are stationary points of the time variation.
+\footnote{In its original form, however, it said that light travels the path that requires the least time, which is not necessarily true in all cases.}
+Suppose the light way is described by $y=y(x)$, then the time functional is
+$$F[y]=\int\frac{\mathrm dl}{c}=\int_\alpha^\beta\frac{\sqrt{1+(y^\prime)^2}}{c(x,y)}\,\mathrm dx$$
+where $c$ is the speed of light in the medium.
+
+First assume that $c=c(x)$ does not depend on $y$, then $f$ does not explicitly depend on $y$, in which case we have the first integral
+$$\frac{y^\prime}{\sqrt{1+(y^\prime)^2}c(x)}=\frac{\partial f}{\partial y^\prime}=\text{const.}$$
+Suppose the light ray has an initial incident angle of $\theta_1$ upwards, then $\tan\theta_1=y^\prime(\alpha)$.
+Let $\tan\theta=y^\prime$ in general, then the above first integral indicates that $\sin\theta/c(x)$ is constant.
+This is Snell's Law.
+If $c$ is increasing, then the path is concave and if $c$ is decreasing it is convex.
+Also, if the light goes through a barrier, to the left of which $c$ is constant at $c_F$ and to the right of which $c_S$ with $c_S<c_F$, then the light ray will refract in the way we all expect.
 \end{document}
