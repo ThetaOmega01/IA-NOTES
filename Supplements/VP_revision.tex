@@ -1,0 +1,124 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{enumerate}
+\usepackage{multicol}
+
+\usepackage[flushleft]{paralist}
+
+
+
+\usepackage{geometry}
+\geometry{%
+  a4paper,
+  lmargin=2cm,
+  rmargin=2.5cm,
+  tmargin=3.5cm,
+  bmargin=2.5cm,
+  footskip=12pt,
+  headheight=24pt}
+
+
+\newcommand{\comment}[1]{{\bf Comment} {\it #1}}
+%\renewcommand{\comment}[1]{}
+\newcommand{\mobius}{{M\"{o}bius }}
+\newcommand{\bct}[1]{{\color{blue}#1}}
+%\renewcommand{\comment}[1]{}
+\newcommand{\rct}[1]{{\color{red}#1}}
+\newcommand{\mcM}{\mathcal{M}}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbF}{\mathbb{F}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Or}{\mathrm{O}}
+\newcommand{\PGL}{\mathrm{PGL}}
+\newcommand{\PSL}{\mathrm{PSL}}
+\newcommand{\PSO}{\mathrm{PSO}}
+\newcommand{\PSU}{\mathrm{PSU}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\Spin}{\mathrm{Spin}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\U}{\mathrm{U}}
+\newcommand{\Mat}{\mathrm{Mat}}
+
+% Matrix algebras
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\ort}{\mathfrak{o}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\uu}{\mathfrak{u}}
+\renewcommand{\sl}{\mathfrak{sl}}
+\DeclareMathOperator{\spn}{span}
+
+
+\setlength{\parskip}{10pt}
+\setlength{\parindent}{0pt}
+
+\newlength{\qspace}
+\setlength{\qspace}{15pt}
+
+
+\newcounter{qnumber}
+\setcounter{qnumber}{0}
+
+\newenvironment{question}%
+ {\vspace{\qspace}
+  \begin{enumerate}[\bfseries 1\quad][10]%
+    \setcounter{enumi}{\value{qnumber}}%
+    \item%
+ }
+{
+  \end{enumerate}
+  \filbreak
+  \stepcounter{qnumber}
+ }
+
+
+\newenvironment{questionparts}[1][1]%
+ {
+  \begin{enumerate}[\bfseries (i)]%
+    \setcounter{enumii}{#1}
+    \addtocounter{enumii}{-1}
+    % \setlength{\itemsep}{5mm}
+    \setlength{\parskip}{3pt}
+ }
+ {
+  \end{enumerate}
+ }
+
+
+
+\DeclareMathOperator{\cosec}{cosec}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\sym}{Sym}
+
+\def\le{\leqslant}
+\def\ge{\geqslant}
+\def\leq{\leqslant}
+\def\geq{\geqslant}
+
+\def\var{{\rm Var}\,}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+
+
+\title{\textbf{Variational Principles Revision}}
+\author{\texttt{jt775}}
+\date{\null}
+\begin{document}
+\maketitle
+\vspace{-1.5cm}
+
+\begin{question}
+    
+\end{question}
+
+\end{document}
