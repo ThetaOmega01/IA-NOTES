@@ -498,7 +498,7 @@ If $\sigma>0$ everywhere, then $F[y]>0$ everywhere.
     We multiply the Sturm-Liouville equation by $y$ on both sides and integrate from $\alpha$ to $\beta$, which gives $F[y]=\lambda G[y]$.
 \end{proof}
 
-\subsection{Several Independent Variables}
+\subsection{Several Dependent Variables}
 Let $ \mathbf{y}=(y_1,y_2,\dots,y_n) $ and consider the functional 
 \[
     F[\mathbf{y}] = \int_{\alpha}^{\beta} f(x,y_1,\dots,y_n, y_1',\dots,y_n') \,\mathrm{d}x.
@@ -519,4 +519,104 @@ Also if $ \rmd f / \rmd x = 0 $, then (assume summation convention)
 \[
     f - y_i' \frac{\partial f}{\partial y_i'}= \text{const}. 
 \]
+\begin{example}[Geodesics on Surfaces]
+    Consider a surface $\Sigma\subset\mathbb R^3$ given by $g(x,y,z)=0$.
+    Pick two points $A,B$ from $\Sigma$.
+    Our aim is to minimize the length of shortest path on $\Sigma$ which connects $A,B$.
+    If such a length exists, then any path with this length is called a geodesics.
+    Let $t\in[0,1]$ be a parameter on the curve and parameterise a curve between $A,B$ by $\mathbf{x}(0)=A,\mathbf{x}(1)=B$.
+    For the curve to lie on the surface, we have the constraint $g(\mathbf{x}(t))=0$ for any $t$.
+
+    So by the idea of Lagrange multiplier, we want to minimise the functional
+    $$\Phi[\mathbf{x},\lambda]=\int_0^1\left( \sqrt{\dot{x}^2+\dot{y}^2+\dot{z}^2} -\lambda(t) g(x,y,z)\right)\,\mathrm dt$$
+    Note that the Lagrange multiplier is now a function $\lambda=\lambda(t)$, as our constraint has to be valid for all $t$.
+    Write the integrand in $\Phi$ by $h(x,y,z,\lambda,\dot{x},\dot{y},\dot{z})$.
+    The Euler-Lagrange equation wrt $\lambda$ is then
+    $$\frac{\mathrm d}{\mathrm dt}\frac{\partial h}{\partial \dot{\lambda}}-\frac{\partial h}{\partial\lambda}=0\implies g(x,y,z)=-\frac{\partial h}{\partial\lambda}=0$$
+    For the rest of the Euler-Lagrange equations, write $(x,y,z)=x_i\mathbf{e}_i$, then it becomes
+    $$\frac{\mathrm d}{\mathrm dt}\left( \frac{\dot{x}_i}{\sqrt{\dot{x}^2+\dot{y}^2+\dot{z}^2}} \right)+\lambda\frac{\partial g}{\partial x_i}=0$$
+    which, for specified $g$, should solve to get us a geodesics.
+\end{example}
+\subsection{Several Independent Variables}
+In general, the parameter of the functional is a function $\mathbb R^n\to\mathbb R^m$.
+If $n>1$, then the Euler-Lagrange equations, as one may expect, become PDEs.
+Suppose $n=3$, then the functional can have the form
+$$F[\phi]=\int_Df(x,y,z,\phi,\phi_x,\phi_y,\phi_z)\,\mathrm dx\,\mathrm dy\,\mathrm dz$$
+where $D\subset\mathbb R^3$.
+Assume $\phi$ is at an extremum of $F$, then the perturbation we are considering would become
+$$\phi(x,y,z)\mapsto \phi(x,y,z)+\epsilon \eta(x,y,z), \epsilon\in\mathbb R,\eta|_{\partial D}=0$$
+So if we write
+$$\mathbf{v}=\left( \frac{\partial f}{\partial \phi_x},\frac{\partial f}{\partial \phi_y},\frac{\partial f}{\partial\phi_z} \right)$$
+then,
+\begin{align*}
+    F[\phi+\epsilon\eta]-F[\phi]&=\epsilon\int_D\left( \eta\frac{\partial f}{\partial\phi}+\eta_x\frac{\partial f}{\partial \phi_x}+\eta_y\frac{\partial f}{\partial \phi_y}+\eta_z\frac{\partial f}{\partial \phi_z} \right)\,\mathrm dx\,\mathrm dy\,\mathrm dz+O(\epsilon^2)\\
+    &=\epsilon\int_D\left( \eta\frac{\partial f}{\partial\phi}+\nabla\cdot( \eta\mathbf{v})-\eta\nabla\cdot\mathbf{v} \right)\,\mathrm dx\,\mathrm dy\,\mathrm dz+O(\epsilon^2)
+\end{align*}
+By the Divergence Theorem, we have
+$$\int_D\nabla\cdot(\eta\mathbf{v})\,\mathrm dx\,\mathrm dy\,\mathrm dz=\int_{\partial D}\eta\mathbf{v}\cdot\mathrm d\mathbf{S}=0$$
+By the boundary assumption on $\eta$, therefore
+$$\frac{F[\phi+\epsilon\eta]-F[\phi]}{\epsilon}=\int_D\eta\left( \frac{\partial f}{\partial\phi}-\nabla\cdot\mathbf{v} \right)\,\mathrm dx\,\mathrm dy\,\mathrm dz$$
+We obviously have the analogy of Lemma \ref{fund_lemma} here, hence for $\delta F=0$, we obtain
+$$\frac{\partial f}{\partial\phi}-\nabla\cdot\mathbf{v}=0$$
+which, by expanding $\mathbf{v}$, is
+$$\frac{\partial f}{\partial\phi}-\frac{\partial}{\partial x_i}\frac{\partial f}{\partial \phi_{x_i}}=0$$
+where the summation is implied by convention.
+This can be generalized from $3$ to $n$ in an obvious way.
+
+\begin{example}
+    We want to extremise the functional of potential energy
+    $$F[\phi]=\iint_{D\subset\mathbb R^2}\frac{1}{2}(\phi_x^2+\phi_y^2)\,\mathrm dx\,\mathrm dy$$
+    Where $\phi:\mathbb R^2\to\mathbb R$.
+    So the Euler-Lagrange equation becomes
+    $$\phi_{xx}+\phi_{yy}=0$$
+    which is the Laplace equation.
+\end{example}
+
+\begin{example}[Minimal Surfaces]
+    We want to minimise the area of a surface $\Sigma\subset\mathbb R^3$ subject to boundary conditions (e.g. specified $\partial\Sigma$).
+    This can allow us to find the shape of a soap film.
+
+    Suppose we can write $\Sigma$ as the graph of $z=\phi(x,y)$ for some function $\phi$.
+    \footnote{This can always be done locally given that $\Sigma$ is nice enough due to Implicit Function Theorem.}
+    The line element is $\mathrm ds^2=\mathrm dx^2+\mathrm dy^2+\mathrm dz^2$ and we have $\mathrm dz=\phi_x\,\mathrm dx+\phi_y\,\mathrm dy$, so
+    $$\mathrm ds^2=(1+\phi_x^2)\,\mathrm dx^2+(1+\phi_y^2)\mathrm dy^2+2\phi_x\phi_y\,\mathrm dx\,\mathrm dy$$
+    This is called the first fundamental form (or the Riemannian metric) in geometrical settings.
+    We can write, in summation notation, $\mathrm ds^2=g_{ij}(x,y)\,\mathrm dx^i\,\mathrm dx^j$ with
+    $$g=\begin{pmatrix}
+            1+\phi_x^2&\phi_x\phi_y\\
+            \phi_x\phi_y&1+\phi_y^2
+    \end{pmatrix}$$
+    As one can verify, $\det g\ge 0$ and $ \rmd A = \sqrt{\det g}\;\rmd x\rmd y $, so
+    $$A[\phi]=\iint_D\sqrt{1+\phi_x^2+\phi_y^2}\,\mathrm dx\,\mathrm dy$$
+    Write $h$ to denote the integrand, then we have
+    $$\frac{\partial h}{\partial\phi_x}=\frac{\phi_x}{\sqrt{1+\phi_x^2+\phi_y^2}},\frac{\partial h}{\partial\phi_y}=\frac{\phi_y}{\sqrt{1+\phi_x^2+\phi_y^2}}$$
+    So, upon some simplification, the Euler-Lagrange equation transforms to
+    $$(1+\phi_y^2)\phi_{xx}+(1+\phi_x^2)\phi_{yy}-2\phi_x\phi_y\phi_{xy}=0$$
+    which is known as the minimal surface equation.
+
+    A particular case of it is when the surface is a surface of revolution, i.e. $z=z(r),r=\sqrt{x^2+y^2}$.
+    We want to solve it subject to the surface's boundary being two equal circles whose centres are on the $z$-axis and are parallel to the $x-y$ plane.
+    This initial condition can give us the shape of soap film between two circular loops.
+
+    In this case, the PDE transforms to
+    $$rz^{\prime\prime}+z^\prime+(z^\prime)^3$$
+    by a lot of calculations.
+    Write $w=z^\prime$, then
+    $$\frac{1}{2}r\frac{\mathrm dw^2}{\mathrm dr}+w^2+w^4$$
+    which we can integrate to find
+    $$r=r_0\cosh\left( \frac{z-z_0}{r_0} \right)$$
+    which is called the catenoid.
+    This result was first proved by Euler in 1744.
+    Note that being a catenoid is a necessary condition for a minimal surface in this form to exist.
+
+    Suppose the centres of the circles are located at $L\mathbf{e_z}$ and $-L\mathbf{e_z}$ and both circles have radius $R$.
+    Then $r(L)=r(-L)$, hence if $L\neq 0$ then $-L-z_0=-L+z_0$, thus $z_0=0$.
+    Therefore $R=r_0\cosh(L/r_0)$.
+    But $r_0$ is then the radius of the circle as the intersection between the surface and the $x-y$ plane.
+    WLOG set $L=1$ (as we can scale the whole thing), then by a simple plot we obtain that $R\ge c$ globally for some $c>0$.
+    By estimation the minimum occurs at $r_0\approx 0.833$ and $c\approx 1.5$.
+    Also, for $R>c$, we see that there are two possible values of $r_0$, which corresponds to two minimal surfaces.
+    After our latter discussion on second variations, we find that the thinner one of which is unstable and the thicker one is stable.
+\end{example}
+
 \end{document}
