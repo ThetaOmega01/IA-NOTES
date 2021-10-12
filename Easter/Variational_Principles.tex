@@ -519,6 +519,8 @@ Also if $ \rmd f / \rmd x = 0 $, then (assume summation convention)
 \[
     f - y_i' \frac{\partial f}{\partial y_i'}= \text{const}. 
 \]
+\newpage
+\part*{Lecture 6}
 \begin{example}[Geodesics on Surfaces]
     Consider a surface $\Sigma\subset\mathbb R^3$ given by $g(x,y,z)=0$.
     Pick two points $A,B$ from $\Sigma$.
@@ -599,10 +601,10 @@ This can be generalized from $3$ to $n$ in an obvious way.
     This initial condition can give us the shape of soap film between two circular loops.
 
     In this case, the PDE transforms to
-    $$rz^{\prime\prime}+z^\prime+(z^\prime)^3$$
+    $$rz^{\prime\prime}+z^\prime+(z^\prime)^3=0$$
     by a lot of calculations.
     Write $w=z^\prime$, then
-    $$\frac{1}{2}r\frac{\mathrm dw^2}{\mathrm dr}+w^2+w^4$$
+    $$\frac{1}{2}r\frac{\mathrm dw^2}{\mathrm dr}+w^2+w^4=0$$
     which we can integrate to find
     $$r=r_0\cosh\left( \frac{z-z_0}{r_0} \right)$$
     which is called the catenoid.
@@ -619,4 +621,55 @@ This can be generalized from $3$ to $n$ in an obvious way.
     After our latter discussion on second variations, we find that the thinner one of which is unstable and the thicker one is stable.
 \end{example}
 
+\newpage
+\part*{Lecture 7}
+\subsection{Higher Derivatives}
+We want to generalise the theory to a wider range of functionals, specifically in the form
+$$F[y]=\int_\alpha^\beta f(x,y,y^\prime,\ldots,y^{(n)})\,\mathrm dx$$
+Assume such an $y$ that extremises $F$ exists, then consider the perturbation $y\mapsto y+\epsilon\eta$ where $\eta,\eta^\prime,\ldots,\eta^{(n-1)}$ all vanishes at $\alpha,\beta$, then by the higher-dimensional Taylor expansion,
+$$F[y+\epsilon\eta]-F[y]=\epsilon\int_\alpha^\beta\left( \frac{\partial f}{\partial y}\eta+\cdots +\frac{\partial f}{\partial y^{(n)}}\eta^{(n)} \right)\,\mathrm dx+O(\epsilon^2)$$
+By integration by part,
+$$\int_\alpha^\beta\frac{\partial f}{\partial y^{(i)}}\eta^{(i)}\,\mathrm dx=\int_\alpha^\beta\eta(-1)^i\frac{\mathrm d^i}{\mathrm dx^i}\frac{\partial f}{\partial y^{(i)}}\,\mathrm dx$$
+Due to our boundary conditions on $\eta$.
+Hence
+$$\frac{F[y+\epsilon\eta]-F[y]}{\epsilon}=\int_\alpha^\beta \eta\left(\frac{\partial f}{\partial y}+\sum_{i=1}^n(-1)^i\frac{\mathrm d^i}{\mathrm dx^i}\frac{\partial f}{\partial y^{(i)}}\right)\,\mathrm dx+O(\epsilon)$$
+Hence by Lemma \ref{fund_lemma}, we obtain the Euler-Lagrange equation in the following form:
+$$\boxed{\frac{\partial f}{\partial y}+\sum_{i=1}^n(-1)^i\frac{\mathrm d^i}{\mathrm dx^i}\frac{\partial f}{\partial y^{(i)}}=0}$$
+\begin{example}[First Integral]
+    If $n=2$ and $f$ does not explicitly depend on $y$, the equation becomes
+    $$\frac{\mathrm d}{\mathrm dx}\left( \frac{\partial f}{\partial y^\prime}-\frac{\mathrm d}{\mathrm dx}\frac{\partial f}{\partial y^{\prime\prime}} \right)=0\implies \frac{\partial f}{\partial y^\prime}-\frac{\mathrm d}{\mathrm dx}\frac{\partial f}{\partial y^{\prime\prime}}=\text{const.}$$
+\end{example}
+\begin{example}
+    If we want to extremise
+    $$F[y]=\int_0^1(y^{\prime\prime})^2\,\mathrm dx$$
+    with $y(0)=y(1)=y^\prime(0)=0$ and $y^\prime(1)=1$.
+    Then the first integral above reduces to
+    $$\frac{\mathrm d}{\mathrm dx}(2y^{\prime\prime})=\text{const.}\implies y^{(3)}=\text{const.}$$
+    which solves to $y_0=x^3-x^2$ for the specified boundary conditions.
+\end{example}
+Note that the $y_0$ in the previous example is actually an absolute minimum of the functional $F$.
+To argue this, observe that for an arbitrary $C^2$ function $\eta$ with $\eta,\eta^\prime$ both vanish at $0,1$ but $\eta$ is not identically zero.
+Then
+\begin{align*}
+    F[y_0+\eta]-F[y_0]&=\int_0^1(\eta^{\prime\prime})^2\,\mathrm dx+2\int_0^1 y_0^{\prime\prime}\eta^{\prime\prime}\,\mathrm dx\\
+    &>4\int_0^1(3x-1)\eta^{\prime\prime}\\
+    &=0
+\end{align*}
+through integration by part.
+Hence $y$ is the global minimum in our chosen space $C^2[0,1]$.
+This trick does not always work, but sometimes it does, like the one we just did.
+
+\section{Principle of Least Action and Noether's Theorem}
+Consider a particle in $\mathbb R^3$ with kinetic energy and potential energy denoted by $T,V$ respectively.
+Define the Lagrangian to be $L(\mathbf{x},\mathbf{\dot{x}},t)=T-V$ and the \textit{action}
+$$S[\mathbf{x}]=\int_{t_1}^{t_2}L\,\mathrm dt$$
+Hamilton's Principle (or Principle of Least Action) postulates that the motion of the particle is a stationary point of the action functional $S$, i.e. $\mathbf{x}$ satisfies the Euler-Lagrange equations with the integrand being $L$.
+\begin{example}
+    Take the kinetic energy to be $T=m|\mathbf{\dot{x}}|^2/2$ and $V=V(\mathbf{x})$, then the Euler-Lagrange equation gives
+    $$\frac{\mathrm d}{\mathrm dt}\frac{\partial L}{\partial \dot{x}_i}-\frac{\partial L}{\partial x_i}=0$$
+    for all $i$.
+    This simplifies to
+    $$m\ddot{x}_i=-\frac{\partial V}{\partial x_i}\quad \text{i.e.}\quad m \ddot{\bfx}= - \nabla V$$
+    which is just Newton's Second Law.
+\end{example}
 \end{document}
