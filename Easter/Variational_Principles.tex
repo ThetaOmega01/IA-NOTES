@@ -672,4 +672,107 @@ Hamilton's Principle (or Principle of Least Action) postulates that the motion o
     $$m\ddot{x}_i=-\frac{\partial V}{\partial x_i}\quad \text{i.e.}\quad m \ddot{\bfx}= - \nabla V$$
     which is just Newton's Second Law.
 \end{example}
+\newpage
+\part*{Lecture 8}
+\begin{example}[Central Force in Two Dimensions]
+    We have
+    $$L=\frac{1}{2}m(\dot{r}^2+r^2\dot{\theta}^2)-V(r)$$
+    So the Euler-Lagrange equations give
+    $$\frac{\mathrm d}{\mathrm dt}\frac{\partial L}{\partial \dot{r}}-\frac{\partial L}{\partial r}=0=\frac{\mathrm d}{\mathrm dt}\frac{\partial L}{\partial \dot{\theta}}-\frac{\partial L}{\partial \theta}=\frac{\mathrm d}{\mathrm dt}\frac{\partial L}{\partial \dot{\theta}}$$
+    The first observation is that the rightmost expression vanishes, hence
+    $$mr^2\dot{\theta}=\frac{\partial L}{\partial\dot{\theta}}=\text{const.}$$
+    which is just the conservation of angular momentum.
+    Now $\partial L/\partial t=0$, so by our previous discussion of the first integrals,
+    $$\dot{r}\frac{\partial L}{\partial \dot{r}}+\dot{\theta}\frac{\partial L}{\partial\dot{\theta}}-L=\text{const.}$$
+    So by substitution and a bit of simplification, we are left with
+    $$\frac{1}{2}m\dot{r}^2+\frac{1}{2}mr^2\dot{\theta}^2+V(r)=\text{const.}$$
+    Note that the left hand side is precisely $L+2V=E+V$, so this can be viewed as the conservation of energy.
+\end{example}
+\begin{example}[Configuration Space and Generalised Coordinates]
+    Consider $N$ particles in $\mathbb R^3$.
+    We can put the information of the coordinates of the particles as a $3N$-tuple, which allows us to take the $N$ particles as a single particle in $\mathbb R^{3N}$.
+    The coordinates of all $N$ particles ordered in the obvious way is called a generalised coordinate, and the particle system described in $\mathbb R^{3N}$ makes it a configuration space.
+    So the motion of the particles can be characterised by a path (i.e. the motion of one single particle) in $\mathbb R^{3N}$, i.e. $t\mapsto (q_i,\dot{q}_i,t)$ where $q_i$ is the $i^{th}$ generalised coordinate, $i=1,\ldots,3N$.
+    The Lagrangian considered this way is then $L=L(q_i,\dot{q}_i,t)$ which we can solve the corresponding Euler-Lagrange equation for.
+    There is a perspective of classical dynamics that takes this point of view to solve for the motions of the system of particles.
+\end{example}
+Consider the functional
+$$F[\mathbf{y}]=\int_\alpha^\beta f(y_i,y_i^\prime,x)\,\mathrm dx,i=1,\ldots,n$$
+Consider a $1$-parameter family of transformations
+$$y_i(x)\mapsto Y_i(s,x),s\in\mathbb R$$
+We call this a continuous symmetry (or simply symmetry) of a Lagrangian if
+$$\frac{\mathrm d}{\mathrm ds}f(Y_i(s,x),Y^\prime(s,x),x)=0$$
+With these set-ups, we have
+\begin{theorem}[Noether's Theorem, simple version]
+    Given a continuous symmetry $Y_i(s,x)$ of $f$ with $Y_i(x,0)=y_i(x)$ for all $i$, the quantity
+    $$\sum_i\frac{\partial f}{\partial y_i'}\left.\frac{\partial Y_i}{\partial s}\right|_{s=0}$$
+    is a first integral of the Euler-Lagrange equations (i.e. is constant).
+\end{theorem}
+\begin{proof}
+    Below by $f$ we mean $f(Y_i(s,x),Y^\prime(s,x),x)$.
+    Summation convention is used.
+    \begin{align*}
+        0&=\left.\frac{\mathrm df}{\mathrm ds}\right|_{s=0}\\
+        &=\frac{\partial f}{\partial y_i}\left.\frac{\partial Y_i}{\partial s}\right|_{s=0}+\frac{\partial f}{\partial y_i^\prime}\left.\frac{\partial Y_i^\prime}{\partial s}\right|_{s=0}\\
+        &=\left.\frac{\partial Y_i}{\partial s}\right|_{s=0}\frac{\mathrm d}{\mathrm dx}\frac{\partial f}{\partial y_i'}+\frac{\partial f}{\partial y_i^\prime}\left.\frac{\mathrm d}{\mathrm dx}\frac{\partial Y_i}{\partial s}\right|_{s=0}\\
+        &=\frac{\mathrm d}{\mathrm dx}\left( \frac{\partial f}{\partial y_i'}\left.\frac{\partial Y_i}{\partial s}\right|_{s=0} \right)
+    \end{align*}
+    The theorem follows.
+\end{proof}
+\begin{example}
+    Consider
+    $$f=\frac{1}{2}(y^\prime)^2+\frac{1}{2}(z^\prime)^2-V(y-z)$$
+    which is the Lagrangian of a potential that depends only on difference of the components.
+    Consider $Y=y+s, Z=z+s$, then $Y^\prime=y^\prime$ and $Z^\prime=z^\prime$ and $V(Y-Z)=V(y-z)$, so indeed it is a continuous symmetry.
+    Noether's Theorem then implies that
+    $$\left.\left( \frac{\partial f}{\partial y^\prime}\frac{\partial Y}{\partial s}+\frac{\partial f}{\partial z^\prime}\frac{\partial Z}{\partial s} \right)\right|_{s=0}=y^\prime+z^\prime$$
+    is constant.
+    This is just saying the conservation of momentum in the $y+z$ direction.
+\end{example}
+\begin{example}
+    Back to our previous discussion on central force, then the transformation $\Theta=\theta+s,R=r$ is certainly a continous symmetry.
+    Therefore we have the conserved quantity
+    $$\left( \frac{\partial L}{\partial\dot{\theta}}\frac{\partial\Theta}{\partial s}+\frac{\partial L}{\partial\dot{r}}\frac{\partial R}{\partial s} \right)_{s=0}=mr^2\dot{\theta}$$
+    which is just the magnitude of angular momentum.
+    In general, isotropy of space gives rise to rotational invariants of the Lagrangian.
+\end{example}
+\section{Convex Functions}
+We take a break from calculus of variations and go back to calculus in $\mathbb R^n$ for a moment.
+There is a class of functions whose stationary points are easy to classify.
+\begin{definition}
+    A set $S\subset\mathbb R^n$ is convex if for any $\mathbf{x},\mathbf{y}\in S$ and $t\in[0,1]$, we have $(1-t)\mathbf{x}+t\mathbf{y}\in S$.
+\end{definition}
+\begin{definition}
+    A graph of a function $f:S\to\mathbb R$ where $S\subset\mathbb R^n$ is a surface described by $z-f(\mathbf{x})=0$, which is a surface in $S\times\mathbb R$.
+
+    A chord of $f$ is a line segment in $\mathbb R^n\times\mathbb R$ joining two points on the graph of $f$.
+\end{definition}
+\begin{definition}
+    Let $S\subset\mathbb R^n$ and $f:S\to\mathbb R$ be a function.
+    We say $f$ is convex if $S$ is convex and for any $\mathbf{x},\mathbf{y}\in S$ and $t\in[0,1]$ we have
+    $$f((1-t)\mathbf{x}+t\mathbf{y})\le (1-t)f(\mathbf{x})+tf(\mathbf{y})$$
+\end{definition}
+Loosely speaking, a function is convex iff its domain is convex and every chord of it is above (or on) it, where the notion of ``above'' is in the sense of the last component of $\mathbb R^n\times\mathbb R$ in our above definition.
+\newpage
+\part*{Lecture 9}
+\begin{remark}
+    We can define concave functions correspondingly by saying a function $f$ is concave iff $-f$ is convex.
+
+    A function $f$ is strictly convex if the $\le$ in the definition is replaced by $<$ given $t\in (0,1)$.
+    It is obvious that $f$ is strictly convex only if it is convex.
+    This is due to the observation that the definition does not really change if we replace $t\in[0,1]$ by $t\in(0,1)$.
+\end{remark}
+\begin{example}
+    The function $f:\mathbb R\to\mathbb R$ by $x\mapsto x^2$ is convex as $\mathbb R$ is convex and for any $x,y\in\mathbb R,t\in (0,1)$,
+    \begin{align*}
+        f((1-t)x+ty)-(1-t)f(x)-tf(y)&=((1-t)x+ty)^2-(1-t)x^2-ty^2\\
+        &=-(1-t)t(x-y)^2\\
+        &<0
+    \end{align*}
+    Hence $f$ is strictly convex.
+\end{example}
+\begin{example}
+    Consider the function $f:\mathbb R\setminus\{0\}\to\mathbb R$ by $x\mapsto x^{-1}$.
+    It is not convex as its domain is not, but its restriction on $\mathbb R_{>0}$ is (strictly) convex.
+\end{example}
 \end{document}
