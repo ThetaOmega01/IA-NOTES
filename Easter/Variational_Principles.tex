@@ -756,11 +756,12 @@ Loosely speaking, a function is convex iff its domain is convex and every chord 
 \newpage
 \part*{Lecture 9}
 \begin{remark}
-    We can define concave functions correspondingly by saying a function $f$ is concave iff $-f$ is convex.
-
-    A function $f$ is strictly convex if the $\le$ in the definition is replaced by $<$ given $t\in (0,1)$.
-    It is obvious that $f$ is strictly convex only if it is convex.
-    This is due to the observation that the definition does not really change if we replace $t\in[0,1]$ by $t\in(0,1)$.
+    \begin{enumerate}
+        \item We can define concave functions correspondingly by saying a function $f$ is concave iff $-f$ is convex.
+        \item A function $f$ is strictly convex if the $\le$ in the definition is replaced by $<$ given $t\in (0,1)$.
+        It is obvious that $f$ is strictly convex only if it is convex.
+        This is due to the observation that the definition does not really change if we replace $t\in[0,1]$ by $t\in(0,1)$.
+    \end{enumerate}
 \end{remark}
 \begin{example}
     The function $f:\mathbb R\to\mathbb R$ by $x\mapsto x^2$ is convex as $\mathbb R$ is convex and for any $x,y\in\mathbb R,t\in (0,1)$,
@@ -775,4 +776,243 @@ Loosely speaking, a function is convex iff its domain is convex and every chord 
     Consider the function $f:\mathbb R\setminus\{0\}\to\mathbb R$ by $x\mapsto x^{-1}$.
     It is not convex as its domain is not, but its restriction on $\mathbb R_{>0}$ is (strictly) convex.
 \end{example}
+
+\subsection{Conditions for Convexity}
+There are quite a few tests for convexity of a function $f$ (mostly with some properties).
+\begin{proposition}
+    Suppose $f:S\to\mathbb R$ is differentiable for some convex $S$, then $f$ is convex iff for any $\mathbf{x},\mathbf{y}\in S$,
+    $$f(\mathbf{y})\ge f(\mathbf{x})+(\mathbf{y}-\mathbf{x})\cdot\nabla f(\mathbf{x})$$
+\end{proposition}
+\begin{proof}
+    If the inequality is true, then by applying it twice,
+    $$\begin{cases}
+        f(\mathbf{x})\ge f(\mathbf{z})+(\mathbf{x}-\mathbf{z})\cdot\nabla f(\mathbf{z})\\
+        f(\mathbf{y})\ge f(\mathbf{z})+(\mathbf{y}-\mathbf{z})\cdot\nabla f(\mathbf{z})
+    \end{cases}$$
+    So for $t\in (0,1)$, we set $\mathbf{z}=(1-t)\mathbf{x}+t\mathbf{y}\in S$, then the result follows by adding $1-t$ times the first inequality to $t$ times the second.
+
+    Conversely, set $h:[0,1]\to\mathbb R$ by
+    $$h(t)=(1-t)f(\mathbf{x})+tf(\mathbf{y})-f((1-t)\mathbf{x}+t\mathbf{y})\ge 0$$
+    by convexity.
+    It is also differentiable in $[0,1]$ as $f$ is.
+    Now
+    $$-f(\mathbf{x})+f(\mathbf{y})-(\mathbf{y}-\mathbf{x})\cdot\nabla f(\mathbf{x})=h^\prime(0)\ge 0$$
+    as $h(0)=0$ and $h\ge 0$.
+\end{proof}
+\begin{corollary}
+    If $f$ is convex and has a stationary point at $\mathbf{x}$, then $\mathbf{x}$ is a global minimum of $f$.
+\end{corollary}
+
+\begin{proposition}
+    Let $S$ be convex and $f:S\to\mathbb R$.
+    If $(\nabla f(\mathbf{y})-\nabla f(\mathbf{x}))\cdot (\mathbf{y}-\mathbf{x})\ge 0$ for any $\mathbf{x},\mathbf{y}\in S$, then $f$ is convex.
+\end{proposition}
+Note that if $S\subset\mathbb R$, then it is just saying that $f^\prime$ is monotonically increasing
+
+\begin{proposition}
+    Assume that $f$ is twice differentiable, then $f$ is convex iff $H$ is always nonnegative definite where $H$ is the Hessian of $f$, i.e.
+    $$H_{ij}=\frac{\partial^2f}{\partial x_i\partial x_j}$$
+\end{proposition}
+An easy extension of this asserts the strict convexity of $f$ given that $H$ is positive definite.
+We will only show the forward direction.
+\begin{proof}
+    If $f$ is convex, then by taking $\mathbf{y}=\mathbf{x}+\mathbf{h}$ in the preceding proposition we have
+    $$\mathbf{h}\cdot(\nabla f(\mathbf{x}+\mathbf{h})-\nabla f(\mathbf{x}))\ge 0$$
+    for any $\mathbf{h}\in S-\mathbf{x}$.
+    So for small $|\mathbf{h}|$,
+    $$\frac{\partial f}{\partial x_i}(\mathbf{x}+\mathbf{h})=\frac{\partial f}{\partial x_i}(\mathbf{x})+h_jH_{ij}(\mathbf{x})+O(|\mathbf{h}|^2)$$
+    where the summation is implied.
+    Hence
+    $$h_ih_jH_{ij}+O(|\mathbf{h}|^2)\ge 0$$
+    by taking $|\mathbf{h}|$ small, we obtain the nonnegative definiteness of $H(\mathbf{x})$.
+\end{proof}
+\begin{example}
+    Take $f(x,y)=1/(xy)$ defined on the domain $(\mathbb R_{>0})^2$.
+    Then
+    $$H=\frac{1}{xy}\begin{pmatrix}
+        2/x^2&1/(xy)\\
+        1/(xy)&2/y^2
+    \end{pmatrix}$$
+    which has positive determinant and trace, hence its eigenvalues are all positive, therefore $H$ is positive definite hence $f$ is strictly convex.
+\end{example}
+
+\subsection{The Legendre Transform}
+\begin{definition}
+    Let $S\subset\mathbb R^n$ and $f:S\to\mathbb R$ be a function.
+    Its Legendre transform is defined to be
+    $$f^\star(\mathbf{p})=\sup_{\mathbf{x}\in S}(\mathbf{p}\cdot\mathbf{x}-f(\mathbf{x}))$$
+    provided that it exists and is always finite.
+\end{definition}
+\begin{example}
+    Take $S=\mathbb R$, then the Legendre transform is simply the maximum (signed) distance between the line $z=f(x)$ and $z=px$, given that it exists.
+
+    Take for example $f(x)=ax^2$ where $a>0$ (not that if $a<0$ then the Legendre transform does not exist anywhere), then
+    $$f^\star(p)=\sup_{x\in\mathbb R}(px-ax^2)=\frac{p^2}{4a}$$
+    by some calculation.
+    Now, by taking $a\mapsto 1/(4a)$ we obtain $(f^\star)^\star(s)=as^2$, hence $(f^\star)^\star=f$.
+\end{example}
+It turns out to be always true that $(f^\star)^\star=f$ (in a domain where both of them are defined) if $f$ is convex.
+\begin{proposition}
+    $f^\star$ is convex in any convex subset $T$ of its domain.
+\end{proposition}
+\begin{proof}
+    By definition, for any $\mathbf{p},\mathbf{q}\in T$,
+    \begin{align*}
+        f^\star((1-t)\mathbf{p}+t\mathbf{q})&=\sup_{\mathbf{x}}((1-t)\mathbf{p}\cdot\mathbf{x}+t\mathbf{q}\cdot\mathbf{x}-f(\mathbf{x}))\\
+        &=\sup_{\mathbf{x}}((1-t)(\mathbf{p}\cdot\mathbf{x}-f(\mathbf{x}))+t(\mathbf{q}\cdot\mathbf{x}-f(\mathbf{x})))\\
+        &\le (1-t)f^{\star}(\mathbf{p})+tf^\star(\mathbf{q})
+    \end{align*}
+    As desired.
+\end{proof}
+In practice, if $f$ is convex and differentiable, then if its Legendre transform at $\mathbf{p}$ exists we can (given certain conditions on the domain and/or the function) find it by the equation
+$$\nabla(\mathbf{p}\cdot\mathbf{x}-f(\mathbf{x}))=\mathbf{0}\implies \mathbf{p}=\nabla f$$
+If $f$ is strictly convex, then there is an unique inversion $\mathbf{x}=\mathbf{x}(\mathbf{p})$, so $f^\star(\bfp)=\mathbf{p}\cdot\mathbf{x}(\mathbf{p})-f(\mathbf{x}(\mathbf{p}))$.
+\newpage
+\part*{Lecture 10}
+\subsection{Applications to Thermodynamics}
+A many-particle system (like gas) are hard to study directly from the first principles (like Newton's Laws), hence are often analysed by looking at microscopic variables like the pressure $P$, volume $V$, temperature $T$ or entropy $S$ (which measures the global disorder of the system) or internal energy $u(S,V)$.
+\begin{definition}
+    The Hermholtz free energy is defined by
+    $$F(T,V)=\inf_{S}(u(S,V)-TS)$$
+\end{definition}
+Now we can rewrite this in terms of Legendre transform, that is
+$$F(T,V)=\inf_{S}(u(S,V)-TS)=-\sup_{S}(TS-u(S,V))=-u^\star(T,V)$$
+Note that the transformation of $u$ here is with respect to $T$ with $V$ fixed as a parameter.
+Consequently,
+$$\left.\frac{\partial}{\partial S}(TS-u(S,V))\right|_{T,V}=0\implies T=\left.\frac{\partial u}{\partial S}\right|_V$$
+There are other examples where we can make use of the Legendre transform too, for example:
+\begin{definition}
+    The enthalpy of the system is described by
+    $$H(S,P)=\inf_{V}(u(S,V)+pV)$$
+\end{definition}
+Then $H(S,P)=-u^\star(-P,S)$ where the Legendre transform is again taken with $S$ fixed.
+
+Like these, Legendre transforms can be a way to swap from $(S,V)$ dependence to dependence of other variables.
+
+\section{Hamilton's Equations}
+Recall that the Lagrangian is defined by $L=L(\mathbf{q},\mathbf{\dot{q},t})=T-V$ where $\mathbf{q}$ is either the path of one particle or the path of many particles considered together in the configuration space.
+\begin{definition}
+    The Hamiltonian is the Legendre transform of $L$ wrt the velocity $\mathbf{\dot{q}}=\mathbf{v}$, so
+    $$H(\mathbf{q},\mathbf{p},t)=\sup_{\mathbf{v}}(\mathbf{p}\cdot\mathbf{v}-L)$$
+\end{definition}
+The component $\mathbf{p}$ here is understood to be a generalised momentum.
+So if $L$ is nice enough, we can write $H=\mathbf{p}\cdot\mathbf{v}-L(\mathbf{q},\mathbf{v},t)$ where $\mathbf{v}(\mathbf{p})$ is the solution to
+$$p_i=\frac{\partial L}{\partial \dot{q_i}}$$
+\begin{example}
+    Consider $T=m|\mathbf{\dot{q}}|^2/2, V=V(\mathbf{q})$, so $\mathbf{v}=\mathbf{p}/m$, therefore
+    $$H(\mathbf{q},\mathbf{p},t)=\frac{1}{2m}|\mathbf{p}|^2+V(\mathbf{q})$$
+    So the Hamiltonian arises as the total energy.
+\end{example}
+What happened to the Euler-Lagrange equations?
+We have $H=p_i\dot{q}^i-L(q^i,\dot{q}^i,t)$ where the summation in the first term is implied.
+Suppose $L$ satisfies the Euler-Lagrange equations, we have
+\begin{align*}
+    \mathrm dH&=\frac{\partial H}{\partial q^i}\,\mathrm dq^i+\frac{\partial H}{\partial p_i}\,\mathrm dp_i+\frac{\partial H}{\partial t}\,\mathrm dt\\
+    &=p_i\,\mathrm d\dot{q}^i+\dot{q}^i\,\mathrm dp_i-\frac{\partial L}{\partial q^i}\,\mathrm dq^i-\frac{\partial L}{\partial \dot{q}^i}\,\mathrm d\dot{q}^i-\frac{\partial L}{\partial t}\,\mathrm dt\\
+    &=\dot{q}^i\,\mathrm dp_i-\dot{p}_i\,\mathrm dq^i-\frac{\partial L}{\partial t}\,\mathrm dt
+\end{align*}
+Since $\partial L/\partial \dot{q}^i=p_i$.
+So by comparing the differentials,
+$$\dot{q}^i=\frac{\partial H}{\partial p_i},\quad\dot{p}_i=-\frac{\partial H}{\partial q^i},\quad\frac{\partial H}{\partial t}=-\frac{\partial L}{\partial t}$$
+These equations are called the Hamilton's Equations.
+
+Assume there is no explicit time dependence, then the system consists of $2n$ first-order ODEs, so we need to specify $q^i(0),p_i(0)$ for $i=1,\ldots,n$ for a typical system.
+The solution curves to the Hamilton's equations is a trajectory in $2n$ dimensional ``phase space''.
+
+Alternatively, Hamilton's equations also arise from the stationary points of a functional
+$$S[\mathbf{q},\mathbf{p}]=\int_{t_1}^{t_2}f(\mathbf{q},\mathbf{p},\mathbf{\dot{q}},\mathbf{\dot{p}},t)\,\mathrm dt,f=\dot{q}^ip_i-H(\mathbf{q},\mathbf{p},t)$$
+which variation wrt $p_i$ is then
+$$\frac{\partial f}{\partial p_i}-\frac{\mathrm d}{\mathrm dt}\frac{\partial f}{\partial \dot{p}_i}=0\implies \dot{q}^i=\frac{\partial H}{\partial p_i}$$
+and variation wrt $q^i$ is
+$$\frac{\partial f}{\partial q^i}-\frac{\mathrm d}{\mathrm dt}\frac{\partial f}{\partial \dot{q}^i}=0\implies \dot{p}_i=-\frac{\partial H}{\partial q^i}$$
+Which are just the Hamilton's equations.
+
+Hamilton's equations (or the Hamiltonian formulation of dynamics) actually allows one to extend the theory of classical dynamics to quantum settings, as observed by Paul Dirac in 1926.
+So the Hamiltonian formalism can be seen as a bridge between classical and quantum physics.
+\newpage
+\part*{Lecture 11}
+
+\section{The Second Variation}
+\subsection{The Legendre Condition}
+By the Euler-Lagrange equation we can only find the stationary point(s) of a functional, but we do not know about whether they are a minimum, maximum or a saddle point.
+When we are in $\mathbb R^n$, a (partial) solution to this problem is to look at the second (or higher) derivative, which inspires us to consider higher order variations.\\
+Consider the functional
+$$F[y]=\int_\alpha^\beta f(x,y,y^\prime)\,\mathrm dx$$
+We now want to expand further to the second order term of $\epsilon$, that is, for $\eta$ such that $\eta(\alpha)=\eta(\beta)=0$ and $y$ a stationary point of $F$,
+$$F[y+\epsilon\eta]-F[y]=\frac{\epsilon^2}{2}\int_\alpha^\beta\left( \eta^2\frac{\partial^2f}{\partial y^2}+(\eta^\prime)^2\frac{\partial^2f}{\partial(y^\prime)^2}+2\eta\eta^\prime\frac{\partial^2f}{\partial y\partial y^\prime} \right)\,\mathrm dx+O(\epsilon^3)$$
+The integrand (as a functional on $\eta$) is called the second variation:
+$$\delta^2 F[y](\eta)=\frac{1}{2}\int_\alpha^\beta\left( \eta^2\frac{\partial^2f}{\partial y^2}+(\eta^\prime)^2\frac{\partial^2f}{\partial(y^\prime)^2}+2\eta\eta^\prime\frac{\partial^2f}{\partial y\partial y^\prime} \right)\,\mathrm dx$$
+By a simple integration by part argument on the last term and using the boundary condition on $\eta$, we can further simplify the expression to get
+$$\delta^2F[y](\eta)=\frac{1}{2}\int_\alpha^\beta(Q\eta^2+P(\eta^\prime)^2)\,\mathrm dx,Q=\frac{\partial^2f}{\partial y^2}-\frac{\mathrm d}{\mathrm dx}\left( \frac{\partial^2 f}{\partial y\partial y^\prime}\right),P=\frac{\partial^2f}{\partial (y^\prime)^2}$$
+The way we got the expression of $\delta^2F[y]$ then hinted that $y$ being a minimiser relates greatly to $\delta^2F[y]$ being positive.
+\begin{proposition}
+    If $y$ is a solution to the Euler-Lagrange equation of $F$ and $Q\eta^2+P(\eta^\prime)^2>0$ for any nonzero (sufficiently smooth) function $\eta$ that vanishes at $\alpha,\beta$, then $y$ is a local minimiser of $F$.
+\end{proposition}
+\begin{example}
+    For the geodesics on the plane, we already know that the solutions to the Euler-Lagrange equation are striaght line segments.
+    We have $f=\sqrt{1+(y^\prime)^2}$, so
+    $$P=\frac{\partial}{\partial y^\prime}\left( \frac{y^\prime}{\sqrt{1+(y^\prime)^2}} \right)=\frac{1}{(1+(y^\prime)^2)^{3/2}},Q=0$$
+    But then $P$ is always positive and $\eta^\prime$ is nonzero since $\eta$ is nonconstant (if it is constant then it is zero by the boundary condition), so by the preceding proposition any stationary point of it is a local minimiser.
+\end{example}
+An analogous computation proves a similar result for geodesics on the sphere.
+\begin{proposition}
+    If $y_0(x)$ is a local minimum, then
+    $$P=\left.\frac{\partial^2 f}{\partial (y^\prime)^2}\right|_{y_0}=0$$
+\end{proposition}
+This is known as the Legendre condition.
+We will sketch a proof of it.
+\begin{proof}[Sketch of proof]
+    Assume there is some $x_0$ such that $P(x_0,y_0,y_0^\prime)<0$.
+    We can easily constuct a function $\eta$ such that $|\eta|<\epsilon$ for some small $\epsilon>0$ but $\eta$ fluctuates so rapid around $x_0$ such that $|\eta^\prime|$ is big around $x_0$, then the $Q\eta^2$ term would contribute very little to the integral but $P(\eta^\prime)^2$ contributes a more significant and positive value, which shall yield a contradiction.
+\end{proof}
+Note that the Legendre condition is only necessary but not sufficient.
+An obvious sufficient condition is $P>0,Q\ge 0$ at $y_0$.
+\begin{example}[The Brachistochrone Problem]
+    We have
+    $$f=\sqrt{\frac{1+(y^\prime)^2}{-y}}$$
+    Which we already know has the cycloid as a stationary point.
+    To see it is actually a minimiser, we compute
+    $$P=\frac{1}{(1+(y^\prime)^2)^{3/2}\sqrt{-y}}>0,Q=\frac{1}{2\sqrt{1+(y^\prime)^2}y^2\sqrt{-y}}>0$$
+    so the cycloid is indeed a local minimiser.
+\end{example}
+
+\subsection{Associated Eigenvalue Problem}
+Rewrite the integrand of the second variation in the form
+$$Q\eta^2+P(\eta^\prime)^2=Q\eta^2+\frac{\mathrm d}{\mathrm dx}(P\eta\eta^\prime)-\eta\frac{\mathrm d}{\mathrm dx}(P\eta^\prime)$$
+Integrating by part again yields another formula for the second variation.
+$$\delta^2F[y](\eta)=\frac{1}{2}\int_\alpha^\beta\eta\left( -\frac{\mathrm d}{\mathrm dx}(P\eta^\prime)+ Q\eta\right)\,\mathrm dx$$
+But the thing in the bracket is precisely the Sturm-Liouville operator $\mathcal L$ in Example \ref{sturm-liouville} with $\rho=P$ and $\sigma=Q$ applied to $\eta$.
+So if $\mathcal L(\eta)=-\omega^2\eta$ for some $\eta$ satisfying the boundary conditions and $\omega\in\mathbb R$, then $\delta^2F[y_0]<0$ if $\eta$ is not constantly zero, therefore $y_0$ is not a minimiser.
+Observe here that $\mathcal L$ can have nonpositive eigenvalues (as shown in the example below) even if $P>0$, so this would mean that the Legendre condition is not sufficient.
+\begin{example}
+    Consider the functional
+    $$F[y]=\int_0^\beta((y^\prime)^2-y^2)\,\mathrm dx$$
+    subject to the initial conditions $y(0)=y(\beta)=0$ and $\beta$ is not an integer multiple of $\pi$.
+    The Euler-Lagrange equation transforms to $y^{\prime\prime}+y=0$, which solves to $y\equiv 0$ due to our initial condition.
+
+    Now
+    $$\delta^2F[0](\eta)=\frac{1}{2}\int_0^\beta((\eta^\prime)^2-\eta^2)\,\mathrm dx$$
+    So $P=1>0$, so the Legendre condition is satisfied but the corresponding Sturm-Liouville operator is $\mathcal L(\eta)=-\eta^{\prime\prime}-\eta$.
+    But if $\beta>\pi$, then there is a solution $\omega$ satisfying the condition $(\pi/\beta)^2=1-\omega^2$, which makes the function $\eta(x)=\sin(\pi x/\beta)$ satisfy $\mathcal L(\eta)=-\omega^2\eta$, hence $0$ is not a local minimiser even if it satisfies the Legendre condition.
+\end{example}
+The example shows that $P>0$ alone may not guarantee local minimisation when the interval $[\alpha,\beta]$ is ``too large''.
+We will make it precise in a moment.
+\newpage
+\part*{Lecture 12}
+\subsection{The Jacobi Condition}
+Legendre tried and failed to prove that $P>0$ is also a sufficient condition for a local minimiser -- which is because it is not, as seen in the last example.
+Jacobi, on the other hand, improved upon Legendre's idea.
+Assuming that the Legendre condition holds, then let $\phi=\phi(x)$ be any differentiable function on $[\alpha,\beta]$, then
+$$0=\int_\alpha^\beta (\phi\eta^2)^\prime\,\mathrm dx=\int_\alpha^\beta(\phi^\prime\eta^2+2\eta\eta^\prime\phi)\,\mathrm dx$$
+So we can modify the expression of the second variation by
+$$\delta^2F[y](\eta)=\frac{1}{2}\int_\alpha^\beta(P(\eta^\prime)^2+2\phi\eta\eta^\prime+(Q+\phi^\prime)\eta^2)\,\mathrm dx$$
+Completing the square,
+$$\delta^2F[y](\eta)=\frac{1}{2}\int_\alpha^\beta \left( P\left( \eta^\prime+\frac{\phi}{P}\eta \right)^2 +\left( Q+\phi^\prime-\frac{\phi^2}{P} \right)\eta^2\right)\,\mathrm dx$$
+Hence, if we can find a solution $\phi$ to the differential equation $\phi^2=P(Q+\phi^\prime)$, then the positivity of the integrand is proved, hence we have a local minimum.
+This ODE is called the Ricatti equation.
+
+We can transform the Ricatti equation into a linear second-order ODE by setting $\phi=-Pu^\prime/u$ for some $u$ nonzero anywhere on $[\alpha,\beta]$, so
+$$-(Pu^\prime)^\prime+Qu=0$$
+this is called the Jacobi accessory equation.
+But this is exactly the kernel problem of $\mathcal L$ with the restriction that the solution vanishes nowhere on $[\alpha,\beta]$.
 \end{document}
