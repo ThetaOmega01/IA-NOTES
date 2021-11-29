@@ -4,7 +4,6 @@
 \usepackage{xifthen}
 \usepackage{import}
 \usepackage{parskip}
-\usepackage{pdfpages}
 \usepackage{transparent}
 \usepackage{mathtools,amssymb,amsfonts,amsthm,bm}   % Math Presets
 \usepackage{array,tabularx,booktabs}                % Table Presets
@@ -25,7 +24,7 @@
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{decorations.markings}
 \usetikzlibrary{decorations.pathmorphing}
-\usetikzlibrary{positioning}
+\usetikzlibrary{automata, positioning}
 \usetikzlibrary{fadings}
 \usetikzlibrary{intersections}
 \usetikzlibrary{cd}
@@ -91,6 +90,7 @@ dot/.style = {circle, fill, minimum size=#1,
               inner sep=0pt, outer sep=0pt},
 dot/.default = 5pt% size of the circle diameter 
 }
+\tikzset{mstate/.style={circle, draw, blue, text=black, minimum width=0.7cm}}
 
 \def\centerarc[#1](#2)(#3:#4:#5)% Syntax: [draw options](center)(initial angle:final angle:radius)
     { \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); }
@@ -139,6 +139,8 @@ dot/.default = 5pt% size of the circle diameter
 \DeclareMathOperator{\var}{Var}
 \DeclareMathOperator{\cov}{Cov}
 \DeclareMathOperator{\corr}{Corr}
+\DeclareMathOperator{\Markov}{Markov}
+\DeclareMathOperator{\nullity}{nullity}
 
 \newcommand{\bfA}{{\bf A}}
 \newcommand{\bfB}{{\bf B}}
@@ -369,6 +371,12 @@ dot/.default = 5pt% size of the circle diameter
 \newcommand{\SU}{\mathrm{SU}}
 \newcommand{\Mat}{\mathrm{Mat}}
 
+% Some common notations
+
+\renewcommand{\v}{\mathbf{v}}
+\newcommand{\w}{\mathbf{w}}
+\renewcommand{\u}{\mathbf{u}}
+
 % Matrix algebras
 \newcommand{\gl}{\mathfrak{gl}}
 \newcommand{\ort}{\mathfrak{o}}
@@ -382,20 +390,23 @@ dot/.default = 5pt% size of the circle diameter
 
 \renewcommand{\ge}{\geqslant}
 \renewcommand{\le}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
 
 \newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
 \def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
 
 \setlength{\parindent}{0pt}
-
+% \setlength{\parskip}{\baselineskip}
 \newcommand{\incfig}[1]{%
     \def\svgwidth{0.4\columnwidth}
     \import{./figures/}{#1.pdf_tex}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\input{../Publish.tex}
+% \input{../Publish.tex}
 % \input{../iPad.tex}
+\input{../plain.tex}
 
 %layout full
 % \geometry{%
@@ -417,4 +428,4 @@ dot/.default = 5pt% size of the circle diameter
 % }
 \pagestyle{fancy}
 \rhead{\textsc{\triposcourse{}}}
-\author{jt775}
+\author{You}
