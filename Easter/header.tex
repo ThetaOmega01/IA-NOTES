@@ -6,6 +6,7 @@
 \usepackage{parskip}
 \usepackage{pdfpages}
 \usepackage{transparent}
+\usepackage{framed}
 \usepackage{mathtools,amssymb,amsfonts,amsthm,bm}   % Math Presets
 \usepackage{array,tabularx,booktabs}                % Table Presets
 \usepackage{graphicx,wrapfig,float,caption}         % Figure Presets
@@ -130,6 +131,7 @@ dot/.default = 5pt% size of the circle diameter
 \newcommand{\thalf}{\tfrac{1}{2}}
 \renewcommand{\div}{\nabla\cdot}
 \renewcommand{\curl}{\nabla\times}
+\renewcommand{\grad}{\nabla}
 
 \DeclareMathOperator{\orb}{Orb}
 \DeclareMathOperator{\stab}{Stab}
@@ -398,14 +400,14 @@ dot/.default = 5pt% size of the circle diameter
 % \input{./iPad.tex}
 
 %layout full
-\geometry{%
-  a4paper,
-  lmargin=2cm,
-  rmargin=2.5cm,
-  tmargin=3.5cm,
-  bmargin=2.5cm,
-  footskip=12pt,
-  headheight=24pt}
+% \geometry{%
+%   a4paper,
+%   lmargin=2cm,
+%   rmargin=2.5cm,
+%   tmargin=3.5cm,
+%   bmargin=2.5cm,
+%   footskip=12pt,
+%   headheight=24pt}
 % layout trim
 % \geometry{
 % papersize={379pt, 542pt},
@@ -415,6 +417,15 @@ dot/.default = 5pt% size of the circle diameter
 % top=54pt,
 % right=17pt
 % }
+% layout a5
+\geometry{%
+  a5paper,
+  lmargin=1cm,
+  rmargin=1cm,
+  tmargin=2.5cm,
+  bmargin=1.5cm,
+  footskip=12pt,
+  headheight=24pt}
 \pagestyle{fancy}
 \rhead{\textsc{\triposcourse{}}}
 \author{jt775}
