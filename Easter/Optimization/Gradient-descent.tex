@@ -1,1 +1,190 @@
 \section{Gradient descent and Newton's method}
+\subsection{Second-order conditions}
+\begin{definition}
+    An $n\times n$ symmetric matrix $A$ is \textit{non-negative definite} if $ x^\top A x\ge 0, \forall x $.
+
+    The \textit{Hessian}, $ \nabla^2 f(x) $, is the $n\times n$ matrix whose $i,j$th element is $\displaystyle \frac{\partial^2 f(x)}{\partial x_i \partial x_j} $.
+\end{definition}
+
+\begin{theorem}
+    If $ \grad^2 f(x) $ is non-negative definite for all $x$ then $f$ is convex. 
+\end{theorem}
+\begin{proof}
+    For $x,y\in S$, by multivariable Taylor theorem, 
+    \[
+        f(y) = f(x) + \grad f(x) ^\top (y-x) + \frac{1}{2}(y-x)^\top \grad^2f(\xi) (y-x), 
+    \]
+    where $ \xi = px + (1-p)y, p\in (0,1) $. Since $ \frac{1}{2}(y-x)^\top \grad^2f(\xi)(y-x) \ge 0$ by assumption, 
+    \[
+        f(y) \ge f(x) + \grad f(x)^\top (y-x),
+    \]
+    so $f$ is convex by supporting hyperplane theorem. 
+\end{proof}
+
+Recall that $f$ is strongly convex if $f(x)-(\alpha / 2)\|x\|^2$ is convex for some $\alpha>$ 0. If $f$ is differentiable then (as shown in proving Theorem 1.4) the supporting hyperplane theorem implies this is equivalent to
+\[
+f(y) \geq f(x)+\nabla f(x)^{\top}(y-x)+\frac{\alpha}{2}\|x-y\|^2
+\]
+and if $f$ is twice differentiable then it is equivalent to $\nabla^2 f(x)-\alpha I$ being non-negative definite (Theorem 2.1). We write this as $\alpha I \preceq \nabla^2 f(x)$.
+
+\begin{definition}
+    For symmetric matrices $A$ and $B$ we write $A \preceq B$ to mean that $B-A$ is non-negative definite.
+\end{definition}
+
+\subsection{Convergence of gradient descent}
+Recall that in the process of gradient descent we have $ x_{k+1} = x_k - t \grad f(x_k) $. In machine learning $t$ is called the \textit{learning rate}. 
+
+\begin{definition}
+    $f$ is said to be \textit{$ \beta $-smooth} if 
+    \[
+        \left\| \grad f(x) - \grad f(y) \right\| \le \beta \left\| x-y \right\|. 
+    \]
+\end{definition}
+
+\begin{theorem}
+    If $f$ is $\beta$-smooth then
+\[
+f(y) \leq f(x)+\nabla f(x)^{\top}(y-x)+\frac{\beta}{2}\|x-y\|^2. 
+\]
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        f(y)-f(x) - \grad f(x)^\top (y-x) &= \int_{0}^{1} [\grad f(x+t(y-x)) - \grad f(x)]^\top (y-x) \,\mathrm{d}t\\ 
+        &\le \int_{0}^{1} \left\| \grad f(x + t(y-x))- \grad f(x) \right\| \cdot \left\| y-x \right\| \,\mathrm{d}t\\ 
+        &\le \beta \left\| x-y \right\|^2 \int_{0}^{1} t \,\mathrm{d}t\\ 
+        &= \frac{\beta}{2} \left\| x-y \right\|^2.\qedhere
+    \end{align*}
+\end{proof}
+
+RHS of theorem 2.2 is minimized by taking 
+\[
+    y = x - \frac{1}{\beta} \grad f(x),
+\]
+suggesting $t = 1/\beta$.
+
+\begin{theorem}
+    Suppose $f$ is twice differentiable and there are positive constants $\alpha$, $\beta$ such that
+\[
+\alpha I \preceq \nabla^2 f(x) \preceq \beta I
+\]
+for all $x$. (This is equivalent to say that $f$ is strongly convex and $\beta$-smooth) Then applying the gradient descent algorithm with $t=1 / \beta$ we have
+\[
+f\left(x_k\right)-f\left(x^*\right) \leq\left(1-\frac{\alpha}{\beta}\right)^k\left(f\left(x_0\right)-f\left(x^*\right)\right)
+\]
+\end{theorem}
+
+\begin{proof}
+    Let $ x_{k+1} = x_k - \frac{1}{\beta} \grad f(x_k) $. Lower bound on gradient is
+    \[
+        \left\| \grad f(x_k) \right\|^2 \ge 2\alpha (f(x_k)-f(x^*)).
+    \]
+    Hence we have
+    \begin{align*}
+        f(x_{k+1}) - f(x_k) &= \grad f(x_k)^\top (x_{k+1}-x_k) + \frac{1}{2} (x_{k+1}-x_k)^\top \grad^2 f(\xi) (x_{k+1}-x_k )\\ 
+        &\le \grad f(x_k)^\top (x_{k+1}-x_k) + \frac{\beta}{2} \left\| x_{k+1}-x_k \right\|^2\tag{By $ \beta $-smoothness}\\ 
+        &\le -\frac{1}{2\beta} \left\| \grad f(x_k) \right\|^2 \tag{By completing the square}\\ 
+        &\le - \frac{\alpha}{\beta}(f(x_k) - f(x^*)). \tag{By lower bound of gradient}
+    \end{align*}
+    So $ f(x_{k+1})-f(x^*)\le \left( 1-\frac{\alpha}{\beta} \right)\left( f(x_{k})-f(x^*) \right) $ and the result follows by induction.
+\end{proof}
+\begin{note}
+    $ \frac{\beta}{\alpha} $ is called the \textit{condition number}. 
+\end{note}
+
+\begin{example}
+    Consider $ f(x) = \frac{1}{2} (x_1^2 + 100 x_2^2) $. The Hessian matrix is 
+    \[
+        \grad^2 f(x) = \begin{pmatrix}
+            1 &  0 \\
+            0 &  100 \\
+        \end{pmatrix}. 
+    \]
+    So $ \alpha=1,\beta=100 $ and the condition number is $100$. Take $ t = \frac{1}{100} $, the gradient descent is 
+    \[
+        \begin{pmatrix}
+             x_1 \\
+             x_2 \\
+        \end{pmatrix}_{k+1} = \begin{pmatrix}
+             x_1 \\
+             x_2 \\
+        \end{pmatrix}_{k} - \frac{1}{100} \begin{pmatrix}
+             x_1 \\
+             100 x_2 \\
+        \end{pmatrix} = \begin{pmatrix}
+             0.99 x_1 \\
+             0 \\
+        \end{pmatrix}_{k}.
+    \]
+    So $x_1(k)$ hardly changes and it will take many iterations to converge to 0.
+
+    But if we make a simple rescaling, setting $y=10 x_2$, then the condition number of $f\left(x_1, y\right)=\frac{1}{2}\left(x_1^2+y^2\right)$ is 1 and convergence needs just a single step.
+\end{example}
+
+\subsection{Newton's method}
+Suppose $f$ is twice differentiable. Then by Taylor's theorem, 
+\[
+f(x) \approx f\left(x_0\right)+(x-x_0)^\top\grad f(x_0)+\frac{1}{2}\left(x-x_0\right)^{\top} \nabla^2 f\left(x_0\right)\left(x-x_0\right) .
+\]
+RHS is minimized by $x=x_0-\left(\nabla^2 f\left(x_0\right)\right)^{-1} \nabla f\left(x_0\right)$.
+
+Newton's method:
+\begin{framed}
+    \begin{enumerate}
+        \item Start with an initial guess $x_0$,
+        \item For $k=1,2,\dots,$, use 
+        \[
+            x_{k+1} = x_k - (\grad^2 f(x_k)) ^{-1} \grad f(x_k). 
+        \]
+    \end{enumerate}
+\end{framed}
+
+\begin{definition}
+    Suppose $A$ is $n\times n$. Let $ \left\| A \right\| $ be the smallest $a$ such that 
+    \[
+        \left\| A z \right\| \le a \left\| z \right\|,\quad \forall z\in \mathbb{R}^{n}.
+    \]
+    If $A$ is non-negative definite, then $\left\| A \right\|$ is the \textit{largest eigenvalue} of $A$. 
+\end{definition}
+
+\begin{theorem}
+    Suppose $f$ is twice differentiable and there are constants $\alpha, L>0$ such that
+\[
+\begin{gathered}
+\alpha I \preceq \nabla^2 f(x) \\
+\left\|\nabla^2 f(x)-\nabla^2 f(y)\right\| \leq L\|x-y\|
+\end{gathered}
+\]
+for all $x, y \in \mathbb{R}^n$. Then with Newton's method
+\[
+f\left(x_k\right)-f\left(x^*\right) \leq \frac{2 \alpha^3}{L^2}\left(\frac{L}{2 \alpha^2}\left\|\nabla f\left(x_0\right)\right\|\right)^{2^{k+1}}.
+\]
+\end{theorem}
+
+Proof is non-examinable. See official notes. 
+
+\begin{note}
+    The exponent of $2^k$ means the rate of convergence is much faster than with gradient descent. Note that we need to start at an $x_0$ such that $\left\|\nabla f\left(x_0\right)\right\|<2 \alpha^2 / L$. We might find such an $x_0$ by starting with a few steps of gradient descent.
+\end{note}
+
+\begin{example}
+    Take again $ f(x) = \frac{1}{2}(x_1^2+100x_2^2) $. 
+    \[
+        \begin{pmatrix}
+             x_1 \\
+             x_2 \\
+        \end{pmatrix}_1 = \begin{pmatrix}
+             x_1 \\
+             x_2 \\
+        \end{pmatrix}_0 - \begin{pmatrix}
+            1 &  0 \\
+            0 &  100 \\
+        \end{pmatrix}^{-1} \begin{pmatrix}
+             x_1 \\
+             100x_2 \\
+        \end{pmatrix}_0 = \begin{pmatrix}
+             0 \\
+             0 \\
+        \end{pmatrix}.
+    \]
+\end{example}
+See official notes for non-examinable part on neural networks. 
