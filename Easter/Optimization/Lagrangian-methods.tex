@@ -1,0 +1,179 @@
+\section{Lagrangian methods}
+\subsection{The Lagrange sufficiency theorem}
+Consider again the optimization problem
+\[
+    \text{P}: \ \text{minimize }f(x) \text{ s.t. } g(x)=b,\ x\in X
+\]
+where $ x \subseteq \mathbb{R}^{n} $ and $b\in \mathbb{R}^{m}$. 
+
+\begin{definition}
+    The \textbf{Lagrangian} is defined as 
+\[
+    L(x,\lambda) = f(x) + \lambda^\top(b-g(x)),
+\]
+where $ \lambda\in \mathbb{R}^{m} $. 
+\end{definition}
+
+\begin{theorem}[Lagrange sufficiency theorem]
+    Let $x^*$ be feasible. Suppose there exists $ \lambda^*\in \mathbb{R}^{m} $ such that 
+    \[
+        L(x^*,\lambda^*)\le L(x,\lambda^*),\quad \forall x\in X, 
+    \]
+    then $x^*$ is optimal for P.
+\end{theorem}
+\begin{proof}
+    For any feasible $x$ and any $\lambda$ we have 
+    \[
+        L(x,\lambda) = f(x) + \lambda^\top (b-g(x)) = f(x). 
+    \]
+    Now 
+    \begin{align*}
+        f(x^*) & = L(x^*,\lambda^*)\\ 
+        &\le L(x,\lambda^*),\ \forall x\in X \text{ by assumption}\\ 
+        &= f(x) \text{ for all feasible } x. \qedhere
+    \end{align*}
+\end{proof}
+
+\begin{remark}
+\begin{enumerate}
+    \item There is no guarantee that we can find a $\lambda^*$ satisfying the conditions of the theorem. However, there is a large class of problems for which $\lambda^*$ do exist.
+    \item At first sight we have a method for testing if $x^*$ is optimal for $\mathrm{P}$ without helping us to find $x^*$ if we don't already know it. Certainly we will sometimes use the theorem this way. But as in the following example, we can find $\lambda^*$ by adjusting $\lambda$ until some $x^*(\lambda)$ is feasible.
+\end{enumerate}
+\end{remark}
+
+\subsection{Example: use of the Lagrangian sufficiency theorem}
+\begin{example}
+    \[
+        \begin{aligned}
+            &\text{minimize } x_1^2+3 x_2^2 \\
+            &\text {s.t. } 2 x_1+3 x_2=b \\
+            &\ x \in X=\mathbb{R}^2
+            \end{aligned}
+    \]
+    We have 
+    \[
+        L(x, \lambda)=x_1^2+3 x_2^2+\lambda\left(b-2 x_1-3 x_2\right).
+    \]
+    Note that 
+    \[
+        \frac{\partial L}{\partial x_1} = 2x_1-2\lambda,\quad \frac{\partial L}{\partial x_2} = 6x_2 - 3x_2  
+    \]
+    and thus $L$ is minimized when $ x_1=\lambda,x_2=\frac{\lambda}{2} $. This solution satisfies the constraint if
+    \[
+    2 x_1+3 x_2=2 \lambda+3(\lambda / 2)=b
+    \]
+    which gives $\lambda=\lambda^*=\frac{2}{7}b$. Application of the theorem shows that the optimal solution is $x^*=(\frac{2}{7},\frac{1}{7}) b$ and the optimal value is $\phi(b)=\left(\frac{2}{7}^2+3\frac{1}{7}^2\right) b^2=\frac{1}{7} b^2$.($ \phi $ is called the \textbf{value function}) 
+    
+    Observe that $\phi^{\prime}(b)=\frac{2}{7} b=\lambda^*$, an important point that we will discuss later.
+\end{example}
+
+\subsection{Strategy to solve problems with the Lagrangian sufficiency theorem}
+A strategy to find $x^*, \lambda^*$ satisfying the conditions of the theorem is as follows.
+\begin{enumerate}
+    \item Consider the problem
+    \begin{center}
+        minimize $L(x, \lambda)$ subject to $x \in X$.
+    \end{center}
+    The only constraints are $x \in X$ so this should be an easier problem to solve than P. Identify the set of $\lambda$ for which a finite optimum will be achieved:
+    \[
+    \Lambda=\left\{\lambda: \min _{x \in X} L(x, \lambda)>-\infty\right\} .
+    \]
+    \item For $\lambda \in \Lambda$, the minimum will be obtained at some $x(\lambda)$ (that depends on $\lambda$ in general). Typically, $x(\lambda)$ will not be feasible for $\mathrm{P}$.
+    \item Find $\lambda^* \in \Lambda$ such that $x^*=x\left(\lambda^*\right)$ is feasible. Then $x^*$ is optimal for $\mathrm{P}$ by the theorem. (Think of $\lambda$ as being a knob which you turn until $x(\lambda)$ is feasible, i.e. $ g(x(\lambda))=b $.)
+\end{enumerate}
+
+\subsection{Example: further use of the Lagrangian sufficiency theorem}
+\begin{example}
+    Consider 
+    \[
+        \text{minimize } \frac{1}{1+x_1}+\frac{1}{2+x_2} \quad \text { s.t. } x_1+x_2 \le b, \quad x_1, x_2 \ge 0.
+    \]
+    To handle the inequality constraint write $x_1+x_2+x_3=b$ where $x_3 \ge 0$ is a \textbf{slack variable}. We define $X=\{x=(x_1,x_2,x_3 ) \ge 0\}$ and the Lagrangian is
+    \[
+    \begin{aligned}
+    L(x, \lambda) &=\frac{1}{1+x_1}+\frac{1}{2+x_2}+\lambda\left(b-x_1-x_2-x_3\right) \\
+    &=\left(\frac{1}{1+x_1}-\lambda x_1\right)+\left(\frac{1}{2+x_2}-\lambda x_2\right)-\lambda x_3+\lambda b
+    \end{aligned}
+    \]
+    Note that the term $-\lambda x_3$ has a finite minimum only if $\lambda \le 0$. If $\lambda=0$ the minimum would be as $x_1, x_2 \rightarrow \infty$, so in fact we must have $\lambda<0$ and hence $x_3$ should be 0 .
+
+    Consider
+    \[
+    \left(\frac{1}{1+x_1}-\lambda x_1\right) \text { and }\left(\frac{1}{2+x_2}-\lambda x_2\right) \text {. }
+    \]
+    In the range $x \geq 0$ a function of the form $\left(\frac{1}{a+x}-\lambda x\right)$ has its minimum at $x=0$, if this function is increasing at 0 , or at the stationary point of the function, occurring where $x>0$, if the function is decreasing at 0 . So the minimum occurs at
+    \[
+    x(\lambda)=\left(-a+\sqrt{-1 / \lambda}\right)^{+} .
+    \]
+    where $c^{+}=\max (0, c)$.
+
+    Now notice that $x_1(\lambda)+x_2(\lambda)$ satisfies
+    \begin{align*}
+        x_1(\lambda) + x_2(\lambda)&= \left( -1+\sqrt{-1/\lambda} \right)^+ + \left( -2+\sqrt{-1/\lambda} \right)^+\\ 
+        &=  \begin{cases}
+            0 & \text{if}\quad \lambda \le -1 \\
+            -1+1 / \sqrt{-\lambda} & \text{if}\quad \lambda \in[-1,-1 / 4] \\
+            -3+2 / \sqrt{-\lambda} &\text{if}\quad \lambda \in[-1 / 4,0]
+        \end{cases} = b. 
+    \end{align*}
+    So $x_1(\lambda)+x_2(\lambda)$ is an increasing and continuous function (although it is not differentiable at $\lambda=-1$ and at $\lambda=-1 / 4)$.
+
+    Thus (by the Intermediate Value Theorem) for any $b>0$ there will be a unique value of $\lambda$, say $\lambda^*$, for which
+    \[
+        x_1\left(\lambda^*\right)+x_2\left(\lambda^*\right)=b.
+    \]
+    This $\lambda^*$ and corresponding $x^*$ will satisfy the conditions of the theorem and so $x^*$ is optimal.
+
+    In fact,
+    \[
+        x^* = \begin{cases}
+        (b,0) &\text{if}\quad b\le 1\\
+        \frac{1}{2}(b+1, b-1) &\text{if}\quad b\ge 1\\
+        \end{cases} 
+    \]
+\end{example}
+
+\subsection{Inequality constraints and complementary slackness}
+
+Consider 
+\[
+    \mathrm{P}: \text{minimize } f(x) \quad \text{s.t.}\quad g(x)\le b, \ x\in \mathbb{R}^{n}. 
+\]
+We introduce a slack variable $z$ such that 
+\[
+    g(x) + z = b,\quad z\ge 0, z\in \mathbb{R}^{m}. 
+\]
+The Lagrangian to this problem is 
+\[
+    L(x,\lambda) = f(x) + \lambda^\top (b-g(x)-z). 
+\]
+Consider $ -\lambda^\top z $. If $ \lambda>0 $, then by taking $ z_i\to \infty  $ we have $ L\to -\infty  $, so $ \lambda\le 0 $ and the set $ \Lambda $ for possible $\lambda$ is
+\[
+    \Lambda=\left\{\lambda: \lambda \leq 0, \inf _{x \in X}\left[f(x)+\lambda^{\top}(b-g(x)\right]>-\infty\right\}.
+\] 
+
+If $ \lambda=0, $ then $ \lambda_i z_i = 0 $. If $ \lambda < 0 $, then $ -\lambda^\top z $ is minimized by $ z^*_i=0 $. Both imply $ (\lambda^*) ^\top z^* =0 $. This is called \textbf{complementary slackness} of $ \lambda^*, z^* $.
+
+\subsection{Lagrangian methods might not work}
+\begin{example}
+    Consider for $b>0$ 
+    \[
+        \text{minmize }f(x) \quad f(x) \text{s.t.} \quad x=b,x\ge 0.
+    \]
+    The Lagrangian is 
+    \[
+        L(x,\lambda) = f(x) + \lambda(b-x). 
+    \]
+    If $f(x)=\sqrt{x}$ then there is no $\lambda$ for which the minimum is at $x=b$, so the Lagrangian method does not work. But if $f(x)=x^2$ then $L(x, \lambda)$ is minimized at $x^*=b$ by taking $\lambda=2 b$, the Lagrangian method works.
+\end{example}
+\begin{definition}
+    Let $b \in \mathbb{R}^m$. Define the \textbf{value function}
+    \[
+    \phi(b)=\inf _{x \in X, g(x)=b} f(x)
+    \]
+    for the family of problems indexed by $b$.
+\end{definition}
+In the above examples $\phi(b)=\sqrt{b}$ and $\phi(b)=b^2$, it is the convexity of $\phi(b)=b^2$ that makes Lagrangian methods work.
+
+See official notes for non-examinable part on large deviations, and another example of Lagrange method. 
+\newpage

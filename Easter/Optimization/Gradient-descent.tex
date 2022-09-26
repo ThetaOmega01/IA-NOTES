@@ -1,9 +1,9 @@
 \section{Gradient descent and Newton's method}
 \subsection{Second-order conditions}
 \begin{definition}
-    An $n\times n$ symmetric matrix $A$ is \textit{non-negative definite} if $ x^\top A x\ge 0, \forall x $.
+    An $n\times n$ symmetric matrix $A$ is \textbf{non-negative definite} if $ x^\top A x\ge 0, \forall x $.
 
-    The \textit{Hessian}, $ \nabla^2 f(x) $, is the $n\times n$ matrix whose $i,j$th element is $\displaystyle \frac{\partial^2 f(x)}{\partial x_i \partial x_j} $.
+    The \textbf{Hessian}, $ \nabla^2 f(x) $, is the $n\times n$ matrix whose $i,j$th element is $\displaystyle \frac{\partial^2 f(x)}{\partial x_i \partial x_j} $.
 \end{definition}
 
 \begin{theorem}
@@ -32,10 +32,10 @@ and if $f$ is twice differentiable then it is equivalent to $\nabla^2 f(x)-\alph
 \end{definition}
 
 \subsection{Convergence of gradient descent}
-Recall that in the process of gradient descent we have $ x_{k+1} = x_k - t \grad f(x_k) $. In machine learning $t$ is called the \textit{learning rate}. 
+Recall that in the process of gradient descent we have $ x_{k+1} = x_k - t \grad f(x_k) $. In machine learning $t$ is called the \textbf{learning rate}. 
 
 \begin{definition}
-    $f$ is said to be \textit{$ \beta $-smooth} if 
+    $f$ is said to be \textbf{$ \beta $-smooth} if 
     \[
         \left\| \grad f(x) - \grad f(y) \right\| \le \beta \left\| x-y \right\|. 
     \]
@@ -88,7 +88,7 @@ f\left(x_k\right)-f\left(x^*\right) \leq\left(1-\frac{\alpha}{\beta}\right)^k\le
     So $ f(x_{k+1})-f(x^*)\le \left( 1-\frac{\alpha}{\beta} \right)\left( f(x_{k})-f(x^*) \right) $ and the result follows by induction.
 \end{proof}
 \begin{note}
-    $ \frac{\beta}{\alpha} $ is called the \textit{condition number}. 
+    $ \frac{\beta}{\alpha} $ is called the \textbf{condition number}. 
 \end{note}
 
 \begin{example}
@@ -143,7 +143,7 @@ Newton's method:
     \[
         \left\| A z \right\| \le a \left\| z \right\|,\quad \forall z\in \mathbb{R}^{n}.
     \]
-    If $A$ is non-negative definite, then $\left\| A \right\|$ is the \textit{largest eigenvalue} of $A$. 
+    If $A$ is non-negative definite, then $\left\| A \right\|$ is the \textbf{largest eigenvalue} of $A$. 
 \end{definition}
 
 \begin{theorem}
@@ -188,3 +188,4 @@ Proof is non-examinable. See official notes.
     \]
 \end{example}
 See official notes for non-examinable part on neural networks. 
+\newpage

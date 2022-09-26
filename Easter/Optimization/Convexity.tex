@@ -9,22 +9,22 @@
     \end{align*}
     where
     \begin{itemize}
-        \item $ x\in \mathbb{R}^{n} $ are called \textit{decision variables},
-        \item $ f: \mathbb{R}^{n}\to \mathbb{R} $ is called \textit{objective function},
-        \item $ X \subseteq \mathbb{R}^{n} $ are called \textit{regional constraints}
-        \item $ g: \mathbb{R}^{n} \to \mathbb{R}^{m} $ are called \textit{functional constraints},
+        \item $ x\in \mathbb{R}^{n} $ are called \textbf{decision variables},
+        \item $ f: \mathbb{R}^{n}\to \mathbb{R} $ is called \textbf{objective function},
+        \item $ X \subseteq \mathbb{R}^{n} $ are called \textbf{regional constraints}
+        \item $ g: \mathbb{R}^{n} \to \mathbb{R}^{m} $ are called \textbf{functional constraints},
         \item $ b\in \mathbb{R}^{m} $. 
     \end{itemize}
 \end{definition}
 \begin{definition}
-    The \textit{feasible set for $x$} is defined by the constraints as 
+    The \textbf{feasible set for $x$} is defined by the constraints as 
     \[
         X(b) = \{x: g(x)=b,x\in X\}. 
     \]
-    The problem is \textit{feasible} if $X(b)\neq \varnothing$, and \textit{bounded} if $f$ is bounded below on $X(b)$. $ x^* $ is an \textit{optimal solution} if it minimizes $f$ over $X(b)$.
+    The problem is \textbf{feasible} if $X(b)\neq \varnothing$, and \textbf{bounded} if $f$ is bounded below on $X(b)$. $ x^* $ is an \textbf{optimal solution} if it minimizes $f$ over $X(b)$.
 \end{definition}
 \begin{note}
-    A constraint of the form $ g(x)\le b $ can be turned into an equality constraint by the addition of a \textit{slack variable} $z$:
+    A constraint of the form $ g(x)\le b $ can be turned into an equality constraint by the addition of a \textbf{slack variable} $z$:
     \[
         g(x)\le b \iff g(x) + z = b,\quad z\ge 0.
     \]
@@ -83,18 +83,18 @@ With the above motivations we can form an algorithm:
 
 \subsection{Convexity}
 \begin{definition}
-    A set $S\in \mathbb{R}$ is \textit{convex} if $ \forall x,y\in S $ and $ 0\le \lambda\le 1 $, the point $ \lambda x+ (1-\lambda) y \in S $. 
+    A set $S\in \mathbb{R}$ is \textbf{convex} if $ \forall x,y\in S $ and $ 0\le \lambda\le 1 $, the point $ \lambda x+ (1-\lambda) y \in S $. 
 \end{definition}
 \begin{definition}
-    A function $f:S\to \mathbb{R}$ is \textit{convex} if 
+    A function $f:S\to \mathbb{R}$ is \textbf{convex} if 
     \[
         f(\lambda x+(1-\lambda)y)\le \lambda f(x)+ (1-\lambda)f(y),\quad \forall x,y\in S.
     \]
-    $f$ is \textit{strictly convex} if the inequality is always strict; 
+    $f$ is \textbf{strictly convex} if the inequality is always strict; 
 
-    $f$ is \textit{strongly convex} if $ \exists \alpha>0$ such that $ f(x)-\frac{\alpha}{2}\left\| x \right\|^2 $ is convex; 
+    $f$ is \textbf{strongly convex} if $ \exists \alpha>0$ such that $ f(x)-\frac{\alpha}{2}\left\| x \right\|^2 $ is convex; 
 
-    $f$ is \textit{concave} if $-f$ is convex.
+    $f$ is \textbf{concave} if $-f$ is convex.
 \end{definition}
 
 \begin{example}
@@ -102,7 +102,7 @@ With the above motivations we can form an algorithm:
 \end{example}
 
 \begin{note}
-    Equivalently, $f$ is convex if the set above its graph (called its \textit{epigraph}) is convex, $\operatorname{epi}(f)=\{(x, t): f(x) \leq t\}$ (see example sheet TBD)
+    Equivalently, $f$ is convex if the set above its graph (called its \textbf{epigraph}) is convex, $\operatorname{epi}(f)=\{(x, t): f(x) \leq t\}$ (see example sheet TBD)
 \end{note}
 
 \begin{theorem}[Supporting hyperplane theorem (SHT)]\label{thm:supporting hyperplane}
@@ -205,3 +205,4 @@ f\left(x^*\right) \geq f(x)-\frac{1}{2 \alpha}\|\nabla f(x)\|^2 .
 \begin{remark}
     The term $ \frac{\alpha}{2}\left\| (y-x)+\frac{1}{\alpha}\grad f(x) \right\|^2 $ is minimized (to 0) when $ y = x - \frac{1}{\alpha} \grad f(x) $. Comparing to the gradient descent algorith $ x_{k+1} = x_k - t \grad f(x_k) $, it suggest using $ t = \frac{1}{\alpha} $ as the step size. 
 \end{remark}
+\newpage
