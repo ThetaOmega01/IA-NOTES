@@ -17,7 +17,7 @@ The following theorem explains when Lagrangian methods are guaranteed to work.
     If $\phi$ is convex, by SHT $ \exists \lambda $ such that $ \phi(c) \ge \phi(b) + \lambda^\top(c-b) $. This implies 
     \begin{align*}
         \phi(b) &= \inf _c [\phi(c) + \lambda^\top(b-c)]\\ 
-        &= \inf _c \inf_{x\in X, g(x)=b} [f(x)+ \lambda^\top (b-c)]\\ 
+        &= \inf _c \inf_{x\in X, g(x)=c} [f(x)+ \lambda^\top (b-c)]\\ 
         &= \inf_{c}\inf_{x\in X, g(x)=c} [f(x) + \lambda^\top(b-g(x))]\\ 
         &= \inf _{x\in X} L(x,\lambda).
     \end{align*}
