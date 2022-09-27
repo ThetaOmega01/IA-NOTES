@@ -1,0 +1,164 @@
+\section{The Lagrangian Dual}
+\subsection{Lagrangian necessity}
+Recall that for $b \in \mathbb{R}^m$ and the value function is
+\[
+\phi(b)=\inf _{x \in X, g(x)=b} f(x) .
+\]
+The following theorem explains when Lagrangian methods are guaranteed to work. 
+\begin{theorem}[Lagrangian necessity]
+    If the value function $\phi$ is convex and finite then there exists $\lambda$ (depending on $b$) such that
+    \[
+    \phi(b)=\inf _{x \in X} L(x, \lambda)
+    \]
+    Furthermore, if $\phi$ is differentiable then $\lambda=\nabla \phi(b)$.
+\end{theorem}
+
+\begin{proof}
+    If $\phi$ is convex, by SHT $ \exists \lambda $ such that $ \phi(c) \ge \phi(b) + \lambda^\top(c-b) $. This implies 
+    \begin{align*}
+        \phi(b) &= \inf _c [\phi(c) + \lambda^\top(b-c)]\\ 
+        &= \inf _c \inf_{x\in X, g(x)=b} [f(x)+ \lambda^\top (b-c)]\\ 
+        &= \inf_{c}\inf_{x\in X, g(x)=c} [f(x) + \lambda^\top(b-g(x))]\\ 
+        &= \inf _{x\in X} L(x,\lambda).
+    \end{align*}
+    When $\phi$ is differentiable then $\lambda$ is the gradient vector $\nabla \phi(b)$.
+\end{proof}
+
+\begin{theorem}[Sufficient conditions for convexity of the value function]
+    Suppose
+    \begin{enumerate}
+        \item $X$ is convex.
+        \item the objective function $f$ is convex.
+        \item the functional constraint is of type $g(x) \leq b$.
+        \item $g_i$ is convex for all $1 \leq j \leq m$.
+    \end{enumerate}
+    Then $\phi$ is convex.
+\end{theorem}
+
+\begin{proof}
+    Let $ b_1,b_2\in \mathbb{R}^{m} $, $ \lambda\in [0,1] $, and $ b = \lambda b_1 + (1-\lambda) b_2 $. We want to show that 
+    \[
+        \phi(b) \le \lambda \phi(b_1) + (1-\lambda) \phi(b_2). \tag{$*$}
+    \]
+    Let $ x_1 \in X(b_1),x_2\in X(b_2) $. We first show that $ x = \lambda x_1 + (1-\lambda)x_2\in X(b) $. Note that 
+    \begin{align*}
+        g_j(x) &= g_j(\lambda x_1 + (1-\lambda) x_2)\\ 
+        &\le \lambda h_j(x_1) + (1-\lambda) h_j(x_2) \\ 
+        &\le \lambda (b_1)_j + (1-\lambda) (b_2)_j\\ 
+        &= (b)_j
+    \end{align*}
+    by convexity of $g_j$. Hence $x\in X(b)$ as expected. 
+
+    Now from convexity of $f$ and minimality of $\phi$,
+    \[
+        \phi(b) \le f(x)= \lambda f(x_1) + (1-\lambda) f(x_2). 
+    \]
+    Taking inf on both sides gives $(*)$.
+\end{proof}
+
+\subsection{Shadow prices}
+Lagrange necessity theorem stated that if $\phi$ is differentiable then $\lambda=\nabla \phi(b)$. So $\phi(b+\epsilon)-\phi(b) \approx$ $\lambda^{\top} \epsilon$. 
+
+We have seen that if constraints are of the form $g(x) \le b$, or equivalently $g(x)+z=b, z \geq 0$, then $\lambda \leq 0$. If $b$ increases to $b+\epsilon, \epsilon>0$ then the weaker constraint should mean the minimum can decrease. 
+
+In fact, an increase of $b_j$ to $b_j+\epsilon_j$ will permit the minimized value to change by $\lambda_j \epsilon_j$, which is a (weak) decrease since $\lambda_j \leq 0$ (no change if $\lambda_j=0$ ). For this reason the Lagrange multipliers $ \lambda $ are also called \textbf{shadow prices}. An increase in $b_j$ by $\epsilon_j$ alters the cost by $\lambda_j \epsilon_j$. So we should be willing to pay a price of $-\lambda_j(>0)$ per unit increase in $b_j$.
+
+\subsection{The Lagrangian dual problem}
+Recall the definition of $\Lambda$: 
+\[
+    \Lambda = \left\{ \lambda: \min_{x\in X}L(x,\lambda)>-\infty  \right\}.
+\]
+\begin{definition}
+    For $\lambda \in \Lambda$ define
+    \[
+    L(\lambda)=\min _{x \in X} L(x, \lambda) .
+    \]
+\end{definition}
+Let $X_b=X(b)=\{x: x \in X, g(x) \leq b\}$.
+
+\begin{theorem}[Weak duality theorem]
+    For any feasible $x \in X_b$ and any $\lambda \in \Lambda$
+    \[
+    f(x) \geq L(\lambda).
+    \]
+\end{theorem}
+\begin{proof}
+    For $x\in X_b$ and $ \lambda\in \Lambda $, 
+    \[
+        f(x) = L(x,\lambda) \ge \min_{x\in X_b} L(x,\lambda) \ge \min_{x\in X}L(x,\lambda) = L(\lambda).\qedhere
+    \]
+\end{proof}
+\begin{note}
+    Taking inf on both sides gives $ \phi(b)\ge L(\lambda) $. 
+\end{note}
+Thus, provided the set $\Lambda$ is non-empty, we can pick any $\lambda \in \lambda$, and observe that $L(\lambda)$ is a lower bound for the minimum value of the objective function $f(x)$. It is natural to seek the greatest lower bound, i.e., consider the problem
+\begin{center}
+    D: maximize $L(\lambda)$ subject to $\lambda \in \Lambda$,
+\end{center}
+equivalently,
+\begin{center}
+    D: $\underset{\lambda \in \Lambda}{\operatorname{maximize}}\left\{\min _{x \in X} L(x, \lambda)\right\}$.
+\end{center}
+This is known as the \textbf{Lagrangian dual problem}; the original problem $\mathrm{P}(b)$ is called the \textbf{primal problem}. The optimal value of the dual is no more than the optimal value of the primal. If they are equal we say there is \textbf{strong duality}. This happens in many problems, including linear programs.
+
+\paragraph{Economic interpretation} Agent $A$ can produce $n$ products in any non-negative amounts $x_1, \ldots, x_n$, and sell them in the market for $f\left(x_1, \ldots, x_n\right)$. Production of $x$ requires $g_j(x)$ of resource $j$. If she has $b_j$ and $g(x)-b_j>0$(or $<0)$ then she can purchase (or sell) the deficit (or surplus). Suppose market prices for these resources are $\lambda_1, \ldots, \lambda_m$ (buying or selling). Her profit is thus
+\[
+f(x)+\lambda^{\top}(b-g(x)) .
+\]
+She maximizes this at $x(\lambda)$. In a competitive market prices $ \lambda $ will adjust to the point such that the maximum profit which the agent can extract is minimized. Thus the market solves the dual problem
+\[
+\underset{\lambda}{\operatorname{minimize}} \left[ \max _{x \geq 0}\left[f(x)+\lambda^{\top}(b-g(x))\right] \right].
+\]
+\begin{example}
+    In Example 3.1, $L$ was minimized at $x^*(\lambda)=\left(\lambda, \frac{1}{2} \lambda\right)$ and
+    \[
+    \begin{aligned}
+    L(\lambda)=L\left(x^*(\lambda), \lambda\right) &=\lambda^2+3\left(\left(\frac{1}{2} \lambda\right)^2+\lambda\left(b-2 \lambda-3 \times \frac{1}{2} \lambda\right)\right)\\
+    &=\lambda b-\frac{7}{4} \lambda^2 .
+    \end{aligned}
+    \]
+    This is maximized over $\lambda$ at $\lambda^*=\frac{2}{7} b$. Note that $L\left(\lambda^*\right)=\frac{1}{7} b^2=\phi(b)$. So strong duality holds.
+\end{example}
+
+\subsection{Barrier methods}
+Consider 
+\[
+    \mathrm{P}:\ \text{minimize } f(x)\quad \text{s.t.} \quad g(x)\le b,\ x\in \mathbb{R}^{n}
+\]
+where $f$ and $g$ are convex and differentiable. Now consider the family of unconstrained minimization problems, $\epsilon>0$,
+\[
+\mathrm{P}_\epsilon:\ \text{minimize } f(x)-\epsilon \sum_{j=1}^m \log \left(b_j-g_j(x)\right).
+\]
+Since $\log (x) \rightarrow-\infty$ as $x \rightarrow 0$ this ensures $P_\epsilon$ will be solved away from the boundary, with $g_j(x)<b_j$. The nice thing about having the minimum away from the boundary is that it will be at a stationary point.
+
+\begin{theorem}
+    Suppose $x^*$ and $x_\epsilon$ are optimal for $P$ and $P_\epsilon$ respectively. Then
+    \[
+    0 \leq f\left(x_\epsilon\right)-f\left(x^*\right) \leq m \epsilon.
+    \]
+\end{theorem}
+\begin{proof}
+    The optimum to $\mathrm{P}_{\epsilon}$ occurs when 
+    \[
+        \nabla f(x_\epsilon) + \epsilon \sum_{j=1}^{m} \frac{\nabla g_j (x_\epsilon)}{b_j - g_j(x\epsilon)} = 0.
+    \]
+    Suppose we take $\lambda$ such that
+    \[
+    \bar{\lambda}_i=-\frac{\epsilon}{b_i-g_i\left(x_\epsilon\right)} .
+    \]
+    Then the Lagrangian for $\mathrm{P}$ is stationary where
+    \[
+    \nabla\left[f(x)+\bar{\lambda}^{\top}(b-g(x))\right]=\nabla f(x)-\bar{\lambda}^{\top} \nabla g(x)=0.
+    \]
+    This occurs at $x=x_\epsilon$. So by weak duality
+    \begin{align*}
+        f\left(x^*\right) & \geq L(\bar{\lambda}) \\
+    & \geq \inf _x f(x)+\bar{\lambda}^{\top}(b-g(x)) \\
+    &=f\left(x_\epsilon\right)+\bar{\lambda}^{\top}\left(b-g\left(x_\epsilon\right)\right) \\
+    &=f\left(x_\epsilon\right)-m \epsilon.\qedhere
+    \end{align*}
+\end{proof}
+
+A potential method is to start at $x_0, \epsilon_0, k=0$. Solve $P_{\epsilon_k}$ by gradient descent or Newton's method, starting from $x_k$, to obtain a better solution $x_{k+1} ;$ set $\epsilon_{k+1}=\frac{1}{2} \epsilon_k$. Repeat with $k: \rightarrow k+1$.
+
+See official notes for more examples on duality.
