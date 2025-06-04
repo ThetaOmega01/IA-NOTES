@@ -1,34 +1,34 @@
 \section{Orbits}
 \subsection{Angular momentum}
 \begin{definition}
-    The \textbf{angular momentum} for a particle of mass $m$ moving under influence of a force $ \bfF $, with position vector $\bfr(t)$ and velocity $ \dot{\bfr}(t) $, is defined to be 
+    The \textbf{angular momentum} for a particle of mass $m$ moving under influence of a force $ \mathbf{F} $, with position vector $\mathbf{r}(t)$ and velocity $ \dot{\mathbf{r}}(t) $, is defined to be 
     \[
-        \bfL = \bfr \times \bfp = \bfr \times m \dot{\bfr}.
+        \mathbf{L} = \mathbf{r} \times \mathbf{p} = \mathbf{r} \times m \dot{\mathbf{r}}.
     \]
-    Note that $ \dot{\bfL} = m \dot{\bfr}\times \dot{\bfr}+m\bfr \times \ddot{\bfr} = \bfr \times \bfF $. Define the \textbf{torque}(or \textbf{moment} of $\bfF$) to be $ \bfG = \bfr \times \bfF = \dot{\bfL} $.
+    Note that $ \dot{\mathbf{L}} = m \dot{\mathbf{r}}\times \dot{\mathbf{r}}+m\mathbf{r} \times \ddot{\mathbf{r}} = \mathbf{r} \times \mathbf{F} $. Define the \textbf{torque}(or \textbf{moment} of $\mathbf{F}$) to be $ \mathbf{G} = \mathbf{r} \times \mathbf{F} = \dot{\mathbf{L}} $.
 \end{definition}
 \begin{note}
-    Values of $ \bfL,\bfG $ depend on choice of origin. We can say `about the origin' or `about any specified point'.
+    Values of $ \mathbf{L},\mathbf{G} $ depend on choice of origin. We can say `about the origin' or `about any specified point'.
 \end{note}
 \begin{note}
-    If $ \bfr \times \bfF =\bfG= \mathbf{0} $, then the angular momentum is constant. We say that the angular momentum is \textbf{conserved}. For the same system, we can choose the origin wisely so that the angular momentum is conserved.
+    If $ \mathbf{r} \times \mathbf{F} =\mathbf{G}= \mathbf{0} $, then the angular momentum is constant. We say that the angular momentum is \textbf{conserved}. For the same system, we can choose the origin wisely so that the angular momentum is conserved.
 \end{note}
 
 The basic problem: consider a particle moving in a force that depends \textit{only} on the radius.
 \[
-    m \ddot{\bfr} = - \nabla V(r).
+    m \ddot{\mathbf{r}} = - \nabla V(r).
 \]
 We see that force is directed towards (or away) from the origin. Assume that the central mass (relative to orbiting mass) is remaining fixed. This is well approximated if the central mass is much larger than the orbiting mass $m$.
 
 \subsection{Central forces}
 \begin{definition}
-    \textbf{Central forces} are a special class of conservative forces with $ V(\bfr) = V(r) $. 
+    \textbf{Central forces} are a special class of conservative forces with $ V(\mathbf{r}) = V(r) $. 
 \end{definition}
-Note that $ \bfF(\bfr) = - \nabla V(r) = -\frac{\mathrm{d}V}{\mathrm{d}r}\hat{\bfr}  $, where $ |\hat{\bfr}|=1 $ is a unit vector directed away from the origin.
+Note that $ \mathbf{F}(\mathbf{r}) = - \nabla V(r) = -\frac{\mathrm{d}V}{\mathrm{d}r}\hat{\mathbf{r}}  $, where $ |\hat{\mathbf{r}}|=1 $ is a unit vector directed away from the origin.
 \begin{center}
     \begin{tikzpicture}
-        \draw [->-=0.5] (0,0) -- (2,0) node [pos=0, circ] {} node [pos=0.5,below] {$ \bfr $} node [pos=1, below] {$m$} node [pos=1, dot=4pt] {};
-        \draw [->>, blue] (2,0) -- (3.2,0) node [right] {$ \bfF $}; 
+        \draw [->-=0.5] (0,0) -- (2,0) node [pos=0, circ] {} node [pos=0.5,below] {$ \mathbf{r} $} node [pos=1, below] {$m$} node [pos=1, dot=4pt] {};
+        \draw [->>, blue] (2,0) -- (3.2,0) node [right] {$ \mathbf{F} $}; 
     \end{tikzpicture}
 \end{center}
 
@@ -36,16 +36,16 @@ Note that $ \bfF(\bfr) = - \nabla V(r) = -\frac{\mathrm{d}V}{\mathrm{d}r}\hat{\b
     Angular momentum about $O$ is conserved for a central force.
 \end{proposition}
 \begin{proof}
-    Consider the angular momentum $\bfL$ about $O$: 
+    Consider the angular momentum $\mathbf{L}$ about $O$: 
     \[
-        \dot{\bfL} = \bfr \times \bfF = \bfr \times \left( -\frac{\mathrm{d}V}{\mathrm{d}r} \hat{\bfr} \right) = \mathbf{0}.\qedhere
+        \dot{\mathbf{L}} = \mathbf{r} \times \mathbf{F} = \mathbf{r} \times \left( -\frac{\mathrm{d}V}{\mathrm{d}r} \hat{\mathbf{r}} \right) = \mathbf{0}.\qedhere
     \]
 \end{proof}
 \begin{proposition}
-    The motion of a particle under a central force is in a plane through the origin, with orientation determined by $\bfL$.
+    The motion of a particle under a central force is in a plane through the origin, with orientation determined by $\mathbf{L}$.
 \end{proposition}
 \begin{proof}
-    We have $ \bfL = \text{constant} $ and $ \bfL \cdot \bfr=0 $, which is the equation of a plane through $O$.
+    We have $ \mathbf{L} = \text{constant} $ and $ \mathbf{L} \cdot \mathbf{r}=0 $, which is the equation of a plane through $O$.
 \end{proof}
 Hence we reduce a 3D problem to a 2D problem.
 
@@ -57,47 +57,47 @@ Choose $z$ axis so that the orbit lies in $z=0$ plane. To describe the orbit, we
 Our object is to separate the motion of the particle into radial and angular components. We do so by definitionning unit vectors in the directions of increasing $r$ and increasing $\theta$:
 \begin{center}
   \begin{tikzpicture}
-    \node at (-4.5,1.5) {$\bfe_r = \begin{pmatrix}\cos \theta\\ \sin \theta\end{pmatrix}$,};
-    \node at (-2,1.5) {$\bfe_\theta = \begin{pmatrix}-\sin \theta\\\cos\theta \end{pmatrix}$.};
+    \node at (-4.5,1.5) {$\mathbf{e}_r = \begin{pmatrix}\cos \theta\\ \sin \theta\end{pmatrix}$,};
+    \node at (-2,1.5) {$\mathbf{e}_\theta = \begin{pmatrix}-\sin \theta\\\cos\theta \end{pmatrix}$.};
     \draw [->] (0, 0) -- (4, 0) node [right] {$x$};
     \draw [->] (0, 0) -- (0, 3) node [above] {$y$};
     \draw (0, 0) -- (2, 1.5) node [dot=3pt]{} node [pos = 0.5, anchor = south east] {$r$};
-    \draw [->] (2, 1.5) -- (2.5, 1.875) node [anchor = south west] {$\bfe_r$};
-    \draw [->] (2, 1.5) -- (1.625, 2) node [anchor = south east] {$\bfe_\theta$};
+    \draw [->] (2, 1.5) -- (2.5, 1.875) node [anchor = south west] {$\mathbf{e}_r$};
+    \draw [->] (2, 1.5) -- (1.625, 2) node [anchor = south east] {$\mathbf{e}_\theta$};
     \draw (0.7, 0) arc (0:36.87:0.7);
     \node at (0.9, 0.3) {$\theta$};
   \end{tikzpicture}
 \end{center}
-$ \bfe_r,\bfr_\theta $ form an orthonormal basis at any point, but orientation depends on position. Note that 
+$ \mathbf{e}_r,\mathbf{r}_\theta $ form an orthonormal basis at any point, but orientation depends on position. Note that 
 \[
-    \frac{\mathrm{d}}{\mathrm{d}\theta}\bfe_r = \bfe_\theta ,\quad \frac{\mathrm{d}}{\mathrm{d}\theta}\bfe_\theta=-\bfe_r. 
+    \frac{\mathrm{d}}{\mathrm{d}\theta}\mathbf{e}_r = \mathbf{e}_\theta ,\quad \frac{\mathrm{d}}{\mathrm{d}\theta}\mathbf{e}_\theta=-\mathbf{e}_r. 
 \]
 For a moving particle $ \theta $ is a function of position and hence of time. If coordinates are $ (r(t),\theta(t)) $ then
 \[
-    \dot{\bfe}_r = \dot{\theta}\ \frac{\mathrm{d}\bfe_r}{\mathrm{d}\theta} = \dot{\theta}\bfe_\theta .
+    \dot{\mathbf{e}}_r = \dot{\theta}\ \frac{\mathrm{d}\mathbf{e}_r}{\mathrm{d}\theta} = \dot{\theta}\mathbf{e}_\theta .
 \]
 Similarly
 \[
-    \dot{\bfe}_\theta = - \dot{\theta}\bfe_r.
+    \dot{\mathbf{e}}_\theta = - \dot{\theta}\mathbf{e}_r.
 \]
 
 \subsubsection*{Motion in terms of polars}
 We have
 \[
-    \bfr = r\bfe_r,\quad \dot{\bfr} = \dot{r} \bfe_r + r \dot{\bfe}_r = \dot{r}\bfe_r+r\dot{\theta}\bfe_\theta.
+    \mathbf{r} = r\mathbf{e}_r,\quad \dot{\mathbf{r}} = \dot{r} \mathbf{e}_r + r \dot{\mathbf{e}}_r = \dot{r}\mathbf{e}_r+r\dot{\theta}\mathbf{e}_\theta.
 \]
-Hence we can decompose $ \dot{\bfr} $ into \textbf{radial velocity} $ \dot{r} $ and \textbf{angular velocity} $ r\dot{\theta} $. Note that $ [\dot{\theta}] = T^{-1} $. The acceleration is given by
+Hence we can decompose $ \dot{\mathbf{r}} $ into \textbf{radial velocity} $ \dot{r} $ and \textbf{angular velocity} $ r\dot{\theta} $. Note that $ [\dot{\theta}] = T^{-1} $. The acceleration is given by
 \begin{align*}
-    \ddot{\bfr} &= \frac{\mathrm{d}}{\mathrm{d}t}\left( \dot{r}\bfe_r+r\dot{\theta}\bfe_\theta  \right)\\
-    &=  \ddot{r}\bfe_r+\dot{r}\dot{\bfe}_r+\dot{r}\dot{\theta}\bfe_\theta+r \ddot{\theta}\bfe_\theta+r \dot{\theta}\dot{\bfe}_\theta\\ 
-    &= \left( \ddot{r}-r\dot{\theta}^2 \right)\bfe_r+\left( 2 \dot{r}\dot{\theta}+r \ddot{\theta} \right)\bfe_\theta.
+    \ddot{\mathbf{r}} &= \frac{\mathrm{d}}{\mathrm{d}t}\left( \dot{r}\mathbf{e}_r+r\dot{\theta}\mathbf{e}_\theta  \right)\\
+    &=  \ddot{r}\mathbf{e}_r+\dot{r}\dot{\mathbf{e}}_r+\dot{r}\dot{\theta}\mathbf{e}_\theta+r \ddot{\theta}\mathbf{e}_\theta+r \dot{\theta}\dot{\mathbf{e}}_\theta\\ 
+    &= \left( \ddot{r}-r\dot{\theta}^2 \right)\mathbf{e}_r+\left( 2 \dot{r}\dot{\theta}+r \ddot{\theta} \right)\mathbf{e}_\theta.
 \end{align*}
 \begin{example}[Circular motion with constant angular velocity]
     Here $ r=a $ is constant, and $ \dot{\theta} = \omega $ is constant. It follows that $ \dot{r}=\ddot{r}=\ddot{\theta}=0 $, so 
     \[
-        \dot{\bfr} = a \omega \bfe_\theta,\quad \ddot{\bfr} = -a\omega^2\bfe_r.
+        \dot{\mathbf{r}} = a \omega \mathbf{e}_\theta,\quad \ddot{\mathbf{r}} = -a\omega^2\mathbf{e}_r.
     \]
-    $ \ddot{\bfr} $ is also called the \textbf{centripetal acceleration}. Newton's 2nd law implies that a \textbf{centripetal force} is required to maintain this circular motion.
+    $ \ddot{\mathbf{r}} $ is also called the \textbf{centripetal acceleration}. Newton's 2nd law implies that a \textbf{centripetal force} is required to maintain this circular motion.
 
     \begin{center}
         \begin{tikzpicture}
@@ -113,7 +113,7 @@ Hence we can decompose $ \dot{\bfr} $ into \textbf{radial velocity} $ \dot{r} $ 
             \node at (0,-1) {$a$};
             \centerarc[blue,->](0,0)(20:40:2.8);
             \node [above right,blue] at (2.42,1.4) {$ a\omega $};
-            \draw [->>,blue] (2.26,0.82) -- (1.5,0.55) node [pos=0.4, below] {$ -a\omega^2\bfe_r$};
+            \draw [->>,blue] (2.26,0.82) -- (1.5,0.55) node [pos=0.4, below] {$ -a\omega^2\mathbf{e}_r$};
         \end{tikzpicture}
     \end{center}
 \end{example}
@@ -122,11 +122,11 @@ Hence we can decompose $ \dot{\bfr} $ into \textbf{radial velocity} $ \dot{r} $ 
 \subsubsection*{Equation of motion}
 By Newton's 2nd law,
 \[
-    m \ddot{\bfr} = \bfF = - \nabla V = -\frac{\mathrm{d}V}{\mathrm{d}r}\bfe_r. 
+    m \ddot{\mathbf{r}} = \mathbf{F} = - \nabla V = -\frac{\mathrm{d}V}{\mathrm{d}r}\mathbf{e}_r. 
 \]
 By previous results,
 \[
-    m\left( \ddot{r}-r\dot{\theta}^2 \right)\bfe_r+m\left( 2 \dot{r}\dot{\theta}+r \ddot{\theta} \right)\bfe_\theta=-\frac{\mathrm{d}V}{\mathrm{d}r}\bfe_r. 
+    m\left( \ddot{r}-r\dot{\theta}^2 \right)\mathbf{e}_r+m\left( 2 \dot{r}\dot{\theta}+r \ddot{\theta} \right)\mathbf{e}_\theta=-\frac{\mathrm{d}V}{\mathrm{d}r}\mathbf{e}_r. 
 \]
 Consider angular component: 
 \[
@@ -139,7 +139,7 @@ which is equivalent to
 \]
 Consider the angular momentum 
 \[
-    \bfL = m\bfr \times \dot{\bfr} = mr\bfe_r \times (\dot{r}\bfe_r+r \dot{\theta}\bfe_\theta) =mr^2 \dot{\theta}\bfe_z.
+    \mathbf{L} = m\mathbf{r} \times \dot{\mathbf{r}} = mr\mathbf{e}_r \times (\dot{r}\mathbf{e}_r+r \dot{\theta}\mathbf{e}_\theta) =mr^2 \dot{\theta}\mathbf{e}_z.
 \]
 i.e. magnitude of angular momentum is constant: $ r^2 \dot{\theta}=h $ constant.
 
@@ -237,7 +237,7 @@ Therefore it is stable if
 \subsection{The orbit equation}
 The shape of the orbit is determined by the joint variants of $ r(t),\theta(t) $. In principle we could determine $r(t)$ via 
 \[
-    E=\frac{1}{2}m \dot{r}^2+V_{\text{eff}}(r)=\text{const} \Longrightarrow t = \pm \frac{m}{2}\int^{r} \frac{\rmd r'}{\sqrt{E-V_{\text{eff}}(r')}},
+    E=\frac{1}{2}m \dot{r}^2+V_{\text{eff}}(r)=\text{const} \Longrightarrow t = \pm \frac{m}{2}\int^{r} \frac{\mathrm{d} r'}{\sqrt{E-V_{\text{eff}}(r')}},
 \]
 giving $r(t)$. Then we use $ r(t)^2 \dot{\theta}=h $ to obtain $\theta$. In practice this is not very helpful, e.g . analytic solutions are possible only for a small family of $ V_{\text{eff}}(r) $. A better approach is to use $ \theta $ is the independent variable, by writing
 \[
@@ -320,7 +320,7 @@ In Cartesian coordinates, $r(1+e\cos\theta)=l \Rightarrow r+ex=l \Rightarrow r=l
     \[
         y = \pm \frac{b}{a}(x-ea) \Longleftrightarrow bx\mp ay=eba.
     \]
-    The normal vectors are $ \bfn= \frac{1}{\sqrt{a^2+b^2}}(b,\mp a) $. The perpendicular distance between incoming trajectory and $O$ is $ \bfr \cdot \bfn = \frac{bx\mp ay}{\sqrt{a^2+b^2}}= \frac{eba}{\sqrt{a^2+b^2}}=b$, which is often called the \textbf{impact parameter}. 
+    The normal vectors are $ \mathbf{n}= \frac{1}{\sqrt{a^2+b^2}}(b,\mp a) $. The perpendicular distance between incoming trajectory and $O$ is $ \mathbf{r} \cdot \mathbf{n} = \frac{bx\mp ay}{\sqrt{a^2+b^2}}= \frac{eba}{\sqrt{a^2+b^2}}=b$, which is often called the \textbf{impact parameter}. 
     \begin{center}
     \begin{tikzpicture}
         \draw [gray] (-3, -2) -- (3, 2);
@@ -371,9 +371,9 @@ When Kepler first studied the laws of planetary motion, he took a telescope, obs
   \]
 \end{law}
 
-Law 1 is consistent with our solution of orbit equation. Law 2 follows simply from the conservation of angular momentum: The area swept out by moving $\rmd \theta$ is $\rmd A = \frac{1}{2}r^2\;\rmd \theta$ (area of sector of circle). So
+Law 1 is consistent with our solution of orbit equation. Law 2 follows simply from the conservation of angular momentum: The area swept out by moving $\mathrm{d} \theta$ is $\mathrm{d} A = \frac{1}{2}r^2\;\mathrm{d} \theta$ (area of sector of circle). So
 \[
-  \frac{\rmd A}{\rmd t} = \frac{1}{2}r^2\dot{\theta} = \frac{h}{2} = \text{const}.
+  \frac{\mathrm{d} A}{\mathrm{d} t} = \frac{1}{2}r^2\dot{\theta} = \frac{h}{2} = \text{const}.
 \]
 and is true for \emph{any} central force.
 

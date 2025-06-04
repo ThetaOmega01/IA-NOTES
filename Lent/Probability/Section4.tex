@@ -9,7 +9,7 @@
 \begin{theorem}[Continuity Theorem for MGFs]
     Let $X$ be a random variable with MGF $m$ and $m(\theta)<\infty$ for some $\theta\neq 0$.
     Suppose we have
-    $$m_n(\theta)=\mathbb E[e^{\theta X_n}]\to \bbE[e^{\theta X}] = m(\theta),\quad\forall\theta\in\mathbb R.$$
+    $$m_n(\theta)=\mathbb E[e^{\theta X_n}]\to \mathbb{E}[e^{\theta X}] = m(\theta),\quad\forall\theta\in\mathbb R.$$
     Then $X_n\to X$ in distribution.
 \end{theorem}
 
@@ -44,12 +44,12 @@
     \]
 \end{proof}
 \begin{proposition}
-    Suppose $ X_n\to 0 $ almost surely. Then $ X_n \xrightarrow{\bbP} 0$.
+    Suppose $ X_n\to 0 $ almost surely. Then $ X_n \xrightarrow{\mathbb{P}} 0$.
 \end{proposition}
 \begin{proof}
     Let $ \epsilon>0 $. Note that
     \[
-        X_n \xrightarrow{\bbP}0 \Longleftrightarrow \bbP(X_n>\epsilon)\to 0 \Longleftrightarrow \mathbb{P}(|X_n|\le \epsilon)\to 1.
+        X_n \xrightarrow{\mathbb{P}}0 \Longleftrightarrow \mathbb{P}(X_n>\epsilon)\to 0 \Longleftrightarrow \mathbb{P}(|X_n|\le \epsilon)\to 1.
     \]
     Note also that 
     \[
@@ -61,13 +61,13 @@
     \]
 \end{proof}
 \begin{theorem}[Strong law of large numbers]\label{thm:Strong law of large numbers}
-    Let $ (X_n) $ be an iid sequence of r.v.s with $ \mu=\bbE[X]<\infty  $. Then $ S_n=X_1+\cdots+X_n $ satisfies 
+    Let $ (X_n) $ be an iid sequence of r.v.s with $ \mu=\mathbb{E}[X]<\infty  $. Then $ S_n=X_1+\cdots+X_n $ satisfies 
     \[
         \frac{S_n}{n}\to \mu\quad (n\to \infty) \quad \text{almost surely}.
     \]
 \end{theorem}
 \begin{proof}
-    Assume further that $ \bbE[X_1^4]<\infty $. Set $ Y_i=X_i-\mu $, then $ \bbE[Y_i]=0,\ \bbE[Y_1^4]\le 2^4(\bbE[X_1^4]+\mu^4) $. So it suffices to prove $ S_n/n\to 0 $ where $ S_i=\sum X_i,\ \bbE[X_i]=0 $ and $ \bbE[X_i^4]<\infty  $. We have 
+    Assume further that $ \mathbb{E}[X_1^4]<\infty $. Set $ Y_i=X_i-\mu $, then $ \mathbb{E}[Y_i]=0,\ \mathbb{E}[Y_1^4]\le 2^4(\mathbb{E}[X_1^4]+\mu^4) $. So it suffices to prove $ S_n/n\to 0 $ where $ S_i=\sum X_i,\ \mathbb{E}[X_i]=0 $ and $ \mathbb{E}[X_i^4]<\infty  $. We have 
     \[
         S_n^4=\left( \sum_{i=1}^nX_i \right)^4=\sum_{i=1}^nX_i^4+6\sum_{1\le i<j\le n}X_i^2X_j^2+R,
     \]
@@ -96,7 +96,7 @@ from which we will expect
     \[
         \frac{S_n-n\mu}{\sigma\sqrt{n}}\xrightarrow[n\to \infty]{\text{(d)}}Z,
     \]
-    where (d) means ``in distribution'' and $ Z \sim \mcN(0,1) $.
+    where (d) means ``in distribution'' and $ Z \sim \mathcal{N}(0,1) $.
 \end{theorem}
 \begin{note}
     What this means is that for $n$ large enough,
@@ -110,7 +110,7 @@ from which we will expect
     Assume further that $\exists\delta>0,\mathbb E[e^{\pm\delta X_1}]<\infty$.
     By continuity of MGFs, it suffices to show that, for $Z\sim\mathcal N(0,1)$ and for all $ \theta\in \mathbb{R} $,
     $$\mathbb E[e^{\theta S_n/\sqrt{n}}]\to\mathbb E[e^{\theta Z}]=e^{\theta^2/2}.$$
-    Let $ m(\theta)=\bbE[e^{\theta X_1}] $. Then 
+    Let $ m(\theta)=\mathbb{E}[e^{\theta X_1}] $. Then 
     $$\mathbb E[e^{\theta S_n/\sqrt{n}}]=\mathbb E[e^{\theta X_n/\sqrt{n}}]^n=m(\theta/\sqrt{n})^n$$
     Note that when $|\theta|<\delta/2$,
     $$m(\theta)=\mathbb E\left[ \sum_{n=0}^\infty\frac{1}{n!}\theta^nX_1^n \right]=1+\frac{\theta^2}{2}+\mathbb E\left[  \sum_{n=3}^\infty\frac{1}{n!}\theta^nX_1^n \right]$$
@@ -185,7 +185,7 @@ Suppose we want $\mathbb P(|\hat\pi_n-\pi|\le 0.001)\ge 0.99$, how large $n$ has
 
 Let $S_n$ be the number of needles intersecting a line, then $S_n\sim B(n,p)$, so 
 \[
-    S_n\approx np+\sqrt{np(1-p)}Z,\quad Z \sim \mcN(0,1).
+    S_n\approx np+\sqrt{np(1-p)}Z,\quad Z \sim \mathcal{N}(0,1).
 \]
 So
 \[

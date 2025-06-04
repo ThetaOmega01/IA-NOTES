@@ -42,13 +42,13 @@ It is important to interpret the boundary conditions in an appropriate way: we a
 \begin{remark}
     If $ \laplacian \varphi=0 $ in $ \Omega $, then $ \varphi $ needs to be well-defined on all of $ \Omega $. Don't fall into trap of assuming things like
     \[
-        \laplacian\left( \frac{1}{|\bfx|} \right)=0,\quad \forall \bfx\in \mathbb{R}^{3}.
+        \laplacian\left( \frac{1}{|\mathbf{x}|} \right)=0,\quad \forall \mathbf{x}\in \mathbb{R}^{3}.
     \]
-    It is only true for $\bfx\neq \mathbf{0}$ (check this). So when we’re talking about solutions to Laplace’s equation, we’re necessarily talking about functions which are non-singular. 
+    It is only true for $\mathbf{x}\neq \mathbf{0}$ (check this). So when we’re talking about solutions to Laplace’s equation, we’re necessarily talking about functions which are non-singular. 
 \end{remark}
 
 \begin{example}
-    Let $ r=|\bfx| $. Consider boundary value problem 
+    Let $ r=|\mathbf{x}| $. Consider boundary value problem 
     \[\tag{$*$}
         \begin{cases}
         \laplacian \varphi=r &\text{in }r<a\\
@@ -63,11 +63,11 @@ It is important to interpret the boundary conditions in an appropriate way: we a
     \[
         \left(r^{2} \varphi^{\prime}\right)^{\prime}=r^{3}, \quad \varphi(a)=1.
     \]
-    General solution to $(*)(\rma)$ is 
+    General solution to $(*)(\mathrm{a})$ is 
     \[
         \varphi(r)=A+\frac{B}{r}+\frac{1}{12}r^3.
     \]
-    We must have $B=0$ since $ \varphi $ is defined on all of $ \{r<a\} $. So using $ (*)(\rmb) $ we get $ A=1-\frac{a^3}{12} $, and the solution is 
+    We must have $B=0$ since $ \varphi $ is defined on all of $ \{r<a\} $. So using $ (*)(\mathrm{b}) $ we get $ A=1-\frac{a^3}{12} $, and the solution is 
     \[
         \varphi(r) = 1+\frac{1}{12}(r^3-a^3).
     \]
@@ -145,7 +145,7 @@ If we can show that the only solution to this problem is $\psi=0$, we will have 
         B \psi=0 & \text {on } \partial \Omega
     \end{cases} 
     \]
-    where $B \psi \equiv \psi$ (Dirichlet) or $B \psi \equiv \frac{\partial \psi}{\partial \bfn}$ (Neumann). Consider the non-negative functional
+    where $B \psi \equiv \psi$ (Dirichlet) or $B \psi \equiv \frac{\partial \psi}{\partial \mathbf{n}}$ (Neumann). Consider the non-negative functional
     \[
         I[\psi]=\int_{\Omega}|\nabla \psi|^{2} \mathrm{~d} V \ge 0
     \]
@@ -160,14 +160,14 @@ If we can show that the only solution to this problem is $\psi=0$, we will have 
     Hence $\nabla \psi=0$ throughout $\Omega,$ i.e. $\psi$ is constant. We then have two cases to consider:
     \begin{enumerate}[(a)]
         \item In the Dirichlet case, $\psi=0$ on the boundary. By continuity of $\psi$ on $\Omega \cup \partial \Omega$ we conclude $\psi=0$ throughout $\Omega$. So the solution to the Dirichlet problem is unique.
-        \item In the Neumann case we only know that $\frac{\partial \psi}{\partial \bfn}=0$ on $\partial \Omega,$ so we cannot say any more than $\psi=\text{const}$ throughout $\Omega$. So the solution to the Neumann problem is unique upto the addition of a constant.\qedhere
+        \item In the Neumann case we only know that $\frac{\partial \psi}{\partial \mathbf{n}}=0$ on $\partial \Omega,$ so we cannot say any more than $\psi=\text{const}$ throughout $\Omega$. So the solution to the Neumann problem is unique upto the addition of a constant.\qedhere
     \end{enumerate}
 \end{proof}
 
 \begin{example}
     From electrostatics, consider charge density
     \[
-        \rho(\bfx) = \begin{cases}
+        \rho(\mathbf{x}) = \begin{cases}
         0 &r<a\\
         F(r) &r\ge a\\
         \end{cases} 
@@ -177,7 +177,7 @@ If we can show that the only solution to this problem is $\psi=0$, we will have 
     \end{claim}
     Indeed, we know that the electric potential $ \phi $ satisfies 
     \[
-        \laplacian \phi = -\frac{\rho(\bfx)}{\epsilon_0}=0,\quad r<a.
+        \laplacian \phi = -\frac{\rho(\mathbf{x})}{\epsilon_0}=0,\quad r<a.
     \]
     By spherical symmetry, $ \phi=\phi(r) $, so $ \phi=\phi(a)=\phi_0=\text{const} $ on $ r=a $. Note that one solution to 
     \[
@@ -186,7 +186,7 @@ If we can show that the only solution to this problem is $\psi=0$, we will have 
         \phi=\phi_0 &r=a\\
         \end{cases} 
     \]
-    is $ \phi=\phi_0 $. Since $\phi$ is constant throughout $r < a$, $\bfE(\bfx) = - \nabla \phi= \mathbf{0}$.
+    is $ \phi=\phi_0 $. Since $\phi$ is constant throughout $r < a$, $\mathbf{E}(\mathbf{x}) = - \nabla \phi= \mathbf{0}$.
 \end{example}
 
 The same example holds if we replace electrostatics with gravity. We’ve essentially just proved \textbf{Newton’s shell theorem}: there is no net gravitational field anywhere inside a spherical shell. Newton’s proof was significantly more involved, but only used elementary concepts from geometry. It’s also not very rigorous.
@@ -205,21 +205,21 @@ where $Q(R)$ denotes the total amount of ``stuff'' with density $F(r)$ in $|\mat
 
 Recall that on a sphere of radius $R$, 
 \[
-    \rmd\bfS = \bfe_r R^3 \sin \theta \dd \theta\dd \phi.
+    \mathrm{d}\mathbf{S} = \mathbf{e}_r R^3 \sin \theta \dd \theta\dd \phi.
 \]
-So on $ |\bfx|=R $ we have
+So on $ |\mathbf{x}|=R $ we have
 \begin{align*}
-    \nabla \varphi \cdot \rmd\bfS&= \varphi'(r)\bfe_r \cdot (\bfe_r R^2 \sin \theta \dd \theta\dd \phi )\Big|_{|\bfx|=R}\\ 
+    \nabla \varphi \cdot \mathrm{d}\mathbf{S}&= \varphi'(r)\mathbf{e}_r \cdot (\mathbf{e}_r R^2 \sin \theta \dd \theta\dd \phi )\Big|_{|\mathbf{x}|=R}\\ 
     &= \varphi'(R)R^2 \sin \theta \dd \theta\dd \phi\\ 
     &= \varphi'(R)\dd S.
 \end{align*}
 Hence 
 \[
-    Q(R) = \int_{|\bfx|=R} \varphi'(R) \,\mathrm{d}S = \varphi'(R)\int_{|\bfx|=R}  \,\mathrm{d}S = 4\pi R^2 \varphi'(R).
+    Q(R) = \int_{|\mathbf{x}|=R} \varphi'(R) \,\mathrm{d}S = \varphi'(R)\int_{|\mathbf{x}|=R}  \,\mathrm{d}S = 4\pi R^2 \varphi'(R).
 \]
 In summary,
 \[
-    \varphi'(R) = \frac{Q(R)}{4\pi R^2},\ \forall R>0 \Longrightarrow  \boxed{\nabla\varphi = \frac{Q(r)}{4\pi r^2}\bfe_r}
+    \varphi'(R) = \frac{Q(R)}{4\pi R^2},\ \forall R>0 \Longrightarrow  \boxed{\nabla\varphi = \frac{Q(r)}{4\pi r^2}\mathbf{e}_r}
 \]
 
 \begin{example}
@@ -259,7 +259,7 @@ In summary,
     \[
     \nabla^{2} \varphi=F(\rho)
     \]
-    where $\rho^{2}=x^{2}+y^{2}$. We can let $ \varphi=\varphi(\rho) $, so that $ \nabla \varphi=\varphi'(\rho)\bfe_\rho $. Now 
+    where $\rho^{2}=x^{2}+y^{2}$. We can let $ \varphi=\varphi(\rho) $, so that $ \nabla \varphi=\varphi'(\rho)\mathbf{e}_\rho $. Now 
     \[
         \int_{\partial ~\begin{tikzpicture}[scale=0.35]
             \draw (0,0.1) ellipse (0.2 and 0.1);
@@ -344,34 +344,34 @@ i.e. we can \textit{superpose} solutions. Can often break up forcing term $ F=\s
 to get solution to $ L \psi=F $ with $ \psi=\sum_n \psi_n $.
 
 \begin{example}
-    Consider electric potential due to \textit{pair} of point charges $ Q_a $ at $ \bfx=\bfa $, and $ Q_b $ at $ \bfx=\bfb $. Charge densities are
+    Consider electric potential due to \textit{pair} of point charges $ Q_a $ at $ \mathbf{x}=\mathbf{a} $, and $ Q_b $ at $ \mathbf{x}=\mathbf{b} $. Charge densities are
     \[
-        \rho(\bfx)=Q_a \delta(\bfx-\bfa),\ Q_b \delta(\bfx-\bfb).
+        \rho(\mathbf{x})=Q_a \delta(\mathbf{x}-\mathbf{a}),\ Q_b \delta(\mathbf{x}-\mathbf{b}).
     \]
     For a point charge, the electric potential obeys 
     \[
-        -\laplacian \phi = \frac{Q_a}{\epsilon_0}\delta(\bfx-\bfa).
+        -\laplacian \phi = \frac{Q_a}{\epsilon_0}\delta(\mathbf{x}-\mathbf{a}).
     \]
     Solution would be 
     \[
-        \phi(\bfx) = \frac{Q_a}{4\pi \epsilon_0}\frac{1}{|\bfx-\bfa|}.
+        \phi(\mathbf{x}) = \frac{Q_a}{4\pi \epsilon_0}\frac{1}{|\mathbf{x}-\mathbf{a}|}.
     \]
-    So by superposition principle, electric potential due to point charges at $ \bfx=\bfa $ and $ \bfx=\bfb $ is 
+    So by superposition principle, electric potential due to point charges at $ \mathbf{x}=\mathbf{a} $ and $ \mathbf{x}=\mathbf{b} $ is 
     \[
-        \phi(\bfx)=\frac{Q_a}{4\pi \epsilon_0}\frac{1}{|\bfx-\bfa|}+\frac{Q_b}{4\pi \epsilon_0}\frac{1}{|\bfx-\bfb|}.
+        \phi(\mathbf{x})=\frac{Q_a}{4\pi \epsilon_0}\frac{1}{|\mathbf{x}-\mathbf{a}|}+\frac{Q_b}{4\pi \epsilon_0}\frac{1}{|\mathbf{x}-\mathbf{b}|}.
     \]
 \end{example}
 
 \begin{example}
-    Consider electric potential outside ball of radius $ |\bfx|<R $ of uniform charge density $ \rho_0 $. Suppose the ball has several balls removed from its interior
+    Consider electric potential outside ball of radius $ |\mathbf{x}|<R $ of uniform charge density $ \rho_0 $. Suppose the ball has several balls removed from its interior
     \[
-        |\bfx-\bfa_i|<R_i,\quad i=1,\dots,N,
+        |\mathbf{x}-\mathbf{a}_i|<R_i,\quad i=1,\dots,N,
     \]
-    where $ |\bfa_i|+R_i<R $ and $ \forall i,j, |\bfa_i-\bfa_j|>R_i+R_j $.
+    where $ |\mathbf{a}_i|+R_i<R $ and $ \forall i,j, |\mathbf{a}_i-\mathbf{a}_j|>R_i+R_j $.
 
-    Use superposition principle: represent each hole to be a ball of uniform charge density $ -\rho_0 $. Effective potential in $ |\bfx|>R $ from each hole is 
+    Use superposition principle: represent each hole to be a ball of uniform charge density $ -\rho_0 $. Effective potential in $ |\mathbf{x}|>R $ from each hole is 
     \[
-        \phi(\bfx) = -\frac{1}{4\pi \epsilon_0}\frac{Q_i}{|\bfx-\bfa_i|},
+        \phi(\mathbf{x}) = -\frac{1}{4\pi \epsilon_0}\frac{Q_i}{|\mathbf{x}-\mathbf{a}_i|},
     \]
     where $Q_{i}=\left(4 \pi R_{i}^{3} / 3\right) \rho_{0}$. Using $ Q=\left(4 \pi R^{3} / 3\right) \rho_{0} $, by superposition principle, 
     \[
@@ -380,29 +380,29 @@ to get solution to $ L \psi=F $ with $ \psi=\sum_n \psi_n $.
 \end{example}
 
 \subsection{Integral solutions}
-We know electric potential due to a point charge at $ \bfx=\bfa $ is \textit{proportional} to 
+We know electric potential due to a point charge at $ \mathbf{x}=\mathbf{a} $ is \textit{proportional} to 
 \[
-    \frac{1}{|\bfx-\bfa|}
+    \frac{1}{|\mathbf{x}-\mathbf{a}|}
 \]
 We also know that a sum of point charges has, via the superposition principle, an electric potential consisting of a sum
 \[
-    \sum_{i=1}^{N}\frac{Q_i}{|\bfx-\bfa_i|}.
+    \sum_{i=1}^{N}\frac{Q_i}{|\mathbf{x}-\mathbf{a}_i|}.
 \]
 This leads us to consider very general superposition of potentials of the form
 \[
-    \int_{\bbR^3} \frac{F(\bfy)}{|\bfx-\bfy|} \,\mathrm{d}V(\bfy).
+    \int_{\mathbb{R}^3} \frac{F(\mathbf{y})}{|\mathbf{x}-\mathbf{y}|} \,\mathrm{d}V(\mathbf{y}).
 \]
 \begin{proposition}
-    Assume $F\to 0$ rapidly as $ |\bfx|\to \infty $. The unique solution to the Dirichlet problem
+    Assume $F\to 0$ rapidly as $ |\mathbf{x}|\to \infty $. The unique solution to the Dirichlet problem
     \[
         \begin{cases}
-        \laplacian\phi=F &\bfx\in\bbR^3\\
-        |\phi|\to 0 &|\bfx|\to \infty\\
+        \laplacian\phi=F &\mathbf{x}\in\mathbb{R}^3\\
+        |\phi|\to 0 &|\mathbf{x}|\to \infty\\
         \end{cases} 
     \]
     is given by 
     \[
-        \phi(\bfx) = -\frac{1}{4\pi}\int_{\bbR^3} \frac{F(\bfy)}{|\bfx-\bfy|} \,\mathrm{d}V(\bfy).
+        \phi(\mathbf{x}) = -\frac{1}{4\pi}\int_{\mathbb{R}^3} \frac{F(\mathbf{y})}{|\mathbf{x}-\mathbf{y}|} \,\mathrm{d}V(\mathbf{y}).
     \]
 \end{proposition}
 
@@ -410,7 +410,7 @@ This result is equivalent to saying
 \[
     \nabla^{2}\left(-\frac{1}{4 \pi} \frac{1}{|\mathbf{x}|}\right)=\delta(\mathbf{x})
 \]
-since by differentiating (with respect to the $\bfx$-variables) under the integral sign
+since by differentiating (with respect to the $\mathbf{x}$-variables) under the integral sign
 \[
     \int_{\mathbb{R}^{3}} \nabla^{2}\left(-\frac{1}{4 \pi} \frac{1}{|\mathbf{x}-\mathbf{y}|}\right) F(\mathbf{y}) \,\mathrm{d} V=\int_{\mathbb{R}^{3}} \delta(\mathbf{x}-\mathbf{y}) F(\mathbf{y}) \,\mathrm{d} V=F(\mathbf{x})
 \]
@@ -448,28 +448,28 @@ and the result in the proposition follows. This is an example of a Green's funct
 \begin{proposition}[Mean Value Theorem/Property]
     If $ \varphi $ is harmonic on $ \Omega \subseteq \mathbb{R}^3 $, then 
     \[
-        \varphi(\bfa) = \frac{1}{4\pi r^2} \int_{|\bfx-\bfa|=r} \varphi(\bfx) \,\mathrm{d}S
+        \varphi(\mathbf{a}) = \frac{1}{4\pi r^2} \int_{|\mathbf{x}-\mathbf{a}|=r} \varphi(\mathbf{x}) \,\mathrm{d}S
     \]
-    for $ \bfa\in \Omega $ and $r$ sufficiently small so that the ball $ |\bfx-\bfa| $ is in $ \Omega $.
+    for $ \mathbf{a}\in \Omega $ and $r$ sufficiently small so that the ball $ |\mathbf{x}-\mathbf{a}| $ is in $ \Omega $.
 \end{proposition}
 \begin{note}
-    This says that $ \varphi(\bfa) $ can be evaluated as a mean of the values on the ball $ |\bfx-\bfa|=r $.
+    This says that $ \varphi(\mathbf{a}) $ can be evaluated as a mean of the values on the ball $ |\mathbf{x}-\mathbf{a}|=r $.
 \end{note}
 \begin{proof}
     Let $ F(r)=\text{RHS} $. Then 
     \begin{align}
-        F(r) &= \frac{1}{4\pi r^2} \int_{|\bfx|=r} \varphi(\bfa+\bfx) \,\mathrm{d}S\nonumber\\ \nonumber
-        &= \frac{1}{4\pi r^2} \int_{\phi=0}^{2\pi} \int_{\theta=0}^{\pi} \varphi(\bfa+r\bfe_r) r^2 \sin \theta \,\mathrm{d}\theta \,\mathrm{d}\phi\\ 
-        &= \frac{1}{4\pi} \int_{\phi=0}^{2\pi} \int_{\theta=0}^{\pi} \varphi(\bfa+r\bfe_r) \sin \theta \,\mathrm{d}\theta \,\mathrm{d}\phi.\tag{$*$}
+        F(r) &= \frac{1}{4\pi r^2} \int_{|\mathbf{x}|=r} \varphi(\mathbf{a}+\mathbf{x}) \,\mathrm{d}S\nonumber\\ \nonumber
+        &= \frac{1}{4\pi r^2} \int_{\phi=0}^{2\pi} \int_{\theta=0}^{\pi} \varphi(\mathbf{a}+r\mathbf{e}_r) r^2 \sin \theta \,\mathrm{d}\theta \,\mathrm{d}\phi\\ 
+        &= \frac{1}{4\pi} \int_{\phi=0}^{2\pi} \int_{\theta=0}^{\pi} \varphi(\mathbf{a}+r\mathbf{e}_r) \sin \theta \,\mathrm{d}\theta \,\mathrm{d}\phi.\tag{$*$}
     \end{align}
     Compute $ F'(r) $: 
     \begin{align*}
-        F'(r)&= \frac{1}{4\pi r^2}\int_{\phi=0}^{2\pi} \int_{\theta=0}^{\pi} \bfe_r \cdot \nabla \varphi(\bfa+r\bfe_r) r^2 \sin \theta \,\mathrm{d}\theta \,\mathrm{d}\phi\\ 
-        &= \frac{1}{4\pi r^2} \int_{|\bfx|=r} \nabla \varphi(\bfa+r\bfe_r) \cdot \bfe_r \,\mathrm{d}S\\ 
-        &= \frac{1}{4\pi r^2} \int_{|\bfx-\bfa|=r} \nabla \varphi(\bfx)  \cdot \mathrm{d}\bfS = \frac{1}{4\pi r^2} \int_{|\bfx-\bfa|<r} \laplacian \varphi(\bfx) \,\mathrm{d}V\\ 
+        F'(r)&= \frac{1}{4\pi r^2}\int_{\phi=0}^{2\pi} \int_{\theta=0}^{\pi} \mathbf{e}_r \cdot \nabla \varphi(\mathbf{a}+r\mathbf{e}_r) r^2 \sin \theta \,\mathrm{d}\theta \,\mathrm{d}\phi\\ 
+        &= \frac{1}{4\pi r^2} \int_{|\mathbf{x}|=r} \nabla \varphi(\mathbf{a}+r\mathbf{e}_r) \cdot \mathbf{e}_r \,\mathrm{d}S\\ 
+        &= \frac{1}{4\pi r^2} \int_{|\mathbf{x}-\mathbf{a}|=r} \nabla \varphi(\mathbf{x})  \cdot \mathrm{d}\mathbf{S} = \frac{1}{4\pi r^2} \int_{|\mathbf{x}-\mathbf{a}|<r} \laplacian \varphi(\mathbf{x}) \,\mathrm{d}V\\ 
         & =0.
     \end{align*}
-    So $F(r)$ is constant. Take $ r\to 0 $ in ($ * $) we have $ F(r)=\varphi(\bfa) $, as claimed.
+    So $F(r)$ is constant. Take $ r\to 0 $ in ($ * $) we have $ F(r)=\varphi(\mathbf{a}) $, as claimed.
 \end{proof}
 
 Using idea in the proof, we can deduce what Laplacian is \textit{actually} meaning:
@@ -485,15 +485,15 @@ Using idea in the proof, we can deduce what Laplacian is \textit{actually} meani
     \[
         G(r) = \frac{1}{4 \pi r^{2}} \int_{|\mathbf{x}-\mathbf{a}|=r} \varphi(\mathbf{x})\, \mathrm{d} S-\varphi(\mathbf{a}).
     \]
-    i.e. $G$ measures the error of $ \varphi(\bfa) $ to its average. From the previous proof,
+    i.e. $G$ measures the error of $ \varphi(\mathbf{a}) $ to its average. From the previous proof,
     \[
-        G'(r) = F'(r) = \frac{1}{4\pi r^2} \int_{|\bfx-\bfa|<r} \laplacian \varphi(\bfx) \,\mathrm{d}V,
+        G'(r) = F'(r) = \frac{1}{4\pi r^2} \int_{|\mathbf{x}-\mathbf{a}|<r} \laplacian \varphi(\mathbf{x}) \,\mathrm{d}V,
     \]
     which will vanish if $ \varphi $ is harmonic. Note that we can approximate the integral as
     \begin{align*}
-        \int_{|\bfx-\bfa|<r} &\laplacian \varphi(\bfx) \,\mathrm{d}V \\
-        &= \laplacian \varphi(\bfa)\int_{|\bfx-\bfa|<r} \,\mathrm{d}V + \int_{|\bfx-\bfa|<r} \left( \laplacian \varphi(\bfx)-\laplacian \varphi(\bfa) \right) \,\mathrm{d}V\\ 
-        &= \frac{4\pi}{3}r^3\laplacian \varphi(\bfa)+ o(r^3) \quad\left(r \to 0\right)
+        \int_{|\mathbf{x}-\mathbf{a}|<r} &\laplacian \varphi(\mathbf{x}) \,\mathrm{d}V \\
+        &= \laplacian \varphi(\mathbf{a})\int_{|\mathbf{x}-\mathbf{a}|<r} \,\mathrm{d}V + \int_{|\mathbf{x}-\mathbf{a}|<r} \left( \laplacian \varphi(\mathbf{x})-\laplacian \varphi(\mathbf{a}) \right) \,\mathrm{d}V\\ 
+        &= \frac{4\pi}{3}r^3\laplacian \varphi(\mathbf{a})+ o(r^3) \quad\left(r \to 0\right)
     \end{align*} 
     where the $o$ term comes from the fact that
     \[
@@ -505,9 +505,9 @@ Using idea in the proof, we can deduce what Laplacian is \textit{actually} meani
     \]
     So 
     \begin{align*}
-        G'(r) &= \frac{1}{4\pi r^2}\int_{|\bfx-\bfa|<r} \laplacian \varphi(\bfx) \,\mathrm{d}V\\ 
-        &= \frac{1}{4\pi r^2}\left( \frac{4\pi}{3}r^3\laplacian \varphi(\bfa)+ o(r^3) \right)\\ 
-        &= \frac{r}{3}\laplacian \varphi(\bfa)+o(r) \quad\left(r \to 0\right).
+        G'(r) &= \frac{1}{4\pi r^2}\int_{|\mathbf{x}-\mathbf{a}|<r} \laplacian \varphi(\mathbf{x}) \,\mathrm{d}V\\ 
+        &= \frac{1}{4\pi r^2}\left( \frac{4\pi}{3}r^3\laplacian \varphi(\mathbf{a})+ o(r^3) \right)\\ 
+        &= \frac{r}{3}\laplacian \varphi(\mathbf{a})+o(r) \quad\left(r \to 0\right).
     \end{align*}
     Consider the Taylor expansion of $ G'(r) $ near 0:
     \[
@@ -515,16 +515,16 @@ Using idea in the proof, we can deduce what Laplacian is \textit{actually} meani
     \]
     we deduce that 
     \[
-        G'(0)=0,\quad G''(z) = \frac{1}{3}\laplacian \varphi(\bfa).
+        G'(0)=0,\quad G''(z) = \frac{1}{3}\laplacian \varphi(\mathbf{a}).
     \]
     Hence 
     \begin{align*}
         G(r) &= G(0) + r G'(0) + \frac{r^2}{2}G''(0)+ o(r^2)\\ 
-        &= \frac{r^2}{6}\laplacian \varphi(\bfa) + o(r^2) \quad\left(r \to 0\right).
+        &= \frac{r^2}{6}\laplacian \varphi(\mathbf{a}) + o(r^2) \quad\left(r \to 0\right).
     \end{align*}
     Hence 
     \[
-        \laplacian\varphi(\bfa) = \lim_{r \to 0} \frac{6}{r^2}G(r)=\lim _{r \rightarrow 0} \frac{6}{r^{2}}\left[\frac{1}{4 \pi r^{2}} \int_{|\mathbf{x}-\mathbf{a}|=r} \varphi(\mathbf{x})\, \mathrm{d} S-\varphi(\mathbf{a})\right].\qedhere
+        \laplacian\varphi(\mathbf{a}) = \lim_{r \to 0} \frac{6}{r^2}G(r)=\lim _{r \rightarrow 0} \frac{6}{r^{2}}\left[\frac{1}{4 \pi r^{2}} \int_{|\mathbf{x}-\mathbf{a}|=r} \varphi(\mathbf{x})\, \mathrm{d} S-\varphi(\mathbf{a})\right].\qedhere
     \]
 \end{proof}
 
@@ -532,16 +532,16 @@ Using idea in the proof, we can deduce what Laplacian is \textit{actually} meani
     If $ \varphi $ is harmonic on $ \Omega \subseteq \mathbb{R}^{3} $, then $ \varphi $ cannot have a maximum at any interior point of $ \Omega $ unless $ \varphi $ is constant.
 \end{proposition}
 \begin{proof}
-    Suppose $ \bfa $ is an interior point of $ \Omega $ such that $ \forall \bfx\in \Omega,\ \varphi(\bfa)\ge \varphi(\bfx) $. In particular, $ \exists \epsilon>0 $ such that $ \varphi(\bfa)\ge \varphi(\bfx),\ 0<|\bfx-\bfa|\le\epsilon $. By MVT, 
+    Suppose $ \mathbf{a} $ is an interior point of $ \Omega $ such that $ \forall \mathbf{x}\in \Omega,\ \varphi(\mathbf{a})\ge \varphi(\mathbf{x}) $. In particular, $ \exists \epsilon>0 $ such that $ \varphi(\mathbf{a})\ge \varphi(\mathbf{x}),\ 0<|\mathbf{x}-\mathbf{a}|\le\epsilon $. By MVT, 
     \[
-        \varphi(\bfa) = \frac{1}{4\pi \epsilon^2}\int_{|\bfx-\bfa|=\epsilon} \varphi(\bfx) \,\mathrm{d}S \Longrightarrow \frac{1}{4\pi \epsilon^2}\int_{|\bfx-\bfa|=\epsilon} \varphi(\bfa)-\varphi(\bfx) \,\mathrm{d}S=0.
+        \varphi(\mathbf{a}) = \frac{1}{4\pi \epsilon^2}\int_{|\mathbf{x}-\mathbf{a}|=\epsilon} \varphi(\mathbf{x}) \,\mathrm{d}S \Longrightarrow \frac{1}{4\pi \epsilon^2}\int_{|\mathbf{x}-\mathbf{a}|=\epsilon} \varphi(\mathbf{a})-\varphi(\mathbf{x}) \,\mathrm{d}S=0.
     \]
-    Since $ \varphi(\bfa)-\varphi(\bfx)\ge 0 $, we have $ \varphi(\bfa)=\varphi(\bfx) $ on $ |\bfx-\bfa|=\epsilon $. Since this also works for all $ \epsilon'<\epsilon $, we conclude that $ \varphi(\bfx)=\varphi(\bfa) $ on $ |\bfx-\bfa|\le \epsilon $.
+    Since $ \varphi(\mathbf{a})-\varphi(\mathbf{x})\ge 0 $, we have $ \varphi(\mathbf{a})=\varphi(\mathbf{x}) $ on $ |\mathbf{x}-\mathbf{a}|=\epsilon $. Since this also works for all $ \epsilon'<\epsilon $, we conclude that $ \varphi(\mathbf{x})=\varphi(\mathbf{a}) $ on $ |\mathbf{x}-\mathbf{a}|\le \epsilon $.
 
-    Now pick any other point $\mathbf{y} \in \Omega$. Connect $\bfa$ to $\mathbf{y}$ with a bunch of overlapping balls such that the center of the $(n+1)$ th ball is contained in the $n$ th. On the first ball we know $\varphi(\mathbf{x})=\varphi(\mathbf{a})$. On the center of the second ball we must also have $\varphi(\mathbf{x})=\varphi(\mathbf{a})$, and so this holds all throughout the second ball by our previous argument. Continuing inductively we get that $\varphi(\mathbf{x})=\varphi(\mathbf{a})$ on a ball containing $\mathbf{y}$. So $\varphi(\mathbf{a})=\varphi(\mathbf{y}),$ and since $\mathbf{y} \in \Omega$ is arbitrary we conclude that $\varphi$ is constant throughout $\Omega$\footnote{There is a little concersquen about whether or not we’d have to keep making the balls smaller and smaller, so much so that we could never get to $\bfy$. This issue can be dealt with once you have learnt about \textit{compactness} in Metric \& Topological spaces. Our proof can be made rigorous with a couple of easy tweaks.}.
+    Now pick any other point $\mathbf{y} \in \Omega$. Connect $\mathbf{a}$ to $\mathbf{y}$ with a bunch of overlapping balls such that the center of the $(n+1)$ th ball is contained in the $n$ th. On the first ball we know $\varphi(\mathbf{x})=\varphi(\mathbf{a})$. On the center of the second ball we must also have $\varphi(\mathbf{x})=\varphi(\mathbf{a})$, and so this holds all throughout the second ball by our previous argument. Continuing inductively we get that $\varphi(\mathbf{x})=\varphi(\mathbf{a})$ on a ball containing $\mathbf{y}$. So $\varphi(\mathbf{a})=\varphi(\mathbf{y}),$ and since $\mathbf{y} \in \Omega$ is arbitrary we conclude that $\varphi$ is constant throughout $\Omega$\footnote{There is a little concersquen about whether or not we’d have to keep making the balls smaller and smaller, so much so that we could never get to $\mathbf{y}$. This issue can be dealt with once you have learnt about \textit{compactness} in Metric \& Topological spaces. Our proof can be made rigorous with a couple of easy tweaks.}.
 \end{proof}
 \begin{proof}[Alternatively,]
-    Consider $ U \subseteq \Omega $ such that $ U=\{\bfx\in \Omega: \varphi(\bfx)=\varphi(\bfa)\} $. It is non-empty, open by MVT, and closed by continuity of $ \varphi $. So $ U=\Omega $. See Analysis and Topology.
+    Consider $ U \subseteq \Omega $ such that $ U=\{\mathbf{x}\in \Omega: \varphi(\mathbf{x})=\varphi(\mathbf{a})\} $. It is non-empty, open by MVT, and closed by continuity of $ \varphi $. So $ U=\Omega $. See Analysis and Topology.
 \end{proof}
 Immediately,
 \begin{corollary}

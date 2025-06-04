@@ -3,7 +3,7 @@
 \begin{definition}
     For vector field $ \mathbf{F} = \mathbf{F}(\mathbf{x}) $ and \textit{piecewise smooth} parametrised curve $ C= [a,b]\ni t \mapsto \mathbf{x}(t) $, we define the \textbf{line integral}
     \[
-        \int_{C} \mathbf{F} \cdot\mathrm{d}\mathbf{x} = \int_{a}^{b} \mathbf{F}(\mathbf{x}(t)) \cdot \frac{\mathrm{d}\bfx}{\mathrm{d}t}\dd t. 
+        \int_{C} \mathbf{F} \cdot\mathrm{d}\mathbf{x} = \int_{a}^{b} \mathbf{F}(\mathbf{x}(t)) \cdot \frac{\mathrm{d}\mathbf{x}}{\mathrm{d}t}\dd t. 
     \]
     If we want to integrate in opposite direction, write 
     \[
@@ -16,23 +16,23 @@
 
 Note that
 \[
-    \int_{C} F \cdot\mathrm{d}\mathbf{x} \approx \sum_{i} \mathbf{F}(\bfx_i) \cdot \Delta \bfx_i,
+    \int_{C} F \cdot\mathrm{d}\mathbf{x} \approx \sum_{i} \mathbf{F}(\mathbf{x}_i) \cdot \Delta \mathbf{x}_i,
 \]
-where $ \Delta\bfx_i = \bfx_{i+1}-\bfx_{i} $.
+where $ \Delta\mathbf{x}_i = \mathbf{x}_{i+1}-\mathbf{x}_{i} $.
 
 \begin{center}
     \begin{tikzpicture}[scale=0.7]
         \node [dot] (0) at (-4, -2) {};
-        \node [below] at (0) {$ \bfx_0 $};
+        \node [below] at (0) {$ \mathbf{x}_0 $};
         \node [dot] (1) at (5, 3) {};
         \node [right] at (1) {$ \cdots $};
         \node [dot] (2) at (-2, 2) {};
-        \node [above] at (2) {$ \bfx_1 $};
+        \node [above] at (2) {$ \mathbf{x}_1 $};
         \node (3) at (1, -1) {};
         \node [dot] (4) at (-0.55, 0.5) {};
-        \node [below left] at (4) {$ \bfx_2 $};
+        \node [below left] at (4) {$ \mathbf{x}_2 $};
         \node [dot] (5) at (2.225, 0) {};
-        \node [below right] at (5) {$ \bfx_3 $};
+        \node [below right] at (5) {$ \mathbf{x}_3 $};
         \draw [in=-165, out=75, looseness=0.75] (0) to (2.center);
         \draw [in=-165, out=0, looseness=0.75] (2.center) to (3.center);
         \draw [in=-180, out=15, looseness=0.75] (3.center) to (1);
@@ -63,7 +63,7 @@ where $ \Delta\bfx_i = \bfx_{i+1}-\bfx_{i} $.
     \]
     and 
     \[
-        \int_{C_2} \bfF \cdot\mathrm{d}\mathbf{r} = \int_{0}^{1} \begin{pmatrix}
+        \int_{C_2} \mathbf{F} \cdot\mathrm{d}\mathbf{r} = \int_{0}^{1} \begin{pmatrix}
             t^3 \\ t^3 \\ 2t^3
         \end{pmatrix}\cdot \begin{pmatrix}
             1 \\ 1 \\ 2t
@@ -72,9 +72,9 @@ where $ \Delta\bfx_i = \bfx_{i+1}-\bfx_{i} $.
     We see that in general, line integrals between 2 points depend on paths taken.
 \end{example}
 \begin{example}
-    A particle at $ \bfx $ experiences force in cylindrical polars by
+    A particle at $ \mathbf{x} $ experiences force in cylindrical polars by
     \[
-        \mathbf{F}(\mathbf{x}) = z\rho\bfe_\phi.
+        \mathbf{F}(\mathbf{x}) = z\rho\mathbf{e}_\phi.
     \]
     Calculate the work done by travelling along the path
     \[
@@ -84,19 +84,19 @@ where $ \Delta\bfx_i = \bfx_{i+1}-\bfx_{i} $.
     \]
     Recall the line element in cylindrical polars
     \[
-        \rmd \mathbf{x} = \rmd \rho\,\bfe_\rho+\rho\dd \phi\,\bfe_\phi+\rmd z\,\bfe_z,
+        \mathrm{d} \mathbf{x} = \mathrm{d} \rho\,\mathbf{e}_\rho+\rho\dd \phi\,\mathbf{e}_\phi+\mathrm{d} z\,\mathbf{e}_z,
     \]
-    so $ \mathbf{F}\cdot \rmd \mathbf{x} = z\rho^2 \dd  \phi $. Also on the path, $ (\rho,\phi,z) = (a,t,t) $, so $ (\rmd \rho,\rmd \phi,\rmd z) = (0,\rmd t,\rmd t) $, and thus $ \mathbf{F}\cdot \rmd \bfx = a^2t\dd t $. Hence
+    so $ \mathbf{F}\cdot \mathrm{d} \mathbf{x} = z\rho^2 \dd  \phi $. Also on the path, $ (\rho,\phi,z) = (a,t,t) $, so $ (\mathrm{d} \rho,\mathrm{d} \phi,\mathrm{d} z) = (0,\mathrm{d} t,\mathrm{d} t) $, and thus $ \mathbf{F}\cdot \mathrm{d} \mathbf{x} = a^2t\dd t $. Hence
     \[
         \int_{C} \mathbf{F} \cdot\mathrm{d}\mathbf{x} = a^2 \int_{0}^{2\pi} t \,\mathrm{d}t = 2\pi^2 a^2.
     \]
 \end{example}
 
-A curve may be \textbf{closed}. That is $ \bfx(a)=\bfx(b) $. In this case we write 
+A curve may be \textbf{closed}. That is $ \mathbf{x}(a)=\mathbf{x}(b) $. In this case we write 
 \[
-    \oint_{C}\bfF\cdot \rmd\bfx.
+    \oint_{C}\mathbf{F}\cdot \mathrm{d}\mathbf{x}.
 \]
-We call this kind of integral the \textbf{circulation} of $\bfF$ about $C$.
+We call this kind of integral the \textbf{circulation} of $\mathbf{F}$ about $C$.
 
 \begin{example}
     Take exmaple \ref{eg:3.1} with $ C=C_1-C_2 $.
@@ -113,22 +113,22 @@ We call this kind of integral the \textbf{circulation} of $\bfF$ about $C$.
       \end{center}
       Then 
       \[
-          \oint_{C} \bfF \cdot\mathrm{d}\mathbf{x} = \int_{C_1} \bfF \cdot\mathrm{d}\mathbf{x}-\int_{C_2} \bfF \cdot\mathrm{d}\mathbf{x} = -\frac{2}{15}.
+          \oint_{C} \mathbf{F} \cdot\mathrm{d}\mathbf{x} = \int_{C_1} \mathbf{F} \cdot\mathrm{d}\mathbf{x}-\int_{C_2} \mathbf{F} \cdot\mathrm{d}\mathbf{x} = -\frac{2}{15}.
       \]
 \end{example}
 
 \subsection{Conservative forces and exact differentials}
-We have seen how to interpret $ \bfF\cdot\rmd\bfx $. This is another example of \textbf{differential form}.
+We have seen how to interpret $ \mathbf{F}\cdot\mathrm{d}\mathbf{x} $. This is another example of \textbf{differential form}.
 \begin{definition}[Exact differential, conservative fields]
-    We say $\bfF\cdot\rmd\bfx$ is \textbf{exact} if 
+    We say $\mathbf{F}\cdot\mathrm{d}\mathbf{x}$ is \textbf{exact} if 
     \[
-        \bfF\cdot\rmd\bfx = \rmd f
+        \mathbf{F}\cdot\mathrm{d}\mathbf{x} = \mathrm{d} f
     \]
-    for some scalar function $f$. Recall that $ \rmd f = \nabla f\cdot\rmd\bfx $. So $ \bfF\cdot\rmd\bfx $ is exact if and only if $ \bfF = \nabla f $ for some scalar function $f$. We call such vector fields $\bfF$ \textbf{conservative}.
+    for some scalar function $f$. Recall that $ \mathrm{d} f = \nabla f\cdot\mathrm{d}\mathbf{x} $. So $ \mathbf{F}\cdot\mathrm{d}\mathbf{x} $ is exact if and only if $ \mathbf{F} = \nabla f $ for some scalar function $f$. We call such vector fields $\mathbf{F}$ \textbf{conservative}.
 \end{definition}
 So we have 
 \[
-    \bfF\cdot\rmd\bfx \text{ is exact }\Longleftrightarrow \bfF \text{ is conservative}.
+    \mathbf{F}\cdot\mathrm{d}\mathbf{x} \text{ is exact }\Longleftrightarrow \mathbf{F} \text{ is conservative}.
 \]
 
 \begin{proposition}
@@ -136,13 +136,13 @@ So we have
     \[
         \oint_{C} \theta =0
     \]
-    for any \textit{close} curve $C$. Equivalently, if $\bfF$ is conservative, then the circulation of $\bfF$ vanishes.
+    for any \textit{close} curve $C$. Equivalently, if $\mathbf{F}$ is conservative, then the circulation of $\mathbf{F}$ vanishes.
 \end{proposition}
 \begin{proof}
-    By previous, if $ \theta $ exact then $ \theta=\nabla f \cdot \rmd\bfx $ for some $f$. If $ C: [a,b]\ni t \mapsto \bfx(t) $ is close, then 
+    By previous, if $ \theta $ exact then $ \theta=\nabla f \cdot \mathrm{d}\mathbf{x} $ for some $f$. If $ C: [a,b]\ni t \mapsto \mathbf{x}(t) $ is close, then 
     \begin{align*}
-        \oint_{C}\theta &= \oint_{C}\nabla f\cdot \bfx = \int_{a}^{b} \nabla f((\bfx(t))) \cdot \frac{\mathrm{d}\bfx}{\mathrm{d}t}  \,\mathrm{d}t \\
-       & = \int_{a}^{b} \frac{\mathrm{d}}{\mathrm{d}t}\left( f(\bfx(t)) \right)  = f(\bfx(b))-f(\bfx(a)) = 0
+        \oint_{C}\theta &= \oint_{C}\nabla f\cdot \mathbf{x} = \int_{a}^{b} \nabla f((\mathbf{x}(t))) \cdot \frac{\mathrm{d}\mathbf{x}}{\mathrm{d}t}  \,\mathrm{d}t \\
+       & = \int_{a}^{b} \frac{\mathrm{d}}{\mathrm{d}t}\left( f(\mathbf{x}(t)) \right)  = f(\mathbf{x}(b))-f(\mathbf{x}(a)) = 0
     \end{align*}
     by fundamental theorem of calculus.
 \end{proof}
@@ -151,19 +151,19 @@ So we have
 \end{note}
 
 \begin{corollary}
-    If $\bfF$ is conservative, then line integrals of $\bfF$ are independent of the paths taken.
+    If $\mathbf{F}$ is conservative, then line integrals of $\mathbf{F}$ are independent of the paths taken.
 \end{corollary}
 \begin{proof}
     Indeed, if $ C_1,C_2 $ are two such paths, then $ C=C_1-C_2 $ is closed and thus
     \[
-        \oint_{C}\bfF\cdot\rmd\bfx = 0 \Longleftrightarrow \int_{C_1} \bfF \cdot\mathrm{d}\mathbf{x} = \int_{C_2} \mathbf{F} \cdot\mathrm{d}\mathbf{x}.
+        \oint_{C}\mathbf{F}\cdot\mathrm{d}\mathbf{x} = 0 \Longleftrightarrow \int_{C_1} \mathbf{F} \cdot\mathrm{d}\mathbf{x} = \int_{C_2} \mathbf{F} \cdot\mathrm{d}\mathbf{x}.
     \]
 \end{proof}
 
 \begin{proposition}
     Let $(u_1, u_2, u_3) \equiv (u, v, w)$ be an arbitrary set of OCC and let
     \[
-        \mathbf{F} \cdot \rmd\bfx = \theta = A(u, v, w) \dd u + B(u, v, w) \dd v + C(u, v, w) \dd w \equiv \theta_i \dd u_i.
+        \mathbf{F} \cdot \mathrm{d}\mathbf{x} = \theta = A(u, v, w) \dd u + B(u, v, w) \dd v + C(u, v, w) \dd w \equiv \theta_i \dd u_i.
     \]
     A \textit{necessary} condition for $ \theta $ to be exact is
     \begin{equation}\label{eq:3.3}\tag{$\dagger$}
@@ -171,7 +171,7 @@ So we have
     \end{equation}
 \end{proposition}
 \begin{proof}
-    Indeed, if $ \theta $ is exact, then $ \theta=\rmd f $ and 
+    Indeed, if $ \theta $ is exact, then $ \theta=\mathrm{d} f $ and 
     \[
         \theta = \frac{\partial f}{\partial u_i}\dd u_i \Longleftrightarrow \theta_i = \frac{\partial f}{\partial u_i}  
     \]
@@ -196,21 +196,21 @@ Hence $ \theta $ exact $ \Rightarrow \theta $ closed. The reverse implication is
             \cos \left(\Im\left(\zeta\left(\frac{1}{2}+it\right)\right)\right) \\ \sin \left(\Re\left(\zeta\left(\frac{1}{2}+it\right)\right)\right)  \\ 0
         \end{pmatrix},
     \]
-    where $ \alpha_1,\alpha_{100} $ are the 1st and 100th zeros of $ \zeta(\frac{1}{2}+it) $. Note that $ 3x^2y\dd x+x^3\dd y=\rmd(x^3y) $ and $C$ is closed, so it is 0.
+    where $ \alpha_1,\alpha_{100} $ are the 1st and 100th zeros of $ \zeta(\frac{1}{2}+it) $. Note that $ 3x^2y\dd x+x^3\dd y=\mathrm{d}(x^3y) $ and $C$ is closed, so it is 0.
 \end{example}
 
 \begin{example}
-    The work done $ \int_{C} \mathbf{F} \cdot\mathrm{d}\mathbf{x} $, where $ C:[a,b]\ni t\mapsto \bfx(t) $ is 
+    The work done $ \int_{C} \mathbf{F} \cdot\mathrm{d}\mathbf{x} $, where $ C:[a,b]\ni t\mapsto \mathbf{x}(t) $ is 
     \[
-        \int_{C} \mathbf{F} \cdot\mathrm{d}\mathbf{x}= m \int_{a}^{b} \ddot{\bfx}\cdot \dot{\bfx} \,\mathrm{d}t = \left[ \frac{1}{2}m |\dot{\bfx}|^2 \right]_{a}^{b}.
+        \int_{C} \mathbf{F} \cdot\mathrm{d}\mathbf{x}= m \int_{a}^{b} \ddot{\mathbf{x}}\cdot \dot{\mathbf{x}} \,\mathrm{d}t = \left[ \frac{1}{2}m |\dot{\mathbf{x}}|^2 \right]_{a}^{b}.
     \]
-    If $\bfF = -\nabla V$ is conservative, then 
+    If $\mathbf{F} = -\nabla V$ is conservative, then 
     \[
-        \int_{C} \mathbf{F} \cdot\mathrm{d}\mathbf{x} = - \int_{C} \nabla V \cdot\mathrm{d}\mathbf{x} = V(\bfx(a))-V(\bfx(b)).
+        \int_{C} \mathbf{F} \cdot\mathrm{d}\mathbf{x} = - \int_{C} \nabla V \cdot\mathrm{d}\mathbf{x} = V(\mathbf{x}(a))-V(\mathbf{x}(b)).
     \]
     Hence
     \[
-        \frac{1}{2}m |\dot{\bfx}(a)|^2+V(\bfx(a))=\frac{1}{2}m |\dot{\bfx}(b)|^2+V(\bfx(b)),
+        \frac{1}{2}m |\dot{\mathbf{x}}(a)|^2+V(\mathbf{x}(a))=\frac{1}{2}m |\dot{\mathbf{x}}(b)|^2+V(\mathbf{x}(b)),
     \]
     i.e. total energy is conserved.
 \end{example}
@@ -238,7 +238,7 @@ We want to integrate over bounded region $ D \subseteq \mathbb{R}^{2} $. To do t
 \begin{definition}[Surface integral]
     Define 
     \[
-        \int_{D} f(\bfx) \,\mathrm{d}A = \lim_{\epsilon \to 0} \sum_{i,j} f(x_i,y_j) \delta A_{ij}.
+        \int_{D} f(\mathbf{x}) \,\mathrm{d}A = \lim_{\epsilon \to 0} \sum_{i,j} f(x_i,y_j) \delta A_{ij}.
     \]
     We say the integral exists if it is independent of choice $A_{ij}$ and choice $ (x_i,y_j) $.
 \end{definition}
@@ -295,7 +295,7 @@ If we instead sum over \textit{vertical} strips,
     \end{tikzpicture}
 \end{center}
 
-More concisely, we have $ \rmd A = \rmd x\dd y=\rmd y\dd x $.
+More concisely, we have $ \mathrm{d} A = \mathrm{d} x\dd y=\mathrm{d} y\dd x $.
 \begin{theorem}[Fubini's theorem]\label{thm:Fubini's theorem}
     If
     \[
@@ -345,7 +345,7 @@ If $I=[a,b]$ and $I'=x(I)$,
 
 Similar formula in 2D:
 \begin{proposition}
-    Let $ x=x(u,v),y=y(u,v) $ be a smooth invertible transformation with smooth inverse that maps the region $D'$ in $u$-$v$ plane to $D$ in $x$-$y$ plane. Write $ \bfx=\bfx(u,v) $, then 
+    Let $ x=x(u,v),y=y(u,v) $ be a smooth invertible transformation with smooth inverse that maps the region $D'$ in $u$-$v$ plane to $D$ in $x$-$y$ plane. Write $ \mathbf{x}=\mathbf{x}(u,v) $, then 
     \[
         \iint_{D}f(x,y)\dd x\dd y = \iint_{D'} f(x(u,v),y(u,v)) \left| \frac{\partial (x,y)}{\partial (u,v)}  \right| \dd u\dd v,
     \]
@@ -382,7 +382,7 @@ Similar formula in 2D:
     \]
     Recall from Vectors and Matrices that the determinant of the matrix is how much it scales up an area. So the area formed by $\delta x$ and $\delta y$ is $|J|$ times the area formed by $\delta u$ and $\delta v$. Hence
     \[
-        \rmd x\dd y = |J| \dd u\dd v.\qedhere
+        \mathrm{d} x\dd y = |J| \dd u\dd v.\qedhere
     \]
 \end{proof}
 For details, see \href{http://jt775.user.srcf.net/IA-Lent/handouts/vc_handout2.pdf}{handout 2}.
@@ -438,9 +438,9 @@ For details, see \href{http://jt775.user.srcf.net/IA-Lent/handouts/vc_handout2.p
 
 To integrate over region $V$ in $ \mathbb{R}^{3}$, use similar ideas to those in $ \mathbb{R}^{2} $. Let 
 \[
-    \int_{V} f(\bfx) \,\mathrm{d}V = \lim_{\epsilon \to 0} \sum_{i,j,k} f(x_i,y_j,z_k)\delta V_{ijk},
+    \int_{V} f(\mathbf{x}) \,\mathrm{d}V = \lim_{\epsilon \to 0} \sum_{i,j,k} f(x_i,y_j,z_k)\delta V_{ijk},
 \]
-where $ V_{ijk} $ are small volumns contained in balls of radius $\epsilon$. In this case the \textbf{volumn element} $ \rmd V = \rmd x\dd y\dd z $ and they are commutative.
+where $ V_{ijk} $ are small volumns contained in balls of radius $\epsilon$. In this case the \textbf{volumn element} $ \mathrm{d} V = \mathrm{d} x\dd y\dd z $ and they are commutative.
 
 \begin{example}
     Let $V$ be the region bounded by the planes $ x+y+z=1 $ and $ x=0,y=0,z=0 $.
@@ -450,7 +450,7 @@ where $ V_{ijk} $ are small volumns contained in balls of radius $\epsilon$. In 
     \]
     We could compute the centre of mass assuming it has constant density $ \rho=1 $. 
     \begin{align*}
-        \bfX &= \frac{1}{M} \int_{V} \rho\bfx \,\mathrm{d}V = \frac{1}{4}\begin{pmatrix}
+        \mathbf{X} &= \frac{1}{M} \int_{V} \rho\mathbf{x} \,\mathrm{d}V = \frac{1}{4}\begin{pmatrix}
             1 \\ 1 \\ 1
         \end{pmatrix}.
     \end{align*}
@@ -465,22 +465,22 @@ where $ V_{ijk} $ are small volumns contained in balls of radius $\epsilon$. In 
     where $ g(u,v,w)= f(x(u,v,w),y(u,v,w),z(u,v,w))$ and
     \[
         J = \frac{\partial (x,y,z)}{\partial (u,v,w)} = \det \left(\!\!\! \begin{array}{c|c|c}
-           \displaystyle \frac{\partial \bfx}{\partial u}\!\!\!&\!\!\displaystyle\frac{\partial \bfx}{\partial v}\!\!\!&\!\!\displaystyle\frac{\partial\bfx}{\partial w}
-        \end{array}\!\!\! \right),\quad \bfx = \begin{pmatrix}
+           \displaystyle \frac{\partial \mathbf{x}}{\partial u}\!\!\!&\!\!\displaystyle\frac{\partial \mathbf{x}}{\partial v}\!\!\!&\!\!\displaystyle\frac{\partial\mathbf{x}}{\partial w}
+        \end{array}\!\!\! \right),\quad \mathbf{x} = \begin{pmatrix}
             x(u,v,w) \\ y(u,v,w) \\ z(u,v,w)
         \end{pmatrix}.
     \]
-    Short version is $ \rmd x\dd y\dd z = |J|\dd u\dd v\dd w $. Similar to 2D, $|J|$ is the volumn scaled by mapping.
+    Short version is $ \mathrm{d} x\dd y\dd z = |J|\dd u\dd v\dd w $. Similar to 2D, $|J|$ is the volumn scaled by mapping.
 \end{proposition}
 
 \begin{example}
     In cylindrical polars $ (\rho,\phi,z) $, 
     \[
-        \rmd V= \rho\dd\rho \dd \phi\dd z,
+        \mathrm{d} V= \rho\dd\rho \dd \phi\dd z,
     \]
     and in spherical polars, 
     \[
-        \rmd V = r^2 \sin \theta\dd r\dd \theta \dd \phi.
+        \mathrm{d} V = r^2 \sin \theta\dd r\dd \theta \dd \phi.
     \]
 \end{example}
 \begin{example}
@@ -514,8 +514,8 @@ where $ V_{ijk} $ are small volumns contained in balls of radius $\epsilon$. In 
 
     So the volume is
     \begin{align*}
-        \iiint_V \,\rmd V &= \int_{\rho=b}^a\int_{\phi=0}^{2\pi}\int_{z=-\sqrt{a^2 - \rho^2}}^{\sqrt{a^2 - \rho^2}}\rho\,\rmd z\,\rmd \phi\,\rmd \rho \\
-        &= 2\pi\int_b^a 2\rho\sqrt{a^2 - \rho^2}\,\rmd \rho\\
+        \iiint_V \,\mathrm{d} V &= \int_{\rho=b}^a\int_{\phi=0}^{2\pi}\int_{z=-\sqrt{a^2 - \rho^2}}^{\sqrt{a^2 - \rho^2}}\rho\,\mathrm{d} z\,\mathrm{d} \phi\,\mathrm{d} \rho \\
+        &= 2\pi\int_b^a 2\rho\sqrt{a^2 - \rho^2}\,\mathrm{d} \rho\\
         &= 2\pi \left[\frac{2}{3}(a^2 - \rho^2)^{3/2}\right]^a_b\\
         &= \frac{4}{3}\pi (a^2 - b^2)^{3/2}.
     \end{align*}
@@ -533,21 +533,21 @@ However, in Lebesgue's theorey of integration, $D(x)$ becomes integrable. In Leb
 \subsubsection*{Surfaces in $ \mathbb{R}^{3} $}
 A 2D surface in $ \mathbb{R}^{3} $ can be defined using a function $ f: \mathbb{R}^{3}\to \mathbb{R}  $ as 
 \[
-    S = \{\bfx\in \mathbb{R}^{3}:f(\bfx)=0\}.
+    S = \{\mathbf{x}\in \mathbb{R}^{3}:f(\mathbf{x})=0\}.
 \]
-The normal to $S$ at $\bfx$ is parallel to $ \nabla f(\bfx) $. 
+The normal to $S$ at $\mathbf{x}$ is parallel to $ \nabla f(\mathbf{x}) $. 
 \begin{definition}
-    Call a surface \textbf{regular} if $ \nabla f(\bfx)\neq \mathbf{0} $ for $ \bfx\in S $.
+    Call a surface \textbf{regular} if $ \nabla f(\mathbf{x})\neq \mathbf{0} $ for $ \mathbf{x}\in S $.
 \end{definition}
 
 \begin{example}
     $ S = \{(x,y,z):x^2+y^2+z^2-1=0\} $. So 
     \[
-        \nabla f(\bfx) = \begin{pmatrix}
+        \nabla f(\mathbf{x}) = \begin{pmatrix}
             2x \\ 2y \\ 2z
         \end{pmatrix}\neq \mathbf{0},
     \]
-    so a sphere in $\bbR^3$ is regular.
+    so a sphere in $\mathbb{R}^3$ is regular.
 \end{example}
 
 Some surfaces have a \textbf{boundary}, e.g. hemisphere. Label the boundary by $ \partial S $. In this course a surface $S$ will either have no boundary or it will have a boundary made of piecewise \textit{smooth} curves.
@@ -581,13 +581,13 @@ Some surfaces have a \textbf{boundary}, e.g. hemisphere. Label the boundary by $
 
 It is often useful to parametrise a surface using some coordinates $(u,v)$:
 \[
-    S = \{\bfx=(u,v):(u,v)\in D\}
+    S = \{\mathbf{x}=(u,v):(u,v)\in D\}
 \]
 where $D$ is some region in $ (u,v) $ plane.
 \begin{example}
     Consider a hemisphere. By using spherical polars, 
     \[
-        S = \{\bfx = \bfx(\theta,\phi),\theta\in [0,\pi/2],\phi\in [0,2\pi]\},\quad \bfx(\theta,\phi) = \begin{pmatrix}
+        S = \{\mathbf{x} = \mathbf{x}(\theta,\phi),\theta\in [0,\pi/2],\phi\in [0,2\pi]\},\quad \mathbf{x}(\theta,\phi) = \begin{pmatrix}
             \sin \theta \cos \phi \\ \sin \theta \sin \phi \\ \cos \theta
         \end{pmatrix}.
     \]
@@ -596,11 +596,11 @@ where $D$ is some region in $ (u,v) $ plane.
 \begin{definition}
     Call a parametrisation of $S$ \textbf{regular} if 
     \[
-        \frac{\partial \bfx}{\partial u} \times \frac{\partial \bfx}{\partial v}\neq \mathbf{0}\quad\text{on }S.  
+        \frac{\partial \mathbf{x}}{\partial u} \times \frac{\partial \mathbf{x}}{\partial v}\neq \mathbf{0}\quad\text{on }S.  
     \]
     In this case, we can define the \textbf{normal} to $S$ by 
     \[
-        \bfn = \frac{\dfrac{\partial \bfx}{\partial u}\times \dfrac{\partial \bfx}{\partial v}  }{\left| \dfrac{\partial \bfx}{\partial u}\times \dfrac{\partial \bfx}{\partial v} \right| }.
+        \mathbf{n} = \frac{\dfrac{\partial \mathbf{x}}{\partial u}\times \dfrac{\partial \mathbf{x}}{\partial v}  }{\left| \dfrac{\partial \mathbf{x}}{\partial u}\times \dfrac{\partial \mathbf{x}}{\partial v} \right| }.
     \]
 \end{definition}
 \begin{note}
@@ -631,9 +631,9 @@ Choosing a normal consistently over $S$ gives us a way of orientating the bounda
         \draw [red, bend left,->-=0.6] (1.center) to (0.center);
         \draw [dashed,red, bend left, -<-=0.4] (3.center) to (2.center);
         \draw [dashed,red, bend right=90, looseness=0.25, arrow inside={end=latex',opt={red,scale=1.6}}{0.25,0.5,0.75}] (5.center) to (4.center);
-        \draw [->] (6.center) -- (9.center) node [pos=0, dot=3pt] {} node [above] {$ \bfn $};
-        \draw [->] (8.center) -- (10.center) node [pos=0, dot=3pt] {} node [above right] {$ \bfn $};
-        \draw [->] (7.center) -- (11.center) node [pos=0, dot=3pt] {} node [above left] {$ \bfn $};
+        \draw [->] (6.center) -- (9.center) node [pos=0, dot=3pt] {} node [above] {$ \mathbf{n} $};
+        \draw [->] (8.center) -- (10.center) node [pos=0, dot=3pt] {} node [above right] {$ \mathbf{n} $};
+        \draw [->] (7.center) -- (11.center) node [pos=0, dot=3pt] {} node [above left] {$ \mathbf{n} $};
     \end{tikzpicture}    
 \end{center}
 \subsubsection*{Compute the area}
@@ -669,8 +669,8 @@ which is \textit{wrong} since $ \delta u \,\delta v $ on $D$ does not necessaril
         \draw [dashed,thick] (8.center) to (7.center);
         \draw [dashed,thick] (4.center) to (6.center);
         \draw [dashed, bend right,thick] (6.center) to (7.center);
-        \draw [->, in=-105, out=135] (9.center) to (11) node [below] at (9) {$ \bfx(u+\delta u,v)-\bfx(u,v) $};
-        \draw [->, bend left=330] (10.center) to (12) node [below] at (10) {$ \bfx(u,v+\delta v)-\bfx(u,v) $};
+        \draw [->, in=-105, out=135] (9.center) to (11) node [below] at (9) {$ \mathbf{x}(u+\delta u,v)-\mathbf{x}(u,v) $};
+        \draw [->, bend left=330] (10.center) to (12) node [below] at (10) {$ \mathbf{x}(u,v+\delta v)-\mathbf{x}(u,v) $};
         \path [fill=black!20] (4.center) to [bend right] (8.center) -- (7.center) to [bend left] (6.center) -- (4.center) ;
         \filldraw [color=black, fill=black!20, dashed] (-4,-1.5) rectangle (-2.5,0);
         \draw (-2.5,0) -- (-2.5,0.5);
@@ -694,45 +694,45 @@ which is \textit{wrong} since $ \delta u \,\delta v $ on $D$ does not necessaril
 
 Note that small changes $ u \mapsto u+\delta u,v \mapsto v+\delta v $ produce 
 \[
-    \bfx(u+\delta u,v)-\bfx(u,v) \approx \frac{\partial \bfx}{\partial u}\delta u ,\quad \bfx(u,v+\delta v)-\bfx(u,v) \approx \frac{\partial \bfx}{\partial v}\delta v.
+    \mathbf{x}(u+\delta u,v)-\mathbf{x}(u,v) \approx \frac{\partial \mathbf{x}}{\partial u}\delta u ,\quad \mathbf{x}(u,v+\delta v)-\mathbf{x}(u,v) \approx \frac{\partial \mathbf{x}}{\partial v}\delta v.
 \]
-So the patch of area $ \delta u \delta v $ in $D$ corresponds (to 1st order) to a parallelogram of area of sides $ \frac{\partial \bfx}{\partial u}\delta u  $ and $ \frac{\partial \bfx}{\partial v}\delta v  $ with area 
+So the patch of area $ \delta u \delta v $ in $D$ corresponds (to 1st order) to a parallelogram of area of sides $ \frac{\partial \mathbf{x}}{\partial u}\delta u  $ and $ \frac{\partial \mathbf{x}}{\partial v}\delta v  $ with area 
 \[
-    \left| \frac{\partial \bfx}{\partial u}\times \frac{\partial \bfx}{\partial v} \right| \delta u \,\delta v.
+    \left| \frac{\partial \mathbf{x}}{\partial u}\times \frac{\partial \mathbf{x}}{\partial v} \right| \delta u \,\delta v.
 \]
 
 This leads us to define the \textbf{scalar area element} and \textbf{vector area element}
 \[
-    \rmd S = \left| \frac{\partial \bfx}{\partial u}\times \frac{\partial \bfx}{\partial v} \right| \dd u \,\dd v,\quad \rmd \bfS = \frac{\partial \bfx}{\partial u}\times \frac{\partial \bfx}{\partial v}  \dd u \,\dd v.
+    \mathrm{d} S = \left| \frac{\partial \mathbf{x}}{\partial u}\times \frac{\partial \mathbf{x}}{\partial v} \right| \dd u \,\dd v,\quad \mathrm{d} \mathbf{S} = \frac{\partial \mathbf{x}}{\partial u}\times \frac{\partial \mathbf{x}}{\partial v}  \dd u \,\dd v.
 \]
 So the surface area of $S$ is 
 \[
-    \operatorname{area} S = \int_{S} \,\mathrm{d}S = \iint_{D} \left| \frac{\partial \bfx}{\partial u}\times \frac{\partial \bfx}{\partial v} \right| \dd u \dd v,
+    \operatorname{area} S = \int_{S} \,\mathrm{d}S = \iint_{D} \left| \frac{\partial \mathbf{x}}{\partial u}\times \frac{\partial \mathbf{x}}{\partial v} \right| \dd u \dd v,
 \]
 and integration of $f$ over $S$ is 
 \[
-    \int_{S} f \,\mathrm{d}S = \iint_{D} f(\bfx(u,v)) \left| \frac{\partial \bfx}{\partial u}\times \frac{\partial \bfx}{\partial v} \right| \dd u \dd v.
+    \int_{S} f \,\mathrm{d}S = \iint_{D} f(\mathbf{x}(u,v)) \left| \frac{\partial \mathbf{x}}{\partial u}\times \frac{\partial \mathbf{x}}{\partial v} \right| \dd u \dd v.
 \]
 
 \begin{example}
     Consider a hemisphere of radius $R$:
     \[
-        S = \left\{ \bfx(\theta,\phi) = \begin{pmatrix}
+        S = \left\{ \mathbf{x}(\theta,\phi) = \begin{pmatrix}
            R \sin \theta \cos \phi \\ R\sin \theta \sin \phi \\ R\cos \theta
-        \end{pmatrix}=R\bfe_r,\theta\in [0,\pi/2],\phi\in [0,2\pi]\right\}.
+        \end{pmatrix}=R\mathbf{e}_r,\theta\in [0,\pi/2],\phi\in [0,2\pi]\right\}.
     \]
     We see that 
     \[
-        \frac{\partial \bfx}{\partial \theta} =  \begin{pmatrix}
+        \frac{\partial \mathbf{x}}{\partial \theta} =  \begin{pmatrix}
             R \cos \theta \cos \phi \\ R\cos \theta \sin \phi \\ -R\sin \theta
-         \end{pmatrix}=R\bfe_\theta,\quad
-        \frac{\partial \bfx}{\partial \phi}= \begin{pmatrix}
+         \end{pmatrix}=R\mathbf{e}_\theta,\quad
+        \frac{\partial \mathbf{x}}{\partial \phi}= \begin{pmatrix}
             -R \sin \theta \sin \phi \\ R\sin \theta \cos \phi \\ 0
-         \end{pmatrix}=R \sin \theta \bfe_\phi.
+         \end{pmatrix}=R \sin \theta \mathbf{e}_\phi.
     \]
     Therefore 
     \[
-        \rmd S = R^2 \sin \theta |\bfe_\theta\times \bfe_\phi| \dd \theta\dd \phi = R^2 \sin \theta\dd \theta\dd \phi.
+        \mathrm{d} S = R^2 \sin \theta |\mathbf{e}_\theta\times \mathbf{e}_\phi| \dd \theta\dd \phi = R^2 \sin \theta\dd \theta\dd \phi.
     \]
     Hence 
     \begin{align*}
@@ -742,33 +742,33 @@ and integration of $f$ over $S$ is
 \end{example}
 
 \begin{example}
-    Suppose velocity of fluid is written $ \bfu=\bfu(\bfx) $. Given $S$, how to calculate how much fluid passes through it per unit time?
+    Suppose velocity of fluid is written $ \mathbf{u}=\mathbf{u}(\mathbf{x}) $. Given $S$, how to calculate how much fluid passes through it per unit time?
 
-    On small patch $ \delta S $ on $S$, the fluid passing through would be $ (\bfu \cdot \delta\bfS)\delta t$ in time $ \delta t $. So the amount of fluid passing through $S$ in $ \delta t $ is 
+    On small patch $ \delta S $ on $S$, the fluid passing through would be $ (\mathbf{u} \cdot \delta\mathbf{S})\delta t$ in time $ \delta t $. So the amount of fluid passing through $S$ in $ \delta t $ is 
     \[
-        \delta t \int_{S} \bfu \cdot \mathrm{d}\bfS.
+        \delta t \int_{S} \mathbf{u} \cdot \mathrm{d}\mathbf{S}.
     \]
     This is called \textbf{flux integral}.
 \end{example}
 
 \subsubsection*{Change of parametrisations}
-Let $ \bfx=\bfx(u,v) $ and $ \bfx = \tilde{\bfx}(\tilde{u},\tilde{v}) $ be two different parametrisations of $S$ with $ (u,v)\in D $ and $ (\tilde{u},\tilde{v})\in \tilde{D} $. We have the (smooth invertible) relationship 
+Let $ \mathbf{x}=\mathbf{x}(u,v) $ and $ \mathbf{x} = \tilde{\mathbf{x}}(\tilde{u},\tilde{v}) $ be two different parametrisations of $S$ with $ (u,v)\in D $ and $ (\tilde{u},\tilde{v})\in \tilde{D} $. We have the (smooth invertible) relationship 
 \[
-    \bfx(u,v) = \tilde{\bfx}(\tilde{u}(u,v),\tilde{v}(u,v)).
+    \mathbf{x}(u,v) = \tilde{\mathbf{x}}(\tilde{u}(u,v),\tilde{v}(u,v)).
 \]
 By chain rule,
 \begin{align*}
-    \frac{\partial \bfx}{\partial u}\times \frac{\partial \bfx}{\partial v} &= \left( \frac{\partial \tilde{\bfx}}{\partial \tilde{u}}\frac{\partial \tilde{u}}{\partial u}+ \frac{\partial \tilde{\bfx}}{\partial \tilde{v}}\frac{\partial \tilde{v}}{\partial u}  \right) \times \left( \frac{\partial \tilde{\bfx}}{\partial \tilde{u}}\frac{\partial \tilde{u}}{\partial v}+\frac{\partial \tilde{\bfx}}{\partial \tilde{v}}\frac{\partial \tilde{v}}{\partial v} \right)\\ 
-    &= \left( \frac{\partial \tilde{u}}{\partial u}\frac{\partial \tilde{v}}{\partial v}-\frac{\partial \tilde{u}}{\partial v}\frac{\partial \tilde{v}}{\partial u} \right)\frac{\partial \tilde{\bfx}}{\partial \tilde{u}}\times \frac{\partial \tilde{\bfx}}{\partial \tilde{v}}\\ 
-    &=\frac{\partial (\tilde{u},\tilde{v})}{\partial (u,v)} \frac{\partial \tilde{\bfx}}{\partial \tilde{u}}\times \frac{\partial \tilde{\bfx}}{\partial \tilde{v}}\\ 
-    &= J\,\frac{\partial \tilde{\bfx}}{\partial \tilde{u}}\times \frac{\partial \tilde{\bfx}}{\partial \tilde{v}}.
+    \frac{\partial \mathbf{x}}{\partial u}\times \frac{\partial \mathbf{x}}{\partial v} &= \left( \frac{\partial \tilde{\mathbf{x}}}{\partial \tilde{u}}\frac{\partial \tilde{u}}{\partial u}+ \frac{\partial \tilde{\mathbf{x}}}{\partial \tilde{v}}\frac{\partial \tilde{v}}{\partial u}  \right) \times \left( \frac{\partial \tilde{\mathbf{x}}}{\partial \tilde{u}}\frac{\partial \tilde{u}}{\partial v}+\frac{\partial \tilde{\mathbf{x}}}{\partial \tilde{v}}\frac{\partial \tilde{v}}{\partial v} \right)\\ 
+    &= \left( \frac{\partial \tilde{u}}{\partial u}\frac{\partial \tilde{v}}{\partial v}-\frac{\partial \tilde{u}}{\partial v}\frac{\partial \tilde{v}}{\partial u} \right)\frac{\partial \tilde{\mathbf{x}}}{\partial \tilde{u}}\times \frac{\partial \tilde{\mathbf{x}}}{\partial \tilde{v}}\\ 
+    &=\frac{\partial (\tilde{u},\tilde{v})}{\partial (u,v)} \frac{\partial \tilde{\mathbf{x}}}{\partial \tilde{u}}\times \frac{\partial \tilde{\mathbf{x}}}{\partial \tilde{v}}\\ 
+    &= J\,\frac{\partial \tilde{\mathbf{x}}}{\partial \tilde{u}}\times \frac{\partial \tilde{\mathbf{x}}}{\partial \tilde{v}}.
 \end{align*}
 
 Therefore with change of variables $ \tilde{u}=\tilde{u}(u,v),\tilde{v}=\tilde{v}(u,v) $,
 \begin{align*}
-    \int_{S} f \,\mathrm{d}S &= \iint_{\tilde{D}} f(\tilde{\bfx}(\tilde{u},\tilde{v})) \left|\frac{\partial \tilde{\bfx}}{\partial \tilde{u}}\times \frac{\partial \tilde{\bfx}}{\partial \tilde{v}}  \right| \dd \tilde{u}\dd \tilde{v}\\ 
-    &= \iint_{D} f(\bfx(u,v)) \left|\frac{\partial \tilde{\bfx}}{\partial \tilde{u}}\times \frac{\partial \tilde{\bfx}}{\partial \tilde{v}}  \right| \left| \frac{\partial (\tilde{u},\tilde{v})}{\partial (u,v)} \right| \dd u\dd v\\ 
-    &= \iint_{D} f(\bfx(u,v)) \left| \frac{\partial \bfx}{\partial u}\times \frac{\partial \bfx}{\partial v} \right| \dd u \dd v.
+    \int_{S} f \,\mathrm{d}S &= \iint_{\tilde{D}} f(\tilde{\mathbf{x}}(\tilde{u},\tilde{v})) \left|\frac{\partial \tilde{\mathbf{x}}}{\partial \tilde{u}}\times \frac{\partial \tilde{\mathbf{x}}}{\partial \tilde{v}}  \right| \dd \tilde{u}\dd \tilde{v}\\ 
+    &= \iint_{D} f(\mathbf{x}(u,v)) \left|\frac{\partial \tilde{\mathbf{x}}}{\partial \tilde{u}}\times \frac{\partial \tilde{\mathbf{x}}}{\partial \tilde{v}}  \right| \left| \frac{\partial (\tilde{u},\tilde{v})}{\partial (u,v)} \right| \dd u\dd v\\ 
+    &= \iint_{D} f(\mathbf{x}(u,v)) \left| \frac{\partial \mathbf{x}}{\partial u}\times \frac{\partial \mathbf{x}}{\partial v} \right| \dd u \dd v.
 \end{align*}
 
 \begin{proposition}

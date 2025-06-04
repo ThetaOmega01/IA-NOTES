@@ -1,22 +1,22 @@
 \section{Maxwell's Equations}
 \subsection{Brief introduction to electromagnetism}
 \begin{definition}
-    Denote by $ \bfB = \bfB(\bfx,t) $ the \textbf{magnetic field} and by $ \bfE=\bfE(\bfx,t) $ the \textbf{electric field}. These fields will depend on \textbf{charge density} $ \rho = \rho(\bfx,t) $ (electric charge per unit volumn) and on \textbf{current density} $ \bfJ = \bfJ(\bfx,t) $ (electric current per unit area).
+    Denote by $ \mathbf{B} = \mathbf{B}(\mathbf{x},t) $ the \textbf{magnetic field} and by $ \mathbf{E}=\mathbf{E}(\mathbf{x},t) $ the \textbf{electric field}. These fields will depend on \textbf{charge density} $ \rho = \rho(\mathbf{x},t) $ (electric charge per unit volumn) and on \textbf{current density} $ \mathbf{J} = \mathbf{J}(\mathbf{x},t) $ (electric current per unit area).
 \end{definition}
 The \textbf{Maxwell's equations} are 
 \begin{align}
-    \div \bfE &= \frac{\rho}{\epsilon_0}\\ 
-    \div\bfB&= 0\\ 
-    \curl\bfE+\frac{\partial \bfB}{\partial t}&=\mathbf{0} \\ 
-    \curl\bfB-\mu_0 \epsilon_0 \frac{\partial \bfE}{\partial t}&=\mu_0 \bfJ 
+    \div \mathbf{E} &= \frac{\rho}{\epsilon_0}\\ 
+    \div\mathbf{B}&= 0\\ 
+    \curl\mathbf{E}+\frac{\partial \mathbf{B}}{\partial t}&=\mathbf{0} \\ 
+    \curl\mathbf{B}-\mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}&=\mu_0 \mathbf{J} 
 \end{align}
 The constants $ \epsilon_0,\mu_0 $ are the \textbf{permittivity} and \textbf{permeability} of free space, which obey 
 \[
     \frac{1}{\mu_0 \epsilon_0}=c^2.
 \]
-Taking the divergence of (4) and use $ \div\curl\bfB=0 $ gives
+Taking the divergence of (4) and use $ \div\curl\mathbf{B}=0 $ gives
 \[
-    0 = \mu_0 \epsilon_0 \frac{\partial }{\partial t}(\div\bfE)+\mu_0 \div\bfJ \Longrightarrow \frac{\partial \rho}{\partial t}+\div\bfJ=0,  
+    0 = \mu_0 \epsilon_0 \frac{\partial }{\partial t}(\div\mathbf{E})+\mu_0 \div\mathbf{J} \Longrightarrow \frac{\partial \rho}{\partial t}+\div\mathbf{J}=0,  
 \]
 which is the \textit{conservation of charge}. By Noether's theorem there is a symmetry to it, which turned out to be ``gauge symmetry''.
 
@@ -24,35 +24,35 @@ which is the \textit{conservation of charge}. By Noether's theorem there is a sy
 \subsubsection*{Integration of (1)}
 By divergence theorem, we get the Gauss’ law for electric fields
 \[
-    \int_{V} \div\bfE \,\mathrm{d}V  =  \int_{V} \frac{\rho}{\epsilon_0} \,\mathrm{d}V 
-    \Longrightarrow  \int_{\partial V} \bfE \cdot\mathrm{d}\mathbf{S} =\frac{1}{\epsilon_0} \int_{V} \rho \,\mathrm{d}V = \frac{Q}{\epsilon_0} .
+    \int_{V} \div\mathbf{E} \,\mathrm{d}V  =  \int_{V} \frac{\rho}{\epsilon_0} \,\mathrm{d}V 
+    \Longrightarrow  \int_{\partial V} \mathbf{E} \cdot\mathrm{d}\mathbf{S} =\frac{1}{\epsilon_0} \int_{V} \rho \,\mathrm{d}V = \frac{Q}{\epsilon_0} .
 \]
 \subsubsection*{Integration of (2)}
 \[
-    \int_{\partial V} \bfB \cdot\mathrm{d}\mathbf{S} = 0.
+    \int_{\partial V} \mathbf{B} \cdot\mathrm{d}\mathbf{S} = 0.
 \]
 There is no net magnetic flux over any closed surface $ \partial V $. That is to say, there are no magnetic monopoles
 \subsubsection*{Integration of (3)}
 Integrate over a surface $S$ and use Stokes theorem
 \[
-    \oint_{\partial S} \bfE\cdot\rmd\bfx = - \int_{S} \frac{\partial \bfB}{\partial t}  \cdot\mathrm{d}\mathbf{S} = -\frac{\mathrm{d}}{\mathrm{d}t} \int_{S} \bfB \cdot\mathrm{d}\mathbf{S} .
+    \oint_{\partial S} \mathbf{E}\cdot\mathrm{d}\mathbf{x} = - \int_{S} \frac{\partial \mathbf{B}}{\partial t}  \cdot\mathrm{d}\mathbf{S} = -\frac{\mathrm{d}}{\mathrm{d}t} \int_{S} \mathbf{B} \cdot\mathrm{d}\mathbf{S} .
 \]
-So the rate of change of magnetic flux across the surface $S$ produces a circulation of the electric field $\bfE$ about $\partial S$. In other words, a changing magnetic field will induce a current.
+So the rate of change of magnetic flux across the surface $S$ produces a circulation of the electric field $\mathbf{E}$ about $\partial S$. In other words, a changing magnetic field will induce a current.
 
 \subsubsection*{Integration of (4)}
 Integrate over $S$ and use Stokes' theorem 
 \[
-    \oint_{\partial S} \bfB \cdot\mathrm{d}\mathbf{x} = \mu \cdot \int_{S} \bfJ \cdot\mathrm{d}\mathbf{S} + \mu_0 \epsilon_0 \frac{\mathrm{d}}{\mathrm{d}t}\int_{S} \bfE \cdot\mathrm{d}\mathbf{S} .
+    \oint_{\partial S} \mathbf{B} \cdot\mathrm{d}\mathbf{x} = \mu \cdot \int_{S} \mathbf{J} \cdot\mathrm{d}\mathbf{S} + \mu_0 \epsilon_0 \frac{\mathrm{d}}{\mathrm{d}t}\int_{S} \mathbf{E} \cdot\mathrm{d}\mathbf{S} .
 \]
 We see that electric current produces circulation of the magnetic field about the axis of direction of the current. So if current flows along a wire, a magnetic field will be produced that circulated the wire in the positive sense.
 
 \subsection{Electromagnetic waves}
-In \textit{empty space}, $ \rho=0,\bfJ=\mathbf{0} $, so the Maxwell's equations become
+In \textit{empty space}, $ \rho=0,\mathbf{J}=\mathbf{0} $, so the Maxwell's equations become
 \begin{align*}
-    \div \bfE &= 0\\ 
-    \div\bfB&= 0\\ 
-    \curl\bfE+\frac{\partial \bfB}{\partial t}&=\mathbf{0} \\ 
-    \curl\bfB-\mu_0 \epsilon_0 \frac{\partial \bfE}{\partial t}&=\mathbf{0}
+    \div \mathbf{E} &= 0\\ 
+    \div\mathbf{B}&= 0\\ 
+    \curl\mathbf{E}+\frac{\partial \mathbf{B}}{\partial t}&=\mathbf{0} \\ 
+    \curl\mathbf{B}-\mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}&=\mathbf{0}
 \end{align*}
 
 Recall that the Laplacian of a vector field is defined by
@@ -80,18 +80,18 @@ So again we get the wave equation, but this time for the magnetic field
 Suppose all fields and source terms are independent of $t$. Then Maxwell's equations are decoupled into 
 \[
     (\text{A})\left\{ \begin{aligned}
-         &\div\bfE = \frac{\rho}{\epsilon_0},\\ 
-         &\curl\bfE = \mathbf{0},
+         &\div\mathbf{E} = \frac{\rho}{\epsilon_0},\\ 
+         &\curl\mathbf{E} = \mathbf{0},
     \end{aligned} \right. ~~~~~~~~ (\text{B})\left\{ \begin{aligned}
-        &\div\bfB = 0,\\[3pt]
-        &\curl\bfB = \mu_0\bfJ.
+        &\div\mathbf{B} = 0,\\[3pt]
+        &\curl\mathbf{B} = \mu_0\mathbf{J}.
    \end{aligned} \right.
 \]
-If we are working on $ \mathbb{R}^{3} $ which is 2-connected, then $ \curl\bfE = \mathbf{0},\div\bfB=0 $ implies 
+If we are working on $ \mathbb{R}^{3} $ which is 2-connected, then $ \curl\mathbf{E} = \mathbf{0},\div\mathbf{B}=0 $ implies 
 \[
-    \bfE = - \nabla\phi\quad \text{and}\quad \bfB = \curl\bfA.
+    \mathbf{E} = - \nabla\phi\quad \text{and}\quad \mathbf{B} = \curl\mathbf{A}.
 \]
-Here $ \phi $ is called the \textbf{electric potential} for $\bfE$ and $ \bfA $ is called the \textbf{magnetic potential} for $ \bfB $. Then (A), (B) become
+Here $ \phi $ is called the \textbf{electric potential} for $\mathbf{E}$ and $ \mathbf{A} $ is called the \textbf{magnetic potential} for $ \mathbf{B} $. Then (A), (B) become
 \[
     -\nabla^{2} \phi=\frac{\rho}{\epsilon_{0}}, \quad \nabla \times(\nabla \times \mathbf{A})=\mu_{0} \mathbf{J}.
 \]
@@ -102,7 +102,7 @@ Let us return to the case of the magnetic potential. Since we always have from (
 $$
     \nabla \cdot \mathbf{B}=0
 $$
-we can always write $\mathbf{B}=\nabla \times \mathbf{A}$ for some vector potential $\bfA$, assuming we work on all of $\mathbf{R}^{3}$. Important observation: this definition does not define $\bfA$ uniquely, because we can always change $ \bfA \mapsto \bfA + \nabla_\chi $, where $\chi$ is a scalar function. Doing so does not change the value of $\mathbf{B}=\nabla \times \mathbf{A}$ since $\nabla \times \nabla \chi=\mathbf{0}$. This is called \textbf{gauge invariance}. We have a certain amount of freedom in how we define $\bfA$. This invariance encapsulates the precise symmetry that generates conservation of charge, via Noether's theorem. Using $\mathbf{B}=\nabla \times \mathbf{A}$ in (3) we see
+we can always write $\mathbf{B}=\nabla \times \mathbf{A}$ for some vector potential $\mathbf{A}$, assuming we work on all of $\mathbf{R}^{3}$. Important observation: this definition does not define $\mathbf{A}$ uniquely, because we can always change $ \mathbf{A} \mapsto \mathbf{A} + \nabla_\chi $, where $\chi$ is a scalar function. Doing so does not change the value of $\mathbf{B}=\nabla \times \mathbf{A}$ since $\nabla \times \nabla \chi=\mathbf{0}$. This is called \textbf{gauge invariance}. We have a certain amount of freedom in how we define $\mathbf{A}$. This invariance encapsulates the precise symmetry that generates conservation of charge, via Noether's theorem. Using $\mathbf{B}=\nabla \times \mathbf{A}$ in (3) we see
 $$
     \nabla \times\left(\mathbf{E}+\frac{\partial \mathbf{A}}{\partial t}\right)=\mathbf{0}.
 $$

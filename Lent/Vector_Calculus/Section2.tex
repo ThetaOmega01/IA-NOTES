@@ -3,18 +3,18 @@
 
 Recall that for $ f(u_1,\dots,u_n) $ we define the \textbf{differential} of $f$ to be 
 \[
-    \rmd f = \frac{\partial f}{\partial u_i} \dd u_i, 
+    \mathrm{d} f = \frac{\partial f}{\partial u_i} \dd u_i, 
 \]
-assuming summation convention. Call $ \{\rmd u_i\} $ \textbf{differential forms}. They are defined to be \textit{linearly independent}, i.e. $ \alpha_i \dd u_i =0 \Rightarrow \alpha_i=0 $.
+assuming summation convention. Call $ \{\mathrm{d} u_i\} $ \textbf{differential forms}. They are defined to be \textit{linearly independent}, i.e. $ \alpha_i \dd u_i =0 \Rightarrow \alpha_i=0 $.
 \begin{definition}[Differential of vectors]
-    Let $\bfx = \bfx(u_1,\dots,u_n)$. Define
+    Let $\mathbf{x} = \mathbf{x}(u_1,\dots,u_n)$. Define
     \[
-        \rmd \bfx= \frac{\partial \bfx}{\partial u_i} \dd u_i. 
+        \mathrm{d} \mathbf{x}= \frac{\partial \mathbf{x}}{\partial u_i} \dd u_i. 
     \]
 \end{definition}
 
 \begin{example}
-    If $f(u,v,w)=u^2+w\sin v$, then $ \rmd f = 2u\dd u+w \cos v \dd v+ \sin v \dd w $. If 
+    If $f(u,v,w)=u^2+w\sin v$, then $ \mathrm{d} f = 2u\dd u+w \cos v \dd v+ \sin v \dd w $. If 
     \[
         \mathbf{x}(u,v,w)=\begin{pmatrix}
             u^2-v^2 \\ w \\ e^v
@@ -22,7 +22,7 @@ assuming summation convention. Call $ \{\rmd u_i\} $ \textbf{differential forms}
     \] 
     then 
     \[
-        \rmd \mathbf{x} = \begin{pmatrix}
+        \mathrm{d} \mathbf{x} = \begin{pmatrix}
             2u \\ 0 \\ 0
         \end{pmatrix}\dd u+ \begin{pmatrix}
             -2v \\ 0 \\ e^v
@@ -33,22 +33,22 @@ assuming summation convention. Call $ \{\rmd u_i\} $ \textbf{differential forms}
 \end{example}
 
 \subsubsection*{Differentials and the chain rule}
-Let $ f: \mathbb{R}^{n}\to \mathbb{R} $, $\bfu=(u_1,\dots,u_n)$ and $ \delta\bfu=(\delta u_1,\dots,\delta u_n) $, then we have 
+Let $ f: \mathbb{R}^{n}\to \mathbb{R} $, $\mathbf{u}=(u_1,\dots,u_n)$ and $ \delta\mathbf{u}=(\delta u_1,\dots,\delta u_n) $, then we have 
 \[
-    \delta f=f(\bfu+\delta\bfu)-f(\bfu)=\frac{\partial f}{\partial u_i}\delta u_i +o(\delta\bfu),
+    \delta f=f(\mathbf{u}+\delta\mathbf{u})-f(\mathbf{u})=\frac{\partial f}{\partial u_i}\delta u_i +o(\delta\mathbf{u}),
 \]
-where $ \frac{o(\delta\bfu)}{|\delta\bfu|}\to 0 $ as $ |\delta\bfu|\to 0 $.
+where $ \frac{o(\delta\mathbf{u})}{|\delta\mathbf{u}|}\to 0 $ as $ |\delta\mathbf{u}|\to 0 $.
 
 Similarly for vector fields
 \[
-    \delta\bfx = \frac{\partial \bfx}{\partial u_i}\delta u_i+o(\delta\bfu). 
+    \delta\mathbf{x} = \frac{\partial \mathbf{x}}{\partial u_i}\delta u_i+o(\delta\mathbf{u}). 
 \]
 
-Now consider a function $ F(u_1,\dots,u_n)=f(x_1,\dots,x_n) $, where $ x_i(u_1,\dots,u_n) $ are functions of $u_i$. Clearly $ \rmd F=\rmd f $, so 
+Now consider a function $ F(u_1,\dots,u_n)=f(x_1,\dots,x_n) $, where $ x_i(u_1,\dots,u_n) $ are functions of $u_i$. Clearly $ \mathrm{d} F=\mathrm{d} f $, so 
 \[
-    \frac{\partial F}{\partial u_i} \dd u_i=\rmd F = \rmd f= \frac{\partial f}{\partial x_j}\dd x_j = \frac{\partial f}{\partial x_j}\frac{\partial x_j}{\partial u_i}\dd u_i.  
+    \frac{\partial F}{\partial u_i} \dd u_i=\mathrm{d} F = \mathrm{d} f= \frac{\partial f}{\partial x_j}\dd x_j = \frac{\partial f}{\partial x_j}\frac{\partial x_j}{\partial u_i}\dd u_i.  
 \]
-Since $\rmd u_i$ are a basis, we have the \textbf{chain rule}
+Since $\mathrm{d} u_i$ are a basis, we have the \textbf{chain rule}
 \[
     \frac{\partial F}{\partial u_i}=\frac{\partial f}{\partial x_j}\frac{\partial x_j}{\partial u_i}.
 \]
@@ -58,7 +58,7 @@ Recall that the Cartesian coordinates $ (x,y) $ and the polar coordinates $ (r,\
 \[
     x=r \cos \theta,\quad y= r\sin \theta.
 \]
-A general set of coordinates $ (u,v) $ on $\bbR^2$ can be specified by their relationship to $(x,y)$, i.e. specify smooth functions
+A general set of coordinates $ (u,v) $ on $\mathbb{R}^2$ can be specified by their relationship to $(x,y)$, i.e. specify smooth functions
 \[
     x=x(u,v),\quad y=y(u,v),
 \]
@@ -73,68 +73,68 @@ Similarly for $ \mathbb{R}^{3} $, $(u,v,w)$ is specified by
 \]
 
 \begin{example}[Cartesian coordinates]
-    $ \bfx(x,y)=\begin{pmatrix}
+    $ \mathbf{x}(x,y)=\begin{pmatrix}
         x \\ y
-    \end{pmatrix}=x\bfe_x+y\bfe_y $ where $ \{\bfe_x,\bfe_y\} $ are orthonormal and \textit{fixed}. Said differently,
+    \end{pmatrix}=x\mathbf{e}_x+y\mathbf{e}_y $ where $ \{\mathbf{e}_x,\mathbf{e}_y\} $ are orthonormal and \textit{fixed}. Said differently,
     \[
-        \bfe_x = \frac{\frac{\partial }{\partial x}\bfx(x,y) }{\left| \frac{\partial }{\partial x}\bfx(x,y) \right| },\quad \bfe_y=\frac{\frac{\partial }{\partial y}\bfx(x,y) }{\left| \frac{\partial }{\partial y}\bfx(x,y) \right| }.
+        \mathbf{e}_x = \frac{\frac{\partial }{\partial x}\mathbf{x}(x,y) }{\left| \frac{\partial }{\partial x}\mathbf{x}(x,y) \right| },\quad \mathbf{e}_y=\frac{\frac{\partial }{\partial y}\mathbf{x}(x,y) }{\left| \frac{\partial }{\partial y}\mathbf{x}(x,y) \right| }.
     \]
 \end{example}
 
 Note that 
 \[
-    \rmd \bfx=\frac{\partial \bfx}{\partial x}\dd x+\frac{\partial \bfx}{\partial y}\dd y=\rmd x\bfe_x+\rmd y\bfe_y,  
+    \mathrm{d} \mathbf{x}=\frac{\partial \mathbf{x}}{\partial x}\dd x+\frac{\partial \mathbf{x}}{\partial y}\dd y=\mathrm{d} x\mathbf{e}_x+\mathrm{d} y\mathbf{e}_y,  
 \]
-i.e. change in coordinates $ x \mapsto x+\delta x $, then the vector changes(to the first order) by $ \bfx \mapsto \bfx+\delta x\bfe_x .$
+i.e. change in coordinates $ x \mapsto x+\delta x $, then the vector changes(to the first order) by $ \mathbf{x} \mapsto \mathbf{x}+\delta x\mathbf{e}_x .$
 
 \begin{definition}[Line element]
-    Call $ \rmd \bfx $ the \textbf{line element}. This tells us how small changes in coordinates produce changes in position vectors.
+    Call $ \mathrm{d} \mathbf{x} $ the \textbf{line element}. This tells us how small changes in coordinates produce changes in position vectors.
 \end{definition}
 
 \begin{example}[Polar coordinates]
     $ \mathbf{x}(r,\theta)=\begin{pmatrix}
         r\cos \theta \\ r\sin\theta
-    \end{pmatrix}\equiv r\bfe_r $. We use basis vectors $ \bfe_r,\bfe_\theta $ such that 
+    \end{pmatrix}\equiv r\mathbf{e}_r $. We use basis vectors $ \mathbf{e}_r,\mathbf{e}_\theta $ such that 
     \[
-        \bfe_r=\begin{pmatrix}
+        \mathbf{e}_r=\begin{pmatrix}
             \cos\theta \\ \sin\theta
-        \end{pmatrix},\quad \bfe_\theta = \begin{pmatrix}
+        \end{pmatrix},\quad \mathbf{e}_\theta = \begin{pmatrix}
             -\sin \theta  \\\cos \theta 
         \end{pmatrix}.
     \]
-    Note that $ \{\bfe_r,\bfe_\theta\} $ are orthonormal at each $ (r,\theta) $, but \textit{not} the same for each $ (r,\theta) $. As before,
+    Note that $ \{\mathbf{e}_r,\mathbf{e}_\theta\} $ are orthonormal at each $ (r,\theta) $, but \textit{not} the same for each $ (r,\theta) $. As before,
     \[
-        \bfe_r = \frac{\frac{\partial }{\partial r}\bfx(r,\theta) }{\left| \frac{\partial }{\partial r}\bfx(r,\theta) \right| },\quad \bfe_\theta=\frac{\frac{\partial }{\partial \theta}\bfx(r,\theta) }{\left| \frac{\partial }{\partial \theta}\bfx(r,\theta) \right| }
+        \mathbf{e}_r = \frac{\frac{\partial }{\partial r}\mathbf{x}(r,\theta) }{\left| \frac{\partial }{\partial r}\mathbf{x}(r,\theta) \right| },\quad \mathbf{e}_\theta=\frac{\frac{\partial }{\partial \theta}\mathbf{x}(r,\theta) }{\left| \frac{\partial }{\partial \theta}\mathbf{x}(r,\theta) \right| }
     \]
-    Since $ \{\bfe_r,\bfe_\theta\} $ are orthogonal, we call $ (r,\theta) $ \textbf{orthogonal curvilinear coordinates}. The line element is 
+    Since $ \{\mathbf{e}_r,\mathbf{e}_\theta\} $ are orthogonal, we call $ (r,\theta) $ \textbf{orthogonal curvilinear coordinates}. The line element is 
     \begin{align*}
-        \rmd \bfx&= \frac{\partial \bfx}{\partial r}\dd r+\frac{\partial \bfx}{\partial \theta}\dd \theta = \frac{\partial r\bfe_r}{\partial r}\dd r+\frac{\partial r\bfe_r}{\partial \theta}\dd \theta\\ 
-        &= \bfe_r \dd r+ r\bfe_\theta\dd \theta.
+        \mathrm{d} \mathbf{x}&= \frac{\partial \mathbf{x}}{\partial r}\dd r+\frac{\partial \mathbf{x}}{\partial \theta}\dd \theta = \frac{\partial r\mathbf{e}_r}{\partial r}\dd r+\frac{\partial r\mathbf{e}_r}{\partial \theta}\dd \theta\\ 
+        &= \mathbf{e}_r \dd r+ r\mathbf{e}_\theta\dd \theta.
     \end{align*}
-    A change $ \theta \mapsto \theta+ \delta \theta $ produces a (first order) change $ \mathbf{x}\mapsto \mathbf{x}+r\delta \theta\bfe_\theta  $.
+    A change $ \theta \mapsto \theta+ \delta \theta $ produces a (first order) change $ \mathbf{x}\mapsto \mathbf{x}+r\delta \theta\mathbf{e}_\theta  $.
 \end{example}
 
 \subsubsection*{Orthogonal curvilinear coordinates}
 In general we say that $(u, v, w)$ are a set of \textbf{orthogonal curvilinear coordinates} if the vectors
 \[
-    \bfe_u = \frac{\partial \bfx/\partial u }{\left| \partial \bfx/\partial u \right| },\quad \bfe_v=\frac{\partial \bfx/\partial v }{\left| \partial \bfx/\partial v \right| },\quad \bfe_w=\frac{\partial \bfx/\partial w }{\left| \partial \bfx/\partial w \right| }
+    \mathbf{e}_u = \frac{\partial \mathbf{x}/\partial u }{\left| \partial \mathbf{x}/\partial u \right| },\quad \mathbf{e}_v=\frac{\partial \mathbf{x}/\partial v }{\left| \partial \mathbf{x}/\partial v \right| },\quad \mathbf{e}_w=\frac{\partial \mathbf{x}/\partial w }{\left| \partial \mathbf{x}/\partial w \right| }
 \]
-form a \textit{right-handed orthonormal} basis ($ \bfe_u\times\bfe_v=\bfe_w $ etc.). Note that $ \bfe_u,\bfe_v,\bfe_w $ need \textit{not} be fixed.
+form a \textit{right-handed orthonormal} basis ($ \mathbf{e}_u\times\mathbf{e}_v=\mathbf{e}_w $ etc.). Note that $ \mathbf{e}_u,\mathbf{e}_v,\mathbf{e}_w $ need \textit{not} be fixed.
 
 It is standard to write 
 \[
-    h_u = \left| \frac{\partial \bfx}{\partial u}  \right| ,\quad h_v=\left| \frac{\partial \bfx}{\partial v}  \right|,\quad h_w=\left| \frac{\partial \bfx}{\partial w}  \right|
+    h_u = \left| \frac{\partial \mathbf{x}}{\partial u}  \right| ,\quad h_v=\left| \frac{\partial \mathbf{x}}{\partial v}  \right|,\quad h_w=\left| \frac{\partial \mathbf{x}}{\partial w}  \right|
 \]
 called \textbf{scale factors}. They are called so because 
 \[
-    \rmd x = \frac{\partial \bfx}{\partial u}\dd u+ \frac{\partial \bfx}{\partial v}\dd v+\frac{\partial \bfx}{\partial w}\dd w=h_u \dd u \bfe_u+h_v \dd v \bfe_v+h_w \dd w \bfe_w.
+    \mathrm{d} x = \frac{\partial \mathbf{x}}{\partial u}\dd u+ \frac{\partial \mathbf{x}}{\partial v}\dd v+\frac{\partial \mathbf{x}}{\partial w}\dd w=h_u \dd u \mathbf{e}_u+h_v \dd v \mathbf{e}_v+h_w \dd w \mathbf{e}_w.
 \]
-They describe how small changes in $ (u,v,w) $ scale up (to 1st order) to changes in $\bfx$ wrt $ \bfe_u,\bfe_v,\bfe_w $.
+They describe how small changes in $ (u,v,w) $ scale up (to 1st order) to changes in $\mathbf{x}$ wrt $ \mathbf{e}_u,\mathbf{e}_v,\mathbf{e}_w $.
 
 \subsubsection*{Cylindrical polar coordinates}
 Cylindrical polar coordinates $ (\rho,\phi,z) $ are defined by 
 \[
-    \bfx(\rho,\phi,z)= \begin{pmatrix}
+    \mathbf{x}(\rho,\phi,z)= \begin{pmatrix}
         \rho\cos \phi \\ \rho \sin \phi \\ z
     \end{pmatrix}, \quad\begin{matrix}
         0\le \rho< \infty, \\ 0\le \phi<2\pi,\\ -\infty <z<\infty,
@@ -142,13 +142,13 @@ Cylindrical polar coordinates $ (\rho,\phi,z) $ are defined by
 \]
 with 
 \[
-    \bfe_\rho=\begin{pmatrix}
+    \mathbf{e}_\rho=\begin{pmatrix}
         \cos \phi \\ \sin \phi \\ 0
     \end{pmatrix},\quad
-    \bfe_\phi=\begin{pmatrix}
+    \mathbf{e}_\phi=\begin{pmatrix}
         -\sin\phi \\ \cos \phi \\ 0
     \end{pmatrix},\quad
-    \bfe_z=\begin{pmatrix}
+    \mathbf{e}_z=\begin{pmatrix}
         0 \\ 0 \\ 1
     \end{pmatrix},
 \]
@@ -158,17 +158,17 @@ scale factors
 \]
 and line element
 \[
-    \rmd \bfx = \rmd \rho\, \bfe_\rho+\rho\dd \phi \, \bfe_\phi+\rmd z \, \bfe_z.
+    \mathrm{d} \mathbf{x} = \mathrm{d} \rho\, \mathbf{e}_\rho+\rho\dd \phi \, \mathbf{e}_\phi+\mathrm{d} z \, \mathbf{e}_z.
 \]
 \begin{note}
     \[
-        \bfx=\begin{pmatrix}
+        \mathbf{x}=\begin{pmatrix}
             \rho\cos \phi \\ \rho \sin \phi \\ z
         \end{pmatrix}=\rho\begin{pmatrix}
             \cos \phi \\  \sin \phi \\ 0
         \end{pmatrix}+z \begin{pmatrix}
             0 \\ 0 \\ 1
-        \end{pmatrix}=\rho\, \bfe_\rho+z\, \bfe_z.
+        \end{pmatrix}=\rho\, \mathbf{e}_\rho+z\, \mathbf{e}_z.
     \]
 \end{note}
 
@@ -177,7 +177,7 @@ See \href{http://jt775.user.srcf.net/IA-Lent/handouts/vc_handout1.pdf}{handout 1
 \subsubsection*{Spherical polar coordinates}
 Define $ (r,\theta,\phi) $ by 
 \[
-    \bfx(r,\theta,\phi) = \begin{pmatrix}
+    \mathbf{x}(r,\theta,\phi) = \begin{pmatrix}
         r \cos \phi \sin \theta \\ r \sin \phi \sin \theta \\ r \cos \theta 
     \end{pmatrix},\quad \begin{matrix}
         0\le r\le \infty, \\ 0\le \theta<\pi,\\ 0 \le \phi< 2\pi,
@@ -185,146 +185,146 @@ Define $ (r,\theta,\phi) $ by
 \]
 with 
 \[
-    \bfe_r = \begin{pmatrix}
+    \mathbf{e}_r = \begin{pmatrix}
         \cos \phi \sin \theta \\ \sin \phi \sin \theta\\ \cos \theta 
-    \end{pmatrix},\quad \bfe_\theta = \begin{pmatrix}
+    \end{pmatrix},\quad \mathbf{e}_\theta = \begin{pmatrix}
         \cos \phi \cos \theta \\ \sin \phi \cos \theta \\ -\sin \theta 
-    \end{pmatrix},\quad \bfe_\phi = \begin{pmatrix}
+    \end{pmatrix},\quad \mathbf{e}_\phi = \begin{pmatrix}
         - \sin \phi \\ \cos \phi \\ 0
     \end{pmatrix},
 \]
 and scale factors $ h_r=1,h_\theta=r,h_\phi=r \sin \theta $. Line element is 
 \[
-    \rmd \bfx = \rmd r\,\bfe_r+ r\dd \theta\,\bfe_\theta+r \sin \theta\dd \phi\,\bfe_\phi,
+    \mathrm{d} \mathbf{x} = \mathrm{d} r\,\mathbf{e}_r+ r\dd \theta\,\mathbf{e}_\theta+r \sin \theta\dd \phi\,\mathbf{e}_\phi,
 \]
-and $ \bfx=r\bfe_r $. See \href{http://jt775.user.srcf.net/IA-Lent/handouts/vc_handout1.pdf}{handout 1} for detailed diagrams.
+and $ \mathbf{x}=r\mathbf{e}_r $. See \href{http://jt775.user.srcf.net/IA-Lent/handouts/vc_handout1.pdf}{handout 1} for detailed diagrams.
 
 \subsection{The gradient operator}
 \begin{definition}[Gradient]
     For $ f: \mathbb{R}^{3}\to \mathbb{R} $, define \textbf{gradient} of $f$ by 
     \begin{equation}\label{eq:gradient}\tag{$ * $}
-        \nabla f : f(\bfx+\bfh) = f(\bfx)+ \nabla f(\bfx) \cdot \bfh+o(\bfh)\quad (|\bfh|\to 0).
+        \nabla f : f(\mathbf{x}+\mathbf{h}) = f(\mathbf{x})+ \nabla f(\mathbf{x}) \cdot \mathbf{h}+o(\mathbf{h})\quad (|\mathbf{h}|\to 0).
     \end{equation}
 \end{definition}
 \begin{definition}[Directional derivative]
-    The \textbf{directional derivative} of $f$ in direction $\bfv$, denoted by $ D_\bfv f $ or $ \partial f/\partial \bfv  $ is defined by 
+    The \textbf{directional derivative} of $f$ in direction $\mathbf{v}$, denoted by $ D_\mathbf{v} f $ or $ \partial f/\partial \mathbf{v}  $ is defined by 
     \[
-        D_\bfv f(\bfx) = \lim_{t \to 0} \frac{f(\bfx+t\bfv)-f(\bfx)}{t}, 
+        D_\mathbf{v} f(\mathbf{x}) = \lim_{t \to 0} \frac{f(\mathbf{x}+t\mathbf{v})-f(\mathbf{x})}{t}, 
     \]
     i.e.
     \begin{equation}\label{eq:direc deriv}\tag{$ ** $}
-        f(\bfx+t\bfv)=f(\bfx)+t D_\bfv f(\bfx)+o(t),\quad t\to 0. 
+        f(\mathbf{x}+t\mathbf{v})=f(\mathbf{x})+t D_\mathbf{v} f(\mathbf{x})+o(t),\quad t\to 0. 
     \end{equation}
 \end{definition}
 
-Set $ \bfh=t\bfv $ in (\ref{eq:gradient}), we get 
+Set $ \mathbf{h}=t\mathbf{v} $ in (\ref{eq:gradient}), we get 
 \[
-    f(\bfx+t\bfv) = f(\bfx)+t \nabla f(\bfx) \cdot \bfv + o(t),\quad t\to 0.
+    f(\mathbf{x}+t\mathbf{v}) = f(\mathbf{x})+t \nabla f(\mathbf{x}) \cdot \mathbf{v} + o(t),\quad t\to 0.
 \]
 Comparing to (\ref{eq:direc deriv}), we get 
 \[
-    D_\bfv f = \bfv \cdot \nabla f.
+    D_\mathbf{v} f = \mathbf{v} \cdot \nabla f.
 \]
 By Cauchy-Schwarz, $ \nabla f $ points in direction of greatest increase of $f$. Similarly $ - \nabla f $ points in direction of greatest decrease of $f$.
 
 \begin{example}
-    Suppose $ f(\bfx) = \frac{1}{2}|\bfx|^2 $. Then 
+    Suppose $ f(\mathbf{x}) = \frac{1}{2}|\mathbf{x}|^2 $. Then 
     \begin{align*}
-        f(\bfx+\bfh) &= \frac{1}{2}(\bfx+\bfh)\cdot (\bfx+\bfh)\\ 
-        &= \frac{1}{2}|\bfx|^2+ \bfx \cdot \bfh+\frac{1}{2}|\bfh|^2\\ 
-        &= \frac{1}{2}|\bfx|^2+\bfx \cdot \bfh+o(\bfh),\quad |\bfh|\to 0,
+        f(\mathbf{x}+\mathbf{h}) &= \frac{1}{2}(\mathbf{x}+\mathbf{h})\cdot (\mathbf{x}+\mathbf{h})\\ 
+        &= \frac{1}{2}|\mathbf{x}|^2+ \mathbf{x} \cdot \mathbf{h}+\frac{1}{2}|\mathbf{h}|^2\\ 
+        &= \frac{1}{2}|\mathbf{x}|^2+\mathbf{x} \cdot \mathbf{h}+o(\mathbf{h}),\quad |\mathbf{h}|\to 0,
     \end{align*}
-    so $ \nabla f =\bfx $.
+    so $ \nabla f =\mathbf{x} $.
 \end{example}
 
 \subsubsection*{Gradient along a curve}
-Suppose we have a curve $ t \mapsto \bfx(t) $. How does $f$ change as we move along this curve?
+Suppose we have a curve $ t \mapsto \mathbf{x}(t) $. How does $f$ change as we move along this curve?
 
-Write $ F(t) = f(\bfx(t)) $, $ \delta\bfx = \bfx(t+\delta t)-\bfx(t) $.
+Write $ F(t) = f(\mathbf{x}(t)) $, $ \delta\mathbf{x} = \mathbf{x}(t+\delta t)-\mathbf{x}(t) $.
 \begin{align*}
-    F(t+\delta t) &= f(\bfx(t+\delta t)) = f(\bfx(t)+\delta \bfx)\\ 
-    &= f(\bfx(t))+\nabla f(\bfx(t)) \cdot \delta\bfx +o(\delta \bfx),\quad |\delta\bfx| \to 0.
+    F(t+\delta t) &= f(\mathbf{x}(t+\delta t)) = f(\mathbf{x}(t)+\delta \mathbf{x})\\ 
+    &= f(\mathbf{x}(t))+\nabla f(\mathbf{x}(t)) \cdot \delta\mathbf{x} +o(\delta \mathbf{x}),\quad |\delta\mathbf{x}| \to 0.
 \end{align*}
-Since $ \delta\bfx = \delta t\, \bfx'(t)+o(\delta t) $, 
+Since $ \delta\mathbf{x} = \delta t\, \mathbf{x}'(t)+o(\delta t) $, 
 \begin{align*}
-    &F(t+\delta t)= F(t)+\bfx'(t) \cdot \nabla f(\bfx(t)) \delta t+o(\delta t)\\ 
-    \Longrightarrow & \boxed{\frac{\mathrm{d}F}{\mathrm{d}t} = \frac{\mathrm{d}}{\mathrm{d}t}f(\bfx(t)) = \frac{\mathrm{d}\bfx}{\mathrm{d}t} \cdot \nabla f(\bfx(t))}.
+    &F(t+\delta t)= F(t)+\mathbf{x}'(t) \cdot \nabla f(\mathbf{x}(t)) \delta t+o(\delta t)\\ 
+    \Longrightarrow & \boxed{\frac{\mathrm{d}F}{\mathrm{d}t} = \frac{\mathrm{d}}{\mathrm{d}t}f(\mathbf{x}(t)) = \frac{\mathrm{d}\mathbf{x}}{\mathrm{d}t} \cdot \nabla f(\mathbf{x}(t))}.
 \end{align*}
 
 \subsubsection*{Gradient as the normal of a surface}
 Suppose a surface $S$ is defined implicitly by 
 \[
-    S = \{\bfx\in \mathbb{R}^{3}: f(\bfx)=0\}.
+    S = \{\mathbf{x}\in \mathbb{R}^{3}: f(\mathbf{x})=0\}.
 \]
-If $ t \mapsto \bfx(t) $ is \textit{any} curve \textit{in} $S$, then $ f(\bfx(t))=0 $ and 
+If $ t \mapsto \mathbf{x}(t) $ is \textit{any} curve \textit{in} $S$, then $ f(\mathbf{x}(t))=0 $ and 
 \[
-    0 = \frac{\mathrm{d}}{\mathrm{d}t}f(\bfx(t)) =  \frac{\mathrm{d}\bfx}{\mathrm{d}t} \cdot \nabla f(\bfx(t)),
+    0 = \frac{\mathrm{d}}{\mathrm{d}t}f(\mathbf{x}(t)) =  \frac{\mathrm{d}\mathbf{x}}{\mathrm{d}t} \cdot \nabla f(\mathbf{x}(t)),
 \]
-so $ \nabla f $ is \textit{orthogonal} to tangent vector of \textit{any curve} in $S$, and thus is \textit{normal} to $S$ at $ \bfx $.
+so $ \nabla f $ is \textit{orthogonal} to tangent vector of \textit{any curve} in $S$, and thus is \textit{normal} to $S$ at $ \mathbf{x} $.
 
 \subsection{Computing the gradient}
 \subsubsection*{In Cartesian coordinates}
-To get $ \bfx \mapsto \bfx+\bfh $, simply let $ x \mapsto x+h_1 $ etc. and 
+To get $ \mathbf{x} \mapsto \mathbf{x}+\mathbf{h} $, simply let $ x \mapsto x+h_1 $ etc. and 
 \begin{align*}
-    f(\bfx+\bfh) &= f(x+h_1,y+h_2,z+h_3)\\ 
-    &= f(\bfx) + \frac{\partial f}{\partial x}h_1+\frac{\partial f}{\partial y}h_2+\frac{\partial f}{\partial z}h_3 +o(\bfh)\\ 
-    &= f(\bfx)+ \begin{pmatrix}
+    f(\mathbf{x}+\mathbf{h}) &= f(x+h_1,y+h_2,z+h_3)\\ 
+    &= f(\mathbf{x}) + \frac{\partial f}{\partial x}h_1+\frac{\partial f}{\partial y}h_2+\frac{\partial f}{\partial z}h_3 +o(\mathbf{h})\\ 
+    &= f(\mathbf{x})+ \begin{pmatrix}
         \partial f/\partial x  \\ \partial f/\partial y  \\ \partial f/\partial z 
-    \end{pmatrix}\cdot \bfh+o(\bfh),
+    \end{pmatrix}\cdot \mathbf{h}+o(\mathbf{h}),
 \end{align*}
 so 
 \[
     \nabla f = \begin{pmatrix}
         \partial f/\partial x  \\ \partial f/\partial y  \\ \partial f/\partial z 
-    \end{pmatrix} \Longleftrightarrow \nabla f = \bfe_i \frac{\partial f}{\partial x_i}.
+    \end{pmatrix} \Longleftrightarrow \nabla f = \mathbf{e}_i \frac{\partial f}{\partial x_i}.
 \]
 We see that $ \nabla $ is a ``vector differential operator'' and in Cartesian coordinates
 \[
-    \nabla = \bfe_i \frac{\partial }{\partial x_i} . 
+    \nabla = \mathbf{e}_i \frac{\partial }{\partial x_i} . 
 \]
 
 \begin{example}
-    Let $ f=\frac{1}{2}|\bfx|^2 = \frac{1}{2}(x^2+y^2+z^2) $. Then $ \nabla f = (x,y,z) $.
+    Let $ f=\frac{1}{2}|\mathbf{x}|^2 = \frac{1}{2}(x^2+y^2+z^2) $. Then $ \nabla f = (x,y,z) $.
 \end{example}
 
 \subsubsection*{In orthogonal curvilinear coordinates}
-Recall in Cartesian coordinates $ \rmd \bfx = \rmd x_i \bfe_i $ and $ \rmd f = (\partial f/\partial x_i )\dd x_i $. Notice that
+Recall in Cartesian coordinates $ \mathrm{d} \mathbf{x} = \mathrm{d} x_i \mathbf{e}_i $ and $ \mathrm{d} f = (\partial f/\partial x_i )\dd x_i $. Notice that
 \[
-    \nabla f \cdot \rmd \bfx = \left( \bfe_i \frac{\partial f}{\partial x_i}  \right) \cdot \left( \bfe_j \dd x_j \right) = \frac{\partial f}{\partial x_i}(\bfe_i\cdot \bfe_j) \dd x_j = \frac{\partial f}{\partial x_i}\dd x_i = \rmd f.  
+    \nabla f \cdot \mathrm{d} \mathbf{x} = \left( \mathbf{e}_i \frac{\partial f}{\partial x_i}  \right) \cdot \left( \mathbf{e}_j \dd x_j \right) = \frac{\partial f}{\partial x_i}(\mathbf{e}_i\cdot \mathbf{e}_j) \dd x_j = \frac{\partial f}{\partial x_i}\dd x_i = \mathrm{d} f.  
 \]
 Thus in \textit{any} coordinates, 
 \[
-    \boxed{\nabla f\cdot \rmd \bfx = \rmd f}
+    \boxed{\nabla f\cdot \mathrm{d} \mathbf{x} = \mathrm{d} f}
 \] 
 
 \begin{proposition}\label{prop:2.1}
     If $ (u,v,w) $ is OCC\footnote{orthogonal curvilinear coordinates} and $f=f(u,v,w)$, then 
     \[
-        \nabla f = \frac{1}{h_u}\frac{\partial f}{\partial u}\bfe_u + \frac{1}{h_v}\frac{\partial f}{\partial v}\bfe_v + \frac{1}{h_w}\frac{\partial f}{\partial w}\bfe_w.
+        \nabla f = \frac{1}{h_u}\frac{\partial f}{\partial u}\mathbf{e}_u + \frac{1}{h_v}\frac{\partial f}{\partial v}\mathbf{e}_v + \frac{1}{h_w}\frac{\partial f}{\partial w}\mathbf{e}_w.
     \] 
 \end{proposition}
 \begin{proof}
-    If $ f=f(u,v,w) $ and $ \bfx = \bfx(u,v,w) $, then 
+    If $ f=f(u,v,w) $ and $ \mathbf{x} = \mathbf{x}(u,v,w) $, then 
     \[
-        \rmd f = \frac{\partial f}{\partial u}\dd u +\frac{\partial f}{\partial v}\dd v +\frac{\partial f}{\partial w}\dd w,\ \rmd \bfx = h_u\dd u\bfe_u+h_v\dd v\bfe_v+h_w\dd w\bfe_w.
+        \mathrm{d} f = \frac{\partial f}{\partial u}\dd u +\frac{\partial f}{\partial v}\dd v +\frac{\partial f}{\partial w}\dd w,\ \mathrm{d} \mathbf{x} = h_u\dd u\mathbf{e}_u+h_v\dd v\mathbf{e}_v+h_w\dd w\mathbf{e}_w.
     \]
-    Using $\nabla f\cdot \rmd \bfx = \rmd f$ and writing $ \nabla f = (\nabla f)_u\bfe_u+(\nabla f)_v\bfe_v+(\nabla f)_w\bfe_w $, we get 
+    Using $\nabla f\cdot \mathrm{d} \mathbf{x} = \mathrm{d} f$ and writing $ \nabla f = (\nabla f)_u\mathbf{e}_u+(\nabla f)_v\mathbf{e}_v+(\nabla f)_w\mathbf{e}_w $, we get 
     \[
         \frac{\partial f}{\partial u}\dd u +\frac{\partial f}{\partial v}\dd v +\frac{\partial f}{\partial w}\dd w = h_u(\nabla f)_u \dd u+h_v(\nabla f)_v \dd v+h_w(\nabla f)_w \dd w.
     \]
-    Since $ \rmd u, \rmd v,\rmd w $ are linearly independent, comparing coefficients gives the result.
+    Since $ \mathrm{d} u, \mathrm{d} v,\mathrm{d} w $ are linearly independent, comparing coefficients gives the result.
 \end{proof}
 
 Hence in cylindrical polars,
 \[
-    \nabla f = \frac{\partial f}{\partial \rho}\bfe_\rho+\frac{1}{\rho} \frac{\partial f}{\partial \phi}\bfe_\phi+\frac{\partial f}{\partial z}\bfe_z,  
+    \nabla f = \frac{\partial f}{\partial \rho}\mathbf{e}_\rho+\frac{1}{\rho} \frac{\partial f}{\partial \phi}\mathbf{e}_\phi+\frac{\partial f}{\partial z}\mathbf{e}_z,  
 \]
 in spherical polars,
 \[
-    \nabla f = \frac{\partial f}{\partial r}\bfe_r+\frac{1}{r}\frac{\partial f}{\partial \theta}\bfe_\theta+\frac{1}{r\sin\theta}\frac{\partial f}{\partial \phi}\bfe_\phi.   
+    \nabla f = \frac{\partial f}{\partial r}\mathbf{e}_r+\frac{1}{r}\frac{\partial f}{\partial \theta}\mathbf{e}_\theta+\frac{1}{r\sin\theta}\frac{\partial f}{\partial \phi}\mathbf{e}_\phi.   
 \]
 \begin{example}
-    Let $ f(\bfx)= \frac{1}{2}|\bfx|^2 $, then 
+    Let $ f(\mathbf{x})= \frac{1}{2}|\mathbf{x}|^2 $, then 
     \[
         f = \begin{cases}
         \frac{1}{2}(x^2+y^2+z^2) &\text{Cartesian}\\

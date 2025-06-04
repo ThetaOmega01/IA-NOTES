@@ -104,7 +104,7 @@
 By using proposition \ref{prop:2.1}, we know how to differentiate polynomials and rational functions.
 
 \begin{theorem}[Chain rule]\label{thm:Chain rule}
-    Let $ f:U\to \mathbb{C}  $ such that $ f(x)\in V,\forall x\in U $. If $f$ is differentiable at $a\in U$ and $ g:V\to \bbC $ is differentiable at $f(a)\in V$, then $g\circ f$ is differentiable at $x=a$ and
+    Let $ f:U\to \mathbb{C}  $ such that $ f(x)\in V,\forall x\in U $. If $f$ is differentiable at $a\in U$ and $ g:V\to \mathbb{C} $ is differentiable at $f(a)\in V$, then $g\circ f$ is differentiable at $x=a$ and
     \[
         (g \circ f)'(a) = g'(f(a))f'(a).
     \]
@@ -151,7 +151,7 @@ By using proposition \ref{prop:2.1}, we know how to differentiate polynomials an
         0 &\text{if }x=0\\
         \end{cases} 
     \]
-    It is continuous on $\bbR$. By previous result, $f(x)$ is differentiable on $ \bbR\setminus \{0\} $. At $x=0$, 
+    It is continuous on $\mathbb{R}$. By previous result, $f(x)$ is differentiable on $ \mathbb{R}\setminus \{0\} $. At $x=0$, 
     \[
         \frac{f(x)-f(0)}{x-0} = \sin (1/x),
     \]
@@ -232,7 +232,7 @@ Suppose $ f,g: [a,b] \to \mathbb{R} $ are continuous on $[a,b]$ and differentiab
 \]
 Cauchy showed that one can take $s=t$.
 \begin{theorem}[Cauchy's MVT]\label{thm:Cauchy}
-    Let $f,g:[a,b]\to \bbR$ be continuous on $[a,b]$ and differentiable on $(a,b)$, then $ \exists t\in (a,b) $ such that 
+    Let $f,g:[a,b]\to \mathbb{R}$ be continuous on $[a,b]$ and differentiable on $(a,b)$, then $ \exists t\in (a,b) $ such that 
     \[
         (f(b)-f(a))g'(t)=f'(t)(g(b)-g(a)).
     \]
@@ -311,7 +311,7 @@ Cauchy showed that one can take $s=t$.
     \]
     Set 
     \[
-        \phi(t) = F(t) - \left( \frac{h-t}{h} \right)^p F(0),\quad \bbN\ni p \in [1,n].
+        \phi(t) = F(t) - \left( \frac{h-t}{h} \right)^p F(0),\quad \mathbb{N}\ni p \in [1,n].
     \]
     Check that $ \phi(0)=\phi(h)=0 $. By Rolle's theorem, $ \exists \theta\in (0,1), \phi'(\theta h)=0$. Hence
     \begin{align*}
@@ -334,7 +334,7 @@ Cauchy showed that one can take $s=t$.
     \[
         (1+x)^r = 1 + \binom{r}{1}x+ \cdots + \binom{r}{n}x^n+ \cdots ,
     \]
-    where the binomial coefficients are extended to $\bbQ$ in the usual way.
+    where the binomial coefficients are extended to $\mathbb{Q}$ in the usual way.
 \end{example}
 \begin{proof}[Indeed,]
     $ f^{(n)}(x) = r(r-1)\cdots (r-n+1)(1+x)^{r-n} $. If $ r\in \mathbb{Z},r\ge 0 $, then $ f^{(r+k)}=0,\forall k\ge 1 $, so we have a polynomial of degree $r$. If otherwise, in general

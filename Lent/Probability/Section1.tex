@@ -1,15 +1,15 @@
 \section{Classical Probability}
 \subsection{Probability Space}
 \begin{definition}[Probability Space]
-    Suppose $ \Omega $ is a set(called \textbf{sample space}) and $ \mathscr{F} $ is a collection of subsets of $ \Omega $. We call $\mcF$ a \textbf{$\sigma$-algebra} if 
+    Suppose $ \Omega $ is a set(called \textbf{sample space}) and $ \mathscr{F} $ is a collection of subsets of $ \Omega $. We call $\mathcal{F}$ a \textbf{$\sigma$-algebra} if 
     \begin{enumerate}
         \item $ \Omega\in \mathscr{F} $,
         \item $ A\in \mathscr{F} \Rightarrow A^\complement \in \mathscr{F} $,
-        \item For any \textit{countable} collection $ (A_n)_{n\ge 1} $ with $A_n\in \mcF$, $ \bigcup_{n=1}^{\infty}A_n\in \mathscr{F} $.
+        \item For any \textit{countable} collection $ (A_n)_{n\ge 1} $ with $A_n\in \mathcal{F}$, $ \bigcup_{n=1}^{\infty}A_n\in \mathscr{F} $.
     \end{enumerate}
-    Suppose $\mcF$ is a $ \sigma $-algebra on $ \Omega $. A function $ \mathbb{P}:\mathscr{F}\to [0,1] $ is called a \textbf{probability measure} if
+    Suppose $\mathcal{F}$ is a $ \sigma $-algebra on $ \Omega $. A function $ \mathbb{P}:\mathscr{F}\to [0,1] $ is called a \textbf{probability measure} if
     \begin{enumerate}
-        \item $ \bbP(\Omega)=1 $,
+        \item $ \mathbb{P}(\Omega)=1 $,
         \item For any \textit{countable disjoint} collection $ (A_n)_{n\ge 1} $ in $ \mathscr{F} $, 
         \[
             \mathbb{P}\left( \bigcup_{n=1}^{\infty}A_n \right) = \sum_{n=1}^{\infty} \mathbb{P}(A_n).
@@ -19,15 +19,15 @@
     We call $ (\Omega,\mathscr{F},\mathbb{P}) $ a \textbf{probability space}.
 \end{definition}
 \begin{remark}
-    When $ \Omega $ is countable, we take $\mcF$ be all subsets of $ \Omega $.
+    When $ \Omega $ is countable, we take $\mathcal{F}$ be all subsets of $ \Omega $.
 \end{remark}
 \begin{definition}[Outcomes, Events]
-    The elements of $ \Omega $ are called \textbf{outcomes} and the elements of $\mcF$ are called \textbf{events}.
+    The elements of $ \Omega $ are called \textbf{outcomes} and the elements of $\mathcal{F}$ are called \textbf{events}.
 \end{definition}
 \begin{remark}
     We talk about probabilities of \textit{events} rather than \textit{outcomes}.
 \end{remark}
-\begin{proposition}[Properties of $\bbP$]\label{prop:Properties of P}
+\begin{proposition}[Properties of $\mathbb{P}$]\label{prop:Properties of P}
     Immediate from the definition,
     \begin{itemize}
         \item $ \mathbb{P}(A^\complement) = 1 - \mathbb{P}(A) $.
@@ -40,7 +40,7 @@
     \underline{Rolling a fair die.} Here $ \Omega = \{1,2,3,4,5,6\}, \mathscr{F} = 2^\Omega $. For $ \omega\in \Omega$, $\mathbb{P}(\{\omega\})=1/6 $, and if $ A \subseteq \Omega, \mathbb{P}(A)=|A|/6 $, since all outcomes are \textit{equally likely}.
 \end{example}
 \begin{example}
-    \underline{Equally likely outcomes.} Let $ \Omega = \{\omega_1,\dots, \omega_n\} $ be a finite set and $ \mathscr{F}=2^\Omega $. Define $\bbP$ as $ \mathbb{P}(A)=|A|/|\Omega| $. In classical probability, this models picking a random element of $ \Omega $. Note that $ \mathbb{P}(\{\omega\})=1/|\Omega|, \forall \omega\in \Omega $.
+    \underline{Equally likely outcomes.} Let $ \Omega = \{\omega_1,\dots, \omega_n\} $ be a finite set and $ \mathscr{F}=2^\Omega $. Define $\mathbb{P}$ as $ \mathbb{P}(A)=|A|/|\Omega| $. In classical probability, this models picking a random element of $ \Omega $. Note that $ \mathbb{P}(\{\omega\})=1/|\Omega|, \forall \omega\in \Omega $.
 \end{example}
 \begin{example}
     \underline{Picking balls from a bag.} Suppose we have $n$ balls with $n$ labels $ \{1,\dots,n\} $ so they are distinct. Pick $k\le n$ balls at ramdom \textit{without replacement}. Take $ \Omega = \{A \subseteq \{1,\dots,n\}: |A|=k\} $, so $ |\Omega|=\binom{n}{k} $. $ \mathbb{P}(\{\omega\}) = 1/|\Omega| = 1/\binom{n}{k} $.
@@ -434,28 +434,28 @@ Similarly
 \begin{definition}[Conditional probability]
     Let $ B\in \mathscr{F} $ with $ \mathbb{P}(B)>0 $, and $ A\in \mathscr{F} $. Define the \textit{conditional probability} of $A$ given $B$ by 
     \[
-        \mathbb{P}(A|B)=\frac{\bbP(A\cap B)}{\bbP(B)}.
+        \mathbb{P}(A|B)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}.
     \]
     If $ A \independent B $, then $ \mathbb{P}(A|B)=\mathbb{P}(A) $.
 \end{definition}
 
 \begin{proposition}[Countable additivity for conditional probability]\label{prop:Countable additivity for conditional probability}
-    Suppose $ (A_n) $ is a disjoint sequence in $ \mcF $. Then 
+    Suppose $ (A_n) $ is a disjoint sequence in $ \mathcal{F} $. Then 
     \[
         \mathbb{P}\left( \bigcup_{n=1}^{\infty}A_n\Big|B \right) = \sum_{n=1}^{\infty}\mathbb{P}(A_n|B).
     \]
 \end{proposition}
 \begin{proof}
     \begin{align*}
-        \mathbb{P}(\cup A_n|B) &= \frac{\mathbb{P}((\cup A_n)\cap B)}{\bbP(B)} = \frac{\bbP(\cup(A_n\cap B))}{\mathbb{P}(B)}\\ 
-        &=\sum_{n=1}^{\infty}\frac{\bbP(A_n\cap B)}{\mathbb{P}(B)}=\sum_{n=1}^{\infty}\mathbb{P}(A_n|B).
+        \mathbb{P}(\cup A_n|B) &= \frac{\mathbb{P}((\cup A_n)\cap B)}{\mathbb{P}(B)} = \frac{\mathbb{P}(\cup(A_n\cap B))}{\mathbb{P}(B)}\\ 
+        &=\sum_{n=1}^{\infty}\frac{\mathbb{P}(A_n\cap B)}{\mathbb{P}(B)}=\sum_{n=1}^{\infty}\mathbb{P}(A_n|B).
     \end{align*}
 \end{proof}
 
 \begin{proposition}[Law of total probability]\label{prop:Law of total probability}
     Suppose $ (B_n)_{n\ge 1} $ is a disjoint collection in $ \mathscr{F} $, $ \cup B_n=\Omega $ and $ \forall n, \mathbb{P}(B_n)>0 $. Let $ A\in \mathscr{F} $. Then 
     \[
-        \bbP(A)=\sum_{n=1}^{\infty}\mathbb{P}(A|B_n)\mathbb{P}(B_n).
+        \mathbb{P}(A)=\sum_{n=1}^{\infty}\mathbb{P}(A|B_n)\mathbb{P}(B_n).
     \]
 \end{proposition}
 \begin{proof}
@@ -473,7 +473,7 @@ Similarly
 \end{corollary}
 \begin{proof}
     \[
-        \mathbb{P}(B_n|A) = \frac{\bbP(B_n\cap A)}{\bbP(A)}= \frac{\mathbb{P}(A|B_n)\mathbb{P}(B_n)}{\sum_{k=1}^{\infty}\mathbb{P}(A|B_k)\mathbb{P}(B_k)}.
+        \mathbb{P}(B_n|A) = \frac{\mathbb{P}(B_n\cap A)}{\mathbb{P}(A)}= \frac{\mathbb{P}(A|B_n)\mathbb{P}(B_n)}{\sum_{k=1}^{\infty}\mathbb{P}(A|B_k)\mathbb{P}(B_k)}.
     \]
 \end{proof}
 This formula is the basis of Bayesian statistics. We know the probabilities of the events $ B_k $ and we have a model which gives $ \mathbb{P}(A|B_n) $. Bayes' formula tells how to calculate the posterior probabilities of $ B_n $ given $A$.
@@ -485,7 +485,7 @@ This formula is the basis of Bayesian statistics. We know the probabilities of t
     \[
         A = \{\text{individuals with A}\},\quad P=\{\text{individuals tested positive}\},
     \]
-    want to find $\bbP(A|P)$. Note that $ \mathbb{P}(A)=0.001, \mathbb{P}(P|A) = 0.98, \mathbb{P}(P|A^\complement)=0.01 $. By Bayes' formula,
+    want to find $\mathbb{P}(A|P)$. Note that $ \mathbb{P}(A)=0.001, \mathbb{P}(P|A) = 0.98, \mathbb{P}(P|A^\complement)=0.01 $. By Bayes' formula,
     \[
         \mathbb{P}(A|P) = \frac{\mathbb{P}(P|A)\mathbb{P}(A)}{\mathbb{P}(P|A)\mathbb{P}(A)+\mathbb{P}(P|A^\complement)\mathbb{P}(A^\complement)} \approx 0.09.
     \]
@@ -538,7 +538,7 @@ This formula is the basis of Bayesian statistics. We know the probabilities of t
     but $ \mathbb{P}(A|C^\complement)>\mathbb{P}(A|C) $. Note that
     \begin{align*}
         \mathbb{P}(A|C) &= \mathbb{P}(A \cap B|C)+\mathbb{P}(A \cap B^\complement|C)\\ 
-        &= \frac{\bbP(A\cap B\cap C)}{\bbP(C)}+\frac{\bbP(A\cap B^\complement\cap C)}{\bbP(C)}\\ 
+        &= \frac{\mathbb{P}(A\cap B\cap C)}{\mathbb{P}(C)}+\frac{\mathbb{P}(A\cap B^\complement\cap C)}{\mathbb{P}(C)}\\ 
         &= \mathbb{P}(A|B\cap C)\mathbb{P}(B|C)+\mathbb{P}(A|B^\complement \cap C)\mathbb{P}(B^\complement|C)\\ 
         &> \mathbb{P}(A|B\cap C^\complement)\mathbb{P}(B|C)+\mathbb{P}(A|B^\complement \cap C^\complement)\mathbb{P}(B^\complement|C).
     \end{align*}

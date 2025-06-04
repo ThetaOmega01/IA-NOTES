@@ -50,7 +50,7 @@ There are two definitions for continuity.
 \end{remark}
 
 \begin{theorem}\label{thm:2.2}
-    Let $f:A\to \bbC$ and $g:B\to \bbC$ be 2 functions such that $ f(A) \subseteq B $. Suppose $f$ is continuous at $a\in A$ and $g$ is continuous at $f(a)\in B$, then $ g \circ f:A\to \mathbb{C}  $ is continuous at $a$.
+    Let $f:A\to \mathbb{C}$ and $g:B\to \mathbb{C}$ be 2 functions such that $ f(A) \subseteq B $. Suppose $f$ is continuous at $a\in A$ and $g$ is continuous at $f(a)\in B$, then $ g \circ f:A\to \mathbb{C}  $ is continuous at $a$.
 \end{theorem}
 \begin{proof}
     Take $ z_n\to a\in A $. By assumption, $ B\ni w_n:=f(z_n)\to f(a) $ so $ g(w_n)=g(f(z_n))\to g(f(a)) $, as expected.
@@ -81,10 +81,10 @@ There are two definitions for continuity.
     \[
         D(x) = \begin{cases}
         1 &\text{if }x\in \mathbb{Q}, \\
-        0 &\text{if }x\in \bbQ^\complement.\\
+        0 &\text{if }x\in \mathbb{Q}^\complement.\\
         \end{cases} 
     \]
-    It is discontinuous at every point. Indeed, if $x\in \bbQ$, take $x_n\to x$ with $ x_n\in \bbQ^\complement,\forall n $, then $ D(x_n)\equiv 0 \nrightarrow D(x)=1 $. Similar for $ x\in \bbQ^\complement $.
+    It is discontinuous at every point. Indeed, if $x\in \mathbb{Q}$, take $x_n\to x$ with $ x_n\in \mathbb{Q}^\complement,\forall n $, then $ D(x_n)\equiv 0 \nrightarrow D(x)=1 $. Similar for $ x\in \mathbb{Q}^\complement $.
 \end{example}
 
 \subsection{Limit of a function}
@@ -110,7 +110,7 @@ There are two definitions for continuity.
     \]
     Equivalently,
     \[
-        \lim_{z \to a} f(z)=L \Leftrightarrow \forall (z_n)_{n\in\bbN} \subseteq E, z_n\neq a \land z_n\to a: f(z_n)\to L.
+        \lim_{z \to a} f(z)=L \Leftrightarrow \forall (z_n)_{n\in\mathbb{N}} \subseteq E, z_n\neq a \land z_n\to a: f(z_n)\to L.
     \]
 \end{definition}
 
@@ -155,14 +155,14 @@ Proof is exercise.
 
 \subsection{Bounds of a continuous function}
 \begin{theorem}\label{thm:continuous function is bounded}
-    Let $f:[a,b]\to \bbR$ be continuous. Then $ \exists K\in \mathbb{R}  $ such that $ |f(x)|\le K, \forall x\in [a,b] $.
+    Let $f:[a,b]\to \mathbb{R}$ be continuous. Then $ \exists K\in \mathbb{R}  $ such that $ |f(x)|\le K, \forall x\in [a,b] $.
 \end{theorem}
 \begin{proof}
     Suppose the statement is \textit{false}. Then given any integer $ n\ge 1 $, $ \exists x_n\in[a,b] $ such that $ |f(x_n)|> n $. By Bolzano-Weierstrass, $x_n$ has a convergent subsequence $ x_{n_j}\to x\in [a,b] $. By continuity, $ f(x_{n_j})\to f(x) $ but $f(x_{n_j})>n_j\to \infty$, a contradiction.
 \end{proof}
 
 \begin{theorem}\label{thm:continuous function attachs the bounds}
-    Let $ f:[a,b]\to \bbR $ be continuous. Then $ \exists x_1,x_2\in [a,b] $ such that 
+    Let $ f:[a,b]\to \mathbb{R} $ be continuous. Then $ \exists x_1,x_2\in [a,b] $ such that 
     \[
         f(x_1)\le f(x)\le f(x_2),\quad \forall x\in [a,b].
     \]
@@ -192,7 +192,7 @@ Proof is exercise.
 \end{definition}
 
 \begin{theorem}\label{thm:existence of inverse function}
-    Let $f:[a,b]\to \bbR$ be continuous and strictly increasing. For $ x\in [a,b] $, let $ c=f(a),d=f(b) $ so that $ f:[a,b] \mapsto [c,d] $ is bijective and the inverse $g:=f^{-1}:[c,d]\mapsto [a,b]$ is continuous and strictly increasing. 
+    Let $f:[a,b]\to \mathbb{R}$ be continuous and strictly increasing. For $ x\in [a,b] $, let $ c=f(a),d=f(b) $ so that $ f:[a,b] \mapsto [c,d] $ is bijective and the inverse $g:=f^{-1}:[c,d]\mapsto [a,b]$ is continuous and strictly increasing. 
 \end{theorem}
 \begin{remark}
     A similar theorem holds for strictly decreasing functions.

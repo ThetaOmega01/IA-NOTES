@@ -41,16 +41,6 @@ An intuitive idea is to start at some initial point $x_0$ and move ``downhill'' 
     \[
         f(x) = 1+3 e^{-x / 2 0}-\frac{1}{98} e^{-x / 1 0}(-10+x)^2+e^{-x / 1 0} \cos (x)
     \]
-    \begin{center}
-        \includegraphics[scale=0.6]{opt-gradient-descent-counterexample.pdf}
-    \end{center}
-\end{example}
-\begin{example}
-    We are not able to use our algorithm effectively on the following function. 
-    \begin{center}
-        \vspace*{-2.5em}
-        \includegraphics[scale=0.6]{opt-gradient-descent-counterexample2.pdf}
-    \end{center}
 \end{example}
 
 \paragraph{Direction of descent} 
@@ -112,11 +102,6 @@ With the above motivations we can form an algorithm:
     \]
     If $f$ is differentiable, then $\lambda(x) = \grad f(x)$.
 \end{theorem}
-The following diagram shows some supporting hyperplanes of convex sets. 
-\begin{center}
-    \includegraphics[scale=0.4]{Supporting_hyperplane1.pdf}
-    \includegraphics[scale=0.4]{Supporting_hyperplane2.pdf}
-\end{center}
 \begin{proof}
     Let $ y,z\in S, x = py + qz, p+q=1, 0<p<1 $.
 

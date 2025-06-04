@@ -1,57 +1,15 @@
-\documentclass[10pt]{article}
-\pdfoutput=1 
-\usepackage{NotesTeX,lipsum}
-\usepackage{IEEEtrantools}
-\def\d{{\mathrm d}}
-\def\e{{\mathrm e}}
-\def\g{{\mathrm g}}
-\def\h{{\mathrm h}}
-\def\f{{\mathrm f}}
-\def\p{{\mathrm p}}
-\def\s{{\mathrm s}}
-\def\t{{\mathrm t}}
-\def\i{{\mathrm i}}
-
-\def\A{{\mathrm A}}
-\def\B{{\mathrm B}}
-\def\E{{\mathrm E}}
-\def\F{{\mathrm F}}
-\def\G{{\mathrm G}}
-\def\H{{\mathrm H}}
-\def\P{{\mathrm P}}
-
-
-\def\bb{\mathbf b}
-\def \bc{\mathbf c}
-\def\bx {\mathbf x}
-\def\bn {\mathbf n}
-\def\le{\leqslant}
-\def\ge{\geqslant}
-\def\arcosh{{\rm arcosh}\,}
+\documentclass[a4paper]{article}
+\usepackage{../triposnotes}
 
 \newcommand{\bluecomment}[1]{{\color{blue}#1}}
-%\renewcommand{\comment}[1]{}
 \newcommand{\redcomment}[1]{{\color{red}#1}}
 \newcommand{\tm}{\times}
-%\usepackage{showframe}
-
-\title{\begin{center}{\Huge \textit{Vectors and Matrices}}\\{{\itshape Based on Lectures and "Intro to Linear Algebra"}}\end{center}}
-\author{$\theta\omega\theta$}
-\affiliation{
-Not in University of Cambridge\\
-skipped some talks irrelevant to contents\\
-}
-\DeclareMathOperator{\im}{Im}
-\DeclareMathOperator{\nullity}{null}
-\emailAdd{not telling you}
 
 \begin{document}
 	\maketitle
-	\flushbottom
-	\newpage
-	\pagestyle{fancynotes}
-	\part{Complex Numbers}
-    \section{Definition}
+    \tableofcontents
+	\section{Complex Numbers}
+    \subsection{Definition}
     \begin{definition}
         Construct $\mathbb{C} $ from $ \mathbb{R}  $ by adding $i$ that $i^2 = -1$. Any $z\in \mathbb{C}$ is in the form
         \[
@@ -77,7 +35,7 @@ skipped some talks irrelevant to contents\\
 
         Complex numbers can be plotted on an \textit{Argand diagram}.
     \end{definition}
-    \section{Basic Properties \& Consequences}
+    \subsection{Basic Properties \& Consequences}
     \begin{enumerate}[(1)]
         \item $ +, \times $ are commutative and associative,
         
@@ -98,7 +56,7 @@ skipped some talks irrelevant to contents\\
         .\]
         \item \textbf{De Moivre's Theorem}: $ z^n = r^n(\cos n\theta+i\sin n\theta) $.
     \end{enumerate}
-    \section{Exponential and Trigs in $\mathbb{C}$}
+    \subsection{Exponential and Trigs in $\mathbb{C}$}
     \begin{definition}
         Define $ \exp, \cos, \sin $ on $ \mathbb{C} $ by
         \[
@@ -133,7 +91,7 @@ skipped some talks irrelevant to contents\\
         z = \frac{2n\pi}{N} = \omega^n, \quad, n=0,1,\dots, N-1
     .\]
     $\omega^n$ lie one the vertices of a regular $n$-gon on the unit circle.
-    \section{Logarithms and Complex powers}
+    \subsection{Logarithms and Complex powers}
     \begin{definition}
         Define $ w = \log z, z\in \mathbb{C} \land z\neq 0 $ by $ e^w = e^{\log z}=z $. Note that since exp is many-to-one, $\log$ is multi-valued.
         \[
@@ -156,7 +114,7 @@ skipped some talks irrelevant to contents\\
             i^i = e^{i\log i} = e^{i(0+i(\frac{\pi}{2}+2n\pi))} = e^{-(\frac{\pi}{2}+2n\pi)}
         .\]
     \end{example}
-    \section{Transformations, Lines, and Circles}
+    \subsection{Transformations, Lines, and Circles}
     \begin{itemize}
         \item We have five elementary transformations:
         \begin{enumerate}[(1)]
@@ -176,8 +134,8 @@ skipped some talks irrelevant to contents\\
         .\]
         \item Stereographic projection.
     \end{itemize}
-    \part{Vectors in 3 Dimensions}
-    \section{Vector addition and scalar multiplication}
+    \section{Vectors in 3 Dimensions}
+    \subsection{Vector addition and scalar multiplication}
     \begin{definition}[scalar multiplication]
         Given $ \mathbf{a} $, and scalar $ \lambda\in \mathbb{R} $, define $ \lambda \mathbf{a} $ to be the position vector of $ A' $ on the line $OA$ with length $ |\lambda \mathbf{a}|=\left| \lambda \right| \left| \mathbf{a} \right|  $. Direction depends on the sign of $ \lambda $.
     \end{definition}
@@ -212,7 +170,7 @@ skipped some talks irrelevant to contents\\
         \item $ (\lambda+\mu)\mathbf{a}=\lambda \mathbf{a}+ \mu \mathbf{a} $.
         \item $ (\lambda \mu)\mathbf{a}=\lambda(\mu \mathbf{a}) $.
     \end{itemize}
-    \section{Dot product}
+    \subsection{Dot product}
     \begin{definition}[dot product]
         Give $ \mathbf{a}, \mathbf{b} $, let $ \theta $ be the angle between them, define $ \mathbf{a}\cdot\mathbf{b}=|\mathbf{a}||\mathbf{b}|\cos \theta $. Note that $ \theta $ is defined unless $ \mathbf{a}=\mathbf{0} $, in which case we define $ \mathbf{a}\cdot \mathbf{b}=0 $.
 
@@ -232,7 +190,7 @@ skipped some talks irrelevant to contents\\
         \item $ (\lambda \mathbf{a})\cdot \mathbf{b}=\lambda (\mathbf{a}\cdot \mathbf{b})=\mathbf{a}\cdot (\lambda \mathbf{b}) $.
         \item $ \mathbf{a}\cdot (\mathbf{b}+\mathbf{c})=\mathbf{a}\cdot \mathbf{b}+\mathbf{a}\cdot \mathbf{c} $.
     \end{itemize}
-    \section{Vector cross product}
+    \subsection{Vector cross product}
     \begin{definition}
         Given $ \mathbf{a},\mathbf{b} $, let $ \theta $ be the angle between them, wrt a unit vector $ \mathbf{n} $ normal to the plane they span. Define $ \mathbf{a} \wedge \mathbf{b} $ or $ \mathbf{a} \times \mathbf{b} $ as $ |\mathbf{a}||\mathbf{b}|\sin \theta \mathbf{n} $. $ \mathbf{0} $ case is similar.
     \end{definition}
@@ -247,10 +205,10 @@ skipped some talks irrelevant to contents\\
         \item $ \mathbf{a}\times \mathbf{b} \perp \mathbf{a} \land \perp \mathbf{b} $.
     \end{itemize}
     %Lecture 4
-    \section{Orthonormal Bases and Components}\marginnote{Lecture 4.}
+    \subsection{Orthonormal Bases and Components}
     Choose $ \mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3 $ that are \textit{orthonormal}. That is, they are of unit lengths and $ \mathbf{e}_i\cdot \mathbf{e}_j =0, i\neq j\in \{1,2,3\}$, which is equivalent to choose cartesian axes along the directions. Then $ \left\{ \mathbf{e}_i\right\} $ is a basis and $ \forall \mathbf{a}\in \mathbb{R}^3 $, 
     \[
-        \mathbf{a}=\sum_{i=1}^{3}a_i \mathbf{e}_i \marginnote{Each component $ a_i $ is uniquely determined by $ a_i = \mathbf{e}_i \cdot \mathbf{a} $.}
+        \mathbf{a}=\sum_{i=1}^{3}a_i \mathbf{e}_i \footnote{Each component $ a_i $ is uniquely determined by $ a_i = \mathbf{e}_i \cdot \mathbf{a} $.}
     .\]
     By this spirite, we can write 
     \[
@@ -284,8 +242,8 @@ skipped some talks irrelevant to contents\\
             &= (a_3b_2-a_2b_3)\mathbf{e}_1+(a_3b_1-a_1b_3)\mathbf{e}_2+(a_1b_2-a_2b_1)\mathbf{e}_3.
         \end{aligned}
     \]
-    \section{Triple products}
-    \subsection{Scalar triple product}
+    \subsection{Triple products}
+    \subsubsection{Scalar triple product}
     \begin{definition}
         Define scalar triple product by
         \[
@@ -308,7 +266,7 @@ skipped some talks irrelevant to contents\\
             c_{1} & c_{2} & c_{3}
         \end{vmatrix}.
     \]
-    \subsection{Vector triple product}
+    \subsubsection{Vector triple product}
     \begin{definition}
         Define the vector triple product by $ \mathbf{a}\times (\mathbf{b}\times \mathbf{c}) $. Note that $ \mathbf{a}\times (\mathbf{b}\times \mathbf{c}) $ does not necessarily give the same result as $ (\mathbf{a}\times \mathbf{b})\times \mathbf{c} $.
         \begin{equation}\label{eq:vector triple prod identity}
@@ -326,9 +284,9 @@ skipped some talks irrelevant to contents\\
                 \end{array}
         \]
     \end{proposition}
-    \section{Lines, Planes, and Vector equations}
+    \subsection{Lines, Planes, and Vector equations}
     Vectors are defined as position vectors from $O$. But the definition of addition enables us to use them to describe displacements between points.
-    \subsection{Lines}
+    \subsubsection{Lines}
     General point on a line through $ \mathbf{a} $ through $ \mathbf{u} $:
     \[
         \begin{aligned}
@@ -346,7 +304,7 @@ skipped some talks irrelevant to contents\\
         .\]
         Hence $ \mathbf{a} = -(\mathbf{u} \times \mathbf{c})/|\mathbf{u}|^2 $ is a solution, and thus it represents a line.
     \end{proof}
-    \subsection{Planes}
+    \subsubsection{Planes}
     General point on a plane through $ \mathbf{a} $ with directions $ \mathbf{u},\mathbf{v} $ in the plane($ \mathbf{u}\nparallel \mathbf{v} $):
     \[
         \begin{aligned}
@@ -358,7 +316,7 @@ skipped some talks irrelevant to contents\\
     \[
         \frac{\mathbf{n}\cdot \mathbf{r}}{|\mathbf{n}|}=\frac{k}{|\mathbf{n}|}
     .\]
-    \subsection{Other vector equations}
+    \subsubsection{Other vector equations}
     \begin{enumerate}[(1)]
         \item $ |\mathbf{r}|^2+\mathbf{r}\cdot \mathbf{a}=k \Leftrightarrow \left| \mathbf{r}+\frac{1}{2}\mathbf{a} \right|^2=k+\frac{1}{4}|\mathbf{a}|^2  $, a sphere with centre $ -\frac{1}{2}\mathbf{a} $ and radius $ \sqrt{k+\frac{1}{4}|\mathbf{a}|^2} $, provided $ k>-\frac{1}{4}|\mathbf{a}|^2 $.
         \item $ \mathbf{r}+\mathbf{a} \times (\mathbf{b}\times \mathbf{r}) =\mathbf{c} \Leftrightarrow \mathbf{r}+(\mathbf{a}\cdot \mathbf{r})\mathbf{b}-(\mathbf{a}\cdot \mathbf{b})\mathbf{r}=\mathbf{c}$. Dot with $\mathbf{a}$:
@@ -379,8 +337,8 @@ skipped some talks irrelevant to contents\\
         .\] 
         Hence it is a plane.
     \end{enumerate}
-    \section{Index notation and the summation convention}
-    \subsection{Components, $\delta\& \epsilon$}
+    \subsection{Index notation and the summation convention}
+    \subsubsection{Components, $\delta\& \epsilon$}
     Write vectors $ \mathbf{a},\mathbf{b},\dots $ in terms of components $ a_i,b_i,\dots $ wrt an orthonormal right-handed basis $ \left\{ \mathbf{e}_i\right\} $. Indices $i,j,\dots$ take values $1,2,3$.
 
     For example, if $ \mathbf{c}=\alpha \mathbf{a}+\beta \mathbf{b} $, then $ c_i=[\alpha \mathbf{a}+\beta \mathbf{b}]_i=\alpha a_i+\beta b_i $, for $i=1,2,3$. $i$ is called a \textit{free index}.
@@ -439,7 +397,7 @@ skipped some talks irrelevant to contents\\
     \[
         \boxed{(\mathbf{a}\times \mathbf{b})_k=\sum_{ij}\epsilon_{ijk}a_ib_j}
     .\]
-    \subsection{Summation convention}
+    \subsubsection{Summation convention}
     With components and index notation, indices that appear twice in a given term are usually summed over. In the summation convention, we omit the sum signs for repeated indices. i.e., the sum is understood.
     \begin{example}
         \begin{enumerate}[(i)]
@@ -464,7 +422,7 @@ skipped some talks irrelevant to contents\\
         \item An index occuring exactly twice in a given term is summed over. A \textit{repeated}, \textit{contracted}, or \textit{dummy} index.
         \item No index can occur more than twice in any given term.
     \end{enumerate}
-    \subsection{Applications}
+    \subsubsection{Applications}
     We can use this to prove the vector triple product identity.
 
     \begin{proof}
@@ -490,12 +448,12 @@ skipped some talks irrelevant to contents\\
         .\]
         Hence the equation \ref{eq:vector triple prod identity} is proved.
     \end{proof}
-    \subsection{$\epsilon\, \epsilon$ identity}
+    \subsubsection{$\epsilon\, \epsilon$ identity}
     \begin{proposition}\label{prop:eeidentity1}
         $ \epsilon_{ijk}\epsilon_{pqk}= \delta_{ip}\delta_{jq}-\delta_{iq}\delta_{jp}=\epsilon_{kij}\epsilon_{kpq}$.
     \end{proposition}
     \begin{proof}
-        Notice that LHS and RHS are both anti-symmetric, so both vanish when $ i,j $ or $ p,q $ take the same value. Inspection shows that\mn{Think carefully here.} it suffices to show the cases $ i=p=1 \land  j=q=2 $ or $ i=q=1, j=p=2 $ and all other index changings that give non-zero results.
+        Notice that LHS and RHS are both anti-symmetric, so both vanish when $ i,j $ or $ p,q $ take the same value. Inspection shows that\footnote{Think carefully here.} it suffices to show the cases $ i=p=1 \land  j=q=2 $ or $ i=q=1, j=p=2 $ and all other index changings that give non-zero results.
     \end{proof}
 
     \begin{proposition}\label{prop:eeidentity2}
@@ -520,11 +478,11 @@ skipped some talks irrelevant to contents\\
         \]
     \end{proposition}
     \begin{proof}
-        Total anti-symmetry\mn{This simplifies most of the process and leaves only one case to check.} in $i,j,k$ and independently in $p,q,r$ implies LHR, RHS agree up to an overall factor. To check the factor is 1, consider $i=p=1, j=q=2, k=r=3$.
+        Total anti-symmetry\footnote{This simplifies most of the process and leaves only one case to check.} in $i,j,k$ and independently in $p,q,r$ implies LHR, RHS agree up to an overall factor. To check the factor is 1, consider $i=p=1, j=q=2, k=r=3$.
     \end{proof}
-    \part{Vectors in General}
-    \section{Vectors in $ \mathbb{R}^n $}
-    \subsection{Definition and basic properties}\marginnote{Lecture 6}
+    \section{Vectors in General}
+    \subsection{Vectors in $ \mathbb{R}^n $}
+    \subsubsection{Definition and basic properties}
     \begin{definition}
         Regard vectors as sets of components, and let 
         \[
@@ -551,7 +509,7 @@ skipped some talks irrelevant to contents\\
         \]
         \item Positive definite: $ \mathbf{x}\cdot \mathbf{x}\ge 0 $, with $=$ holds if and only if $ \mathbf{x}=\mathbf{0} $.
     \end{enumerate}
-    \subsection{Norm of a vector}
+    \subsubsection{Norm of a vector}
     \begin{definition}
         The \textit{norm} of a vector $ \mathbf{x} $ is denoted as $ |\mathbf{x}| $ with $ |\mathbf{x}|^2=\mathbf{x}\cdot \mathbf{x} $.
 
@@ -566,7 +524,7 @@ skipped some talks irrelevant to contents\\
         \mathbf{x}=\sum_{i=1}^{n}x_i \mathbf{e}_i
     \]
     and $ \mathbf{e}_i \cdot \mathbf{e}_j = \delta_{ij} $. i.e., standard basis is orthogonal.
-    \subsection{Cauchy-Schwarz and Triangle inequalities}
+    \subsubsection{Cauchy-Schwarz and Triangle inequalities}
     \begin{proposition}[Cauchy-Schwarz]\label{prop:cauchy-schwarz}
         \[
             \forall \mathbf{x}, \mathbf{y}\in \mathbb{R}^n,\quad |\mathbf{x}\cdot \mathbf{y}|\le |\mathbf{x}| | \mathbf{y}|
@@ -605,7 +563,7 @@ skipped some talks irrelevant to contents\\
         \]
         as required.
     \end{proof}
-    \subsection{Inner Products and Cross products}
+    \subsubsection{Inner Products and Cross products}
     Inner product in $ \mathbb{R}^n $ can be written as
     \[
         \mathbf{a}\cdot \mathbf{b}=\delta_{ij}a_{i}b_{j},\quad \text{by summation convention}
@@ -627,8 +585,8 @@ skipped some talks irrelevant to contents\\
         |[\mathbf{a},\mathbf{b}]|=|\mathbf{a}||\mathbf{b}|\sin \theta
     .\]
     Compare with $ [\mathbf{a},\mathbf{b},\mathbf{c}]=\epsilon_{ijk}a_ib_jc_k $.
-    \section{Vector Spaces}
-    \subsection{Axioms, span, and subspaces}
+    \subsection{Vector Spaces}
+    \subsubsection{Axioms, span, and subspaces}
     \begin{definition}
         Let $V$ be a set of objects called \textit{vectors} with operation
         \[
@@ -649,7 +607,7 @@ skipped some talks irrelevant to contents\\
     \begin{example}
         Let $ V=\left\{ f:[0,1] \to \mathbb{R} : f\text{ smooth } \land f(0)=f(1)=0\right\} $. By smooth we mean $f$ is differentiable infinitely many times. Then $V$ is a real vector space with $+$ defined as $ (f+g)(x)=f(x)+g(x) $ and $ (\lambda f)(x)=\lambda(f(x)) $. Then all axioms apply.
     \end{example}
-    \begin{definition}\marginnote{Lecture 7}
+    \begin{definition}
         A \textit{subspace} of a real vector space $V$ is a subset $U \subseteq V$ that is also a vector space. 
     \end{definition}
     \begin{remark}
@@ -659,7 +617,7 @@ skipped some talks irrelevant to contents\\
     \begin{example}
         A line or plane through $O$ is a subspace in $ \mathbb{R}^3 $, but a line or plane that does not contain $ \mathbf{0} $ is not a subspace.
     \end{example}
-    \subsection{Linear dependence and independence}
+    \subsubsection{Linear dependence and independence}
     For $ v_1,\dots,v_r\in V $, a real vector space, consider a linear relation
     \[
         \lambda_1 v_1+\cdots+\lambda_r v_r=0\tag{*}
@@ -682,7 +640,7 @@ skipped some talks irrelevant to contents\\
         ,\]
         then dotting with $ \mathbf{b}\times \mathbf{c} $ we get $ \alpha[\mathbf{a},\mathbf{b},\mathbf{c}]=0 \Rightarrow \alpha=0 $. Similarly $ \beta=0, \gamma=0 $.
     \end{itemize}
-    \subsection{Inner products}
+    \subsubsection{Inner products}
     This is an additional structure on a real vector space $V$, that can also be characterised by axioms or key properties.
 
     For $v,w\in V$, denote inner product by 
@@ -722,7 +680,7 @@ skipped some talks irrelevant to contents\\
             (v_j,\sum_{i}\alpha_i v_i)=0 \Longleftrightarrow \alpha_j=0
         .\]
     \end{proof}
-    \section{Bases and dimension}
+    \subsection{Bases and dimension}
     \begin{definition}
         For a vector space $V$, a \textit{basis} is a set 
         \[
@@ -801,7 +759,7 @@ skipped some talks irrelevant to contents\\
     \begin{definition}
         The number of vectors in any basis is the \textit{dimension} of the vector space.
     \end{definition}
-    \begin{remark}\marginnote{Lecture 8}
+    \begin{remark}
         $\{0\}$ is called the \textit{trivial} vector space and has dimension 0.
 
         The steps in the proof of basis theorem are within scope of this course, but the proof without prompts non-examinable. The same applies to the following:
@@ -850,8 +808,8 @@ skipped some talks irrelevant to contents\\
         \]
         so these functions are orthonormal and thus linearly independent. So $V$ is infinite-dimensional.
     \end{example}
-    \section{Vectors in $\mathbb{C}^n$}
-    \subsection{Introduction and definitions}
+    \subsection{Vectors in $\mathbb{C}^n$}
+    \subsubsection{Introduction and definitions}
     Let $ \mathbb{C}^n=\left\{ \mathbf{z}=(z_1,\dots,z_n):z_j\in \mathbb{C}\right\} $ and define 
     \begin{itemize}
         \item Addition: $ \mathbf{z}+\mathbf{w}=(z_1+w_1,\dots,z_n+w_n) $,
@@ -878,7 +836,7 @@ skipped some talks irrelevant to contents\\
     is a \textit{complex} linearl combination, so the basis of $ \mathbb{C}^{n} $ as a \textit{complex} vector space is simply $ \left\{ \mathbf{e}_1,\dots,\mathbf{e}_n\right\} $ and the dimension is $n$ over $ \mathbb{C} $.
 
     From now on we will view $ \mathbb{C}^{n} $ as a complex vector space unless mentioned otherwise.
-    \subsection{Inner product}
+    \subsubsection{Inner product}
     The inner product on $ \mathbb{C}^{n} $ is defined by 
     \[
         (\mathbf{z},\mathbf{w})=\sum_{j=1}^n \bar{z}_j w_j
@@ -910,9 +868,9 @@ skipped some talks irrelevant to contents\\
         ,\]
         recover 2 scalar products in $ \mathbb{R}^2 $.
     \end{example}\newpage
-    \part{Matrices and Linear Maps}
-    \section{Introduction}\marginnote{Lecture 9}
-    \subsection{Definitions}
+    \section{Matrices and Linear Maps}
+    \subsection{Introduction}
+    \subsubsection{Definitions}
     \begin{definition}
         Let $ V,W $ be vector spaces. A \textit{linear map} or \textit{linear transformation} is a function $ T:V\to W $ between $V$ with $\dim V=n$ and $W$ with $\dim W=m$ such that 
         \[
@@ -965,7 +923,7 @@ skipped some talks irrelevant to contents\\
             Note that $\im(T)$ is a plane and $\ker(T)$ is a line.
         \end{enumerate}
     \end{example}
-    \subsection{Rank and Nullity}
+    \subsubsection{Rank and Nullity}
     Define $ \rank(T)=\dim \im(T) $ and $ \nullity(T)=\dim \ker(T) $.
     \begin{theorem}\label{thm:r-n thm}
         For $ T:V\to W $ a linear map, then 
@@ -996,8 +954,8 @@ skipped some talks irrelevant to contents\\
         \]
         Hence $ \mathcal{B} $ is linearly independent and thus it is a base.
     \end{proof}
-    \section{Geometrical Examples}
-    \subsection{Rotations}
+    \subsection{Geometrical Examples}
+    \subsubsection{Rotations}
     In $ \mathbb{R}^{2} $, rotations about $\mathbf{0}$ through $ \theta $ is defined by 
     \[\begin{aligned}
          \mathbf{e}_1\mapsto \mathbf{e}_1'&=\cos(\theta)\mathbf{e}_1+\sin(\theta)\mathbf{e}_2,\\
@@ -1026,7 +984,7 @@ skipped some talks irrelevant to contents\\
             &= \boxed{\cos \theta \mathbf{x}+(1-\cos \theta)(\mathbf{n}\cdot \mathbf{x})\mathbf{n}+\sin \theta \mathbf{n}\times \mathbf{x}.}
         \end{aligned}
     \]
-    \subsection{Reflections and Projections}
+    \subsubsection{Reflections and Projections}
     For a plane with unit normal vector $ \mathbf{n} $, define projectin of $ \mathbf{x} $ on the plane as 
     \[
         \begin{aligned}
@@ -1050,7 +1008,7 @@ skipped some talks irrelevant to contents\\
         \mathbf{x} \mapsto \mathbf{x}'=\mathbf{x}-2(\mathbf{n}\cdot \mathbf{x})\mathbf{n}
     .\]
     Same applies to $ \mathbb{R}^{2} $ by replacing plane by line.
-    \subsection{Dilations}
+    \subsubsection{Dilations}
     Given scale factors $ \alpha,\beta,\gamma>0 $. Define a \textit{dilation} along axes by 
     \[
         \begin{aligned}
@@ -1060,14 +1018,14 @@ skipped some talks irrelevant to contents\\
         \end{aligned}
     \]
     Then $ \mathbf{x}=x_1 \mathbf{e}_1+x_2 \mathbf{e}_2 +x_3 \mathbf{e}_3 \mapsto \mathbf{x}'=\alpha x_1 \mathbf{e}_1+\beta x_2 \mathbf{e}_2 +\gamma x_3 \mathbf{e}_3 $.
-    \subsection{Shears}
+    \subsubsection{Shears}
     Let $ \mathbf{a},\mathbf{b} $ be orthogonal unit vectors in $ \mathbb{R}^{3} $, and $ \lambda $ a real parameter. Define a \textit{shear}
     \[
         \mathbf{x} \mapsto \mathbf{x}'=\mathbf{x}+\lambda \mathbf{a}(\mathbf{x}\cdot \mathbf{b})
     .\]
     Notice that $ \mathbf{a}\mapsto \mathbf{a} $ and $ \mathbf{b} \mapsto \mathbf{b}+\lambda \mathbf{a} $. Definition holds the same way in $ \mathbb{R}^{2} $.
-    \section{Matrices as linear maps}\marginnote{Lecture 10}
-    \subsection{Definitions}
+    \subsection{Matrices as linear maps}
+    \subsubsection{Definitions}
     Consider a linear map $ T:\mathbb{R}^{n}\to \mathbb{R}^{m} $, with bases $ \left\{ \mathbf{e}_i\right\}_{i=1}^n, \left\{ \mathbf{f}_a\right\}_{a=1}^m $, of the form 
     \[
         T(\mathbf{x})=\mathbf{x}',\quad \mathbf{x}=\sum_{i=1}^{n}x_i \mathbf{e}_i, \mathbf{x}'=\sum_{a=1}^{m} x_a' f_a 
@@ -1122,7 +1080,7 @@ skipped some talks irrelevant to contents\\
              & \ker T = \ker M=\left\{ \mathbf{x}:\mathbf{R}_a\cdot \mathbf{x}=0 \text{ for all }a.\right\}.\\
         \end{aligned}
     \]
-    \subsection{Examples}
+    \subsubsection{Examples}
     \begin{example}
         \begin{enumerate}[(1)]
             \item The \textit{zero map} $ \mathbb{R}^{n}\to \mathbb{R}^{m} $ corresponds to the \textit{zero matrix}.
@@ -1213,7 +1171,7 @@ skipped some talks irrelevant to contents\\
             \]
         \end{enumerate}
     \end{example}
-    \subsection{Matrix of a General Linear Map $ V\to W $}
+    \subsubsection{Matrix of a General Linear Map $ V\to W $}
     \begin{definition}
         Consider $ T:V\to W $, between general (real or complex) vector spaces, with dim $n,m$ respectively. Choose $ \left\{ e_i\right\}_{i=1}^n, \left\{ f_a\right\}_{a=1}^m $ as bases of $ V,W $. Define the matrix of $T$ wrt these bases is defined as an $m\times n$ array with entries $ M_{ai}\in \mathbb{R}\text{ or }\mathbb{C}  $ defined by 
         \[
@@ -1221,12 +1179,12 @@ skipped some talks irrelevant to contents\\
         .\]
     \end{definition}
     Then $ x'=T(x) \Leftrightarrow x_a'=M_{ai}x_i $.
-    \marginnote{Entries in column $i$ of $M$ are components of $T(e_i)$ wrt basis $f_a$.}
+    \footnote{Entries in column $i$ of $M$ are components of $T(e_i)$ wrt basis $f_a$.}
     \begin{remark}
         Given choices of bases $ \left\{ e_i\right\},\left\{ f_a\right\} $, $V$ is identified with $ \mathbb{R}^{n} $ and $W$ is identified with $ \mathbb{R}^{m} $, and $T$ is identified with an $m \times n$ matrix $M$. 
     \end{remark}
-    \section{Matrix Algebra}\marginnote{Lecture 11.}
-    \subsection{Linear Combinations}
+    \subsection{Matrix Algebra}
+    \subsubsection{Linear Combinations}
     If $ T,S:V\to W $ are two linear maps where $ V,W $ are linear or complex, of dimensions $ n,m $ respectively, then the map 
     \[
         \alpha T+\beta S: V\to W
@@ -1240,7 +1198,7 @@ skipped some talks irrelevant to contents\\
         (\alpha M+\beta N)_{ai}=\alpha M_{ai}+\beta N_{ai},\quad a=1,\dots,m, i=1,\dots,n
     .\]
     All are with respect to same bases, e.g., standard bases for $ \mathbb{R}^{n},\mathbb{R}^{m} $ or $ \mathbb{C}^{n},\mathbb{C}^{m} $.
-    \subsection{Matrix multiplication}
+    \subsubsection{Matrix multiplication}
     If $A$ is an $m\times n$ matrix with entries $A_{ai}$ and $B$ is a $n\times p$ matrix with entries $B_{ir}$, then $AB$ is an $m\times p$ matrix with entries 
     \[
         (AB)_{ar}=A_{ai}B_{ir}, \quad a=1,\dots,m,i=1,\dots,n,r=1,\dots p,
@@ -1277,7 +1235,7 @@ skipped some talks irrelevant to contents\\
         whenever the products are defined.
     \end{proposition}
     The \textit{identity} matrix $I$ is defined by $ I_{ij}=\delta_{ij} $ and we have $ IM=MI=M $.
-    \subsection{Helpful points of view}
+    \subsubsection{Helpful points of view}
     \begin{enumerate}[(i)]
         \item Regarding vectors $ \mathbf{x}\in \mathbb{R}^{n}$ as column vectors, or $n\times 1$ matrices, definitions of matrix-vector and matrix-matrix multiplication agree.
         \item For product $ AB $, where $ A $ is $m\times n$ and $B$ is $ n \times p $, with columns of $ B $ be $ \mathbf{C}_r(B)\in \mathbb{R}^{n} $, then the columns of $ AB $ are $ \mathbf{C}_{r}(AB)\in \mathbb{R}^{m} $, where $r=1,\dots p$. Furthermore, $ \mathbf{C}_r(B) $ and $ \mathbf{C}_r(AB) $ are related by 
@@ -1305,7 +1263,7 @@ skipped some talks irrelevant to contents\\
         \]
     \end{enumerate}
 
-    \subsection{Matrix Inverses}
+    \subsubsection{Matrix Inverses}
 
     \begin{definition}
         If $ A\in \mathcal{M}_{m\times n} $ then $ B\in \mathcal{M}_{n\times m} $ is a \textit{left inverse} of $A$ if $ BA=I\in \mathcal{M}_{n \times n} $. $ C\in \mathcal{M}_{n \times m} $ is a \textit{right inverse} of $A$ if $ AC=I\in \mathcal{M}_{m \times m} $. If $m=n$ then these implies $ B=C=A^{-1} $, \textit{the }inverse of $A$. We have 
@@ -1351,7 +1309,7 @@ skipped some talks irrelevant to contents\\
         exists.
     \end{example}
     \begin{remark}
-        Relation between $\det$ and the \textit{alternative} scalar product in $ \mathbb{R}^{2} $\marginnote{Recall the alternative scalar product of $ \mathbf{a},\mathbf{b}\in \mathbb{R}^{2} $ is defined as $ [\mathbf{a},\mathbf{b}]=\epsilon_{ij}a_ib_j=a1b_2-a_2b_1 $, applying the summation convention.}: Consider 
+        Relation between $\det$ and the \textit{alternative} scalar product in $ \mathbb{R}^{2} $\footnote{Recall the alternative scalar product of $ \mathbf{a},\mathbf{b}\in \mathbb{R}^{2} $ is defined as $ [\mathbf{a},\mathbf{b}]=\epsilon_{ij}a_ib_j=a1b_2-a_2b_1 $, applying the summation convention.}: Consider 
         \[
             \mathbf{C}_1=M \mathbf{e}_1=\begin{pmatrix}
                 M_{11}\\M_{21}
@@ -1394,15 +1352,15 @@ skipped some talks irrelevant to contents\\
             &&&\times & (\cos \theta \delta_{jk}+(1-\cos \theta)n_jn_k+\sin \theta \epsilon_{jkq} n_q)\\
             &=&\delta_{ik} \cos^2 \theta &+& 2 \cos \theta(1-\cos \theta)n_in_k\\
             &&&+&(1-\cos \theta)^2n_in_j^2n_k\\
-            &&&-&\epsilon_{ijp}\epsilon_{jkq}n_pn_q \sin^2 \theta\marginnote{Do check that other terms cancel.}\\
+            &&&-&\epsilon_{ijp}\epsilon_{jkq}n_pn_q \sin^2 \theta\footnote{Do check that other terms cancel.}\\
             &=&\delta_{ik} \cos^2 \theta &+& 2 \cos \theta(1-\cos \theta)n_in_k+(1-\cos \theta)^2n_in_k-\epsilon_{ijp}\epsilon_{jkq}n_pn_q \sin^2 \theta\\
             &=&\delta_{ik} \cos^2 \theta &+& (1-\cos^2 \theta)n_in_k-\epsilon_{ijp}\epsilon_{jkq}n_pn_q \sin^2 \theta\\
-            &=&\delta_{ik} \cos^2 \theta &+& (1-\cos^2 \theta)n_in_k+\delta_{ik}\sin^2 \theta-\sin^2 \theta n_in_k\marginnote{By $ \epsilon $-$ \epsilon $ identity and that $n_p^2=1$.}\\
+            &=&\delta_{ik} \cos^2 \theta &+& (1-\cos^2 \theta)n_in_k+\delta_{ik}\sin^2 \theta-\sin^2 \theta n_in_k\footnote{By $ \epsilon $-$ \epsilon $ identity and that $n_p^2=1$.}\\
             &=&\boxed{\delta_{ik}}.&&
         \end{IEEEeqnarray*}
         Hence $ R(\theta)R(-\theta)=I $ or $ R(-\theta)=R^{-1}(\theta) $.
     \end{example}
-    \subsection{Transpose and Hermitian conjugate}\marginnote{Lecture 12}
+    \subsubsection{Transpose and Hermitian conjugate}
     \begin{definition}
         If $M$ is an $ m\times n $ (real or complex) matrix, the transpose $ M^{\top} $ is an $ n\times m $ matrix 
     \[
@@ -1473,7 +1431,7 @@ skipped some talks irrelevant to contents\\
     \[
         (\mathbf{z},\mathbf{w})=\bar{z}_i w_i=\mathbf{z}^\dagger \mathbf{w}
     .\]
-    \subsection{Trace}
+    \subsubsection{Trace}
     \begin{definition}
         For a complex $ n \times n $ matrix $M$, the \textit{trace} is defined by 
         \[
@@ -1503,7 +1461,7 @@ skipped some talks irrelevant to contents\\
     \begin{remark}
         If $A$ is $ n \times n $ anti-symmetric, then $ \tr(A)=A_{ii}=0 $.
     \end{remark}
-    \section{Orthogonal and unitary matrices}
+    \subsection{Orthogonal and unitary matrices}
     \begin{definition}
         A real $ n\times n $ matrix $U$ is \textit{orthogonal} if and only if $ U^{\top}=U^{-1} $, which can be written as 
         \[
@@ -1545,7 +1503,7 @@ skipped some talks irrelevant to contents\\
     \begin{definition}[Equivalent definition]
         $U$ is orthogonal if and only if it preserves inner product on $ \mathbb{R}^{n} $.
         \[
-            (U \mathbf{x})\cdot (U \mathbf{y})=\mathbf{x}\cdot \mathbf{y}, \quad \forall \bfx,\bfy\in \mathbb{R}^{n}
+            (U \mathbf{x})\cdot (U \mathbf{y})=\mathbf{x}\cdot \mathbf{y}, \quad \forall \mathbf{x},\mathbf{y}\in \mathbb{R}^{n}
         .\]
     \end{definition}
     To check equivalence, note that 
@@ -1569,7 +1527,7 @@ skipped some talks irrelevant to contents\\
                 -\sin \theta\\ \cos \theta
             \end{pmatrix}
         \]
-        by the fact that $ |U \mathbf{x}|^2=|\bfx|^2 \Leftrightarrow |U \mathbf{x}|=| \mathbf{x}| $. Therefore, two cases of $U$ are 
+        by the fact that $ |U \mathbf{x}|^2=|\mathbf{x}|^2 \Leftrightarrow |U \mathbf{x}|=| \mathbf{x}| $. Therefore, two cases of $U$ are 
         \[
             U=R=\begin{pmatrix}
                 \cos \theta & \sin \theta\\
@@ -1612,20 +1570,20 @@ skipped some talks irrelevant to contents\\
     \end{definition}
     To check equivalence, 
     \[
-            (U \mathbf{z}, U \mathbf{w})=(U \mathbf{z})^\dagger (U \mathbf{w})=(\bfz^\dagger U^\dagger )(U \bfw )=\bfz^\dagger (U^\dagger U)\bfw=\bfz^\dagger \bfw
+            (U \mathbf{z}, U \mathbf{w})=(U \mathbf{z})^\dagger (U \mathbf{w})=(\mathbf{z}^\dagger U^\dagger )(U \mathbf{w} )=\mathbf{z}^\dagger (U^\dagger U)\mathbf{w}=\mathbf{z}^\dagger \mathbf{w}
     \]
     iff $ U^\dagger U=I $.
-    \section{Determinants and Inverses}
-    \subsection{Introduction}
+    \subsection{Determinants and Inverses}
+    \subsubsection{Introduction}
     Consider a linear map $ T: \mathbb{R}^{n}\to \mathbb{R}^{n} $. If $T$ is invertible, then $ \ker T=\left\{ 0\right\} $, since $T$ is 1-1. Also $ \im T=\mathbb{R}^{n} $ since $T$ is onto. But these conditions are actually equivalent by rank-nullity theorem.
 
     Conversely if the conditions hold, then
     \[
-        T(\mathbf{e}_1), T(\mathbf{e}_2),\dots,T(\bfe_n)
+        T(\mathbf{e}_1), T(\mathbf{e}_2),\dots,T(\mathbf{e}_n)
     \]
     is a basis, so we can define $ T^{-1} $ as a linear map by 
     \[
-        T^{-1}(T(\bfe_i))=\bfe_i
+        T^{-1}(T(\mathbf{e}_i))=\mathbf{e}_i
     .\]
 
     To test if the conditions hold for a matrix $M$ representing $T$ and find its inverse $M^{-1}$ explicitly, consider a related matrix $ \tilde{M} $ and a scalar $ \det M $, called the \textit{determinant}, such that 
@@ -1648,42 +1606,42 @@ skipped some talks irrelevant to contents\\
     \]
     and 
     \[
-        \det M=[M \bfe_1, M\bfe_2]=\epsilon_{ij}M_{i1}M_{j2}
+        \det M=[M \mathbf{e}_1, M\mathbf{e}_2]=\epsilon_{ij}M_{i1}M_{j2}
     .\]
     This is the factor by which areas are scaled under $M$. Hence 
     \[
-        \det M \neq 0 \Longleftrightarrow \left\{ M\bfe_1, M\bfe_2\right\}\text{ is linearly independent}
+        \det M \neq 0 \Longleftrightarrow \left\{ M\mathbf{e}_1, M\mathbf{e}_2\right\}\text{ is linearly independent}
     .\]
 
     For $n=3$, consider similarly 
     \[
         \begin{aligned}
-            [M\bfe_1, M\bfe_2, M\bfe_3]&= \epsilon_{ijk}M_{i1}M_{j2}M_{k3}\\
+            [M\mathbf{e}_1, M\mathbf{e}_2, M\mathbf{e}_3]&= \epsilon_{ijk}M_{i1}M_{j2}M_{k3}\\
             &= \det M,
         \end{aligned}
     \]
     defined for $ \det M $ in $ 3 \times 3 $case. This is the factor by which volumns are scaled under $M$, and 
     \[
         \begin{aligned}
-            \det M\neq 0 &\Longleftrightarrow \left\{ M \mathbf{e}_1, M\bfe_2,M\bfe_3\right\} \text{ are linearly independent}\\
+            \det M\neq 0 &\Longleftrightarrow \left\{ M \mathbf{e}_1, M\mathbf{e}_2,M\mathbf{e}_3\right\} \text{ are linearly independent}\\
             & \Longleftrightarrow \im M=\mathbb{R}^{3}.
         \end{aligned}
     \]
     Now define $ \tilde{M} $ from $M$ using row/column notation:
     \[
         \begin{aligned}
-            &\mathbf{R}_1(\tilde{M})=\bfC_2(M)\times \bfC_3(M),
+            &\mathbf{R}_1(\tilde{M})=\mathbf{C}_2(M)\times \mathbf{C}_3(M),
             \\
-            &\mathbf{R}_2(\tilde{M})=\bfC_3(M)\times \bfC_1(M),
+            &\mathbf{R}_2(\tilde{M})=\mathbf{C}_3(M)\times \mathbf{C}_1(M),
             \\
-            &\mathbf{R}_3(\tilde{M})=\bfC_1(M)\times \bfC_2(M).
+            &\mathbf{R}_3(\tilde{M})=\mathbf{C}_1(M)\times \mathbf{C}_2(M).
         \end{aligned}
     \]
     Claim that this is indeed $ \tilde{M} $. Note that 
     \[
         \begin{aligned}
             (\tilde{M}M)_{ij}&=\mathbf{R}_i(\tilde{M}) \cdot \mathbf{C}_j(M)\\
-            &=[\bfC_1(M),\bfC_2(M),\bfC_3(M)]\delta_{ij}\\
+            &=[\mathbf{C}_1(M),\mathbf{C}_2(M),\mathbf{C}_3(M)]\delta_{ij}\\
             &=\det M \delta_{ij}.
         \end{aligned}
     \]
@@ -1722,7 +1680,7 @@ skipped some talks irrelevant to contents\\
                 -1 \\
                 -2
                 \end{pmatrix}\\
-                &\bfC_{1} \times \mathbf{C}_{2}=\begin{pmatrix}
+                &\mathbf{C}_{1} \times \mathbf{C}_{2}=\begin{pmatrix}
                 1 \\
                 0 \\
                 4
@@ -1743,11 +1701,11 @@ skipped some talks irrelevant to contents\\
                 -1&3&6\\
                 8&-1&-2\\
                 4&11&-1
-            \end{pmatrix}, \det M = \bfC_1 \cdot (\bfC_2 \times \bfC_3 )=23
+            \end{pmatrix}, \det M = \mathbf{C}_1 \cdot (\mathbf{C}_2 \times \mathbf{C}_3 )=23
         .\]
         Can check that $ \tilde{M}M=23I $.
     \end{example}
-    \subsection{Epsilon and alternating forms}
+    \subsubsection{Epsilon and alternating forms}
     Recall that a permutation $ \sigma $ on the set $\{1,2,\dots,n\}$ is a bijection to itself, specified by an ordered list $ (\sigma(1),\dots,\sigma(n)) $. Permutations form a group $ S_n $ which has order $ n! $. A transposition $ \tau=(p,q) $ is a permutation exchanging $p$ and $q$.
 
     Any permutation is a product of $k$ transpositions say 
@@ -1771,11 +1729,11 @@ skipped some talks irrelevant to contents\\
     $ \epsilon_{ij\cdots l} $ is \textit{totally antisymmetric} and changes sign when a pair of indices are exchanged.
 
     \begin{definition}
-        Given vectors $ \bfv_1,\dots,\bfv_n \in \mathbb{R}^{n}\lor \mathbb{C}^{n} $, the \textit{alternating form} combines them to give the scalar 
+        Given vectors $ \mathbf{v}_1,\dots,\mathbf{v}_n \in \mathbb{R}^{n}\lor \mathbb{C}^{n} $, the \textit{alternating form} combines them to give the scalar 
         \[
             \begin{aligned}
-                [\bfv_1,\bfv_2,\dots,\bfv_n]&= \epsilon_{ij\cdots l}(\bfv_1)_{i}(\bfv_2)_j\cdots (\bfv_n)_l\\
-                &= \sum_{\sigma\in S_n}\epsilon(\sigma)(\bfv_1)_{\sigma(1)}(\bfv_2)_{\sigma(2)}\cdots (\bfv_n)_{\sigma(n)}.
+                [\mathbf{v}_1,\mathbf{v}_2,\dots,\mathbf{v}_n]&= \epsilon_{ij\cdots l}(\mathbf{v}_1)_{i}(\mathbf{v}_2)_j\cdots (\mathbf{v}_n)_l\\
+                &= \sum_{\sigma\in S_n}\epsilon(\sigma)(\mathbf{v}_1)_{\sigma(1)}(\mathbf{v}_2)_{\sigma(2)}\cdots (\mathbf{v}_n)_{\sigma(n)}.
             \end{aligned}
         \]
     \end{definition}
@@ -1784,22 +1742,22 @@ skipped some talks irrelevant to contents\\
         \item \textit{Multilinear}. We have 
         \[
             \begin{aligned}
-                [\bfv_1,\dots,\bfv_{p-1},\alpha\bfu+\beta\bfw,\bfv_{p+1},\dots,\bfv_n]=&\alpha[\bfv_1,\dots,\bfv_{p-1},\bfu,\bfv_{p+1},\dots,\bfv_n]\\
-                &+\beta[\bfv_1,\dots,\bfv_{p-1},\bfw,\bfv_{p+1},\dots,\bfv_n].
+                [\mathbf{v}_1,\dots,\mathbf{v}_{p-1},\alpha\mathbf{u}+\beta\mathbf{w},\mathbf{v}_{p+1},\dots,\mathbf{v}_n]=&\alpha[\mathbf{v}_1,\dots,\mathbf{v}_{p-1},\mathbf{u},\mathbf{v}_{p+1},\dots,\mathbf{v}_n]\\
+                &+\beta[\mathbf{v}_1,\dots,\mathbf{v}_{p-1},\mathbf{w},\mathbf{v}_{p+1},\dots,\mathbf{v}_n].
             \end{aligned}
         \]
         \item Totally antisymmetric.
         \[
-            [\bfv_{\sigma(1)},\bfv_{\sigma(2)},\dots,\bfv_{\sigma(n)}]=\epsilon(\sigma)[\bfv_1,\bfv_2,\dots,\bfv_n]
+            [\mathbf{v}_{\sigma(1)},\mathbf{v}_{\sigma(2)},\dots,\mathbf{v}_{\sigma(n)}]=\epsilon(\sigma)[\mathbf{v}_1,\mathbf{v}_2,\dots,\mathbf{v}_n]
         .\]
-        \item $ [\bfe_1,\dots,\bfe_n]=1 $.
+        \item $ [\mathbf{e}_1,\dots,\mathbf{e}_n]=1 $.
         \item If $ \mathbf{v}_p=\mathbf{v}_q (p\neq q) $ then 
         \[
-            [\bfv_1,\dots,\bfv_p,\dots,\bfv_q,\dots,\bfv_n]=0
+            [\mathbf{v}_1,\dots,\mathbf{v}_p,\dots,\mathbf{v}_q,\dots,\mathbf{v}_n]=0
         .\]
-        \item If $ \bfv_p $ is a linear combination of the rest vectors, then 
+        \item If $ \mathbf{v}_p $ is a linear combination of the rest vectors, then 
         \[
-            [\bfv_1,\dots,\bfv_p,\dots,\bfv_n]=0
+            [\mathbf{v}_1,\dots,\mathbf{v}_p,\dots,\mathbf{v}_n]=0
         .\]
     \end{enumerate}
     The first three properites fix the alternating form completely, and they imply the rest properties.
@@ -1807,68 +1765,68 @@ skipped some talks irrelevant to contents\\
     To justify 2., check for a transposition $ \tau=(p,q), p<q$.
     \[
         \begin{aligned}
-            [\bfv_1,\dots,\bfv_q,\dots,\bfv_p,\bfv_{n}]&=\sum_{\sigma}\epsilon(\sigma)(\bfv_1)_{\sigma(1)}\cdots (\bfv_q)_{\sigma(p)}\cdots(\bfv_p)_{\sigma(q)}\cdots (\bfv_n)_{\sigma(n)}\\
-            &=\sum_{\sigma}\epsilon(\sigma)(\bfv_1)_{\sigma'(1)}\cdots (\bfv_q)_{\sigma'(q)}\cdots(\bfv_p)_{\sigma'(p)}\cdots (\bfv_n)_{\sigma'(n)},
+            [\mathbf{v}_1,\dots,\mathbf{v}_q,\dots,\mathbf{v}_p,\mathbf{v}_{n}]&=\sum_{\sigma}\epsilon(\sigma)(\mathbf{v}_1)_{\sigma(1)}\cdots (\mathbf{v}_q)_{\sigma(p)}\cdots(\mathbf{v}_p)_{\sigma(q)}\cdots (\mathbf{v}_n)_{\sigma(n)}\\
+            &=\sum_{\sigma}\epsilon(\sigma)(\mathbf{v}_1)_{\sigma'(1)}\cdots (\mathbf{v}_q)_{\sigma'(q)}\cdots(\mathbf{v}_p)_{\sigma'(p)}\cdots (\mathbf{v}_n)_{\sigma'(n)},
         \end{aligned}
     \]
     where $ \sigma'=\sigma \tau $. Therefore, 
     \[
-        [\bfv_1,\dots,\bfv_q,\dots,\bfv_p,\bfv_{n}] = -[\bfv_1,\dots,\bfv_p,\dots,\bfv_q,\bfv_{n}]
+        [\mathbf{v}_1,\dots,\mathbf{v}_q,\dots,\mathbf{v}_p,\mathbf{v}_{n}] = -[\mathbf{v}_1,\dots,\mathbf{v}_p,\dots,\mathbf{v}_q,\mathbf{v}_{n}]
     ,\]
     since $ \epsilon(\sigma')=-\epsilon(\sigma) $ and $ \sum_{\sigma}=\sum_{\sigma'} $.
     \begin{proposition}
-        $ [\bfv_1,\bfv_2,\dots,\bfv_n]\neq 0 \Leftrightarrow \bfv_1,\bfv_2,\dots,\bfv_n $ are linearly independent.
+        $ [\mathbf{v}_1,\mathbf{v}_2,\dots,\mathbf{v}_n]\neq 0 \Leftrightarrow \mathbf{v}_1,\mathbf{v}_2,\dots,\mathbf{v}_n $ are linearly independent.
     \end{proposition}
     \begin{proof}
-        If $ \bfv_1,\bfv_2,\dots,\bfv_n $ are linearly dependent, then by 5. $ [\bfv_1,\bfv_2,\dots,\bfv_n]=0 $, \#. Conversely, linear independence of $ \bfv_1,\bfv_2,\dots,\bfv_n $ implies that they span $ \mathbb{R}^{n} $ or $ \mathbb{C}^{n} $. Hence $ \exists u_{ai}\in \mathbb{R} \text{ or }\mathbb{C}  $ such that
+        If $ \mathbf{v}_1,\mathbf{v}_2,\dots,\mathbf{v}_n $ are linearly dependent, then by 5. $ [\mathbf{v}_1,\mathbf{v}_2,\dots,\mathbf{v}_n]=0 $, \#. Conversely, linear independence of $ \mathbf{v}_1,\mathbf{v}_2,\dots,\mathbf{v}_n $ implies that they span $ \mathbb{R}^{n} $ or $ \mathbb{C}^{n} $. Hence $ \exists u_{ai}\in \mathbb{R} \text{ or }\mathbb{C}  $ such that
         \[
-            \mathbf{e}_i = u_{ai}\bfv_a,\text{ by summation convention}
+            \mathbf{e}_i = u_{ai}\mathbf{v}_a,\text{ by summation convention}
         .\]
         Now 
         \[
             \begin{aligned}
-                [\bfe_1,\dots,\bfe_n]&=[u_{a1}\bfv_a,u_{b2}\bfv_a,\dots, u_{cn}\bfv_a]\\
-                &= u_{a1}u_{b2}\cdots u_{cn}[\bfv_a,\bfv_b,\dots,\bfv_c]\\
-                &=u_{a1}u_{b2}\cdots u_{cn} \epsilon_{ab\dots c} [\bfv_1,\bfv_2,\dots,\bfv_n]\text{ by 2.}
+                [\mathbf{e}_1,\dots,\mathbf{e}_n]&=[u_{a1}\mathbf{v}_a,u_{b2}\mathbf{v}_a,\dots, u_{cn}\mathbf{v}_a]\\
+                &= u_{a1}u_{b2}\cdots u_{cn}[\mathbf{v}_a,\mathbf{v}_b,\dots,\mathbf{v}_c]\\
+                &=u_{a1}u_{b2}\cdots u_{cn} \epsilon_{ab\dots c} [\mathbf{v}_1,\mathbf{v}_2,\dots,\mathbf{v}_n]\text{ by 2.}
             \end{aligned}
         \]
-        But LHS is 1, so $ [\bfv_1,\bfv_2,\dots,\bfv_n]\neq 0 $.
+        But LHS is 1, so $ [\mathbf{v}_1,\mathbf{v}_2,\dots,\mathbf{v}_n]\neq 0 $.
     \end{proof}
     \begin{example}
         Cosider 
         \[
-            \bfv_1=\begin{pmatrix}
+            \mathbf{v}_1=\begin{pmatrix}
                 i\\0\\0\\2
             \end{pmatrix},
-            \bfv_2=\begin{pmatrix}
+            \mathbf{v}_2=\begin{pmatrix}
                 0\\0\\5i\\0
             \end{pmatrix},
-            \bfv_3=\begin{pmatrix}
+            \mathbf{v}_3=\begin{pmatrix}
                 3\\2i\\0\\0
             \end{pmatrix},
-            \bfv_4=\begin{pmatrix}
+            \mathbf{v}_4=\begin{pmatrix}
                 0\\0\\-i\\1
             \end{pmatrix}\in \mathbb{C}^{4}
         .\]
         We have 
         \[
             \begin{aligned}
-                 [\bfv_1,\bfv_2,\bfv_3,\bfv_4]&=5i[\bfv_1,\bfe_3,\bfv_3,\bfv_4]\\
-                 &= 5i[i\bfe_1+2\bfe_4, \bfe_3,3\bfe_1+2i\bfe_2,-i\bfe_3+\bfe_4]\\
-                 &= 5i[i\bfe_1,\bfe_3,2i\bfe_2,\bfe_4]\\
+                 [\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3,\mathbf{v}_4]&=5i[\mathbf{v}_1,\mathbf{e}_3,\mathbf{v}_3,\mathbf{v}_4]\\
+                 &= 5i[i\mathbf{e}_1+2\mathbf{e}_4, \mathbf{e}_3,3\mathbf{e}_1+2i\mathbf{e}_2,-i\mathbf{e}_3+\mathbf{e}_4]\\
+                 &= 5i[i\mathbf{e}_1,\mathbf{e}_3,2i\mathbf{e}_2,\mathbf{e}_4]\\
                  &= 5i(i)(2i)(-1)=10i.
             \end{aligned}
         \]
         Hence they are linearly independent.
     \end{example}
-    \subsection{Determinants in $ \mathbb{R}^{n} $ and $ \mathbb{C}^{n} $}
-    \subsubsection{Definitions}
+    \subsubsection{Determinants in $ \mathbb{R}^{n} $ and $ \mathbb{C}^{n} $}
+    \paragraph{Definitions}
     \begin{definition}
-        For $ M\in \mathcal{M}_{n\times n} $ with columns $ \bfC_a=M\bfe_a $, the \textit{determinant} $ \det M $ or $ |M|\in \mathbb{R} \text{ or }\mathbb{C}  $ is defined by 
+        For $ M\in \mathcal{M}_{n\times n} $ with columns $ \mathbf{C}_a=M\mathbf{e}_a $, the \textit{determinant} $ \det M $ or $ |M|\in \mathbb{R} \text{ or }\mathbb{C}  $ is defined by 
     \[
         \begin{aligned}
-            \det M&= [\bfC_1,\dots,\bfC_n]\\
-             &=[M\bfe_1,\dots,M\bfe_n]\\
+            \det M&= [\mathbf{C}_1,\dots,\mathbf{C}_n]\\
+             &=[M\mathbf{e}_1,\dots,M\mathbf{e}_n]\\
              &= \epsilon_{ij\dots,l}M_{i1}M_{j2}\cdots M_{ln}\\
              &= \sum_{\sigma}\epsilon(\sigma)M_{\sigma(1)1}\cdots M_{\sigma(n)n}.
         \end{aligned}
@@ -1882,28 +1840,28 @@ skipped some talks irrelevant to contents\\
             \[
                 \det M = M_{11}M_{22}\cdots M_{nn}
             .\]
-            \item Consider $ M\in \mcM_{n\times n} $ defined by 
+            \item Consider $ M\in \mathcal{M}_{n\times n} $ defined by 
             \[
                 M= \begin{pmatrix}
                     A&0\\
                     0&1
                 \end{pmatrix}
             ,\]
-            where $A\in \mcM_{(n-1) \times (n-1)}$, so that $ M_{ni}=M_{in}=0 $ if $i\neq n$. Hence we can restrict permutation $ \sigma $ in definition to have $ \sigma(n)=n $. Therefore $ \det M=\det A $.
+            where $A\in \mathcal{M}_{(n-1) \times (n-1)}$, so that $ M_{ni}=M_{in}=0 $ if $i\neq n$. Hence we can restrict permutation $ \sigma $ in definition to have $ \sigma(n)=n $. Therefore $ \det M=\det A $.
         \end{enumerate}
     \end{example}
     \begin{proposition}[Alternative Definitions]
-        If $ \bfR_a $ are rows of $M$, then 
+        If $ \mathbf{R}_a $ are rows of $M$, then 
         \[
             \begin{aligned}
-                \det M&=[\bfR_1,\bfR_2,\dots,\bfR_n]\\
+                \det M&=[\mathbf{R}_1,\mathbf{R}_2,\dots,\mathbf{R}_n]\\
                 &= \epsilon_{ij\dots l}M_{1i}M_{2j}\cdots M_{nl}\\
                 &= \sum_{\sigma}M_{1\sigma(1)}M_{2\sigma(2)}\cdots M_{n\sigma(n)}.
             \end{aligned}
         \]
         i.e., $ \det M = \det M^{\top} $.
     \end{proposition}
-    Recall that $ (\bfC_{a})_i=M_{ia}=(\bfR_{i})_a $.
+    Recall that $ (\mathbf{C}_{a})_i=M_{ia}=(\mathbf{R}_{i})_a $.
     \begin{proof}
         We show directly the $ \sum_\sigma $ agree by considering 
         \[
@@ -1911,9 +1869,9 @@ skipped some talks irrelevant to contents\\
         \]
         But then $ \epsilon(\sigma)=\epsilon(\rho) $ and $ \sum_\sigma=\sum_\rho $, so this completes the proof.
     \end{proof}
-    \subsubsection{Evaluating Determinants, Expanding by Rows or Columns}
+    \paragraph{Evaluating Determinants, Expanding by Rows or Columns}
     \begin{definition}
-        For $ M\in \mcM_{n\times n} $ with entries $M_{ia}$, define the \textit{minor} $ M^{ia} $ to be the $ (n-1)\times (n-1) $ determinant of matrix obtained by deleting row $i$ and column $a$ from $M$.
+        For $ M\in \mathcal{M}_{n\times n} $ with entries $M_{ia}$, define the \textit{minor} $ M^{ia} $ to be the $ (n-1)\times (n-1) $ determinant of matrix obtained by deleting row $i$ and column $a$ from $M$.
     \end{definition}
     \begin{proposition}
         \[
@@ -1944,21 +1902,21 @@ skipped some talks irrelevant to contents\\
             = 10i.
         \]
     \end{example}
-    \subsection{Simplifying Determinants: Row and Column operation}\marginnote{Lecture 15.}
-    Let $ M\in \mcM_{n\times n} $. Summary: $ \det M $ is a function of the rows $ \bfR_i $ or columns $ \bfC_i $ that is multilinear, totally antisymmetric, and $ \det I = 1 $.
-    \subsubsection{Row and Column Scalings}
-    If $ \bfR_i \mapsto \lambda\bfR_i $ for $i$ fixed, \textit{or} $ \bfC_a\mapsto \lambda\bfC_a $ for $a$ fixed, then 
+    \subsubsection{Simplifying Determinants: Row and Column operation}
+    Let $ M\in \mathcal{M}_{n\times n} $. Summary: $ \det M $ is a function of the rows $ \mathbf{R}_i $ or columns $ \mathbf{C}_i $ that is multilinear, totally antisymmetric, and $ \det I = 1 $.
+    \paragraph{Row and Column Scalings}
+    If $ \mathbf{R}_i \mapsto \lambda\mathbf{R}_i $ for $i$ fixed, \textit{or} $ \mathbf{C}_a\mapsto \lambda\mathbf{C}_a $ for $a$ fixed, then 
     \[
         \det M \mapsto \lambda \det M
     .\]
     If we scale all rows or columns of $M$, then $ \det M \mapsto \lambda^n \det M  $.
-    \subsubsection{Rows and Column Operations}
-    If $ \bfR_i\mapsto\bfR_i+\lambda\bfR_j $ for $j\neq i$, or $ \bfC_a\mapsto\bfC_a+\lambda\bfC_b $ for $ b\neq a, a,b,c,d $ are fixed, then by multilinearity, we have 
+    \paragraph{Rows and Column Operations}
+    If $ \mathbf{R}_i\mapsto\mathbf{R}_i+\lambda\mathbf{R}_j $ for $j\neq i$, or $ \mathbf{C}_a\mapsto\mathbf{C}_a+\lambda\mathbf{C}_b $ for $ b\neq a, a,b,c,d $ are fixed, then by multilinearity, we have 
     \[
         \det M \mapsto \det M
     .\]
-    \subsubsection{Row and Column Exchanges}
-    If $ \bfR_i\leftrightarrow \bfR_j $ or $ \bfC_a \leftrightarrow \bfC_b $, then 
+    \paragraph{Row and Column Exchanges}
+    If $ \mathbf{R}_i\leftrightarrow \mathbf{R}_j $ or $ \mathbf{C}_a \leftrightarrow \mathbf{C}_b $, then 
     \[
         \det M \mapsto - \det M
     .\]
@@ -1972,7 +1930,7 @@ skipped some talks irrelevant to contents\\
             \end{pmatrix}, \quad a \in \mathbb{C}
         .\]
         \begin{IEEEeqnarray*}{rCl}
-            \bfC_1 \mapsto \bfC_1-\bfC_3 & : & \det A =\begin{vmatrix}
+            \mathbf{C}_1 \mapsto \mathbf{C}_1-\mathbf{C}_3 & : & \det A =\begin{vmatrix}
                 1-a & 1 & a \\
                 a-1 & 1 & 1 \\
                 0 & a & 1
@@ -1982,7 +1940,7 @@ skipped some talks irrelevant to contents\\
                 0 & a & 1
             \end{vmatrix}.
         \\
-          \bfC_2 \mapsto \bfC_2-\bfC_3  & : & \det A = (1-a)\begin{vmatrix}
+          \mathbf{C}_2 \mapsto \mathbf{C}_2-\mathbf{C}_3  & : & \det A = (1-a)\begin{vmatrix}
             1 & 1-a & a \\
             -1 & 0 & 1 \\
             0 & a-1 & 1
@@ -1992,16 +1950,16 @@ skipped some talks irrelevant to contents\\
             0 & -1 & 1
         \end{vmatrix}.
         \\
-           \bfR_1\mapsto \sum \bfR_i & : & \det A = (1-a)^2\begin{vmatrix}
+           \mathbf{R}_1\mapsto \sum \mathbf{R}_i & : & \det A = (1-a)^2\begin{vmatrix}
             0 & 0 & a+2 \\
             -1 & 0 & 1 \\
             0 & -1 & 1
         \end{vmatrix} = \underline{(1-a)^2(a+2)}.
         \end{IEEEeqnarray*}
     \end{example}
-    \subsection{Multiplicative Property}
+    \subsubsection{Multiplicative Property}
     \begin{theorem}\label{thm:multi_prop}
-        For $ M,N\in \mcM_{n\times n} $, $ \det MN=\det M \det N $.
+        For $ M,N\in \mathcal{M}_{n\times n} $, $ \det MN=\det M \det N $.
     \end{theorem}
     \begin{proof}
         Can prove this using the following elaboration on $ \det M $.
@@ -2035,19 +1993,19 @@ skipped some talks irrelevant to contents\\
         .\]
         Here we use facts that $ |U^{\top}|=|U| $ and $ |\overline{U}|=\overline{|U|} $. The second one is immediate from definition.
     \end{enumerate}
-    \section{Minors, Cofactors, and Inverses}
-    \subsection{Cofactors and Determinants}
-    Consider a particular column of a matrix $ M\in \mcM_{n\times n} $ and write it 
+    \subsection{Minors, Cofactors, and Inverses}
+    \subsubsection{Cofactors and Determinants}
+    Consider a particular column of a matrix $ M\in \mathcal{M}_{n\times n} $ and write it 
     \[
-        \bfC_a=\sum_{i}M_{ia}\bfe_i
+        \mathbf{C}_a=\sum_{i}M_{ia}\mathbf{e}_i
     .\]
     Then 
     \[
-        |M|=[\bfC_1,\dots,\bfC_n]=\sum_{i}M_{ia}[\bfC_1,\dots,\bfe_i,\bfC_{a+1},\dots,\bfC_n]:= \sum_i M_{ia}\Delta_{ia}
+        |M|=[\mathbf{C}_1,\dots,\mathbf{C}_n]=\sum_{i}M_{ia}[\mathbf{C}_1,\dots,\mathbf{e}_i,\mathbf{C}_{a+1},\dots,\mathbf{C}_n]:= \sum_i M_{ia}\Delta_{ia}
     .\]
     Hence
     \[
-        \Delta_{ia}=[\bfC_1,\dots,\bfe_i,\bfC_{a+1},\dots,\bfC_n]=\begin{vmatrix}
+        \Delta_{ia}=[\mathbf{C}_1,\dots,\mathbf{e}_i,\mathbf{C}_{a+1},\dots,\mathbf{C}_n]=\begin{vmatrix}
             A & \begin{matrix}
                 0\\ \vdots \\ 0
             \end{matrix} & B\\
@@ -2084,11 +2042,11 @@ skipped some talks irrelevant to contents\\
     \[
         \det M = \sum_{a}M_{ia}\Delta_{ia}=\sum_{a}(-1)^{i+a}M_{ia}M^{ia}
     .\]
-    \subsection{Adjugates and Inverses}
-    Reasoning as above, consider $ \bfC_b=\sum_i M_{ib}\bfe_i $. Then 
+    \subsubsection{Adjugates and Inverses}
+    Reasoning as above, consider $ \mathbf{C}_b=\sum_i M_{ib}\mathbf{e}_i $. Then 
     \[
        \begin{aligned}
-            &[\bfC_1,\dots,\bfC_{a-1},\bfC_b,\bfC_{a+1},\dots,m\bfC_n]\\
+            &[\mathbf{C}_1,\dots,\mathbf{C}_{a-1},\mathbf{C}_b,\mathbf{C}_{a+1},\dots,m\mathbf{C}_n]\\
             =&\sum_{i}M_{ib}\Delta_{ia}=\left.\begin{cases}
             \det M &\text{if }a=b,\\
             0 &\text{otherwise.}\\
@@ -2133,11 +2091,11 @@ skipped some talks irrelevant to contents\\
             \end{pmatrix}
         .\]
     \end{example}
-    \section{Systems of Linear Equations}
-    \subsection{Introduction \& Nature of Solutions}\marginnote{Lecture 16.}
+    \subsection{Systems of Linear Equations}
+    \subsubsection{Introduction \& Nature of Solutions}
     Consider a system of $n$ linear equations in $n$ unknowns $x_i$. Write in matrix-vector form
     \[
-        A\bfx=\bfb,\quad \bfx,\bfb\in \mathbb{R}^{n}, A\in \mcM_{n\times n}
+        A\mathbf{x}=\mathbf{b},\quad \mathbf{x},\mathbf{b}\in \mathbb{R}^{n}, A\in \mathcal{M}_{n\times n}
     .\]
     i.e.,
     \[
@@ -2149,45 +2107,45 @@ skipped some talks irrelevant to contents\\
     \]
     There are three possibilities:
     \begin{enumerate}[(i)]
-        \item $ \det A\neq 0 $, then there is a unique solution $ \bfx=A^{-1}\bfb $.
-        \item $ \det A=0 $ and $ \bfb\notin \im(A) $. Then there is no solution.
-        \item $ \det A=0  $ and $ \bfb\in \im(A) $. Then there are infinitely many solutions. In this case, the general solution is 
+        \item $ \det A\neq 0 $, then there is a unique solution $ \mathbf{x}=A^{-1}\mathbf{b} $.
+        \item $ \det A=0 $ and $ \mathbf{b}\notin \im(A) $. Then there is no solution.
+        \item $ \det A=0  $ and $ \mathbf{b}\in \im(A) $. Then there are infinitely many solutions. In this case, the general solution is 
         \[
-            \bfx=\bfx_0+\bfu,
+            \mathbf{x}=\mathbf{x}_0+\mathbf{u},
         ,\]
-        where $\bfx_0$ is a particular solution and $\bfu\in \ker A$.
+        where $\mathbf{x}_0$ is a particular solution and $\mathbf{u}\in \ker A$.
     \end{enumerate}
-    Elaboration: A solution exists if and only if $ A\bfx_0=\bfb $ for some $ \bfx_0 \Leftrightarrow \bfb\in \im(A) $. Then $\bfx$ is a solution if and only if $\bfu=\bfx-\bfx_0\in \ker A$. That is 
+    Elaboration: A solution exists if and only if $ A\mathbf{x}_0=\mathbf{b} $ for some $ \mathbf{x}_0 \Leftrightarrow \mathbf{b}\in \im(A) $. Then $\mathbf{x}$ is a solution if and only if $\mathbf{u}=\mathbf{x}-\mathbf{x}_0\in \ker A$. That is 
     \[
-        A\bfu=\mathbf{0}
+        A\mathbf{u}=\mathbf{0}
     .\]
     This is called the corresponding \textit{homogeneous} problem.
     
-    Now $ \det A\neq 0 \Leftrightarrow \im(A)=\mathbb{R}^{n} \Leftrightarrow \ker A=\{\mathbf{0}\} $. So in case (i) there is always a unique solution for any $\bfb$. But $ \det A=0 \Leftrightarrow \rank(A)<n \Leftrightarrow \nullity A>0 $, and either $\bfb\in \im(A)$ or $\bfb\notin\im(A)$.
+    Now $ \det A\neq 0 \Leftrightarrow \im(A)=\mathbb{R}^{n} \Leftrightarrow \ker A=\{\mathbf{0}\} $. So in case (i) there is always a unique solution for any $\mathbf{b}$. But $ \det A=0 \Leftrightarrow \rank(A)<n \Leftrightarrow \nullity A>0 $, and either $\mathbf{b}\in \im(A)$ or $\mathbf{b}\notin\im(A)$.
 
-    If $ \bfu_1,\dots,\bfu_k $ is a basis of $ \ker A $, then the general solution to the homogeneous problem is 
+    If $ \mathbf{u}_1,\dots,\mathbf{u}_k $ is a basis of $ \ker A $, then the general solution to the homogeneous problem is 
     \[
-        \bfu= \sum_{i=1}^{k}\lambda_i \bfu_i, \quad k=\nullity A
+        \mathbf{u}= \sum_{i=1}^{k}\lambda_i \mathbf{u}_i, \quad k=\nullity A
     .\]
     \begin{remark}
         Compare to differential equations on functions $y(x)$. Consider a linear differential operator 
         \[
-            \mcL= p_2(x)\frac{\mathrm{d}^2}{\mathrm{d}x^2}+p_1 \frac{\mathrm{d}}{\mathrm{d}x} +p_0(x),\quad \mcL y=f 
+            \mathcal{L}= p_2(x)\frac{\mathrm{d}^2}{\mathrm{d}x^2}+p_1 \frac{\mathrm{d}}{\mathrm{d}x} +p_0(x),\quad \mathcal{L} y=f 
         .\]
-        It has a particular solution $y_0(x)$ with $ \mcL y_0=f $, and the general solution 
+        It has a particular solution $y_0(x)$ with $ \mathcal{L} y_0=f $, and the general solution 
         \[
             y=y_0+(\lambda_1 y_1+\lambda_2 y_2)
         \]
-        where $\mcL y_1=\mcL y_2=0$.
+        where $\mathcal{L} y_1=\mathcal{L} y_2=0$.
     \end{remark}
     \begin{example}
-        Consider $A\bfx=\bfb$ where
+        Consider $A\mathbf{x}=\mathbf{b}$ where
         \[
             A=\begin{pmatrix}
                 1&1&a\\
                 a&1&1\\
                 1&a&1
-            \end{pmatrix}, \bfb=\begin{pmatrix}
+            \end{pmatrix}, \mathbf{b}=\begin{pmatrix}
                 1\\c\\1
             \end{pmatrix},\quad a,c\in \mathbb{R}.
         \]
@@ -2219,9 +2177,9 @@ skipped some talks irrelevant to contents\\
                     -1\\0\\1
                 \end{pmatrix} \right\}
             .\]
-            $ \bfb\in \im A \Leftrightarrow c=1 $, and a particular solution is $ \bfx_0^{\top}=(1,0,0) $. General solution is 
+            $ \mathbf{b}\in \im A \Leftrightarrow c=1 $, and a particular solution is $ \mathbf{x}_0^{\top}=(1,0,0) $. General solution is 
             \[
-                \bfx=\begin{pmatrix}
+                \mathbf{x}=\begin{pmatrix}
                     1\\0\\0
                 \end{pmatrix}+\lambda\begin{pmatrix}
                     -1\\1\\0
@@ -2248,9 +2206,9 @@ skipped some talks irrelevant to contents\\
                     1\\1\\1
                 \end{pmatrix} \right\}
             .\]
-            Claim that $ \bfb\in \im A \Leftrightarrow c=-2$, and thus a particular solution is $ \bfx_0^{\top}=(1,0,0) $.
+            Claim that $ \mathbf{b}\in \im A \Leftrightarrow c=-2$, and thus a particular solution is $ \mathbf{x}_0^{\top}=(1,0,0) $.
 
-            Indeed, $\bfb\in \im A$ if and only if it is coplanar with the basis. i.e., 
+            Indeed, $\mathbf{b}\in \im A$ if and only if it is coplanar with the basis. i.e., 
             \[
                 \left[ \begin{pmatrix}
                     1\\c\\1
@@ -2262,39 +2220,39 @@ skipped some talks irrelevant to contents\\
             .\]
             Therefore, general solution is 
             \[
-                \bfx=\begin{pmatrix}
+                \mathbf{x}=\begin{pmatrix}
                     1+\lambda\\\lambda\\\lambda
                 \end{pmatrix}
             .\]
             For $a=c=-2$, we have case (iii) which is a line. If $ a=-2,c\neq -2 $ then there is no solution.
         \end{itemize}
     \end{example}
-    \subsection{Geometrical Interpretation in $ \mathbb{R}^{3} $}
-    Let $ \bfR_1,\bfR_2,\bfR_3 $ be rows of $A$. Then 
+    \subsubsection{Geometrical Interpretation in $ \mathbb{R}^{3} $}
+    Let $ \mathbf{R}_1,\mathbf{R}_2,\mathbf{R}_3 $ be rows of $A$. Then 
     \[
-        A\bfu=\mathbf{0}\Longleftrightarrow \bfR_i\cdot \bfu=0, r=1,2,3
+        A\mathbf{u}=\mathbf{0}\Longleftrightarrow \mathbf{R}_i\cdot \mathbf{u}=0, r=1,2,3
     .\]
     So solution of homogeneous problem is given by intersection of these planes.
-    \begin{enumerate}[align=hang]
+    \begin{enumerate}[align=left]
         \item[\underline{$ \rank A=3 $}.] Normals are independent so the planes intersect only at $O$.
         \item[\underline{$ \rank A=2 $}.] Normals span a plane and planes intersect in a line.
         \item[\underline{$ \rank A=1 $}.] Normals are parallel and planes coincide.
     \end{enumerate}
 
-    Now consider instead $ A\bfx=\mathbf{b}\Leftrightarrow \bfR_i\cdot \bfx=b_i, r=1,2,3 $. Still planes with normals $ \bfR_i $, but not through $O$ unless one of $b_i=0$.
-    \begin{enumerate}[align=hang]
+    Now consider instead $ A\mathbf{x}=\mathbf{b}\Leftrightarrow \mathbf{R}_i\cdot \mathbf{x}=b_i, r=1,2,3 $. Still planes with normals $ \mathbf{R}_i $, but not through $O$ unless one of $b_i=0$.
+    \begin{enumerate}[align=left]
         \item[\underline{$ \rank A=3 $}.] $ \det A\neq 0 $ and normals are independent. Planes intersect at a point, which is the unique solution.
-        \item[\underline{$ \rank A<3 $}.] $ \det A=0 $. Existence of solutions depends on $\bfb$.
+        \item[\underline{$ \rank A<3 $}.] $ \det A=0 $. Existence of solutions depends on $\mathbf{b}$.
         \item[\underline{$ \rank A=2 $}.] Planes may intersect in a line but they may not. e.g., pairwise intersect in lines, or two planes are parallel and the third intersects them. In latter cases there is no solution.
         \item[\underline{$ \rank A=1 $}.] Planes may coincide but may not. e.g., at least two are parallel but do not coincide.
     \end{enumerate}
-    \section{Eigenvalues and Eigenvectors}\marginnote{Lecture 17, forgive me for using bold fonts for general vectors again since that's what was taught in class}
-    \subsection{Introduction}
-    \subsubsection{Basics}
+    \subsection{Eigenvalues and Eigenvectors}
+    \subsubsection{Introduction}
+    \paragraph{Basics}
     \begin{definition}
-        For a linear map $T:V\to V$, a vector $\bfv\neq \mathbf{0}$ is called an \textit{eigenvector} of $T$ with eigenvalue $\lambda$ if $ T(\bfv)=\lambda\bfv $.
+        For a linear map $T:V\to V$, a vector $\mathbf{v}\neq \mathbf{0}$ is called an \textit{eigenvector} of $T$ with eigenvalue $\lambda$ if $ T(\mathbf{v})=\lambda\mathbf{v} $.
     \end{definition}
-    If $ \mathbb{R}^{n} $ or $ \mathbb{C}^{n} $ and $T$ is given by $ A\in \mathcal{M}_{n\times n} $, then $ A\bfv=\lambda\bfv \Leftrightarrow (A-\lambda I)\bfv=0 $. For some given $ \lambda $ this holds for some $ \bfv\neq \mathbf{0} $ if and only if 
+    If $ \mathbb{R}^{n} $ or $ \mathbb{C}^{n} $ and $T$ is given by $ A\in \mathcal{M}_{n\times n} $, then $ A\mathbf{v}=\lambda\mathbf{v} \Leftrightarrow (A-\lambda I)\mathbf{v}=0 $. For some given $ \lambda $ this holds for some $ \mathbf{v}\neq \mathbf{0} $ if and only if 
     \[
         \det (A-\lambda I)=0,\quad \text{characteristic equation}
     .\]
@@ -2310,7 +2268,7 @@ skipped some talks irrelevant to contents\\
     $ \chi_A(t) $ is called a \textit{characteristic polynomial}.
 
     We can find eigenvalues as roots of characteristic polynomial and then determine corresponding eigenvectors.
-    \subsubsection{Examples}
+    \paragraph{Examples}
     \begin{example}\label{eg:25.1.2}
         \begin{enumerate}[(i)]
             \item $V=\mathbb{C}^{2}, A=\begin{pmatrix}
@@ -2319,23 +2277,23 @@ skipped some talks irrelevant to contents\\
                 2-\lambda & i\\-i & 2-\lambda
             \end{vmatrix}=(2-\lambda)^2-1=0 \Leftrightarrow \lambda=2\pm 1=1,3 $. To find eigenvectors, when $ \lambda=1 $,
             \[
-                (A-I)\bfv=\begin{pmatrix}
+                (A-I)\mathbf{v}=\begin{pmatrix}
                     1&i\\-i&1
                 \end{pmatrix}
                 \begin{pmatrix}
                     v_1\\v_2
-                \end{pmatrix}=\mathbf{0} \Longrightarrow \bfv=\alpha\begin{pmatrix}
+                \end{pmatrix}=\mathbf{0} \Longrightarrow \mathbf{v}=\alpha\begin{pmatrix}
                     1\\i
                 \end{pmatrix},\alpha\neq 0
             .\]
             When $ \lambda=3 $,
             \[
-                (A-3I)\bfv=A=\begin{pmatrix}
+                (A-3I)\mathbf{v}=A=\begin{pmatrix}
                     -1&i\\-i&-1
                 \end{pmatrix}\begin{pmatrix}
                     v_1\\v_2
                 \end{pmatrix}=\mathbf{0} \Longrightarrow 
-                \bfv=\beta\begin{pmatrix}
+                \mathbf{v}=\beta\begin{pmatrix}
                     1\\-i
                 \end{pmatrix},\beta\neq 0
             .\]
@@ -2353,11 +2311,11 @@ skipped some talks irrelevant to contents\\
             .\]
             Hence 
             \[
-                (A-I)\bfv=\begin{pmatrix}
+                (A-I)\mathbf{v}=\begin{pmatrix}
                     0&1\\0&0
                 \end{pmatrix}\begin{pmatrix}
                     v_1\\v_2
-                \end{pmatrix}=\mathbf{0} \Longleftrightarrow \bfv=\alpha\begin{pmatrix}
+                \end{pmatrix}=\mathbf{0} \Longleftrightarrow \mathbf{v}=\alpha\begin{pmatrix}
                     1\\0
                 \end{pmatrix}, \alpha\neq 0
             .\]
@@ -2375,7 +2333,7 @@ skipped some talks irrelevant to contents\\
             ,\]
             and eigenvectors are 
             \[
-                \bfv=\alpha\begin{pmatrix}
+                \mathbf{v}=\alpha\begin{pmatrix}
                     1\\\mp i
                 \end{pmatrix}, \alpha\neq 0
             .\]
@@ -2392,10 +2350,10 @@ skipped some talks irrelevant to contents\\
             \[
                 \chi_A(t)=(\lambda_1-t)(\lambda_2-t)\cdots (\lambda_n-t)
             .\]
-            Hence eigenvalues are $ \lambda=\lambda_i $ and $ \bfv=\lambda\bfe_i, \alpha\neq 0 $ for each $i$.
+            Hence eigenvalues are $ \lambda=\lambda_i $ and $ \mathbf{v}=\lambda\mathbf{e}_i, \alpha\neq 0 $ for each $i$.
         \end{enumerate}
     \end{example}
-    \subsubsection{Deduction involving $ \chi_A(t) $}
+    \paragraph{Deduction involving $ \chi_A(t) $}
     For $ A\in \mathcal{M}_{n\times n} $, the characteristic polynomial has degree $n$:
     \[
         \chi_A(t)=\sum_{j=0}^{n}c_jt^j=(-1)^n(t-\lambda_1)\cdots(t-\lambda_n)
@@ -2417,12 +2375,12 @@ skipped some talks irrelevant to contents\\
         .\]
         So non-real roots appear in conjugate pairs.
     \end{enumerate}
-    \subsection{Eigenspaces and Multiplicities}
-    \subsubsection{Definitions}
+    \subsubsection{Eigenspaces and Multiplicities}
+    \paragraph{Definitions}
     \begin{definition}
         For an eigenvalue $ \lambda $ of a matrix $A$, define the \textit{eigenspace}
         \[
-            E_\lambda=\left\{ \bfv:A\bfv=\lambda\bfv \right\}=\ker (A-\lambda I) 
+            E_\lambda=\left\{ \mathbf{v}:A\mathbf{v}=\lambda\mathbf{v} \right\}=\ker (A-\lambda I) 
         .\]
         The \textit{geometric multiplicity} is 
         \[
@@ -2442,30 +2400,30 @@ skipped some talks irrelevant to contents\\
     \begin{proposition}
         $ M_\lambda\ge m_\lambda $. Note that $ m_\lambda\ge 1 $ since $ \lambda $ is a root of $ \chi_A(t) $.
     \end{proposition}
-    \begin{proof}(Non-examinable) Let $\lambda$ be an eigenvalue of $A\in \mcM_{n\times n}$ and choose a basis for the eigenspace $ E_\lambda $:
+    \begin{proof}(Non-examinable) Let $\lambda$ be an eigenvalue of $A\in \mathcal{M}_{n\times n}$ and choose a basis for the eigenspace $ E_\lambda $:
         \[
-            \bfv_1,\bfv_2,\dots,\bfv_r.
+            \mathbf{v}_1,\mathbf{v}_2,\dots,\mathbf{v}_r.
         \]
         Extend this to a basis of $ \mathbb{R}^{n} $ or $ \mathbb{C}^{n} $:
         \[
-            \mcB=\left\{ \bfv_1,\dots,\bfv_r,\bfw_{r+1},\dots, \bfw_{n} \right\}.
+            \mathcal{B}=\left\{ \mathbf{v}_1,\dots,\mathbf{v}_r,\mathbf{w}_{r+1},\dots, \mathbf{w}_{n} \right\}.
         \]
-        Now since $\bfv_i$ are eigenvectors, we have 
+        Now since $\mathbf{v}_i$ are eigenvectors, we have 
         \[
-            A \bfv_i = \lambda \bfv_i.
+            A \mathbf{v}_i = \lambda \mathbf{v}_i.
         \]
-        And since $\bfw_a$ are in the space,
+        And since $\mathbf{w}_a$ are in the space,
         \[
-            A \bfw_a = \sum_{i=1}^{r} B_{ia} \bfv_i + \sum_{b=r+1}^{n} B_{ba} \bfw_{b}.
+            A \mathbf{w}_a = \sum_{i=1}^{r} B_{ia} \mathbf{v}_i + \sum_{b=r+1}^{n} B_{ba} \mathbf{w}_{b}.
         \]
-        Let $P$ be the matrix of columns from $ \mcB $ and let $B$ be the matrix of entries such that $B_{ij}=\lambda \delta_{ij}$ for $i,j=1,\dots,r$, $B_{ai}=0$ and $ B_{ia},B_{ab} $ unknown for $ a,b=r+1,\dots,n $. That is,
+        Let $P$ be the matrix of columns from $ \mathcal{B} $ and let $B$ be the matrix of entries such that $B_{ij}=\lambda \delta_{ij}$ for $i,j=1,\dots,r$, $B_{ai}=0$ and $ B_{ia},B_{ab} $ unknown for $ a,b=r+1,\dots,n $. That is,
         \[
             B = \begin{pmatrix}
                 \lambda I & M\\
                 O & \hat{B}
             \end{pmatrix},
         \]
-        where $I\in \mcM_{r\times r}$, $ \hat{B}\in \mcM_{(n-r)\times (n-r)} $, $O$ is a zero matrix, and $M$ is unknown. It follows that 
+        where $I\in \mathcal{M}_{r\times r}$, $ \hat{B}\in \mathcal{M}_{(n-r)\times (n-r)} $, $O$ is a zero matrix, and $M$ is unknown. It follows that 
         \[
             AP=PB \Longleftrightarrow P^{-1}AP=B,
         \] 
@@ -2481,7 +2439,7 @@ skipped some talks irrelevant to contents\\
         \end{align*}
         It follows that $ M_\lambda\ge r = m_\lambda $, as claimed.
     \end{proof}
-    \subsubsection{Examples}
+    \paragraph{Examples}
     \begin{example}
         \begin{enumerate}[(i)]
             \item Consider 
@@ -2521,7 +2479,7 @@ skipped some talks irrelevant to contents\\
             .\]
             Root is $ \lambda=-2 $, three times, so that $ M_{-2}=3 $. To find the eigenspace,
             \[
-                (A+2 I) \bfx=\left(\begin{array}{rrr}
+                (A+2 I) \mathbf{x}=\left(\begin{array}{rrr}
                     -1 & -1 & 1 \\
                     -1 & -1 & 1 \\
                     -2 & -2 & 2
@@ -2529,7 +2487,7 @@ skipped some talks irrelevant to contents\\
                     x_{1} \\
                     x_{2} \\
                     x_{3}
-                    \end{array}\right)=\mathbf{0} \Longrightarrow \bfx=\begin{pmatrix}
+                    \end{array}\right)=\mathbf{0} \Longrightarrow \mathbf{x}=\begin{pmatrix}
                         -x_2+x_3\\x_2\\x_3
                     \end{pmatrix}
             .\]
@@ -2542,33 +2500,33 @@ skipped some talks irrelevant to contents\\
                 \end{pmatrix} \right\}
             .\]
             Hence $ \dim E_{-2}=m_{-2}=2<M_{-2} $.
-            \item Reflection in plane through the origin with unit normal vector $ \bfn $. Notice that
+            \item Reflection in plane through the origin with unit normal vector $ \mathbf{n} $. Notice that
             \[
-                H\bfn=-\bfn \text{ and } H\bfu=\bfu \text{ for any }\bfu \perp \bfn
+                H\mathbf{n}=-\mathbf{n} \text{ and } H\mathbf{u}=\mathbf{u} \text{ for any }\mathbf{u} \perp \mathbf{n}
             .\]
-            Hence eigenvalues are $ \pm 1 $ and $ E_{-1}=\{\alpha\bfn\} $, $ E_1=\{\bfx:\bfx\cdot \bfn=0\} $. Also $ M_{-1}=m_{-1}=1, M_1=m_1=2 $.
-            \item Rotation about axis $ \bfn $ through angle $ \theta $ in $ \mathbb{R}^{3} $. We have $ R\bfn=\bfn $ and there are no real eigenvalues unless $ \theta=n\pi $, rotation restricted the plane perpendicular to $\bfn$ has eigenvalues $ e^{\pm i\theta} $, as in previous example (iii) in 25.1.2.
+            Hence eigenvalues are $ \pm 1 $ and $ E_{-1}=\{\alpha\mathbf{n}\} $, $ E_1=\{\mathbf{x}:\mathbf{x}\cdot \mathbf{n}=0\} $. Also $ M_{-1}=m_{-1}=1, M_1=m_1=2 $.
+            \item Rotation about axis $ \mathbf{n} $ through angle $ \theta $ in $ \mathbb{R}^{3} $. We have $ R\mathbf{n}=\mathbf{n} $ and there are no real eigenvalues unless $ \theta=n\pi $, rotation restricted the plane perpendicular to $\mathbf{n}$ has eigenvalues $ e^{\pm i\theta} $, as in previous example (iii) in 25.1.2.
         \end{enumerate}
     \end{example}
-    \subsubsection{Linear Independence of Eigenvectors}
-    \begin{proposition}\label{prop:eigenvectors linearly independent}\marginnote{Lecture 18}
-        Let $ \bfv_1,\bfv_2,\dots, \bfv_r $ be eigenvectors of a matrix $A\in \mcM_{n\times n}$ with eigenvalues $ \lambda_1,\dots,\lambda_r $. If the eigenvalues are distinct $ \lambda_i\neq \lambda_j, \forall i\neq j $, then $ \bfv_1,\dots,\bfv_r $ are linearly independent.
+    \paragraph{Linear Independence of Eigenvectors}
+    \begin{proposition}\label{prop:eigenvectors linearly independent}
+        Let $ \mathbf{v}_1,\mathbf{v}_2,\dots, \mathbf{v}_r $ be eigenvectors of a matrix $A\in \mathcal{M}_{n\times n}$ with eigenvalues $ \lambda_1,\dots,\lambda_r $. If the eigenvalues are distinct $ \lambda_i\neq \lambda_j, \forall i\neq j $, then $ \mathbf{v}_1,\dots,\mathbf{v}_r $ are linearly independent.
     \end{proposition}
     \begin{proof}
-        Note that $ \bfw=\sum_{j=1}^{r} \alpha_j \bfv_j $ then 
+        Note that $ \mathbf{w}=\sum_{j=1}^{r} \alpha_j \mathbf{v}_j $ then 
         \[
-            (A-\lambda I)\bfw=\sum_{j=1}^{r} \alpha_j(\lambda_j-\lambda)\bfv_j
+            (A-\lambda I)\mathbf{w}=\sum_{j=1}^{r} \alpha_j(\lambda_j-\lambda)\mathbf{v}_j
         .\]
         We have two methods.
-        \begin{enumerate}[align=hang,label=Method \arabic*.]
-            \item By contradiction. Suppose that $\bfv_i$ are linearly dependent, so there exists a linear combination $ \bfw= \mathbf{0} $ with number $p$ of non-zero coefficients $ \ge 2 $. Pick such a $\bfw$ such that the number is the least. Wlog suppose $ \alpha_1 \neq 0$. Then 
+        \begin{enumerate}[align=left,label=Method \arabic*.]
+            \item By contradiction. Suppose that $\mathbf{v}_i$ are linearly dependent, so there exists a linear combination $ \mathbf{w}= \mathbf{0} $ with number $p$ of non-zero coefficients $ \ge 2 $. Pick such a $\mathbf{w}$ such that the number is the least. Wlog suppose $ \alpha_1 \neq 0$. Then 
             \[
-                (A-\lambda_1 I)\bfw= \sum_{j>1}\alpha_j(\lambda_j-\lambda_1 )\bfv_j=\mathbf{0}
+                (A-\lambda_1 I)\mathbf{w}= \sum_{j>1}\alpha_j(\lambda_j-\lambda_1 )\mathbf{v}_j=\mathbf{0}
             .\]
             This is a linear relation with $p-1$ non-zero coefficients, \#.
-            \item Given a relation $ \bfw=\mathbf{0} $, 
+            \item Given a relation $ \mathbf{w}=\mathbf{0} $, 
             \[
-                \bfw=\mathbf{0} \Longrightarrow \prod_{j\neq k}(A-\lambda_j I)\bfw=\alpha_k\prod_{j\neq k}(A-\lambda_j I) \bfv_k=\mathbf{0}
+                \mathbf{w}=\mathbf{0} \Longrightarrow \prod_{j\neq k}(A-\lambda_j I)\mathbf{w}=\alpha_k\prod_{j\neq k}(A-\lambda_j I) \mathbf{v}_k=\mathbf{0}
             ,\]
             for $k$ fixed. Since $ \lambda_i $ are distinct, $ \alpha_k=0 $. i.e. they are linearly independent.
         \end{enumerate}
@@ -2576,25 +2534,25 @@ skipped some talks irrelevant to contents\\
     \begin{corollary}\label{col:basis of all eigenvectors}
             With conditions as in proposition, let $ \mathcal{B}_{\lambda_i} $ be a basis for $ E_{\lambda_i},i=1,\dots,r $, then 
             \[
-                \bigcup_{i=1}^{r} \mcB_{\lambda_i}
+                \bigcup_{i=1}^{r} \mathcal{B}_{\lambda_i}
             \]
             is linearly independent.
     \end{corollary}
     \begin{proof}
         Consider a general linear combination of all the vectors, it has the form 
         \[
-            \bfw=\bfw_1+\bfw_2+ \cdots +\bfw_r
+            \mathbf{w}=\mathbf{w}_1+\mathbf{w}_2+ \cdots +\mathbf{w}_r
         \]
-        where each $\bfw_i\in E_{\lambda_i}$. By proposition, $ \bfw=0 \Rightarrow \bfw_i=0 \Rightarrow  $ all the coefficients $=0$. Hence they are linearly independent.
+        where each $\mathbf{w}_i\in E_{\lambda_i}$. By proposition, $ \mathbf{w}=0 \Rightarrow \mathbf{w}_i=0 \Rightarrow  $ all the coefficients $=0$. Hence they are linearly independent.
     \end{proof}
-    \section{Diagonalisability and Similarity}
-    \subsection{Introduction}
+    \subsection{Diagonalisability and Similarity}
+    \subsubsection{Introduction}
     \begin{proposition}\label{prop:conditions for diag}
         For an $n\times n$ matrix $A$ acting on $V=\mathbb{R}^{n}$ or $ \mathbb{C}^{n} $, the followings are equivalent:
         \begin{enumerate}
             \item There exists a basis of eigenvectors for $V$
             \[
-                \bfv_1,\dots,\bfv_n \text{ with }A\bfv_i=\lambda_i\bfv_i
+                \mathbf{v}_1,\dots,\mathbf{v}_n \text{ with }A\mathbf{v}_i=\lambda_i\mathbf{v}_i
             ,\]
             no summation convention.
             \item There exists $n\times n$ invertible matrix $P$ such that 
@@ -2611,9 +2569,9 @@ skipped some talks irrelevant to contents\\
         \end{enumerate} 
     \end{proposition}
     \begin{proof}
-        Note that for any matrix $P$, $AP$ has columns $ A\bfC_i(P) $, $PD$ has columns $ \lambda_i \bfC_i(P) $. Then 1. and 2. are related by choosing $ \bfv_i=\bfC_i(P) $, then 
+        Note that for any matrix $P$, $AP$ has columns $ A\mathbf{C}_i(P) $, $PD$ has columns $ \lambda_i \mathbf{C}_i(P) $. Then 1. and 2. are related by choosing $ \mathbf{v}_i=\mathbf{C}_i(P) $, then 
         \[
-            P^{-1}AP=D \Longleftrightarrow AP=PD \Longleftrightarrow A\bfv_i=\lambda_i\bfv_i
+            P^{-1}AP=D \Longleftrightarrow AP=PD \Longleftrightarrow A\mathbf{v}_i=\lambda_i\mathbf{v}_i
         .\]
         i.e., given a basis as in 1., the relation defines a matrix $P$ and conversely, given a matrix $P$ in 2. we can form a basis of eigenvectors.
     \end{proof}
@@ -2645,7 +2603,7 @@ skipped some talks irrelevant to contents\\
             $U$ is diagonalisable over $ \mathbb{C}  $ but not over $ \mathbb{R}  $.
         \end{enumerate}
     \end{example}
-    \subsection{Criteria for Diagonalisability}
+    \subsubsection{Criteria for Diagonalisability}
     \begin{proposition}
         Consider $n\times n$ matrix $A$.
         \begin{enumerate}
@@ -2658,7 +2616,7 @@ skipped some talks irrelevant to contents\\
             \item If we have $n$ distinct eigenvalues then we have $n$ distinct eigenvectors so they form a basis.
             \item If $ \lambda_1,\dots,\lambda_r $ are all distinct eigenvalues, then 
             \[
-                \bigcup_{i=1}^{r}\mcB_{\lambda_i}
+                \bigcup_{i=1}^{r}\mathcal{B}_{\lambda_i}
             \]
             is linearly independent. But \# of elements is 
             \[
@@ -2700,13 +2658,13 @@ skipped some talks irrelevant to contents\\
             \end{pmatrix}$, $ \lambda=-2 $. $ M_{-2}=3>M_{-2}=2 $. $A$ is not diagonalisable.
         \end{enumerate}
     \end{example}
-    \subsection{Similarity}
+    \subsubsection{Similarity}
     \begin{definition}
-        $ A,B\in \mcM_{n\times n} $ are \textit{similar} if 
+        $ A,B\in \mathcal{M}_{n\times n} $ are \textit{similar} if 
         \[
             B=P^{-1}AP
         \]
-        for some $ P\in \mcM_{n \times n} $. This is an equivalence relation.
+        for some $ P\in \mathcal{M}_{n \times n} $. This is an equivalence relation.
     \end{definition}
     \begin{proposition}
         If $A$ and $B$ are similar, then 
@@ -2721,9 +2679,9 @@ skipped some talks irrelevant to contents\\
         $ \det B=\det P^{-1}AP=\det P^{-1}\det A \det P=\det A $. \\
         $ \det (B-tI)=\det (P^{-1}AP-tP^{-1}P)=\det (P^{-1}(A-tI)P)=\det (A-tI) $.
     \end{proof}
-    \section{Hermitian and Symmetric Matrices}
-    \subsection{Real eigenvalues and Orthogonal Eigenvectors}\marginnote{Lecture 19}
-    Recall that a matrix $A\in \mcM_{n\times n}$ is \textit{hermitian} if and only if 
+    \subsection{Hermitian and Symmetric Matrices}
+    \subsubsection{Real eigenvalues and Orthogonal Eigenvectors}
+    Recall that a matrix $A\in \mathcal{M}_{n\times n}$ is \textit{hermitian} if and only if 
     \[
         A^{\dagger}=\overline{A}^{\top}=A \Leftrightarrow \overline{A}_{ij}=A_{ji}.
     \]
@@ -2731,34 +2689,34 @@ skipped some talks irrelevant to contents\\
     \[
         \overline{A}=A \land A^{\top}=A \Leftrightarrow \overline{A}_{ij}=A_{ij}\land A_{ij}=A_{ji}.
     \]
-    Recall also that the \textit{complex inner product} of $\bfv,\bfw \in \mathbb{C}^{n}$ is defined by 
+    Recall also that the \textit{complex inner product} of $\mathbf{v},\mathbf{w} \in \mathbb{C}^{n}$ is defined by 
     \[
-        (\bfv,\bfw)= \bfv^\dagger \bfw= \bar{v}_i w_i.
+        (\mathbf{v},\mathbf{w})= \mathbf{v}^\dagger \mathbf{w}= \bar{v}_i w_i.
     \]
-    In $ \mathbb{R}^{n} $ it reduces to $ \bfv^{\top} \bfw $.
+    In $ \mathbb{R}^{n} $ it reduces to $ \mathbf{v}^{\top} \mathbf{w} $.
     \begin{lemma}
         If $A$ is hermitian, then 
         \[
-            (A\bfv)^\dagger \bfw=\bfv^\dagger (A\bfw),\quad \forall \bfv,\bfw\in \mathbb{C}^{n}.
+            (A\mathbf{v})^\dagger \mathbf{w}=\mathbf{v}^\dagger (A\mathbf{w}),\quad \forall \mathbf{v},\mathbf{w}\in \mathbb{C}^{n}.
         \]
     \end{lemma}
     \begin{proof}
         Indeed, 
         \[
-            (A\bfv)^\dagger \bfw = \bfv^\dagger A^\dagger \bfw = \bfv^\dagger (A\bfw).
+            (A\mathbf{v})^\dagger \mathbf{w} = \mathbf{v}^\dagger A^\dagger \mathbf{w} = \mathbf{v}^\dagger (A\mathbf{w}).
         \]
     \end{proof}
     \begin{theorem}\label{thm:eigen for hermitians}
-        For a matrix $ A\in \mcM_{n\times n} $,
+        For a matrix $ A\in \mathcal{M}_{n\times n} $,
         \begin{enumerate}
             \item Every eigenvalue $ \lambda $ is real.
-            \item Eigenvectors $ \bfv,\bfw $ with different eigenvalues $ \lambda,\mu $ are orthogonal. That is,
+            \item Eigenvectors $ \mathbf{v},\mathbf{w} $ with different eigenvalues $ \lambda,\mu $ are orthogonal. That is,
             \[
-                \bfv^\dagger \bfw=0.
+                \mathbf{v}^\dagger \mathbf{w}=0.
             \]
-            \item If $A$ is real and symmetric, then for each $ \lambda $ in 1. we can choose a real eigenvector $ \bfv $ and 2. becomes 
+            \item If $A$ is real and symmetric, then for each $ \lambda $ in 1. we can choose a real eigenvector $ \mathbf{v} $ and 2. becomes 
             \[
-                \bfv^{\top}\bfw=\bfv \cdot \bfw=0.
+                \mathbf{v}^{\top}\mathbf{w}=\mathbf{v} \cdot \mathbf{w}=0.
             \]
         \end{enumerate}
     \end{theorem}
@@ -2766,39 +2724,39 @@ skipped some talks irrelevant to contents\\
         \begin{enumerate}
             \item Note that 
             \begin{align*}
-                & \bfv^\dagger (A\bfv)=(A\bfv)^\dagger \bfv\\
-                \Longrightarrow & \bfv^\dagger \lambda\bfv = (\lambda\bfv)^\dagger \bfv\\
-                \Longrightarrow & \lambda\bfv^\dagger \bfv=\bar{\lambda}\bfv^\dagger \bfv\\
+                & \mathbf{v}^\dagger (A\mathbf{v})=(A\mathbf{v})^\dagger \mathbf{v}\\
+                \Longrightarrow & \mathbf{v}^\dagger \lambda\mathbf{v} = (\lambda\mathbf{v})^\dagger \mathbf{v}\\
+                \Longrightarrow & \lambda\mathbf{v}^\dagger \mathbf{v}=\bar{\lambda}\mathbf{v}^\dagger \mathbf{v}\\
                 \Longrightarrow & \lambda=\bar{\lambda}.
             \end{align*}
             \item Note that 
             \begin{align*}
-                &\bfv^\dagger (A\bfw) = (A\bfv)^\dagger \bfw\\
-                \Longrightarrow & \mu \bfv^\dagger \bfw = \lambda \bfv^\dagger \bfw\\
-                \Longrightarrow & \bfv^\dagger \bfw=0.
+                &\mathbf{v}^\dagger (A\mathbf{w}) = (A\mathbf{v})^\dagger \mathbf{w}\\
+                \Longrightarrow & \mu \mathbf{v}^\dagger \mathbf{w} = \lambda \mathbf{v}^\dagger \mathbf{w}\\
+                \Longrightarrow & \mathbf{v}^\dagger \mathbf{w}=0.
             \end{align*}
-            \item Given $ A\bfv=\lambda\bfv $, where $A,\lambda$ are real, let 
+            \item Given $ A\mathbf{v}=\lambda\mathbf{v} $, where $A,\lambda$ are real, let 
             \[
-                \bfv=\bfu+i\bfu',
+                \mathbf{v}=\mathbf{u}+i\mathbf{u}',
             \]
-            where $ \bfu,\bfu'\in \mathbb{R}^{n} $. By equating real and imaginary parts,
+            where $ \mathbf{u},\mathbf{u}'\in \mathbb{R}^{n} $. By equating real and imaginary parts,
             \[
-                A\bfu=\lambda\bfu,\quad A\bfu'=\lambda\bfu'.
+                A\mathbf{u}=\lambda\mathbf{u},\quad A\mathbf{u}'=\lambda\mathbf{u}'.
             \]
-            But $ \bfv\neq \mathbf{0} $, so at least one of $ \bfu,\bfu' $ is non-zero, and thus there is a real eigenvector.
+            But $ \mathbf{v}\neq \mathbf{0} $, so at least one of $ \mathbf{u},\mathbf{u}' $ is non-zero, and thus there is a real eigenvector.
         \end{enumerate}
     \end{proof}
     \begin{remark}
         Refer to proposition \ref{prop:eigenvectors linearly independent}. For hermitian matrices we have this stronger result.
     \end{remark}
-    In previous discussion(corollary \ref{col:basis of all eigenvectors}) we considered bases $ \mcB_{\lambda} $ for each eigenspace $ E_\lambda $. Now it is natural to choose them orthogonally.
+    In previous discussion(corollary \ref{col:basis of all eigenvectors}) we considered bases $ \mathcal{B}_{\lambda} $ for each eigenspace $ E_\lambda $. Now it is natural to choose them orthogonally.
     \begin{example}
         \begin{enumerate}[(i)]
             \item Refer to example \ref{eg:25.1.2} and let $ A = \begin{pmatrix}
                 2&i\\-i&2
             \end{pmatrix} $. $A$ is hermitian, so by theorem, the eigenvectors should be orthogonal.
 
-            Indeed, if we take $ \bfu_1^{\top}=\frac{1}{\sqrt{2}}(1,i), \bfu_2^{\top}=\frac{1}{\sqrt{2}}(1,-i) $, then $ \bfu_1^\dagger \bfu_2=\frac{1}{\sqrt{2}}(1-1)=0 $, as expected. By choice, they are orthonormal in addition. Since the eigenvalues are distinct, we can choose $ \displaystyle P = \frac{1}{\sqrt{2}}\begin{pmatrix}
+            Indeed, if we take $ \mathbf{u}_1^{\top}=\frac{1}{\sqrt{2}}(1,i), \mathbf{u}_2^{\top}=\frac{1}{\sqrt{2}}(1,-i) $, then $ \mathbf{u}_1^\dagger \mathbf{u}_2=\frac{1}{\sqrt{2}}(1-1)=0 $, as expected. By choice, they are orthonormal in addition. Since the eigenvalues are distinct, we can choose $ \displaystyle P = \frac{1}{\sqrt{2}}\begin{pmatrix}
                 1&1\\i&-i
             \end{pmatrix} $ so that 
             \[
@@ -2814,29 +2772,29 @@ skipped some talks irrelevant to contents\\
                 1&1&0
             \end{pmatrix} $. It is real and symmetric. $ \lambda=-1,2 $, and $ M_{-1}=2, M_{2}=1 $. To find an orthonormal basis for $ E_{-1} $, firstly note that by considering $ \ker (A+I) $, 
             \[
-                E_{-1}=\spn\left\{ \bfw_1,\bfw_2 \right\}, \text{ where } \bfw_1=\begin{pmatrix}
+                E_{-1}=\spn\left\{ \mathbf{w}_1,\mathbf{w}_2 \right\}, \text{ where } \mathbf{w}_1=\begin{pmatrix}
                     1\\-1\\0
-                \end{pmatrix}, \bfw_2=\begin{pmatrix}
+                \end{pmatrix}, \mathbf{w}_2=\begin{pmatrix}
                     1\\0\\-1
                 \end{pmatrix}.
             \]
-            Normalise $\bfw_1$:
+            Normalise $\mathbf{w}_1$:
             \[
-                \bfu_1=\frac{1}{|\bfw_1|}\bfw_1=\frac{1}{\sqrt{2}}\begin{pmatrix}
+                \mathbf{u}_1=\frac{1}{|\mathbf{w}_1|}\mathbf{w}_1=\frac{1}{\sqrt{2}}\begin{pmatrix}
                     1\\-1\\0
                 \end{pmatrix}
             \]
-            Subtract the \textit{projection} of $\bfu_1$ on $\bfw_2$:
+            Subtract the \textit{projection} of $\mathbf{u}_1$ on $\mathbf{w}_2$:
             \[
-                \bfw_2'=\bfw_2-(\bfu_1 \cdot \bfw_2)\bfu_1=\begin{pmatrix}
+                \mathbf{w}_2'=\mathbf{w}_2-(\mathbf{u}_1 \cdot \mathbf{w}_2)\mathbf{u}_1=\begin{pmatrix}
                     1/2\\1/2\\-1
                 \end{pmatrix}.
             \]
-            By construction, $ \bfw_2' \perp \bfu_1 $. Finally, normalise $ \bfw_2' $ to $ \bfu_2^{\top}=\frac{1}{\sqrt{6}}(1,1,-2) $, and thus $ \mcB_{-1}=\left\{ \bfu_1,\bfu_2 \right\} $ is an orthonormal basis for $ E_{-1} $.
+            By construction, $ \mathbf{w}_2' \perp \mathbf{u}_1 $. Finally, normalise $ \mathbf{w}_2' $ to $ \mathbf{u}_2^{\top}=\frac{1}{\sqrt{6}}(1,1,-2) $, and thus $ \mathcal{B}_{-1}=\left\{ \mathbf{u}_1,\mathbf{u}_2 \right\} $ is an orthonormal basis for $ E_{-1} $.
 
-            Similarly, $ \mcB_2=\left\{ \bfu_3 \right\} , \bfu_3^{\top}=\frac{1}{\sqrt{3}}(1,1,1)$. Then $ \mcB=\mcB_{-1}\cup \mcB_2 $ is an orthonormal basis for $ \mathbb{R}^{3} $.
+            Similarly, $ \mathcal{B}_2=\left\{ \mathbf{u}_3 \right\} , \mathbf{u}_3^{\top}=\frac{1}{\sqrt{3}}(1,1,1)$. Then $ \mathcal{B}=\mathcal{B}_{-1}\cup \mathcal{B}_2 $ is an orthonormal basis for $ \mathbb{R}^{3} $.
 
-            Let $ \mcM_{n\times n}\ni P=(\bfu_1\ \bfu_2\ \bfu_3) $, then 
+            Let $ \mathcal{M}_{n\times n}\ni P=(\mathbf{u}_1\ \mathbf{u}_2\ \mathbf{u}_3) $, then 
             \[
                 P^{-1}AP=\begin{pmatrix}
                     -1&0&0\\
@@ -2844,16 +2802,16 @@ skipped some talks irrelevant to contents\\
                     0&0&2
                 \end{pmatrix}.
             \]
-            Furthermore, since $ \bfu_i $ are orthonormal, $ P $ is orthogonal.
+            Furthermore, since $ \mathbf{u}_i $ are orthonormal, $ P $ is orthogonal.
         \end{enumerate}
     \end{example}
     These are typcal examples of hermitian(real and symmetric) matrices which are diagonalisable. In fact, all of them are diagonalisable:
-    \subsection{Unitary and Orthogonal Diagonalisation}
+    \subsubsection{Unitary and Orthogonal Diagonalisation}
     \begin{theorem}\label{thm:all hermitians are diag}
         Any $n\times n$ hermitian matrix is diagonalisable, so 
         \begin{enumerate}
-            \item $ \exists $ a basis of eigenvectors $ \bfu_1,\dots,\bfu_n $ of $ \mathbb{C}^{n} $ with $ A\bfu_i=\lambda_i\bfu_i $, and equivalently 
-            \item $ \exists P\in \mcM_{n\times n} $ invertible such that 
+            \item $ \exists $ a basis of eigenvectors $ \mathbf{u}_1,\dots,\mathbf{u}_n $ of $ \mathbb{C}^{n} $ with $ A\mathbf{u}_i=\lambda_i\mathbf{u}_i $, and equivalently 
+            \item $ \exists P\in \mathcal{M}_{n\times n} $ invertible such that 
             \[
                 P^{-1}AP=D=\begin{pmatrix}
                     \lambda_1&&0\\
@@ -2861,20 +2819,20 @@ skipped some talks irrelevant to contents\\
                     0&&\lambda_n
                 \end{pmatrix},
             \]
-            with columns of $P$ be the eigenvectors $\bfu_i$.
+            with columns of $P$ be the eigenvectors $\mathbf{u}_i$.
         \end{enumerate}
-        In addition, $\bfu_i$ can be chosen to be \textit{orthonormal} and $P$ can be chosen to be \textit{unitary}($ P^\dagger AP=D $).
+        In addition, $\mathbf{u}_i$ can be chosen to be \textit{orthonormal} and $P$ can be chosen to be \textit{unitary}($ P^\dagger AP=D $).
 
-        Particularly when $A$ is real and symmetric, $ \bfu_i $ can be chosen to be real and orthonormal, and $P$ can be chosen to be orthogonal($ P^{\top}AP=D $).
+        Particularly when $A$ is real and symmetric, $ \mathbf{u}_i $ can be chosen to be real and orthonormal, and $P$ can be chosen to be orthogonal($ P^{\top}AP=D $).
     \end{theorem}
-    \begin{proof}(Non-examinable)\marginnote{Lecture 20}
+    \begin{proof}(Non-examinable)
         Let $V$ be a subspace of $ \mathbb{C}^{n} $ and consider $A$ restricted to $V$. Use induction on $\dim V=m$.
 
-        Given $V$ as above, since any matrix has an eigenvalue and an eigenvector, chosse $ \lambda,\bfv $ such that $ A\bfv=\lambda\bfv $. Let $ W = \{\bfw\in V: (\bfv,\bfw)=0\} $. Claim that $W$ is a subspace and $\dim W=m-1$. Indeed, given $ \bfx_i\in V $ as a basis, we can choose $ \bfw_i=\bfx-(\bfv_i,\bfx)\bfv_i $, then the result follows. By induction, $W$ has a basis of orthonormal eigenvectors of $A$, say $ \{\bfu_1,\bfu_2,\dots,\bfu_{m-1}\} $. Then if we take $ \bfu_m = \frac{1}{|\bfv|}\bfv $, then $\{\bfu_1,\bfu_2,\dots,\bfu_{m}\}$ is a basis for $V$ consisting of orthonormal eigenvectors of $A$. Clearly it is true for $m=1$. This completes the induction.
+        Given $V$ as above, since any matrix has an eigenvalue and an eigenvector, chosse $ \lambda,\mathbf{v} $ such that $ A\mathbf{v}=\lambda\mathbf{v} $. Let $ W = \{\mathbf{w}\in V: (\mathbf{v},\mathbf{w})=0\} $. Claim that $W$ is a subspace and $\dim W=m-1$. Indeed, given $ \mathbf{x}_i\in V $ as a basis, we can choose $ \mathbf{w}_i=\mathbf{x}-(\mathbf{v}_i,\mathbf{x})\mathbf{v}_i $, then the result follows. By induction, $W$ has a basis of orthonormal eigenvectors of $A$, say $ \{\mathbf{u}_1,\mathbf{u}_2,\dots,\mathbf{u}_{m-1}\} $. Then if we take $ \mathbf{u}_m = \frac{1}{|\mathbf{v}|}\mathbf{v} $, then $\{\mathbf{u}_1,\mathbf{u}_2,\dots,\mathbf{u}_{m}\}$ is a basis for $V$ consisting of orthonormal eigenvectors of $A$. Clearly it is true for $m=1$. This completes the induction.
     \end{proof}
-    \section{Quadratic Form}
-    \subsection{Basics}
-    \begin{definition}\marginnote{Consider a function $ \mcF: \mathbb{R}^{2}\to \mathbb{R} $ defined by $ \mcF(\bfx)=2x_1^2-4x_1x_2+5x_2^2 $. This can be simplyfied to $ \mcF(\bfx)=x_1'^2+6x_2'^2 $ where $ x_1'=\frac{1}{\sqrt{5}}(2x_1+x_2), x_2'=\frac{1}{\sqrt{5}}(-x_1+2x_2) $. On the other hand, $ \mcF(\bfx) $ can be written as $ \mcF(\bfx)=\bfx^{\top}A\bfx $ where 
+    \subsection{Quadratic Form}
+    \subsubsection{Basics}
+    \begin{definition}\footnote{Consider a function $ \mathcal{F}: \mathbb{R}^{2}\to \mathbb{R} $ defined by $ \mathcal{F}(\mathbf{x})=2x_1^2-4x_1x_2+5x_2^2 $. This can be simplyfied to $ \mathcal{F}(\mathbf{x})=x_1'^2+6x_2'^2 $ where $ x_1'=\frac{1}{\sqrt{5}}(2x_1+x_2), x_2'=\frac{1}{\sqrt{5}}(-x_1+2x_2) $. On the other hand, $ \mathcal{F}(\mathbf{x}) $ can be written as $ \mathcal{F}(\mathbf{x})=\mathbf{x}^{\top}A\mathbf{x} $ where 
         $$ A=\begin{pmatrix}
             2&-2\\
             -2&5
@@ -2887,11 +2845,11 @@ skipped some talks irrelevant to contents\\
         \end{pmatrix}, $$
         leading to the expression above via diagonalisation.}
 
-        A \textbf{quadratic form} is a function $\mcF: \mathbb{R}^{n}\to \mathbb{R}$ given by
+        A \textbf{quadratic form} is a function $\mathcal{F}: \mathbb{R}^{n}\to \mathbb{R}$ given by
         \[
-            \mcF(\bfx) = \bfx^{\top}A\bfx=x_iA_{ij}x_j,
+            \mathcal{F}(\mathbf{x}) = \mathbf{x}^{\top}A\mathbf{x}=x_iA_{ij}x_j,
         \]
-        where $A\in \mcM_{n\times n}$ is a symmetric matrix.(any antisymmetric part will not contribute)
+        where $A\in \mathcal{M}_{n\times n}$ is a symmetric matrix.(any antisymmetric part will not contribute)
     \end{definition}
     We can write 
     \[
@@ -2901,26 +2859,26 @@ skipped some talks irrelevant to contents\\
             0&&\lambda_n
         \end{pmatrix}
     \]
-    since $A$ is real and symmetric, and $P$ is orthogonal with an orthonormal basis of eigenvectors $\bfu_i$ as columns. Set $ \bfx'=P^{\top}\bfx \Leftrightarrow \bfx=P\bfx' $, we get 
+    since $A$ is real and symmetric, and $P$ is orthogonal with an orthonormal basis of eigenvectors $\mathbf{u}_i$ as columns. Set $ \mathbf{x}'=P^{\top}\mathbf{x} \Leftrightarrow \mathbf{x}=P\mathbf{x}' $, we get 
     \[
-        \mcF(\bfx)= \bfx^{\top}A\bfx=(P\bfx')^{\top}A(P\bfx)=\bfx'^{\top}(P^{\top}AP)\bfx'=\bfx'^{\top}D\bfx = \lambda_i x_i.
+        \mathcal{F}(\mathbf{x})= \mathbf{x}^{\top}A\mathbf{x}=(P\mathbf{x}')^{\top}A(P\mathbf{x})=\mathbf{x}'^{\top}(P^{\top}AP)\mathbf{x}'=\mathbf{x}'^{\top}D\mathbf{x} = \lambda_i x_i.
     \]
     \begin{definition}
-        We say that $\mcF$ is \textbf{diagonalised} if $\mcF$ is written in the above form.
+        We say that $\mathcal{F}$ is \textbf{diagonalised} if $\mathcal{F}$ is written in the above form.
     \end{definition}
     Note that 
     \begin{align*}
-        \bfx'&= x_1'\bfe_1+\cdots+x_n'\bfe_n\\
-        \bfx&= x_1\bfe_1+ \cdots + x_n\bfe_n\\
-        &= x_1'\bfu_1+\cdots +x_n'\bfu_n,
+        \mathbf{x}'&= x_1'\mathbf{e}_1+\cdots+x_n'\mathbf{e}_n\\
+        \mathbf{x}&= x_1\mathbf{e}_1+ \cdots + x_n\mathbf{e}_n\\
+        &= x_1'\mathbf{u}_1+\cdots +x_n'\mathbf{u}_n,
     \end{align*}
-    since $x_i' = \bfu_i\cdot \bfx \Leftrightarrow \bfx'=P^{\top}\bfx$. This is an example of \textit{change of basis}.
+    since $x_i' = \mathbf{u}_i\cdot \mathbf{x} \Leftrightarrow \mathbf{x}'=P^{\top}\mathbf{x}$. This is an example of \textit{change of basis}.
     \begin{definition}
-        The basis $ \mcB = \{\bfu_1,\dots,\bfu_n\} $ as given by $P$ is called the \textbf{principal axes} of $\mcF$. $\mcB$ is related to the standard basis via an orthogonal transformation.
+        The basis $ \mathcal{B} = \{\mathbf{u}_1,\dots,\mathbf{u}_n\} $ as given by $P$ is called the \textbf{principal axes} of $\mathcal{F}$. $\mathcal{B}$ is related to the standard basis via an orthogonal transformation.
     \end{definition}
-    \subsection{Examples in $ \mathbb{R}^{2},\mathbb{R}^{3} $}
+    \subsubsection{Examples in $ \mathbb{R}^{2},\mathbb{R}^{3} $}
     \begin{example}[$ \mathbb{R}^{2} $]
-        Consider $ \mcF(\bfx)=\bfx^{\top}A\bfx $, where 
+        Consider $ \mathcal{F}(\mathbf{x})=\mathbf{x}^{\top}A\mathbf{x} $, where 
         \[
             A=\begin{pmatrix}
                 \alpha&\beta\\
@@ -2929,29 +2887,29 @@ skipped some talks irrelevant to contents\\
         \]
         It can be computed that $ \lambda = \alpha+\beta,\alpha-\beta $, and eigenvalues are
         \[
-            \bfu_1 = \frac{1}{\sqrt{2}}\begin{pmatrix}
+            \mathbf{u}_1 = \frac{1}{\sqrt{2}}\begin{pmatrix}
                 1\\1
-            \end{pmatrix}, \bfu_2 = \frac{1}{\sqrt{2}}\begin{pmatrix}
+            \end{pmatrix}, \mathbf{u}_2 = \frac{1}{\sqrt{2}}\begin{pmatrix}
                 -1\\1
             \end{pmatrix}.
         \]
         Now we can compute 
         \begin{align*}
-            \mcF(\bfx)&= \alpha x_1^2+2\beta x_1x_2+\alpha x_2^2\\
+            \mathcal{F}(\mathbf{x})&= \alpha x_1^2+2\beta x_1x_2+\alpha x_2^2\\
             &= (\alpha+\beta)x_1'^2+(\alpha-\beta)x_2'^2,
         \end{align*}
-        where $ x_1' = \bfu_1 \cdot \bfx = \frac{1}{\sqrt{2}}(x_1+x_2), x_2'= \frac{1}{\sqrt{2}}(-x_1+x_2)$.
+        where $ x_1' = \mathbf{u}_1 \cdot \mathbf{x} = \frac{1}{\sqrt{2}}(x_1+x_2), x_2'= \frac{1}{\sqrt{2}}(-x_1+x_2)$.
 
-        Take $ \alpha=3/2,\beta=-1/2 $, so that $ \lambda=1,2 $, then $ \mcF(\bfx)=1 \Leftrightarrow x_1'^2+2x_2'^2=1 $ represents an ellipse.
+        Take $ \alpha=3/2,\beta=-1/2 $, so that $ \lambda=1,2 $, then $ \mathcal{F}(\mathbf{x})=1 \Leftrightarrow x_1'^2+2x_2'^2=1 $ represents an ellipse.
 
-        Instead consider $ \alpha=-1/2, \beta=3/2 $, so that $ \lambda=1,-2 $, then $ \mcF=1 $ represents a hyperbola.
+        Instead consider $ \alpha=-1/2, \beta=3/2 $, so that $ \lambda=1,-2 $, then $ \mathcal{F}=1 $ represents a hyperbola.
     \end{example}
     \begin{example}[$\mathbb{R}^3$]
         \[
-            \mcF(\bfx)=\bfx^{\top}A\bfx = \lambda_i x_i'^2.
+            \mathcal{F}(\mathbf{x})=\mathbf{x}^{\top}A\mathbf{x} = \lambda_i x_i'^2.
         \]
         \begin{enumerate}[(i)]
-            \item If $A$ has eigenvalues $\lambda_1,\lambda_2,\lambda_3>0$, then $ \mcF=1 $ is an ellipsoid.
+            \item If $A$ has eigenvalues $\lambda_1,\lambda_2,\lambda_3>0$, then $ \mathcal{F}=1 $ is an ellipsoid.
             \item Specifically let 
             \[
                 A= \begin{pmatrix}
@@ -2960,25 +2918,25 @@ skipped some talks irrelevant to contents\\
                     1&1&0
                 \end{pmatrix}.
             \]
-            From previous, $ \lambda_{1,2}=1 $ and $ \bfu_1^{\top}=\frac{1}{\sqrt{2}}(1,-1,0), \bfu_2^{\top}=\frac{1}{\sqrt{6}}(1,1,-2) $. $ \lambda_3=2 $ with $ \bfu_3^{\top}=\frac{1}{\sqrt{3}}(1,1,1) $. Then 
+            From previous, $ \lambda_{1,2}=1 $ and $ \mathbf{u}_1^{\top}=\frac{1}{\sqrt{2}}(1,-1,0), \mathbf{u}_2^{\top}=\frac{1}{\sqrt{6}}(1,1,-2) $. $ \lambda_3=2 $ with $ \mathbf{u}_3^{\top}=\frac{1}{\sqrt{3}}(1,1,1) $. Then 
             \[
-                \mcF = 2x_1x_2+2x_2x_3+2x_3x_1 = -x_1'^2-x_2'^2+2x_3'^2.
+                \mathcal{F} = 2x_1x_2+2x_2x_3+2x_3x_1 = -x_1'^2-x_2'^2+2x_3'^2.
             \]
-            Now $\mcF=1 \Leftrightarrow 2x_3'^2=1+x_1'^2+x_2'^2 $. It is a 2 sheeted hyperboloid.
+            Now $\mathcal{F}=1 \Leftrightarrow 2x_3'^2=1+x_1'^2+x_2'^2 $. It is a 2 sheeted hyperboloid.
         \end{enumerate}
     \end{example}
     \begin{example}
-        Consider a smooth function $ f: \mathbb{R}^{n}\to \mathbb{R} $ and suppose that $f$ has a stationary point at $ \bfx=\bfa: \frac{\partial f}{\partial x_i}(\bfa)=0  $. Taylor's theorem tells us that 
+        Consider a smooth function $ f: \mathbb{R}^{n}\to \mathbb{R} $ and suppose that $f$ has a stationary point at $ \mathbf{x}=\mathbf{a}: \frac{\partial f}{\partial x_i}(\mathbf{a})=0  $. Taylor's theorem tells us that 
         \[
-            f(\bfa+\bfh)=f(\bfa)+\mcF(\bfh)+O(|\bfh|^3),
+            f(\mathbf{a}+\mathbf{h})=f(\mathbf{a})+\mathcal{F}(\mathbf{h})+O(|\mathbf{h}|^3),
         \]
-        where $\mcF$ is a quadratic form with
+        where $\mathcal{F}$ is a quadratic form with
         \[
-            A_{ij}=\frac{1}{2} \frac{\partial^2f}{\partial x_i \partial x_j}.\marginnote{Hessian matrix at $ \bfx=\bfa $.} 
+            A_{ij}=\frac{1}{2} \frac{\partial^2f}{\partial x_i \partial x_j}.\footnote{Hessian matrix at $ \mathbf{x}=\mathbf{a} $.} 
         \]
-        So $ \mcF(\bfh)=\lambda_i h_i'^2 $ wrt principal axes, and if $ \lambda_i>0 $ for all $i$ then $f$ has a minimum, vise versa, and $f$ has a saddle at $\bfa$ otherwise. For $n=2$, consider $ \tr(A)=\lambda_1+\lambda_2 $, $ \det A=\lambda_1\lambda_2 $.
+        So $ \mathcal{F}(\mathbf{h})=\lambda_i h_i'^2 $ wrt principal axes, and if $ \lambda_i>0 $ for all $i$ then $f$ has a minimum, vise versa, and $f$ has a saddle at $\mathbf{a}$ otherwise. For $n=2$, consider $ \tr(A)=\lambda_1+\lambda_2 $, $ \det A=\lambda_1\lambda_2 $.
     \end{example}
-    \section{Cayley-Hamilton Theorem}
+    \subsection{Cayley-Hamilton Theorem}
     Define the \textit{polynomial} of a matrix as 
     \[
         p(A)=c_0I+c_1A+\cdots + c_kA^k.
@@ -3036,23 +2994,23 @@ skipped some talks irrelevant to contents\\
         \end{align*}
         as required.
     \end{proof}
-    \part{Change of Bases/Canonical Forms/\\Symmetries}
-    \section{Change of Bases in General}
-    Recall that given a linear map $ T: V \to W $, where $V,W$ are real or complex vector space. Let $ \mcB_V=\left\{ \bfe_i:i=1\dots,n \right\} $ and $ \mcB_W=\left\{ \bff_a:a=1,\dots,m \right\} $. The matrix $A\in \mcM_{m\times n}$ wrt these bases is defined by 
+    \section{Change of Bases/Canonical Forms/\\Symmetries}
+    \subsection{Change of Bases in General}
+    Recall that given a linear map $ T: V \to W $, where $V,W$ are real or complex vector space. Let $ \mathcal{B}_V=\left\{ \mathbf{e}_i:i=1\dots,n \right\} $ and $ \mathcal{B}_W=\left\{ \mathbf{f}_a:a=1,\dots,m \right\} $. The matrix $A\in \mathcal{M}_{m\times n}$ wrt these bases is defined by 
     \[
-        T(\bfe_i)=\bff_a A_{ai}.
+        T(\mathbf{e}_i)=\mathbf{f}_a A_{ai}.
     \] 
     This holds since
     \[
-        T(x_i\bfe_i)=x_iT(\bfe_i)=x_i\bff_aA_{ai}=(A_{ai}x_i)\bff_a.
+        T(x_i\mathbf{e}_i)=x_iT(\mathbf{e}_i)=x_i\mathbf{f}_aA_{ai}=(A_{ai}x_i)\mathbf{f}_a.
     \]
-    Same matrix $T$ has a different matrix $A'$ wrt different bases $ \left\{ \bfe_i':i=1,\dots,n \right\}, \{\bff_a':a=1,\dots,m\} $. To relate $A,A'$ we must specify how bases are related. The \textit{change of base} matirces $P\in \mcM_{n\times n}, Q\in \mcM_{m\times m}$ are defined by 
+    Same matrix $T$ has a different matrix $A'$ wrt different bases $ \left\{ \mathbf{e}_i':i=1,\dots,n \right\}, \{\mathbf{f}_a':a=1,\dots,m\} $. To relate $A,A'$ we must specify how bases are related. The \textit{change of base} matirces $P\in \mathcal{M}_{n\times n}, Q\in \mathcal{M}_{m\times m}$ are defined by 
     \[
-        \bfe_i'=\bfe_jP_{ji}, \quad \bff_a'=\bff_bQ_{ba}.
+        \mathbf{e}_i'=\mathbf{e}_jP_{ji}, \quad \mathbf{f}_a'=\mathbf{f}_bQ_{ba}.
     \]
-    Entries in column $i$ of $P$ are components of new basis vectors $\bfe_i'$ wrt $\mcB_V$, and similar for $Q$.
+    Entries in column $i$ of $P$ are components of new basis vectors $\mathbf{e}_i'$ wrt $\mathcal{B}_V$, and similar for $Q$.
     \begin{remark}
-        $P$ and $Q$ are invertible and from the relation above, we can exchange $\bfe_i$ with $\bfe_i'$ with $ P\to P^{-1} $ and similar for $Q$.
+        $P$ and $Q$ are invertible and from the relation above, we can exchange $\mathbf{e}_i$ with $\mathbf{e}_i'$ with $ P\to P^{-1} $ and similar for $Q$.
     \end{remark}
     \begin{proposition}
         With definitions as above,
@@ -3062,7 +3020,7 @@ skipped some talks irrelevant to contents\\
         This is the \textit{change of basis formula for a linear map}.
     \end{proposition}
     \begin{example}
-        $n=2,m=3$, and take $ T(\bfe_1) = \bff_1+2\bff_2-\bff_3 $, and $ T_(\bfe_2)=-\bff_1+2\bff_2+\bff_3 $. This produces the matrix 
+        $n=2,m=3$, and take $ T(\mathbf{e}_1) = \mathbf{f}_1+2\mathbf{f}_2-\mathbf{f}_3 $, and $ T_(\mathbf{e}_2)=-\mathbf{f}_1+2\mathbf{f}_2+\mathbf{f}_3 $. This produces the matrix 
         \[
             A=\begin{pmatrix}
                 1&-1\\
@@ -3070,7 +3028,7 @@ skipped some talks irrelevant to contents\\
                 -1&1
             \end{pmatrix}.
         \]
-        Now consider new bases $ \bfe_1'=\bfe_1-\bfe_2, \bfe_2'=\bfe_1+\bfe_2 $, $ \bff_1'= \bff_1-\bff_3, \bff_2'=\bff_2, \bff_3'=\bff_1+\bff_3$ we get 
+        Now consider new bases $ \mathbf{e}_1'=\mathbf{e}_1-\mathbf{e}_2, \mathbf{e}_2'=\mathbf{e}_1+\mathbf{e}_2 $, $ \mathbf{f}_1'= \mathbf{f}_1-\mathbf{f}_3, \mathbf{f}_2'=\mathbf{f}_2, \mathbf{f}_3'=\mathbf{f}_1+\mathbf{f}_3$ we get 
         \[
             P=\begin{pmatrix}
                 1&1\\
@@ -3094,14 +3052,14 @@ skipped some talks irrelevant to contents\\
     \begin{proof}
         Note that 
         \begin{align*}
-            T(\bfe_i')&= T(\bfe_jP_{ji})\\
-            &=T(\bfe_j)P_{ji}\\
-            &= \bff_aA_{aj}P_{ji}.
+            T(\mathbf{e}_i')&= T(\mathbf{e}_jP_{ji})\\
+            &=T(\mathbf{e}_j)P_{ji}\\
+            &= \mathbf{f}_aA_{aj}P_{ji}.
         \end{align*}
         But
         \begin{align*}
-            T(\bfe_i')&= \bff_b' A_{bi}'\\
-            &= \bff_aQ_{ab}A_{bi}'.
+            T(\mathbf{e}_i')&= \mathbf{f}_b' A_{bi}'\\
+            &= \mathbf{f}_aQ_{ab}A_{bi}'.
         \end{align*}
         Comparing coefficients gives
         \[
@@ -3110,7 +3068,7 @@ skipped some talks irrelevant to contents\\
     \end{proof}
     Consider changes in vector components 
     \[
-        \bfx = x_i\bfe_i = x_j'\bfe_j = (P_{ij}x_j')\bfe_i.
+        \mathbf{x} = x_i\mathbf{e}_i = x_j'\mathbf{e}_j = (P_{ij}x_j')\mathbf{e}_i.
     \]
     This implies $ x_i=P_{ij}x_j' $. Write 
     \[
@@ -3124,7 +3082,7 @@ skipped some talks irrelevant to contents\\
     \[
         X=PX' \Longleftrightarrow X'=P^{-1}X.
     \]
-    Similarly $ \bfy = y_a\bff_a = y_b'\bff_b' \Rightarrow y_a=Q_{ab}y_b' $, so that 
+    Similarly $ \mathbf{y} = y_a\mathbf{f}_a = y_b'\mathbf{f}_b' \Rightarrow y_a=Q_{ab}y_b' $, so that 
     \[
         Y=QY' \Longleftrightarrow Y'=Q^{-1}Y.
     \]
@@ -3136,15 +3094,15 @@ skipped some talks irrelevant to contents\\
 
     Now consider some special cases:
     \begin{enumerate}[(i)]
-        \item $V=W, \bfe_i=\bff_i, \bfe'=\bfi'$. Then $P=Q$ and $ A = P^{-1}AP $. This shows that matrices representing the same linear map are similar. Conversely if $A,A'$ are similar, then we can regard them as representing the same linear map with $P$ defining the change of basis.
-        \item $V=W=\bbR^n$ or $\bbC^n$ and $ \bfe_i $ are the standard basis, wrt to which $T$ has matrix $A$. If $ \exists  $ a basis of eigenvectors $ \bfe_i'=\bfv_i $ with $ A\bfv_i=\lambda_i\bfv_i $, then
+        \item $V=W, \mathbf{e}_i=\mathbf{f}_i, \mathbf{e}'=\mathbf{i}'$. Then $P=Q$ and $ A = P^{-1}AP $. This shows that matrices representing the same linear map are similar. Conversely if $A,A'$ are similar, then we can regard them as representing the same linear map with $P$ defining the change of basis.
+        \item $V=W=\mathbb{R}^n$ or $\mathbb{C}^n$ and $ \mathbf{e}_i $ are the standard basis, wrt to which $T$ has matrix $A$. If $ \exists  $ a basis of eigenvectors $ \mathbf{e}_i'=\mathbf{v}_i $ with $ A\mathbf{v}_i=\lambda_i\mathbf{v}_i $, then
         \[
-            A'= P^{-1}AP = D, \quad \bfv_i = \bfe_jP_{ji}.
+            A'= P^{-1}AP = D, \quad \mathbf{v}_i = \mathbf{e}_jP_{ji}.
         \]
         So that eigenvectors are columns of $P$, as expected.
-        \item $A$ hermitian: $ A^\dagger =A $, then we always have a basis of orthonormal eigenvectors $ \bfe_i'=\bfu_i $, and (ii) applies with $P$ unitary.
+        \item $A$ hermitian: $ A^\dagger =A $, then we always have a basis of orthonormal eigenvectors $ \mathbf{e}_i'=\mathbf{u}_i $, and (ii) applies with $P$ unitary.
     \end{enumerate}
-    \section{Jordan Canonical/Normal Form}
+    \subsection{Jordan Canonical/Normal Form}
     This result classifies $n\times n$ complex matrices up to similarity.
     \begin{proposition}
         Any $ A\in \mathcal{M}_{2\times 2}(\mathbb{C}) $ is similar to one of the followings:
@@ -3164,18 +3122,18 @@ skipped some talks irrelevant to contents\\
         \end{align*}
     \end{proposition}
     \begin{proof}
-        $ \chi_A(t) $ has 2 roots over $ \mathbb{C} $, so if roots are distinct, then eigenvalues are distinct and $A'=P^{-1}AP$ with eigenvectors being the columns of $P$. For repeated root, if $ M_\lambda=m_\lambda=2 $, same argument applies. If $ M_\lambda=2, m_\lambda=1 $, let $\bfv$ be the eigenvector, and let $\bfw$ be any other vector $ \bfv,\bfw $ are linearly independent. Then 
+        $ \chi_A(t) $ has 2 roots over $ \mathbb{C} $, so if roots are distinct, then eigenvalues are distinct and $A'=P^{-1}AP$ with eigenvectors being the columns of $P$. For repeated root, if $ M_\lambda=m_\lambda=2 $, same argument applies. If $ M_\lambda=2, m_\lambda=1 $, let $\mathbf{v}$ be the eigenvector, and let $\mathbf{w}$ be any other vector $ \mathbf{v},\mathbf{w} $ are linearly independent. Then 
         \[
-            A\bfv=\lambda\bfv, A\bfw = \alpha\bfv+\beta\bfw.
+            A\mathbf{v}=\lambda\mathbf{v}, A\mathbf{w} = \alpha\mathbf{v}+\beta\mathbf{w}.
         \]
-        Matrix of map wrt basis $ \{\bfv,\bfw\} $ is 
+        Matrix of map wrt basis $ \{\mathbf{v},\mathbf{w}\} $ is 
         \[
             \begin{pmatrix}
                 \lambda&\alpha\\
                 0&\beta
             \end{pmatrix}.
         \]
-        But $ \beta=1 $ since otherwise the eigenvalues are $ \lambda,\beta $, back to case 1. Also $ \alpha\neq 1 $ otherwise back to case 2. Now set $ \bfu=\alpha\bfv $, then $ A\bfu=\lambda \bfu, A\bfw = \bfw+\lambda\bfw $, so wrt this basis 
+        But $ \beta=1 $ since otherwise the eigenvalues are $ \lambda,\beta $, back to case 1. Also $ \alpha\neq 1 $ otherwise back to case 2. Now set $ \mathbf{u}=\alpha\mathbf{v} $, then $ A\mathbf{u}=\lambda \mathbf{u}, A\mathbf{w} = \mathbf{w}+\lambda\mathbf{w} $, so wrt this basis 
         \[
             A'=\begin{pmatrix}
                 \lambda&1\\
@@ -3184,7 +3142,7 @@ skipped some talks irrelevant to contents\\
         \] 
         as claimed.
     \end{proof}
-    Alternative approach for case 3: If $A$ has a characteristic polynomial $ \chi_A(t)=(t-\lambda)^2 $, but $ A\neq \lambda I$, then $ \exists \bfw, \bfu=(A-\lambda I)\bfw \neq \mathbf{0} $. Now $ (A-\lambda I)\bfu=(A-\lambda I)^2\bfw = \mathbf{0} $ by Cayley-Hamilton theorem. Can check that $\bfu,\bfw$ are the same to the previous proof.
+    Alternative approach for case 3: If $A$ has a characteristic polynomial $ \chi_A(t)=(t-\lambda)^2 $, but $ A\neq \lambda I$, then $ \exists \mathbf{w}, \mathbf{u}=(A-\lambda I)\mathbf{w} \neq \mathbf{0} $. Now $ (A-\lambda I)\mathbf{u}=(A-\lambda I)^2\mathbf{w} = \mathbf{0} $ by Cayley-Hamilton theorem. Can check that $\mathbf{u},\mathbf{w}$ are the same to the previous proof.
     \begin{example}
         Consider 
         \[
@@ -3196,7 +3154,7 @@ skipped some talks irrelevant to contents\\
                 -1&2
             \end{pmatrix}.
         \]
-        Choose $ \bfw^\top=(1,0) $, and $\bfu^\top=(-2,-1)$, so that $\bfu\neq \mathbf{0}\land \bfw$ is not an eigenvector. Therefore $A\bfu=3\bfu$ and $A\bfw=\bfu+3\bfu$, so 
+        Choose $ \mathbf{w}^\top=(1,0) $, and $\mathbf{u}^\top=(-2,-1)$, so that $\mathbf{u}\neq \mathbf{0}\land \mathbf{w}$ is not an eigenvector. Therefore $A\mathbf{u}=3\mathbf{u}$ and $A\mathbf{w}=\mathbf{u}+3\mathbf{u}$, so 
         \[
             A'=\begin{pmatrix}
                 3&1\\
@@ -3217,7 +3175,7 @@ skipped some talks irrelevant to contents\\
             &&&&0
         \end{pmatrix}, N_{i(i+1)}=1 \text{ for } i=1,2,\dots,n-1, N_{jk}=0 \text{ otherwise}
     \]
-    when applied to standard basis in $ \mathbb{C}^{n} $. We get $ \bfe_n \mapsto \bfe_{n-1} \mapsto \cdots \mapsto \bfe_1 \mapsto \mathbf{0} $, consistent with $ N^n=0 $. Then
+    when applied to standard basis in $ \mathbb{C}^{n} $. We get $ \mathbf{e}_n \mapsto \mathbf{e}_{n-1} \mapsto \cdots \mapsto \mathbf{e}_1 \mapsto \mathbf{0} $, consistent with $ N^n=0 $. Then
     \[
         J=\lambda I+N = \begin{pmatrix}
             \lambda&1&&&\\
@@ -3252,39 +3210,39 @@ skipped some talks irrelevant to contents\\
     \begin{proof}
         See IB Linear Algebra and Groups, Rings and Modules.
     \end{proof}
-    \section{Conics and Quadrics}
-    \subsection{Quadrics in General}
+    \subsection{Conics and Quadrics}
+    \subsubsection{Quadrics in General}
     \begin{definition}
         A \textit{Quadric} in $ \mathbb{R}^{n} $ is a hypersurface defined by
     \[
-        Q(\bfx)=\bfx^\top A\bfx+ \bfb^\top\bfx+c=0
+        Q(\mathbf{x})=\mathbf{x}^\top A\mathbf{x}+ \mathbf{b}^\top\mathbf{x}+c=0
     \]
-    for some non-zero, symmetric, real $n\times n$ matrix $A$, $ \bfb\in \mathbb{R}^{n},c\in \mathbb{R} $.
+    for some non-zero, symmetric, real $n\times n$ matrix $A$, $ \mathbf{b}\in \mathbb{R}^{n},c\in \mathbb{R} $.
     \end{definition}
     So
     \[
-        Q(\bfx) = A_{ij}x_i x_j+b_ix_i+c=0.
+        Q(\mathbf{x}) = A_{ij}x_i x_j+b_ix_i+c=0.
     \]
-    Consider classifying solutions for $ \bfx $ up to geometrical equivalence: no distinction between solutions related by isometries in $ \mathbb{R}^{n} $, i.e. related by 
+    Consider classifying solutions for $ \mathbf{x} $ up to geometrical equivalence: no distinction between solutions related by isometries in $ \mathbb{R}^{n} $, i.e. related by 
     \begin{enumerate}
         \item Translations: change in origin,
         \item Orthogonal transformations about the origin.
     \end{enumerate}
-    Note that $A$ is invertible if and only if it has no zero eigenvalues. In this case we can \underline{complete square} in equation $ Q(\bfx)=0 $ by setting 
+    Note that $A$ is invertible if and only if it has no zero eigenvalues. In this case we can \underline{complete square} in equation $ Q(\mathbf{x})=0 $ by setting 
     \[
-        \bfy = \bfx + \frac{1}{2} A^{-1} \bfb.
+        \mathbf{y} = \mathbf{x} + \frac{1}{2} A^{-1} \mathbf{b}.
     \]
     Therefore 
     \begin{align*}
-        \bfy^\top A\bfy &= \left( \bfx + \frac{1}{2} A^{-1} \bfb \right)^\top A \left( \bfx + \frac{1}{2} A^{-1} \bfb \right)\\
-        &= \left( \bfx^\top +\frac{1}{2} \bfb^\top (A^{-1})^\top \right)A \left( \bfx + \frac{1}{2} A^{-1} \bfb \right)\\
-        &=\bfx^\top A\bfx+\bfb^\top \bfx+\frac{1}{4}\bfb^\top A\bfb.
+        \mathbf{y}^\top A\mathbf{y} &= \left( \mathbf{x} + \frac{1}{2} A^{-1} \mathbf{b} \right)^\top A \left( \mathbf{x} + \frac{1}{2} A^{-1} \mathbf{b} \right)\\
+        &= \left( \mathbf{x}^\top +\frac{1}{2} \mathbf{b}^\top (A^{-1})^\top \right)A \left( \mathbf{x} + \frac{1}{2} A^{-1} \mathbf{b} \right)\\
+        &=\mathbf{x}^\top A\mathbf{x}+\mathbf{b}^\top \mathbf{x}+\frac{1}{4}\mathbf{b}^\top A\mathbf{b}.
     \end{align*}
-    Then $ Q(\bfx)=0 \Leftrightarrow \mcF(\bfy)=k $, where $ \mcF= \bfy^\top A\bfy$ is a quadratic form wrt new origin $ \bfy=\mathbf{0} $, and $ k= \frac{1}{4}\bfb^\top A\bfb-c$. Now diagonalise $ \mcF$ wrt principal axes. Then the eigenvalues of $A$ and value of $k$ determine the geometrical nature of solution.
+    Then $ Q(\mathbf{x})=0 \Leftrightarrow \mathcal{F}(\mathbf{y})=k $, where $ \mathcal{F}= \mathbf{y}^\top A\mathbf{y}$ is a quadratic form wrt new origin $ \mathbf{y}=\mathbf{0} $, and $ k= \frac{1}{4}\mathbf{b}^\top A\mathbf{b}-c$. Now diagonalise $ \mathcal{F}$ wrt principal axes. Then the eigenvalues of $A$ and value of $k$ determine the geometrical nature of solution.
     \begin{remark}
         If $A$ has at least one zero eigenvalues, then the analysis above changes and the simplest standard form may have linear and quadratic terms.
     \end{remark}
-    \subsection{Conics as Quadrics}
+    \subsubsection{Conics as Quadrics}
     Quadrics in $ \mathbb{R}^{2} $ are curves, called \textit{conics}.
     \subsubsection*{\boldmath{$\det A\neq 0$}}
     By completing square and diagonalising $A$, we get a standard form 
@@ -3293,7 +3251,7 @@ skipped some talks irrelevant to contents\\
         \]
         where $ x_i' $ correspond to principal axes and new origin. If $ \lambda_1,\lambda_2>0 $, then it is an ellipse for some $k>0$, and a point for $k=0$, and no solution exists for $k<0$. If $ \lambda_1>0,\lambda_2<0 $, then it is a hyperbola if $k>0$ or $k<0$, and pair of lines if $k=0$.
     \subsubsection*{\boldmath{$ \det A=0 $}}
-    Wlog, suppose $ \lambda_1>0,\lambda_2=0 $. Diagonalise $A$ in the original formula $Q(\bfx)$ to get
+    Wlog, suppose $ \lambda_1>0,\lambda_2=0 $. Diagonalise $A$ in the original formula $Q(\mathbf{x})$ to get
     \[
         \lambda_1 x_1^2+b_1'x_1'+b_2'x_2'+c=0 \Longleftrightarrow \lambda_1 x_1''^2+b_2'x_2'+c'=0,
     \]
@@ -3306,11 +3264,11 @@ skipped some talks irrelevant to contents\\
     which is a parabola.($ x_2''=x_2'+\frac{1}{b_2'}c' $)
 
     All changes of coordinates correspond to translations, or shifts of origin, or orthogonal transformations, which preserve lengths and angles.
-    \subsection{Standard Forms for Conics}
+    \subsubsection{Standard Forms for Conics}
     General forms for conics can be written in terms of lengths $a,b$ \textit{semi-major/minor} axes, or length scale $l$ and a parameter(eccentricity) $e$.
 
-    \subsubsection{Cartesian Coordinaties}
-    \begin{enumerate}[align=hang]
+    \paragraph{Cartesian Coordinaties}
+    \begin{enumerate}[align=left]
         \item[\bfseries Ellipse]
         \[
             \frac{x^2}{a^2}+\frac{y^2}{b^2}=1.
@@ -3328,55 +3286,55 @@ skipped some talks irrelevant to contents\\
         \] 
         $e>1$ and $ b^2=a^2(e^2-1) $, foci are $ x=\pm ae $.
     \end{enumerate}
-    \subsubsection{Polar Coordinates}
+    \paragraph{Polar Coordinates}
     Choose the origin at a focus, we have
     \[
         r = \frac{l}{1+e\cos \theta}.
     \]
-    \begin{enumerate}[align=hang]
+    \begin{enumerate}[align=left]
         \item[\bfseries Ellipse] $e<1$, $ l=a(1-e^2) $.
         \item[\bfseries Parabola] $ e=1, l=2a $.
         \item[\bfseries Hyperbola] $ e>1, l=a(e^2-1) $.  
     \end{enumerate}
-    \subsection{Conics as Sections of a Cone}
+    \subsubsection{Conics as Sections of a Cone}
     Equation for a cone in $ \mathbb{R}^{3} $:
-    let $\bfc$ be the apex, $\bfn$(unit) be the axis and $ \alpha<\frac{\pi}{2} $ be the angle:
+    let $\mathbf{c}$ be the apex, $\mathbf{n}$(unit) be the axis and $ \alpha<\frac{\pi}{2} $ be the angle:
     \[
-        (\bfx-\bfc)\cdot \bfn=|\bfx-\bfc|\cos \alpha.
+        (\mathbf{x}-\mathbf{c})\cdot \mathbf{n}=|\mathbf{x}-\mathbf{c}|\cos \alpha.
     \]
     Squaring gives double cone:
     \[
-        ((\bfx-\bfc)\cdot \bfn)^2=|\bfx-\bfc|^2\cos^2 \alpha.
+        ((\mathbf{x}-\mathbf{c})\cdot \mathbf{n})^2=|\mathbf{x}-\mathbf{c}|^2\cos^2 \alpha.
     \]
-    Let $ \bfc=c\bfe_3,n=\cos \beta \bfe_1-\sin \beta \bfe_3 $, where $ \beta>0 $ is the angle between $\bfn$ and horizontal axis. Consider intersection with plane $x_3=0$, then 
+    Let $ \mathbf{c}=c\mathbf{e}_3,n=\cos \beta \mathbf{e}_1-\sin \beta \mathbf{e}_3 $, where $ \beta>0 $ is the angle between $\mathbf{n}$ and horizontal axis. Consider intersection with plane $x_3=0$, then 
     \[
         (x_1 \cos \beta-c \sin \beta)^2=(x_1^2+x_2^2+c^2)\cos^2 \alpha \Longleftrightarrow (\cos^2 \alpha-\cos^2\beta)x_1^2+\cos^2x_2^2+2x_1c \sin \beta \cos \beta = C.
     \]
     If $ \cos^2 \alpha>\cos^2 \beta \Leftrightarrow \alpha<\beta $, we get an ellipse. If $ \alpha=\beta $, then we get a parabola. If $ \alpha>\beta $ we get a hyperbola.
-    \section{Symmetries and Transformation Groups}
-    \subsection{Orthogonal Transformations and Rotations in $ \mathbb{R}^{n} $}
-    $ R $ is orthogonal $ \Leftrightarrow R^\top R=I \Leftrightarrow (R\bfx)\cdot (R\bfy)=\bfx \cdot \bfy \Leftrightarrow  $ rows or columns of $R$ are orthonormal. The set of such matrix $ R\in \mathcal{M}_{n\times n}(\mathbb{R}) $ forms the \textit{orthogonal group} $ \Or_n $. $ R\in \Or_n \Rightarrow \det R=\pm 1 $. $ \SO_n $ is the special orthogonal group, as defined in Groups. Orthogonal matrices preserve lengths and $n$-dimensional volumns, while special orthogonal matrices preserve orientation or sign of $n$-dimensional volumns. As illustrated in Groups, $\SO_n$ is the set of rotations, and reflecitons are in $ \Or_n \setminus \SO_n $. For a specific $H\in \Or_n \setminus \SO_n$, any element of $\Or_n$ is of the form
+    \subsection{Symmetries and Transformation Groups}
+    \subsubsection{Orthogonal Transformations and Rotations in $ \mathbb{R}^{n} $}
+    $ R $ is orthogonal $ \Leftrightarrow R^\top R=I \Leftrightarrow (R\mathbf{x})\cdot (R\mathbf{y})=\mathbf{x} \cdot \mathbf{y} \Leftrightarrow  $ rows or columns of $R$ are orthonormal. The set of such matrix $ R\in \mathcal{M}_{n\times n}(\mathbb{R}) $ forms the \textit{orthogonal group} $ \Or_n $. $ R\in \Or_n \Rightarrow \det R=\pm 1 $. $ \SO_n $ is the special orthogonal group, as defined in Groups. Orthogonal matrices preserve lengths and $n$-dimensional volumns, while special orthogonal matrices preserve orientation or sign of $n$-dimensional volumns. As illustrated in Groups, $\SO_n$ is the set of rotations, and reflecitons are in $ \Or_n \setminus \SO_n $. For a specific $H\in \Or_n \setminus \SO_n$, any element of $\Or_n$ is of the form
     \[
         R \text{ or } RH \text{ with }R\in \SO_n.
     \] 
-    Now we can regard $ x_i'=R_{ij}x_j $ in two ways: 1. rotation transforms vectors $x_i'$ components of a new vector $ \bfx'=R\bfx $ wrt standard basis;2. $ x_i' $ components of the same vector $\bfx$ wrt a new orthonormal basis $ \{\bfu_i\} $. In general we have $ \bfx=x_i\bfe_i=x_j'\bfu_j $ with $ \bfu_i=R_{ij}\bfe_j=\bfe_jP_{ji} $, so $ P=R^{-1}=R^\top $(compare with previous section).
-    \subsection{2D Minkowski Space \& Lorentz Transformations}
+    Now we can regard $ x_i'=R_{ij}x_j $ in two ways: 1. rotation transforms vectors $x_i'$ components of a new vector $ \mathbf{x}'=R\mathbf{x} $ wrt standard basis;2. $ x_i' $ components of the same vector $\mathbf{x}$ wrt a new orthonormal basis $ \{\mathbf{u}_i\} $. In general we have $ \mathbf{x}=x_i\mathbf{e}_i=x_j'\mathbf{u}_j $ with $ \mathbf{u}_i=R_{ij}\mathbf{e}_j=\mathbf{e}_jP_{ji} $, so $ P=R^{-1}=R^\top $(compare with previous section).
+    \subsubsection{2D Minkowski Space \& Lorentz Transformations}
     Consider a new inner product on $ \mathbb{R}^{2} $ given by 
     \[
-        (\bfx,\bfy)=\bfx^\top J \bfy=x_0y_0-x_1y_1,J=\begin{pmatrix}
+        (\mathbf{x},\mathbf{y})=\mathbf{x}^\top J \mathbf{y}=x_0y_0-x_1y_1,J=\begin{pmatrix}
             1&0\\
             0&-1
         \end{pmatrix}.
     \]
-    Label components as $ (x_0,x_1) $. Note that it is not positive definite since $ (\bfx,\bfx)=x_0^2-x_1^2 $, which is a quadratic form with eigenvalues $ \pm 1 $, but still bilinear and symmetric. Standard basis vectors
+    Label components as $ (x_0,x_1) $. Note that it is not positive definite since $ (\mathbf{x},\mathbf{x})=x_0^2-x_1^2 $, which is a quadratic form with eigenvalues $ \pm 1 $, but still bilinear and symmetric. Standard basis vectors
     \[
-        \bfe_0=\begin{pmatrix}
+        \mathbf{e}_0=\begin{pmatrix}
             1\\0
-        \end{pmatrix},\bfe_1\begin{pmatrix}
+        \end{pmatrix},\mathbf{e}_1\begin{pmatrix}
             0\\1
         \end{pmatrix},
     \]
-    since $ (\bfe_0,\bfe_0)=-(\bfe_1,\bfe_1)=1, (\bfe_0,\bfe_1)=0 $. This inner product is called the \textit{Minkowski metric }on $ \mathbb{R}^{2} $. $ \mathbb{R}^{2} $ with this metric is called the \textit{Minkowski space}.
+    since $ (\mathbf{e}_0,\mathbf{e}_0)=-(\mathbf{e}_1,\mathbf{e}_1)=1, (\mathbf{e}_0,\mathbf{e}_1)=0 $. This inner product is called the \textit{Minkowski metric }on $ \mathbb{R}^{2} $. $ \mathbb{R}^{2} $ with this metric is called the \textit{Minkowski space}.
 
     Now consider 
     \[
@@ -3385,20 +3343,20 @@ skipped some talks irrelevant to contents\\
             M_{10}&M_{11}
         \end{pmatrix}: \mathbb{R}^{2}\to \mathbb{R}^{2},
     \]
-    this preserves Minkowski metric if and only if $ (M\bfx, M\bfy)=(\bfx,\bfy),\forall \bfx,\bfy\in \mathbb{R}^{2} \Leftrightarrow (M\bfx)^{\top }J(M\bfy)=\bfx^\top M^\top JM\bfy = \bfx^\top J \bfy,\forall \bfy,\bfy \Leftrightarrow J=M^\top JM $. The set of such matrices form a group. Note that $ \det M=\pm 1 $. Furthermore, $ |M_{00}^2\ge 1| $ so $ M_{00}\ge 1 \lor M_{00}\le -1 $. The subgroup with $ \det M=1 \land M_{00}\ge 1 $ is called the \textit{Lorentz group}.
+    this preserves Minkowski metric if and only if $ (M\mathbf{x}, M\mathbf{y})=(\mathbf{x},\mathbf{y}),\forall \mathbf{x},\mathbf{y}\in \mathbb{R}^{2} \Leftrightarrow (M\mathbf{x})^{\top }J(M\mathbf{y})=\mathbf{x}^\top M^\top JM\mathbf{y} = \mathbf{x}^\top J \mathbf{y},\forall \mathbf{y},\mathbf{y} \Leftrightarrow J=M^\top JM $. The set of such matrices form a group. Note that $ \det M=\pm 1 $. Furthermore, $ |M_{00}^2\ge 1| $ so $ M_{00}\ge 1 \lor M_{00}\le -1 $. The subgroup with $ \det M=1 \land M_{00}\ge 1 $ is called the \textit{Lorentz group}.
     \subsubsection*{General form of $M$}
-    Find this by using columns $ M\bfe_0,M\bfe_1 $ are orthonormal in the same sense as $ \bfe_0\&\bfe_1 $. 
+    Find this by using columns $ M\mathbf{e}_0,M\mathbf{e}_1 $ are orthonormal in the same sense as $ \mathbf{e}_0\&\mathbf{e}_1 $. 
     \[
-        (M\bfe_0,M\bfe_0)=M_{00}^2-M_{10}^2=(\bfe_0,\bfe_0)=1(\text{so } |M_{00}|^2\ge 1).
+        (M\mathbf{e}_0,M\mathbf{e}_0)=M_{00}^2-M_{10}^2=(\mathbf{e}_0,\mathbf{e}_0)=1(\text{so } |M_{00}|^2\ge 1).
     \]
     Taking $ M_{00}\ge 1 $ we can write
     \[
-        M\bfe_0=\begin{pmatrix}
+        M\mathbf{e}_0=\begin{pmatrix}
             \cosh \theta\\ \sinh \theta
         \end{pmatrix},\theta\in \mathbb{R}.
     \]
     \[
-        (M\bfe_0,M\bfe_1)=0 \land (M\bfe_1,M\bfe_1)=-1 \Longrightarrow M\bfe_1 = \pm \begin{pmatrix}
+        (M\mathbf{e}_0,M\mathbf{e}_1)=0 \land (M\mathbf{e}_1,M\mathbf{e}_1)=-1 \Longrightarrow M\mathbf{e}_1 = \pm \begin{pmatrix}
             \sinh \theta\\ \cosh \theta
         \end{pmatrix},\theta\in \mathbb{R}.
     \]
@@ -3420,7 +3378,7 @@ skipped some talks irrelevant to contents\\
     \]
     Rename $ x_0 \to t $, time coordinate, $ x_1 \to x $, space coordinate, then 
     \[
-        \bfx'=M\bfx \Longleftrightarrow \left\{ \begin{aligned}
+        \mathbf{x}'=M\mathbf{x} \Longleftrightarrow \left\{ \begin{aligned}
              t'=\gamma(t+vx)\\
              x'=\gamma(x+vt)
         \end{aligned} \right. .

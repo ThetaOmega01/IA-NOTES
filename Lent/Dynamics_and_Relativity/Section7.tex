@@ -8,14 +8,14 @@ The possible motions of a rigid body are the continuous isometries of Euclidean 
 
 \subsection{Angular velocity}
 
-Recall that if a particle is rotating about an axis through $O$ with angular velocity $ \boldsymbol{\omega} $ then the velocity $ \dot{\bfr} = \boldsymbol{\omega}\times \bfr $ with $ |\dot{\bfr}|=\omega r_\perp  $, where $ r_\perp  $ is the perpendicular distance to the axis of rotation.
+Recall that if a particle is rotating about an axis through $O$ with angular velocity $ \boldsymbol{\omega} $ then the velocity $ \dot{\mathbf{r}} = \boldsymbol{\omega}\times \mathbf{r} $ with $ |\dot{\mathbf{r}}|=\omega r_\perp  $, where $ r_\perp  $ is the perpendicular distance to the axis of rotation.
 
 If the particle has mass $m$, then the kinetic energy $T$ is 
 \[
-    T = \frac{1}{2}m|\dot{\mathbf{r}}|^2 = \frac{1}{2}m (\boldsymbol{\omega}\times \bfr)\cdot (\boldsymbol{\omega}\times \bfr) = \frac{1}{2}{\color{blue}mr_\perp^2} \omega^2 = \frac{1}{2}{\color{blue}I} \omega^2 .
+    T = \frac{1}{2}m|\dot{\mathbf{r}}|^2 = \frac{1}{2}m (\boldsymbol{\omega}\times \mathbf{r})\cdot (\boldsymbol{\omega}\times \mathbf{r}) = \frac{1}{2}{\color{blue}mr_\perp^2} \omega^2 = \frac{1}{2}{\color{blue}I} \omega^2 .
 \]
 \begin{note}
-    If $ \boldsymbol{\omega}=\omega \bfn $ then $ r_\perp = |\mathbf{n}\times \mathbf{r}| $.
+    If $ \boldsymbol{\omega}=\omega \mathbf{n} $ then $ r_\perp = |\mathbf{n}\times \mathbf{r}| $.
 \end{note}
 
 \begin{definition}[Moment of inertia]
@@ -33,17 +33,17 @@ Consider a rigid body made up of $N$ particles. Consider the body to be rotating
 \]
 This ensures $ |\mathbf{r}_i-\mathbf{r}_j| $ does not vary with time:
 \[
-  \frac{\rmd }{\rmd t}|\mathbf{r}_i - \mathbf{r}_j|^2 = 2(\dot{\mathbf{r}}_i - \dot{\mathbf{r}}_j)\cdot (\mathbf{r}_i - \mathbf{r}_j) = 2\big(\boldsymbol\omega\times (\mathbf{r}_i - \mathbf{r}_j)\big) \cdot (\mathbf{r}_i - \mathbf{r}_j) = 0,
+  \frac{\mathrm{d} }{\mathrm{d} t}|\mathbf{r}_i - \mathbf{r}_j|^2 = 2(\dot{\mathbf{r}}_i - \dot{\mathbf{r}}_j)\cdot (\mathbf{r}_i - \mathbf{r}_j) = 2\big(\boldsymbol\omega\times (\mathbf{r}_i - \mathbf{r}_j)\big) \cdot (\mathbf{r}_i - \mathbf{r}_j) = 0,
 \]
 
 Similarly, the kinetic energy is
 \[
-  T = \frac{1}{2}\sum_{i = 1}^N m_i|\dot{\mathbf{r}_i}|^2 =\frac{1}{2}\sum_{i = 1}^N m_i |\boldsymbol\omega\times \mathbf{r}_i|^2 = \frac{1}{2}\omega^2 {\color{blue}\sum_{i = 1}^N m_i  |\bfn \times \bfr_i|^2} = \frac{1}{2}{\color{blue}I}\omega^2.
+  T = \frac{1}{2}\sum_{i = 1}^N m_i|\dot{\mathbf{r}_i}|^2 =\frac{1}{2}\sum_{i = 1}^N m_i |\boldsymbol\omega\times \mathbf{r}_i|^2 = \frac{1}{2}\omega^2 {\color{blue}\sum_{i = 1}^N m_i  |\mathbf{n} \times \mathbf{r}_i|^2} = \frac{1}{2}{\color{blue}I}\omega^2.
 \]
 \begin{definition}[Moment of inertia]
     The \textbf{moment of inertia} of a rigid body about the rotation axis $\mathbf{n}$ is
     \[
-      I = \sum_{i = 1}^N m_i(r_i)_{\perp}^2 = \sum_{i = 1}^N m_i  |\bfn \times \bfr_i|^2.
+      I = \sum_{i = 1}^N m_i(r_i)_{\perp}^2 = \sum_{i = 1}^N m_i  |\mathbf{n} \times \mathbf{r}_i|^2.
     \]
 \end{definition}
 \begin{definition}[Angular momentum]
@@ -57,7 +57,7 @@ Consider $ \boldsymbol{\omega}=\omega \mathbf{n} $, then
 \[
     \mathbf{L} = \omega \sum_{i=1}^N m_i (\mathbf{r}_i \times (\mathbf{n} \times \mathbf{r}_i)).
 \]
-Consider the part of $ \bfL $ parallel to the rotation of axis: 
+Consider the part of $ \mathbf{L} $ parallel to the rotation of axis: 
 \begin{align*}
     \mathbf{L} \cdot \mathbf{n} &= \omega \sum_{i=1}^N m_i \mathbf{n}\cdot (\mathbf{r}_i \times (\mathbf{n} \times \mathbf{r}_i))\\
     &= \omega \sum_{i=1}^N m_i(\mathbf{n}\times \mathbf{r}_i)\cdot (\mathbf{n} \times \mathbf{r}_i)\\
@@ -79,24 +79,24 @@ In general, there are 3 directions such that $ I \boldsymbol{\omega} \parallel \
 
 Recap the simple case: if we choose to rotate in a direction such that $ \mathbf{L}\parallel \boldsymbol\omega $, then 
 \[
-    \bfL = I(\bfn) \boldsymbol{\omega},
+    \mathbf{L} = I(\mathbf{n}) \boldsymbol{\omega},
 \]
-where $ I(\bfn) $ is the moment of inertia about $\bfn$. We often consider bodies that are \textit{symmetric} about a particular axis, and rotating about that axis guarantees above property. 
+where $ I(\mathbf{n}) $ is the moment of inertia about $\mathbf{n}$. We often consider bodies that are \textit{symmetric} about a particular axis, and rotating about that axis guarantees above property. 
 
 \subsection{Calculation of the moment of inertia}
 For a solid body, we replace mass-weighted sums over particles by mass-weighted integrals. In particular, consider a body occupying a volumn $V$ with the mass density $\rho(\mathbf{r})$. Then 
 \begin{definition}
     The \textbf{mass} is
     \[
-      M = \int_V \rho(\mathbf{r}) \,\rmd V.
+      M = \int_V \rho(\mathbf{r}) \,\mathrm{d} V.
     \]
     The \textbf{centre of mass} is
     \[
-      \mathbf{R} = \frac{1}{M}\int_V \mathbf{r}\rho(\mathbf{r})\,\rmd V.
+      \mathbf{R} = \frac{1}{M}\int_V \mathbf{r}\rho(\mathbf{r})\,\mathrm{d} V.
     \]
-    The \textbf{moment of inertia} about axis $\bfn$ is
+    The \textbf{moment of inertia} about axis $\mathbf{n}$ is
     \[
-      I = \int_V \rho(\mathbf{r}) r_{\perp}^2 \,\rmd V = \int_V \rho(\mathbf{r})|\mathbf{n}\times \mathbf{r}|^2\,\rmd V.
+      I = \int_V \rho(\mathbf{r}) r_{\perp}^2 \,\mathrm{d} V = \int_V \rho(\mathbf{r})|\mathbf{n}\times \mathbf{r}|^2\,\mathrm{d} V.
     \]
 \end{definition}
 Use the obvious modifications of these formulae for bodies that corresponds to mass distributed over a surface or along a curve, as surface(area) integrals or line integrals.
@@ -112,7 +112,7 @@ Use the obvious modifications of these formulae for bodies that corresponds to m
     \end{center}
     In this case we reduce to a line integral and $ \rho = M/2\pi a $. $ r_{\perp }=a $, so 
     \[
-      I = \int_{0}^{2\pi} \underbrace{\frac{M}{2\pi a}}_{\rho} \underbrace{a^2}_{r_{\perp}^2} \underbrace{a \dd \theta}_{\rmd s}= Ma^2.
+      I = \int_{0}^{2\pi} \underbrace{\frac{M}{2\pi a}}_{\rho} \underbrace{a^2}_{r_{\perp}^2} \underbrace{a \dd \theta}_{\mathrm{d} s}= Ma^2.
     \]
 \end{example}
 
@@ -120,7 +120,7 @@ Use the obvious modifications of these formulae for bodies that corresponds to m
     Consider a uniform rod of mass $M$ and length $l$ with axis through one end, perpendicular to the rod.
     \begin{center}
       \begin{tikzpicture}
-        \draw [dashed,->] (0, -1) -- (0, 1) node [above] {$\bfn$};
+        \draw [dashed,->] (0, -1) -- (0, 1) node [above] {$\mathbf{n}$};
         \filldraw[black] (0, 0.05) rectangle (2, -0.05);
         \node at (1, 0.3) {$l$};
         \draw [->] (0,-0.5) -- (1,-0.5) node [right] {$x$};
@@ -299,15 +299,15 @@ $\mathbf{L}$ and $\mathbf{G}$ depend on the choice of origin, which could be any
 
 Indeed, 
 \begin{align*}
-  \bfG&=\frac{\mathrm{d}}{\mathrm{d}t}\left( M\bfR\times\dot{\bfR}+\sum_{i=1}^{N}m_i\bfs_i\times \dot{\bfs}_i \right)\\ 
-  &= M\bfR \times \ddot{\bfR} + \frac{\mathrm{d}}{\mathrm{d}t}\left( \sum_{i=1}^{N}m_i\bfs_i\times \dot{\bfs}_i \right)\\ 
-  &= \bfR \times \bfF^{\text{ext}} +\frac{\mathrm{d}}{\mathrm{d}t}\left( \sum_{i=1}^{N}m_i\bfs_i\times \dot{\bfs}_i \right). 
+  \mathbf{G}&=\frac{\mathrm{d}}{\mathrm{d}t}\left( M\mathbf{R}\times\dot{\mathbf{R}}+\sum_{i=1}^{N}m_i\mathbf{s}_i\times \dot{\mathbf{s}}_i \right)\\ 
+  &= M\mathbf{R} \times \ddot{\mathbf{R}} + \frac{\mathrm{d}}{\mathrm{d}t}\left( \sum_{i=1}^{N}m_i\mathbf{s}_i\times \dot{\mathbf{s}}_i \right)\\ 
+  &= \mathbf{R} \times \mathbf{F}^{\text{ext}} +\frac{\mathrm{d}}{\mathrm{d}t}\left( \sum_{i=1}^{N}m_i\mathbf{s}_i\times \dot{\mathbf{s}}_i \right). 
 \end{align*}
 Hence 
 \begin{align*}
-  \frac{\mathrm{d}}{\mathrm{d}t}\left( \sum_{i=1}^{N}m_i\bfs_i\times \dot{\bfs}_i \right)&= \bfG-\bfR \times \bfF^{\text{ext}}\\ 
-  &= \sum_{i=1}^{N}\bfr_i \times \bfF_i^{\text{ext}} - \bfR \times \bfF^{\text{ext}}\\ 
-  &= \sum_{i=1}^{N}(\bfr_i-\bfR)\times \bfF_i^{\text{ext}},
+  \frac{\mathrm{d}}{\mathrm{d}t}\left( \sum_{i=1}^{N}m_i\mathbf{s}_i\times \dot{\mathbf{s}}_i \right)&= \mathbf{G}-\mathbf{R} \times \mathbf{F}^{\text{ext}}\\ 
+  &= \sum_{i=1}^{N}\mathbf{r}_i \times \mathbf{F}_i^{\text{ext}} - \mathbf{R} \times \mathbf{F}^{\text{ext}}\\ 
+  &= \sum_{i=1}^{N}(\mathbf{r}_i-\mathbf{R})\times \mathbf{F}_i^{\text{ext}},
 \end{align*}
 which is the total external torque, as claimed.
 
@@ -331,7 +331,7 @@ We obtain a similar result for gravitational potential energy. The gravitational
 \[
   V^{\mathrm{ext}} = \sum_i V_i^{\mathrm{ext}}
   = \sum_i m_i (- \mathbf{r}_i \cdot \mathbf{g})
-  = -M\bfR\cdot\bfg .
+  = -M\mathbf{R}\cdot\mathbf{g} .
 \]
 
 \begin{example}
@@ -374,7 +374,7 @@ We obtain a similar result for gravitational potential energy. The gravitational
   \]
   We differentiate to obtain
   \[
-    \frac{\rmd E}{\rmd t} = \dot{\theta}(I\ddot{\theta} + Mg \frac{\ell}{2}\sin \theta) = 0.
+    \frac{\mathrm{d} E}{\mathrm{d} t} = \dot{\theta}(I\ddot{\theta} + Mg \frac{\ell}{2}\sin \theta) = 0.
   \]
   So
   \[
@@ -433,7 +433,7 @@ The rolling body can alternatively be considered to be rotating instantaneously 
   \]
   where $x$ is the distance down slope. While there is a frictional force, the instantaneous velocity is $0$, and no work is done. So energy is conserved, and we have
   \[
-    \frac{\rmd E}{\rmd t} = \dot{x}\left(\left(M + \frac{I}{a^2}\right)\ddot{x} - Mg\sin \alpha\right) = 0.
+    \frac{\mathrm{d} E}{\mathrm{d} t} = \dot{x}\left(\left(M + \frac{I}{a^2}\right)\ddot{x} - Mg\sin \alpha\right) = 0.
   \]
   So
   \[

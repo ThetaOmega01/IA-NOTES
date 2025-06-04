@@ -16,7 +16,7 @@ The equation of motion is
 \]
 
 \begin{definition}[Kinetic energy]
-    $T=\frac{1}{2}m \dot{x}^2$, generalised as $ T=\frac{1}{2}m|\dot{\bfx}|^2 $. 
+    $T=\frac{1}{2}m \dot{x}^2$, generalised as $ T=\frac{1}{2}m|\dot{\mathbf{x}}|^2 $. 
 \end{definition}
 \begin{definition}[Total energy]
     $ E=T+V = \frac{1}{2}m \dot{x}^2+V(x) $.
@@ -159,18 +159,18 @@ Equation of motion is
 \end{example}
 
 \subsection{Forces \& potential in 3D}
-Consider a particle under a force $ \bfF $. We have
+Consider a particle under a force $ \mathbf{F} $. We have
 \begin{enumerate}[align=left]
-    \item[\textit{Kinetic energy}.] $ T = \frac{1}{2}m|\dot{\bfr}|^2 = \frac{1}{2}m |\bfu|^2 $, $ \dot{T}= m \dot{\bfr}\cdot \ddot{\bfr}=\bfF \cdot \dot{\bfr} $.
-    \item[\textit{Newton's 2nd law}.] $ m \ddot{\bfr}=\bfF $.   
+    \item[\textit{Kinetic energy}.] $ T = \frac{1}{2}m|\dot{\mathbf{r}}|^2 = \frac{1}{2}m |\mathbf{u}|^2 $, $ \dot{T}= m \dot{\mathbf{r}}\cdot \ddot{\mathbf{r}}=\mathbf{F} \cdot \dot{\mathbf{r}} $.
+    \item[\textit{Newton's 2nd law}.] $ m \ddot{\mathbf{r}}=\mathbf{F} $.   
 \end{enumerate}
 Consider total work done by force on the particle as it moves along a \textit{finite path}.
 \begin{center}
     \begin{tikzpicture}[scale=0.6]
         \node [style=circ] (0) at (-3, -2) {};
         \node [style=circ] (1) at (4, 3) {};
-        \node [below] at (-3,-2.4) {$ \bfr_1 = \bfr(t_1) $};
-        \node [right] at (4.4,3) {$ \bfr_2 = \bfr(t_2) $};
+        \node [below] at (-3,-2.4) {$ \mathbf{r}_1 = \mathbf{r}(t_1) $};
+        \node [right] at (4.4,3) {$ \mathbf{r}_2 = \mathbf{r}(t_2) $};
         \node (2) at (0, -2) {};
         \node (3) at (2, 1) {};
         \draw [in=-135, out=0, ->-=0.5] (0) to (2.center);
@@ -181,19 +181,19 @@ Consider total work done by force on the particle as it moves along a \textit{fi
 \end{center}
 The total work done is
 \[
-    \int_{t_1}^{t_2} \bfF \cdot \dot{\bfr} \,\mathrm{d}t = \int_C \bfF \cdot \mathrm{d}\bfr=\int_{\bfr_1}^{\bfr_2} \bfF \cdot \mathrm{d}\bfr=\int_C F_x\dd x+F_y\dd y+F_z\dd z..
+    \int_{t_1}^{t_2} \mathbf{F} \cdot \dot{\mathbf{r}} \,\mathrm{d}t = \int_C \mathbf{F} \cdot \mathrm{d}\mathbf{r}=\int_{\mathbf{r}_1}^{\mathbf{r}_2} \mathbf{F} \cdot \mathrm{d}\mathbf{r}=\int_C F_x\dd x+F_y\dd y+F_z\dd z..
 \]
-Now suppose that $\bfF$ is a function of $\bfr$ only. $ \bfF(\bfr) $ defines a \textbf{force field}
+Now suppose that $\mathbf{F}$ is a function of $\mathbf{r}$ only. $ \mathbf{F}(\mathbf{r}) $ defines a \textbf{force field}
 
 \begin{definition}[Conservative force field]
-    $ \bfF(\bfr) = - \nabla V(\bfr) $ for some function $ V(\bfr) $.
+    $ \mathbf{F}(\mathbf{r}) = - \nabla V(\mathbf{r}) $ for some function $ V(\mathbf{r}) $.
 \end{definition}
 
 \begin{proposition}
-    If $\bfF$ is conservative, then $ E=T+V $ is conserved.
+    If $\mathbf{F}$ is conservative, then $ E=T+V $ is conserved.
 \end{proposition}
 \begin{proof}
-    $ \dot{E}=\dot{T}+\dot{V} = \dot{\bfr}\cdot(m  \ddot{\bfr}+ \nabla V)=\dot{\bfr}\cdot(m  \ddot{\bfr}-\bfF)=0$.
+    $ \dot{E}=\dot{T}+\dot{V} = \dot{\mathbf{r}}\cdot(m  \ddot{\mathbf{r}}+ \nabla V)=\dot{\mathbf{r}}\cdot(m  \ddot{\mathbf{r}}-\mathbf{F})=0$.
 \end{proof}
 \begin{proposition}
     For \textit{conservative force fields}, total work done is the change in potential energy.
@@ -201,31 +201,31 @@ Now suppose that $\bfF$ is a function of $\bfr$ only. $ \bfF(\bfr) $ defines a \
 \begin{proof}
     Total work done by a conservative force is 
     \[
-        W = \int_{C} \bfF \cdot\mathrm{d}\mathbf{r} = -\int_{C} \nabla V \cdot\mathrm{d}\mathbf{r} = V(\bfr_1)-V(\bfr_2).
+        W = \int_{C} \mathbf{F} \cdot\mathrm{d}\mathbf{r} = -\int_{C} \nabla V \cdot\mathrm{d}\mathbf{r} = V(\mathbf{r}_1)-V(\mathbf{r}_2).
     \]
 \end{proof}
 \begin{corollary}
     If $C$ is closed, then no work is done by the force.
 \end{corollary}
 \begin{note}
-    The condition for $ \bfF(\bfr) $ to be conservative is 
+    The condition for $ \mathbf{F}(\mathbf{r}) $ to be conservative is 
     \[
-        \nabla \times \bfF(\bfr) = \mathbf{0}.
+        \nabla \times \mathbf{F}(\mathbf{r}) = \mathbf{0}.
     \]
     This is called the \textbf{curl} operator. See Vector Calculus for details.
 \end{note}
 \begin{remark}
-    In general, a given $ \bfF(\bfr) $ is not necessarily conservative, and the above laws does not work.
+    In general, a given $ \mathbf{F}(\mathbf{r}) $ is not necessarily conservative, and the above laws does not work.
 \end{remark}
 
 \subsection{Gravity}
 We have seen previously that the gravitational force is 
 \[
-    \mathbf{F}(\mathbf{r}) = -\frac{GMm}{|\bfr|^3}\cdot \bfr = -\frac{GMm}{r^2}\hat{\bfr},
+    \mathbf{F}(\mathbf{r}) = -\frac{GMm}{|\mathbf{r}|^3}\cdot \mathbf{r} = -\frac{GMm}{r^2}\hat{\mathbf{r}},
 \]
-where $\bfr$ is the relative position of $m$ to $M$. In fact, 
+where $\mathbf{r}$ is the relative position of $m$ to $M$. In fact, 
 \[
-    \mathbf{F}(\bfr) = - \nabla V,\quad V(\bfr) = -\frac{GMm}{r},
+    \mathbf{F}(\mathbf{r}) = - \nabla V,\quad V(\mathbf{r}) = -\frac{GMm}{r},
 \]
 so
 \begin{proposition}
@@ -235,34 +235,34 @@ so
 \begin{definition}[Gravitational potential, field]
     We often define a ``gravitational potential'' and a ``gravitational field''
 \[
-    \Phi_g(\bfr) = -\frac{GM}{r},\quad \bfg = - \nabla \Phi_g(\bfr) = \frac{-GM}{r^2}\hat{\bfr}.
+    \Phi_g(\mathbf{r}) = -\frac{GM}{r},\quad \mathbf{g} = - \nabla \Phi_g(\mathbf{r}) = \frac{-GM}{r^2}\hat{\mathbf{r}}.
 \]
 \end{definition}
 These are properties of mass $M$ alone. Effect on $m$ is described as
 \[
-    V(\bfr) = m\Phi_g(\bfr),\quad \mathbf{F}(\bfr) = m\bfg.
+    V(\mathbf{r}) = m\Phi_g(\mathbf{r}),\quad \mathbf{F}(\mathbf{r}) = m\mathbf{g}.
 \]
-We can generalise to gravitational potential with many masses $M_i$ with positions $ \bfr_i $:
+We can generalise to gravitational potential with many masses $M_i$ with positions $ \mathbf{r}_i $:
 \[
-    \Phi_g(\bfr) = -\sum_{i} \frac{GM_i}{|\bfr-\bfr_i|},\quad \bfg = \sum_i \frac{GM_i}{|\bfr-\bfr_i|^3}(\bfr-\bfr_i).
+    \Phi_g(\mathbf{r}) = -\sum_{i} \frac{GM_i}{|\mathbf{r}-\mathbf{r}_i|},\quad \mathbf{g} = \sum_i \frac{GM_i}{|\mathbf{r}-\mathbf{r}_i|^3}(\mathbf{r}-\mathbf{r}_i).
 \]
 We can also expand this to a \textit{continuous} mass distribution.
 \begin{example}[Uniform spherical mass]
     Consider a uniform spherical mass centred at origin, then outside mass distribution we have 
     \[
-        \Phi_g(\bfr) = -\frac{GM}{r},
+        \Phi_g(\mathbf{r}) = -\frac{GM}{r},
     \]
     where $M$ is the total mass. See \href{http://www.damtp.cam.ac.uk/user/tong/relativity/dynrel.pdf#page=29}{the proof} as well as Vector Calculus.
 \end{example}
 
 \subsubsection*{Gravitational mass vs. Inertial mass}
 \begin{definition}[Inertial mass]
-    Newton's 2nd law says that $ {\color{blue}m} \ddot{\bfr}=\bfF $, this ${\color{blue}m}$ is the \textbf{inertial mass}.
+    Newton's 2nd law says that $ {\color{blue}m} \ddot{\mathbf{r}}=\mathbf{F} $, this ${\color{blue}m}$ is the \textbf{inertial mass}.
 \end{definition}
 \begin{definition}[Gravitational mass]
     Newton's law of gravitation says that 
     \[
-        \mathbf{F} = -\frac{GM{\color{violet}m}}{r^2}\hat{\bfr}.
+        \mathbf{F} = -\frac{GM{\color{violet}m}}{r^2}\hat{\mathbf{r}}.
     \]
     The ${\color{violet}m}$ is called the \textbf{gravitational mass}.
 \end{definition}
@@ -281,7 +281,7 @@ Let $ g = GM/R^2 $ and since $ GMm/R $ is constant, we can approximate the poten
 \[
     V\approx mgz.
 \]
-Note that on earth, $ g\approx 9.8\rmm\rms^{-2} $.
+Note that on earth, $ g\approx 9.8\mathrm{m}\mathrm{s}^{-2} $.
 
 \paragraph{Escape velocity.} Consider leaving surface of a planet with velocity $v$. By conservation of energy,
 \[
@@ -306,13 +306,13 @@ For any energy $E < 0$, we will eventually come to rest at position $r = -\frac{
 \end{center}
 
 \subsection{Electromagnetic forces}
-Recall the Lorentz force law: $ \mathbf{F} = q(\bfE+\bfu \times \bfB) $. In this subsection we restrict $\bfE,\bfB$ to time independent $ \bfE(\bfr),\bfB(\bfr) $. In this case we can write(similar to gravity) $ \bfE = - \nabla \Phi_e(\bfr) $, where $ \Phi_e $ is called the \textbf{electrostatic potential}. $\bfF=q\bfE$ is then conservative.
+Recall the Lorentz force law: $ \mathbf{F} = q(\mathbf{E}+\mathbf{u} \times \mathbf{B}) $. In this subsection we restrict $\mathbf{E},\mathbf{B}$ to time independent $ \mathbf{E}(\mathbf{r}),\mathbf{B}(\mathbf{r}) $. In this case we can write(similar to gravity) $ \mathbf{E} = - \nabla \Phi_e(\mathbf{r}) $, where $ \Phi_e $ is called the \textbf{electrostatic potential}. $\mathbf{F}=q\mathbf{E}$ is then conservative.
 
 \begin{proposition}
-    For time independent $ \bfE,\bfB $, the energy of a particle moving under the Lorentz force law is \textit{constant}.
+    For time independent $ \mathbf{E},\mathbf{B} $, the energy of a particle moving under the Lorentz force law is \textit{constant}.
 \end{proposition}
 \begin{proof}
-    $ E = \frac{1}{2}m|\dot{\bfr}|^2+q\Phi_e(\bfr) $, so $ \dot{E}=m \dot{\bfr} \cdot \ddot{\bfr}+q \dot{\bfr}\cdot \nabla \Phi_e = \dot{\bfr}\cdot (q \dot{\bfr}\times \bfB) =0. $
+    $ E = \frac{1}{2}m|\dot{\mathbf{r}}|^2+q\Phi_e(\mathbf{r}) $, so $ \dot{E}=m \dot{\mathbf{r}} \cdot \ddot{\mathbf{r}}+q \dot{\mathbf{r}}\cdot \nabla \Phi_e = \dot{\mathbf{r}}\cdot (q \dot{\mathbf{r}}\times \mathbf{B}) =0. $
 \end{proof}
 \begin{note}
     Rate of working of magnetic field is 0.
@@ -321,15 +321,15 @@ Recall the Lorentz force law: $ \mathbf{F} = q(\bfE+\bfu \times \bfB) $. In this
 \subsubsection*{Point charges}
 A particle with charge $Q$ located at origin generates electrostatic potential and electric field
 \[
-    \Phi_e(\bfr) = \frac{Q}{4\pi \epsilon_0 r},\quad \bfE(\bfr) = -\nabla \Phi_e = \frac{Q}{4\pi \epsilon_0 r^2} \hat{\bfr},
+    \Phi_e(\mathbf{r}) = \frac{Q}{4\pi \epsilon_0 r},\quad \mathbf{E}(\mathbf{r}) = -\nabla \Phi_e = \frac{Q}{4\pi \epsilon_0 r^2} \hat{\mathbf{r}},
 \]
-where $ \epsilon_0 \approx 8.85 \times 10^{-12}\rmm^{-3}\mathrm{kg}^{-1}\rms^2\rmC^2 $, where $ \rmC $ is the unit of \textit{charge}, is called the \textbf{electric constant}.
+where $ \epsilon_0 \approx 8.85 \times 10^{-12}\mathrm{m}^{-3}\mathrm{kg}^{-1}\mathrm{s}^2\mathrm{C}^2 $, where $ \mathrm{C} $ is the unit of \textit{charge}, is called the \textbf{electric constant}.
 
-The force on a particle with charge $q$ located at $\bfr$ is 
+The force on a particle with charge $q$ located at $\mathbf{r}$ is 
 \[
-    \mathbf{F} = -q \nabla \Phi_e = \frac{Qq}{4\pi \epsilon_0 r^2}\hat{\bfr},
+    \mathbf{F} = -q \nabla \Phi_e = \frac{Qq}{4\pi \epsilon_0 r^2}\hat{\mathbf{r}},
 \]
-known as \textbf{Coulomb force}. Different from gravity, the direction of $\bfF$ depends on signs of charges. $ Qq>0 $-repulsive, $ Qq<0 $-attractive.
+known as \textbf{Coulomb force}. Different from gravity, the direction of $\mathbf{F}$ depends on signs of charges. $ Qq>0 $-repulsive, $ Qq<0 $-attractive.
 
 \subsubsection*{Magnetic field}
 Recall that a particle moves in helical motion in constant magnetic field.
@@ -362,9 +362,9 @@ There are two important force:
     The friction is called \textbf{static friction} if no sliding occurs between surfaces.
 \end{definition}
 
-If static friction is exerted, $\bfF$ obeys 
+If static friction is exerted, $\mathbf{F}$ obeys 
 \[
-    |\bfF|\le \mu_s|\bfN|,
+    |\mathbf{F}|\le \mu_s|\mathbf{N}|,
 \]
 where $\mu_s$ is called the \textbf{coefficient of static friction}. Block can remain static provided $ \alpha\le \arctan \mu_s $, where $ \alpha $ is the angle relative to the ground.
 
@@ -373,7 +373,7 @@ where $\mu_s$ is called the \textbf{coefficient of static friction}. Block can r
 \end{definition}
 Here
 \[
-    |\bfF| = \mu_k|\bfN|
+    |\mathbf{F}| = \mu_k|\mathbf{N}|
 \]
 where $ \mu_k $ is the \textbf{coefficient of kinetic friction}. In general, $ \mu_s>\mu_k>0 $, and their values depend on materials in contact. e.g. $ \mu_s\approx \mu_k\approx 0.8 $ between rubber and asphalt, and between teflons $ \mu_s\approx \mu_k\approx 0.04 $.
 
@@ -382,7 +382,7 @@ This happens when a solid body moves through a fluid. There are two important re
 \begin{enumerate}[align=left]
     \item[\textbf{Linear drag}.] This happens when `small' objects moving through \textit{viscous} fluid, e.g. bacteria moving in body fluid. We have 
     \[
-        \mathbf{F} = -k_1\bfu.
+        \mathbf{F} = -k_1\mathbf{u}.
     \]
     If this object is a sphere with radius $R$, then \textit{Stokes force law} tells us that
     \[
@@ -391,7 +391,7 @@ This happens when a solid body moves through a fluid. There are two important re
     where $\eta$ is the viscosity of the fluid.
     \item[\textbf{Quadratic drag}.] This happens when large bodies are moving through less viscous fluids, e.g. a large fish swimming in water, cars, aircrafts, etc. We have 
     \[
-        \mathbf{F} = -k_2 |\bfu|\bfu.
+        \mathbf{F} = -k_2 |\mathbf{u}|\mathbf{u}.
     \]
     Typically $k_2$ is given by 
     \[
@@ -402,10 +402,10 @@ This happens when a solid body moves through a fluid. There are two important re
 
 A body loses kinetic energy as a result of a drag force. Rates of working are 
 \begin{align*}
-    \bfF\cdot\bfu &= -k_1|\bfu|^2\quad \text{linear drag,}\\
-    &= -k_2|\bfu|^3\quad \text{quadratic drag.} 
+    \mathbf{F}\cdot\mathbf{u} &= -k_1|\mathbf{u}|^2\quad \text{linear drag,}\\
+    &= -k_2|\mathbf{u}|^3\quad \text{quadratic drag.} 
 \end{align*}
-In latter total work done $ \propto |\bfu|^2\cdot x $. The fluid gains energy as a result of drags.
+In latter total work done $ \propto |\mathbf{u}|^2\cdot x $. The fluid gains energy as a result of drags.
 
 \begin{example}
     Damped oscillator met in DEs. We have $ m \ddot{x} = -kx - \lambda \dot{x} $.
@@ -413,23 +413,23 @@ In latter total work done $ \propto |\bfu|^2\cdot x $. The fluid gains energy as
 \begin{example}
     Consider a projectile moving under a uniform gravity and experiencing linear drag force.
     \[
-        m \ddot{\bfx} = m\bfg -k \dot{\bfx},
+        m \ddot{\mathbf{x}} = m\mathbf{g} -k \dot{\mathbf{x}},
     \]
-    with initial conditions given by $ \bfx(0) = 0 $ and $ \dot{\bfx}(0)=\bfu_0 $. Solve for $ \dot{\bfx} $:
+    with initial conditions given by $ \mathbf{x}(0) = 0 $ and $ \dot{\mathbf{x}}(0)=\mathbf{u}_0 $. Solve for $ \dot{\mathbf{x}} $:
     \[
-        \frac{\mathrm{d}}{\mathrm{d}t} (\dot{\bfx} e^{kt/m})=mge^{kt/m} \Longrightarrow \dot{\bfx} = \frac{m\bfg}{k}+\bfC e^{-kt/m} = \frac{m\bfg}{k}+\left( \bfu_0-\frac{m\bfg}{k} \right)e^{-kt/m}.
+        \frac{\mathrm{d}}{\mathrm{d}t} (\dot{\mathbf{x}} e^{kt/m})=mge^{kt/m} \Longrightarrow \dot{\mathbf{x}} = \frac{m\mathbf{g}}{k}+\mathbf{C} e^{-kt/m} = \frac{m\mathbf{g}}{k}+\left( \mathbf{u}_0-\frac{m\mathbf{g}}{k} \right)e^{-kt/m}.
     \]
     Hence 
     \[
-        \bfx = \frac{m\bfg}{k}t+\frac{m}{k}\left( \bfu_0-\frac{m\bfg}{k} \right)(1-e^{-kt/m}).
+        \mathbf{x} = \frac{m\mathbf{g}}{k}t+\frac{m}{k}\left( \mathbf{u}_0-\frac{m\mathbf{g}}{k} \right)(1-e^{-kt/m}).
     \]
     Now consider components:
     \[
-        \bfx=(x,y,z),\quad \bfu= (\bfu_1,\bfu_2,\bfu_3).
+        \mathbf{x}=(x,y,z),\quad \mathbf{u}= (\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3).
     \]
     Choose
     \[
-        \bfu_0 = (u_0 \cos \theta,0,u_0 \sin \theta),\quad \bfg = (0,0,-g),
+        \mathbf{u}_0 = (u_0 \cos \theta,0,u_0 \sin \theta),\quad \mathbf{g} = (0,0,-g),
     \]
     then
     \begin{align*}

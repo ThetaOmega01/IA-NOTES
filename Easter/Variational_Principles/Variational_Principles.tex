@@ -1,7 +1,8 @@
 \documentclass{article}
+\usepackage{../../triposnotes}
 
-\newcommand{\triposcourse}{Variational Principles}
-\input{../header.tex}
+\renewcommand{\triposcourse}{Variational Principles}
+
 \graphicspath{ {../images/} }
 \pgfplotsset{compat=1.17}
 \begin{document}
@@ -9,7 +10,7 @@
 \tableofcontents
 \setcounter{section}{-1}
 \newpage
-\part*{Lecture 1}
+
 \section{Motivation}
 The history of variational principles can be dated back to a pretty concrete classical problem known as the Brachistochrone problem:
 \begin{example}[The Brachistochrone Problem]
@@ -73,7 +74,7 @@ First, we will see some necessary conditions for a function to be an extrema, li
 Secondly, we will bring this principle on problems in geometry, physics, and problem with constraints (like the isoperimetric inequality).
 We will also talk about what is called the ``second variation'' as an analog of the second derivative.
 \newpage
-\part*{Lecture 2}
+
 \section{Calculus for functions on $ \mathbb{R} ^n $}
 Let $C^2(\mathbb R^2)$ denote the collection of twice differentiable functions $\mathbb R^n\to\mathbb R$ with continuous second derivatives.
 \begin{definition}
@@ -178,7 +179,7 @@ with $k$ Lagrange multipliers. Then we can extremise $h$ by solving
 \]
 It follows by substitution back to $f$.
 \newpage
-\part*{Lecture 3}
+
 \section{The Euler-Lagrange Equation}
 \subsection{Derivation of the Equation}
 We now move on to the most important theorem of the course, which gives a necessary condition to extremise a functional in the form
@@ -277,7 +278,7 @@ which is a first order ODE.
     Therefore $ y'=m $ and thus $y=mx+c$ for some constants $m,c$, which is our familiar formulation of a straight line, the geodesics of the plane.
 \end{example}
 \newpage
-\part*{Lecture 4}
+
 \begin{example}[Geodesics on a Sphere]\ 
     \begin{center}
         \includegraphics[scale=0.13]{geodesics_sphere.jpeg}
@@ -432,7 +433,7 @@ If $c$ is increasing, then the path is concave and if $c$ is decreasing it is co
 Also, if the light goes through a barrier, to the left of which $c$ is constant at $c_F$ and to the right of which $c_S$ with $c_S<c_F$, then the light ray will refract in the way we all expect.
 
 \newpage
-\part*{Lecture 5}
+
 \section{Extensions of the Euler-Lagrange Equations}
 \subsection{Euler-Lagrange with Constraints}
 Our objective is to extremize the functional
@@ -515,12 +516,12 @@ This is a system of $n$ 2nd order ODEs. We also have first integrals: if $ \part
 \[
     \frac{\partial f}{\partial y_j'}=\text{const}. 
 \]
-Also if $ \rmd f / \rmd x = 0 $, then (assume summation convention)
+Also if $ \mathrm{d} f / \mathrm{d} x = 0 $, then (assume summation convention)
 \[
     f - y_i' \frac{\partial f}{\partial y_i'}= \text{const}. 
 \]
 \newpage
-\part*{Lecture 6}
+
 \begin{example}[Geodesics on Surfaces]
     Consider a surface $\Sigma\subset\mathbb R^3$ given by $g(x,y,z)=0$.
     Pick two points $A,B$ from $\Sigma$.
@@ -588,7 +589,7 @@ This can be generalized from $3$ to $n$ in an obvious way.
             1+\phi_x^2&\phi_x\phi_y\\
             \phi_x\phi_y&1+\phi_y^2
     \end{pmatrix}$$
-    As one can verify, $\det g\ge 0$ and $ \rmd A = \sqrt{\det g}\;\rmd x\rmd y $, so
+    As one can verify, $\det g\ge 0$ and $ \mathrm{d} A = \sqrt{\det g}\;\mathrm{d} x\mathrm{d} y $, so
     $$A[\phi]=\iint_D\sqrt{1+\phi_x^2+\phi_y^2}\,\mathrm dx\,\mathrm dy$$
     Write $h$ to denote the integrand, then we have
     $$\frac{\partial h}{\partial\phi_x}=\frac{\phi_x}{\sqrt{1+\phi_x^2+\phi_y^2}},\frac{\partial h}{\partial\phi_y}=\frac{\phi_y}{\sqrt{1+\phi_x^2+\phi_y^2}}$$
@@ -622,7 +623,7 @@ This can be generalized from $3$ to $n$ in an obvious way.
 \end{example}
 
 \newpage
-\part*{Lecture 7}
+
 \subsection{Higher Derivatives}
 We want to generalise the theory to a wider range of functionals, specifically in the form
 $$F[y]=\int_\alpha^\beta f(x,y,y^\prime,\ldots,y^{(n)})\,\mathrm dx$$
@@ -669,11 +670,11 @@ Hamilton's Principle (or Principle of Least Action) postulates that the motion o
     $$\frac{\mathrm d}{\mathrm dt}\frac{\partial L}{\partial \dot{x}_i}-\frac{\partial L}{\partial x_i}=0$$
     for all $i$.
     This simplifies to
-    $$m\ddot{x}_i=-\frac{\partial V}{\partial x_i}\quad \text{i.e.}\quad m \ddot{\bfx}= - \nabla V$$
+    $$m\ddot{x}_i=-\frac{\partial V}{\partial x_i}\quad \text{i.e.}\quad m \ddot{\mathbf{x}}= - \nabla V$$
     which is just Newton's Second Law.
 \end{example}
 \newpage
-\part*{Lecture 8}
+
 \begin{example}[Central Force in Two Dimensions]
     We have
     $$L=\frac{1}{2}m(\dot{r}^2+r^2\dot{\theta}^2)-V(r)$$
@@ -754,7 +755,7 @@ There is a class of functions whose stationary points are easy to classify.
 \end{definition}
 Loosely speaking, a function is convex iff its domain is convex and every chord of it is above (or on) it, where the notion of ``above'' is in the sense of the last component of $\mathbb R^n\times\mathbb R$ in our above definition.
 \newpage
-\part*{Lecture 9}
+
 \begin{remark}
     \begin{enumerate}
         \item We can define concave functions correspondingly by saying a function $f$ is concave iff $-f$ is convex.
@@ -866,9 +867,9 @@ It turns out to be always true that $(f^\star)^\star=f$ (in a domain where both 
 \end{proof}
 In practice, if $f$ is convex and differentiable, then if its Legendre transform at $\mathbf{p}$ exists we can (given certain conditions on the domain and/or the function) find it by the equation
 $$\nabla(\mathbf{p}\cdot\mathbf{x}-f(\mathbf{x}))=\mathbf{0}\implies \mathbf{p}=\nabla f$$
-If $f$ is strictly convex, then there is an unique inversion $\mathbf{x}=\mathbf{x}(\mathbf{p})$, so $f^\star(\bfp)=\mathbf{p}\cdot\mathbf{x}(\mathbf{p})-f(\mathbf{x}(\mathbf{p}))$.
+If $f$ is strictly convex, then there is an unique inversion $\mathbf{x}=\mathbf{x}(\mathbf{p})$, so $f^\star(\mathbf{p})=\mathbf{p}\cdot\mathbf{x}(\mathbf{p})-f(\mathbf{x}(\mathbf{p}))$.
 \newpage
-\part*{Lecture 10}
+
 \subsection{Applications to Thermodynamics}
 A many-particle system (like gas) are hard to study directly from the first principles (like Newton's Laws), hence are often analysed by looking at microscopic variables like the pressure $P$, volume $V$, temperature $T$ or entropy $S$ (which measures the global disorder of the system) or internal energy $u(S,V)$.
 \begin{definition}
@@ -930,7 +931,7 @@ Which are just the Hamilton's equations.
 Hamilton's equations (or the Hamiltonian formulation of dynamics) actually allows one to extend the theory of classical dynamics to quantum settings, as observed by Paul Dirac in 1926.
 So the Hamiltonian formalism can be seen as a bridge between classical and quantum physics.
 \newpage
-\part*{Lecture 11}
+
 
 \section{The Second Variation}
 \subsection{The Legendre Condition}
@@ -998,7 +999,7 @@ Observe here that $\mathcal L$ can have nonpositive eigenvalues (as shown in the
 The example shows that $P>0$ alone may not guarantee local minimisation when the interval $[\alpha,\beta]$ is ``too large''.
 We will make it precise in a moment.
 \newpage
-\part*{Lecture 12}
+
 \subsection{The Jacobi Condition}
 Legendre tried and failed to prove that $P>0$ is also a sufficient condition for a local minimiser -- which is because it is not, as seen in the last example.
 Jacobi, on the other hand, improved upon Legendre's idea.

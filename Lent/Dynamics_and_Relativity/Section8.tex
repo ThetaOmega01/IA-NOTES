@@ -3,7 +3,7 @@ When particles move Extremely Fast\textsuperscript{TM}, Newtonian Dynamics becom
 
 Its effects are noticeable only when particles approach to the speed of light,
 \[
-  c = 299792458 \rmm\rms^{-1} \approx 3e8\rmm\rms^{-1}.
+  c = 299792458 \mathrm{m}\mathrm{s}^{-1} \approx 3e8\mathrm{m}\mathrm{s}^{-1}.
 \]
 This is \emph{really fast}.
 
@@ -316,7 +316,7 @@ However, the distance travelled by the light beam is now $\sqrt{(2d)^2 + a^2} > 
 
 By the principle of relativity, all clocks must measure the same time dilation, or else we can compare the two clocks and know if we are ``moving''.
 
-This is famously evidenced by muons. Their half-life is around 2 microseconds (i.e.\ on average they decay to something else after around 2 microseconds). They are created when cosmic rays bombard the atmosphere. However, even if they travel at the speed of light, 2 microseconds only allows it to travel $600\rmm$, certainly not sufficient to reach the surface of Earth. However, we observe \emph{lots} of muons on Earth. This is because muons are travelling so fast that their clocks run really slowly.
+This is famously evidenced by muons. Their half-life is around 2 microseconds (i.e.\ on average they decay to something else after around 2 microseconds). They are created when cosmic rays bombard the atmosphere. However, even if they travel at the speed of light, 2 microseconds only allows it to travel $600\mathrm{m}$, certainly not sufficient to reach the surface of Earth. However, we observe \emph{lots} of muons on Earth. This is because muons are travelling so fast that their clocks run really slowly.
 
 \subsubsection*{The twin paradox}
 Consider two twins: Luke and Leia. Luke stays at home. Leia travels at a constant speed $v$ to a distant planet $P$, turns around, and returns at the same speed.
@@ -451,7 +451,7 @@ Note the following:
 \end{itemize}
 
 \subsection{Geometry of spacetime}
-We'll now look at the geometry of spacetime, and study the properties of vectors in this spacetime. While spacetime has 4 dimensions, and each point can be represented by 4 real numbers, this is not ordinary $\bbR^4$. This can be seen when changing coordinate systems, instead of rotating the axes like in $\bbR^4$, we ``squash'' the axes towards the diagonal, which is a \emph{hyperbolic rotation}. In particular, we will have a different notion of a dot product. We say that this space has dimension $d = 1 + 3$.
+We'll now look at the geometry of spacetime, and study the properties of vectors in this spacetime. While spacetime has 4 dimensions, and each point can be represented by 4 real numbers, this is not ordinary $\mathbb{R}^4$. This can be seen when changing coordinate systems, instead of rotating the axes like in $\mathbb{R}^4$, we ``squash'' the axes towards the diagonal, which is a \emph{hyperbolic rotation}. In particular, we will have a different notion of a dot product. We say that this space has dimension $d = 1 + 3$.
 
 \subsubsection*{The invariant interval}
 In regular Euclidean space, given a vector $\mathbf{x}$, all coordinate systems agree on the length $|\mathbf{x}|$. In Minkowski space, they agree on something else.
@@ -486,7 +486,7 @@ We take this as the ``distance'' between the two points. For two infinitesimally
 \begin{definition}[Line element]
   The \emph{line element} is
   \[
-    \rmd s^2 = c^2 \rmd t^2 - \rmd x^2 - \rmd y^2 - \rmd z^2.
+    \mathrm{d} s^2 = c^2 \mathrm{d} t^2 - \mathrm{d} x^2 - \mathrm{d} y^2 - \mathrm{d} z^2.
   \]
 \end{definition}
 
@@ -631,7 +631,7 @@ The rapidities add like rotation angles:
 This shows the close relation betweens spatial rotations and Lorentz boosts. Lorentz boots are simply \emph{hyperbolic} rotations in spacetime!
 
 \subsection{Relativistic kinematics}
-In Newtonian mechanics, we describe a particle by its position $\mathbf{x}(t)$, with its velocity being $\mathbf{u}(t) = \frac{\rmd \mathbf{x}}{\rmd t}$.
+In Newtonian mechanics, we describe a particle by its position $\mathbf{x}(t)$, with its velocity being $\mathbf{u}(t) = \frac{\mathrm{d} \mathbf{x}}{\mathrm{d} t}$.
 
 In relativity, this is unsatisfactory. In special relativity, space and time can be mixed together by Lorentz boosts, and we prefer not to single out time from space. For example, when we write the 4-vector $X$, we put in both the time and space components, and Lorentz transformations are $4\times 4$ matrices that act on $X$.
 
@@ -659,11 +659,11 @@ The world line of a particle can be parametrized using the proper time by $t(\ta
 \end{center}
 Infinitesimal changes are related by
 \[
-  \rmd \tau = \frac{\rmd s}{c} = \frac{1}{c}\sqrt{c^2\;\rmd t^2 - |\rmd \mathbf{x}|^2} = \sqrt{1 - \frac{|\mathbf{u}|^2}{c^2}}\;\rmd t.
+  \mathrm{d} \tau = \frac{\mathrm{d} s}{c} = \frac{1}{c}\sqrt{c^2\;\mathrm{d} t^2 - |\mathrm{d} \mathbf{x}|^2} = \sqrt{1 - \frac{|\mathbf{u}|^2}{c^2}}\;\mathrm{d} t.
 \]
 Thus
 \[
-  \frac{\rmd t}{\rmd \tau} = \gamma_u
+  \frac{\mathrm{d} t}{\mathrm{d} \tau} = \gamma_u
 \]
 with
 \[
@@ -671,7 +671,7 @@ with
 \]
 The total time experienced by the particle along a segment of its world line is
 \[
-  T = \int \;\rmd \tau = \int\frac{1}{\gamma_u}\;\rmd t.
+  T = \int \;\mathrm{d} \tau = \int\frac{1}{\gamma_u}\;\mathrm{d} t.
 \]
 We can then define the \emph{position 4-vector} and \emph{4-velocity}.
 \begin{definition}[Position 4-vector and 4-velocty]
@@ -685,12 +685,12 @@ We can then define the \emph{position 4-vector} and \emph{4-velocity}.
   \]
   Its \emph{4-velocity} is defined as
   \[
-    U = \frac{\rmd X}{\rmd \tau} =
+    U = \frac{\mathrm{d} X}{\mathrm{d} \tau} =
     \begin{pmatrix}
-      c\frac{\rmd t}{\rmd \tau}\\
-      \frac{\rmd \mathbf{x}}{\rmd \tau}
+      c\frac{\mathrm{d} t}{\mathrm{d} \tau}\\
+      \frac{\mathrm{d} \mathbf{x}}{\mathrm{d} \tau}
     \end{pmatrix}
-    = \frac{\rmd t}{\rmd \tau}
+    = \frac{\mathrm{d} t}{\mathrm{d} \tau}
     \begin{pmatrix}
       c\\
       \mathbf{u}
@@ -700,7 +700,7 @@ We can then define the \emph{position 4-vector} and \emph{4-velocity}.
       \mathbf{u}
     \end{pmatrix},
   \]
-  where $\mathbf{u} = \frac{\rmd \mathbf{x}}{\rmd t}$.
+  where $\mathbf{u} = \frac{\mathrm{d} \mathbf{x}}{\mathrm{d} t}$.
 \end{definition}
 Another common notation is
 \[
@@ -714,7 +714,7 @@ If frames $S$ and $S'$ are related by $X' = \Lambda X$, then the 4-velocity also
   When using suffix notation, the indices are written above (superscript) instead of below (subscript). The indices are written with Greek letters which range from $0$ to $3$. So we have $X^\mu$ instead of $X_i$, for $\mu = 0, 1, 2, 3$. If we write $X_\mu$ instead, it means a different thing. This will be explained more in-depth in the electromagnetism course (and you'll get more confused!).
 \end{definition}
 
-$U$ is a 4-vector because $X$ is a 4-vector and $\tau$ is a Lorentz invariant. Note that $\rmd X/\rmd t$ is \emph{not} a 4-vector.
+$U$ is a 4-vector because $X$ is a 4-vector and $\tau$ is a Lorentz invariant. Note that $\mathrm{d} X/\mathrm{d} t$ is \emph{not} a 4-vector.
 
 Note that this definition of 4-vector is analogous to that of a tensor --- things that transform nicely according to our rules. Then $\tau$ would be a scalar, i.e.\ rank-0 tensor, while $t$ is just a number, not a scalar.
 
@@ -875,7 +875,7 @@ where $\nu = \frac{c}{\lambda}$ is the \emph{wave frequency}.
 \begin{definition}[4-force]
   The \emph{4-force} is
   \[
-    F = \frac{\rmd P}{\rmd \tau}
+    F = \frac{\mathrm{d} P}{\mathrm{d} \tau}
   \]
 \end{definition}
 This equation is the relativistic counterpart to Newton's second law.
@@ -890,11 +890,11 @@ It is related to the 3-force $\mathbf{F}$ by
 \]
 Expanding the definition of the 4-force componentwise, we obtain
 \[
-  \frac{\rmd E}{\rmd \tau} = \gamma_u \mathbf{F}\cdot \mathbf{u} \Rightarrow \frac{\rmd E}{\rmd t} = \mathbf{F}\cdot \mathbf{u}
+  \frac{\mathrm{d} E}{\mathrm{d} \tau} = \gamma_u \mathbf{F}\cdot \mathbf{u} \Rightarrow \frac{\mathrm{d} E}{\mathrm{d} t} = \mathbf{F}\cdot \mathbf{u}
 \]
 and
 \[
-  \frac{\rmd \mathbf{p}}{\rmd \tau} = \gamma_u \mathbf{F} \Rightarrow \frac{\rmd \mathbf{p}}{\rmd t} = \mathbf{F}
+  \frac{\mathrm{d} \mathbf{p}}{\mathrm{d} \tau} = \gamma_u \mathbf{F} \Rightarrow \frac{\mathrm{d} \mathbf{p}}{\mathrm{d} t} = \mathbf{F}
 \]
 Equivalently, for a particle of mass $m$,
 \[
@@ -902,7 +902,7 @@ Equivalently, for a particle of mass $m$,
 \]
 where
 \[
-  A = \frac{\rmd U}{\rmd \tau}
+  A = \frac{\mathrm{d} U}{\mathrm{d} \tau}
 \]
 is the 4-acceleration.
 
@@ -916,13 +916,13 @@ We have
 \]
 So
 \[
-  A = \gamma_u \frac{\rmd U}{\rmd t} = \gamma_u
+  A = \gamma_u \frac{\mathrm{d} U}{\mathrm{d} t} = \gamma_u
   \begin{pmatrix}
     \dot{\gamma}_u c\\
     \gamma_u \mathbf{a} + \dot{\gamma}_u \mathbf{u}.
   \end{pmatrix}
 \]
-where $\mathbf{\mathbf{a}} = \frac{\rmd \mathbf{u}}{\rmd t}$ and $\dot{\gamma}_u = \gamma_u^3 \frac{\mathbf{a}\cdot \mathbf{u}}{c^2}$.
+where $\mathbf{\mathbf{a}} = \frac{\mathrm{d} \mathbf{u}}{\mathrm{d} t}$ and $\dot{\gamma}_u = \gamma_u^3 \frac{\mathbf{a}\cdot \mathbf{u}}{c^2}$.
 
 In the instantaneous rest frame of a particle, $\mathbf{u} = \mathbf{0}$ and $\gamma_u = 1$. So
 \[

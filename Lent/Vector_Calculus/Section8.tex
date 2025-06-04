@@ -1,17 +1,17 @@
 \section{Cartesian Tensors}
 \subsection{A closer look at vectors}
-Let $ \{\bfe_i\} $ be a right-handed orthonormal basis wrt a fixed set of Cartesian axes. When we write a vector as
+Let $ \{\mathbf{e}_i\} $ be a right-handed orthonormal basis wrt a fixed set of Cartesian axes. When we write a vector as
 \[
-    \bfx = x_i\bfe_i,
+    \mathbf{x} = x_i\mathbf{e}_i,
 \]
-it is often tempting to identify the vector $ \bfx $ with the components $ x_i $. However, this would be wrong! Suppose someone else comes along and wants to describe the same vector, but with respect to their favourite set of right-handed Cartesian axes, which are different to yours but coincide at the origin. Denoting the basis vectors with respect to their Cartesian
-axes by $ \{\bfe_i'\} $ then the same vector will be described via
+it is often tempting to identify the vector $ \mathbf{x} $ with the components $ x_i $. However, this would be wrong! Suppose someone else comes along and wants to describe the same vector, but with respect to their favourite set of right-handed Cartesian axes, which are different to yours but coincide at the origin. Denoting the basis vectors with respect to their Cartesian
+axes by $ \{\mathbf{e}_i'\} $ then the same vector will be described via
 \[
-    \bfx = x_i'\bfe_i'.
+    \mathbf{x} = x_i'\mathbf{e}_i'.
 \]
 We must have 
 \[
-    x_j\bfe_j=x_j'\bfe_j'.
+    x_j\mathbf{e}_j=x_j'\mathbf{e}_j'.
 \]
 Since both $\left\{\mathbf{e}_{j}\right\}$ and $\left\{\mathbf{e}_{j}^{\prime}\right\}$ are an orthonormal set of vectors, we have
 \begin{equation}
@@ -70,7 +70,7 @@ and $\operatorname{det}(R)=1$. Objects whose components transform in this way ar
 \subsection{A closer look at scalars}
 Consider the dot product
 \[
-    \sigma=\bfa \cdot \bfb
+    \sigma=\mathbf{a} \cdot \mathbf{b}
 \]
 for two fixed vectors $\mathbf{a}, \mathbf{b}$. This should be entirely independent of how we describe the basis vectors a and $\mathbf{b}$, since it has a geometric interpretation in terms of the lengths $|\mathbf{a}|,|\mathbf{b}|$ and the angle between them. In terms of the basis vectors $\left\{\mathbf{e}_{i}\right\}$ with $\mathbf{a}=a_{i} \mathbf{e}_{i}$ etc. we have
 \[
@@ -135,7 +135,7 @@ same equivalence class are related via a transformation of the above form.
     \[
         T_{i j \cdots k}^{\prime}=R_{i p} R_{j q} \cdots R_{k r} T_{p q \cdots r}
     \]
-    upon changing from from one right-handed Cartesian basis to another. Here the $R_{i j}=\bfe_i' \cdot \bfe_j$ represent components of an rotation matrix, so in particular $R_{i p} R_{j p}=\delta_{i j}$.
+    upon changing from from one right-handed Cartesian basis to another. Here the $R_{i j}=\mathbf{e}_i' \cdot \mathbf{e}_j$ represent components of an rotation matrix, so in particular $R_{i p} R_{j p}=\delta_{i j}$.
 \end{definition}
 
 We will be fast and loose with some of our language: we will refer to things like $T_{i j \cdots k}$ as a tensor, rather than the components of a tensor, knowing that these things will change depending on what basis we choose.

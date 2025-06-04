@@ -3,7 +3,7 @@
 Recall that for a probability space $(\Omega,\mathscr F,\mathbb P)$, a random variable is a function $X:\Omega\to\mathbb R$ such that $\{X\le x\}=\{\omega\in\Omega:X(\omega)\le x\}\in\mathscr F$. 
 
 \begin{definition}[Probability distribution function]
-    The \textbf{probability distribution function} $ F:\bbR\to [0,1] $ is defined by $F(x)=\mathbb P(X\le x)$.
+    The \textbf{probability distribution function} $ F:\mathbb{R}\to [0,1] $ is defined by $F(x)=\mathbb P(X\le x)$.
 \end{definition}
 
 \begin{proposition}\
@@ -107,25 +107,25 @@ More generally, for any set $ S \subseteq \mathbb{R}  $,
 \begin{definition}[Expectation of positive continuous r.v.]
     Let $X\ge 0$ with density $f$. Define its \textbf{expectation} as 
     \[
-        \bbE[X] = \int_{0}^{\infty} xf(x) \,\mathrm{d}x.
+        \mathbb{E}[X] = \int_{0}^{\infty} xf(x) \,\mathrm{d}x.
     \]
 \end{definition}\
 \begin{note}
     Suppose $g\ge 0$. Then for any variable $X$,
     \[
-        \bbE[g(X)]= \int_{-\infty}^{\infty} g(x)f(x) \,\mathrm{d}x.
+        \mathbb{E}[g(X)]= \int_{-\infty}^{\infty} g(x)f(x) \,\mathrm{d}x.
     \]
 \end{note}
 \begin{definition}[Expectation of general continuous r.v.]
-    Let $X$ be a general r.v. Define $ X_+=\max \{X,0\},X_-=\max \{-X,0\} $. If at least one of $ \bbE[X_+],\bbE[X_-] $ is finite, then define 
+    Let $X$ be a general r.v. Define $ X_+=\max \{X,0\},X_-=\max \{-X,0\} $. If at least one of $ \mathbb{E}[X_+],\mathbb{E}[X_-] $ is finite, then define 
     \[
-        \bbE[X]=\bbE[X_+]-\bbE[X_-] = \int_{-\infty}^{\infty} xf(x) \,\mathrm{d}x.
+        \mathbb{E}[X]=\mathbb{E}[X_+]-\mathbb{E}[X_-] = \int_{-\infty}^{\infty} xf(x) \,\mathrm{d}x.
     \]
 \end{definition}
 \begin{note}
     The last equality comes from 
     \[
-        \bbE[X_+] = \int_{0}^{\infty} xf(x) \,\mathrm{d}x,\quad \bbE[X_-]=\int_{-\infty}^{0} xf(x) \,\mathrm{d}x.
+        \mathbb{E}[X_+] = \int_{0}^{\infty} xf(x) \,\mathrm{d}x,\quad \mathbb{E}[X_-]=\int_{-\infty}^{0} xf(x) \,\mathrm{d}x.
     \]
     It is easy to check that the expectation is a \textit{linear} function.
 \end{note}
@@ -133,12 +133,12 @@ More generally, for any set $ S \subseteq \mathbb{R}  $,
 \begin{proposition}
     Let $X\ge 0$. Then 
     \[
-        \bbE[X] = \int_{0}^{\infty} \mathbb{P}(X\ge x) \,\mathrm{d}x.
+        \mathbb{E}[X] = \int_{0}^{\infty} \mathbb{P}(X\ge x) \,\mathrm{d}x.
     \]
 \end{proposition}
 \begin{proof}
     \begin{align*}
-        \bbE[X]&= \int_{0}^{\infty} xf(x) \,\mathrm{d}x=\int_{0}^{\infty} \left( \int_{0}^{x}  \,\mathrm{d}y \right)f(x) \,\mathrm{d}x\\ 
+        \mathbb{E}[X]&= \int_{0}^{\infty} xf(x) \,\mathrm{d}x=\int_{0}^{\infty} \left( \int_{0}^{x}  \,\mathrm{d}y \right)f(x) \,\mathrm{d}x\\ 
         \text{(Check!)}&= \int_{0}^{\infty} \int_{y}^{\infty} f(x) \,\mathrm{d}x \,\mathrm{d}y = \int_{0}^{\infty} (1-F(y)) \,\mathrm{d}y\\ 
         &= \int_{0}^{\infty} \mathbb{P}(X\ge y) \,\mathrm{d}y.\qedhere
     \end{align*}
@@ -146,24 +146,24 @@ More generally, for any set $ S \subseteq \mathbb{R}  $,
 \begin{proof}[Alternatively,]
     note that $ \forall \omega, X(\omega)=\int_{0}^{\infty} 1(X(\omega)\ge x) \,\mathrm{d}x $. Taking expectation we get 
     \begin{align*}
-        \bbE[X] &= \bbE\left[ \sum_{\omega}\int_{0}^{\infty} 1(X(\omega)\ge x) \,\mathrm{d}x \right] = \bbE\left[ \int_{0}^{\infty} 1(X\ge x) \,\mathrm{d}x \right]\\
-        &= \int_{0}^{\infty} \bbE[1(X(\omega)\ge x)] \,\mathrm{d}x = \int_{0}^{\infty} \mathbb{P}(X\ge x) \,\mathrm{d}x.\qedhere
+        \mathbb{E}[X] &= \mathbb{E}\left[ \sum_{\omega}\int_{0}^{\infty} 1(X(\omega)\ge x) \,\mathrm{d}x \right] = \mathbb{E}\left[ \int_{0}^{\infty} 1(X\ge x) \,\mathrm{d}x \right]\\
+        &= \int_{0}^{\infty} \mathbb{E}[1(X(\omega)\ge x)] \,\mathrm{d}x = \int_{0}^{\infty} \mathbb{P}(X\ge x) \,\mathrm{d}x.\qedhere
     \end{align*}
 \end{proof}
 \begin{remark}
-    The second proof is not rigorous since we did not justify interchanging $ \bbE $ and $ \int $.
+    The second proof is not rigorous since we did not justify interchanging $ \mathbb{E} $ and $ \int $.
 \end{remark}
 
 \begin{definition}[Variance]
     The \textbf{variance} of a continuous random variable is
     \[
-        \var(X) = \bbE[(X-\bbE[X])^2] = \bbE[X^2]-(\bbE[X])^2.
+        \var(X) = \mathbb{E}[(X-\mathbb{E}[X])^2] = \mathbb{E}[X^2]-(\mathbb{E}[X])^2.
     \]
 \end{definition}
 
 \subsection{Examples of continuous r.v.s}
 \begin{example}[Uniform distribution]
-    Let $a,b\in \bbR$ such that $a<b$. Define the density as 
+    Let $a,b\in \mathbb{R}$ such that $a<b$. Define the density as 
 \[
     f(x) = \begin{cases}
     \frac{1}{b-a} &\text{if }x\in [a,b]\\
@@ -178,7 +178,7 @@ Then $X$ is called a \textbf{uniform} distribution and we write $ X \sim U[a,b] 
         1&\text{if $x>b$}
     \end{cases},
 \]
-and $ \bbE[X] $ is 
+and $ \mathbb{E}[X] $ is 
 \[
     \mathbb E[X]=\int_{-\infty }^{\infty }xf(x)\,\mathrm dx=\int_a^bxf(x)\,\mathrm dx=\frac{a+b}{2}
 \]
@@ -187,7 +187,7 @@ and $ \bbE[X] $ is
 \begin{example}[Exponential distribution]
     The density is $ f(x)=\lambda e^{-\lambda x} $ where $ \lambda,x>0 $. Write $ X \sim \operatorname{Exp}(\lambda) $. Here 
     \[
-        F(x)=\int_0^x\lambda e^{-\lambda y}\,\mathrm dy=1-e^{-\lambda x},.\quad \bbE[X]=\int_{0}^{\infty} \lambda x e^{-\lambda x} \,\mathrm{d}x=\frac{1}{\lambda}.
+        F(x)=\int_0^x\lambda e^{-\lambda y}\,\mathrm dy=1-e^{-\lambda x},.\quad \mathbb{E}[X]=\int_{0}^{\infty} \lambda x e^{-\lambda x} \,\mathrm{d}x=\frac{1}{\lambda}.
     \]
     \paragraph{Exponential as a limit of geometrics.} Let $T\sim\operatorname{Exp}(\lambda)$ and $T_n=\lfloor nT\rfloor$, so
     \[
@@ -199,7 +199,7 @@ and $ \bbE[X] $ is
 \begin{proposition}
     The exponential random variable is \emph{memoryless}, i.e.
     \[
-        \bbP(T > t+s \mid T>s) = \bbP(T>t).
+        \mathbb{P}(T > t+s \mid T>s) = \mathbb{P}(T>t).
     \]
 \end{proposition}
 We have something stronger:
@@ -268,11 +268,11 @@ We have something stronger:
         \end{align*}
     \end{proof}
     \begin{proposition}
-        $\bbE[X] = \mu$.
+        $\mathbb{E}[X] = \mu$.
     \end{proposition}
     \begin{proof}
     \begin{align*}
-    \bbE[X] &= \frac{1}{\sqrt{2\pi}\sigma} \int_{-\infty}^\infty x e^{-(x - \mu)^2/2\sigma^2}\dd x\\
+    \mathbb{E}[X] &= \frac{1}{\sqrt{2\pi}\sigma} \int_{-\infty}^\infty x e^{-(x - \mu)^2/2\sigma^2}\dd x\\
     &= \frac{1}{\sqrt{2\pi} \sigma}\int_{-\infty}^\infty (x - \mu)e^{-(x - \mu)^2/2\sigma^2}\dd x + \frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^\infty \mu e^{-(x - \mu)^2/2\sigma^2}\dd x.
     \end{align*}
     The first term is antisymmetric about $\mu$ and gives $0$. The second is just $\mu$ times the integral we did above. So we get $\mu$.
@@ -281,7 +281,7 @@ We have something stronger:
     $\var(X) = \sigma^2$.
     \end{proposition}
     \begin{proof}
-    We have $\var (X) = \bbE[X^2] - (\bbE[X])^2$. Substitute $Z = \frac{X - \mu}{\sigma}$. Then $\bbE[Z] = 0$, $\bbE[Z^2] = \frac{1}{\sigma^2}\bbE[X^2]$. Then
+    We have $\var (X) = \mathbb{E}[X^2] - (\mathbb{E}[X])^2$. Substitute $Z = \frac{X - \mu}{\sigma}$. Then $\mathbb{E}[Z] = 0$, $\mathbb{E}[Z^2] = \frac{1}{\sigma^2}\mathbb{E}[X^2]$. Then
     \begin{align*}
         \var(Z) &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty z^2 e^{-z^2/2}\dd z\\
         &= \left[-\frac{1}{\sqrt{2\pi}}ze^{-z^2/2}\right]_{-\infty}^\infty + \frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-z^2/2}\dd z\\
@@ -290,7 +290,7 @@ We have something stronger:
     \end{align*}
     So $\var X = \sigma^2$.
     \end{proof}
-    When $X$ has density $ f $, $X$ has the \textbf{normal distribution} and we write $ X \sim \mcN(\mu,\sigma^2) $. So the distribution and density of the standard normal $ \mcN(0,1) $ is
+    When $X$ has density $ f $, $X$ has the \textbf{normal distribution} and we write $ X \sim \mathcal{N}(\mu,\sigma^2) $. So the distribution and density of the standard normal $ \mathcal{N}(0,1) $ is
     \[
         \Phi(x)=\int_{-\infty}^x\frac{e^{-t^2/2}}{\sqrt{2\pi}}\,\mathrm dt,\quad\phi(x)=\Phi'(x)=\frac{e^{-x^2/2}}{\sqrt{2\pi}}.
     \]
@@ -301,7 +301,7 @@ We have something stronger:
 \end{example}
 
 \begin{example}[Composition of normal distributions]
-    Let $ X \sim \mcN( \mu,\sigma^2) $. Let $ a,b\in \mathbb{R} $ such that $ a\neq 0 $. Set $ g(x)=ax+b $ and define 
+    Let $ X \sim \mathcal{N}( \mu,\sigma^2) $. Let $ a,b\in \mathbb{R} $ such that $ a\neq 0 $. Set $ g(x)=ax+b $ and define 
     \[
         Y= g(X).
     \]
@@ -315,11 +315,11 @@ We have something stronger:
     \end{align*}
     So 
     \[
-        Y \sim \mcN\left( a\mu+b, a^2\sigma ^2 \right).
+        Y \sim \mathcal{N}\left( a\mu+b, a^2\sigma ^2 \right).
     \]
     The importance here is that 
     \[
-        \boxed{X \sim \mcN(\mu,\sigma^2) \Longrightarrow \frac{X-\mu}{\sigma}\sim \mcN(0,1)}
+        \boxed{X \sim \mathcal{N}(\mu,\sigma^2) \Longrightarrow \frac{X-\mu}{\sigma}\sim \mathcal{N}(0,1)}
     \]
     Notice that 
     \[
@@ -342,7 +342,7 @@ We have something stronger:
     \]
 \end{definition}
 \begin{example}[Median of normal]
-    Let $ X \sim \mcN(\mu,\sigma^2) $. Check that $ m=\mu $.
+    Let $ X \sim \mathcal{N}(\mu,\sigma^2) $. Check that $ m=\mu $.
 \end{example}
 \begin{definition}[Mode]
     Given a pdf $f(x)$, we call $\hat x$ a \textbf{mode} if
@@ -353,7 +353,7 @@ We have something stronger:
 \end{definition}
 \subsection{Multivariate density functions}
 \begin{definition}
-    Let $ \bfX = (X_1,\dots,X_n)\in \mathbb{R}^{n} $ be a r.v. We say that $\bfX$ has density $f$ if 
+    Let $ \mathbf{X} = (X_1,\dots,X_n)\in \mathbb{R}^{n} $ be a r.v. We say that $\mathbf{X}$ has density $f$ if 
     \begin{align*}
         F(x_1,\dots,x_n) &= \mathbb{P}(X_1\le x_1,\dots X_n\le x_n)\\ &= \int_{-\infty}^{x_n} \cdots \int_{-\infty}^{x_1} f(y_1,\dots,y_n)\dd y_1\cdots\dd y_n.
     \end{align*}
@@ -365,7 +365,7 @@ We have something stronger:
     \]
     We can generalise to any\footnote{Not quite. See II Probability and Measure.} $ B \subseteq \mathbb{R}^{n} $: 
     \[
-        \mathbb{P}(\bfX\in B) = \int_B f(y_1,\dots,y_n)\dd y_1\cdots\dd y_n.
+        \mathbb{P}(\mathbf{X}\in B) = \int_B f(y_1,\dots,y_n)\dd y_1\cdots\dd y_n.
     \]
 \end{note}
 \begin{definition}[Independence]
@@ -375,7 +375,7 @@ We have something stronger:
     \]
 \end{definition}
 \begin{theorem}\label{thm:3.9}
-    Let $ \bfX = (X_1,\dots,X_n) $ have density $f$.
+    Let $ \mathbf{X} = (X_1,\dots,X_n) $ have density $f$.
     \begin{enumerate}
         \item If $ X_1,\dots,X_n $ are independent with densities $ f_i $, then 
         \[
@@ -392,30 +392,30 @@ We have something stronger:
             =& \prod_{i=1}^{n} \int_{-\infty}^{x_i} f_i(y_i) \,\mathrm{d}y_i
             = \int_{-\infty}^{x_n} \cdots \int_{-\infty}^{x_1} \prod_{i=1}^{n}f_i(y_i)\dd y_1\cdots\dd y_n.\ 
         \end{align*}
-        Hence the density of $\bfX$ is $\prod f_i $.
+        Hence the density of $\mathbf{X}$ is $\prod f_i $.
         \item By assumption, if $ B_i\in \mathbb{R}, $ then 
         \[
             \mathbb{P}(X_i\in B_i) = \int_{B_n} \cdots \int_{B_1} \prod_{i=1}^{n}f_i(y_i) \,\mathrm{d}y_1\cdots \,\mathrm{d}y_n.
         \]
         Let $ B_j=\mathbb{R}, j\neq i $, then 
         \[
-            \mathbb{P}(X_i\in B_i)= \int_{B_i} f_i(y_i) \,\mathrm{d}y_i \prod_{j\neq i} \int_{\bbR} f_j(y_j) \,\mathrm{d}y_j.
+            \mathbb{P}(X_i\in B_i)= \int_{B_i} f_i(y_i) \,\mathrm{d}y_i \prod_{j\neq i} \int_{\mathbb{R}} f_j(y_j) \,\mathrm{d}y_j.
         \]
         Note that 
         \[
-            \prod_{i=1}^{n}\int_{\bbR} f_i(y_i) \,\mathrm{d}y_i=1,
+            \prod_{i=1}^{n}\int_{\mathbb{R}} f_i(y_i) \,\mathrm{d}y_i=1,
         \]
         so we have 
         \[
-            \mathbb{P}(X_i\in B_i) = \frac{\int_{B_i} f_i(y_i) \,\mathrm{d}y_i}{\int_{\bbR} f_i(y_i) \,\mathrm{d}y_i},
+            \mathbb{P}(X_i\in B_i) = \frac{\int_{B_i} f_i(y_i) \,\mathrm{d}y_i}{\int_{\mathbb{R}} f_i(y_i) \,\mathrm{d}y_i},
         \]
         and the density of $X_i$ is 
         \[
-            \frac{f_i}{\int_{\bbR} f_i(y_i) \,\mathrm{d}y_i}.
+            \frac{f_i}{\int_{\mathbb{R}} f_i(y_i) \,\mathrm{d}y_i}.
         \]
         To check $X_i$ are independent, note that 
         \begin{align*}
-            \mathbb{P}(X_i\le x_i)&= \frac{\int_{-\infty}^{x_1} f_1(y_1) \,\mathrm{d}y_1 \cdots \int_{-\infty}^{x_n} f_n(y_n) \,\mathrm{d}y_n}{\int_{\bbR} f_1(y_1) \,\mathrm{d}y_1 \cdots \int_{\bbR} f_n(y_n) \,\mathrm{d}y_n}\\ 
+            \mathbb{P}(X_i\le x_i)&= \frac{\int_{-\infty}^{x_1} f_1(y_1) \,\mathrm{d}y_1 \cdots \int_{-\infty}^{x_n} f_n(y_n) \,\mathrm{d}y_n}{\int_{\mathbb{R}} f_1(y_1) \,\mathrm{d}y_1 \cdots \int_{\mathbb{R}} f_n(y_n) \,\mathrm{d}y_n}\\ 
             &= \mathbb{P}(X_1\le x_1)\cdots \mathbb{P}(X_n\le x_n).\qedhere
         \end{align*}
     \end{enumerate}
@@ -424,36 +424,36 @@ We have something stronger:
 Suppose $ (X_1,\dots,X_n) $ has density $f$. Then 
 \begin{align*}
     \mathbb{P}(X_1\le x)&= \mathbb{P}(X_1\le x,X_2\in \mathbb{R}, \dots, X_n \in \mathbb{R})\\ 
-    &= \int_{\bbR} \cdots \int_{-\infty}^{x} f(x_1,\dots,x_n) \,\mathrm{d}x_1 \, \cdots \mathrm{d}x_n\\ 
-    &= \int_{-\infty}^{x} \left( \int_{\bbR}\cdots \int_{\bbR} f(x_1,\dots,x_n) \,\mathrm{d}x_2 \,\cdots\mathrm{d}x_n \right) \,\mathrm{d}x_1.
+    &= \int_{\mathbb{R}} \cdots \int_{-\infty}^{x} f(x_1,\dots,x_n) \,\mathrm{d}x_1 \, \cdots \mathrm{d}x_n\\ 
+    &= \int_{-\infty}^{x} \left( \int_{\mathbb{R}}\cdots \int_{\mathbb{R}} f(x_1,\dots,x_n) \,\mathrm{d}x_2 \,\cdots\mathrm{d}x_n \right) \,\mathrm{d}x_1.
 \end{align*}
 \begin{definition}
     The \textbf{marginal density} of $X_1$ is defined by 
     \[
-        f_{X_1}(x) = \int_{\bbR}\cdots \int_{\bbR} f(x_1,\dots,x_n) \,\mathrm{d}x_2\cdots \,\mathrm{d}x_n.
+        f_{X_1}(x) = \int_{\mathbb{R}}\cdots \int_{\mathbb{R}} f(x_1,\dots,x_n) \,\mathrm{d}x_2\cdots \,\mathrm{d}x_n.
     \]
 \end{definition}
 \subsection{Density of the sum of independent r.v.s}
 \begin{proposition}\label{prop:3.10}
     Suppose $ X,Y $ are independent r.v.s with densities $ f_X,f_Y $. Then the density of $ X+Y $ is 
     \[
-        \int_\bbR f_Y(y-x)f_X(x)\dd x .
+        \int_\mathbb{R} f_Y(y-x)f_X(x)\dd x .
     \]
 \end{proposition}
 \begin{proof}
     Let $A=\{x+y\le z\}$.
     \begin{align*}
         \mathbb{P}(X+Y\le z)&=\iint_A f_{X,Y}(x,y)\dd x\dd y\\ 
-        &= \int_{-\infty}^{z-x} \,\mathrm{d}y \int_{\bbR} \,\mathrm{d}x\ f_X(x)f_Y(y)\\ 
-        &= \int_{\bbR} \,\mathrm{d}x \int_{-\infty}^{z} \,\mathrm{d}y\ f_X(x)f_Y(y-x)\\ 
-        &= \int_{-\infty}^{z} \,\mathrm{d}y \left( \int_{\bbR} f_X(x)f_Y(y-x)\,\mathrm{d}x \right).\qedhere
+        &= \int_{-\infty}^{z-x} \,\mathrm{d}y \int_{\mathbb{R}} \,\mathrm{d}x\ f_X(x)f_Y(y)\\ 
+        &= \int_{\mathbb{R}} \,\mathrm{d}x \int_{-\infty}^{z} \,\mathrm{d}y\ f_X(x)f_Y(y-x)\\ 
+        &= \int_{-\infty}^{z} \,\mathrm{d}y \left( \int_{\mathbb{R}} f_X(x)f_Y(y-x)\,\mathrm{d}x \right).\qedhere
     \end{align*}
 \end{proof}
 
 \begin{definition}
     For 2 densities $f,g$, the \textbf{convolution} of $f,g$ is 
     \[
-        \int_\bbR f(x-y)g(y)\dd y.
+        \int_\mathbb{R} f(x-y)g(y)\dd y.
     \]
 \end{definition}
 
@@ -478,16 +478,16 @@ Suppose $ (X_1,\dots,X_n) $ has density $f$. Then
     \[
         g(y)=\int_{-\infty}^{\infty} xf_{X|Y}(x|y) \,\mathrm{d}x,
     \]
-    define the \textbf{conditional expectation} as $ \bbE[X|Y]=g(Y) $.
+    define the \textbf{conditional expectation} as $ \mathbb{E}[X|Y]=g(Y) $.
 \end{definition}
 
 \subsection{Transformation of multidimensional r.v.s}
 \begin{theorem}
-    Let $\bfX$ be a r.v. with values in $ D \subseteq \mathbb{R}^{d} $ with density $ f_\bfX: \mathbb{R}^{d}\to \mathbb{R} $. Let $\bfg: \mathbb{R}^{d}\to \mathbb{R}^{d}$ be a bijection $ D \to \bfg(D) $ that has a continous derivative on $D$ and $ \det \bfg'(\bfx)\neq 0,\ \forall \bfx\in D $. Then the r.v. $ \bfY=\bfg(\bfX) $ has density 
+    Let $\mathbf{X}$ be a r.v. with values in $ D \subseteq \mathbb{R}^{d} $ with density $ f_\mathbf{X}: \mathbb{R}^{d}\to \mathbb{R} $. Let $\mathbf{g}: \mathbb{R}^{d}\to \mathbb{R}^{d}$ be a bijection $ D \to \mathbf{g}(D) $ that has a continous derivative on $D$ and $ \det \mathbf{g}'(\mathbf{x})\neq 0,\ \forall \mathbf{x}\in D $. Then the r.v. $ \mathbf{Y}=\mathbf{g}(\mathbf{X}) $ has density 
     \[
-        f_\bfY(\bfy) = f_\bfX(\bfx) \cdot |J|,
+        f_\mathbf{Y}(\mathbf{y}) = f_\mathbf{X}(\mathbf{x}) \cdot |J|,
     \]
-    where $ \bfx=\bfg^{-1}(\bfy) $ and $J$ is the Jacobian of $ \bfx,\bfy $:
+    where $ \mathbf{x}=\mathbf{g}^{-1}(\mathbf{y}) $ and $J$ is the Jacobian of $ \mathbf{x},\mathbf{y} $:
     \[
         J = \frac{\partial (x_1,\dots,x_d)}{\partial (y_1,\dots, y_d)}.
     \]
@@ -497,7 +497,7 @@ Suppose $ (X_1,\dots,X_n) $ has density $f$. Then
 \end{proof}
 
 \begin{example}
-    Let $ X,Y $ be independent $ \mcN(0,1) $ r.v.s. What is the density of $ (R,\Theta) $, where $ R=\sqrt{X^2+Y^2} $ and $ \Theta = \arctan (Y/X) $?
+    Let $ X,Y $ be independent $ \mathcal{N}(0,1) $ r.v.s. What is the density of $ (R,\Theta) $, where $ R=\sqrt{X^2+Y^2} $ and $ \Theta = \arctan (Y/X) $?
     \begin{center}
         \begin{tikzpicture}
             \draw (-0.5,0) -- (2,0);
@@ -562,7 +562,7 @@ Immediately we get
     i.e. let $X_1,\dots,X_n$ be $n$ clocks, $Y_i$ are ordered according to which rings first. Then $Z_1$ is the first ring, and $ Z_i $ are times between $ Z_i $ and $ Z_{i-1} $.
 
     Then
-    $$\bfZ=\begin{pmatrix}
+    $$\mathbf{Z}=\begin{pmatrix}
         Z_1\\
         \vdots\\
         Z_n
@@ -604,7 +604,7 @@ Immediately we get
     \]
 \end{theorem}
 \begin{example}[Gamma distribution]
-    We write $ X \sim \Gamma(n,\lambda) $, where $ \lambda>0, n\in \bbN $, if the density of $X$ is 
+    We write $ X \sim \Gamma(n,\lambda) $, where $ \lambda>0, n\in \mathbb{N} $, if the density of $X$ is 
     \[
         f(x)=e^{-\lambda x}\lambda^n\frac{x^{n-1}}{(n-1)!},\quad x\ge 0.
     \]
@@ -680,7 +680,7 @@ Immediately we get
     \]
     Then 
     \[
-        m(\theta) = \bbE[e^{\theta x}] = \int_{-\infty}^{\infty} \frac{e^{\theta x}}{\pi(1+x^2)} \,\mathrm{d}x \equiv \infty,\quad \forall \theta\neq 0.
+        m(\theta) = \mathbb{E}[e^{\theta x}] = \int_{-\infty}^{\infty} \frac{e^{\theta x}}{\pi(1+x^2)} \,\mathrm{d}x \equiv \infty,\quad \forall \theta\neq 0.
     \]
     So if $X\sim f$ then $X,2X,\ldots$ all have the same MGF but not the same distribution.
     So the assumption on $m(\theta)$ being finite on an open interval is essential.
@@ -688,12 +688,12 @@ Immediately we get
 
 \subsubsection*{Multi-variable}
 \begin{definition}
-    Let $\bfX=(X_1,\ldots,X_n)$ be a random variable in $\mathbb R^n$, then the MGF of $X$ is defined to be a function $m:\mathbb R^n\to\mathbb R$ with
-    $$m(\boldsymbol{\theta})=\mathbb E[e^{\theta^\top \bfX}]=\mathbb E[e^{\theta_1X_1+\cdots+\theta_nX_n}],$$
+    Let $\mathbf{X}=(X_1,\ldots,X_n)$ be a random variable in $\mathbb R^n$, then the MGF of $X$ is defined to be a function $m:\mathbb R^n\to\mathbb R$ with
+    $$m(\boldsymbol{\theta})=\mathbb E[e^{\theta^\top \mathbf{X}}]=\mathbb E[e^{\theta_1X_1+\cdots+\theta_nX_n}],$$
     where $\boldsymbol{\theta}=(\theta_1,\ldots,\theta_n)^\top$.
 \end{definition}
 \begin{theorem}
-    In this case provided MGF is finite for a range of values of $ \boldsymbol{\theta} $, then it uniquely determines the distribution of $ \bfX $. Also 
+    In this case provided MGF is finite for a range of values of $ \boldsymbol{\theta} $, then it uniquely determines the distribution of $ \mathbf{X} $. Also 
     \[
         \frac{\partial^rm}{\partial\theta_i^r}\Big|_{\boldsymbol{\theta}=\mathbf{0}}=\mathbb E[X_i^r],\quad \frac{\partial^{r+s}m}{\partial\theta_i^r\partial\theta_j^s}\Big|_{\boldsymbol{\theta}=\mathbf{0}}=\mathbb E[X_i^rX_j^s].
     \]

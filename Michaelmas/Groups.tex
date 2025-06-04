@@ -1,72 +1,19 @@
-\documentclass[10pt]{article}
-\usepackage{NotesTeX,lipsum}
-\DeclareMathOperator{\im}{Im}
-\usepackage{IEEEtrantools}
-\makeatletter
-\newsavebox{\@brx}
-\newcommand{\llangle}[1][]{\savebox{\@brx}{\(\m@th{#1\langle}\)}%
-  \mathopen{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
-\newcommand{\rrangle}[1][]{\savebox{\@brx}{\(\m@th{#1\rangle}\)}%
-  \mathclose{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
-\makeatother
-\def\d{{\mathrm d}}
-\def\e{{\mathrm e}}
-\def\g{{\mathrm g}}
-\def\h{{\mathrm h}}
-\def\f{{\mathrm f}}
-\def\p{{\mathrm p}}
-\def\s{{\mathrm s}}
-\def\t{{\mathrm t}}
-\def\i{{\mathrm i}}
+\documentclass[a4paper]{article}
+\usepackage{../triposnotes}
 
-\def\A{{\mathrm A}}
-\def\B{{\mathrm B}}
-\def\E{{\mathrm E}}
-\def\F{{\mathrm F}}
-\def\G{{\mathrm G}}
-\def\H{{\mathrm H}}
-\def\P{{\mathrm P}}
-
-\def\CC{{\mathbb C}}
-\def\RR{{\mathbb R}}
-
-\def\bb{\mathbf b}
-\def \bc{\mathbf c}
-\def\bx {\mathbf x}
-\def\bn {\mathbf n}
-\def\le{\leqslant}
-\def\ge{\geqslant}
-\def\arcosh{{\rm arcosh}\,}
-\def\ltrigeq{\trianglelefteq}
-\def\rtrigeq{\trianglerighteq}
 
 \newcommand{\bluecomment}[1]{{\color{blue}#1}}
 %\renewcommand{\comment}[1]{}
 \newcommand{\redcomment}[1]{{\color{red}#1}}
 \newcommand{\tm}{\times}
-%\usepackage{showframe}
-\DeclareMathOperator{\ord}{ord}
-\DeclareMathOperator{\sym}{Sym}
-\DeclareMathOperator{\lcm}{lcm}
-%\usepackage{showframe}
-
-\title{\begin{center}{\Huge \textit{Groups}}\\{{\itshape Based on Lectures and "Algebra and Geometry"}}\end{center}}
-\author{$\theta\omega\theta$}
-\affiliation{
-Not in University of Cambridge\\
-skipped some takes irrelevant to contents\\
-}
-
-\emailAdd{not telling you}
 
 \begin{document}
 	\maketitle
-	\flushbottom
-	\newpage
-	\pagestyle{fancynotes}
-	\part{Groups and Permutations}
+    \tableofcontents
 
-    \section{Definition of Groups}
+	\section{Groups and Permutations}
+
+    \subsection{Definition of Groups}
     \begin{definition}[Group]
         A group is a set $G$ together with a binary operation $ \ast: G\times G \to G $ that 
         \begin{enumerate}[({G}1)]
@@ -107,7 +54,7 @@ skipped some takes irrelevant to contents\\
             \item $ (\mathbb{N}, *), n*m = |n-m| $. Here $ \mathbb{N} $ is the set of all positive numbers, and it remains this definition unless specified otherwise. Associativity fails.
         \end{enumerate}
     \end{example}
-    \section{Properties of Groups}
+    \subsection{Properties of Groups}
     \begin{proposition}\label{prop:groups_properties}
         Let $G$ be a group, then we have 
         \begin{enumerate}
@@ -176,8 +123,8 @@ skipped some takes irrelevant to contents\\
     \begin{proof}
         Let $T$ be such a set. Then by definition $ T \subseteq \langle X \rangle $. On the other hand, $ X \subseteq T \Rightarrow \langle X \rangle  \subseteq T$ since $T$ clearly forms a subgroup. Hence $ T=\langle X \rangle $.
     \end{proof}
-    \section{Homomorphisms}
-    \subsection{Definition and basic properties}
+    \subsection{Homomorphisms}
+    \subsubsection{Definition and basic properties}
     \begin{definition}
         Let $ (G,*_G), (H,*_H) $ be groups. A function $ \varphi: H \to G $ is called a \textit{homomorphism} if
         \[
@@ -200,7 +147,7 @@ skipped some takes irrelevant to contents\\
         .\]
     \end{proposition}
     %Lecture 4
-    \subsection{Images and Kernels}\marginnote{Lecture 4.}
+    \subsubsection{Images and Kernels}
     \begin{definition}
         The \textit{image} of a homomorphism $ \varphi: H \to G $ is 
         \[
@@ -245,7 +192,7 @@ skipped some takes irrelevant to contents\\
         .\]
         Thus $ ab^{-1}=e_G \Leftrightarrow a=b $ and $ \varphi $ is injective.
     \end{proof}
-    \section{Direct product of groups}
+    \subsection{Direct product of groups}
     \begin{definition}
         The \textit{direct product} of two groups $ G,H $ is the set $ G\times H $ with the operation of component-wise composition:
         \[
@@ -268,7 +215,7 @@ skipped some takes irrelevant to contents\\
         .\]
     \end{remark}
     \begin{theorem}[Direct Product Theorem]\label{thm:Direct Product Theorem}
-        \marginnote{This gives us two ways to think about direct products:
+        \footnote{This gives us two ways to think about direct products:
         \begin{itemize}
             \item Given two groups $H,K$, one can form their direct products $ H \times K $ and view $H,K$ as subgroups via $ H \times \{e_K\} $ and $ \{e_H\}\times K $.
             \item Given a group $G$ with subgroups $H,K$ that satisfiy these conditions, then we are equivalently dealing with $ H \times K $.
@@ -289,10 +236,10 @@ skipped some takes irrelevant to contents\\
         ,\]
         so $ \varphi $ is a homomorphism. From (3) we know that $ \varphi $ is surjective. Let $ \varphi(h,k)=e $, then $ hk=e \Leftrightarrow h=k^{-1} $. Hence $ h,k^{-1}\in H \cap K $ so $ h=k=e $. Hence it is injective. Thus $\varphi$ is an isomorphism and $ G \cong H \times K $.
     \end{proof}
-    \section{Important Examples}
-    \subsection{Cyclic groups}
+    \subsection{Important Examples}
+    \subsubsection{Cyclic groups}
     \begin{definition}
-        Let $G$ be a group and let $ X \subseteq G, X\neq \varnothing $. If $ \langle X \rangle =G $, then $X$ is called \textit{a generating set}\mn{It is not necessary unique.} of $G$.
+        Let $G$ be a group and let $ X \subseteq G, X\neq \varnothing $. If $ \langle X \rangle =G $, then $X$ is called \textit{a generating set}\footnote{It is not necessary unique.} of $G$.
 
         $G$ is \textit{cyclic} if $\exists a\in G$ such that $ \langle a \rangle =G $. In this case, $ \forall b\in G, \exists k\in \mathbb{Z} , b=a^k $. $a$ is called a \textit{generator} of $G$.
     \end{definition}
@@ -301,7 +248,7 @@ skipped some takes irrelevant to contents\\
             \item[(0)] Trivial group $ \left\{ e\right\}=\langle e \rangle  $.
             \item $ (\mathbb{Z} ,+)=\langle 1 \rangle =\langle -1 \rangle  $.
             \item $ (\mathbb{Z}_n, +_n)=\langle 1 \rangle =\langle k \rangle $, where $(k,n)=1$.
-            \item $ E=\left(\left\{ e^{\frac{2\pi ik}{n}}:0\le k\le n-1 \right\}, \cdot\right) =\langle e^{\frac{2\pi i m}{n}} \rangle $, where $(m,n)=1$.\marginnote{Hence, $ E \cong \mathbb{Z}_n $.}
+            \item $ E=\left(\left\{ e^{\frac{2\pi ik}{n}}:0\le k\le n-1 \right\}, \cdot\right) =\langle e^{\frac{2\pi i m}{n}} \rangle $, where $(m,n)=1$.\footnote{Hence, $ E \cong \mathbb{Z}_n $.}
             \item $ \left\{ e,a,a^2,\dots, a^{n-1}\right\} $ with
             \[
                 a^k * a^j = \begin{cases}
@@ -314,10 +261,10 @@ skipped some takes irrelevant to contents\\
     \end{example}
     Write $ C_n = \left\{ e,a,a^2,\dots, a^{n-1}\right\} $. Then every cyclic group is isomorphic to $C_n$ and we can write all cyclic groups in this form, or $ \cong \mathbb{Z} $, which is the infinite case.
     %Lecture 5
-    \marginnote{Lecture 5}
+    
     \begin{theorem}\label{thm:cyclic group isom}
         A cyclic group $G$ is isomorphic to $ \mathbb{Z}  $ or $ C_n $ for some $ n\in \mathbb{N} $.
-        \marginnote{Therefore we often write $ \mathbb{Z}  $ or $ C_n $ for a cyclic group, regardless of its description.}
+        \footnote{Therefore we often write $ \mathbb{Z}  $ or $ C_n $ for a cyclic group, regardless of its description.}
     \end{theorem}
     \begin{proof}
         Let $ G= \langle b \rangle  $. Suppose that $ \exists n, b^n=e $. Take the smallest $n$. Define $ \varphi: C_n = \left\{ e,a,a^2,\dots,a^{n-1}\right\}\to G $ by $ \varphi(a^k)=b^k(0\le k\le n-1) $. Then $ \forall a^j,a^k\in C_n, j,k<n $, we have 
@@ -353,7 +300,7 @@ skipped some takes irrelevant to contents\\
     \begin{proposition}\label{prop:cyclic_abelian}
         Cyclic groups are abelian.
     \end{proposition}
-    \subsection{Dihedral Groups}
+    \subsubsection{Dihedral Groups}
     \begin{definition}
         The \textit{dihedral group} $ D_{2n} $ is the group of symmetries of a regular $n$-gon, the operation is composition of symmetries.
     \end{definition}
@@ -382,7 +329,7 @@ skipped some takes irrelevant to contents\\
         Can generate $ D_{2n} $ by a rotation and a reflection. Let $ r $ be the rotation $ \frac{2\pi}{n} $ and $s$ be the reflection in axis through $v_1$ and centre, then $r^k$ give all rotations. Consider $ r^{i}sr^{-i} $:
         \[
             \begin{aligned}
-                r^{i}sr^{-i}\marginnote{The form $ r^{i}sr^{-i} $ is called \textit{conjugation} and allows us to change the axis of operation.}: &v_{i+1}\mapsto v_1 \mapsto v_1 \mapsto v_{i+1},\\
+                r^{i}sr^{-i}\footnote{The form $ r^{i}sr^{-i} $ is called \textit{conjugation} and allows us to change the axis of operation.}: &v_{i+1}\mapsto v_1 \mapsto v_1 \mapsto v_{i+1},\\
                 &v_{i+2} \mapsto v_2 \mapsto v_{n} \mapsto v_i,\\
                 &v_i \mapsto v_n \mapsto v_2 \mapsto v_{i+2} \mapsto v_{i+2}.
             \end{aligned}
@@ -396,7 +343,7 @@ skipped some takes irrelevant to contents\\
         .\]
         Hence they give all symmetries and $ D_{2n}=\langle r,s \rangle $ and $ rs=sr^{-1} $, so it is not abelian.
     \end{remark}
-    \subsection{Presentation}
+    \subsubsection{Presentation}
     One way to write groups is via a \textit{presentation}:
     \[
         \langle \text{generators}|\text{relation between generators} \rangle 
@@ -411,7 +358,7 @@ skipped some takes irrelevant to contents\\
         \end{aligned}
     \]
     The first group is simply $\{e\}$ but the second group, known as Higman group, is very non-trivial.
-    \subsection{Permutation groups}
+    \subsubsection{Permutation groups}
     \begin{definition}
         Given a set $X$, a \textit{permutation} of $X$ is a bijective function $ \sigma:X\to X $. The set of all permutations of $X$ is denoted by $ \sym X $.
     \end{definition}
@@ -524,7 +471,7 @@ skipped some takes irrelevant to contents\\
         \]
         since disjoint cycles commute and we can cycle cycles. Continue in this way, we see that all other cycles match. 
     \end{proof}
-    \begin{definition}\marginnote{Lecture 7}
+    \begin{definition}
         The set of cycle lengths of the disjoint cycle decomposition of $ \sigma $ is its \textit{cycle type} of $\sigma$.
     \end{definition}
     \begin{example}
@@ -607,7 +554,7 @@ skipped some takes irrelevant to contents\\
         The \textit{kernel} of the homomorphism $ \epsilon $ is called the \textit{alternating group}, $ A_n \le S_n$.
     \end{definition}
     \begin{proposition}\label{prop:2.21}
-        $ \sigma\in S_n $ is even if and only if its disjoint cycle decomposition contains an \textit{even number} of \textit{even} cycles.\marginnote{Here "even cycle" means a cycle of even number of elements.}
+        $ \sigma\in S_n $ is even if and only if its disjoint cycle decomposition contains an \textit{even number} of \textit{even} cycles.\footnote{Here "even cycle" means a cycle of even number of elements.}
     \end{proposition}
     \begin{proof}
         Write 
@@ -616,14 +563,14 @@ skipped some takes irrelevant to contents\\
         ,\]
         where $\delta$ are even cycles, and $\chi$ are odd cycles. Then $ \epsilon(\sigma)=(-1)^{k} $ and the result follows.
     \end{proof}
-    \section{M\"{o}bius group}\marginnote{Lecture 8}
+    \subsection{M\"{o}bius group}
     The study of permutations of an infinite object, the functions $ \mathbb{C} \to \mathbb{C} $. Since $\mathbb{C}$ has geometry unlike $ \{1,2,\dots,n\} $, need to restrict to functions that interact well with this geometry.
 
     More precisely, we want to study functions of the form 
     \[
         f:\mathbb{C} \to \mathbb{C}, \quad f(z)=\frac{az+b}{cz+d},\quad a,b,c,d,\in \mathbb{C} 
     \]
-    such that $ad-bc\neq 0$\marginnote{Note that \[
+    such that $ad-bc\neq 0$\footnote{Note that \[
         f(z)-f(w)=\frac{(ad-bc)(z-w)}{(cw+d)(cz+d)}
     ,\]
     so $f(z)=f(w)$ and $f$ would be constant. However we need invertible functions, so we do need $ad-bc\neq 0$. }.
@@ -633,7 +580,7 @@ skipped some takes irrelevant to contents\\
     \begin{definition}
         A \textit{M\"{o}bius map} is a function $ f: \hat{\mathbb{C}}\to \hat{\mathbb{C}} $ of the form
         \[
-            f(z)=\frac{az+b}{cz+d}, a,b,c,d\in \CC, ad-bc\neq 0, f\left( \frac{-d}{c} \right)=\infty
+            f(z)=\frac{az+b}{cz+d}, a,b,c,d\in \mathbb{C}, ad-bc\neq 0, f\left( \frac{-d}{c} \right)=\infty
         ,\]
         with
         \[
@@ -644,7 +591,7 @@ skipped some takes irrelevant to contents\\
         \]
     \end{definition}
     \begin{lemma}\label{lma:mobius are bijections}
-        M\"{o}bius maps are bijections $ \hat{\CC}\to \hat{\CC} $.
+        M\"{o}bius maps are bijections $ \hat{\mathbb{C}}\to \hat{\mathbb{C}} $.
     \end{lemma}
     \begin{proof}
         Note that for $ f(z)=\frac{az+b}{cz+d} $, 
@@ -654,13 +601,13 @@ skipped some takes irrelevant to contents\\
         which could be checked by doing some algebras.
     \end{proof}
     \begin{theorem}\label{thm:mobius_group}
-        The set of M\"{o}bius maps form a group $ \mcM $ wrt composition.
+        The set of M\"{o}bius maps form a group $ \mathcal{M} $ wrt composition.
     \end{theorem}
     \begin{proof}
         Note that the identity is $z\mapsto z=\frac{1z+0}{0z+1}$, and by lemma they are invertible. Associativity  is inherited from the structure of functions in $ \mathbb{C} $. 
     \end{proof}
     \begin{remark}
-        $\mcM$ is not abelian. e.g. take $ f_1(z)=z+1, f_2(z)=2z $. In dealing with M\"{o}bius maps in $ \hat{\CC} $, we use the convention $ \frac{1}{\infty}=0, \frac{1}{0}=\infty, \frac{a\infty}{c\infty}=\frac{a}{c} $.
+        $\mathcal{M}$ is not abelian. e.g. take $ f_1(z)=z+1, f_2(z)=2z $. In dealing with M\"{o}bius maps in $ \hat{\mathbb{C}} $, we use the convention $ \frac{1}{\infty}=0, \frac{1}{0}=\infty, \frac{a\infty}{c\infty}=\frac{a}{c} $.
     \end{remark}
     \begin{proposition}\label{prop:decomp_mobius}
         Every M\"{o}bius group can be written as a composition of maps of the following forms:
@@ -682,9 +629,9 @@ skipped some takes irrelevant to contents\\
         If $c=0$, $ z \mapsto \frac{a}{d}z \mapsto \frac{a}{d}z+\frac{b}{d}. $
     \end{proof}
     In particular, the set $S$ of all dilations/rotations, translations, and inversions generate $M$. i.e., $ \langle S \rangle = M $.
-    \section{Lagrange's Theorem}
+    \subsection{Lagrange's Theorem}
     This result allows us to study the internal structure of a group wrt a subgroup.
-    \subsection{Cosets}
+    \subsubsection{Cosets}
     \begin{definition}
         Let $H\le G$ and $g\in G$. Let $ gH=\left\{ gh:h\in H\right\} $, then $gH$ is called a \textit{left coset} of $H$ in $G$. Right coset is defined similarly.
     \end{definition}
@@ -713,8 +660,8 @@ skipped some takes irrelevant to contents\\
         \item $|H|=|gH|$.
         \item $\displaystyle \bigcup_{g\in G}gH=G$. 
     \end{itemize}
-    In fact, \marginnote{Lecture 9}
-    \begin{theorem}[Lagrange]\label{thm:Lagrange}\marginnote{Cosets \textit{pave} the group.}
+    In fact, 
+    \begin{theorem}[Lagrange]\label{thm:Lagrange}\footnote{Cosets \textit{pave} the group.}
         Let $ H \le G $ where $G$ is finite, then 
         \begin{enumerate}
             \item $ |H|=|gH| $ for any $ g\in G $.
@@ -769,7 +716,7 @@ skipped some takes irrelevant to contents\\
     \begin{proof}
         Since $ |G|=p $, $p$ is prime, then $ |\langle g \rangle |||G| $ by Lagrange. Since $p$ is prime, then $ |\langle g \rangle |=1 $ or $p$. Hence if $g\neq e$, then $ g,e\in \langle g \rangle  $ so $ |\langle g \rangle |=p $, and thus $ \langle g \rangle =G $.
     \end{proof}
-    \subsection{An application in Number Theory}
+    \subsubsection{An application in Number Theory}
     Consider $ (\mathbb{Z}_n, +_n) $. Define $ a*b=ab\pmod n $. This is well-defined since $ a_1 \equiv a_2\pmod n \land b_1 \equiv b_2 \pmod n \Rightarrow a_1b_1 \equiv a_2b_2\pmod n $. $ (\mathbb{Z}_n, *) $ is not a group since $0$ has no inverse.
 
     Let $ \mathbb{Z}_n^* \subseteq \mathbb{Z}_n $ be the subset of elements of $\mathbb{Z}_n$ that have inverses. In fact, we have 
@@ -798,7 +745,7 @@ skipped some takes irrelevant to contents\\
         \]
     \end{proof}
     Take $n=p$, we get $ N^{p-1}\equiv 1\pmod{p} $ for $ (N,p)=1 $.
-    \subsection{Exploring groups using Lagrange theorem}
+    \subsubsection{Exploring groups using Lagrange theorem}
     Lagrange tells us what the possible orders of subgroups can be.
     \begin{remark}
         Not all possible orders have to appear.
@@ -806,7 +753,7 @@ skipped some takes irrelevant to contents\\
     \begin{example}
         For $D_{10}$, the sizes of subgroups can be $ 1,2,5,10 $. We have $ |\left\{ e\right\}|=1 $, $ |\left\{ e,g\right\}|=2 $, where $g$ has order 2. This can be done since we have 5 reflections. For subgroups of order 5, they must be cyclic by corollary \ref{col:3.7}. We have $ |\langle r \rangle |=5 $, where $r$ is a rotation. Obviously $ |D_{10}|=10 $.
     \end{example}
-    \subsection{Studying small groups using Lagrange's Theorem}\marginnote{Lecture 10}
+    \subsubsection{Studying small groups using Lagrange's Theorem}
     \begin{example}
         \begin{itemize}
             \item $|G|=1 \Rightarrow G=\left\{ e\right\}$.
@@ -822,8 +769,8 @@ skipped some takes irrelevant to contents\\
             \item $ |G|=5 $ then $ G \cong C_5 $. We need more tools to study groups of order $ \ge 6 $.
         \end{itemize}
     \end{example}
-    \section{Quotient groups}
-    \subsection{Normal subgroups}
+    \subsection{Quotient groups}
+    \subsubsection{Normal subgroups}
     \begin{definition}
         A subgroup $N$ of $G$ is \textit{normal} if $ \forall g\in G, gN=Ng $. Written as $ N \trianglelefteq G $.
     \end{definition}
@@ -894,7 +841,7 @@ skipped some takes irrelevant to contents\\
         
         By previous result, $ s^{-1}rs\in \langle r \rangle $. If $ s^{-1}rs=e $, then $ r=e $, \#. If $ s^{-1}rs=r $, then $sr=rs$, and $ \ord sr=6 $ since $ (sr)^n=s^nr^n $, which means that $ n=\lcm(2,3)=6 $. \#. Hence the only possibility is $ s^{-1}rs=r^2 $. Hence $ G=\langle r,s|r^3=s^2=e, sr=r^2s=r^{-1}s \rangle  $. Hence $ G \cong D_6 $.
     \end{proof}
-    \subsection{Quotients}\marginnote{Lecture 11}
+    \subsubsection{Quotients}
     Consider $ n \mathbb{Z} \ltrigeq \mathbb{Z} $. The cosets are 
     \[
         0+n \mathbb{Z}, 1+n \mathbb{Z} , 2+n \mathbb{Z} , \dots, (n-1)+n \mathbb{Z} 
@@ -980,7 +927,7 @@ skipped some takes irrelevant to contents\\
     \begin{theorem}[First isomorphism theorem]\label{thm:1st isom thm}
         Let $ \varphi:G\to H $ be a homomorphism, then $ G/\ker \varphi \cong \im \varphi $.
     \end{theorem}
-    \begin{proof}\marginnote{Lecture 12}
+    \begin{proof}
         Define $\bar{\varphi}: G/ \ker \varphi\to \im \varphi $ by $ \bar{\varphi}(g \ker \varphi)=\varphi(g) $. It is well-defined since if $ g_1 \ker \varphi=g_2 \ker \varphi $, then $ g_1=g_2k $ for some $k\in \ker \varphi$.
         \[
             \bar{\varphi}(g_1 \ker \varphi)=\varphi(g_1)=\varphi(g_2 k)=\varphi(g_2)\varphi(k)=\varphi(g_2)=\bar{\varphi}(g_2 \ker \varphi)
@@ -1002,7 +949,7 @@ skipped some takes irrelevant to contents\\
             .\]
         \end{enumerate}
     \end{example}
-    \begin{theorem}[Correspondence theorem]\label{thm:Correspondence theorem}\marginnote{helps to understand the subgroup structure of quotient groups.}
+    \begin{theorem}[Correspondence theorem]\label{thm:Correspondence theorem}\footnote{helps to understand the subgroup structure of quotient groups.}
         Let $ N \ltrigeq G $. The subgroups of $G/N$ are in bijective correspondence with subgroups of $G$ containing $N$.
     \end{theorem}
     \begin{proof}
@@ -1055,7 +1002,7 @@ skipped some takes irrelevant to contents\\
     What if we have a subgroup $ H \le G $ that doesn't contain $ N \ltrigeq G $? We can still make a normal subgroup of $H$ by $ H \cap N $.
 
     \begin{corollary}[2nd Isomorhpism theorem]\label{col:2nd Isomorhpism theorem}
-            Let $ H\le G, N \ltrigeq G $, then $ H \cap N \ltrigeq H $ and $ H/H \cap N \cong HN/N $\marginnote{$ HN=\left\{ hn:h\in H, n\in N\right\} $.}.
+            Let $ H\le G, N \ltrigeq G $, then $ H \cap N \ltrigeq H $ and $ H/H \cap N \cong HN/N $\footnote{$ HN=\left\{ hn:h\in H, n\in N\right\} $.}.
     \end{corollary}
     \begin{proof}
         We firstly prove a lemma 
@@ -1079,16 +1026,16 @@ skipped some takes irrelevant to contents\\
     \begin{proof}
         Define $ \varphi:G/N \to G/M $ by $ \varphi(gN)=gM $. $ \varphi $ is well-defined and is a surjective homomorphism. Note that $ \varphi(gN)=gM=M \Leftrightarrow g\in M $. So $ \ker \varphi=M/N $, then by the first isomorphism theorem, we have $ (G/N)/(M/N) \cong G/M $.
     \end{proof}
-    \begin{example}\marginnote{Lecture 13}
+    \begin{example}
         \begin{enumerate}
-            \item Consider $ G= \mathbb{Z} ,H=3\bbZ, N=5\bbZ $. Then by theorem \ref{col:2nd Isomorhpism theorem}, we have $ H \cap N \ltrigeq H $, i,e., $ 15\bbZ \ltrigeq 3\bbZ $ and $ H/H\cap N \cong HN/N $. Note that $ \langle H,N \rangle =\mathbb{Z} $, since $1=2\times 5-3\times 3$.
+            \item Consider $ G= \mathbb{Z} ,H=3\mathbb{Z}, N=5\mathbb{Z} $. Then by theorem \ref{col:2nd Isomorhpism theorem}, we have $ H \cap N \ltrigeq H $, i,e., $ 15\mathbb{Z} \ltrigeq 3\mathbb{Z} $ and $ H/H\cap N \cong HN/N $. Note that $ \langle H,N \rangle =\mathbb{Z} $, since $1=2\times 5-3\times 3$.
             \item (See $ C_4 \times C_2 $ example) Let $ C_4=\langle a \rangle , C_2=\langle b \rangle $. Let $ N=\langle (a^2,b) \rangle, M=\langle (e,b),(a^2,e) \rangle $, then $ N \le M\le G $ and $ N,M \ltrigeq G $. By corollary \ref{col:3rd Isomorphism theorem}, we have 
             \[
                 (C_4 \times C_2 / N)/ (M/N)\cong C_4 \times C_2 / M
             .\]
         \end{enumerate}
     \end{example}
-    \section{Simple groups}
+    \subsection{Simple groups}
     \begin{definition}[Simple Groups]
         A group $G$ is \textit{simple} if and only if its only normal subgroups are $ \left\{ e\right\} $ and $G$.
     \end{definition}
@@ -1098,9 +1045,9 @@ skipped some takes irrelevant to contents\\
             \item $ A_5 $ of alternating permutations is simple. Proof will be given later.
         \end{itemize}
     \end{example}
-    \part{Group Actions}
-    \section{Basic properties}
-        For many examples of groups met, we identified group elements oby their effect on some sets. e.g., $S_n$ permuting the set $ \left\{ 1,2,\dots,n\right\} $. A M\"{o}bius group being functions $ \hat{\mathbb{C}}\to \hat{\bbC} $, $ D_{2n} $ being symmetries of an $n$-gon.
+    \section{Group Actions}
+    \subsection{Basic properties}
+        For many examples of groups met, we identified group elements oby their effect on some sets. e.g., $S_n$ permuting the set $ \left\{ 1,2,\dots,n\right\} $. A M\"{o}bius group being functions $ \hat{\mathbb{C}}\to \hat{\mathbb{C}} $, $ D_{2n} $ being symmetries of an $n$-gon.
 
         While we can study groups purely algebraicly from the axioms, groups truly com alive when acting on other objects.
 
@@ -1109,7 +1056,7 @@ skipped some takes irrelevant to contents\\
             \[
                 \alpha(g,x)=\alpha_g(x)
             ,\]
-            \marginnote{We can write $ \alpha(g,x) =\alpha_g(x)=\redcomment{g(x)}$, to emphasize that for a fixed $g$, $ \alpha(g,x) $ defines a function $ X \to X $ by looking at $ x \mapsto \alpha(g,x)=\alpha_g(x) $.}
+            \footnote{We can write $ \alpha(g,x) =\alpha_g(x)=\redcomment{g(x)}$, to emphasize that for a fixed $g$, $ \alpha(g,x) $ defines a function $ X \to X $ by looking at $ x \mapsto \alpha(g,x)=\alpha_g(x) $.}
             satisfying 
             \begin{itemize}
                 \item $ \alpha_g(x)\in X, \forall g\in G, \forall x\in X $.
@@ -1126,7 +1073,7 @@ skipped some takes irrelevant to contents\\
                 \item Take $G,X$, and define the trivial action of $G$ on $X$ by $ \alpha_g(x)=x, \forall g\in G, \forall x\in X $. This is just the identity function.
                 \item $ S_n \curvearrowright \left\{ 1,\dots,n\right\} $ by permutation.
                 \item $ D_{2n} \curvearrowright \left\{ \text{vertices of a regular $n$-gon}\right\} $, and by labelling the vertices $ 1,\dots, n $, we have $ D_{2n} \curvearrowright \left\{ 1,2,\dots,n\right\} $.
-                \item $ M \curvearrowright \hat{\bbC} $ via M\"{o}bius maps.
+                \item $ M \curvearrowright \hat{\mathbb{C}} $ via M\"{o}bius maps.
                 \item Symmetries of a cube act on set of vertices, set of edges, set of faces, and set of pairs of opposite faces.
             \end{enumerate}
         \end{example}
@@ -1146,7 +1093,7 @@ skipped some takes irrelevant to contents\\
         We can also define actions by linking $G$ to $ \sym(X) $.
         \begin{proposition}\label{prop:5.4}
             Let $G$ be a group and $X$ be a set. Then $ \alpha:G \times X \to X $ by $ \alpha(g,x)=\alpha_g(x) $ is an action if and only if the function $ \rho:G \to \sym(X) $ by $ \rho(g)=\alpha_g $ is a homomorphism.
-            \marginnote{$ g(x)=\alpha(g,x)=\rho(g)(x) $.}
+            \footnote{$ g(x)=\alpha(g,x)=\rho(g)(x) $.}
         \end{proposition}
         
         \begin{proof}
@@ -1162,7 +1109,7 @@ skipped some takes irrelevant to contents\\
             Since the action induces a function $ X \to X $, we can regard $ \alpha_g:X \to X $ induced by $g$, and simply write $ g(x) $.  
         \end{remark}
         \begin{definition}
-            \marginnote{All the permutations of $G$ that act as the identity of $ \sym(X) $. i.e., they do nothing to $x$.}
+            \footnote{All the permutations of $G$ that act as the identity of $ \sym(X) $. i.e., they do nothing to $x$.}
             The \textit{kernel} of an action $ \alpha:G \times X \to X $ is the kernel of the above $ \rho $.
         \end{definition}
         Note that $ G/\ker \rho \cong \im \rho\le \sym(X) $ by theorem \ref{thm:1st isom thm}. In particular, if $ \ker \rho = \left\{ e\right\} $, then $ G \cong \im(\rho)\le \sym(X) $.
@@ -1184,7 +1131,7 @@ skipped some takes irrelevant to contents\\
         \begin{definition}
             An action $ G \curvearrowright X $ is called \textit{faithful} if $ \ker \rho = \left\{ e\right\} $.
         \end{definition}
-        \section{Orbits and Stabilisers}\marginnote{Lecture 14.}
+        \subsection{Orbits and Stabilisers}
         \begin{definition}
             Let $ G \curvearrowright X, x\in X $. The \textit{orbit} of $X$ is $ \orb(x) $ defined as 
             \[
@@ -1266,8 +1213,8 @@ skipped some takes irrelevant to contents\\
                 |D_{2n}|=|\orb(1)|\cdot |\stab(1)|=2n
             .\]
         \end{example}
-    \section{Example of Symmetries}\marginnote{Lecture 15.}
-    \subsection{Symmetries of the Tetrahedron}
+    \subsection{Example of Symmetries}
+    \subsubsection{Symmetries of the Tetrahedron}
     A tetrahedron has 4 faces(regular trangle), 4 vertices, and 6 edges. Vertices are labelled as $ \left\{ 1,2,3,4 \right\} $.
 
     \begin{itemize}
@@ -1280,7 +1227,7 @@ skipped some takes irrelevant to contents\\
         Since $ G \le S_4 $ and $ |G|=|S_4| $, $ G=S_4 $.
         \item Let $ G^+\le G $ of rotations in $G$. $ \orb(1)=\left\{ 1,2,3,4 \right\}, \stab(1)=\left\{ e, (234),(243) \right\} $. Hence $ |G|=4\cdot 3 = 12 $. Therefore $ G^+=A_4 $. Can check we have all 3-cycles, and all double transpositions, since these are rotations in axis through midpoints of opposite edges.
     \end{itemize}
-    \subsection{Symmetries of the Cube}
+    \subsubsection{Symmetries of the Cube}
     Label the vertices of a cube $ \left\{ 1,\dots,8 \right\} $. Let $G$ be the group of symmetries of a cube acting on the vertices. The act is transitive, so $ |\orb(1)|=8 $. We have 
     \[
         \stab(1)=\left\{ e,\text{2 rotations axis through 1}, \text{3 reflections plane through 1 and edges 12,13,14} \right\}
@@ -1291,7 +1238,7 @@ skipped some takes irrelevant to contents\\
 
         Now let $ G^+ $ act on the 4 body diagonals, giving $ \rho:G^+\to S_4 $. We have all 4-cycles in $ \im \rho $, and we have all transpositions. 4-cycles come from rotations through centres of two opposite faces, and transpositions come from rotations through midpoints of opposite edges. Hence we have $ (12),(1234) $ so we have $ \langle (12),(1234) \rangle =S_4 $, which means that \textit{$ \rho $ is surjective}. Since $ |G^+|=|S_4|=24 $, $ G^+\cong S_4 $.
     \end{itemize}
-    \subsection{Platonic Solids}
+    \subsubsection{Platonic Solids}
     These two solids are two of the 5 Platonic solids, i.e., solid in $ \mathbb{R}^{3} $ that have polygonal faces, straight edges and vertices such that their group of symmetries acts transitively on triples of the form (vertex, incident edge, incident face). i.e., particularly symmetric solids.
 
     The other platonic solids are octahedron, dodecahedron, icosahedron. The cube and octahedron are "dual". i.e., can be inscribed in each other with vertices in the middle of faces.
@@ -1377,7 +1324,7 @@ skipped some takes irrelevant to contents\\
           .\]
           So $ \exists g\neq e $ such that $ (g,\dots,g) \in X$, which implies that $ \boxed{\ord g = p }$.
       \end{proof}
-      \section{Left Multiplication Actions}\marginnote{Lecture 16}
+      \subsection{Left Multiplication Actions}
       \begin{lemma}\label{lma:5.13}
           Let $G$ be a group, $G$ acts on itself by left multiplication. This action is faithful and transitive.
       \end{lemma}
@@ -1402,8 +1349,8 @@ skipped some takes irrelevant to contents\\
       \begin{remark}
           This is the left regular action if $H$ is trivial. This induces actions of $G$ on its quotient groups $G/N$.
       \end{remark}
-      \section{Conjugation Action}
-      \subsection{Basics}
+      \subsection{Conjugation Action}
+      \subsubsection{Basics}
       \begin{definition}
           Given $g,h\in G$, the element $hgh^{-1}\in G$ is the \textit{conjugate} of $g$ by $h$.
       \end{definition}
@@ -1411,7 +1358,7 @@ skipped some takes irrelevant to contents\\
       \begin{example}
           Consider $D_{10}$ and consider the conjugate $s$ and $rsr^{-1}$ where $s$ is reflection through $v_1$ and $r$ is rotation by $2\pi/5 $. It is clear that $rsr^{-1}$ is the reflection through $v_2$. 
       \end{example}
-      \begin{example}\marginnote{You can expect conjugate elements to have similar properties. e.g., same order.}
+      \begin{example}\footnote{You can expect conjugate elements to have similar properties. e.g., same order.}
           Consider matrix groups such as $ \mathrm{GL}_2(\mathbb{R}) $ where a conjugate matrix represents the same transformation, but wrt a different basis. Will talk about this later.
       \end{example}
       \begin{proposition}\label{prop:5.18}
@@ -1430,7 +1377,7 @@ skipped some takes irrelevant to contents\\
 
           An orbit of this action is called \textit{conjugacy class}:
           \[
-              \ccl(h)=\left\{ ghg^{-1}:g\in G \right\} \text{ or } \ccl_G(h)
+              \mathbb{C}l(h)=\left\{ ghg^{-1}:g\in G \right\} \text{ or } \mathbb{C}l_G(h)
           .\]
 
           Stablisers are called \textit{centralisers}
@@ -1469,16 +1416,16 @@ skipped some takes irrelevant to contents\\
       \begin{proof}
           Let $H\le G, g\in G$. $ gHg^{-1}\le G $ so it is closed under conjugation. Obviously $ eHe^{-1}=H $ and $ g_1(g_2(H))=g_1(g_2Hg_2^{-1})=g_1g_2H(g_1g_2)^{-1}=(g_1g_2)(H) $. Therefore it is an action. Let $N \le G$ that has a singleton orbit. Since $eNe^{-1}=N$, $ \orb(N) $ must be $N$ itself. By definition of normal subgroups, $ N \ltrigeq G $.
       \end{proof}
-      \begin{remark}\marginnote{Lecture 17.}
+      \begin{remark}
         This gives another view of point of normal subgroups: they are invariant under conjugation.
       \end{remark}
       \begin{proposition}\label{prop:5.23}
           Normal subgroups are those subgroups that are union of conjugacy classes.
       \end{proposition}
       \begin{proof}
-          Let $ N \ltrigeq G $. Then if $ h\in N $, then $ghg^{-1}\in N$ for all $g\in G$, so $ \ccl(h) \subseteq N $. Therefore, 
+          Let $ N \ltrigeq G $. Then if $ h\in N $, then $ghg^{-1}\in N$ for all $g\in G$, so $ \mathbb{C}l(h) \subseteq N $. Therefore, 
           \[
-              N=\bigcup_{h\in N} \ccl(h)
+              N=\bigcup_{h\in N} \mathbb{C}l(h)
           .\]
           Conversely, if $H$ is a subgroup that is a union of conjugacy classes, then $ \forall g\in G, h\in H, ghg^{-1}\in H \Leftrightarrow H \ltrigeq G $.
       \end{proof}
@@ -1491,7 +1438,7 @@ skipped some takes irrelevant to contents\\
       \begin{remark}
           Note that $ (123),(132) $ are conjugate in $S_3$, but not in $A_3$.
       \end{remark}
-      \subsection{Conjugation in $S_n$}
+      \subsubsection{Conjugation in $S_n$}
       \begin{lemma}\label{lma:5.24}
             Given a $k$-cycle, $(a_1\ a_2\ \cdots\ a_k)$ and $ \sigma\in S_n $, we have 
             \[
@@ -1539,9 +1486,9 @@ skipped some takes irrelevant to contents\\
       \begin{example}[Conjugate classes of $S_4$]
         \begin{center}
             \begin{tabular}{c|c|c|c|c}
-                Cycle Type & Example Element & Size of $\ccl$ & Size of $C_{S_4}$ & Sign \\
+                Cycle Type & Example Element & Size of $\mathbb{C}l$ & Size of $C_{S_4}$ & Sign \\
                 \hline 
-                & & & \redcomment{$ |S_4|/|\ccl| $} & \\
+                & & & \redcomment{$ |S_4|/|\mathbb{C}l| $} & \\
                 1,1,1,1 & $e$ & 1 & $24/1=24$ &1 \\
                 2,1,1 & $(1\ 2)$ & 6 & 4 &-1 \\
                 2,2 & $(1\ 2)(3\ 4)$ & 3 & 8 &1 \\
@@ -1556,7 +1503,7 @@ skipped some takes irrelevant to contents\\
             \item Must have order dividing $|G|$.
         \end{itemize}
         Possibilities: look through divisors of $|G|$: 1,2,3,4,6,8,12,24.
-        \begin{enumerate}[align=hang, label=\textit{order} \arabic*]
+        \begin{enumerate}[align=left, label=\textit{order} \arabic*]
             \item $ \left\{ e \right\} $.
             \item Not possible.
             \item Not possible.
@@ -1575,28 +1522,28 @@ skipped some takes irrelevant to contents\\
         \end{itemize}
         Can repeat this with $S_5$.
       \end{example}
-      \subsection{Conjugation in $A_n$}
+      \subsubsection{Conjugation in $A_n$}
 
       Note that 
       \[
-          \ccl_{A_n}(\sigma)=\left\{ \tau \sigma\tau^{-1}:\tau\in A_n \right\} \subseteq \ccl_{S_n}(\sigma)
+          \mathbb{C}l_{A_n}(\sigma)=\left\{ \tau \sigma\tau^{-1}:\tau\in A_n \right\} \subseteq \mathbb{C}l_{S_n}(\sigma)
       .\]
       But elements that are conjugate in $S_n$ may not be conjugate in $A_n$. e.g., $ (23)(123)(23)=(132) $ in $S_3$ but $ (23)\notin A_3 $ so there is no other elements forming the conjugation.
 
       However, in $S_5, (23)(45)(123)(45)(23)=(132)$, so $ (123),(132) $ are conjugate in $A_5$.
 
-      Some conjugacy classes may split into smaller conjugacy classes in $A_n$. But how?\marginnote{Lecture 18.}
+      Some conjugacy classes may split into smaller conjugacy classes in $A_n$. But how?
 
-      By orbit-stabliser, $ |S_n|=|\ccl_{S_n}(\sigma)||C_{S_n}(\sigma)| $ and $ |A_n|=|\ccl_{A_n}(\sigma)||C_{A_n}(\sigma)| $. But $ |S_n|=2|A_n| $ and $ |\ccl_{A_n}(\sigma)|\le |\ccl_{S_n}(\sigma)| $, so either
+      By orbit-stabliser, $ |S_n|=|\mathbb{C}l_{S_n}(\sigma)||C_{S_n}(\sigma)| $ and $ |A_n|=|\mathbb{C}l_{A_n}(\sigma)||C_{A_n}(\sigma)| $. But $ |S_n|=2|A_n| $ and $ |\mathbb{C}l_{A_n}(\sigma)|\le |\mathbb{C}l_{S_n}(\sigma)| $, so either
       \[
-        \ccl_{A_n}(\sigma)=\ccl_{S_n}(\sigma) \text{ and } |C_{A_n}(\sigma)|=\frac{1}{2}|C_{S_n}(\sigma)|
+        \mathbb{C}l_{A_n}(\sigma)=\mathbb{C}l_{S_n}(\sigma) \text{ and } |C_{A_n}(\sigma)|=\frac{1}{2}|C_{S_n}(\sigma)|
       \]
       or
       \[
-        |\ccl_{A_n}(\sigma)|=\frac{1}{2} |\ccl_{S_n}(\sigma)|\text{ and } C_{A_n}(\sigma)=C_{S_n}(\sigma)
+        |\mathbb{C}l_{A_n}(\sigma)|=\frac{1}{2} |\mathbb{C}l_{S_n}(\sigma)|\text{ and } C_{A_n}(\sigma)=C_{S_n}(\sigma)
       .\]
       \begin{definition}
-          When $|\ccl_{A_n}(\sigma)|=\frac{1}{2} |\ccl_{S_n}(\sigma)|$, we say that the conjugacy class of $ \sigma $ \textit{splits} in $A_n$.
+          When $|\mathbb{C}l_{A_n}(\sigma)|=\frac{1}{2} |\mathbb{C}l_{S_n}(\sigma)|$, we say that the conjugacy class of $ \sigma $ \textit{splits} in $A_n$.
       \end{definition}
       To see when it happens, we have the following proposition:
       \begin{proposition}\label{prop:5.28}
@@ -1605,25 +1552,25 @@ skipped some takes irrelevant to contents\\
       \begin{proof}
           Note that 
           \[
-            |\ccl_{A_n}(\sigma)|=\frac{1}{2} |\ccl_{S_n}(\sigma)| \Longleftrightarrow C_{A_n}(\sigma)=C_{S_n}(\sigma)
+            |\mathbb{C}l_{A_n}(\sigma)|=\frac{1}{2} |\mathbb{C}l_{S_n}(\sigma)| \Longleftrightarrow C_{A_n}(\sigma)=C_{S_n}(\sigma)
           ,\]
           so $ C_{A_n}(\sigma)=A_n \cap C_{S_n}(\sigma) $. However, $ A_n \cap C_{S_n}(\sigma) =C_{S_n}(\sigma) $ if and only if $C_{S_n}(\sigma)$ has no odd elements. i.e., no odd permutations commute with $ \sigma $.
       \end{proof}
       \begin{example}[Conjugate classes of $A_4$]
         \begin{center}
             \begin{tabular}{c|c|c|c|c}
-                Cycle Type & Example Element & Odd element in $C_{S_4}$? & $|\ccl_{S_4}|$ & $|\ccl_{A_4}|$ \\
+                Cycle Type & Example Element & Odd element in $C_{S_4}$? & $|\mathbb{C}l_{S_4}|$ & $|\mathbb{C}l_{A_4}|$ \\
                 \hline 
                 1,1,1,1 & $e$ & yes, eg. $(1\ 2)$ & 1 & 1\\
                 2,2 & $(1\ 2)(3\ 4)$ & yes eg. $(1\ 2)$ & 3 & 3\\
-                3,1 & $(1\ 2\ 3)$ & no\marginnote{Since $ |C_{S_4}|=3 $ and clearly contains $(123)$ itself, so $ C_{S_4}=\langle (123) \rangle $} & 8 & 4 and 4\\
+                3,1 & $(1\ 2\ 3)$ & no\footnote{Since $ |C_{S_4}|=3 $ and clearly contains $(123)$ itself, so $ C_{S_4}=\langle (123) \rangle $} & 8 & 4 and 4\\
             \end{tabular}
         \end{center}
       \end{example}
       \begin{example}[Conjugate classes of $A_5$]
         \begin{center}
             \begin{tabular}{c|c|c|c|c}
-                Cycle Type & Example Element & Odd element in $C_{S_5}$? & $|\ccl_{S_5}|$ & $|\ccl_{A_5}|$ \\
+                Cycle Type & Example Element & Odd element in $C_{S_5}$? & $|\mathbb{C}l_{S_5}|$ & $|\mathbb{C}l_{A_5}|$ \\
                 \hline 
                 1,1,1,1,1 & $e$ & yes, eg. $(1\ 2)$ & 1 & 1\\
                 2,2,1 & $(1\ 2)(3\ 4)$ & yes eg. $(1\ 2)$ & 15 & 15\\
@@ -1635,7 +1582,7 @@ skipped some takes irrelevant to contents\\
             $ C_{S_5}(12345)=\langle (12345) \rangle $.
         \end{lemma}
         \begin{proof}
-            Note that $ |\ccl(12345)|=5!/5=24 $. By orbit-stabliser, $ |C_{S_5}(12345)|=5 $, and it is clear that $C_{S_5}(12345)=\langle (12345) \rangle$.
+            Note that $ |\mathbb{C}l(12345)|=5!/5=24 $. By orbit-stabliser, $ |C_{S_5}(12345)|=5 $, and it is clear that $C_{S_5}(12345)=\langle (12345) \rangle$.
         \end{proof}
       \end{example}
       \begin{theorem}\label{thm:5.32}
@@ -1648,20 +1595,20 @@ skipped some takes irrelevant to contents\\
           All $A_n, n\ge 5$ are simple.
       \end{remark}
       
-      \section{The \mobius Group Revisited}
-      \subsection{Basic Properties}
+      \subsection{The \mobius Group Revisited}
+      \subsubsection{Basic Properties}
       We now have the tools to study the actions of the \mobius group $ \mathcal{M} $.
       \begin{remark}
-          The definition of \mobius maps defines an action $ \mcM \curvearrowright \hat{\mathbb{C}} $.
+          The definition of \mobius maps defines an action $ \mathcal{M} \curvearrowright \hat{\mathbb{C}} $.
       \end{remark}
       \begin{proposition}\label{prop:6.1}
-          The action $ \mcM \curvearrowright \hat{\mathbb{C}} $ is faithful, and so $ \mcM\le \sym(\hat{\bbC}) $.
+          The action $ \mathcal{M} \curvearrowright \hat{\mathbb{C}} $ is faithful, and so $ \mathcal{M}\le \sym(\hat{\mathbb{C}}) $.
       \end{proposition}
       \begin{proof}
-          Consider $ \rho: \mcM \to \sym(\hat{\bbC}) $ defined by $ \rho(f)(z)=f(z) $. Can verify that $ \rho $ is injective and the action is faithful.
+          Consider $ \rho: \mathcal{M} \to \sym(\hat{\mathbb{C}}) $ defined by $ \rho(f)(z)=f(z) $. Can verify that $ \rho $ is injective and the action is faithful.
       \end{proof}
       \begin{definition}
-          A \textit{fixed point} of a \mobius map $f$ is a point $z\in \hat{\bbC}$ such that $ f(z)=z $.
+          A \textit{fixed point} of a \mobius map $f$ is a point $z\in \hat{\mathbb{C}}$ such that $ f(z)=z $.
       \end{definition}
       \begin{theorem}\label{thm:6.3}
           A \mobius map with $\ge 3$ fixed points is the identity.
@@ -1679,13 +1626,13 @@ skipped some takes irrelevant to contents\\
           has $\ge 2$ roots, and similarly $f$ is the identity.
       \end{proof}
       \begin{corollary}\label{col:6.4}
-              If two \mobius maps coincide on 3 distinct points in $ \hat{\bbC} $ then they are equal.\marginnote{Knowing what a \mobius map does on 3 distinct points in $ \hat{\bbC} $ \textit{uniquely} determines it.}
+              If two \mobius maps coincide on 3 distinct points in $ \hat{\mathbb{C}} $ then they are equal.\footnote{Knowing what a \mobius map does on 3 distinct points in $ \hat{\mathbb{C}} $ \textit{uniquely} determines it.}
       \end{corollary}
       \begin{proof}
           Apply theorem \ref{thm:6.3} on $g^{-1}f$.
       \end{proof}
-      \begin{theorem}\label{thm:6.5}\marginnote{Lecture 19}
-          There is a unique \mobius map sending any 3 distinct points of $ \hat{\mathbb{C}} $ to any 3 distinct points of $ \hat{\bbC} $. i.e., given $ z_1,z_2,z_3, w_1,w_2,w_3\in \hat{\bbC} $ distinct, $ \exists ! f, f(z_i)=w_i $ for $i=1,2,3$.
+      \begin{theorem}\label{thm:6.5}
+          There is a unique \mobius map sending any 3 distinct points of $ \hat{\mathbb{C}} $ to any 3 distinct points of $ \hat{\mathbb{C}} $. i.e., given $ z_1,z_2,z_3, w_1,w_2,w_3\in \hat{\mathbb{C}} $ distinct, $ \exists ! f, f(z_i)=w_i $ for $i=1,2,3$.
       \end{theorem}
       \begin{proof}
           Suppose first that $w_1=0,w_2=1,w_3 = \infty $. Then we can take
@@ -1711,7 +1658,7 @@ skipped some takes irrelevant to contents\\
       \end{proposition}
       The following theorem is a partial converse to this observation:
       \begin{theorem}\label{thm:6.6}
-          Every non-identity $f\in \mcM$ has either 1 or 2 fixed points. If $f$ has 1 fixed point, then it is conjugate to $ z \mapsto z+1 $. If $f$ has 2 fixed points, then it is conjugate to a map of the form $ z \mapsto az, a\in \hat{\bbC}\setminus \{0\} $.
+          Every non-identity $f\in \mathcal{M}$ has either 1 or 2 fixed points. If $f$ has 1 fixed point, then it is conjugate to $ z \mapsto z+1 $. If $f$ has 2 fixed points, then it is conjugate to a map of the form $ z \mapsto az, a\in \hat{\mathbb{C}}\setminus \{0\} $.
       \end{theorem}
       \begin{proof}
             It suffices to show that $f$ cannot have 0 fixed point.
@@ -1721,25 +1668,25 @@ skipped some takes irrelevant to contents\\
             \]
             it has at least one solution since $ \Delta\ge 0 $, so $f$ has at least one fixed point.
 
-            If $f$ has 1 fixed point $z_0$, choose $z_1\in \bbC$ not fixed by $f$. Then $ z_1,f(z_1),z_0 $ are all distinct. Hence $ \exists g:(z_1,f(z_1),z_0)\mapsto (0,1,\infty) $. Consider $ gfg^{-1}: 0 \mapsto 1, \infty \mapsto \infty $. Claim that $gfg^{-1}$ is of the form $ az+1,a\in \mathbb{C} $. Indeed, any map of the form $az+1$ has the two properties. The other direction follows by direct substitution in the general form $\frac{az+b}{cz+d}$. If $a\neq 1$, $gfg^{-1}$ has $ \frac{1}{1-a}\neq \infty  $ as a fixed point, \# since we only supposed 1 fixed point. Hence $f$ is conjugate to $z+1$.
+            If $f$ has 1 fixed point $z_0$, choose $z_1\in \mathbb{C}$ not fixed by $f$. Then $ z_1,f(z_1),z_0 $ are all distinct. Hence $ \exists g:(z_1,f(z_1),z_0)\mapsto (0,1,\infty) $. Consider $ gfg^{-1}: 0 \mapsto 1, \infty \mapsto \infty $. Claim that $gfg^{-1}$ is of the form $ az+1,a\in \mathbb{C} $. Indeed, any map of the form $az+1$ has the two properties. The other direction follows by direct substitution in the general form $\frac{az+b}{cz+d}$. If $a\neq 1$, $gfg^{-1}$ has $ \frac{1}{1-a}\neq \infty  $ as a fixed point, \# since we only supposed 1 fixed point. Hence $f$ is conjugate to $z+1$.
             
             If $f$ has 2 fixed points $z_0,z_1$, consider $ g:(z_0,z_1) \mapsto (0,\infty ) $. We have $ gfg^{-1}:(0,\infty ) \mapsto (0,\infty ) $, so that $gfg^{-1}$ fixes $0$ and $\infty$. Claim that $g$ is of the form $az$. Indeed, take $ a=gfg^{-1} $, then substitution in the general form gives the answer.
       \end{proof}
-      We can use this to work out $f^n$ for any $ f\in \mcM $. Indeed, if $f$ fixes one point, then $gf^ng^{-1}=(gfg^{-1})^n=z+n$. Similarly if $f$ fixes 2 points then $ gf^ng^{-1}=a^n z $.
-      \subsection{Circles and Lines}
-      Equation of a circle with centre $b\in \bbC$ and radius $r>0$ is 
+      We can use this to work out $f^n$ for any $ f\in \mathcal{M} $. Indeed, if $f$ fixes one point, then $gf^ng^{-1}=(gfg^{-1})^n=z+n$. Similarly if $f$ fixes 2 points then $ gf^ng^{-1}=a^n z $.
+      \subsubsection{Circles and Lines}
+      Equation of a circle with centre $b\in \mathbb{C}$ and radius $r>0$ is 
       \[
           |z-b|=r \Longleftrightarrow z \bar{z}- \bar{b}z-b \bar{z}+ b \bar{b}-r^2=0.\tag{$*$}
       \]
-      Equation of a line in $\bbC$:
+      Equation of a line in $\mathbb{C}$:
       \[
-          a \Re (z)+b \Im (z)=c(a,b,c\in \bbR) \Longleftrightarrow \overline{\frac{a+ib}{2}}z+\frac{a+ib}{2}\bar{z}-c=0.\tag{$ \dagger $}
+          a \Re (z)+b \Im (z)=c(a,b,c\in \mathbb{R}) \Longleftrightarrow \overline{\frac{a+ib}{2}}z+\frac{a+ib}{2}\bar{z}-c=0.\tag{$ \dagger $}
       \]
-      For a line in $ \hat{\bbC} $ we also consider $ \infty  $ is always on the line, this can be visualised by using stereographic projection. These lines are also circles through the north pole.
+      For a line in $ \hat{\mathbb{C}} $ we also consider $ \infty  $ is always on the line, this can be visualised by using stereographic projection. These lines are also circles through the north pole.
 
       Both $ (*) $ and $(\dagger)$ have the form in the next definition:
       \begin{definition}
-          A \textit{circle} in $ \hat{\bbC} $ is the set of points satisfying the equation
+          A \textit{circle} in $ \hat{\mathbb{C}} $ is the set of points satisfying the equation
           \[
               Az \bar{z}+ \overline{B}z+B \bar{z}+C=0,
           \]
@@ -1747,16 +1694,16 @@ skipped some takes irrelevant to contents\\
       \end{definition}
       
       \begin{exercise}
-          The set of points satisfying such an equation is always either a circle in $\bbC$ or a line with $ \infty $.
+          The set of points satisfying such an equation is always either a circle in $\mathbb{C}$ or a line with $ \infty $.
       \end{exercise}
 
-      We call all of these object circles in $ \hat{\bbC} $ by convention.
+      We call all of these object circles in $ \hat{\mathbb{C}} $ by convention.
       \begin{remark}
           We shouldn't think of $\infty$ as a "special" point.
       \end{remark}
 
       \begin{theorem}\label{thm:6.8}
-          \mobius maps send circles to circles in $ \hat{\bbC} $.
+          \mobius maps send circles to circles in $ \hat{\mathbb{C}} $.
       \end{theorem}
       \begin{proof}
           By proposition \ref{prop:decomp_mobius}, it suffices to check $ f_1=az,f_2=z+b,f_3=\frac{1}{z} $ have this property. Write $S(A,B,C)$ for the circle 
@@ -1774,16 +1721,16 @@ skipped some takes irrelevant to contents\\
           A circle is determined by 3 points on it, and a \mobius map is determined by where it sends 3 points. In practice, it is easy to find a \mobius map sending a given circle to another given circle.
       \end{remark}
       \begin{example}
-          Want a \mobius map $f$ that sends the unit circle to the circle $ \mathbb{R} \cup \{\infty\} $, the real line. Pick $ \{-1,i,1\} $ on the unit circle and pick $ \{-1,0,1\} $ on $ \bbR \cup \{\infty \} $. We want $-1,1$ fixed and $ i \mapsto 0 $. For example 
+          Want a \mobius map $f$ that sends the unit circle to the circle $ \mathbb{R} \cup \{\infty\} $, the real line. Pick $ \{-1,i,1\} $ on the unit circle and pick $ \{-1,0,1\} $ on $ \mathbb{R} \cup \{\infty \} $. We want $-1,1$ fixed and $ i \mapsto 0 $. For example 
           \[
               f(z)=\frac{z-i}{1-iz}.
           \]
           There are many choices.
       \end{example}
-    \subsection{Cross-Ratios}
-    Recall that given $z_1,z_2,z_3 \in \hat{\bbC}$ distinct, $ \exists !f\in \mcM, f(z_1)=0, f(z_2)=1,f(z_3)=\infty  $. 
+    \subsubsection{Cross-Ratios}
+    Recall that given $z_1,z_2,z_3 \in \hat{\mathbb{C}}$ distinct, $ \exists !f\in \mathcal{M}, f(z_1)=0, f(z_2)=1,f(z_3)=\infty  $. 
     \begin{definition}
-        If $z_1,z_2,z_3,z_4 \in \hat{\bbC}$ distinct, then the \textit{cross ratio} $ [z_1,z_2,z_3,z_4] $ is defined to be $f(z_4)$, where $f$ is the function above.
+        If $z_1,z_2,z_3,z_4 \in \hat{\mathbb{C}}$ distinct, then the \textit{cross ratio} $ [z_1,z_2,z_3,z_4] $ is defined to be $f(z_4)$, where $f$ is the function above.
 
         In particular, $ [0,1,\infty,w]=w $.
     \end{definition}
@@ -1804,7 +1751,7 @@ skipped some takes irrelevant to contents\\
         By inspection.
     \end{proof}
     \begin{theorem}\label{thm:6.11}
-        \mobius maps preserve cross-ratios. i.e., $ \forall g\in \mcM, \forall z_1,z_2,z_3,z_4\in \hat{\bbC} $ distinct,
+        \mobius maps preserve cross-ratios. i.e., $ \forall g\in \mathcal{M}, \forall z_1,z_2,z_3,z_4\in \hat{\mathbb{C}} $ distinct,
         \[
             [g(z_1),g(z_2),g(z_3),g(z_4)]=[z_1,z_2,z_3,z_4].
         \] 
@@ -1821,31 +1768,31 @@ skipped some takes irrelevant to contents\\
         as required.
     \end{proof}
     \begin{corollary}\label{col:6.12}
-        Four distinct points $z_1,z_2,z_3,z_4\in \hat{\bbC}$ lie on a circle if and only if $[z_1,z_2,z_3,z_4]\in \bbR$.
+        Four distinct points $z_1,z_2,z_3,z_4\in \hat{\mathbb{C}}$ lie on a circle if and only if $[z_1,z_2,z_3,z_4]\in \mathbb{R}$.
     \end{corollary}
     \begin{proof}
-        Let $f\in \mcM: (z_1,z_2,z_3)\mapsto (0,1,\infty )$, so that $ f(z_4)=[z_1,z_2,z_3,z_4] $. The circle $C$ through $z_1,z_2,z_3$ is sent to the circle through $0,1,\infty$, i.e., the real axis. Hence $z_4$ lies on the circle if and only if $f(z_4)$ is on the real line, i.e., $[z_1,z_2,z_3,z_4]\in \bbR \cup \{\infty\} \Leftrightarrow [z_1,z_2,z_3,z_4]\in \bbR$ since $f(z_3)=\infty$.
+        Let $f\in \mathcal{M}: (z_1,z_2,z_3)\mapsto (0,1,\infty )$, so that $ f(z_4)=[z_1,z_2,z_3,z_4] $. The circle $C$ through $z_1,z_2,z_3$ is sent to the circle through $0,1,\infty$, i.e., the real axis. Hence $z_4$ lies on the circle if and only if $f(z_4)$ is on the real line, i.e., $[z_1,z_2,z_3,z_4]\in \mathbb{R} \cup \{\infty\} \Leftrightarrow [z_1,z_2,z_3,z_4]\in \mathbb{R}$ since $f(z_3)=\infty$.
     \end{proof}
-    \section{Matrix Groups}
-    \subsection{Some Matrix Groups}
-    Denote $ \mathcal{M}_{n\times n}(\mathbb{F}) $ for the set of $ n \times n $ matrices over the field $\bbF$, typically $\bbR,\bbC$.
+    \subsection{Matrix Groups}
+    \subsubsection{Some Matrix Groups}
+    Denote $ \mathcal{M}_{n\times n}(\mathbb{F}) $ for the set of $ n \times n $ matrices over the field $\mathbb{F}$, typically $\mathbb{R},\mathbb{C}$.
 
     \begin{definition}
-        The \textit{general linear group} over $\bbF$ is defined by 
+        The \textit{general linear group} over $\mathbb{F}$ is defined by 
         \[
-            \GL_n(\bbF)=\left\{ A\in \mathcal{M}_{n\times n}(\mathbb{F}):A \text{ is invertible} \right\}.
+            \GL_n(\mathbb{F})=\left\{ A\in \mathcal{M}_{n\times n}(\mathbb{F}):A \text{ is invertible} \right\}.
         \]
     \end{definition}
     \begin{proposition}
         \begin{itemize}
-            \item $ \GL_n(\bbF) \to \bbF^*:=\bbF \setminus \{0\} $ is a surjective homomorphism.
+            \item $ \GL_n(\mathbb{F}) \to \mathbb{F}^*:=\mathbb{F} \setminus \{0\} $ is a surjective homomorphism.
         \end{itemize}
     \end{proposition}
     \begin{definition}
-        The \textit{special linear group} $ \SL_n(\bbF) \le \GL_n(\bbF) $ is defined by $ \SL_n(\bbF) = \ker \det $.
+        The \textit{special linear group} $ \SL_n(\mathbb{F}) \le \GL_n(\mathbb{F}) $ is defined by $ \SL_n(\mathbb{F}) = \ker \det $.
     \end{definition}
     \begin{definition}
-        The \textit{orthogonal group} $ \Or_n=\Or_n(\bbR)=\{A\in \GL_n(\bbR): A^\top A=I\} $.
+        The \textit{orthogonal group} $ \Or_n=\Or_n(\mathbb{R})=\{A\in \GL_n(\mathbb{R}): A^\top A=I\} $.
     \end{definition}
     \begin{proposition}\label{prop:7.4}
         $ \det : \Or_n\to \left\{ \pm 1 \right\} $ is a surjective homomorphism.
@@ -1864,16 +1811,16 @@ skipped some takes irrelevant to contents\\
                 0&\cdots&\cdots &1
             \end{pmatrix}.
         \]
-        $ \det  $ is indeed a homomorphism as in $ \GL_n(\bbR) $.
+        $ \det  $ is indeed a homomorphism as in $ \GL_n(\mathbb{R}) $.
     \end{proof}
     \begin{definition}
-        The \textit{special orthogonal group} $ \SO_n=\SO_n(\bbR) = \ker \det $. i.e.,
+        The \textit{special orthogonal group} $ \SO_n=\SO_n(\mathbb{R}) = \ker \det $. i.e.,
         \[
             \SO_n=\{A\in \Or_n:\det A=1\}.
         \]
     \end{definition}
     \begin{proposition}\label{prop:7.6}
-        The function $ \varphi:\SL_2(\bbC)\to \mcM $ defined by 
+        The function $ \varphi:\SL_2(\mathbb{C})\to \mathcal{M} $ defined by 
         \[
             \begin{pmatrix}
                 a&b\\
@@ -1900,7 +1847,7 @@ skipped some takes irrelevant to contents\\
             \varphi\begin{pmatrix}
                 a&b\\
                 c&d
-            \end{pmatrix}=\operatorname{id}\in \mcM \Longleftrightarrow \forall z\in \hat{\bbC},\frac{az+b}{cz+d}=z \Longleftrightarrow c=b=0,a=d \Longleftrightarrow \begin{pmatrix}
+            \end{pmatrix}=\operatorname{id}\in \mathcal{M} \Longleftrightarrow \forall z\in \hat{\mathbb{C}},\frac{az+b}{cz+d}=z \Longleftrightarrow c=b=0,a=d \Longleftrightarrow \begin{pmatrix}
                 a&b\\
                 c&d
             \end{pmatrix}=\begin{pmatrix}
@@ -1908,31 +1855,31 @@ skipped some takes irrelevant to contents\\
                 0&a
             \end{pmatrix}.
         \]
-        Since $ A\in \SL_2(\bbC) $, $a=\pm 1$ and thus $ \ker \varphi=\{\pm I\} $, as claimed. 
+        Since $ A\in \SL_2(\mathbb{C}) $, $a=\pm 1$ and thus $ \ker \varphi=\{\pm I\} $, as claimed. 
     \end{proof}
     \begin{corollary}\label{col:7.7}
-            $ \mcM \cong \SL_2(\bbC)/\{\pm I\} $.
+            $ \mathcal{M} \cong \SL_2(\mathbb{C})/\{\pm I\} $.
     \end{corollary}
     \begin{proof}
         By 1st isomorphism theorem.
     \end{proof}
     \begin{remark}
-        The quotient $\SL_2(\bbC)/\{\pm I\}$ is known as the \textit{projective special linear group}, denoted by $ \PSL_2(\bbC) $.
+        The quotient $\SL_2(\mathbb{C})/\{\pm I\}$ is known as the \textit{projective special linear group}, denoted by $ \PSL_2(\mathbb{C}) $.
     \end{remark}
-    \subsection{Actions of Matrix Groups}
+    \subsubsection{Actions of Matrix Groups}
     All of the groups defined above act on the corresponding vector space. i.e., 
     \[
-        \GL_n(\bbF),\SL_n(\bbF) \curvearrowright \bbF^n; \Or_n,\SO_n \curvearrowright \bbR^n
+        \GL_n(\mathbb{F}),\SL_n(\mathbb{F}) \curvearrowright \mathbb{F}^n; \Or_n,\SO_n \curvearrowright \mathbb{R}^n
     \]
-    via $ A(\bfx)=A\bfx $.
+    via $ A(\mathbf{x})=A\mathbf{x} $.
 
     \begin{example}
-        Let $ G\le \GL_2(\bbR)\curvearrowright \bbR^2 $. Consider its orbits.
+        Let $ G\le \GL_2(\mathbb{R})\curvearrowright \mathbb{R}^2 $. Consider its orbits.
 
-        $ \{\mathbf{0}\} $ is always a singleton orbit. If $ G=\GL_2(\bbR) $, then $G$ acts transitively on $ \mathbb{R}^{2}\setminus\{0\} $ since can complete any $ \bfv\neq \mathbf{0} $ to a basis and have an invertible change of basis matrix sending any basis to any other basis. Hence we have 2 orbits, $ \mathbb{R}^{2}\setminus\{0\} $ and $ \{0\} $.
+        $ \{\mathbf{0}\} $ is always a singleton orbit. If $ G=\GL_2(\mathbb{R}) $, then $G$ acts transitively on $ \mathbb{R}^{2}\setminus\{0\} $ since can complete any $ \mathbf{v}\neq \mathbf{0} $ to a basis and have an invertible change of basis matrix sending any basis to any other basis. Hence we have 2 orbits, $ \mathbb{R}^{2}\setminus\{0\} $ and $ \{0\} $.
     \end{example}
     \begin{example}
-        Let $ G = \left\{ \begin{pmatrix} a&b\\0&d \end{pmatrix}\in \GL_2(\bbR) \right\}=\left\{ \begin{pmatrix} a&b\\0&d \end{pmatrix}:a,d\neq 0 \right\} $. Note that 
+        Let $ G = \left\{ \begin{pmatrix} a&b\\0&d \end{pmatrix}\in \GL_2(\mathbb{R}) \right\}=\left\{ \begin{pmatrix} a&b\\0&d \end{pmatrix}:a,d\neq 0 \right\} $. Note that 
         \begin{align*}
             \orb\begin{pmatrix}
                 0\\0
@@ -1958,18 +1905,18 @@ skipped some takes irrelevant to contents\\
     \end{example}
     See example sheet 4 for some other examples.
 
-    \subsection{Change of Basis}
-    We now interpret the conjugation of $ \GL_n(\bbF) $ on $ \mathcal{M}_{n\times n}(\mathbb{F}) $ using change of basis.
+    \subsubsection{Change of Basis}
+    We now interpret the conjugation of $ \GL_n(\mathbb{F}) $ on $ \mathcal{M}_{n\times n}(\mathbb{F}) $ using change of basis.
 
-    Recall that $ \alpha: \bbF^n \to \bbF^n $ is a linear map, we can interpret $\alpha$ with $A$ wrt a basis $ \{\bfe_1,\dots,\bfe_n\} $ of $ \bbF^n $. If we have a different basis $ \{\bff_1,\dots,\bff_n\} $, $\alpha$ will be interpreted wrt this basis by $ P^{-1}AP $ where $P$ is the change of basis matrix. This is an example of conjugation.
+    Recall that $ \alpha: \mathbb{F}^n \to \mathbb{F}^n $ is a linear map, we can interpret $\alpha$ with $A$ wrt a basis $ \{\mathbf{e}_1,\dots,\mathbf{e}_n\} $ of $ \mathbb{F}^n $. If we have a different basis $ \{\mathbf{f}_1,\dots,\mathbf{f}_n\} $, $\alpha$ will be interpreted wrt this basis by $ P^{-1}AP $ where $P$ is the change of basis matrix. This is an example of conjugation.
     \begin{proposition}\label{prop:7.9}
-        $ \GL_n(\bbF) \curvearrowright \mathcal{M}_{n\times n}(\mathbb{F}) $ by conjugation. 
+        $ \GL_n(\mathbb{F}) \curvearrowright \mathcal{M}_{n\times n}(\mathbb{F}) $ by conjugation. 
         \[
             \orb(A)=\left\{ M\in \mathcal{M}_{n\times n}(\mathbb{F}): M \text{ represents the same linear map wrt different bases} \right\}.
         \]
     \end{proposition}
     \begin{proof}
-        It is easy to check that conjugation is indeed an action. To see the orbits, note that $ A,B $ are on the same orbit if and only if $ \exists P\in \GL_n(\bbF), A = PBP^{-1} \Leftrightarrow B=P^{-1}AP $.
+        It is easy to check that conjugation is indeed an action. To see the orbits, note that $ A,B $ are on the same orbit if and only if $ \exists P\in \GL_n(\mathbb{F}), A = PBP^{-1} \Leftrightarrow B=P^{-1}AP $.
     \end{proof}
     \begin{example}
         Recall from Vectors and Matrices that every matrix in $ \mathcal{M}_{2\times 2}(\mathbb{C}) $ is conjugate to a matrix in Jordan normal form(JNF):
@@ -1992,7 +1939,7 @@ skipped some takes irrelevant to contents\\
             0&\lambda_2
         \end{pmatrix}$, $ \lambda_1,\lambda_2 $ are uniquely determined by the matrix(eigenvalues), but their order may not be unique. i.e., we can exchange $ \lambda_1,\lambda_2 $. Other than this, no two matrices on this list are conjugate.
 
-        These give a complete discription of the orbits of $ \GL_2(\bbC)\curvearrowright \mathcal{M}_{2\times 2}(\mathbb{C}) $. It can be generalised to $n$.
+        These give a complete discription of the orbits of $ \GL_2(\mathbb{C})\curvearrowright \mathcal{M}_{2\times 2}(\mathbb{C}) $. It can be generalised to $n$.
 
         Note that $ P\in \stab(A)\Leftrightarrow PAP^{-1}=A \Leftrightarrow PA=AP $. By direct caluclations of matrices we see that 
         \begin{align*}
@@ -2002,28 +1949,28 @@ skipped some takes irrelevant to contents\\
             \end{pmatrix} &= \left\{ \begin{pmatrix}
                 a&0\\
                 0&d
-            \end{pmatrix}\in \GL_2(\bbC) \right\},\\
+            \end{pmatrix}\in \GL_2(\mathbb{C}) \right\},\\
             \stab \begin{pmatrix}
                 \lambda&0\\
                 0&\lambda
-            \end{pmatrix}&= \GL_2(\bbC),\\
+            \end{pmatrix}&= \GL_2(\mathbb{C}),\\
             \stab\begin{pmatrix}
                 \lambda&1\\
                 0&\lambda
             \end{pmatrix}&=\left\{ \begin{pmatrix}
                 a&b\\
                 0&a
-            \end{pmatrix}\in \GL_2(\bbC) \right\}.
+            \end{pmatrix}\in \GL_2(\mathbb{C}) \right\}.
         \end{align*}
     \end{example}
-    \subsection{Geometry of Orthogonal Groups}
-    Consider the columns $ \bfp_1,\dots,\bfp_n\to P\in \Or_n $, we have 
+    \subsubsection{Geometry of Orthogonal Groups}
+    Consider the columns $ \mathbf{p}_1,\dots,\mathbf{p}_n\to P\in \Or_n $, we have 
     \[
-        (P^\top P)_{ij} = \bfp_i^\top\bfp_j = \bfp_i \cdot \bfp_j,
+        (P^\top P)_{ij} = \mathbf{p}_i^\top\mathbf{p}_j = \mathbf{p}_i \cdot \mathbf{p}_j,
     \]
     so
     \[
-        P\in \Or_n \Longleftrightarrow \bfp_i \cdot \bfp_j = \delta_{ij}.
+        P\in \Or_n \Longleftrightarrow \mathbf{p}_i \cdot \mathbf{p}_j = \delta_{ij}.
     \]
     \begin{proposition}\label{prop:7.11}
         $ P\in \Or_n \Leftrightarrow  $ the columns of $P$ form an orthonormal basis.
@@ -2033,20 +1980,20 @@ skipped some takes irrelevant to contents\\
         Consider $ \Or_n \curvearrowright \mathcal{M}_{n\times n}(\mathbb{R}) $ by conjugation. Two matrices lie in the same orbit if and only if they represent the same linear map wrt two orthonormal bases.
     \end{proposition}
     \begin{proposition}\label{prop:7.13}
-        $ P\in \Or_n \Leftrightarrow \forall \bfx,\bfy\in \mathbb{R}^{2}, P\bfx \cdot P\bfy = \bfx \cdot \bfy $.
+        $ P\in \Or_n \Leftrightarrow \forall \mathbf{x},\mathbf{y}\in \mathbb{R}^{2}, P\mathbf{x} \cdot P\mathbf{y} = \mathbf{x} \cdot \mathbf{y} $.
     \end{proposition}
     \begin{proof}
         If $ P\in \Or_n $, then 
         \[
-            P\bfx \cdot P\bfy = (P\bfx)^\top(P\bfy) = \bfx^\top P^\top P \bfy = \bfx^\top \bfy = \bfx \cdot \bfy.
+            P\mathbf{x} \cdot P\mathbf{y} = (P\mathbf{x})^\top(P\mathbf{y}) = \mathbf{x}^\top P^\top P \mathbf{y} = \mathbf{x}^\top \mathbf{y} = \mathbf{x} \cdot \mathbf{y}.
         \]
-        If $P\bfx \cdot P\bfy = \bfx \cdot \bfy$, then taking the standard basis vectors $\bfe_i,\bfe_j$, $ P\bfe_i \cdot \P\bfe_j = \delta_{ij} $. Hence $ P\bfe_1 \dots, P\bfe_n $ are orthonormal, and hence $P\in \Or_n$.
+        If $P\mathbf{x} \cdot P\mathbf{y} = \mathbf{x} \cdot \mathbf{y}$, then taking the standard basis vectors $\mathbf{e}_i,\mathbf{e}_j$, $ P\mathbf{e}_i \cdot \P\mathbf{e}_j = \delta_{ij} $. Hence $ P\mathbf{e}_1 \dots, P\mathbf{e}_n $ are orthonormal, and hence $P\in \Or_n$.
     \end{proof}
     \begin{corollary}\label{col:7.13}
-        For $P\in \Or_n$ and $ \bfx,\bfy\in \mathbb{R}^{2} $, we have 
+        For $P\in \Or_n$ and $ \mathbf{x},\mathbf{y}\in \mathbb{R}^{2} $, we have 
         \begin{enumerate}
-            \item $ |P\bfx|=|\bfx| $, $P$ preserves length,
-            \item $ \langle P\bfx,P\bfy \rangle = \langle \bfx,\bfy \rangle $, $P$ preserves angles.
+            \item $ |P\mathbf{x}|=|\mathbf{x}| $, $P$ preserves length,
+            \item $ \langle P\mathbf{x},P\mathbf{y} \rangle = \langle \mathbf{x},\mathbf{y} \rangle $, $P$ preserves angles.
         \end{enumerate}
     \end{corollary}
     \begin{proof}
@@ -2057,46 +2004,46 @@ skipped some takes irrelevant to contents\\
     \end{proof}
     Let's investigate what the elements of $ \Or_n, \SO_n $ look like.
     \begin{definition}
-        If $ \bfa\in \mathbb{R}^{n}, |\bfa|=1 $, then the \textit{reflection} in the plane normal to $\bfa$ is the linear map 
+        If $ \mathbf{a}\in \mathbb{R}^{n}, |\mathbf{a}|=1 $, then the \textit{reflection} in the plane normal to $\mathbf{a}$ is the linear map 
         \[
-            R_{\bfa}:\mathbb{R}^{n}\to \mathbb{R}^{n},\quad \bfx \mapsto \bfx-2(\bfx \cdot \bfa)\bfa.
+            R_{\mathbf{a}}:\mathbb{R}^{n}\to \mathbb{R}^{n},\quad \mathbf{x} \mapsto \mathbf{x}-2(\mathbf{x} \cdot \mathbf{a})\mathbf{a}.
         \]
     \end{definition}
     \begin{proposition}\label{prop:7.15}
-        $ R_\bfa\in \Or_n $.
+        $ R_\mathbf{a}\in \Or_n $.
     \end{proposition}
     \begin{proof}
-        Let $ \bfx,\bfy\in \mathbb{R}^{n} $. Note that 
+        Let $ \mathbf{x},\mathbf{y}\in \mathbb{R}^{n} $. Note that 
         \begin{align*}
-            R_\bfa(\bfx)\cdot R_\bfa(\bfy) &= (\bfx-2(\bfx \cdot \bfa)\bfa)(\bfy-2(\bfy \cdot \bfa)\bfa)\\
-            &= \bfx \cdot \bfy - 4(\bfx \cdot \bfa)(\bfy \cdot \bfa)+4(\bfx \cdot \bfa)(\bfy \cdot \bfa)\\
-            &=\bfx \cdot \bfy,
+            R_\mathbf{a}(\mathbf{x})\cdot R_\mathbf{a}(\mathbf{y}) &= (\mathbf{x}-2(\mathbf{x} \cdot \mathbf{a})\mathbf{a})(\mathbf{y}-2(\mathbf{y} \cdot \mathbf{a})\mathbf{a})\\
+            &= \mathbf{x} \cdot \mathbf{y} - 4(\mathbf{x} \cdot \mathbf{a})(\mathbf{y} \cdot \mathbf{a})+4(\mathbf{x} \cdot \mathbf{a})(\mathbf{y} \cdot \mathbf{a})\\
+            &=\mathbf{x} \cdot \mathbf{y},
         \end{align*}
         as required.
     \end{proof}
     Conjugate of reflections are also reflections.
     \begin{lemma}\label{lma:7.16}
-        Given $ P\in \Or_n, PR_\bfa P^{-1} = R_{P\bfa} $.
+        Given $ P\in \Or_n, PR_\mathbf{a} P^{-1} = R_{P\mathbf{a}} $.
     \end{lemma}
     \begin{proof}
         We have
         \begin{align*}
-            PR_\bfa P^{-1}(\bfx) &= P(P^{-1}(\bfx)-2(P^{-1}(\bfx) \cdot \bfa)\bfa)\\
-            &=\bfx-2(P^{-1}(\bfx) \cdot \bfa)(P\bfa).
+            PR_\mathbf{a} P^{-1}(\mathbf{x}) &= P(P^{-1}(\mathbf{x})-2(P^{-1}(\mathbf{x}) \cdot \mathbf{a})\mathbf{a})\\
+            &=\mathbf{x}-2(P^{-1}(\mathbf{x}) \cdot \mathbf{a})(P\mathbf{a}).
         \end{align*}
         But $ P^{-1}=P^\top $, so 
         \[
-            P^{-1}(\bfx) \cdot \bfa = P^\top \bfx \cdot \bfa = \bfx^\top P \bfa = \bfx \cdot P\bfa,
+            P^{-1}(\mathbf{x}) \cdot \mathbf{a} = P^\top \mathbf{x} \cdot \mathbf{a} = \mathbf{x}^\top P \mathbf{a} = \mathbf{x} \cdot P\mathbf{a},
         \]
         so that 
         \[
-            PR_\bfa P^{-1}(\bfx) = \bfx-2(\bfx \cdot P\bfa)(P\bfa).
+            PR_\mathbf{a} P^{-1}(\mathbf{x}) = \mathbf{x}-2(\mathbf{x} \cdot P\mathbf{a})(P\mathbf{a}).
         \]
-        This is the reflection wrt plane with normal vector $ P\bfa $, and hence $ PR_\bfa P^{-1} = R_{P\bfa} $.
+        This is the reflection wrt plane with normal vector $ P\mathbf{a} $, and hence $ PR_\mathbf{a} P^{-1} = R_{P\mathbf{a}} $.
     \end{proof}
-    Can a reflection lie in $ \SO_n $? We need to know the determinant of a reflection $ R_\bfa $. Recall in vectors and matrices that the determinant is the product of the eigenvalues. We can spot some eigenvectors: $ R_\bfa(\bfa)=-\bfa \Rightarrow \lambda_\bfa=-1 $. Let $ \Pi $ be the plane of reflection, then for any $ \bfx\in \Pi $ we have $ R_\bfa(\bfx)=\bfx \Rightarrow \lambda_{\bfx}=1$. Since $ \lambda_\bfx=1 $ has geometric and algebraic multiplicity $n-1$, and $ \lambda_\bfa $ has multiplicities $1$, so these are all eigenvalues and $ \det R_\bfa=-1 $, and thus
+    Can a reflection lie in $ \SO_n $? We need to know the determinant of a reflection $ R_\mathbf{a} $. Recall in vectors and matrices that the determinant is the product of the eigenvalues. We can spot some eigenvectors: $ R_\mathbf{a}(\mathbf{a})=-\mathbf{a} \Rightarrow \lambda_\mathbf{a}=-1 $. Let $ \Pi $ be the plane of reflection, then for any $ \mathbf{x}\in \Pi $ we have $ R_\mathbf{a}(\mathbf{x})=\mathbf{x} \Rightarrow \lambda_{\mathbf{x}}=1$. Since $ \lambda_\mathbf{x}=1 $ has geometric and algebraic multiplicity $n-1$, and $ \lambda_\mathbf{a} $ has multiplicities $1$, so these are all eigenvalues and $ \det R_\mathbf{a}=-1 $, and thus
     \begin{proposition}\label{prop:7.17}
-        $R_\bfa\notin \SO_n$.
+        $R_\mathbf{a}\notin \SO_n$.
     \end{proposition}
     \begin{theorem}\label{thm:7.18}
         Every element of $\SO_2$ has the form 
@@ -2174,7 +2121,7 @@ skipped some takes irrelevant to contents\\
     \end{proof}
     Now study 3D case.
     \begin{theorem}\label{thm:7.21}
-        If $ A\in \SO_3 $ then $ \exists \bfv\in \mathbb{R}^{3}, |\bfv|=1 \land  A\bfv=\bfv $.
+        If $ A\in \SO_3 $ then $ \exists \mathbf{v}\in \mathbb{R}^{3}, |\mathbf{v}|=1 \land  A\mathbf{v}=\mathbf{v} $.
     \end{theorem}
     \begin{proof}
         It suffices to show $ \det (A-I)=0 $. Note that 
@@ -2188,7 +2135,7 @@ skipped some takes irrelevant to contents\\
         Thus $ \det (A-I)=0 $.
     \end{proof}
     \begin{corollary}\label{col:7.22}
-        Every $ A\in \SO_3 $ is conjugate(in $ \SO_3 $) to a matrix of the form \marginnote{Geometrically, it says that every element in $ \SO_3 $ is a rotation wrt some axes.}
+        Every $ A\in \SO_3 $ is conjugate(in $ \SO_3 $) to a matrix of the form \footnote{Geometrically, it says that every element in $ \SO_3 $ is a rotation wrt some axes.}
         \[
             \begin{pmatrix}
                 1&0&0\\
@@ -2198,11 +2145,11 @@ skipped some takes irrelevant to contents\\
         \]
     \end{corollary}
     \begin{proof}
-        By theorem \ref{thm:7.21}, $ \exists \bfv_1 $ as an eigenvector with eigenvalue 1. Extend $\bfv_1$ to an orthonormal basis $ \{\bfv_1,\bfv_2,\bfv_3\} $ of $ \mathbb{R}^{3} $. Then for $i=2,3$,
+        By theorem \ref{thm:7.21}, $ \exists \mathbf{v}_1 $ as an eigenvector with eigenvalue 1. Extend $\mathbf{v}_1$ to an orthonormal basis $ \{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\} $ of $ \mathbb{R}^{3} $. Then for $i=2,3$,
         \[
-            A\bfv_i \cdot \bfv_1 = A\bfv_i \cdot A\bfv_1 = \bfv_i \cdot \bfv_1 = 0.
+            A\mathbf{v}_i \cdot \mathbf{v}_1 = A\mathbf{v}_i \cdot A\mathbf{v}_1 = \mathbf{v}_i \cdot \mathbf{v}_1 = 0.
         \]
-        Hence $ A $ maps $ \spn\{\bfv_2,\bfv_3\} $ and we can think of $A|_{\spn\{\bfv_2,\bfv_3\}}$, $A$ restricted to $\spn\{\bfv_2,\bfv_3\}$. Note that $\det A|_{\spn\{\bfv_2,\bfv_3\}}=1$ since wrt $\{\bfv_1,\bfv_2,\bfv_3\}$ we have 
+        Hence $ A $ maps $ \spn\{\mathbf{v}_2,\mathbf{v}_3\} $ and we can think of $A|_{\spn\{\mathbf{v}_2,\mathbf{v}_3\}}$, $A$ restricted to $\spn\{\mathbf{v}_2,\mathbf{v}_3\}$. Note that $\det A|_{\spn\{\mathbf{v}_2,\mathbf{v}_3\}}=1$ since wrt $\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}$ we have 
         \[
             A=\begin{pmatrix}
                 1&0&0\\
@@ -2210,7 +2157,7 @@ skipped some takes irrelevant to contents\\
                 0&c& d
             \end{pmatrix}.
         \]
-        Hence $A|_{\spn\{\bfv_2,\bfv_3\}}\in \SO_2$ and its matrix is of the form 
+        Hence $A|_{\spn\{\mathbf{v}_2,\mathbf{v}_3\}}\in \SO_2$ and its matrix is of the form 
         \[
             \begin{pmatrix}
                 \cos \theta& -\sin \theta\\
@@ -2219,7 +2166,7 @@ skipped some takes irrelevant to contents\\
         \]
         as required.
 
-        The change of basis matrix $P\in \Or_3$ since $\{\bfv_1,\bfv_2,\bfv_3\}$ is orthonormal. If $P\notin \SO_3$ we can take the basis $ \{-\bfv_1,\bfv_2,\bfv_3\} $.
+        The change of basis matrix $P\in \Or_3$ since $\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}$ is orthonormal. If $P\notin \SO_3$ we can take the basis $ \{-\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\} $.
     \end{proof}
     \begin{corollary}\label{col:7.23}
         Every element of $\Or_3$ is the composition of at most 3 reflections.
@@ -2253,14 +2200,14 @@ skipped some takes irrelevant to contents\\
         $ \det H=1 $, so $H$ is a product of $\le 2$ reflections, and $A$ is a product of $\le 3$ reflections.
 
     \end{proof}
-    \section{Symmetries of the Cube Revisited}
-    We can think of symmetry groups of the platonic solids as subgroups of $\Or_3$. By Q11 on example sheet 4, we have that $ \Or_3 \cong \SO_3 \times C_2 $, where $C_2$ is generated by the map $ \bfv \mapsto -\bfv $. So if $ \bfv \mapsto -\bfv $ is a symmetry of a platonic solid, the its group of symmetries will also split as the direct product $ G^+ \times C_2 $.(exercise)
+    \subsection{Symmetries of the Cube Revisited}
+    We can think of symmetry groups of the platonic solids as subgroups of $\Or_3$. By Q11 on example sheet 4, we have that $ \Or_3 \cong \SO_3 \times C_2 $, where $C_2$ is generated by the map $ \mathbf{v} \mapsto -\mathbf{v} $. So if $ \mathbf{v} \mapsto -\mathbf{v} $ is a symmetry of a platonic solid, the its group of symmetries will also split as the direct product $ G^+ \times C_2 $.(exercise)
     
     So we have that the symmetry group of the cube is $ G^+\times C_2 \cong S_4 \times C_2 $.
-    \section{Groups of Order 8}
+    \subsection{Groups of Order 8}
     We have seen all possibilities for groups of order $\le 7$. For order 8, we need to first define a new group.
     \begin{definition}
-        Consider the subset of matrices in $ \GL_2(\bbC) $ given by
+        Consider the subset of matrices in $ \GL_2(\mathbb{C}) $ given by
         \[
             \mathbf{1}:=\begin{pmatrix}
                 1&0\\
@@ -2306,7 +2253,7 @@ skipped some takes irrelevant to contents\\
         Firstly, the above groups are not isomorphic. Note that $  C_8, C_4 \times C_2,C_2 \times C_2 \times C_2$ are abelian while $D_8, Q_8$ are not. By considering the maximum order in each set $ C_8, C_4 \times C_2,C_2 \times C_2 \times C_2 $, we see that they are not isomorphic. $D_8, Q_8$ are distinguished by \# of elements of order 2.
 
         Now let $ |G|=8 $ and $g\in G$, then $ \ord(G)|8 $ by Lagrange, so $ \ord(g)=1,2,4,8. $
-        \begin{enumerate}[align=hang]
+        \begin{enumerate}
             \item[$ \ord=8 ,$] Then $ G=\langle g \rangle \cong C_8 $.
             \item[$ \ord=2 ,$] Then by lemma \ref{lma:8.2} $ G \cong C_2\times C_2 \times C_2 $.
             \item[$ \ord=4, $] let $\ord h=4$ then $ \langle h \rangle \cong C_4, |G:\langle h \rangle |=2 \Rightarrow \langle h \rangle \ltrigeq G $. By Q4 of sheet 3, $ \forall g\in G, g^2\in \langle h \rangle $. If $ g^2=h,h^3 $, then $ g^4=h^2\neq e $, so $ \ord g=8,\# $. Hence $g^2=e,h^2$. If $g^2=e$ consider $ ghg^{-1} $. This must lie in $ \langle h \rangle $ and must have order 4 since $\ord h=4$. So $ ghg^{-1}=h,h^3 $. $ ghg^{-1}=h \Rightarrow hg=gh \Rightarrow G \cong \langle h \rangle \times \langle g \rangle $. $ ghg^{-1}=h^3=h^{-1} \Rightarrow h=r,g=s, G \cong D_8 $. If $g^2=h^2$, we have $ ghg^{-1}=h,h^3 $ for the same reason above. $ ghg^{-1}=h \Rightarrow (gh)^2=ghgh=g^2h^2=e \Rightarrow \ord gh=2 \Rightarrow G \cong \langle h \rangle \times \langle gh \rangle \cong C_4 \times C_2 $. If $ ghg^{-1}=h^3  $, define $ \varphi: G\to Q_8 $ by $ e \mapsto \mathbf{1}, h \mapsto \mathbf{i},h^2 \mapsto =-\mathbf{1}, h^3 \mapsto - \mathbf{i}, g \mapsto \mathbf{j},gh \mapsto - \mathbf{k}, gh^2 \mapsto -\mathbf{j}, gh^3 \mapsto \mathbf{k} $. Clearly $\varphi$ is bijective and is an isomorphism.
@@ -2315,14 +2262,14 @@ skipped some takes irrelevant to contents\\
     \begin{remark}
         Every subgroup of an abelian group is normal, but the converse is not true, since every subgroup is normal does not mean that the group is abelian. $ Q_8 $ is such a counterexample.
     \end{remark}
-    \part{Introduction to Geometric Group Theory}
+    \section{Introduction to Geometric Group Theory}
     Geometric group theory is a branch that aims to exploit connections between properties of groups and geometric properties of spaces on which they act. Groups can even be turned into geometric objects themselves.
-    \section{Free groups}
+    \subsection{Free groups}
     Let $S$ be a set called an \textit{alphabet}, and let $ S^{-1} $ be the set of "formal inverses" of elements of $S$: 
     \[
         S^{-1}=\{s^{-1}:s\in S\}.
     \]
-    A \textit{word} in the alphabet $S$ is a finite sequence of elements of $S\cup S^{-1}$, e.g., $s_1s_2\dots$.\marginnote{We also consider the "empty" word, a word with no letter. This is considered to be the identity.}
+    A \textit{word} in the alphabet $S$ is a finite sequence of elements of $S\cup S^{-1}$, e.g., $s_1s_2\dots$.\footnote{We also consider the "empty" word, a word with no letter. This is considered to be the identity.}
 
     A word is said to be \textit{reduced} if it does not contain occurences of subwords of the form $ss^{-1}$ or $s^{-1}s$
 
@@ -2339,7 +2286,7 @@ skipped some takes irrelevant to contents\\
             \item If $ |S|=|T| $, then $ F(S)\cong F(T) $. We write $ F_n $ for $F(S)$ when $|S|=n$.
         \end{itemize}
     \end{proposition}
-    \section{Group Presentations Revisited}
+    \subsection{Group Presentations Revisited}
     \begin{definition}
         Let $X$ be a subset of a group $G$. The \textit{normal closure} $ \llangle X \rrangle $ of $X$ in $G$, or denoted by $ X^G $, is the smallest normal subgroup of $G$ containing $X$:
         \[
@@ -2370,7 +2317,7 @@ skipped some takes irrelevant to contents\\
             \item There are uncountably many isomorphism classes of finitely generated groups(i.e. $S$ finite), but countably many  isomorphism classes of finitely presented groups.
         \end{itemize}
     \end{remark}
-    \section{Cayley Graphs}
+    \subsection{Cayley Graphs}
     We will focus on finitely generated .
     \begin{definition}
         Let $G$ be finitely generated, and let $ S \subseteq G $. The \textit{Cayley graph} of $G$ wrt $S$, denoted by $ \operatorname{Cay}(G,S)  $, is given by:
@@ -2381,7 +2328,7 @@ skipped some takes irrelevant to contents\\
     \end{definition}
     \begin{example}
         \begin{itemize}
-            \item $ \mathbb{Z}, S= \langle 1 \rangle $.\marginnote{Draw it yourself. Lazy to type.}
+            \item $ \mathbb{Z}, S= \langle 1 \rangle $.\footnote{Draw it yourself. Lazy to type.}
             \item $ \mathbb{Z}^2,S=\{(1,0),(0,1)\} $, $ S=\{(1,0)\} $.
         \end{itemize}
     \end{example}

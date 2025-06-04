@@ -8,72 +8,72 @@
     We want to generalize this to higher dimensions.
 \end{definition}
 \begin{definition}
-    A random variable $\bfX=(X_1,\ldots,X_n)$ is \textbf{Gaussian} if for any $\bfu\in\mathbb R^n$, $\bfu^\top \bfX$ is Gaussian in $\mathbb R$.
-    We call $\bfX$ a \textbf{Gaussian vector}.
+    A random variable $\mathbf{X}=(X_1,\ldots,X_n)$ is \textbf{Gaussian} if for any $\mathbf{u}\in\mathbb R^n$, $\mathbf{u}^\top \mathbf{X}$ is Gaussian in $\mathbb R$.
+    We call $\mathbf{X}$ a \textbf{Gaussian vector}.
 \end{definition}
 
 \begin{example}
-    Suppose that $ \bfX $ is Gaussian and we have an $m\times n$ matrix $A$ and $\bfb\in\mathbb R^m$, then $A\bfX+\bfb$ is also Gaussian. Indeed, let $ \bfu\in \mathbb{R}^{m} $, then 
+    Suppose that $ \mathbf{X} $ is Gaussian and we have an $m\times n$ matrix $A$ and $\mathbf{b}\in\mathbb R^m$, then $A\mathbf{X}+\mathbf{b}$ is also Gaussian. Indeed, let $ \mathbf{u}\in \mathbb{R}^{m} $, then 
     \[
-        \bfu^\top (A\bfX+\bfb) = (\bfu^\top A)\bfX+\bfb.
+        \mathbf{u}^\top (A\mathbf{X}+\mathbf{b}) = (\mathbf{u}^\top A)\mathbf{X}+\mathbf{b}.
     \]
-    Set $ \bfv = A^\top \bfu $, then 
+    Set $ \mathbf{v} = A^\top \mathbf{u} $, then 
     \[
-        \bfu^\top (A\bfX+\bfb) = \bfv^\top \bfX + \bfu^\top \bfb.
+        \mathbf{u}^\top (A\mathbf{X}+\mathbf{b}) = \mathbf{v}^\top \mathbf{X} + \mathbf{u}^\top \mathbf{b}.
     \]
-    Since $\bfX$ is Gaussian, $ \bfv^\top \bfX $ is Gaussian and $ \bfv^\top \bfX + \bfu^\top \bfb $ is Gaussian.
+    Since $\mathbf{X}$ is Gaussian, $ \mathbf{v}^\top \mathbf{X} $ is Gaussian and $ \mathbf{v}^\top \mathbf{X} + \mathbf{u}^\top \mathbf{b} $ is Gaussian.
 \end{example}
 \subsection{Mean, variance and covariance}
 
 \begin{definition}
-    The \textbf{mean} or \textbf{expectation} $ \boldsymbol{\mu} $ of $\bfX$ is defined by 
+    The \textbf{mean} or \textbf{expectation} $ \boldsymbol{\mu} $ of $\mathbf{X}$ is defined by 
     \[
-        \boldsymbol{\mu} = \bbE[\bfX] = \begin{pmatrix}
-            \bbE[X_1] \\ \vdots \\ \bbE[X_n]
-        \end{pmatrix},\quad \mu_i = \bbE[X_i].
+        \boldsymbol{\mu} = \mathbb{E}[\mathbf{X}] = \begin{pmatrix}
+            \mathbb{E}[X_1] \\ \vdots \\ \mathbb{E}[X_n]
+        \end{pmatrix},\quad \mu_i = \mathbb{E}[X_i].
     \]
-    The \textbf{variance} $ V\in \mcM_{n \times n}(\bbR) $ of $ \bfX $ is defined by 
+    The \textbf{variance} $ V\in \mathcal{M}_{n \times n}(\mathbb{R}) $ of $ \mathbf{X} $ is defined by 
     \begin{align*}
-        V &= \var(\bfX)= \bbE\left[ (\bfX-\boldsymbol{\mu})(\bfX-\boldsymbol{\mu})^\top \right] \\ 
-        &= (\bbE[(X_i-\mu_i)(X_j-\mu_j)])_{ij} = (\cov(X_i,X_j))_{i,j}.
+        V &= \var(\mathbf{X})= \mathbb{E}\left[ (\mathbf{X}-\boldsymbol{\mu})(\mathbf{X}-\boldsymbol{\mu})^\top \right] \\ 
+        &= (\mathbb{E}[(X_i-\mu_i)(X_j-\mu_j)])_{ij} = (\cov(X_i,X_j))_{i,j}.
     \end{align*}
 \end{definition}
-We see that $V$ is a symmetric matrix since $ \cov(X_i,X_j)=\cov(X_j,X_i) $. Also $ \forall \bfu\in \mathbb{R}^{n} $,
+We see that $V$ is a symmetric matrix since $ \cov(X_i,X_j)=\cov(X_j,X_i) $. Also $ \forall \mathbf{u}\in \mathbb{R}^{n} $,
 \[
-    \bbE[\bfu^\top\bfX] = \bfu^\top \boldsymbol{\mu},\quad \var(\bfu^\top \bfX) = \bfu^\top V \bfu, \Longrightarrow \boxed{\bfu^\top \bfX\sim\mathcal N(\bfu^\top \boldsymbol{\mu},\bfu^\top V\bfu)}
+    \mathbb{E}[\mathbf{u}^\top\mathbf{X}] = \mathbf{u}^\top \boldsymbol{\mu},\quad \var(\mathbf{u}^\top \mathbf{X}) = \mathbf{u}^\top V \mathbf{u}, \Longrightarrow \boxed{\mathbf{u}^\top \mathbf{X}\sim\mathcal N(\mathbf{u}^\top \boldsymbol{\mu},\mathbf{u}^\top V\mathbf{u})}
 \]
 \begin{proposition}
-    $V$ is a non-negative definite matrix. That is $ \forall \bfu\in \mathbb{R}^{n}, \bfu^\top V\bfu\ge 0 $.
+    $V$ is a non-negative definite matrix. That is $ \forall \mathbf{u}\in \mathbb{R}^{n}, \mathbf{u}^\top V\mathbf{u}\ge 0 $.
 \end{proposition}
 \begin{proof}
-    Let $\bfu\in \mathbb{R}^{n}$. Then $ \var(\bfu^\top \bfX)=\bfu^\top V\bfu\ge 0 $.
+    Let $\mathbf{u}\in \mathbb{R}^{n}$. Then $ \var(\mathbf{u}^\top \mathbf{X})=\mathbf{u}^\top V\mathbf{u}\ge 0 $.
 \end{proof}
 \subsection{Moment generating functions}
 \begin{definition}
-    Take any $ \boldsymbol{\lambda}\in \mathbb{R}^{n} $. Define the MGF of $\bfX$ as
+    Take any $ \boldsymbol{\lambda}\in \mathbb{R}^{n} $. Define the MGF of $\mathbf{X}$ as
     \[
-        m(\boldsymbol{\lambda}) = \bbE[ e^{\boldsymbol{\lambda}^\top \bfX} ].
+        m(\boldsymbol{\lambda}) = \mathbb{E}[ e^{\boldsymbol{\lambda}^\top \mathbf{X}} ].
     \]
 \end{definition}
 
-Since $ \boldsymbol{\lambda}^\top \bfX \sim \mcN(\boldsymbol{\lambda}^\top \boldsymbol{\mu}, \boldsymbol{\lambda}^\top V \boldsymbol{\lambda}) $,
+Since $ \boldsymbol{\lambda}^\top \mathbf{X} \sim \mathcal{N}(\boldsymbol{\lambda}^\top \boldsymbol{\mu}, \boldsymbol{\lambda}^\top V \boldsymbol{\lambda}) $,
 \[
-    m(\boldsymbol{\lambda}) = \bbE[ e^{\boldsymbol{\lambda}^\top \bfX} ]= e^{\boldsymbol{\lambda}^\top \boldsymbol{\mu}+ \boldsymbol{\lambda}^\top V \boldsymbol{\lambda}/2}.
+    m(\boldsymbol{\lambda}) = \mathbb{E}[ e^{\boldsymbol{\lambda}^\top \mathbf{X}} ]= e^{\boldsymbol{\lambda}^\top \boldsymbol{\mu}+ \boldsymbol{\lambda}^\top V \boldsymbol{\lambda}/2}.
 \]
-So by uniqueness of MGFs, we see that the distribution of a Gaussian vector is uniquely characterized by its mean $\boldsymbol{\mu}$ and variance $V$, so we write $\bfX\sim\mathcal N(\boldsymbol{\mu},V)$.
+So by uniqueness of MGFs, we see that the distribution of a Gaussian vector is uniquely characterized by its mean $\boldsymbol{\mu}$ and variance $V$, so we write $\mathbf{X}\sim\mathcal N(\boldsymbol{\mu},V)$.
 
-\paragraph{Standard Gaussian distribution.} Let $ Z_1,\dots,Z_n \sim \mcN(0,1) $ be iid rvs. Set $ \bfZ = (Z_1,\dots,Z_n)^\top  $. Claim that $\bfZ$ is Gaussian. Indeed, given $ \bfu\in \mathbb{R}^{n} $, we want to show that
+\paragraph{Standard Gaussian distribution.} Let $ Z_1,\dots,Z_n \sim \mathcal{N}(0,1) $ be iid rvs. Set $ \mathbf{Z} = (Z_1,\dots,Z_n)^\top  $. Claim that $\mathbf{Z}$ is Gaussian. Indeed, given $ \mathbf{u}\in \mathbb{R}^{n} $, we want to show that
 \begin{align*}
-    \bfu^\top\bfZ &= \sum_{i=1}^{n} u_i Z_i
+    \mathbf{u}^\top\mathbf{Z} &= \sum_{i=1}^{n} u_i Z_i
 \end{align*}
 is normal. We do this by considering expectation. Let $ \lambda\in \mathbb{R} $, 
 \begin{align*}
-    \bbE[ e^{\lambda \sum_{i=1}^{n}u_iZ_i}] &= \bbE \left[ \prod_{i=1}^{n} e^{\lambda u_i Z_i} \right] = \prod_{i=1}^{n}\bbE[e^{\lambda u_i Z_i}]\\ 
-    &= \prod_{i=1}^{n} e^{(\lambda u_i)^2/2} = e^{\lambda^2|\bfu|^2/2},
+    \mathbb{E}[ e^{\lambda \sum_{i=1}^{n}u_iZ_i}] &= \mathbb{E} \left[ \prod_{i=1}^{n} e^{\lambda u_i Z_i} \right] = \prod_{i=1}^{n}\mathbb{E}[e^{\lambda u_i Z_i}]\\ 
+    &= \prod_{i=1}^{n} e^{(\lambda u_i)^2/2} = e^{\lambda^2|\mathbf{u}|^2/2},
 \end{align*}
-so $ \bfu^\top \bfZ \sim \mcN(0,|\bfu|^2) $. Note that $ \bbE[\bfZ]=\mathbf{0},\ \var(\bfZ)= I $, where $I$ is the $n\times n$ identity matrix. So $ \bfZ = \mcN(\mathbf{0}, I) $.
+so $ \mathbf{u}^\top \mathbf{Z} \sim \mathcal{N}(0,|\mathbf{u}|^2) $. Note that $ \mathbb{E}[\mathbf{Z}]=\mathbf{0},\ \var(\mathbf{Z})= I $, where $I$ is the $n\times n$ identity matrix. So $ \mathbf{Z} = \mathcal{N}(\mathbf{0}, I) $.
 
-\paragraph{Construction from the standard.} Let $ \boldsymbol{\mu}\in \mathbb{R}^{n} $ and $ V $ a non-negative definite matrix. We want to construct a Gaussian vector with mean $ \boldsymbol{\mu} $ and variance $ V $ using the standard vector $ \bfZ $. When $n=1$ it is just the privious case $ X=\mu+\sigma Z \sim \mcN(\mu,\sigma^2) $. If $ n\ge 2 $, note that since $V$ is symmetric and non-negative definite, we can diagonalise $V$ as 
+\paragraph{Construction from the standard.} Let $ \boldsymbol{\mu}\in \mathbb{R}^{n} $ and $ V $ a non-negative definite matrix. We want to construct a Gaussian vector with mean $ \boldsymbol{\mu} $ and variance $ V $ using the standard vector $ \mathbf{Z} $. When $n=1$ it is just the privious case $ X=\mu+\sigma Z \sim \mathcal{N}(\mu,\sigma^2) $. If $ n\ge 2 $, note that since $V$ is symmetric and non-negative definite, we can diagonalise $V$ as 
 \[
     V = U^\top D U,\quad U^\top =U^{-1},\quad D= \begin{pmatrix}
         \lambda_1 &  & 0 \\
@@ -81,7 +81,7 @@ so $ \bfu^\top \bfZ \sim \mcN(0,|\bfu|^2) $. Note that $ \bbE[\bfZ]=\mathbf{0},\
         0 &  & \lambda_n \\
     \end{pmatrix}
 \]
-where $ \lambda_i\ge 0 $. We defined the square root of $V$ to be $ \sigma\in \mcM_{n \times n}(\bbR) $ as 
+where $ \lambda_i\ge 0 $. We defined the square root of $V$ to be $ \sigma\in \mathcal{M}_{n \times n}(\mathbb{R}) $ as 
 \[
     \sigma = U^\top \sqrt{D} U,\quad \sqrt{D}= \begin{pmatrix}
         \sqrt{\lambda_1} &  & 0 \\
@@ -93,24 +93,24 @@ Indeed we have $ \sigma \sigma = V $.
 
 Now we can construct our r.v. as 
 \[
-    \bfX = \boldsymbol{\mu}+ \sigma \bfZ.
+    \mathbf{X} = \boldsymbol{\mu}+ \sigma \mathbf{Z}.
 \]
 \begin{claim}
-    $ \bfX \sim \mcN(\boldsymbol{\mu},V) $.
+    $ \mathbf{X} \sim \mathcal{N}(\boldsymbol{\mu},V) $.
 \end{claim}
 \begin{proof}
-    By example 5.1, $\bfX$ is Gaussian. Also $ \bbE[\bfX]=\boldsymbol{\mu} $ and
+    By example 5.1, $\mathbf{X}$ is Gaussian. Also $ \mathbb{E}[\mathbf{X}]=\boldsymbol{\mu} $ and
     \begin{align*}
-        \var(\bfX)&= \bbE[(\bfX-\boldsymbol{\mu})(\bfX-\boldsymbol{\mu})^\top]=\bbE[(\sigma\bfZ)(\sigma\bfZ)^\top ]\\ 
-        &= \bbE[\sigma\bfZ \bfZ^\top \sigma^\top ] = \sigma \bbE[\bfZ \bfZ^\top]\sigma = \sigma I \sigma = V.\qedhere
+        \var(\mathbf{X})&= \mathbb{E}[(\mathbf{X}-\boldsymbol{\mu})(\mathbf{X}-\boldsymbol{\mu})^\top]=\mathbb{E}[(\sigma\mathbf{Z})(\sigma\mathbf{Z})^\top ]\\ 
+        &= \mathbb{E}[\sigma\mathbf{Z} \mathbf{Z}^\top \sigma^\top ] = \sigma \mathbb{E}[\mathbf{Z} \mathbf{Z}^\top]\sigma = \sigma I \sigma = V.\qedhere
     \end{align*}
 \end{proof}
 
-\paragraph{Density of $ \bfX \sim \mcN(\boldsymbol{\mu},V) $.} Assume $V$ is positive definite, then $\det V=\prod_i\lambda_i>0$. Also since $\bfX=\boldsymbol{\mu}+\sigma \bfZ$, we can invert to get $\bfZ=\sigma^{-1}(\bfX-\boldsymbol{\mu})$, hence
+\paragraph{Density of $ \mathbf{X} \sim \mathcal{N}(\boldsymbol{\mu},V) $.} Assume $V$ is positive definite, then $\det V=\prod_i\lambda_i>0$. Also since $\mathbf{X}=\boldsymbol{\mu}+\sigma \mathbf{Z}$, we can invert to get $\mathbf{Z}=\sigma^{-1}(\mathbf{X}-\boldsymbol{\mu})$, hence
 \begin{align*}
-    f_\bfX(\bfx)&=f_\bfZ(\bfz)|J|\\
-    &=\prod_{i=1}^n\frac{e^{-z_i^2/2}}{\sqrt{2\pi}}|\det(\sigma^{-1})|=\frac{1}{\sqrt{(2\pi)^n\det V}}e^{-\bfz^\top \bfz/2}\\
-    &=\frac{1}{\sqrt{(2\pi)^n\det V}}\exp \left( \frac{-(\bfx-\boldsymbol{\mu})^\top V^{-1}(\bfx-\boldsymbol{\mu})}{2} \right).
+    f_\mathbf{X}(\mathbf{x})&=f_\mathbf{Z}(\mathbf{z})|J|\\
+    &=\prod_{i=1}^n\frac{e^{-z_i^2/2}}{\sqrt{2\pi}}|\det(\sigma^{-1})|=\frac{1}{\sqrt{(2\pi)^n\det V}}e^{-\mathbf{z}^\top \mathbf{z}/2}\\
+    &=\frac{1}{\sqrt{(2\pi)^n\det V}}\exp \left( \frac{-(\mathbf{x}-\boldsymbol{\mu})^\top V^{-1}(\mathbf{x}-\boldsymbol{\mu})}{2} \right).
 \end{align*}
 If we only assume $V$ is nonnegative definite, then we can have $0$ eigenvalues hence $0$ determinant.
 In this case, we can change the basis to get something of the form
@@ -118,8 +118,8 @@ $$\begin{pmatrix}
     U&0\\
     0&0
 \end{pmatrix}$$
-where $U$ is positive definite $m\times m$ matrix and $\boldsymbol{\mu}=(\boldsymbol{\lambda}^\top,\boldsymbol{\nu}^\top)^\top$ where $\boldsymbol{\lambda}\in\mathbb R^m,\boldsymbol{\nu}\in\mathbb R^{n-m}$, then we write $\bfX=(\bfY^\top,\boldsymbol{\nu}^\top)^\top$ where $\bfY$ has
-$$f_\bfY(\bfy)=\frac{1}{\sqrt{(2\pi)^n\det U}}\exp \left( \frac{-(\bfy-\boldsymbol{\lambda})^\top U^{-1}(\bfy-\boldsymbol{\lambda})}{2} \right).$$
+where $U$ is positive definite $m\times m$ matrix and $\boldsymbol{\mu}=(\boldsymbol{\lambda}^\top,\boldsymbol{\nu}^\top)^\top$ where $\boldsymbol{\lambda}\in\mathbb R^m,\boldsymbol{\nu}\in\mathbb R^{n-m}$, then we write $\mathbf{X}=(\mathbf{Y}^\top,\boldsymbol{\nu}^\top)^\top$ where $\mathbf{Y}$ has
+$$f_\mathbf{Y}(\mathbf{y})=\frac{1}{\sqrt{(2\pi)^n\det U}}\exp \left( \frac{-(\mathbf{y}-\boldsymbol{\lambda})^\top U^{-1}(\mathbf{y}-\boldsymbol{\lambda})}{2} \right).$$
 
 \begin{lemma}
     If $X_i$ are independent, then $V$ is diagonal.
@@ -128,21 +128,21 @@ $$f_\bfY(\bfy)=\frac{1}{\sqrt{(2\pi)^n\det U}}\exp \left( \frac{-(\bfy-\boldsymb
     Since $X_i$ are independent, $ \cov(X_i,X_j)=0,\ i\neq j $ so $ V $ is diagonal.
 \end{proof}
 \begin{proposition}
-    Let $\bfX=(X_1,\ldots,X_n)$ be Gaussian, and suppose that $\cov(X_i,X_j)=0$ when $i\neq j$, then $X_i$ are independent Gaussians.
+    Let $\mathbf{X}=(X_1,\ldots,X_n)$ be Gaussian, and suppose that $\cov(X_i,X_j)=0$ when $i\neq j$, then $X_i$ are independent Gaussians.
 \end{proposition}
 \begin{proof}
-    It follows that $V$ is diagonal. Then $V^{-1}$ is also diagonal and the density $ f_{\bfX}(\bfx) $ factorises into a product. Indeed,
+    It follows that $V$ is diagonal. Then $V^{-1}$ is also diagonal and the density $ f_{\mathbf{X}}(\mathbf{x}) $ factorises into a product. Indeed,
     \[
-        (\bfx-\boldsymbol{\mu})^\top V^{-1} (\bfx-\boldsymbol{\mu}) = \sum_{i=1}^{n}\frac{(x_i-\mu_i)^2}{\lambda_i},
+        (\mathbf{x}-\boldsymbol{\mu})^\top V^{-1} (\mathbf{x}-\boldsymbol{\mu}) = \sum_{i=1}^{n}\frac{(x_i-\mu_i)^2}{\lambda_i},
     \]
     so 
     \[
-        f_{\bfx}(\bfx) = \frac{1}{\sqrt{(2\pi)^n\det V}} \exp \left( - \sum_{i=1}^{n}\frac{(x_i-\mu_i)^2}{2\lambda_i}\right).
+        f_{\mathbf{x}}(\mathbf{x}) = \frac{1}{\sqrt{(2\pi)^n\det V}} \exp \left( - \sum_{i=1}^{n}\frac{(x_i-\mu_i)^2}{2\lambda_i}\right).
     \]
     So $X_i$ are independent.
 \end{proof}
 \begin{proof}[Alternatively,]
-    note that $ m(\boldsymbol{\theta})=e^{\boldsymbol{\theta}^\top \boldsymbol{\mu}+ \boldsymbol{\theta}^\top V \boldsymbol{\theta}/2} = e^{\sum \theta_i \mu_i} \cdot e^{(\sum \theta_i^2 \lambda_i)/2} $, so $ m(\boldsymbol{\theta}) $ factorises into mgfs of Gaussians in $\bbR$. Hence $ X_i $ are independent Gaussians.
+    note that $ m(\boldsymbol{\theta})=e^{\boldsymbol{\theta}^\top \boldsymbol{\mu}+ \boldsymbol{\theta}^\top V \boldsymbol{\theta}/2} = e^{\sum \theta_i \mu_i} \cdot e^{(\sum \theta_i^2 \lambda_i)/2} $, so $ m(\boldsymbol{\theta}) $ factorises into mgfs of Gaussians in $\mathbb{R}$. Hence $ X_i $ are independent Gaussians.
 \end{proof}
 
 So for Gaussian vectors, we have 
@@ -151,7 +151,7 @@ So for Gaussian vectors, we have
 \]
 
 \subsection{Bivariate Gaussians}
-Set $ \bfX=(X_1,X_2)\in \mathbb{R}^{2} $ Gaussian. Let $ \mu_k=\bbE[X_k],\ k=1,2 $ and $ \sigma_k^2 = \var(X_k) $. Define
+Set $ \mathbf{X}=(X_1,X_2)\in \mathbb{R}^{2} $ Gaussian. Let $ \mu_k=\mathbb{E}[X_k],\ k=1,2 $ and $ \sigma_k^2 = \var(X_k) $. Define
 $$\rho=\operatorname{Corr}(X_1,X_2)=\frac{\operatorname{Cov}(X_1,X_2)}{\sqrt{\operatorname{Var}(X_1)\operatorname{Var}(X_2)}}.$$
 
 \begin{claim}
@@ -171,11 +171,11 @@ $$V=\operatorname{Var}(X)=\begin{pmatrix}
 \begin{claim}
     For all $ \sigma_k>0,\rho\in [-1,1] $, $V$ is non-negative definite.
 \end{claim}
-Indeed, for any $\bfx=(x_1,x_2)$, we have $\bfx^\top V\bfx\ge 0$ by calculation. In particular, if $\rho=0$ and $\sigma_k>0$, then $f_{X_1,X_2}(x_1,x_2)$ can be found by multiplying the $\mathcal N(\mu_k,\sigma_k)$ since $X_1,X_2$ are independent as we have seen before.
+Indeed, for any $\mathbf{x}=(x_1,x_2)$, we have $\mathbf{x}^\top V\mathbf{x}\ge 0$ by calculation. In particular, if $\rho=0$ and $\sigma_k>0$, then $f_{X_1,X_2}(x_1,x_2)$ can be found by multiplying the $\mathcal N(\mu_k,\sigma_k)$ since $X_1,X_2$ are independent as we have seen before.
 
 
 \begin{sque}
-    Let $ (X_1,X_2) $ be Gaussian. What is $ \bbE[X_2|X_1] $?
+    Let $ (X_1,X_2) $ be Gaussian. What is $ \mathbb{E}[X_2|X_1] $?
 \end{sque}
 
 Let $a\in\mathbb R$, then $\operatorname{Cov}(X_2-aX_1,X_1)=\operatorname{Cov}(X_1,X_2)-a\operatorname{Var}(X_1)=\rho\sigma_1\sigma_2-a\sigma_1^2$. Take $a=\rho\sigma_1/\sigma_2$ and $Y=X_2-aX_1$, then $\operatorname{Cov}(X_1,Y)=0$ and we can write
@@ -196,24 +196,24 @@ so $(X_1,Y)$ is also Gaussian. So $X_1,Y$ are independent and we can write $X_2=
 \begin{note}
     Note that if $ (X_1,X_2) $ is Gaussian, then $ (X_2-aX_1,X_1) $ is Gaussian and $ X_2-aX_1 \independent X_1 $. We can write $ X_2=X_2-aX_1+aX_1 $ and thus given $ X_1 $, 
     \[
-        X_2 \sim \mcN (aX_1+\mu_2-a\mu_1, \var(X_2-aX_1)),
+        X_2 \sim \mathcal{N} (aX_1+\mu_2-a\mu_1, \var(X_2-aX_1)),
     \]
     where $ \var(X_2-aX_1) =\var(X_2)+a^2\var(X_1)-2a\cov(X_1,X_2)  $.
 \end{note}
 
 \begin{theorem}[Multivariate CLT]
-    Let $ \bfX $ be a random vector in $ \mathbb{R}^{k} $ with $ \boldsymbol{\mu}=\bbE[\bfX] $ and variance matrix $ \Sigma $. Let $ \bfX_1,\bfX_2,\dots $ be iid with the same distribution as $ \bfX $. Then 
+    Let $ \mathbf{X} $ be a random vector in $ \mathbb{R}^{k} $ with $ \boldsymbol{\mu}=\mathbb{E}[\mathbf{X}] $ and variance matrix $ \Sigma $. Let $ \mathbf{X}_1,\mathbf{X}_2,\dots $ be iid with the same distribution as $ \mathbf{X} $. Then 
     \[
-        \bfS_n=\frac{1}{\sqrt{n}}\sum_{i=1}^n(\bfX_i-\mathbb E[\bfX_i])\xrightarrow{\text{(d)}}\mathcal N(\boldsymbol{\mu},\Sigma).
+        \mathbf{S}_n=\frac{1}{\sqrt{n}}\sum_{i=1}^n(\mathbf{X}_i-\mathbb E[\mathbf{X}_i])\xrightarrow{\text{(d)}}\mathcal N(\boldsymbol{\mu},\Sigma).
     \]
-    Convergence in distribution means that $ \forall B \subseteq \mathbb{R}^{k} $, $ \mathbb{P}(S_n\in B) \to \mathbb{P}(\mcN(\boldsymbol{\mu},\Sigma)\in B) $.
+    Convergence in distribution means that $ \forall B \subseteq \mathbb{R}^{k} $, $ \mathbb{P}(S_n\in B) \to \mathbb{P}(\mathcal{N}(\boldsymbol{\mu},\Sigma)\in B) $.
 \end{theorem}
 
 
 \begin{example}
     Let $ U \sim U[0,1] $ and set $ X=-\log U $. Note that 
     \[
-        \bbP(X \leqslant x)=\bbP(-\log U \leqslant x)=\bbP\left(U \geqslant e^{-x}\right)=1-e^{-x} .
+        \mathbb{P}(X \leqslant x)=\mathbb{P}(-\log U \leqslant x)=\mathbb{P}\left(U \geqslant e^{-x}\right)=1-e^{-x} .
     \]
     So $ X \sim \operatorname{Exp}(1) $.
 \end{example}
@@ -232,44 +232,44 @@ so $(X_1,Y)$ is also Gaussian. So $X_1,Y$ are independent and we can write $X_2=
 
 Suppose $ A \subseteq [0,1]^d $. Define
 \[
-    f(x) = \frac{1(\bfx\in A)}{|A|}.
+    f(x) = \frac{1(\mathbf{x}\in A)}{|A|}.
 \]
-Let $ \bfX $ have density $f$. How can we simulate $\bfX$?
+Let $ \mathbf{X} $ have density $f$. How can we simulate $\mathbf{X}$?
 
-Let $ (\bfU_n)_{n\in \bbN} $ be an iid sequence of $d$-dimensional uniforms, i.e. 
+Let $ (\mathbf{U}_n)_{n\in \mathbb{N}} $ be an iid sequence of $d$-dimensional uniforms, i.e. 
 \[
-    \bfU_n = (U_{1,n},\dots,U_{d,n}),\quad U_{k,n} \text{ iid } \sim U[0,1].
+    \mathbf{U}_n = (U_{1,n},\dots,U_{d,n}),\quad U_{k,n} \text{ iid } \sim U[0,1].
 \]
-Let $ N= \min \{n\ge 1: \bfU_n\in A\} $.
+Let $ N= \min \{n\ge 1: \mathbf{U}_n\in A\} $.
 
 \begin{claim}
-    $ \bfU_N \sim f $.
+    $ \mathbf{U}_N \sim f $.
 \end{claim}
 \begin{proof}
     Take $ B \subseteq [0,1]^d $.
     \begin{align*}
-        \mathbb{P}(\bfU_N\in B) &= \sum_{n=1}^{\infty }\mathbb{P}(\bfU_N\in B,N=n)\\ 
-        &= \sum_{n=1}^{\infty}\mathbb{P}(\bfU_n\in A \cap B,\bfU_{k}\notin A,\forall k=1,\dots,n-1)\\ 
-        &= \sum_{n=1}^{\infty}\mathbb{P}(\bfU_n\in A\cap B)\prod_{k=1}^{n-1}\mathbb{P}(\bfU_k\notin A)\\ 
+        \mathbb{P}(\mathbf{U}_N\in B) &= \sum_{n=1}^{\infty }\mathbb{P}(\mathbf{U}_N\in B,N=n)\\ 
+        &= \sum_{n=1}^{\infty}\mathbb{P}(\mathbf{U}_n\in A \cap B,\mathbf{U}_{k}\notin A,\forall k=1,\dots,n-1)\\ 
+        &= \sum_{n=1}^{\infty}\mathbb{P}(\mathbf{U}_n\in A\cap B)\prod_{k=1}^{n-1}\mathbb{P}(\mathbf{U}_k\notin A)\\ 
         &= \sum_{n=1}^{\infty}|A \cap B| (1-|A|)^{n-1} = \frac{|A\cap B|}{|A|}\\ 
-        &= \int_{A} \frac{(\bfx\in B)}{|A|} \,\mathrm{d}x = \int_{B}f(x) \,\mathrm{d}x.\qedhere
+        &= \int_{A} \frac{(\mathbf{x}\in B)}{|A|} \,\mathrm{d}x = \int_{B}f(x) \,\mathrm{d}x.\qedhere
     \end{align*}    
 \end{proof}
 
-Suppose $f$ is a density on $ [0,1]^{d-1} $ which is bounded by $ \lambda>0 $. We want to sample $ \bfX \sim f $. Consider 
+Suppose $f$ is a density on $ [0,1]^{d-1} $ which is bounded by $ \lambda>0 $. We want to sample $ \mathbf{X} \sim f $. Consider 
 \[
     A = \{(x_1,\dots,x_d)\in [0,1]^d:x_d\le f(x_1,\dots,x_{d-1}/\lambda)\}.
 \]
-From before, we know how to generate a uniform r.v. on $A$. Let $ \bfY=(X_1,\dots,X_d) $ be such a r.v. Set $ \bfX = (X_1,\dots,X_{d-1}) $.
+From before, we know how to generate a uniform r.v. on $A$. Let $ \mathbf{Y}=(X_1,\dots,X_d) $ be such a r.v. Set $ \mathbf{X} = (X_1,\dots,X_{d-1}) $.
 
 \begin{claim}
-    $ \bfX \sim f $.
+    $ \mathbf{X} \sim f $.
 \end{claim}
 
 \begin{proof}
     Take $ B \subseteq [0,1]^{d-1} $.
     \begin{align*}
-        \mathbb{P}(\bfX\in B)&= \mathbb{P}((X_1,\dots,X_{d-1})\in B)=\mathbb{P}((X_1,\dots,X_d)\in (B \times [0,1])\cap A)\\ 
+        \mathbb{P}(\mathbf{X}\in B)&= \mathbb{P}((X_1,\dots,X_{d-1})\in B)=\mathbb{P}((X_1,\dots,X_d)\in (B \times [0,1])\cap A)\\ 
         &= \frac{|B \times [0,1])\cap A|}{|A|} = \int 1((x_1,\dots,x_d)\in B \times [0,1])\cap A) \,\mathrm{d}x_1\cdots\dd x_d\\ 
         &= \int 1((x_1,\dots,x_{d-1})\in B)1\left( x_d\le \frac{f(x_1,\dots,x_{d-1})}{\lambda} \right) \,\mathrm{d}x_1\cdots\dd x_d\\ 
         &= \int 1((x_1,\dots,x_{d-1})\in B)\frac{f(x_1,\dots,x_{d-1})}{\lambda} \,\mathrm{d}x_1\cdots\dd x_{d-1}\\
@@ -277,7 +277,7 @@ From before, we know how to generate a uniform r.v. on $A$. Let $ \bfY=(X_1,\dot
     \end{align*}
     Also 
     \[
-        |A|=\frac{1}{\lambda}\int_{[0,1]^{d-1}} f(\bfx) \,\mathrm{d}\bfx=\frac{1}{\lambda}.
+        |A|=\frac{1}{\lambda}\int_{[0,1]^{d-1}} f(\mathbf{x}) \,\mathrm{d}\mathbf{x}=\frac{1}{\lambda}.
     \]
     The result follows.
 \end{proof}

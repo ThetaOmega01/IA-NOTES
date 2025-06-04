@@ -64,9 +64,9 @@
 
 \subsection{Stokes' Theorem}
 \begin{theorem}[Stokes]\label{thm:Stokes}
-    If $ \bfF = \bfF(\bfx) $ is a continuously differentiable vector field and $S$ is an orientable piecewise regular surface with piecewise smooth boundary $ \partial  S $, then 
+    If $ \mathbf{F} = \mathbf{F}(\mathbf{x}) $ is a continuously differentiable vector field and $S$ is an orientable piecewise regular surface with piecewise smooth boundary $ \partial  S $, then 
     \[
-        \int_{S} (\curl\bfF) \cdot\mathrm{d}\mathbf{S} = \oint_{\partial S} \bfF \cdot\mathrm{d}\mathbf{x}
+        \int_{S} (\curl\mathbf{F}) \cdot\mathrm{d}\mathbf{S} = \oint_{\partial S} \mathbf{F} \cdot\mathrm{d}\mathbf{x}
     \]
 \end{theorem}
 \begin{note}
@@ -162,19 +162,19 @@
 \begin{example}
     Let $S$ be a section of the sphere defined in spherical coordinates by
     \[
-        S = \left\{ \bfx(\theta,\phi) = \begin{pmatrix}
+        S = \left\{ \mathbf{x}(\theta,\phi) = \begin{pmatrix}
             \sin \theta \cos \phi \\ \sin \theta \sin \phi \\ \cos \theta 
-        \end{pmatrix}=\bfe_r, \theta\in [0,\alpha],\phi\in [0,2\pi) \right\}.
+        \end{pmatrix}=\mathbf{e}_r, \theta\in [0,\alpha],\phi\in [0,2\pi) \right\}.
     \]
-    Let $ \bfF = (-x^2y,0,0), \curl\bfF = (0,0,x^2) $. On $S$,
+    Let $ \mathbf{F} = (-x^2y,0,0), \curl\mathbf{F} = (0,0,x^2) $. On $S$,
     \begin{align*}
-        \rmd \bfS &= \frac{\partial \bfx}{\partial \theta} \times \frac{\partial \bfx}{\partial \phi}\dd \theta\dd \phi \\
-        &= \bfe_\theta\left( \sin \theta \bfe_\phi \right) \dd \theta\dd \phi\\ 
-        &= \bfe_r \sin \theta \dd \theta\dd \phi.
+        \mathrm{d} \mathbf{S} &= \frac{\partial \mathbf{x}}{\partial \theta} \times \frac{\partial \mathbf{x}}{\partial \phi}\dd \theta\dd \phi \\
+        &= \mathbf{e}_\theta\left( \sin \theta \mathbf{e}_\phi \right) \dd \theta\dd \phi\\ 
+        &= \mathbf{e}_r \sin \theta \dd \theta\dd \phi.
     \end{align*}
-    Note that since $ x^2\bfe_z \cdot \bfe_r = \sin^2 \theta \cos^2 \phi \cos \theta $ on $S$, 
+    Note that since $ x^2\mathbf{e}_z \cdot \mathbf{e}_r = \sin^2 \theta \cos^2 \phi \cos \theta $ on $S$, 
     \begin{align*}
-        \int_{S} \curl\bfF \cdot\mathrm{d}\mathbf{S} &= \int_{\phi=0}^{2\pi} \int_{\theta=0}^{\alpha} \cos^2 \phi \sin^3 \theta \cos \theta \,\mathrm{d}\theta \,\mathrm{d}\phi\\ 
+        \int_{S} \curl\mathbf{F} \cdot\mathrm{d}\mathbf{S} &= \int_{\phi=0}^{2\pi} \int_{\theta=0}^{\alpha} \cos^2 \phi \sin^3 \theta \cos \theta \,\mathrm{d}\theta \,\mathrm{d}\phi\\ 
         &= \frac{\pi}{4}\sin^4 \alpha.
     \end{align*}
     $ \partial S $ is described as
@@ -185,41 +185,41 @@
     \]
     so 
     \[
-        \rmd \bfx = \frac{\mathrm{d}\bfx}{\mathrm{d}t}\dd t = \sin \alpha \begin{pmatrix}
+        \mathrm{d} \mathbf{x} = \frac{\mathrm{d}\mathbf{x}}{\mathrm{d}t}\dd t = \sin \alpha \begin{pmatrix}
             -\sin t \\ \cos t \\ 0
         \end{pmatrix}\dd t. 
     \]
     So 
     \[
-        \int_{\partial S} \bfF \cdot\mathrm{d}\mathbf{x} = \sin^4 \alpha \int_{0}^{2\pi} (-\cos^2 t \sin t)(-\sin t) \,\mathrm{d}t=\frac{\pi}{4}\sin^4 \alpha.
+        \int_{\partial S} \mathbf{F} \cdot\mathrm{d}\mathbf{x} = \sin^4 \alpha \int_{0}^{2\pi} (-\cos^2 t \sin t)(-\sin t) \,\mathrm{d}t=\frac{\pi}{4}\sin^4 \alpha.
     \]
 \end{example}
 \begin{example}
-    Let $S$ be an orientable, closed surface. Then for any continuously differentiable vector field $\bfF$
+    Let $S$ be an orientable, closed surface. Then for any continuously differentiable vector field $\mathbf{F}$
     \[
-        \int_{S} (\curl \bfF) \cdot\mathrm{d}\mathbf{S}=0.
+        \int_{S} (\curl \mathbf{F}) \cdot\mathrm{d}\mathbf{S}=0.
     \]
 \end{example}
 \begin{proposition}
-    If $\bfF$ is continuously differentiable and for every simple loop $C$ 
+    If $\mathbf{F}$ is continuously differentiable and for every simple loop $C$ 
     \[
-        \oint_{C} \bfF \cdot \rmd\bfx = 0,
+        \oint_{C} \mathbf{F} \cdot \mathrm{d}\mathbf{x} = 0,
     \]
-    then $ \curl \bfF=\mathbf{0} $. So $\bfF$ irrotational if (and only if\footnote{This can be deduced by considering Stokes' theorem and results on curl.}) $\bfF$ has zero circulation around any closed loop.
+    then $ \curl \mathbf{F}=\mathbf{0} $. So $\mathbf{F}$ irrotational if (and only if\footnote{This can be deduced by considering Stokes' theorem and results on curl.}) $\mathbf{F}$ has zero circulation around any closed loop.
 \end{proposition}
 \begin{proof}
-    Assume the result is false. i.e. $ \exists \bfk $ unit vector such that $ \bfk \cdot \curl\bfF(\bfx_0)>0 $ for some $ \bfx_0 $. So there exists an $\epsilon > 0$ such that $ \bfk \cdot \curl\bfF(\bfx_0)=\epsilon>0 $. By continuity, for small $ \delta>0 $ we have
+    Assume the result is false. i.e. $ \exists \mathbf{k} $ unit vector such that $ \mathbf{k} \cdot \curl\mathbf{F}(\mathbf{x}_0)>0 $ for some $ \mathbf{x}_0 $. So there exists an $\epsilon > 0$ such that $ \mathbf{k} \cdot \curl\mathbf{F}(\mathbf{x}_0)=\epsilon>0 $. By continuity, for small $ \delta>0 $ we have
     \[
-        \bfk \cdot \curl\bfF(\bfx_0)>\frac{1}{2}\epsilon,\quad |\bfx-\bfx_0|<\delta.
+        \mathbf{k} \cdot \curl\mathbf{F}(\mathbf{x}_0)>\frac{1}{2}\epsilon,\quad |\mathbf{x}-\mathbf{x}_0|<\delta.
     \]
-    Take loop in $ \{\bfx:|\bfx-\bfx_0|<\delta\} $ that lies entirely in a plane with normal $\bfk$:
+    Take loop in $ \{\mathbf{x}:|\mathbf{x}-\mathbf{x}_0|<\delta\} $ that lies entirely in a plane with normal $\mathbf{k}$:
     \[
-        0=\oint_{\partial S} \bfF \cdot\mathrm{d}\mathbf{x} = \int_{S} (\curl\bfF) \cdot\mathrm{d}\mathbf{S} = \int_{S} \bfk \cdot (\curl\bfF) \,\mathrm{d}S>\frac{1}{2}\epsilon \int_{S}  \,\mathrm{d}S\neq 0,
+        0=\oint_{\partial S} \mathbf{F} \cdot\mathrm{d}\mathbf{x} = \int_{S} (\curl\mathbf{F}) \cdot\mathrm{d}\mathbf{S} = \int_{S} \mathbf{k} \cdot (\curl\mathbf{F}) \,\mathrm{d}S>\frac{1}{2}\epsilon \int_{S}  \,\mathrm{d}S\neq 0,
     \]
     a contradiction.
 \end{proof}
 \begin{example}
-    Let $ S_\epsilon $ denote a region contained inside a disc of radius $ \epsilon>0 $ centred at the point $\bfx_0$ with normal $\bfk$.
+    Let $ S_\epsilon $ denote a region contained inside a disc of radius $ \epsilon>0 $ centred at the point $\mathbf{x}_0$ with normal $\mathbf{k}$.
     \begin{center}
         \begin{tikzpicture}
             \node (0) at (-0.5, 0.25) {};
@@ -232,16 +232,16 @@
             \draw (0,0) ellipse (2.5 and 0.7);
             \filldraw[color=red!60, fill=red!5, -<-=0.5] plot [smooth cycle] coordinates {(0) (1) (2) (3) (4) (5) (6)};
             \node [dot] at (0,0) {};
-            \node [below right] at (0,0) {$ \bfx_0 $};
-            \draw [->] (0,0) -- (0,1.2) node [above right] {$ \bfk $};
+            \node [below right] at (0,0) {$ \mathbf{x}_0 $};
+            \draw [->] (0,0) -- (0,1.2) node [above right] {$ \mathbf{k} $};
             \node [red] at (-0.575, -0.125) {$ S_\epsilon $};
             \draw [<->, dashed] (0,0) -- (2.5,0) node [pos=0.5,above] {$ \epsilon $};
         \end{tikzpicture}
     \end{center}
     \begin{align*}
-        \int_{S_\epsilon} \curl\bfF \cdot\mathrm{d}\mathbf{S} &= \int_{S_\epsilon}\left( \curl\bfF(\bfx)-\curl\bfF(\bfx_0) \right)\cdot\rmd\bfS+\int_{S_\epsilon}\curl\bfF(\bfx_0)\cdot\rmd\bfS\\ 
-        &= \int_{S_\epsilon}\left( \curl\bfF(\bfx)-\curl\bfF(\bfx_0) \right)\cdot\rmd\bfS+\int_{S_\epsilon}\curl\bfF(\bfx_0)\cdot \bfk\dd S\\ 
-        &= \int_{S_\epsilon}\left( \curl\bfF(\bfx)-\curl\bfF(\bfx_0) \right)\cdot\rmd\bfS+ \operatorname{area}(S_\epsilon) \curl\bfF(\bfx_0)\cdot \bfk.
+        \int_{S_\epsilon} \curl\mathbf{F} \cdot\mathrm{d}\mathbf{S} &= \int_{S_\epsilon}\left( \curl\mathbf{F}(\mathbf{x})-\curl\mathbf{F}(\mathbf{x}_0) \right)\cdot\mathrm{d}\mathbf{S}+\int_{S_\epsilon}\curl\mathbf{F}(\mathbf{x}_0)\cdot\mathrm{d}\mathbf{S}\\ 
+        &= \int_{S_\epsilon}\left( \curl\mathbf{F}(\mathbf{x})-\curl\mathbf{F}(\mathbf{x}_0) \right)\cdot\mathrm{d}\mathbf{S}+\int_{S_\epsilon}\curl\mathbf{F}(\mathbf{x}_0)\cdot \mathbf{k}\dd S\\ 
+        &= \int_{S_\epsilon}\left( \curl\mathbf{F}(\mathbf{x})-\curl\mathbf{F}(\mathbf{x}_0) \right)\cdot\mathrm{d}\mathbf{S}+ \operatorname{area}(S_\epsilon) \curl\mathbf{F}(\mathbf{x}_0)\cdot \mathbf{k}.
     \end{align*}
     By continuity of $\nabla \times \mathbf{F}$, the first term tends to zero faster\footnote{We have the estimate
     \[
@@ -265,13 +265,13 @@ The orientable nature of $S$ is important. Consider the \mobius strip with param
 \]
 This surface is \textit{not} orientable. We saw in the last section that the vector field
 \[
-    \bfF(\bfx) = \frac{1}{x^2+y^2}\begin{pmatrix}
+    \mathbf{F}(\mathbf{x}) = \frac{1}{x^2+y^2}\begin{pmatrix}
         -y \\ x \\ 0
     \end{pmatrix}
 \]
-is irrotational ($ \curl \bfF = \mathbf{0} $). If we apply Stokes' theorem on this, we get 
+is irrotational ($ \curl \mathbf{F} = \mathbf{0} $). If we apply Stokes' theorem on this, we get 
 \[
-    \oint_{\partial S} \bfF \cdot \rmd\bfx=0.
+    \oint_{\partial S} \mathbf{F} \cdot \mathrm{d}\mathbf{x}=0.
 \]
 However, the boundary of the \mobius strip is 
 \[
@@ -297,9 +297,9 @@ This shows us that Stokes' theorem is not applicable if the surface is \textit{n
 
 \subsection{Divergence theorem}
 \begin{theorem}[Gauss]\label{thm:Divergence theorem}
-    If $ \bfF = \bfF(\bfx) $ is continuously differentiable and $ V $ is a volumn with piecewise regular boundary $ \partial V $, then 
+    If $ \mathbf{F} = \mathbf{F}(\mathbf{x}) $ is continuously differentiable and $ V $ is a volumn with piecewise regular boundary $ \partial V $, then 
     \[
-        \int_{V} \div \bfF \,\mathrm{d}V = \int_{\partial V} \bfF \cdot\mathrm{d}\mathbf{S},
+        \int_{V} \div \mathbf{F} \,\mathrm{d}V = \int_{\partial V} \mathbf{F} \cdot\mathrm{d}\mathbf{S},
     \]
     where the normal to $ \partial V $ points \textit{out} of $V$.
     \begin{center}
@@ -318,100 +318,100 @@ This shows us that Stokes' theorem is not applicable if the surface is \textit{n
             \draw [in=-15, out=-135, looseness=0.75] (4.center) to (3.center);
             \draw [in=-120, out=165] (3.center) to (2.center);
             \draw [in=-75, out=60, looseness=1.75] (2.center) to (0.center);
-            \draw [->] (1.center) to (7.center) node [above right] {$\bfn$};
+            \draw [->] (1.center) to (7.center) node [above right] {$\mathbf{n}$};
         \end{tikzpicture}
     \end{center}
 \end{theorem}
 \begin{theorem}\label{thm:Divergence 2D}
-    If $ \bfF = \bfF(\bfx) $ is continuously differentiable and $ D \subseteq \mathbb{R}^2 $ is a planar region with piecewise smooth boundary $ \partial D $, then 
+    If $ \mathbf{F} = \mathbf{F}(\mathbf{x}) $ is continuously differentiable and $ D \subseteq \mathbb{R}^2 $ is a planar region with piecewise smooth boundary $ \partial D $, then 
     \[
-        \int_{D} \div \bfF \,\mathrm{d}A = \oint_{\partial D} \bfF \cdot \mathbf{n} \dd s.
+        \int_{D} \div \mathbf{F} \,\mathrm{d}A = \oint_{\partial D} \mathbf{F} \cdot \mathbf{n} \dd s.
     \]
-    again $\bfn$ points out of $D$.
+    again $\mathbf{n}$ points out of $D$.
 \end{theorem}
 \begin{example}
     Let $V$ be a cylinder, in cylindrical polars, 
     \[
         V = \{(\rho,\phi,z): \rho\in [0,R],\ z\in [-h,h],\ \phi\in [0,2\pi)\}.
     \]
-    Consider $ \bfF = \bfx $, so $ \div\bfF = 3 $, and 
+    Consider $ \mathbf{F} = \mathbf{x} $, so $ \div\mathbf{F} = 3 $, and 
     \[
-        \int_{V} \div\bfF \,\mathrm{d}V = 3 \int_{V} \,\mathrm{d}V = 6 \pi R^2 h.
+        \int_{V} \div\mathbf{F} \,\mathrm{d}V = 3 \int_{V} \,\mathrm{d}V = 6 \pi R^2 h.
     \]
     Alternatively, use divergence theorem. Note that $ \partial V $ is made from 
     \begin{align*}
         S_R &= \{(\rho,\phi,z): \rho=R,\ z\in [-h,h],\ \phi\in [0,2\pi)\},\\ 
         S_{\pm} &= \{(\rho,\phi,z): \rho\in [0,R],\ z=\pm h,\ \phi\in [0,2\pi)\}.
     \end{align*}
-    On $ S_R, \dd \bfS = \mathbf{e}_\rho R \dd \phi\dd z $ and $ \bfx \cdot \mathbf{e}_\rho=R $, so
+    On $ S_R, \dd \mathbf{S} = \mathbf{e}_\rho R \dd \phi\dd z $ and $ \mathbf{x} \cdot \mathbf{e}_\rho=R $, so
     \[
-        \int_{S_R} \bfF \cdot\mathrm{d}\mathbf{S} = \int_{z=-h}^{h} \int_{\phi=0}^{2\pi} R^2 \,\mathrm{d}\phi \,\mathrm{d}z = 4\pi R^2 h.
+        \int_{S_R} \mathbf{F} \cdot\mathrm{d}\mathbf{S} = \int_{z=-h}^{h} \int_{\phi=0}^{2\pi} R^2 \,\mathrm{d}\phi \,\mathrm{d}z = 4\pi R^2 h.
     \]
-    On $ S_{\pm}, \dd \bfS = \pm \bfe_z \rho\dd \rho\dd \phi $ and $ \bfx \cdot \bfe_z = \pm h $, so 
+    On $ S_{\pm}, \dd \mathbf{S} = \pm \mathbf{e}_z \rho\dd \rho\dd \phi $ and $ \mathbf{x} \cdot \mathbf{e}_z = \pm h $, so 
     \[ 
-        \int_{S_\pm} \bfF \cdot\mathrm{d}\mathbf{S} = \int_{\phi=0}^{2\pi} \int_{\rho=0}^{R} h\rho \,\mathrm{d}\rho \,\mathrm{d}\phi = \pi R^2 h.
+        \int_{S_\pm} \mathbf{F} \cdot\mathrm{d}\mathbf{S} = \int_{\phi=0}^{2\pi} \int_{\rho=0}^{R} h\rho \,\mathrm{d}\rho \,\mathrm{d}\phi = \pi R^2 h.
     \]
     Hence 
     \begin{align*} 
-        \int_{\partial V} \bfF \cdot\mathrm{d}\mathbf{S} &= \left( \int_{S_R}+\int_{S_+}+\int_{S_-} \right) \bfF\cdot\rmd\bfS\\ 
+        \int_{\partial V} \mathbf{F} \cdot\mathrm{d}\mathbf{S} &= \left( \int_{S_R}+\int_{S_+}+\int_{S_-} \right) \mathbf{F}\cdot\mathrm{d}\mathbf{S}\\ 
         &= 4\pi R^2 h+ 2 \pi R^2 h = 6\pi R^2 h,
     \end{align*}
     as expected.
 \end{example}
 
 \begin{proposition}
-    If $ \bfF = \bfF(\bfx) $ is continuously differentiable and for every closed surface $S$ we have 
+    If $ \mathbf{F} = \mathbf{F}(\mathbf{x}) $ is continuously differentiable and for every closed surface $S$ we have 
     \[
-        \int_{S}  \bfF\cdot \mathrm{d}\bfS = 0,
+        \int_{S}  \mathbf{F}\cdot \mathrm{d}\mathbf{S} = 0,
     \]
-    then $ \div\bfF= 0 $.
+    then $ \div\mathbf{F}= 0 $.
 \end{proposition}
 \begin{proof}
-    Suppose the result is false, so (wlog) $ \div\bfF(\bfx_0)=\epsilon>0 $. By continuity, for $ \delta $ small, 
+    Suppose the result is false, so (wlog) $ \div\mathbf{F}(\mathbf{x}_0)=\epsilon>0 $. By continuity, for $ \delta $ small, 
     \[
-        \div\bfF(\bfx)>\frac{\epsilon}{2}, \quad |\bfx-\bfx_0|<\epsilon.
+        \div\mathbf{F}(\mathbf{x})>\frac{\epsilon}{2}, \quad |\mathbf{x}-\mathbf{x}_0|<\epsilon.
     \]
     Choose a volumn $V$ inside this ball. Then by assumption,
     \[
-        0 = \int_{\partial V} \bfF \cdot\mathrm{d}\mathbf{S} = \int_{V} \div\bfF \,\mathrm{d}V > \frac{\epsilon}{2} \int_{V} \,\mathrm{d}V>0,
+        0 = \int_{\partial V} \mathbf{F} \cdot\mathrm{d}\mathbf{S} = \int_{V} \div\mathbf{F} \,\mathrm{d}V > \frac{\epsilon}{2} \int_{V} \,\mathrm{d}V>0,
     \]
     a contradiction.
 \end{proof}
 So if a vector field has zero net flux through any closed surface, then it is solenoidal.
 
 \begin{example}
-    Let $ V_\epsilon $ be a volumn in $ \mathbb{R}^{3} $ contained inside a ball of radius $ \epsilon>0 $ centered at $ \bfx_0 $.
+    Let $ V_\epsilon $ be a volumn in $ \mathbb{R}^{3} $ contained inside a ball of radius $ \epsilon>0 $ centered at $ \mathbf{x}_0 $.
     \[
-        \int_{V_{\epsilon}} \div \bfF \,\mathrm{d}V = \operatorname{vol}(V_\epsilon)\div\bfF(\bfx_0)+\int_{V_\epsilon} (\div\bfF(\bfx)-\div\bfF(\bfx_0)) \,\mathrm{d}V,\tag{$*$}
+        \int_{V_{\epsilon}} \div \mathbf{F} \,\mathrm{d}V = \operatorname{vol}(V_\epsilon)\div\mathbf{F}(\mathbf{x}_0)+\int_{V_\epsilon} (\div\mathbf{F}(\mathbf{x})-\div\mathbf{F}(\mathbf{x}_0)) \,\mathrm{d}V,\tag{$*$}
     \]
     where 
     \[
-        \int_{V_\epsilon} (\div\bfF(\bfx)-\div\bfF(\bfx_0)) \,\mathrm{d}V= o(\operatorname{vol}(V_\epsilon) )
+        \int_{V_\epsilon} (\div\mathbf{F}(\mathbf{x})-\div\mathbf{F}(\mathbf{x}_0)) \,\mathrm{d}V= o(\operatorname{vol}(V_\epsilon) )
     \]
     since 
     \[
-        \left| \int_{V_\epsilon} (\div\bfF(\bfx)-\div\bfF(\bfx_0)) \,\mathrm{d}V \right| \le \underbrace{\max_{|\bfx-\bfx_0|\le \epsilon} \left| \div\bfF(\bfx)-\div\bfF(\bfx_0) \right|}_{o(1) \text{ as }\epsilon \downarrow 0} \operatorname{vol}(V_\epsilon) .
+        \left| \int_{V_\epsilon} (\div\mathbf{F}(\mathbf{x})-\div\mathbf{F}(\mathbf{x}_0)) \,\mathrm{d}V \right| \le \underbrace{\max_{|\mathbf{x}-\mathbf{x}_0|\le \epsilon} \left| \div\mathbf{F}(\mathbf{x})-\div\mathbf{F}(\mathbf{x}_0) \right|}_{o(1) \text{ as }\epsilon \downarrow 0} \operatorname{vol}(V_\epsilon) .
     \]
     Divide $ \operatorname{vol}(V_\epsilon)  $ on both sides of ($\ast$) and take $ \epsilon \downarrow 0 $, by divergence theorem 
     \[
-        \div \bfF(\bfx_0) = \lim_{\epsilon \downarrow 0} \frac{1}{\operatorname{vol}(V_\epsilon) }  \int_{\partial V_{\epsilon}} \bfF \cdot\mathrm{d}\mathbf{S}.
+        \div \mathbf{F}(\mathbf{x}_0) = \lim_{\epsilon \downarrow 0} \frac{1}{\operatorname{vol}(V_\epsilon) }  \int_{\partial V_{\epsilon}} \mathbf{F} \cdot\mathrm{d}\mathbf{S}.
     \]
-    So $ \div\bfF $ measures ``infinitesimal'' flux per unit volumn.
+    So $ \div\mathbf{F} $ measures ``infinitesimal'' flux per unit volumn.
 \end{example}
 \begin{example}
     Many equations in mathematical physics can be written in the form 
     \[
-        \frac{\partial \rho}{\partial t}+ \div \bfJ = 0. \tag{$ \dagger $}
+        \frac{\partial \rho}{\partial t}+ \div \mathbf{J} = 0. \tag{$ \dagger $}
     \]
-    We call them \textbf{conservation laws}. Suppose both $ \rho $ and $ |\bfJ| $ decrease rapidly as $ |\bfx|\to \infty $ ($ \rho=\rho(\bfx,t),\bfJ=\bfJ(\bfx,t) $). Define \textbf{charge} as 
+    We call them \textbf{conservation laws}. Suppose both $ \rho $ and $ |\mathbf{J}| $ decrease rapidly as $ |\mathbf{x}|\to \infty $ ($ \rho=\rho(\mathbf{x},t),\mathbf{J}=\mathbf{J}(\mathbf{x},t) $). Define \textbf{charge} as 
     \[
-        Q = \int_{\mathbb{R}^{3}} \rho(\bfx,t) \,\mathrm{d}V.
+        Q = \int_{\mathbb{R}^{3}} \rho(\mathbf{x},t) \,\mathrm{d}V.
     \]
     We have conservation of charge: 
     \begin{align*}
-        \frac{\mathrm{d}Q}{\mathrm{d}t} &=  \int_{\mathbb{R}^{3}} \frac{\partial \rho}{\partial t}  \,\mathrm{d}V = -\int_{\mathbb{R}^{3}} \div\bfJ \,\mathrm{d}V\\ 
-        &= - \lim_{R \to \infty} \int_{|\bfx|\le R} \div\bfJ \,\mathrm{d}V\\ 
-        &= - \lim_{R \to \infty} \int_{|\bfx|=R} \bfJ \cdot\mathrm{d}\mathbf{S}\\ 
+        \frac{\mathrm{d}Q}{\mathrm{d}t} &=  \int_{\mathbb{R}^{3}} \frac{\partial \rho}{\partial t}  \,\mathrm{d}V = -\int_{\mathbb{R}^{3}} \div\mathbf{J} \,\mathrm{d}V\\ 
+        &= - \lim_{R \to \infty} \int_{|\mathbf{x}|\le R} \div\mathbf{J} \,\mathrm{d}V\\ 
+        &= - \lim_{R \to \infty} \int_{|\mathbf{x}|=R} \mathbf{J} \cdot\mathrm{d}\mathbf{S}\\ 
         &= 0.
     \end{align*}
     So ($ \dagger $) gives ``conservation of charge''.
@@ -431,13 +431,13 @@ us that, to each of these symmetries, there is a conservation law. We’ve ended
 \end{quote}
 Emmy Noether taught us this.
 
-For example, for symmetry $ \bfx \mapsto \bfx+\bfa $, \textit{linear momentum} is conserved, and for symmetry $ \bfx \mapsto R\bfx $, where $R$ is a rotation matrix, \textit{angular momentum }is conserved. For symmetry $ t \mapsto t+\epsilon $, \textit{energy} is conserved.
+For example, for symmetry $ \mathbf{x} \mapsto \mathbf{x}+\mathbf{a} $, \textit{linear momentum} is conserved, and for symmetry $ \mathbf{x} \mapsto R\mathbf{x} $, where $R$ is a rotation matrix, \textit{angular momentum }is conserved. For symmetry $ t \mapsto t+\epsilon $, \textit{energy} is conserved.
 
 \subsection{Sketch proofs}
 \begin{proof}[Proof of divergence theorem]
-    We proceed by three components: $ \bfF = \bfF_x+\bfF_y+\bfF_z $. For $z$ component, we wish to prove that 
+    We proceed by three components: $ \mathbf{F} = \mathbf{F}_x+\mathbf{F}_y+\mathbf{F}_z $. For $z$ component, we wish to prove that 
     \[
-        {\color{gray}\left( \int_{V} \div \bfF_z \,\mathrm{d}V = \right)} \int_{V} \frac{\partial F_z}{\partial z}  \,\mathrm{d}V = \int_{\partial V} F_z \mathbf{e}_z \cdot\mathrm{d}\mathbf{S}.
+        {\color{gray}\left( \int_{V} \div \mathbf{F}_z \,\mathrm{d}V = \right)} \int_{V} \frac{\partial F_z}{\partial z}  \,\mathrm{d}V = \int_{\partial V} F_z \mathbf{e}_z \cdot\mathrm{d}\mathbf{S}.
     \]
     Consider the projection of $ \partial V $ to $x$-$y$ plane. We assume that $V$ is simple, so that the map is 2-1. Clearly, $ \partial V $ has a simple upper and lower side. 
     \begin{center}
@@ -457,9 +457,9 @@ For example, for symmetry $ \bfx \mapsto \bfx+\bfa $, \textit{linear momentum} i
             \node (9) at (2, 3.5) {};
             \node (10) at (1.5, 1) {};
             \node (11) at (2, 4.5) {};
-            \node [above] at (11) {$\bfn$};
+            \node [above] at (11) {$\mathbf{n}$};
             \node (12) at (1.25, 0.25) {};
-            \node [right] at (12) {$\bfn$};
+            \node [right] at (12) {$\mathbf{n}$};
             \node (13) at (3, 3.25) {};
             \node (14) at (4.25, 3.75) {};` '
             \node [right] at (14) {$S_+$};
@@ -536,24 +536,24 @@ We prove Green's theorem and Stokes' theorem by introducing
     Green's theorem $ \Longrightarrow  $ Stokes' theorem.
 \end{proposition}
 \begin{proof}[Proof of proposition 5.7]
-    Use 2D divergence theorem on $ \bfF = (Q,-P) $, we get 
+    Use 2D divergence theorem on $ \mathbf{F} = (Q,-P) $, we get 
     \[
-        \iint_{A} \left( \frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}   \right)\dd x\dd y = \int_{A} \div\bfF \,\mathrm{d}A  = \oint_{\partial A} \bfF \cdot \mathbf{n}\dd s.
+        \iint_{A} \left( \frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}   \right)\dd x\dd y = \int_{A} \div\mathbf{F} \,\mathrm{d}A  = \oint_{\partial A} \mathbf{F} \cdot \mathbf{n}\dd s.
     \]
-    If $ \partial A $ is parametrised wrt arc-length, then unit tangent vector is given by $ \bft=(x'(s),y'(s)) $. Hence the normal vector must be $ \bfn = (y'(s),-x'(s)) $ (check). So 
+    If $ \partial A $ is parametrised wrt arc-length, then unit tangent vector is given by $ \mathbf{t}=(x'(s),y'(s)) $. Hence the normal vector must be $ \mathbf{n} = (y'(s),-x'(s)) $ (check). So 
     \[
-        \bfF \cdot \mathbf{n} \dd s = Q \frac{\mathrm{d}y}{\mathrm{d}s}\dd s+ P \frac{\mathrm{d}x}{\mathrm{d}s}\dd s = P\dd x+Q\dd y,
+        \mathbf{F} \cdot \mathbf{n} \dd s = Q \frac{\mathrm{d}y}{\mathrm{d}s}\dd s+ P \frac{\mathrm{d}x}{\mathrm{d}s}\dd s = P\dd x+Q\dd y,
     \]
     giving Green's theorem.
 \end{proof}
 \begin{proof}[Proof of proposition 5.8]
     Consider a regular surface 
     \[
-        S = \{\bfx=\bfx(u,v): (u,v)\in A\}.
+        S = \{\mathbf{x}=\mathbf{x}(u,v): (u,v)\in A\}.
     \]
     Then the boundary is (see Analysis and Topology)
     \[
-        \partial S = \{\bfx=\bfx(u,v): (u,v)\in \partial A\}.
+        \partial S = \{\mathbf{x}=\mathbf{x}(u,v): (u,v)\in \partial A\}.
     \]
     Green's theorem gives 
     \[
@@ -561,7 +561,7 @@ We prove Green's theorem and Stokes' theorem by introducing
     \]
     Make choices 
     \[
-        P(u,v) = \bfF(\bfx(u,v)) \cdot \frac{\partial \bfx}{\partial u},\quad Q(u,v) = \bfF(\bfx(u,v)) \cdot \frac{\partial \bfx}{\partial v}.  
+        P(u,v) = \mathbf{F}(\mathbf{x}(u,v)) \cdot \frac{\partial \mathbf{x}}{\partial u},\quad Q(u,v) = \mathbf{F}(\mathbf{x}(u,v)) \cdot \frac{\partial \mathbf{x}}{\partial v}.  
     \]
     Then 
     \[
@@ -569,7 +569,7 @@ We prove Green's theorem and Stokes' theorem by introducing
     \]
     which gives 
     \[
-        \oint_{\partial A} P\dd u+Q\dd v = \oint_{\partial S} \bfF \cdot \rmd\bfx.
+        \oint_{\partial A} P\dd u+Q\dd v = \oint_{\partial S} \mathbf{F} \cdot \mathrm{d}\mathbf{x}.
     \]
     For the other side of Stokes, 
     \[

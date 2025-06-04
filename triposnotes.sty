@@ -1,0 +1,386 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{notes}[2025/06/01 ThetaOmega's Notes Package]
+
+% ============ PACKAGE IMPORTS ============
+% Core packages
+\RequirePackage{fancyhdr,titlesec,geometry}
+\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage[many]{tcolorbox}
+\RequirePackage{xifthen}
+\RequirePackage{import}
+\RequirePackage{parskip}
+\RequirePackage{transparent}
+
+% Math packages
+\RequirePackage{mathtools,amssymb,amsfonts,amsthm,bm}
+\RequirePackage{mathrsfs}
+
+% Table and figure packages
+\RequirePackage{array,tabularx,booktabs}
+\RequirePackage{graphicx,wrapfig,float,caption}
+
+% Text formatting
+\RequirePackage{setspace,multicol}
+\RequirePackage{enumerate}
+\RequirePackage[shortlabels]{enumitem}
+
+% Physics and drawing
+\RequirePackage{tikz,physics,cancel,tkz-euclide,pgfplots,tikz-3dplot}
+
+% Utilities
+\RequirePackage{hyperref}
+\RequirePackage{IEEEtrantools}
+\RequirePackage{xcomment}
+\RequirePackage{framed}
+
+% ============ LAYOUT CONFIGURATION ============
+\pagestyle{fancy}
+\setlength{\parindent}{0pt}
+
+% Geometry settings
+\geometry{
+  margin=1in,
+}
+
+% Define default course name if not provided
+\providecommand{\triposcourse}{Course Name}
+
+% Set up header
+\rhead{\textsc{\triposcourse{}}}
+
+% Set default author
+\author{\texttt{ThetaOmega}}
+
+% Title setup
+\titleformat{\part}[display]
+  {\centering\Huge\bfseries}
+  {\partname~\thepart:}
+  {20pt}
+  {}
+
+\title{\textbf{\triposcourse{} Notes}}
+
+% ============ TIKZ CONFIGURATION ============
+\tdplotsetmaincoords{60}{120}
+
+\usetikzlibrary{arrows.meta,decorations.markings,decorations.pathmorphing,matrix}
+\usetikzlibrary{automata,positioning,fadings,intersections,cd,patterns,shapes.arrows}
+\usepgfplotslibrary{colormaps,external}
+
+% Arrow configurations
+\pgfarrowsdeclarecombine{twolatex'}{twolatex'}{latex'}{latex'}{latex'}{latex'}
+
+\tikzset{
+  ->/.style = {decoration={markings,
+                          mark=at position 1 with {\arrow[scale=1.6]{latex'}}},
+              postaction={decorate}},
+  <-/.style = {decoration={markings,
+                          mark=at position 0 with {\arrowreversed[scale=1.6]{latex'}}},
+              postaction={decorate}},
+  <->/.style = {decoration={markings,
+                           mark=at position 0 with {\arrowreversed[scale=1.6]{latex'}},
+                           mark=at position 1 with {\arrow[scale=1.6]{latex'}}},
+               postaction={decorate}},
+  ->-/.style = {decoration={markings,
+                           mark=at position #1 with {\arrow[scale=1.6]{latex'}}},
+               postaction={decorate}},
+  -<-/.style = {decoration={markings,
+                           mark=at position #1 with {\arrowreversed[scale=1.6]{latex'}}},
+               postaction={decorate}},
+  ->>/.style = {decoration={markings,
+                          mark=at position 1 with {\arrow[scale=1.6]{twolatex'}}},
+              postaction={decorate}},
+  <<-/.style = {decoration={markings,
+                          mark=at position 0 with {\arrowreversed[scale=1.6]{twolatex'}}},
+              postaction={decorate}},
+  <<->>/.style = {decoration={markings,
+                             mark=at position 0 with {\arrowreversed[scale=1.6]{twolatex'}},
+                             mark=at position 1 with {\arrow[scale=1.6]{twolatex'}}},
+                 postaction={decorate}},
+  ->>-/.style = {decoration={markings,
+                           mark=at position #1 with {\arrow[scale=1.6]{twolatex'}}},
+               postaction={decorate}},
+  -<<-/.style = {decoration={markings,
+                           mark=at position #1 with {\arrowreversed[scale=1.6]{twolatex'}}},
+               postaction={decorate}},
+  -trig-/.style = {decoration={markings,
+                             mark=at position #1 with {\arrow[scale=1.6]{Triangle[open]}}},
+                 postaction={decorate}},
+  circ/.style={fill=black, draw=black, shape=circle},
+  dot/.style = {circle, fill, minimum size=#1, inner sep=0pt, outer sep=0pt},
+  dot/.default = 5pt,
+  mstate/.style={circle, draw, blue, text=black, minimum width=0.7cm},
+  snake it/.style={-stealth,
+                   decoration={snake, 
+                              amplitude = .4mm,
+                              segment length = 2mm,
+                              post length=0.9mm},decorate}
+}
+
+\tikzset{mylabel/.style  args={at #1 #2  with #3}{
+    postaction={decorate,
+    decoration={
+      markings,
+      mark= at position #1
+      with  \node [#2] {#3};
+ } } } }
+
+% Arrow inside decoration
+\tikzset{
+  set arrow inside/.code={\pgfqkeys{/tikz/arrow inside}{#1}},
+  set arrow inside={end/.initial=>, opt/.initial=},
+  /pgf/decoration/Mark/.style={
+    mark/.expanded=at position #1 with
+    {
+      \noexpand\arrow[\pgfkeysvalueof{/tikz/arrow inside/opt}]{\pgfkeysvalueof{/tikz/arrow inside/end}}
+    }
+  },
+  arrow inside/.style 2 args={
+    set arrow inside={#1},
+    postaction={
+      decorate,decoration={
+        markings,Mark/.list={#2}
+      }
+    }
+  }
+}
+
+% Matrix rules for tables
+\tikzset{
+  toprule/.style={%
+    execute at end cell={%
+      \draw [line cap=rect,#1] (\tikzmatrixname-\the\pgfmatrixcurrentrow-\the\pgfmatrixcurrentcolumn.north west) -- (\tikzmatrixname-\the\pgfmatrixcurrentrow-\the\pgfmatrixcurrentcolumn.north east);%
+    }
+  },
+  bottomrule/.style={%
+    execute at end cell={%
+      \draw [line cap=rect,#1] (\tikzmatrixname-\the\pgfmatrixcurrentrow-\the\pgfmatrixcurrentcolumn.south west) -- (\tikzmatrixname-\the\pgfmatrixcurrentrow-\the\pgfmatrixcurrentcolumn.south east);%
+    }
+  }
+}
+
+% Centered arc command
+\def\centerarc[#1](#2)(#3:#4:#5){\draw[#1]
+($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5);}
+
+% ============ HYPERREF SETUP ============
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  filecolor=blue,
+  citecolor=black,
+  urlcolor=cyan,
+}
+
+% ============ MATHEMATICAL SHORTCUTS ============
+% Derivatives and integrals
+\newcommand{\ddt}[1]{\frac{d #1}{dt}}
+\newcommand{\ddtt}[1]{\frac{d^2 #1}{dt^2}}
+\newcommand{\ddx}[1]{\frac{d #1}{dx}}
+\newcommand{\ddxx}[1]{\frac{d^2 #1}{dx^2}}
+\newcommand{\del}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\deltwo}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+
+% Common symbols
+\newcommand{\eps}{\epsilon}
+\newcommand{\lam}{\lambda}
+\newcommand{\Lam}{\Lambda}
+\newcommand{\sig}{\sigma}
+\newcommand{\Sig}{\Sigma}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\thalf}{\tfrac{1}{2}}
+
+% Vector and Matrix operators
+\renewcommand{\div}{\nabla\cdot}
+\renewcommand{\curl}{\nabla\times}
+
+% Inequalities
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+
+% Independence symbol
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+% ============ MATHEMATICAL OPERATORS ============
+\DeclareMathOperator{\orb}{Orb}
+\DeclareMathOperator{\stab}{Stab}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\ccl}{ccl}
+\let\var\relax
+\DeclareMathOperator{\var}{Var}
+\DeclareMathOperator{\cov}{Cov}
+\DeclareMathOperator{\corr}{Corr}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\sym}{Sym}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\re}{Re}
+
+% Matrix groups
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Or}{\mathrm{O}}
+\newcommand{\PGL}{\mathrm{PGL}}
+\newcommand{\PSL}{\mathrm{PSL}}
+\newcommand{\PSO}{\mathrm{PSO}}
+\newcommand{\PSU}{\mathrm{PSU}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\Spin}{\mathrm{Spin}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\Mat}{\mathrm{Mat}}
+
+% Lie algebras
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\ort}{\mathfrak{o}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\uu}{\mathfrak{u}}
+\renewcommand{\sl}{\mathfrak{sl}}
+\makeatletter
+\newsavebox{\@brx}
+\newcommand{\llangle}[1][]{\savebox{\@brx}{\(\m@th{#1\langle}\)}%
+  \mathopen{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\newcommand{\rrangle}[1][]{\savebox{\@brx}{\(\m@th{#1\rangle}\)}%
+  \mathclose{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\makeatother
+\newcommand{\ltrigeq}{\trianglelefteq}
+\newcommand{\rtrigeq}{\trianglerighteq}
+
+% ============ ALPHABET SHORTCUTS ============
+\renewcommand{\v}{\mathbf{v}}
+\newcommand{\w}{\mathbf{w}}
+\renewcommand{\u}{\mathbf{u}}
+
+% ============ THEOREM ENVIRONMENTS ============
+\newtheoremstyle{mystyle}%
+{}{}{}{}{\sffamily\bfseries}{.}{ }{}
+
+\theoremstyle{mystyle}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem*{claim}{Claim}
+\newtheorem*{slemma}{Lemma}
+\newtheorem*{sprop}{Proposition}
+\newtheorem*{notation}{Notation}
+\newtheorem*{remark}{Remark}
+\newtheorem*{note}{Note}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem*{law}{Law}
+
+\newtheorem{inquestion}{Question}
+\newtheorem*{sque}{Question}
+\newenvironment{question}[1]{\renewcommand\theinquestion{#1}\inquestion}{\endinquestion}
+
+\theoremstyle{definition}
+\newtheorem*{exercise}{Exercise}
+
+% ============ THEOREM STYLING WITH TCOLORBOX ============
+\tcolorboxenvironment{definition}{
+  boxrule=0pt, boxsep=2pt, colback={White!90!Cerulean},
+  enhanced jigsaw, borderline west={1.5pt}{0pt}{Cerulean},
+  sharp corners, before skip=10pt, after skip=10pt,
+  breakable, parbox=false,
+}
+
+\tcolorboxenvironment{notation}{
+  boxrule=0pt, boxsep=2pt, colback={White!90!Cerulean},
+  enhanced jigsaw, borderline west={1.5pt}{0pt}{Cerulean},
+  sharp corners, before skip=10pt, after skip=10pt,
+  breakable, parbox=false,
+}
+
+\tcolorboxenvironment{theorem}{
+  boxrule=0pt, boxsep=2pt, colback={White!90!Dandelion},
+  enhanced jigsaw, borderline west={1.5pt}{0pt}{Dandelion},
+  sharp corners, before skip=10pt, after skip=10pt,
+  breakable, parbox=false,
+}
+
+\tcolorboxenvironment{proposition}{
+  boxrule=0pt, boxsep=2pt, colback={White!90!Yellow},
+  enhanced jigsaw, borderline west={1.5pt}{0pt}{Yellow},
+  sharp corners, before skip=10pt, after skip=10pt,
+  breakable, parbox=false,
+}
+
+\tcolorboxenvironment{sprop}{
+  boxrule=0pt, boxsep=2pt, colback={White!90!Yellow},
+  enhanced jigsaw, borderline west={1.5pt}{0pt}{Yellow},
+  sharp corners, before skip=10pt, after skip=10pt,
+  breakable, parbox=false,
+}
+
+\tcolorboxenvironment{lemma}{
+  boxrule=0pt, boxsep=2pt, blanker,
+  borderline west={1.5pt}{0pt}{Red},
+  before skip=10pt, after skip=10pt, sharp corners,
+  left=12pt, right=12pt, breakable, parbox=false,
+}
+
+\tcolorboxenvironment{corollary}{
+  boxrule=0pt, boxsep=2pt, blanker,
+  borderline west={1.5pt}{0pt}{ForestGreen},
+  before skip=10pt, after skip=10pt, sharp corners,
+  left=12pt, right=12pt, breakable, parbox=false,
+}
+
+\tcolorboxenvironment{proof}{
+  boxrule=0pt, boxsep=2pt, blanker,
+  borderline west={1.5pt}{0pt}{NavyBlue!80!white},
+  before skip=10pt, after skip=10pt,
+  left=12pt, right=12pt, breakable, parbox=false,
+}
+
+\tcolorboxenvironment{remark}{
+  boxrule=0pt, boxsep=2pt, blanker,
+  borderline west={1.5pt}{0pt}{Green},
+  before skip=10pt, after skip=10pt,
+  left=12pt, right=12pt, breakable, parbox=false,
+}
+
+\tcolorboxenvironment{note}{
+  boxrule=0pt, boxsep=2pt, blanker,
+  borderline west={1.5pt}{0pt}{PineGreen},
+  before skip=10pt, after skip=10pt,
+  left=12pt, right=12pt, breakable, parbox=false,
+}
+
+\tcolorboxenvironment{example}{
+  boxrule=0pt, boxsep=2pt, blanker,
+  borderline west={1.5pt}{0pt}{Black}, sharp corners,
+  before skip=10pt, after skip=10pt,
+  left=12pt, right=12pt, breakable, parbox=false,
+}
+
+% ============ SECTION FORMATTING ============
+\titleformat*{\section}{\Large\bfseries\sffamily}
+\titleformat*{\subsection}{\large\bfseries\sffamily}
+\titleformat*{\subsubsection}{\bfseries\sffamily}
+\titleformat*{\paragraph}{\bfseries\sffamily}
+
+% ============ UTILITY COMMANDS ============
+\newcommand*\widefbox[1]{\fbox{\hspace{2em}#1\hspace{2em}}}
+\newcommand{\mobius}{{M\"{o}bius }}
+
+% Figure inclusion
+\newcommand{\incfig}[1]{%
+  \def\svgwidth{0.4\columnwidth}
+  \import{./figures/}{#1.pdf_tex}
+}
+
+% ============ PAGE LAYOUT ============
+\setlength{\parindent}{0pt}
+\pagestyle{fancy}
+\rhead{\textsc{\triposcourse{}}}

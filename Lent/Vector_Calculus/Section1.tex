@@ -99,12 +99,12 @@ So
     \[
         \ell (C) = \int_{C} \,\mathrm{d}s,
     \]
-    where $ \rmd s $ is called the \textbf{arc-length element}, so $ \rmd s = |\mathbf{x}'(t)| \dd t $.
+    where $ \mathrm{d} s $ is called the \textbf{arc-length element}, so $ \mathrm{d} s = |\mathbf{x}'(t)| \dd t $.
 \end{definition}
 \begin{definition}[Line integral]
-    The \textbf{line intergal} of $f(\bfx)$ along $C$ is defined by 
+    The \textbf{line intergal} of $f(\mathbf{x})$ along $C$ is defined by 
     \[
-        \int_{C} f(\mathbf{x}) \,\mathrm{d}s = \int_{a}^{b} f(\mathbf{x}(t)) \left| \bfx'(t) \right| \,\mathrm{d}t.
+        \int_{C} f(\mathbf{x}) \,\mathrm{d}s = \int_{a}^{b} f(\mathbf{x}(t)) \left| \mathbf{x}'(t) \right| \,\mathrm{d}t.
     \]
 \end{definition}
 \begin{definition}[Piecewise smooth curve]
@@ -116,11 +116,11 @@ So
 \begin{note}
     (Informally) 
     \[
-        \rmd s = |\mathbf{x}'(t)|\dd t = \sqrt{\left( \frac{\mathrm{d}x}{\mathrm{d}t}  \right)^2+\left(\frac{\mathrm{d}y}{\mathrm{d}t}  \right)^2+\left(\frac{\mathrm{d}z}{\mathrm{d}t}  \right)^2}\dd t,
+        \mathrm{d} s = |\mathbf{x}'(t)|\dd t = \sqrt{\left( \frac{\mathrm{d}x}{\mathrm{d}t}  \right)^2+\left(\frac{\mathrm{d}y}{\mathrm{d}t}  \right)^2+\left(\frac{\mathrm{d}z}{\mathrm{d}t}  \right)^2}\dd t,
     \]
     i.e.
     \[
-        \rmd s^2 = \rmd x^2+\rmd y^2+\rmd z^2.
+        \mathrm{d} s^2 = \mathrm{d} x^2+\mathrm{d} y^2+\mathrm{d} z^2.
     \]
     This is known as the Pythagorean theorem.
 \end{note}
@@ -138,73 +138,73 @@ Suppose $C$ has 2 different parametrisations
     \mathbf{x} &= \mathbf{x}_1(t), \quad a\le t\le b,\\
     \mathbf{x} &= \mathbf{x}_2(\tau),\quad \alpha\le \tau\le \beta.
 \end{align*}
-We must have $ \bfx_2(\tau) = \bfx_1(t(\tau)) $ for some function $t(\tau)$. Assume that $ \frac{\mathrm{d}t}{\mathrm{d}\tau}\neq 0  $, so that $ t(\tau) $ is invertible and differentiable(see inverse function theorem in Analysis and Topology). Note that 
+We must have $ \mathbf{x}_2(\tau) = \mathbf{x}_1(t(\tau)) $ for some function $t(\tau)$. Assume that $ \frac{\mathrm{d}t}{\mathrm{d}\tau}\neq 0  $, so that $ t(\tau) $ is invertible and differentiable(see inverse function theorem in Analysis and Topology). Note that 
 \begin{align*}
     \frac{\mathrm{d}}{\mathrm{d}\tau} \mathbf{x}_2(\tau) &= \frac{\mathrm{d}}{\mathrm{d}\tau} \mathbf{x}_1(t(\tau))\\
-    &= \bfx_1'(t(\tau)) \frac{\mathrm{d}t}{\mathrm{d}\tau}.  
+    &= \mathbf{x}_1'(t(\tau)) \frac{\mathrm{d}t}{\mathrm{d}\tau}.  
 \end{align*}
 Hence we can make the substitution $ t=t(\tau) $. Assume that $ \frac{\mathrm{d}t}{\mathrm{d}\tau}>0  $, then 
 \[
-    \int_{a}^{b} f(\bfx_1(t)) |\mathbf{x}_1'(t)| \,\mathrm{d}t = \int_{\alpha}^{\beta} f(\bfx_2(\tau))|\mathbf{x}_1'(t(\tau))| \frac{\mathrm{d}t}{\mathrm{d}\tau}  \,\mathrm{d}\tau = \int_{\alpha}^{\beta} f(\bfx_2(\tau))|\mathbf{x}_2'(\tau)| \,\mathrm{d}\tau.
+    \int_{a}^{b} f(\mathbf{x}_1(t)) |\mathbf{x}_1'(t)| \,\mathrm{d}t = \int_{\alpha}^{\beta} f(\mathbf{x}_2(\tau))|\mathbf{x}_1'(t(\tau))| \frac{\mathrm{d}t}{\mathrm{d}\tau}  \,\mathrm{d}\tau = \int_{\alpha}^{\beta} f(\mathbf{x}_2(\tau))|\mathbf{x}_2'(\tau)| \,\mathrm{d}\tau.
 \]
 Similarly it holds for $ \frac{\mathrm{d}t}{\mathrm{d}\tau}<0  $. Hence
 \begin{proposition}\label{prop:change of parametrisations}
-    $ \displaystyle \int_{C} f(\bfx) \,\mathrm{d}s $ is \textit{invariant} under different parametrisations.
+    $ \displaystyle \int_{C} f(\mathbf{x}) \,\mathrm{d}s $ is \textit{invariant} under different parametrisations.
 \end{proposition}
 
 \subsubsection*{Parametrisation by arc-length}
 Note that we can parametrise curves in various ways. Define \textbf{arc-length} function for curve $ [a,b]\ni t \mapsto \mathbf{x}(t) $ by 
 \[
-    s(t) = \int_{a}^{t} \left| \bfx'(\tau) \right| \,\mathrm{d}\tau,
+    s(t) = \int_{a}^{t} \left| \mathbf{x}'(\tau) \right| \,\mathrm{d}\tau,
 \]
 so that $s(a)=0$ and $ s(b)=\ell (C) $. Also 
 \[
-    \frac{\mathrm{d}s}{\mathrm{d}t} = \left| \bfx'(t) \right| \ge 0, 
+    \frac{\mathrm{d}s}{\mathrm{d}t} = \left| \mathbf{x}'(t) \right| \ge 0, 
 \]
-so for regular curves we have $ \rmd s/\rmd t >0 $, and we can revert relationship between $s$ and $t$ to find $t=t(s)$. So we can parametrise \textit{regular} curves with respect to arc-length. Write $ \mathbf{r}(s)=\mathbf{x}(t(s)) $ where $ 0\le s\le \ell (C) $, then by chain rule, 
+so for regular curves we have $ \mathrm{d} s/\mathrm{d} t >0 $, and we can revert relationship between $s$ and $t$ to find $t=t(s)$. So we can parametrise \textit{regular} curves with respect to arc-length. Write $ \mathbf{r}(s)=\mathbf{x}(t(s)) $ where $ 0\le s\le \ell (C) $, then by chain rule, 
 \[
-    \frac{\mathrm{d}t}{\mathrm{d}s} = \frac{1}{\rmd s/\rmd t} = \frac{1}{\left| \mathbf{x}'(t(s)) \right| }
+    \frac{\mathrm{d}t}{\mathrm{d}s} = \frac{1}{\mathrm{d} s/\mathrm{d} t} = \frac{1}{\left| \mathbf{x}'(t(s)) \right| }
 \]
 and 
 \begin{align*}
     \mathbf{r}'(s)&= \frac{\mathrm{d}}{\mathrm{d}s}\mathbf{x}(t(s))=\frac{\mathrm{d}t}{\mathrm{d}s}\mathbf{x}'(t(s))\\ 
-    &= \frac{\mathbf{x}'(t(s))}{\left| \mathbf{x}'(t(s)) \right|} \Longrightarrow \left| \bfr'(s) \right| =1. \\ 
+    &= \frac{\mathbf{x}'(t(s))}{\left| \mathbf{x}'(t(s)) \right|} \Longrightarrow \left| \mathbf{r}'(s) \right| =1. \\ 
 \end{align*}
 This gives 
 \[
-    \ell (C) = \int_{0}^{\ell (C)} \left| \bfr'(s) \right| \,\mathrm{d}s = \int_{0}^{\ell (C)} \,\mathrm{d}s
+    \ell (C) = \int_{0}^{\ell (C)} \left| \mathbf{r}'(s) \right| \,\mathrm{d}s = \int_{0}^{\ell (C)} \,\mathrm{d}s
 \]
 
 \subsection{Curvature and torsion}
-Throughout this subsection we talk about generic \textit{regular curves} $C$ parametrised by \textit{arc-length} and write as $ s \mapsto \mathbf{r}(s) $. Define \textbf{tangent vector} $ \bft(s)=\mathbf{r}'(s) $, then $ |\bft(s)|=1 $. Since $ |\bft(s)| $ does not change, $ \bfr''(s)=\bft'(s) $ only measures change in \textit{direction}.
+Throughout this subsection we talk about generic \textit{regular curves} $C$ parametrised by \textit{arc-length} and write as $ s \mapsto \mathbf{r}(s) $. Define \textbf{tangent vector} $ \mathbf{t}(s)=\mathbf{r}'(s) $, then $ |\mathbf{t}(s)|=1 $. Since $ |\mathbf{t}(s)| $ does not change, $ \mathbf{r}''(s)=\mathbf{t}'(s) $ only measures change in \textit{direction}.
 
 \begin{definition}[Curvature]
     The \textbf{curvature} of a curve $C$ at $s$ is 
     \[
-        \kappa(s) = \left| \bfr''(s) \right| = \left| \bft'(s) \right|.
+        \kappa(s) = \left| \mathbf{r}''(s) \right| = \left| \mathbf{t}'(s) \right|.
     \]
 \end{definition}
 
-Note that $ (\bft \cdot \bft =1)' \Rightarrow \bft \cdot \bft'=0 $.
+Note that $ (\mathbf{t} \cdot \mathbf{t} =1)' \Rightarrow \mathbf{t} \cdot \mathbf{t}'=0 $.
 \begin{definition}[Principal normal]
-    The \textbf{principal normal} $\bfn$ is defined by 
+    The \textbf{principal normal} $\mathbf{n}$ is defined by 
     \[
-        \bft'=\kappa \bfn.
+        \mathbf{t}'=\kappa \mathbf{n}.
     \]
-    Note that $ \bft \cdot \bfn=0 $ so $\bfn$ normal to $C$.
+    Note that $ \mathbf{t} \cdot \mathbf{n}=0 $ so $\mathbf{n}$ normal to $C$.
 \end{definition}
 
 \begin{definition}[Binormal]
     The \textbf{binormal} is defined as 
     \[
-        \bfb = \bft \times \bfn.
+        \mathbf{b} = \mathbf{t} \times \mathbf{n}.
     \]
 \end{definition}
 
-$ \{\bft,\bfn,\bfb\} $ is an orthonormal basis for $ \mathbb{R}^{3} $. Note that $ \bfb' \cdot \bfb=0 $ and $ \bft \cdot \bfb'=0 $\footnote{Verify this.}, so $ \bfb' \perp \bfb,\bft $ so $ \bfb' \parallel \bfn $.
+$ \{\mathbf{t},\mathbf{n},\mathbf{b}\} $ is an orthonormal basis for $ \mathbb{R}^{3} $. Note that $ \mathbf{b}' \cdot \mathbf{b}=0 $ and $ \mathbf{t} \cdot \mathbf{b}'=0 $\footnote{Verify this.}, so $ \mathbf{b}' \perp \mathbf{b},\mathbf{t} $ so $ \mathbf{b}' \parallel \mathbf{n} $.
 
 \begin{definition}[Torsion]
-    Define \textbf{torsion} $ \tau $ by $ \bfb' = -\tau \bfn $.
+    Define \textbf{torsion} $ \tau $ by $ \mathbf{b}' = -\tau \mathbf{n} $.
 \end{definition}
 
 \begin{proposition}
@@ -213,19 +213,19 @@ $ \{\bft,\bfn,\bfb\} $ is an orthonormal basis for $ \mathbb{R}^{3} $. Note that
 \begin{proof}
     Note that
     \[
-        \bft'=\kappa (\bfb\times \bft)\quad \text{and}\quad \bfb'=-\tau(\bfb\times \bft).
+        \mathbf{t}'=\kappa (\mathbf{b}\times \mathbf{t})\quad \text{and}\quad \mathbf{b}'=-\tau(\mathbf{b}\times \mathbf{t}).
     \]
-    This is 6 equations for 6 unknowns. Hence given $ \kappa(s),\tau(s),\bft(0),\bfb(0) $ can construct $ \bft(s),\bfb(s) $ and hence $\bfn=\bfb\times \bft$. Hence the result.
+    This is 6 equations for 6 unknowns. Hence given $ \kappa(s),\tau(s),\mathbf{t}(0),\mathbf{b}(0) $ can construct $ \mathbf{t}(s),\mathbf{b}(s) $ and hence $\mathbf{n}=\mathbf{b}\times \mathbf{t}$. Hence the result.
 \end{proof}
 
 \subsection{Radius of curvature}
-Taylor expand $ \mathbf{r}(s) $ about $s=0$(write $ \bft=\bft(0) $, etc.):
+Taylor expand $ \mathbf{r}(s) $ about $s=0$(write $ \mathbf{t}=\mathbf{t}(0) $, etc.):
 \begin{align*}
-    \bfr(s)&= \mathbf{r}(0)+s \mathbf{r}'(0)+\frac{1}{2}s^2 \bfr''(0)+o(s^2)\\
-    &= \mathbf{r}+s\bft+\frac{1}{2}s^2 \kappa \bfn + o(s^2).\tag{$*$}\label{eq:1.3.1}
+    \mathbf{r}(s)&= \mathbf{r}(0)+s \mathbf{r}'(0)+\frac{1}{2}s^2 \mathbf{r}''(0)+o(s^2)\\
+    &= \mathbf{r}+s\mathbf{t}+\frac{1}{2}s^2 \kappa \mathbf{n} + o(s^2).\tag{$*$}\label{eq:1.3.1}
 \end{align*}
 
-Suppose wlog that $\bft$ is horizontal. What cirle that goes through the curve \textit{tangentially} at $ \bfr=\bfr(0) $ is \textit{best fit}?
+Suppose wlog that $\mathbf{t}$ is horizontal. What cirle that goes through the curve \textit{tangentially} at $ \mathbf{r}=\mathbf{r}(0) $ is \textit{best fit}?
 \begin{center}
     \begin{tikzpicture}
       \draw[color=red] circle [radius = 1];
@@ -242,15 +242,15 @@ Suppose wlog that $\bft$ is horizontal. What cirle that goes through the curve \
 \end{center}
 The equation of the circle is given by
 \[
-    \mathbf{x}(\theta) = \mathbf{r} + R(1-\cos \theta)\bfn+R \sin \theta \bft.\footnote{Verify this.}
+    \mathbf{x}(\theta) = \mathbf{r} + R(1-\cos \theta)\mathbf{n}+R \sin \theta \mathbf{t}.\footnote{Verify this.}
 \]
 Expand for $ |\theta| $ small:
 \[
-    \mathbf{x}(\theta) = \mathbf{r}+R \theta\bft+\frac{1}{2}R\theta^2 \bfn+o(\theta^2).
+    \mathbf{x}(\theta) = \mathbf{r}+R \theta\mathbf{t}+\frac{1}{2}R\theta^2 \mathbf{n}+o(\theta^2).
 \]
 Arc length on the circle is $ s=R\theta $:
 \[
-    \mathbf{x}(\theta)=\mathbf{r}+s\bft+\frac{1}{2R}s^2\bfn+o(s^2).
+    \mathbf{x}(\theta)=\mathbf{r}+s\mathbf{t}+\frac{1}{2R}s^2\mathbf{n}+o(s^2).
 \]
 Hence to match with (\ref{eq:1.3.1}) up to 2nd order, we need
 \[

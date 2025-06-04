@@ -96,7 +96,7 @@ The following lemma is useful for finding $R$:
     \begin{lemma}\label{lma:4.6}
         \begin{enumerate}
             \item For all $2\le r\le n$, $\displaystyle \binom{n}{r}\le n(n-1) \binom{n-2}{r-2}$.
-            \item $ \left| (z+h)^n-z^n-nhz^{n-1} \right| \le n(n-1)(|z|+|h|)^{n-2}|h|^2,\ \forall z,h\in \bbC $. 
+            \item $ \left| (z+h)^n-z^n-nhz^{n-1} \right| \le n(n-1)(|z|+|h|)^{n-2}|h|^2,\ \forall z,h\in \mathbb{C} $. 
         \end{enumerate}
     \end{lemma}
 
@@ -158,7 +158,7 @@ We have already seen that
 \]
 has $ R=\infty $.
 \begin{definition}
-    The \textbf{exponential function} is defined by $ e:\bbC\to\bbC $, where
+    The \textbf{exponential function} is defined by $ e:\mathbb{C}\to\mathbb{C} $, where
     \[
         e(z) = \sum_{n=0}^{\infty} \frac{z^n}{n!}.
     \]
@@ -166,7 +166,7 @@ has $ R=\infty $.
 Straight from theorem \ref{thm:4.4}, $ e $ is differentiable and $ e'(z)=e(z) $.
 
 \begin{sprop}
-    If $ F:\bbC\to\bbC $ has $ F'(z)=0, \forall z\in \bbC $, then $F$ is constant.
+    If $ F:\mathbb{C}\to\mathbb{C} $ has $ F'(z)=0, \forall z\in \mathbb{C} $, then $F$ is constant.
 \end{sprop}
 \begin{proof}
     Consider $g(t)=F(tz)=u(t)+iv(t)$. By chain rule,
@@ -176,7 +176,7 @@ Straight from theorem \ref{thm:4.4}, $ e $ is differentiable and $ e'(z)=e(z) $.
     Hence $u,v$ are constant by corollary \ref{col:3.5}, thus $F$ is constant.
 \end{proof}
 
-Now let $a,b\in \bbC$ and consider 
+Now let $a,b\in \mathbb{C}$ and consider 
 \[
     F(z) = e(a+b-z)e(z) \Longrightarrow F'(z) = 0.
 \]
@@ -189,7 +189,7 @@ Now we restrict $ e:\mathbb{R} \to \mathbb{R} $.
 
 \begin{theorem}[Properties of the exponential]\label{thm:4.7}\
     \begin{enumerate}
-        \item $ e:\bbR\to\bbR $ is differentiable on $\bbR$ with $ e'(x)=e(x) $.
+        \item $ e:\mathbb{R}\to\mathbb{R} $ is differentiable on $\mathbb{R}$ with $ e'(x)=e(x) $.
         \item $ e(x+y)=e(x)e(y) $.
         \item $ e(x)>0 $.
         \item $ e $ is strictly increasing.
@@ -205,7 +205,7 @@ Now we restrict $ e:\mathbb{R} \to \mathbb{R} $.
 \end{remark}
 
 \begin{definition}
-    The \textbf{logarithm} is defined by the inverse of exponential: $ l:(0,\infty )\to \bbR  $.
+    The \textbf{logarithm} is defined by the inverse of exponential: $ l:(0,\infty )\to \mathbb{R}  $.
 \end{definition}
 \begin{theorem}[Properties of logarithm]\label{thm:4.8}\
     \begin{enumerate}
@@ -301,7 +301,7 @@ We may denote
         \item $\displaystyle \cos z=\frac{1}{2}\left( e^{iz}+e^{-iz} \right)$, and $\displaystyle \sin z = \frac{1}{2i}\left( e^{iz}-e^{-iz} \right)$. 
         \item $\forall z\in \mathbb{C},\ \sin ^2 z+ \cos ^2 z=1 $.
         \item All trignometric identities hold.
-        \item $ \bbR\ni y\to \infty,\ \cos(iy)\to \infty $.
+        \item $ \mathbb{R}\ni y\to \infty,\ \cos(iy)\to \infty $.
         \item If $ x\in \mathbb{R},\ \sin x, \cos x\in \mathbb{R} $.
         \item $ \forall x\in \mathbb{R},\ |\sin x|,|\cos x|\le 1 $.
     \end{enumerate}
@@ -340,13 +340,13 @@ This implies
 so $e^z$ is periodic with period $ 2\pi i $.
 
 \begin{remark}[Relation with geometry]
-    Given 2 vectors $ \bfx,\bfy\in \mathbb{R}^{2} $, we have by Cauchy-Schwarz that $ |\bfx \cdot \bfy|<|bfx|\bfy| $. Thus for $ \bfx,\bfy\neq \mathbf{0} $, we have 
+    Given 2 vectors $ \mathbf{x},\mathbf{y}\in \mathbb{R}^{2} $, we have by Cauchy-Schwarz that $ |\mathbf{x} \cdot \mathbf{y}|<|bfx|\mathbf{y}| $. Thus for $ \mathbf{x},\mathbf{y}\neq \mathbf{0} $, we have 
     \[
-        -1\le \frac{\bfx\cdot\bfy}{|\bfx||\bfy|}\le 1.
+        -1\le \frac{\mathbf{x}\cdot\mathbf{y}}{|\mathbf{x}||\mathbf{y}|}\le 1.
     \]
-    So we can define the \textbf{angle} between $\bfx,\bfy$ as $ \theta\in [0,2\pi] $ such that 
+    So we can define the \textbf{angle} between $\mathbf{x},\mathbf{y}$ as $ \theta\in [0,2\pi] $ such that 
     \[
-        \cos \theta=\frac{\bfx\cdot\bfy}{|\bfx||\bfy|}.
+        \cos \theta=\frac{\mathbf{x}\cdot\mathbf{y}}{|\mathbf{x}||\mathbf{y}|}.
     \]
 \end{remark}
 

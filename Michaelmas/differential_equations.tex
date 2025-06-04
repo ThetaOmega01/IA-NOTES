@@ -1,60 +1,19 @@
-\documentclass[10pt]{article}
-\pdfoutput=1 
-\usepackage{NotesTeX,lipsum}
-\usepackage{IEEEtrantools}
+\documentclass[a4paper]{article}
+\usepackage{../triposnotes}
 \usepackage{mhchem}
 
-\def\d{{\mathrm d}}
-\def\e{{\mathrm e}}
-\def\g{{\mathrm g}}
-\def\h{{\mathrm h}}
-\def\f{{\mathrm f}}
-\def\p{{\mathrm p}}
-\def\s{{\mathrm s}}
-\def\t{{\mathrm t}}
-\def\i{{\mathrm i}}
-
-\def\A{{\mathrm A}}
-\def\B{{\mathrm B}}
-\def\E{{\mathrm E}}
-\def\F{{\mathrm F}}
-\def\G{{\mathrm G}}
-\def\H{{\mathrm H}}
-\def\P{{\mathrm P}}
-
-
-\def\bb{\mathbf b}
-\def \bc{\mathbf c}
-\def\bx {\mathbf x}
-\def\bn {\mathbf n}
-\def\le{\leqslant}
-\def\ge{\geqslant}
-\def\arcosh{{\rm arcosh}\,}
+\renewcommand{\triposcourse}{Differential Equations}
 
 \newcommand{\bluecomment}[1]{{\color{blue}#1}}
-%\renewcommand{\comment}[1]{}
 \newcommand{\redcomment}[1]{{\color{red}#1}}
 \newcommand{\tm}{\times}
-%\usepackage{showframe}
-
-\title{\begin{center}{\Huge \textit{Differential Equations Notes}}\\{{\itshape Based on Lectures and "An Introduction to ODEs"}}\end{center}}
-\author{$\theta\omega\theta$}
-\affiliation{
-Not in University of Cambridge\\
-skipped some talks irrelevant to contents\\
-}
-
-\emailAdd{not telling you}
 
 \begin{document}
 	\maketitle
-	\flushbottom
-	\newpage
-    \pagestyle{fancynotes}
-    %main doc
-    \part{Basic Calculus}
-    \section{Differentiation}
-    \subsection{Definitions and methods}
+    \tableofcontents
+    \section{Basic Calculus}
+    \subsection{Differentiation}
+    \subsubsection{Definitions and methods}
 	\begin{definition}[Derivative]
         The derivative of a function $f(x)$ wrt its argument $x$ is the function
         \[
@@ -74,12 +33,12 @@ skipped some talks irrelevant to contents\\
     \begin{enumerate}
         \item \textbf{Chain rule}: $ (f(g(x)))' = f'(g(x))g'(x) $.
         \item \textbf{Product rule}: $ (u\cdot v)' = u\cdot v'+u'\cdot v $.
-        \item \textbf{Leibniz's rule}: generalisation of product rule.\sidenote{There are multiple ways to prove, e.g. by induction.}
+        \item \textbf{Leibniz's rule}: generalisation of product rule.
         \[
             \frac{\mathrm{d}^n}{\mathrm{d}x^n}(u\cdot v) = \sum_{k=0}^{n}\binom{n}{k}u^{(k)}v^{(n-k)}
         .\]
     \end{enumerate}
-    \subsection{Order of magnitude}
+    \subsubsection{Order of magnitude}
     The goal is to compare the sizes of functions, in the vicinity of specific points.
     \begin{definition}[Little and Big o]
         We say $ f(x) = o(g(x)) $ as $x\to x_0$ if $ \lim_{x \to x_0} \frac{f(x)}{g(x)} = 0 $.
@@ -94,7 +53,7 @@ skipped some talks irrelevant to contents\\
              \Longrightarrow & f(x_0+h) = f(x_0)+\frac{\mathrm{d}f}{\mathrm{d}x}\Big|_{x=x_0} h + o(h)& \text{when $ h \to 0$} \\
         \end{aligned}
     \]
-    \subsection{Taylor's Theorem and L'Hopital's Theorem}
+    \subsubsection{Taylor's Theorem and L'Hopital's Theorem}
     We want to approximate a function $f(x)$ with a polynomial of order $n$:
     \[
         f(x) = \underbrace{a_0+a_1x+\cdots+a_nx^n}_{P_n(x)}
@@ -140,8 +99,8 @@ skipped some talks irrelevant to contents\\
         \]
     \end{proof}
     Note that it can be applied recursively.
-    \section{Integration}
-    \subsection{Definition}
+    \subsection{Integration}
+    \subsubsection{Definition}
     All functions mentions are assumed to be well-hehaved.
 
     We evaluate the area under the curve of $f(x)$ by considering
@@ -175,7 +134,7 @@ skipped some talks irrelevant to contents\\
     \begin{definition}[Definite integral]
         $\displaystyle \int_{a}^{b} f(x) \,\mathrm{d}x = \lim_{N \to \infty} \sum_{n=0}^{N-1}f(x_n)\Delta x$ 
     \end{definition}
-    \subsection{Fundamental Theorem of Calculus}
+    \subsubsection{Fundamental Theorem of Calculus}
     \begin{theorem}[FTC]\label{thm:ftc}
         Let
         \[
@@ -210,10 +169,10 @@ skipped some talks irrelevant to contents\\
             \int f(x) \,\mathrm{d}x = \int_{x_0}^{x} f(t) \,\mathrm{d}t
         .\]
     \end{definition}
-    \subsection{Techniques of Integration}
+    \subsubsection{Techniques of Integration}
     skipped
-    \section{Introduction to multivariable functions}\marginnote{Lecture 5.}
-        \subsection{Partial derivative}
+    \subsection{Introduction to multivariable functions}\footnote{Lecture 5.}
+        \subsubsection{Partial derivative}
         \begin{definition}
             The \textit{partial derivative} of $ f(x,y) $ wrt $x$ is 
             \begin{equation}
@@ -229,7 +188,7 @@ skipped some talks irrelevant to contents\\
         \begin{equation}
             \frac{\partial^2 f}{\partial x \partial y} = \frac{\partial }{\partial x}\left( \frac{\partial f}{\partial y}  \right)=\frac{\partial }{\partial y}\left( \frac{\partial f}{\partial x}  \right) .
         \end{equation}
-        \subsection{Multivariable chain rule}
+        \subsubsection{Multivariable chain rule}
         \begin{theorem}\label{thm:mvchainrule}
             For well-behaved functions, we have 
             \begin{equation}
@@ -261,8 +220,8 @@ skipped some talks irrelevant to contents\\
             \end{equation}
             In this case we need to specify the \textit{path} of integral as there might be some priority issues.
         \end{remark}
-        \subsection{Applications of multivariable chain rule}
-        \subsubsection{Change of variables}
+        \subsubsection{Applications of multivariable chain rule}
+        \paragraph{Change of variables}
         It is often useful to write a DE in a different coordinate system before solving it. Need to transform the derivatives into the new coordinate system. 
         \begin{example}
             Change from cartesian coordinates to polar coordinates: $ x=r\cos \theta, y=r\sin \theta $. Firstly, write
@@ -272,11 +231,11 @@ skipped some talks irrelevant to contents\\
             We have 
             \[
                 \frac{\partial f}{\partial r} = \frac{\partial f}{\partial x} \frac{\partial x}{\partial r}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial r}=\frac{\partial f}{\partial x}\cos \theta+\frac{\partial f}{\partial y}\sin \theta
-                \marginnote{By regarding $ \frac{\partial f}{\partial r}$ as $\frac{\mathrm{d}f}{\mathrm{d}r} $ with $\theta$ fixed, we get this result.}     
+                \footnote{By regarding $ \frac{\partial f}{\partial r}$ as $\frac{\mathrm{d}f}{\mathrm{d}r} $ with $\theta$ fixed, we get this result.}     
             .\]
             Similar for other partial derivatives.
         \end{example}
-        \subsubsection{Implicit Differentiation}
+        \paragraph{Implicit Differentiation}
         Consider $ f(x,y,z)=c, c\in \mathbb{R} $. $f$ describes a surface in 3d space. $ f(x,y,z)=c $ implicitly defines $ x(y,z),y(x,z),z(x,y) $. However, we can find $ \frac{\partial z}{\partial x}  $ here using implicit differentiation.
 
         Consider $ f(x,y,z(x,y))=c $.
@@ -286,10 +245,10 @@ skipped some talks irrelevant to contents\\
         Finding the partial derivative for $x$: 
         \[
             \begin{aligned}
-                && \frac{\partial f}{\partial x}\Big|_y &= \frac{\partial f}{\partial x}\Big|_{yz}\frac{\partial x}{\partial x}\Big|_y+\frac{\partial f}{\partial y}\Big|_{xz}\frac{\partial y}{\partial x}\Big|_y+\frac{\partial f}{\partial z}\Big|_{xy}\frac{\partial z}{\partial x}\Big|_y\marginnote{Notice the subscripts are very important since they discribes different functions}\\
+                && \frac{\partial f}{\partial x}\Big|_y &= \frac{\partial f}{\partial x}\Big|_{yz}\frac{\partial x}{\partial x}\Big|_y+\frac{\partial f}{\partial y}\Big|_{xz}\frac{\partial y}{\partial x}\Big|_y+\frac{\partial f}{\partial z}\Big|_{xy}\frac{\partial z}{\partial x}\Big|_y\footnote{Notice the subscripts are very important since they discribes different functions}\\
                 && &= \frac{\partial f}{\partial x}\Big|_{yz}+\frac{\partial f}{\partial y}\Big|_{xz}\frac{\partial y}{\partial x}\Big|_y+\frac{\partial f}{\partial z}\Big|_{xy}\frac{\partial z}{\partial x}\Big|_y.\\
-                &\Longleftrightarrow &\frac{\partial f}{\partial x}\Big|_y&=\frac{\partial f}{\partial x}\Big|_{yz}+\frac{\partial f}{\partial z}\Big|_{xy}\frac{\partial z}{\partial x}\Big|_y  \marginnote{Since $ \frac{\partial y}{\partial x}\Big|_y=0  $}  \\    
-                &\Longleftrightarrow &0 &= \frac{\partial f}{\partial x}\Big|_{yz}+\frac{\partial f}{\partial z}\Big|_{xy}\frac{\partial z}{\partial x}\Big|_y \marginnote{Since $f=c$ along the surface $z(x,y)$.} \\
+                &\Longleftrightarrow &\frac{\partial f}{\partial x}\Big|_y&=\frac{\partial f}{\partial x}\Big|_{yz}+\frac{\partial f}{\partial z}\Big|_{xy}\frac{\partial z}{\partial x}\Big|_y  \footnote{Since $ \frac{\partial y}{\partial x}\Big|_y=0  $}  \\    
+                &\Longleftrightarrow &0 &= \frac{\partial f}{\partial x}\Big|_{yz}+\frac{\partial f}{\partial z}\Big|_{xy}\frac{\partial z}{\partial x}\Big|_y \footnote{Since $f=c$ along the surface $z(x,y)$.} \\
                 &\Longleftrightarrow && \boxed{\frac{\partial z}{\partial x}\Big|_y=-\frac{\partial f/ \partial x|_{yz}}{\partial f/\partial z|_{xy}} }    
             \end{aligned}
         \]
@@ -300,27 +259,27 @@ skipped some talks irrelevant to contents\\
                 \frac{\partial r}{\partial x}\Big|_y = \frac{1}{\frac{\partial x}{\partial r}\Big|_y }\quad\text{but}\quad  \frac{\partial r}{\partial x}\Big|_y \neq \frac{1}{\frac{\partial x}{\partial r}\Big|_{\theta} }
             .\]
         \end{remark}
-        \subsubsection{Differentiation of an integral wrt its parameters}
+        \paragraph{Differentiation of an integral wrt its parameters}
         Consider a family of functions $ f(x;\alpha) $, where $ \alpha $ is the parameter. Define
         \[
             I(\alpha) = \int_{a(\alpha)}^{b(\alpha)} f(x;\alpha) \,\mathrm{d}x
         .\]
         \begin{IEEEeqnarray*}{rCl}
-            \frac{\mathrm{d}I}{\mathrm{d}\alpha}  & = & \lim_{\delta \alpha \to 0} \frac{I(\alpha+\delta \alpha)-I(\alpha)}{\delta \alpha}\marginnote{Draw a graph to understand the steps.}
+            \frac{\mathrm{d}I}{\mathrm{d}\alpha}  & = & \lim_{\delta \alpha \to 0} \frac{I(\alpha+\delta \alpha)-I(\alpha)}{\delta \alpha}\footnote{Draw a graph to understand the steps.}
         \\
             & = &\lim_{\delta \alpha \to 0} \frac{1}{\delta \alpha}\left[ \int_{a(\alpha+\delta \alpha)}^{b(\alpha+\delta \alpha)} f(x;\alpha+\delta \alpha) \,\mathrm{d}x-\int_{a(\alpha)}^{b(\alpha)} f(x;\alpha) \,\mathrm{d}x \right]
         \\
             & = &\lim_{\delta \alpha \to 0} \frac{1}{\delta \alpha}\left[ \int_{a(\alpha)}^{b(\alpha)}f(x;\alpha+\delta \alpha)- f(x;\alpha) \,\mathrm{d}x -\int_{a(\alpha)}^{a(\alpha+\delta \alpha)} f(x;\alpha+\delta \alpha) \,\mathrm{d}x+\int_{b(\alpha)}^{b(\alpha+\delta \alpha)} f(x;\alpha+\delta \alpha) \,\mathrm{d}x \right]
         \\ 
-            & = &\int_{a(\alpha)}^{b(\alpha)}\frac{\partial f}{\partial \alpha}  \,\mathrm{d}x - f(a;\alpha) \lim_{\delta \alpha \to 0} \frac{a(\alpha+\delta \alpha)-a(\alpha)}{\delta \alpha}+ f(b;\alpha)\lim_{\delta \alpha \to 0}\frac{b(\alpha+\delta \alpha)-b(\alpha)}{\delta \alpha}.\marginnote{When $ \delta \alpha $ is very small, we can approximate the latter two integrals with the area of the rectangle of hight $ f(a;\alpha) $ and width $ a(\alpha+\delta \alpha)-a(\alpha) $.}
+            & = &\int_{a(\alpha)}^{b(\alpha)}\frac{\partial f}{\partial \alpha}  \,\mathrm{d}x - f(a;\alpha) \lim_{\delta \alpha \to 0} \frac{a(\alpha+\delta \alpha)-a(\alpha)}{\delta \alpha}+ f(b;\alpha)\lim_{\delta \alpha \to 0}\frac{b(\alpha+\delta \alpha)-b(\alpha)}{\delta \alpha}.\footnote{When $ \delta \alpha $ is very small, we can approximate the latter two integrals with the area of the rectangle of hight $ f(a;\alpha) $ and width $ a(\alpha+\delta \alpha)-a(\alpha) $.}
         \end{IEEEeqnarray*}
         Hence,
         \[
             \boxed{\frac{\mathrm{d}I}{\mathrm{d}\alpha} = \frac{\mathrm{d}}{\mathrm{d}\alpha}\int_{a(\alpha)}^{b(\alpha)} f(x;\alpha) \,\mathrm{d}x =  \int_{a(\alpha)}^{b(\alpha)}\frac{\partial f}{\partial \alpha}  \,\mathrm{d}x+f(b;\alpha)\frac{\mathrm{d}b}{\mathrm{d}\alpha}-f(a;\alpha) \frac{\mathrm{d}a}{\mathrm{d}\alpha} }
         .\]
 
-    \part{First order linear ODEs}
-    \section{Terminology}
+    \section{First order linear ODEs}
+    \subsection{Terminology}
     \begin{definition}
         An \textit{ordinary differential equation} is a differential equation involving a function of one variable. A \textit{partial differential equation} is a differential equation involving a function of more than one variable.
 
@@ -328,7 +287,7 @@ skipped some talks irrelevant to contents\\
 
         Linear: dependent variable appears linearly.
     \end{definition}
-    \section{Prelude: Exponential functions}
+    \subsection{Prelude: Exponential functions}
     Consider $f=a^x, a>0$, we have
     \[
         \begin{aligned}
@@ -357,7 +316,7 @@ skipped some talks irrelevant to contents\\
     The exponential function is the \textit{eigenfunction} of the differential operator.
 
     The \textit{eigenfunction} of an operator is unchanged by the action of the operator, except for a multiplicative scaling by the eigenvalue.
-    \section{Rules for linear ODEs}
+    \subsection{Rules for linear ODEs}
     \begin{enumerate}[\bfseries 1.]
         \item Any linear homogeneous ODE with constant coefficients has solutions of form $ e^{\lambda x} $, the eigenfunction. By \textit{homogeneous} we mean that all terms involve the dependent variable or its derivatives.
 
@@ -370,8 +329,8 @@ skipped some talks irrelevant to contents\\
         For constant coefficient ODEs, this rule follows from the fundamental theorem of algebra.
         \item An $n$th order ODE requires $n$ initial/boundary conditions.
     \end{enumerate}
-    \section{Inhomogeneous(forced) first order ODEs with constant coefficients}
-    \subsection{Constant forcing}
+    \subsection{Inhomogeneous(forced) first order ODEs with constant coefficients}
+    \subsubsection{Constant forcing}
     \begin{example}
         Consider the equation 
         \[
@@ -394,7 +353,7 @@ skipped some talks irrelevant to contents\\
             \item Combine $y_p$ and $y_c$.
         \end{enumerate}
     \end{example}
-    \subsection{Eigenfunction forcing}
+    \subsubsection{Eigenfunction forcing}
     Example problem: In a sample of rock, isotope A decays to isotope B at a rate proportional to $a$, the number of nuclei of A. B decays to C at a rate proportional to $b$, the number of nuclei of $B$. Find $b(t)$.
     
     We have 
@@ -431,7 +390,7 @@ skipped some talks irrelevant to contents\\
         \frac{b(t)}{a(t)} = \frac{k_a}{k_b-k_a}\left( 1-e^{(k_a-k_b)t} \right)
     .\]
     We can date the age without knowing $a_0$ is. This result allows rocks and other materials to be dated by measuring ratio of isotopes.
-    \section{First order ODEs of non-constant coefficients}
+    \subsection{First order ODEs of non-constant coefficients}
     The general form is 
     \[
         a(x)y'+b(x)y = c(x)
@@ -452,9 +411,9 @@ skipped some talks irrelevant to contents\\
     \[
         (\mu y)' = \mu f \Longleftrightarrow y = \frac{1}{\mu}\int \mu f \,\mathrm{d}x
     .\]
-    \section{Discrete equations}\marginnote{Lecture 8}
+    \subsection{Discrete equations}\footnote{Lecture 8}
     A \textit{discrete equation} is an equation involving a function evaluated at a discrete set of points.
-    \subsection{Numerical integration}
+    \subsubsection{Numerical integration}
     Consider a discrete representation of $y(x)$, $ y(x_1),\dots,y(x_{n}) $. One approximation to $y'$ is 
     \[
         \frac{\mathrm{d}y}{\mathrm{d}x}\Big|_{x_n} \approx \frac{y_{n+1}-y_n}{h},\quad h=\frac{x_n}{n} 
@@ -486,7 +445,7 @@ skipped some talks irrelevant to contents\\
         .\]
         \bluecomment{Note for finite $n$, $y_n<y(x)$.}
     \end{example}
-    \subsection{Series solutions}
+    \subsubsection{Series solutions}
     A powerful way to solve ODEs is to seek solutions in the form of an infinite power series. 
     \[
         y(x)=\sum_{n=0}^{\infty}a_n x^n
@@ -521,18 +480,18 @@ skipped some talks irrelevant to contents\\
         .\]
         This converges for all $x$, so $ y(x)=a_0 e^{3x/5} $ is a solution.
     \end{example}
-    \part{First order nonlinear ODEs}
+    \section{First order nonlinear ODEs}
     General form is 
     \begin{equation}
         Q(x,y)\frac{\mathrm{d}y}{\mathrm{d}x}+P(x,y)=0.
     \end{equation}
-    \section{Separable equations}
+    \subsection{Separable equations}
     (10.1) is separable if and only if it can be written in the form 
     \[
         q(y)\d y=p(x)\d x,
     \]
     and we simply solve $x,y$ by integrating both sides.
-    \section{Exact equations}
+    \subsection{Exact equations}
     (10.1) is an \textit{exact equation} if and only if 
     \[
         Q(x,y)\d y+P(x,y)\d x\tag{*}
@@ -579,7 +538,7 @@ skipped some talks irrelevant to contents\\
         \]
         is the general solution. 
     \end{example}
-    \section{Isoclines and solution curves}\marginnote{Lecture 9.}
+    \subsection{Isoclines and solution curves}\footnote{Lecture 9.}
     Nonlinear equations are not guaranteed to have simple/closed form solutions. Nevertheless we can analyze the behaviour of the system without solving.
 
     Consider an ODE of the form 
@@ -608,7 +567,7 @@ skipped some talks irrelevant to contents\\
     \begin{remark}
         Since $f(y,t)$ is single-valued, any two solution curves do not cross.
     \end{remark}
-    \section{Fixed(equilibrium) points}
+    \subsection{Fixed(equilibrium) points}
     \begin{definition}
         A fixed point is a point where
         \[
@@ -643,7 +602,7 @@ skipped some talks irrelevant to contents\\
         
         At $y=-1$, $ \dot{\epsilon}=2t\epsilon \Rightarrow \epsilon=\epsilon_0e^{t^2}\to \infty $. Hence $-1$ is unstable.
     \end{example}
-    \section{Autonomous DEs}
+    \subsection{Autonomous DEs}
     \begin{definition}
         An \textit{autonomous DE} is a special case when $\dot{y}=f(y)$.
     \end{definition}
@@ -654,7 +613,7 @@ skipped some talks irrelevant to contents\\
        f'(a)>0 \Rightarrow \text{unstable F.P.}\\
       \end{cases}   
     \]
-    \section{Phase Portraits}\marginnote{Lecture 10}
+    \subsection{Phase Portraits}\footnote{Lecture 10}
     Another way to analyze solutions to a DE is using a geometrical representation of the solution called a \textit{phase portrait}.
     \begin{example}[Chemical kinetics]
         Consider the reaction
@@ -724,7 +683,7 @@ skipped some talks irrelevant to contents\\
                   \draw [->] (-0.5, 0) -- (4.5, 0) node [right] {$y$};
                   \draw [->] (0, -1) -- (0, 2) node [above] {$\dot{y}$};
                   \node [anchor = north east] at (0, 0) {$O$};
-                  \draw [mblue, semithick] (0, 0) parabola bend (1.75, 1.5) (4, -.9796);
+                  \draw [blue, semithick] (0, 0) parabola bend (1.75, 1.5) (4, -.9796);
                   \node [anchor = north east] at (3.5, 0) {$\lambda$};
               
                   \draw [->-=0.5] (0, -1.5) -- (3.5, -1.5);
@@ -735,8 +694,8 @@ skipped some talks irrelevant to contents\\
               \end{center}
         \end{enumerate}
     \end{example}
-    \section{Fixed points in discrete equations}
-    \subsection{Definitions}
+    \subsection{Fixed points in discrete equations}
+    \subsubsection{Definitions}
     Consider a first order discrete(difference) equation of the form 
     \[
         x_{n+1}=f(x_n)
@@ -745,7 +704,7 @@ skipped some talks irrelevant to contents\\
     \[
         f(x_n)=x_n
     .\]
-    \subsection{Stability}
+    \subsubsection{Stability}
     Use perturbation analysis to study its stability. Let $ x_f $ be a stable point of $x_n$, and perturb by a small $ \epsilon $:
     \[
         \begin{aligned}
@@ -765,7 +724,7 @@ skipped some talks irrelevant to contents\\
         \text{unstable} &\text{if }\left| \frac{\mathrm{d}f}{\mathrm{d}x}\Big|_{x_f} \right| >1\\
         \end{cases} 
     \]
-    \subsection{Example: Logistic map}
+    \subsubsection{Example: Logistic map}
     Nonlinear discrete population model 
     \[
         \frac{x_{n+1}-x_n}{\Delta t}=\lambda x_n-\gamma x_{n}^2
@@ -790,8 +749,8 @@ skipped some talks irrelevant to contents\\
 
     For $ x_n=1-\frac{1}{r} $, $ \frac{\mathrm{d}f}{\mathrm{d}x}\Big|_{x_n}=2-r  $. Then for $ 0<r<1 $ it is unphysical since $x_n<0$. If $ 1<r<3 $, it is stable. For $ r>3 $ it is unstable.
 
-    \part{Higher Order Linear ODEs}
-    \section{Linear 2nd order ODEs with constant coefficients}\marginnote{Lecture 11.}
+    \section{Higher Order Linear ODEs}
+    \subsection{Linear 2nd order ODEs with constant coefficients}\footnote{Lecture 11.}
     The general form of a linear 2nd order ODE with constant coefficients is 
     \begin{equation}\label{eq:11.1}
         a \frac{\mathrm{d}^2y}{\mathrm{d}x^2}+b \frac{\mathrm{d}y}{\mathrm{d}x}+cy = f(x),
@@ -830,7 +789,7 @@ skipped some talks irrelevant to contents\\
         are linearly independent solutions to (\ref{eq:11.1}).
     \end{enumerate}
     3. follows since $ \mathcal{D}(y_1)=\mathcal{D}(y_2)=0 $ and $ \mathcal{D}(y_p)=f(x) $, so that $ \mathcal{D}(y_1+y_2)=f(x) $.
-    \section{Linear independence of functions}
+    \subsection{Linear independence of functions}
     \begin{definition}
         A set of functions are \textit{linearly dependent} if 
         \begin{equation}\label{eq:11.3}
@@ -845,7 +804,7 @@ skipped some talks irrelevant to contents\\
         f_1=\alpha_2 f_2+\cdots+\alpha_N f_N
     .\]
     Then the functions are linearly dependent.
-    \section{Eigenfunctions for 2nd order ODEs}
+    \subsection{Eigenfunctions for 2nd order ODEs}
     Recall that $ e^{\lambda x} $ is the eigenfunction of $ \frac{\mathrm{d}}{\mathrm{d}x}  $. In fact, it is the eigenfunction of $ \frac{\mathrm{d}^n}{\mathrm{d}x^n}  $, for $ \frac{\mathrm{d}^n}{\mathrm{d}x^n} (e^{\lambda x})=\lambda^{n}e^{\lambda x} $. Hence it is the eigenfunction of any linear differential operator $ \mathcal{D} $. Then equation (\ref{eq:11.2}) can be written as
     \[
         \underbrace{\left( a\frac{\mathrm{d}^2}{\mathrm{d}x^2}+b \frac{\mathrm{d}}{\mathrm{d}x}+c \right)}_{\mathcal{D}}y=0
@@ -913,14 +872,14 @@ skipped some talks irrelevant to contents\\
         .\]
         \textit{General rule}: If $y_1$ is a degenerate complementary function for linearly ODE with constant coefficients, then $ y_2 $ is a linearly independent complementary function.
     \end{enumerate}
-    \section{Homogenoeous 2nd order linear ODEs with non-constant coefficients}
-    \marginnote{Lecture 12}
+    \subsection{Homogenoeous 2nd order linear ODEs with non-constant coefficients}
+    \footnote{Lecture 12}
     The general form is 
     \begin{equation}\label{eq:2nd non-const}
         \frac{\mathrm{d}^2y}{\mathrm{d}x^2}+p(x)\frac{\mathrm{d}y}{\mathrm{d}x} +q(x)y=0.
     \end{equation}
     We can assume that the coefficient of $y''$ is $1$ since we can divide the coefficient otherwise.
-    \subsection{Reduction of order}
+    \subsubsection{Reduction of order}
     Given one solution to \ref{eq:2nd non-const}, $y_1(x)$, our objective is to find a second solution $y_2(x)$. The idea is to look for a solution of form
 
     \begin{equation}\label{eq:12.2}
@@ -935,11 +894,11 @@ skipped some talks irrelevant to contents\\
     \[
         \begin{aligned}
              &v(y_1''+py_1'+qy_1)+v'(2y_1'+py_1)+v''y_1=0\\
-             \Longleftrightarrow &v'(2y_1'+py_1)+v''y_1=0.\marginnote{Since $y_1$ is a solution.}
+             \Longleftrightarrow &v'(2y_1'+py_1)+v''y_1=0.\footnote{Since $y_1$ is a solution.}
         \end{aligned}
     \]
     Let $u=v'$, then $u'y_1+u(2y_1'+py_1)=0$, which is first order and separable. Then we can solve for $u(x)$ and integrate for $v(x)$.
-    \section{Solution space}
+    \subsection{Solution space}
     An $n$th order linear ODE of the form
     \[p(x)y^{(n)}+q(x)y^{(n-1)}+\cdots+r(x)y=f(x)\]
     can be used to write $y^{(n)}(x)$ in terms of $ y,y',\dots, y^{(n-1)} $.
@@ -976,15 +935,15 @@ skipped some talks irrelevant to contents\\
               \draw [->] (0, 0) -- (1.2, 0) node [right] {$\mathbf{Y}_1(0)$};
             \end{tikzpicture}
           \end{center}
-          \marginnote{Note that they do span the space, since any solution is a linear combination of $y_1$ and $y_2$ and the two free initial conditions are completely determined by $y$ and $y'$, as described in solution vectors.}
+          \footnote{Note that they do span the space, since any solution is a linear combination of $y_1$ and $y_2$ and the two free initial conditions are completely determined by $y$ and $y'$, as described in solution vectors.}
           Since $\mathbf{Y}_1,\mathbf{Y}_2$ are linearly independent for all $x$, any point in solution space $(y,y')$ can be reached by a linear combination of $y_1$ and $y_2$ .
     \end{example}
 
     Solutions $y_1,\dots,y_n$ are linearly independent if their solution vectors $ \mathbf{Y}_1,\dots,\mathbf{Y}_n $ are linearly independent.
 
     $n$ linearly independent solution vectors form a basis for solution space of an $n$th order ODE.
-    \section{Wronskian}
-    \subsection{Initial/Boundary conditions}
+    \subsection{Wronskian}
+    \subsubsection{Initial/Boundary conditions}
     Consider ICs for a 2nd order homogeneous ODE: 
     \[
         y(0)=a, y'(0)=b
@@ -1019,7 +978,7 @@ skipped some talks irrelevant to contents\\
         |M|\neq 0
     .\] 
     \newpage
-    \subsection{Wronskian}
+    \subsubsection{Wronskian}
     \begin{definition}
         The \textit{Wronskian} $ W(x) $ is the determinant of the \textit{fundamental} matrix, formed by placing solution vectors $ \mathbf{Y}_i $ in the $i$th column.
         \[
@@ -1079,8 +1038,8 @@ skipped some talks irrelevant to contents\\
     \begin{remark}
         Note that $W(x)=0$ does \textit{not} necessarily imply linear dependence.
     \end{remark}
-    \section{Abel's Theorem}\marginnote{Lecture 13.}
-    \subsection{Theorem}
+    \subsection{Abel's Theorem}\footnote{Lecture 13.}
+    \subsubsection{Theorem}
     Consider a second-order homogeneous ODE 
     \begin{equation}\label{eq:13.1}
         y''+p(x)y'+q(x)=0.
@@ -1113,7 +1072,7 @@ skipped some talks irrelevant to contents\\
     \[
         \begin{aligned}
             &\int_{W(x_0)}^{W(x)} \frac{1}{W} \,\mathrm{d}W = \int_{x_0}^x -p(\tilde{x}) \,\mathrm{d}\tilde{x}\\
-            \Longrightarrow  & \boxed{W(x)=W(x_0)e^{-\int_{x_0}^{x} p(u) \,\mathrm{d}u}}\marginnote{Called the \textit{Abel's identity}.}
+            \Longrightarrow  & \boxed{W(x)=W(x_0)e^{-\int_{x_0}^{x} p(u) \,\mathrm{d}u}}\footnote{Called the \textit{Abel's identity}.}
         \end{aligned}
     \]
     Since $p(x)$ is continuous on $I$, it is bounded and thus integrable. Therefore, $ e^{-\int_{x_0}^{x} p(u) \,\mathrm{d}u}\neq 0 $. It follows that if $ W(x_0)=0 $ then $ W(x)=0, \forall x $. If $ W(x_0)\neq 0 $ then $ W(x)\neq 0, \forall x $.
@@ -1136,13 +1095,13 @@ skipped some talks irrelevant to contents\\
             \end{aligned}
         \]
     \end{example}
-    \subsection{Application of Abel's theorem}
+    \subsubsection{Application of Abel's theorem}
     We can find the second solution using the first solution for second order ODEs.
     \[
         y_1y_2'-y_2y_1'=W(x_0)e^{-\int_{x_0}^{x} p(u) \,\mathrm{d}u}
     .\]
     This is a first order ODE for $y_2$.
-    \subsection{Generalisation to higher order ODEs}
+    \subsubsection{Generalisation to higher order ODEs}
     Note that any linear $n$th order ODE can be written with 
     \[
         \mathbf{Y}'+\mathbf{A}(x)\mathbf{Y}=\mathbf{0}
@@ -1151,15 +1110,15 @@ skipped some talks irrelevant to contents\\
 
     It can be shown that 
     \[
-        W'+\trace(\bfA)W=0
+        W'+\trace(\mathbf{A})W=0
     \]
     and that 
     \[
         W'=W_0e^{-\int^{x} \trace(\mathbf{A}) \,\mathrm{d}u}
     \]
-    and Abel's theorem holds.\marginnote{This is a really rough discussion, to be discussed later and ES3 Q7.}
-    \section{Equidimensional equations}
-    \subsection{Definition}
+    and Abel's theorem holds.\footnote{This is a really rough discussion, to be discussed later and ES3 Q7.}
+    \subsection{Equidimensional equations}
+    \subsubsection{Definition}
     \begin{definition}[Equidimensional equations]
         An ODE is \textit{equidimensional} if the differential operator is unaffected by a multiplicative scaling.
     \end{definition}
@@ -1177,7 +1136,7 @@ skipped some talks irrelevant to contents\\
         ax'^2 \frac{\mathrm{d}^2y}{\mathrm{d}x'^2} +bx' \frac{\mathrm{d}y}{\mathrm{d}x'}+cy=f(x'/\alpha) 
     .\]
     Notice that LHS does not change, so the equation is equidimensional.
-    \subsection{Methods to solve}
+    \subsubsection{Methods to solve}
     \begin{enumerate}
         \item Note that $ y=x^k $ is an eigenfunction of the operator $ x \frac{\mathrm{d}}{\mathrm{d}x}  $. To solve \ref{eq:13.8}, try $ y=x^k $:
         \[
@@ -1189,7 +1148,7 @@ skipped some talks irrelevant to contents\\
         .\]
         \item Note that $ z=\ln x $ turns \ref{eq:13.8} into an equation with constant coefficients.
         \[
-            a \frac{\mathrm{d}^2y}{\mathrm{d}z^2}+(b-a)\frac{\mathrm{d}y}{\mathrm{d}z}+cy = f(e^z) \marginnote{Verify this.}
+            a \frac{\mathrm{d}^2y}{\mathrm{d}z^2}+(b-a)\frac{\mathrm{d}y}{\mathrm{d}z}+cy = f(e^z) \footnote{Verify this.}
         .\]
         Try $ y=e^{\lambda z} $ for complementary function:
         \[
@@ -1200,9 +1159,9 @@ skipped some talks irrelevant to contents\\
             y_c=(A+B\ln x)x^{k_1}
         .\]
     \end{enumerate}
-    \section{Forced(Inhomogeneous) 2nd order ODEs}
+    \subsection{Forced(Inhomogeneous) 2nd order ODEs}
     This section discusses methods of finding particular integral $ y_p(x) $.
-    \subsection{Guess work}
+    \subsubsection{Guess work}
     \begin{center}
         \begin{tabular}{cc}
         \toprule
@@ -1218,22 +1177,22 @@ skipped some talks irrelevant to contents\\
             \item Equate coefficients of functions
             \item Solve for unknown coefficients.
         \end{enumerate}
-    \subsection{Variation of parameters}
+    \subsubsection{Variation of parameters}
     Method for finding particular integral given complementary functions $ y_1,y_2 $. We assume that $ y_1,y_2 $ are linearly independent, and have solution vectors 
     \[
         \mathbf{Y}_1=\begin{pmatrix}
             y_1\\y_1'
         \end{pmatrix},
-        \bfY_2=\begin{pmatrix}
+        \mathbf{Y}_2=\begin{pmatrix}
             y_2\\y_2'
         \end{pmatrix}
     .\]
     Suppose the solution vector for $ y_p $ satisfies
     \begin{equation}\label{eq:14.1}
-        \bfY_p=\begin{pmatrix}
+        \mathbf{Y}_p=\begin{pmatrix}
             y_p\\y_p'
         \end{pmatrix}
-        =u(x)\bfY_1+v(x)\bfY_2.
+        =u(x)\mathbf{Y}_1+v(x)\mathbf{Y}_2.
     \end{equation}
     Try to find 2 equations for $u(x),v(x)$.
 
@@ -1302,7 +1261,7 @@ skipped some talks irrelevant to contents\\
     \[
         \boxed{y_p = y_2 \int^{x} \frac{y_1(t)f(t)}{W(t)} \,\mathrm{d}t-y_1 \int^{x} \frac{y_2(t)f(t)}{W(t)} \,\mathrm{d}t}
     .\]
-    \section{Forced oscillating systems}
+    \subsection{Forced oscillating systems}
     Many physical systems have a restoring force and damping, e.g. friction.
     \begin{example}[Car suspension]
         Consider a car wheel with a spring and a damper at the top. The ground pushes the wheel with a force $ F(t) $ and the height of the centre of the wheel is $y(t)$, with $y(0)=0$. Newton's 2nd law tells us that 
@@ -1319,7 +1278,7 @@ skipped some talks irrelevant to contents\\
         ,\]
         where $ y'=\frac{\mathrm{d}y}{\mathrm{d}\tau}, K=\frac{L}{2\sqrt{kM}}, f=\frac{F}{k}  $.
     \end{example}
-    \subsection{Unforced response(free/natural response)}
+    \subsubsection{Unforced response(free/natural response)}
     If $f=0$, we have 
     \[
         y''+2Ky'+y=0 \Longrightarrow \lambda^2+2K \lambda+1=0 \Longrightarrow \lambda = -K\pm \sqrt{K^2-1}
@@ -1334,7 +1293,7 @@ skipped some talks irrelevant to contents\\
           \draw [->] (0, 0) -- (6, 0) node [right] {$t,\tau$};
           \draw [->] (0, -2) -- (0, 2) node [above] {$y$};
       
-          \draw [semithick, mblue, domain = 0:5.8, samples=200] plot (\x, {1.8 * exp (-0.5 * \x) * sin (300 * \x + 40)});
+          \draw [semithick, blue, domain = 0:5.8, samples=200] plot (\x, {1.8 * exp (-0.5 * \x) * sin (300 * \x + 40)});
           \draw[dashed, purple, domain = 0:5.8, samples=200, mylabel=at 2.0 above right with {$e^{-K\tau}$}] plot (\x, {1.8 * exp (-0.5 * \x) });
           \draw [dashed, purple, domain = 0:5.8, samples=200] plot (\x, {-1.8 * exp (-0.5 * \x) });
         \end{tikzpicture}
@@ -1350,7 +1309,7 @@ skipped some talks irrelevant to contents\\
           \draw [->] (0, 0) -- (6, 0) node [right] {$t, \tau$};
           \draw [->] (0, -2) -- (0, 2) node [above] {$y$};
       
-          \draw [semithick, mblue, domain = 0:5.8, samples=100] plot (\x, {(1 + 3 * \x) * exp (-\x)});
+          \draw [semithick, blue, domain = 0:5.8, samples=100] plot (\x, {(1 + 3 * \x) * exp (-\x)});
         \end{tikzpicture}
       \end{center}
       \subsubsection*{Case 3: $K>1$, overdamped}
@@ -1365,7 +1324,7 @@ skipped some talks irrelevant to contents\\
           \draw [->] (0, 0) -- (6, 0) node [right] {$t,\tau$};
           \draw [->] (0, -2) -- (0, 2) node [above] {$y$};
             
-          \draw [semithick, mblue, domain = 0:5.8, samples=100] plot (\x, {2 * exp (-0.3 * \x) - 1.2*exp(-2 * \x)});
+          \draw [semithick, blue, domain = 0:5.8, samples=100] plot (\x, {2 * exp (-0.3 * \x) - 1.2*exp(-2 * \x)});
 
           \draw [dashed, red, domain = 0:5.8, samples=100] plot (\x, {2 * exp (-0.3 * \x)});
           \draw [dashed, green, domain = 0:5.8, samples=100] plot (\x, { - 1.2*exp(-2 * \x)});
@@ -1374,8 +1333,8 @@ skipped some talks irrelevant to contents\\
       \begin{remark}
           Unforced response decays in all cases.
       \end{remark}
-      \section{Damped oscillating systems: Forced response}\marginnote{Lecture 15}
-      \subsection{Sinvsoided forcing}
+      \subsection{Damped oscillating systems: Forced response}\footnote{Lecture 15}
+      \subsubsection{Sinvsoided forcing}
       Consider 
       \begin{equation}\label{eq:15.1}
         \ddot{y}+\mu \dot{y}+ \omega_0^2y = \sin \omega t.
@@ -1412,7 +1371,7 @@ skipped some talks irrelevant to contents\\
           \lim_{\omega \to \omega_0}y_0 = \frac{-\cos \omega t}{\mu \omega} 
       ,\]
       which is a finite-amplitude oscillation. Note that the amplitude increases with decreasing $\mu$.
-      \subsection{Resonance in undamped systems}
+      \subsubsection{Resonance in undamped systems}
       A general form is
       \begin{equation}
         \ddot{y}+\omega_0^2 y = \sin \omega_0 t.
@@ -1442,13 +1401,13 @@ skipped some talks irrelevant to contents\\
           \draw [->] (0, 0) -- (6.5, 0) node [right] {$t$};
           \draw [->] (0, -2) -- (0, 2) node [above] {$y_p$};
       
-          \draw [semithick, mblue, domain=0:6,samples=600] plot(\x, {2 * cos(2000 * \x) * sin (90 * \x)});
-          \draw [semithick, morange] (0, 0) sin (1, 2) cos (2, 0) sin (3, -2) cos (4, 0) sin (5, 2) cos (6, 0);
-          \draw [semithick, mgreen] (0, 0) sin (1, -2) cos (2, 0) sin (3, 2) cos (4, 0) sin (5, -2) cos (6, 0);
+          \draw [semithick, blue, domain=0:6,samples=600] plot(\x, {2 * cos(2000 * \x) * sin (90 * \x)});
+          \draw [semithick, orange] (0, 0) sin (1, 2) cos (2, 0) sin (3, -2) cos (4, 0) sin (5, 2) cos (6, 0);
+          \draw [semithick, green] (0, 0) sin (1, -2) cos (2, 0) sin (3, 2) cos (4, 0) sin (5, -2) cos (6, 0);
       
-          \draw [semithick, mblue] (7.5, 0.7) -- (8, 0.7) node [black, right] {$y_p$};
-          \draw [semithick, morange] (7.5, 0) -- (8, 0) node [black, right] {$\sin\left(\frac{\delta \omega}{2} t\right)$};
-          \draw [semithick, mgreen] (7.5, -0.7) -- (8, -0.7) node [black, right] {$-\sin\left(\frac{\delta \omega}{2} t\right)$};
+          \draw [semithick, blue] (7.5, 0.7) -- (8, 0.7) node [black, right] {$y_p$};
+          \draw [semithick, orange] (7.5, 0) -- (8, 0) node [black, right] {$\sin\left(\frac{\delta \omega}{2} t\right)$};
+          \draw [semithick, green] (7.5, -0.7) -- (8, -0.7) node [black, right] {$-\sin\left(\frac{\delta \omega}{2} t\right)$};
       
           \draw [<->] (1, -2.5) -- (5, -2.5) node [pos=0.5,fill=white] {$O\left(\frac{1}{\delta \omega}\right)$};
         \end{tikzpicture}
@@ -1462,13 +1421,13 @@ skipped some talks irrelevant to contents\\
           \lim_{\delta \omega \to 0} y_p = -\frac{-t}{2\omega_0}\cos \omega_0 t
       .\]
       This represents a linear growth in amplitude. Note that $y_p$ takes form of complementary functions times an independent variable.
-      \subsection{Impulses and point forces}
+      \subsubsection{Impulses and point forces}
       Consider a system that experiences a sudden force. e.g., Consider a car driving over a speedbump. Suppose at time $T$ the car is above the bump, and at $T-\epsilon, T+\epsilon$ the car drives on and off the bump respectively. Consider $ \epsilon\to 0 $: force becomes a sudden impulse.
       \begin{center}
         \begin{tikzpicture}
           \draw [->] (-3, 0) -- (3.25, 0) node [right] {$t$};
           \draw [->, use as bounding box] (0, 0) node [below] {$T$} -- (0, 2.3) node [above] {force};
-          \draw [semithick, morange, domain=-2.5:2.5, samples = 100] plot (\x, { 1.6 * exp( - 4 * \x * \x)});
+          \draw [semithick, orange, domain=-2.5:2.5, samples = 100] plot (\x, { 1.6 * exp( - 4 * \x * \x)});
         \end{tikzpicture}
       \end{center}
       Take $y$ as the disposition wrt $t$, the equation is 
@@ -1495,7 +1454,7 @@ skipped some talks irrelevant to contents\\
       .\]
       Velocity $ \dot{y} $ experiences a sudden change(discontinuous) which depends on integral of force $ F(t) $.
 
-      \subsection{Dirac delta function}\marginnote{Lecture 16}
+      \subsubsection{Dirac delta function}\footnote{Lecture 16}
       Consider a family of functions $ D(t,\epsilon) $ such that 
       \begin{enumerate}
           \item $ \lim_{\epsilon \to 0} D(t,\epsilon)=0\  \forall t\neq 0 $,
@@ -1512,11 +1471,11 @@ skipped some talks irrelevant to contents\\
               \draw [->] (-3, 0) -- (3.25, 0) node [right] {$t$};
               \draw [->, use as bounding box] (0, 0) -- (0, 4) node [above] {$D$};
           
-              \draw [semithick, mblue, domain=-3:3, samples = 100] plot (\x, { 1.6 * exp( - \x * \x)});
-              \draw [semithick, morange, domain=-3:3, samples = 100] plot (\x, { 3.2 * exp( - 4 * \x * \x)});
+              \draw [semithick, blue, domain=-3:3, samples = 100] plot (\x, { 1.6 * exp( - \x * \x)});
+              \draw [semithick, orange, domain=-3:3, samples = 100] plot (\x, { 3.2 * exp( - 4 * \x * \x)});
           
-              \draw [mblue, semithick] (3.5, 2.25) -- (4, 2.25) node [right, black] {$\varepsilon = 1$};
-              \draw [morange, semithick] (3.5, 1.75) -- (4, 1.75) node [right, black] {$\varepsilon = 0.5$};
+              \draw [blue, semithick] (3.5, 2.25) -- (4, 2.25) node [right, black] {$\varepsilon = 1$};
+              \draw [orange, semithick] (3.5, 1.75) -- (4, 1.75) node [right, black] {$\varepsilon = 0.5$};
             \end{tikzpicture}
           \end{center}
       \end{example}
@@ -1561,8 +1520,8 @@ skipped some talks irrelevant to contents\\
           \draw [->] (-3, 0) -- (3, 0) node [right] {$x$};
           \draw [->] (0, 0) -- (0, 3) node [above] {$H(x)$};
     
-          \draw [mblue, semithick] (-3, 0) -- (0, 0);
-          \draw [mblue, semithick] (0, 2) node [left] {1} -- (3, 2);
+          \draw [blue, semithick] (-3, 0) -- (0, 0);
+          \draw [blue, semithick] (0, 2) node [left] {1} -- (3, 2);
         \end{tikzpicture}
       \end{center}
       \begin{definition}
@@ -1575,12 +1534,12 @@ skipped some talks irrelevant to contents\\
           \draw [->] (-3, 0) -- (3, 0) node [right] {$x$};
           \draw [->] (0, 0) -- (0, 3) node [above] {$r(x)$};
     
-          \draw [mblue, semithick] (-3, 0) -- (0, 0);
-          \draw [mblue, semithick, domain = 0:2.5] plot (\x, {\x});
+          \draw [blue, semithick] (-3, 0) -- (0, 0);
+          \draw [blue, semithick, domain = 0:2.5] plot (\x, {\x});
         \end{tikzpicture}
       \end{center}
       Note that function get "smoother" as we integrate.
-      \subsection{Delta function forcing}
+      \subsubsection{Delta function forcing}
       Consider
       \begin{equation}\label{eq:16.5}
         y''+p(x)y'+q(x)y=\delta(x).
@@ -1638,12 +1597,12 @@ skipped some talks irrelevant to contents\\
           
               \draw [->] (0, 0) -- (0, -3.5) node [below] {$y$};
           
-              \draw [semithick, mblue, domain=0:1.5708] plot ({2 * \x}, {-1.3 * sinh (\x)});
-              \draw [semithick, mblue, domain=1.5708:3.14159] plot ({2 * \x}, {-1.3 * sinh (pi - \x)});
+              \draw [semithick, blue, domain=0:1.5708] plot ({2 * \x}, {-1.3 * sinh (\x)});
+              \draw [semithick, blue, domain=1.5708:3.14159] plot ({2 * \x}, {-1.3 * sinh (pi - \x)});
             \end{tikzpicture}
           \end{center}
       \end{example}
-      \subsection{Heaviside step function forcing}
+      \subsubsection{Heaviside step function forcing}
       Consider 
       \begin{equation}\label{eq:16.7}
         y''+p(x)y'+q(x)y=H(x-x_0).
@@ -1667,17 +1626,17 @@ skipped some talks irrelevant to contents\\
           \item $ [y]_{x_0-}^{x_0+}=0 $.
       \end{enumerate}
       Use ICs and jump conditions to find constants in solving the solution to \ref{eq:16.8}.
-      \section{Higher order discrete(difference) equations}\marginnote{Lecture 17}
+      \subsection{Higher order discrete(difference) equations}\footnote{Lecture 17}
       General form for $m$th order linear discrete equation with constant coefficients is
       \begin{equation}\label{eq:17.1}
-          a_my_{n+m}+a_{m-1}y_{n+m-1}+\cdots+a_1y_{n+1}+a_0y_n=f_n.\marginnote{Exploit same principles used to solve higher order ODEs.}
+          a_my_{n+m}+a_{m-1}y_{n+m-1}+\cdots+a_1y_{n+1}+a_0y_n=f_n.\footnote{Exploit same principles used to solve higher order ODEs.}
       \end{equation}
-      \subsection{Eigenfunction}
+      \subsubsection{Eigenfunction}
       Consider a difference operator $D[y_n]=y_{n+1}$. It has eigenfunction $ y_n=k^n $, where $k$ is constant. This works since 
       \[
           D[k^n]=k^{n+1}=k\cdot k^n= ky_n
       .\]
-      \subsection{Linearity}
+      \subsubsection{Linearity}
       \ref{eq:17.1} is \textit{linear} in $y$. Hence we can write the solution in a sum of complementary function and a particular solution:
       \[
           y_n=y_n^{(c)}+y_n^{(p)}
@@ -1703,7 +1662,7 @@ skipped some talks irrelevant to contents\\
             \end{cases} 
         \]
       \end{example}
-      \subsection{Particular integral}
+      \subsubsection{Particular integral}
       \begin{center}
         \begin{tabular}{cc}
         \toprule
@@ -1713,7 +1672,7 @@ skipped some talks irrelevant to contents\\
         $ n^p $ & $ An^p+Bn^{p-1}+\cdots+Cn+D$ \\ \bottomrule
         \end{tabular}
     \end{center}
-    \subsection{Fibonacci Sequence}
+    \subsubsection{Fibonacci Sequence}
     General form is $ F_n=F_{n-1}+F_{n-2} $, and $ F_0=F_1=1 $. Standard for is 
     \[
         y_{n+2}-y_{n+1}-y_n=0
@@ -1734,8 +1693,8 @@ skipped some talks irrelevant to contents\\
     \[
         \lim_{n \to \infty} \frac{F_{n+1}}{F_n} = \lim_{n \to \infty} \frac{\phi^{n+2}-(-1/\phi)^{n+2}}{\phi^{n+1}-(-1/\phi)^{n+1}}=\phi
     .\]
-    \section{Series solutions for higher order ODEs}
-    \subsection{Method of Frobenius}
+    \subsection{Series solutions for higher order ODEs}
+    \subsubsection{Method of Frobenius}
     Series solutions applied to linear, homogeneous 2nd order ODEs. General form is 
     \begin{equation}\label{eq:17.2}
         p(x)y''+q(x)y'+r(x)y=0.
@@ -1784,7 +1743,7 @@ skipped some talks irrelevant to contents\\
             \bluecomment{Note: Second derivative is undefined.}
         \end{enumerate}
     \end{example}
-    \begin{theorem}[Fuch]\label{thm:Fuch}\marginnote{Lecture 18}
+    \begin{theorem}[Fuch]\label{thm:Fuch}\footnote{Lecture 18}
        \begin{enumerate}
            \item If $x_0$ is ordinary, then there are two linearly independent solutions of the form
            \[
@@ -1888,7 +1847,7 @@ skipped some talks irrelevant to contents\\
 
         If $\sigma=1/2$, then 
         \[
-            2n(2n+1)b_n\marginnote{use different lables to avoid confusion} = (2n-2)b_{n-2}
+            2n(2n+1)b_n\footnote{use different lables to avoid confusion} = (2n-2)b_{n-2}
         .\]
         If $n=0$, 
         \[
@@ -1900,15 +1859,15 @@ skipped some talks irrelevant to contents\\
         .\]
         Hence,
         \[
-            y_2=b_0x^{\sfrac{1}{2}}\left( 1+\frac{x^2}{2\cdot 5}+\frac{3x^4}{2\cdot 5\cdot 4\cdot 9}+\cdots \right)
+            y_2=b_0x^{\frac{1}{2}}\left( 1+\frac{x^2}{2\cdot 5}+\frac{3x^4}{2\cdot 5\cdot 4\cdot 9}+\cdots \right)
         .\]
         Here we found 2 linearly independent solutions.
     \end{example}
-    \subsection{Special cases of the indicial equation}\marginnote{Lecture 19.}
+    \subsubsection{Special cases of the indicial equation}\footnote{Lecture 19.}
     Consider an expension about $x=x_0$, and let $ \sigma_1,\sigma_2 $ be the roots of initial indicial equation. The following proposition helps to determine the form of series solution. wlog, suppose $ \sigma_1\le \sigma_2 $.
     \begin{proposition}\label{prop:indicial equation}
         We have the following cases:
-        \begin{enumerate}[align=hang, label=\textbf{case} \arabic*]
+        \begin{enumerate}[label=\textbf{case} \arabic*]
             \item $ \sigma_1-\sigma_2\notin \mathbb{Z} $, then there are two linearly independent solutions of form 
             \[
                 y=(x-x_0)^{\sigma_1}\sum_{n=0}^{\infty} a_n(x-x_0)^n+(x-x_0)^{\sigma_2}\sum_{n=0}^{\infty} b_n(x-x_0)^n.
@@ -1923,7 +1882,7 @@ skipped some talks irrelevant to contents\\
             \item $ \sigma_1=\sigma_2=\sigma $, here $c\neq 0$ so 
             \begin{align*}
                 y_1&= (x-x_0)^{\sigma}\sum_{n=0}^{\infty} a_n(x-x_0)^n,\\
-                y_2&=(x-x_0)^{\sigma}\sum_{n=0}^{\infty} b_n(x-x_0)^n+y_1 \ln (x-x_0).\marginnote{Since any $c$ will just add a constant multiple in the combination $ \alpha y_1+\beta y_2 $, we can take $c=1$.}
+                y_2&=(x-x_0)^{\sigma}\sum_{n=0}^{\infty} b_n(x-x_0)^n+y_1 \ln (x-x_0).\footnote{Since any $c$ will just add a constant multiple in the combination $ \alpha y_1+\beta y_2 $, we can take $c=1$.}
             \end{align*}
         \end{enumerate}
     \end{proposition}\newpage
@@ -1964,7 +1923,7 @@ skipped some talks irrelevant to contents\\
         \[
             b_n = \frac{b_{n-1}}{n(n-1)} \text{ for }n\ge 2,\ b_0,b_1 \text{ arbitrary}.
         \]
-        Therefore the sum is linearly dependent to $y_1$, and thus $c\neq 0$:\marginnote{Actually, we can get this form via \textbf{reduction of order}, by setting $y_2=vy_1$ and solve the reduced DE.}
+        Therefore the sum is linearly dependent to $y_1$, and thus $c\neq 0$:\footnote{Actually, we can get this form via \textbf{reduction of order}, by setting $y_2=vy_1$ and solve the reduced DE.}
         \[
             y_2 = y_1 \ln x + b_0 + xb_1 + \sum_{n=2}^{\infty}\frac{x^n}{(n)((n-1!)^2}.
         \]
@@ -1980,49 +1939,49 @@ skipped some talks irrelevant to contents\\
         \]
         This is an example of case 3, and we need $ y_1\ln z $ term.
     \end{example}
-    \part{Multivariable Functions and Applications}
-    \section{Function of multiple independent variables}
-    \subsection{Directional Derivative and Gradient Vector}\marginnote{Lecture 20}
-    Consider a function $f(x,y)$ and a small displacement vector $ \d \bfs $. Consider the rate of change of $f$ in direction $ \d \bfs $. Note that 
+    \section{Multivariable Functions and Applications}
+    \subsection{Function of multiple independent variables}
+    \subsubsection{Directional Derivative and Gradient Vector}\footnote{Lecture 20}
+    Consider a function $f(x,y)$ and a small displacement vector $ \d \mathbf{s} $. Consider the rate of change of $f$ in direction $ \d \mathbf{s} $. Note that 
     \[
-        \d f = \frac{\partial f}{\partial x}\d x+ \frac{\partial f}{\partial y}\d y = (\d x,\d y) \cdot \left( \frac{\partial f}{\partial x} ,\frac{\partial f}{\partial y}\right):=\d\bfs \cdot \nabla f,
+        \d f = \frac{\partial f}{\partial x}\d x+ \frac{\partial f}{\partial y}\d y = (\d x,\d y) \cdot \left( \frac{\partial f}{\partial x} ,\frac{\partial f}{\partial y}\right):=\d\mathbf{s} \cdot \nabla f,
     \]
-    where $ \d \bfs=(\d x,\d y) $ and $ \nabla f = \left( \frac{\partial f}{\partial x} ,\frac{\partial f}{\partial y}\right) $ is the \textit{gradient vector} in cartesian coordinates. If we write $ \d \bfs=\d s \hat{\bfs} $, then we can rewrite the equation as 
+    where $ \d \mathbf{s}=(\d x,\d y) $ and $ \nabla f = \left( \frac{\partial f}{\partial x} ,\frac{\partial f}{\partial y}\right) $ is the \textit{gradient vector} in cartesian coordinates. If we write $ \d \mathbf{s}=\d s \hat{\mathbf{s}} $, then we can rewrite the equation as 
     \[
-        \d f = \d s (\hat{\bfs}\cdot \nabla f).
+        \d f = \d s (\hat{\mathbf{s}}\cdot \nabla f).
     \]
     \begin{definition}[Directional derivative]
-        The \textit{directional derivative} of $f$ along $\hat{\bfs}$ is defined as 
+        The \textit{directional derivative} of $f$ along $\hat{\mathbf{s}}$ is defined as 
         \[
-            \frac{\mathrm{d}f}{\mathrm{d}s} = \hat{\bfs} \cdot \nabla f. 
+            \frac{\mathrm{d}f}{\mathrm{d}s} = \hat{\mathbf{s}} \cdot \nabla f. 
         \]
     \end{definition}
     \begin{proposition}[Properties of gradient vector]\label{prop:properties of gradient vector}
         \begin{enumerate}
             \item The \textit{magnitude} of $\nabla f$ is the maximum rate of change of $f(x,y)$:
             \[
-                \left| \nabla f \right| = \max_{\langle \hat{\bfs}, \nabla f \rangle } \frac{\mathrm{d}f}{\mathrm{d}s}. 
+                \left| \nabla f \right| = \max_{\langle \hat{\mathbf{s}}, \nabla f \rangle } \frac{\mathrm{d}f}{\mathrm{d}s}. 
             \]
             \item The \textit{direction} of $\nabla f$ is the direction where $f$ \textit{increases} the most rapidly.
             \[
-                \left| \frac{\mathrm{d}f}{\mathrm{d}s}  \right| = \left| \nabla f\right| \cos \langle \hat{\bfs},\nabla f \rangle.
+                \left| \frac{\mathrm{d}f}{\mathrm{d}s}  \right| = \left| \nabla f\right| \cos \langle \hat{\mathbf{s}},\nabla f \rangle.
             \]
-            \item If $ \d \bfs $ and $\hat{\bfs}$ are parallel to contours of $f$, then 
+            \item If $ \d \mathbf{s} $ and $\hat{\mathbf{s}}$ are parallel to contours of $f$, then 
             \[
-                \frac{\mathrm{d}f}{\mathrm{d}s}=\hat{\bfs} \cdot \nabla f=0. 
+                \frac{\mathrm{d}f}{\mathrm{d}s}=\hat{\mathbf{s}} \cdot \nabla f=0. 
             \]
             That is, $ \nabla f $ is perpendicular to contours of $f$ and $ |\nabla f| $ is the slope in the "uphill" direction.
         \end{enumerate}
     \end{proposition}
-    \subsection{Stationary Points}
+    \subsubsection{Stationary Points}
     In general, there is always at least one direction where $ \frac{\mathrm{d}f}{\mathrm{d}s}=0 $, parallel to the contours of $f$.
     \begin{definition}
         A \textit{stationary point} is a point at which 
         \[
-            \forall \hat{\bfs}, \frac{\mathrm{d}f}{\mathrm{d}s}=0. 
+            \forall \hat{\mathbf{s}}, \frac{\mathrm{d}f}{\mathrm{d}s}=0. 
         \]
     \end{definition}
-    Since $ \frac{\mathrm{d}f}{\mathrm{d}s}=\hat{\bfs}\cdot \nabla f $, $ \nabla f=0 $ at stationary points.
+    Since $ \frac{\mathrm{d}f}{\mathrm{d}s}=\hat{\mathbf{s}}\cdot \nabla f $, $ \nabla f=0 $ at stationary points.
     \subsubsection*{Types of stationary points}
     \begin{itemize}
         \item Local minimum,
@@ -2040,26 +1999,26 @@ skipped some talks irrelevant to contents\\
     \begin{remark}
         Near min/max, the contours of $f$ are elliptical, and near saddle points the contours are hyperbolic. Contours of $f$ can only cross at saddle points.
     \end{remark}
-    \subsection{Multivariable Taylor Series}
-    Consider a point $\bfs_0$ and a small displacement $ \sigma\bfs = \delta s \hat{\bfs} $. The taylor series expansion in the direction of $\hat{\bfs}$ is 
+    \subsubsection{Multivariable Taylor Series}
+    Consider a point $\mathbf{s}_0$ and a small displacement $ \sigma\mathbf{s} = \delta s \hat{\mathbf{s}} $. The taylor series expansion in the direction of $\hat{\mathbf{s}}$ is 
     \[
         f(s_0+\delta s)=f(s_0)+\delta s \frac{\mathrm{d}f}{\mathrm{d}s}\Big|_{s_0}+\frac{1}{2}(\delta s)^2 \frac{\mathrm{d}^2f}{\mathrm{d}s^2}\Big|_{s_0}+\cdots  . 
     \]
     From definition of directional derivative, 
     \[
-        \frac{\mathrm{d}}{\mathrm{d}s} = \hat{\bfs}\cdot \nabla. 
+        \frac{\mathrm{d}}{\mathrm{d}s} = \hat{\mathbf{s}}\cdot \nabla. 
     \]
     Hence 
     \[
-        \delta s \frac{\mathrm{d}}{\mathrm{d}s}=\delta\bfs \cdot \nabla . 
+        \delta s \frac{\mathrm{d}}{\mathrm{d}s}=\delta\mathbf{s} \cdot \nabla . 
     \]
     Hence we can rewrite the expansion as 
     \[
-        f(s_0+\delta s)=f(s_0)+\underbrace{\delta\bfs \cdot \nabla f}_{(1)}\Big|_{s_0}+\underbrace{\frac{1}{2}(\delta s)^2(\hat{\bfs}\cdot \nabla )^2 f}_{(2)}\Big|_{s_0}+\cdots .
+        f(s_0+\delta s)=f(s_0)+\underbrace{\delta\mathbf{s} \cdot \nabla f}_{(1)}\Big|_{s_0}+\underbrace{\frac{1}{2}(\delta s)^2(\hat{\mathbf{s}}\cdot \nabla )^2 f}_{(2)}\Big|_{s_0}+\cdots .
     \]
     In cartesian coordinates,
     \[
-        \bfs_0=(x_0,y_0), \delta\bfs = (\delta x,\delta y), x=x_0+\delta x, y=y_0+\delta y.
+        \mathbf{s}_0=(x_0,y_0), \delta\mathbf{s} = (\delta x,\delta y), x=x_0+\delta x, y=y_0+\delta y.
     \]
     Thus 
     \begin{align*}
@@ -2077,7 +2036,7 @@ skipped some talks irrelevant to contents\\
     \begin{definition}
         The \textit{Hessian matrix} is defined by 
         \[
-            \bfH = \begin{pmatrix}
+            \mathbf{H} = \begin{pmatrix}
                 f_{xx}& f_{xy}\\
             f_{yx}& f_{yy}
             \end{pmatrix} = \nabla (\nabla f).
@@ -2090,12 +2049,12 @@ skipped some talks irrelevant to contents\\
       \end{align*}
       and in general 
       \[
-        f(\mathbf{x}) = f(\mathbf{x}_0 ) + \delta \mathbf{x}\cdot\nabla f(\mathbf{x}_0) + \frac{1}{2}\delta \mathbf{x}\cdot \nabla \nabla f\Big|_{\bfx_0}\cdot \delta \mathbf{x}^{\top}+ \cdots .
+        f(\mathbf{x}) = f(\mathbf{x}_0 ) + \delta \mathbf{x}\cdot\nabla f(\mathbf{x}_0) + \frac{1}{2}\delta \mathbf{x}\cdot \nabla \nabla f\Big|_{\mathbf{x}_0}\cdot \delta \mathbf{x}^{\top}+ \cdots .
       \]
-      \subsection{Classifying Stationary Points}
-      Since $ \nabla f= \mathbf{0} $ defines a stationary point, the Taylor series about s.p. $ \bfx=\bfx_s $ is 
+      \subsubsection{Classifying Stationary Points}
+      Since $ \nabla f= \mathbf{0} $ defines a stationary point, the Taylor series about s.p. $ \mathbf{x}=\mathbf{x}_s $ is 
       \[
-          f(\bfx)\approx f(\bfx_s)+\frac{1}{2}\delta\bfx \bfH\Big|_{\bfx_s}\cdot \delta\bfx^{\top}.
+          f(\mathbf{x})\approx f(\mathbf{x}_s)+\frac{1}{2}\delta\mathbf{x} \mathbf{H}\Big|_{\mathbf{x}_s}\cdot \delta\mathbf{x}^{\top}.
       \]
       The nature of s.p. depends on $H$.
 
@@ -2105,15 +2064,15 @@ skipped some talks irrelevant to contents\\
       \]
       We have
       \[
-          \bfH = \begin{pmatrix}
+          \mathbf{H} = \begin{pmatrix}
               f_{x_1x_1}& \cdots & f_{x_1x_n}\\
               \vdots & \ddots & \vdots \\
               f_{x_nx_1}& \cdots & f_{x_nx_n}
           \end{pmatrix}.
       \]
-      If $f_{x_ix_j}$ are defined for all $i,j$. Note that $f_{x_ix_j}=f_{x_jx_i}$. Hence $\bfH$ is symmetric and can be diagonalised wrt its principal axes.
+      If $f_{x_ix_j}$ are defined for all $i,j$. Note that $f_{x_ix_j}=f_{x_jx_i}$. Hence $\mathbf{H}$ is symmetric and can be diagonalised wrt its principal axes.
       \[
-          \delta\bfx \bfH \delta\bfx^{\top} = (\delta x_1,\dots,\delta x_n) \begin{pmatrix}
+          \delta\mathbf{x} \mathbf{H} \delta\mathbf{x}^{\top} = (\delta x_1,\dots,\delta x_n) \begin{pmatrix}
               \lambda_1&\cdots&0\\
               \vdots &\ddots &\vdots \\
               0& \cdots & \lambda_n
@@ -2121,45 +2080,45 @@ skipped some talks irrelevant to contents\\
               \delta x_1\\\vdots \\\delta x_n
           \end{pmatrix},
       \]
-      where $ \lambda_i $ are eigenvalues of $\bfH$ and $ \delta x_i $ is the displacement along principal axes. Hence 
+      where $ \lambda_i $ are eigenvalues of $\mathbf{H}$ and $ \delta x_i $ is the displacement along principal axes. Hence 
       \[
-        \delta\bfx \bfH \delta\bfx^{\top} = \lambda_i\delta x_i^2.\quad (\text{summation convention})
+        \delta\mathbf{x} \mathbf{H} \delta\mathbf{x}^{\top} = \lambda_i\delta x_i^2.\quad (\text{summation convention})
       \]
-      \begin{definition}[Signature of $\bfH$]
-          The \textit{signatrue} of $\bfH$ is the pattern of signs of its subdeterminants.
+      \begin{definition}[Signature of $\mathbf{H}$]
+          The \textit{signatrue} of $\mathbf{H}$ is the pattern of signs of its subdeterminants.
       \end{definition}
       For example, for $f(x_1,\dots,x_n)$, the pattern of signs is the signs of 
       \[
-          \underbrace{|f_{x_1x_1}|}_{|\bfH_1|}, \underbrace{\begin{vmatrix}
+          \underbrace{|f_{x_1x_1}|}_{|\mathbf{H}_1|}, \underbrace{\begin{vmatrix}
               f_{x_1x_1}&f_{x_1x_2}\\
               f_{x_2x_1}&f_{x_2x_2}
-          \end{vmatrix}}_{|\bfH_2|}, \dots,\underbrace{\begin{vmatrix}
+          \end{vmatrix}}_{|\mathbf{H}_2|}, \dots,\underbrace{\begin{vmatrix}
             f_{x_1x_1}& \cdots & f_{x_1x_n}\\
             \vdots & \ddots & \vdots \\
             f_{x_nx_1}& \cdots & f_{x_nx_n}
-          \end{vmatrix}}_{|\bfH|}.
+          \end{vmatrix}}_{|\mathbf{H}|}.
       \]
-      If $H$ is positive(negative) definite, then $\bfH_1,\bfH_2,\dots,\bfH_{n-1}$ are also positive(negative definite)(Sylvester's criterion). i.e., a min/max point in $n$-dimensional space is also a min/max point in any subspace including the point.
+      If $H$ is positive(negative) definite, then $\mathbf{H}_1,\mathbf{H}_2,\dots,\mathbf{H}_{n-1}$ are also positive(negative definite)(Sylvester's criterion). i.e., a min/max point in $n$-dimensional space is also a min/max point in any subspace including the point.
       \subsubsection*{Types of stationary points}
       \begin{enumerate}
-          \item Minimum, if $\delta\bfx \bfH \delta\bfx^{\top}>0$ for all $ \delta\bfx $. This means that $ \forall i, \lambda_i>0 $, and thus it happens if $H$ is positive definite, signature is $+,+,+,\dots$.
-          \item Maximum, $\delta\bfx \bfH \delta\bfx^{\top}<0$ for all $\delta\bfx$, $ \lambda_i<0 $ and $\bfH$ is negative definite, signature is $-,+,-,+,\dots$.
-          \item Saddle, $\bfH$ is indefinite, signatrue is non of above.
+          \item Minimum, if $\delta\mathbf{x} \mathbf{H} \delta\mathbf{x}^{\top}>0$ for all $ \delta\mathbf{x} $. This means that $ \forall i, \lambda_i>0 $, and thus it happens if $H$ is positive definite, signature is $+,+,+,\dots$.
+          \item Maximum, $\delta\mathbf{x} \mathbf{H} \delta\mathbf{x}^{\top}<0$ for all $\delta\mathbf{x}$, $ \lambda_i<0 $ and $\mathbf{H}$ is negative definite, signature is $-,+,-,+,\dots$.
+          \item Saddle, $\mathbf{H}$ is indefinite, signatrue is non of above.
       \end{enumerate}
       \begin{remark}
-          If $|\bfH|=0$, then we need higher order Taylor series. 
+          If $|\mathbf{H}|=0$, then we need higher order Taylor series. 
       \end{remark}
-      \subsection{Contours of $f$ near s.p.}
-      Consider a coordinate system along principal axes of $\bfH$:
+      \subsubsection{Contours of $f$ near s.p.}
+      Consider a coordinate system along principal axes of $\mathbf{H}$:
       \[
-          \bfH=\begin{pmatrix}
+          \mathbf{H}=\begin{pmatrix}
               \lambda_1&0\\
               0&\lambda_2
           \end{pmatrix}.
       \]
-      Let $ \delta\bfx= (\bfx-\bfx_s)=(\xi,\eta) $. In a small region near $\bfx_s$, contours of $f$ satisfy:
+      Let $ \delta\mathbf{x}= (\mathbf{x}-\mathbf{x}_s)=(\xi,\eta) $. In a small region near $\mathbf{x}_s$, contours of $f$ satisfy:
       \begin{align*}
-        f&=\text{constant} \approx f(\bfx_s)+\frac{1}{2}\delta\bfx \bfH\Big|_{\bfx_s}\cdot \delta\bfx^{\top}\\
+        f&=\text{constant} \approx f(\mathbf{x}_s)+\frac{1}{2}\delta\mathbf{x} \mathbf{H}\Big|_{\mathbf{x}_s}\cdot \delta\mathbf{x}^{\top}\\
         & \Longrightarrow \lambda_1 \xi^2+\lambda_2 \eta^2 \approx \text{constant}.
       \end{align*}
       Near min/max, $ \lambda_1,\lambda_2 $ have the same sign, so the contours are elliptical. Near saddle points $ \lambda_1,\lambda_2 $ have opposite signs, so the contours are hyperbolic.
@@ -2174,8 +2133,8 @@ skipped some talks irrelevant to contents\\
 
           For $(5,25)$, the pattern is $+,+$, so it is a minimum.
       \end{example}
-      \section{Systems of linear ODEs}
-      \subsection{Baiscs}
+      \subsection{Systems of linear ODEs}
+      \subsubsection{Baiscs}
       Consider 2 functions $y_1(t),y_2(t)$ which satisfy 
       \begin{align*}
         \dot{y_1} &= a y_1+by_2+f_1(t)\\
@@ -2183,63 +2142,63 @@ skipped some talks irrelevant to contents\\
       \end{align*}
       In vector form,
       \[
-          \dot{\bfY} = M\bfY+\bfF,
+          \dot{\mathbf{Y}} = M\mathbf{Y}+\mathbf{F},
       \]
       where 
       \[
-          \bfY = \begin{pmatrix}
+          \mathbf{Y} = \begin{pmatrix}
             y_1\\y_2
           \end{pmatrix},M=\begin{pmatrix}
               a&b\\
               c&d
-          \end{pmatrix}, \bfF = \begin{pmatrix}
+          \end{pmatrix}, \mathbf{F} = \begin{pmatrix}
             f_1\\f_2
           \end{pmatrix}.
       \]
-      Any $n$th order DE can be written as a system of $n$ first order ODEs. e.g., the standard form of a 2nd order ODE is $ \ddot{y}+a \dot{y}+by=f $. Let $y_1=y, y_2=\dot{y}=\dot{y_1}$. Then $ \bfY^{\top}=(y,\dot{y}) $. Hence we can write 
+      Any $n$th order DE can be written as a system of $n$ first order ODEs. e.g., the standard form of a 2nd order ODE is $ \ddot{y}+a \dot{y}+by=f $. Let $y_1=y, y_2=\dot{y}=\dot{y_1}$. Then $ \mathbf{Y}^{\top}=(y,\dot{y}) $. Hence we can write 
       \begin{align*}
           \dot{y_1}&= y_2,\\
           \dot{y_2}&= -ay_2-by_1+f,
       \end{align*} 
       or
       \[
-          \dot{\bfY}=\begin{pmatrix}
+          \dot{\mathbf{Y}}=\begin{pmatrix}
               0&1\\
               -b&-a
-          \end{pmatrix}\bfY+\begin{pmatrix}
+          \end{pmatrix}\mathbf{Y}+\begin{pmatrix}
               0\\f
           \end{pmatrix}.
       \]
-    \subsection{Matrix Methods}
+    \subsubsection{Matrix Methods}
     To solve a system of linear ODEs:
     \[
-        \dot{\bfY}=M\bfY+\bfF\tag{$*$}
+        \dot{\mathbf{Y}}=M\mathbf{Y}+\mathbf{F}\tag{$*$}
     \]
     \begin{enumerate}
-        \item Write $ \bfY = \bfY_c+\bfY_p $, where 
+        \item Write $ \mathbf{Y} = \mathbf{Y}_c+\mathbf{Y}_p $, where 
         \[
-            \dot{\bfY_c}=M\bfY_c.
+            \dot{\mathbf{Y}_c}=M\mathbf{Y}_c.
         \]
-        \item Seek solutions of $ \bfY_c = \bfv e^{\lambda t} $:
+        \item Seek solutions of $ \mathbf{Y}_c = \mathbf{v} e^{\lambda t} $:
         \[
-            (*) \Longrightarrow \lambda\bfv = M\bfv.
+            (*) \Longrightarrow \lambda\mathbf{v} = M\mathbf{v}.
         \]
-        Note that $ \lambda,\bfv $ are eigenvalues and eigenvectors of $M$.
-        \item Find $ \bfY_p $ based on form of $\bfF$. 
+        Note that $ \lambda,\mathbf{v} $ are eigenvalues and eigenvectors of $M$.
+        \item Find $ \mathbf{Y}_p $ based on form of $\mathbf{F}$. 
     \end{enumerate}
     \begin{example}
         Consider 
         \[
-            \dot{\bfY}-\begin{pmatrix}
+            \dot{\mathbf{Y}}-\begin{pmatrix}
                 -4&24\\
                 1&-2
-            \end{pmatrix}\bfY = \begin{pmatrix}
+            \end{pmatrix}\mathbf{Y} = \begin{pmatrix}
                 4\\1
             \end{pmatrix}e^t.
         \]
-        The eigenvectors and eigenvalues of the matrix is $ \lambda_1=2, \bfv_1^{\top} = (4,1), \lambda_2 =-8, \bfv_2^\top =(-6,1) $, so
+        The eigenvectors and eigenvalues of the matrix is $ \lambda_1=2, \mathbf{v}_1^{\top} = (4,1), \lambda_2 =-8, \mathbf{v}_2^\top =(-6,1) $, so
         \[
-            \bfY_c = A\begin{pmatrix}
+            \mathbf{Y}_c = A\begin{pmatrix}
                 4\\1
             \end{pmatrix}e^{2t}+B\begin{pmatrix}
                 -6\\1
@@ -2247,7 +2206,7 @@ skipped some talks irrelevant to contents\\
         \]
         For particular integral, try 
         \[
-            \bfY_p = \begin{pmatrix}
+            \mathbf{Y}_p = \begin{pmatrix}
                 u_1\\u_2
             \end{pmatrix}e^{t},
         \]
@@ -2279,7 +2238,7 @@ skipped some talks irrelevant to contents\\
         \end{align*}
         Hence the solution is 
         \[
-            \bfY = A\begin{pmatrix}
+            \mathbf{Y} = A\begin{pmatrix}
                 4\\1
             \end{pmatrix}e^{2t}+B\begin{pmatrix}
                 -6\\1
@@ -2289,7 +2248,7 @@ skipped some talks irrelevant to contents\\
         \]
     \end{example}
     \begin{remark}
-        If the forcing term on RHS matches with $ \bfY_c $, try $ \bfY_p = \bfu t e^{\lambda t} $.
+        If the forcing term on RHS matches with $ \mathbf{Y}_c $, try $ \mathbf{Y}_p = \mathbf{u} t e^{\lambda t} $.
     \end{remark}
     From a linear system of $n$ first order ODEs, we can construct $n$ uncoupled $n$th order ODEs.
     \begin{example}
@@ -2310,10 +2269,10 @@ skipped some talks irrelevant to contents\\
         \]
         This indeed matches with the previous result.
     \end{example}
-    \subsection{Phase Portraits Revisited}
-    For complementary function $ \dot{\bfY_c}=M\bfY_c $, we see from previous section that 
+    \subsubsection{Phase Portraits Revisited}
+    For complementary function $ \dot{\mathbf{Y}_c}=M\mathbf{Y}_c $, we see from previous section that 
     \[
-        \bfY_c = A\bfv_1 e^{\lambda_1 t}+B\bfv_2 e^{\lambda_2 t}.
+        \mathbf{Y}_c = A\mathbf{v}_1 e^{\lambda_1 t}+B\mathbf{v}_2 e^{\lambda_2 t}.
     \]
     We have 3 cases for phase portraits:
     \begin{enumerate}
@@ -2323,34 +2282,34 @@ skipped some talks irrelevant to contents\\
               \draw [->] (-4, 0) -- (4, 0) node [right] {$y_1$};
               \draw [->] (0, -1.7) -- (0, 1.7) node [above] {$y_2$};
         
-              \draw [->-=0.785, -<-=0.215, mblue, semithick] (-4, -1) -- (4, 1) node [right] {$\bfv_1$};
-              \draw [->-=0.25, -<-=0.75, mblue, semithick] (-4, 0.667) -- (4, -0.667) node [right] {$\bfv_2$};
+              \draw [->-=0.785, -<-=0.215, blue, semithick] (-4, -1) -- (4, 1) node [right] {$\mathbf{v}_1$};
+              \draw [->-=0.25, -<-=0.75, blue, semithick] (-4, 0.667) -- (4, -0.667) node [right] {$\mathbf{v}_2$};
         
-              \draw [mblue, semithick, ->- = 0.3, ->- = 0.7] (-4, 1) .. controls (0, 0.333) and (0, 0.35) .. (4, 1.3);
-              \draw [mblue, semithick, -<- = 0.3, -<- = 0.7] (-4, -1.3) .. controls (0, -0.3) and (0, -0.333) .. (4, -1);
+              \draw [blue, semithick, ->- = 0.3, ->- = 0.7] (-4, 1) .. controls (0, 0.333) and (0, 0.35) .. (4, 1.3);
+              \draw [blue, semithick, -<- = 0.3, -<- = 0.7] (-4, -1.3) .. controls (0, -0.3) and (0, -0.333) .. (4, -1);
         
-              \draw [mblue, semithick, ->- = 0.3, ->- = 0.7] (-4, 0.333) .. controls (-2, 0) and (-2, -0.3) .. (-4, -0.6);
-              \draw [mblue, semithick, ->- = 0.3, ->- = 0.7] (4, -0.333) .. controls (2, 0) and (2, 0.3) .. (4, 0.6);
+              \draw [blue, semithick, ->- = 0.3, ->- = 0.7] (-4, 0.333) .. controls (-2, 0) and (-2, -0.3) .. (-4, -0.6);
+              \draw [blue, semithick, ->- = 0.3, ->- = 0.7] (4, -0.333) .. controls (2, 0) and (2, 0.3) .. (4, 0.6);
             \end{tikzpicture}
           \end{center}
           $(0,0)$ is a saddle node.
-          \item $ \lambda_1,\lambda_2\in \mathbb{R}, \lambda_1,\lambda_2>0 $. If $ \lambda_1,\lambda_2<0 $, wlog suppose $ |\bfv_1|>|\bfv_2| $.
+          \item $ \lambda_1,\lambda_2\in \mathbb{R}, \lambda_1,\lambda_2>0 $. If $ \lambda_1,\lambda_2<0 $, wlog suppose $ |\mathbf{v}_1|>|\mathbf{v}_2| $.
           \begin{center}
             \begin{tikzpicture}[rotate=-20]
-              \draw [mblue, semithick] (-3, 0) -- (3, 0) node [right] {$\bfv_1$};
-              \draw [mblue, semithick] (0, -2) -- (0, 2) node [above] {$\bfv_2$};
+              \draw [blue, semithick] (-3, 0) -- (3, 0) node [right] {$\mathbf{v}_1$};
+              \draw [blue, semithick] (0, -2) -- (0, 2) node [above] {$\mathbf{v}_2$};
       
-              \draw [mblue, semithick] (-2, 2) parabola bend (0, 0) (2, 2);
-              \draw [mblue, semithick] (-1, 2) parabola bend (0, 0) (1, 2);
-              \draw [mblue, semithick] (-2, -2) parabola bend (0, 0) (2, -2);
-              \draw [mblue, semithick] (-1, -2) parabola bend (0, 0) (1, -2);
+              \draw [blue, semithick] (-2, 2) parabola bend (0, 0) (2, 2);
+              \draw [blue, semithick] (-1, 2) parabola bend (0, 0) (1, 2);
+              \draw [blue, semithick] (-2, -2) parabola bend (0, 0) (2, -2);
+              \draw [blue, semithick] (-1, -2) parabola bend (0, 0) (1, -2);
             \end{tikzpicture}
           \end{center}
           If $ \lambda_1,\lambda_2>0 $, then it is called an \textit{unstable node}. The sketch is the same with arrow reversed.
           \item $ \lambda_1,\lambda_2 $ are complex conjugate. If $ \Re(\lambda_1,\lambda_2)<0 $
           \begin{center}
             \begin{tikzpicture}
-              \draw [mblue, semithick, domain = 0:40,samples=300] plot ({2*exp(-\x/10)*cos(50*\x)}, {2*exp(-\x/10)*sin(50*\x)});
+              \draw [blue, semithick, domain = 0:40,samples=300] plot ({2*exp(-\x/10)*cos(50*\x)}, {2*exp(-\x/10)*sin(50*\x)});
             \end{tikzpicture}
           \end{center}
           with arrow going in. This is a \textit{stable spiral}. If $ \Re(\lambda_1,\lambda_2)>0 $ then it is an \textit{unstable spiral} with arrow reversed. If $ \Re(\lambda_1,\lambda_2)=0 $, then we have cocentric ellipces called \textit{centre}. 
@@ -2358,8 +2317,8 @@ skipped some talks irrelevant to contents\\
     \begin{remark}
         To find direction of rotation, we can evaluate system of equations at a given point to find sign of $ \dot{y_1},\dot{y_2} $.
     \end{remark}
-    \subsection{Nonlinear Systems of ODEs}
-    Consider an autonomous\marginnote{$f,g$ are independent of time $t$} system of two nonlinear first order ODEs:
+    \subsubsection{Nonlinear Systems of ODEs}
+    Consider an autonomous\footnote{$f,g$ are independent of time $t$} system of two nonlinear first order ODEs:
     \begin{align*}
         \dot{x}&= f(x,y),\\
         \dot{y}&= g(x,y).
@@ -2451,11 +2410,11 @@ skipped some talks irrelevant to contents\\
         \]
         If $ \eta>0 $, $ \dot{\xi}<0 $, so the direction is counterclockwise.
     \end{example}
-    \part{Partial Differential Equations}
+    \section{Partial Differential Equations}
     \begin{definition}
         A PDE is a DE with multiple independent variables.
     \end{definition}
-    \section{First Order Wave Equation}
+    \subsection{First Order Wave Equation}
     Consider $ y(x,t) $ where 
     \[
         \frac{\partial y}{\partial t}-c \frac{\partial y}{\partial x}=0,\quad c = \text{constant}.  
@@ -2477,7 +2436,7 @@ skipped some talks irrelevant to contents\\
           \node [right] at (4, 1.5) {contours of $y$};
         \end{tikzpicture}
       \end{center}
-      If $ y(x,0)=f(x) $, $ y = f(x_0) $ along characteristics. Hence the general solution is \marginnote{Firstly consider a particular path, then consider all possible paths. This indeed gives the general solution.}
+      If $ y(x,0)=f(x) $, $ y = f(x_0) $ along characteristics. Hence the general solution is \footnote{Firstly consider a particular path, then consider all possible paths. This indeed gives the general solution.}
       \[
           y=f(x+ct).
       \]
@@ -2503,7 +2462,7 @@ skipped some talks irrelevant to contents\\
               y(x,t)=1+e^{-x_0^2}-e^{-t} = 1+e^{-(x-5t)^2}-e^{-t}.
           \]
       \end{example}
-      \section{Second Order Wave Equation}
+      \subsection{Second Order Wave Equation}
       General form is 
       \[
           \frac{\partial^2 y}{\partial t^2}-c^2 \frac{\partial^2 y}{\partial x^2}=0.  
@@ -2522,7 +2481,7 @@ skipped some talks irrelevant to contents\\
       \]
       Since the original equation is linear in $y$, general solution is 
       \[
-          y = f(x+ct)+g(x-ct).\marginnote{We need not add $A,B$ to make it a span, since $f,g$ are already general solutions.}
+          y = f(x+ct)+g(x-ct).\footnote{We need not add $A,B$ to make it a span, since $f,g$ are already general solutions.}
       \]
       \begin{example}
           Consider $ y_{tt}-c^2y_{xx}=0 $ subjected to $ y=\frac{1}{1+x^2}, y_t=0 $ at $t=0$. $ y\to 0 $ as $ x\to \pm \infty $. Solution is $ y=f(x+ct)+g(x-ct) $. Apply ICs:
@@ -2540,13 +2499,13 @@ skipped some talks irrelevant to contents\\
               y(x,t)=\frac{1}{2}\left( \underbrace{\frac{1}{1+(x+ct)^2}}_{\text{moves left}}+\underbrace{\frac{1}{1+(x-ct)^2}}_{\text{moves right}} \right), c>0.
           \]
       \end{example}
-      \section{Diffusion Equation}
+      \subsection{Diffusion Equation}
       \begin{example}
           Consider 
           \[
               \frac{\partial y}{\partial t} = \kappa \frac{\partial^2 y}{\partial x^2}  
           \]
-          subjected to $ y(x,0)=\delta(x) $, the dirac delta function, and $ y\to 0, x\to \infty $. Define $ \eta=\frac{x^2}{4\kappa t} $, the \textit{similarity variable}.\marginnote{Motivated by dimensional analysis: $\eta$ is dimensionless.}
+          subjected to $ y(x,0)=\delta(x) $, the dirac delta function, and $ y\to 0, x\to \infty $. Define $ \eta=\frac{x^2}{4\kappa t} $, the \textit{similarity variable}.\footnote{Motivated by dimensional analysis: $\eta$ is dimensionless.}
 
           Seek solutions of form
           \[
@@ -2564,7 +2523,7 @@ skipped some talks irrelevant to contents\\
           \[
               \alpha f+f'\eta+f''\eta+\frac{f'}{2}=0 \Longrightarrow \eta \frac{\mathrm{d}}{\mathrm{d}\eta}\left( f+f' \right) +\frac{1}{2}(f'+2\alpha f)=0.
           \]
-          Thus we have turned the equation into an ODE.\marginnote{$ \alpha $ is arbitrary at this stage.} Set $ \alpha=1/2 $, then 
+          Thus we have turned the equation into an ODE.\footnote{$ \alpha $ is arbitrary at this stage.} Set $ \alpha=1/2 $, then 
           \[
             \eta \frac{\mathrm{d}}{\mathrm{d}\eta}\left( f+f' \right) +\frac{1}{2}(f+f')=0 \Longrightarrow \eta \frac{\mathrm{d}F}{\mathrm{d}\eta} +\frac{1}{2}F=0.(f+f'=F)
           \]

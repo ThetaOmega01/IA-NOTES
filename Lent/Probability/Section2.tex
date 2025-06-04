@@ -1,6 +1,6 @@
 \section{Discrete Probability Distributions}
 \subsection{Examples of discrete distributions}
-This section we talk about $ (\Omega,\mathscr{F},\mathbb{P}) $ such that $ \Omega=\{\omega_1,\omega_2,\dots\} $ is countable and $ \mathscr{F} = 2^{\Omega} $. If we know $ \mathbb{P}(\{\omega_i\}) $, then this determines $\bbP$. Indeed, let $ A \subseteq \Omega $, then
+This section we talk about $ (\Omega,\mathscr{F},\mathbb{P}) $ such that $ \Omega=\{\omega_1,\omega_2,\dots\} $ is countable and $ \mathscr{F} = 2^{\Omega} $. If we know $ \mathbb{P}(\{\omega_i\}) $, then this determines $\mathbb{P}$. Indeed, let $ A \subseteq \Omega $, then
 \[
     \mathbb{P}(A) = \mathbb{P}\left( \bigcup_{\omega_i\in A}\{\omega_i\} \right) = \sum_{i} \mathbb{P}(\{\omega_i\}).
 \]
@@ -64,7 +64,7 @@ But if we take $p=\lambda/n$, we have
     \[
         \{X\le x\}=\{\omega\in \Omega: X(\omega)\le x\}\in \mathscr{F},\quad \forall x\in \mathbb{R}.
     \]
-    For simplicity, write $ \{X\in A\}:= \{\omega:X(\omega)\in A\} $, where $A \subseteq \bbR$.
+    For simplicity, write $ \{X\in A\}:= \{\omega:X(\omega)\in A\} $, where $A \subseteq \mathbb{R}$.
 \end{definition}
 
 \begin{definition}
@@ -93,7 +93,7 @@ We see that $1_A$ is a random variable.
 \end{definition}
 
 \begin{claim}
-    This definition is equivalent to saying that $ X_1,\dots,X_n $ are random variables in $\bbR$.
+    This definition is equivalent to saying that $ X_1,\dots,X_n $ are random variables in $\mathbb{R}$.
 \end{claim}
 \begin{proof}[Indeed,]
     $ \{X_1\le x_1,\dots,X_n\le x_n\} = \{X_1\le x_1\}\cap\dots,\cap \{X_n\le x_n \} \in \mathscr{F}$.
@@ -143,26 +143,26 @@ so $S_N\sim B(N,p)$.
 
 \subsection{Expectation}
 \begin{definition}
-    $ (\Omega,\mathscr{F},\mathbb{P}) $ and assume $\Omega$ is finite or countable. Let $ X:\Omega\to \mathbb{R}  $ be a r.v. so that $X$ is discrete. We say $X$ is \textbf{non-negative} if $ X\ge 0 $. Define the \textbf{expectation} $ \bbE[X] $ as 
+    $ (\Omega,\mathscr{F},\mathbb{P}) $ and assume $\Omega$ is finite or countable. Let $ X:\Omega\to \mathbb{R}  $ be a r.v. so that $X$ is discrete. We say $X$ is \textbf{non-negative} if $ X\ge 0 $. Define the \textbf{expectation} $ \mathbb{E}[X] $ as 
     \[
-        \bbE[X] = \sum_{\omega\in \Omega} X(\omega) \mathbb{P}(\{\omega\}).
+        \mathbb{E}[X] = \sum_{\omega\in \Omega} X(\omega) \mathbb{P}(\{\omega\}).
     \]
 \end{definition}
 
 Let $ \Omega_X=\{X(\omega):\omega\in \Omega\} $, so $ \Omega = \bigcup_{x\in \Omega_X}\{X=x\} $. Now 
 \begin{align*}
-    \bbE[X]&=\sum_\omega X(\omega)\bbP(\{\omega\}) = \sum_{x\in \Omega_X} \sum_{\omega\in \{X=x\}}X(\omega)\bbP(\{\omega\})\\ 
-    &=\sum_{x\in \Omega_X} \sum_{\omega\in \{X=x\}}x\bbP(\{\omega\})=\sum_{x\in \Omega_X}x \bbP(X=x).
+    \mathbb{E}[X]&=\sum_\omega X(\omega)\mathbb{P}(\{\omega\}) = \sum_{x\in \Omega_X} \sum_{\omega\in \{X=x\}}X(\omega)\mathbb{P}(\{\omega\})\\ 
+    &=\sum_{x\in \Omega_X} \sum_{\omega\in \{X=x\}}x\mathbb{P}(\{\omega\})=\sum_{x\in \Omega_X}x \mathbb{P}(X=x).
 \end{align*}
-So the expectation of $X$ (also called average value or mean) is an average of the values taken by $X$ with weights $\bbP(X=x)$. So 
+So the expectation of $X$ (also called average value or mean) is an average of the values taken by $X$ with weights $\mathbb{P}(X=x)$. So 
 \[
-    \bbE[X] = \sum_{x\in \Omega_X}x\cdot p_x.
+    \mathbb{E}[X] = \sum_{x\in \Omega_X}x\cdot p_x.
 \]
 
 \begin{example}
     Suppose $ X\sim B(N,p) $.
     \begin{align*}
-        \bbE[X]&= \sum_{k=0}^{N} kP(X=k)=\sum_{k=0}^{N}k \binom{N}{k}p^k (1-p)^{N-k}\\ 
+        \mathbb{E}[X]&= \sum_{k=0}^{N} kP(X=k)=\sum_{k=0}^{N}k \binom{N}{k}p^k (1-p)^{N-k}\\ 
         &= \sum_{k=0}^{N}\frac{kN!}{k!(N-k)!}p^k (1-p)^{N-k}\\ 
         &= \sum_{k=1}^{N} \frac{(N-1)!Np}{(k-1)!(N-k)!}p^{k-1}(1-p)^{N-k}\\ 
         &= Np \sum_{k=1}^{N} \binom{N-1}{k-1}p^{k-1}(1-p)^{(N-1)-(k-1)}\\ 
@@ -173,32 +173,32 @@ So the expectation of $X$ (also called average value or mean) is an average of t
 \begin{example}
     Let $ X\sim P(\lambda) $.
     \begin{align*}
-        \bbE[X]&=\sum_{k=0}^{\infty} k e^{-\lambda} \frac{\lambda^k}{k!} = \sum_{k=1}^{\infty} e^{-\lambda}\frac{\lambda^{k-1}}{(k-1)!}\lambda\\
+        \mathbb{E}[X]&=\sum_{k=0}^{\infty} k e^{-\lambda} \frac{\lambda^k}{k!} = \sum_{k=1}^{\infty} e^{-\lambda}\frac{\lambda^{k-1}}{(k-1)!}\lambda\\
         &= \lambda \sum_{k=1}^{\infty} e^{-\lambda}\frac{\lambda^{k-1}}{(k-1)!} = \lambda.
     \end{align*}
 \end{example}
 
 \begin{definition}
-    Let $X$ be a general discrete r.v. We define $ X_+=\max \{X,0\} $ and $ X_-=\max \{-X,0\} $. Then $X=X_+-X_-$ and $ |X|=X_++X_- $. If at least 1 of $ \bbE[X_+],\bbE[X_-] $ is finite, then we define 
+    Let $X$ be a general discrete r.v. We define $ X_+=\max \{X,0\} $ and $ X_-=\max \{-X,0\} $. Then $X=X_+-X_-$ and $ |X|=X_++X_- $. If at least 1 of $ \mathbb{E}[X_+],\mathbb{E}[X_-] $ is finite, then we define 
     \[
-        \bbE[X] = \bbE[X_+]-\bbE[X_-].
+        \mathbb{E}[X] = \mathbb{E}[X_+]-\mathbb{E}[X_-].
     \]
-    If both are infinity, then we say the expectation of $X$ is not defined. Whenever we write $ \bbE[X] $ it is assumed to be well-defined. If $ \bbE[|X|]<\infty  $, we say $X$ is \textbf{integrable}.
+    If both are infinity, then we say the expectation of $X$ is not defined. Whenever we write $ \mathbb{E}[X] $ it is assumed to be well-defined. If $ \mathbb{E}[|X|]<\infty  $, we say $X$ is \textbf{integrable}.
 \end{definition}
-When $ \bbE[X] $ is well-defined, we have again that 
+When $ \mathbb{E}[X] $ is well-defined, we have again that 
 \[
-    \bbE[X] = \sum_{x\in \Omega_X}x \mathbb{P}(X=x).
+    \mathbb{E}[X] = \sum_{x\in \Omega_X}x \mathbb{P}(X=x).
 \]
 
 \begin{proposition}\label{prop:properties of expectation}
     \begin{enumerate}
-        \item If $ X\ge 0 $, then $ \bbE[X]\ge 0 $.
-        \item If $X\ge 0 $ and $ \bbE[X]=0 $ then $ \mathbb{P}(X=0)=1$.
-        \item If $ c\in \mathbb{R} $, then $ \bbE[cX]=c\bbE[X] $ and $ \bbE[c+X]=c+\bbE[X] $.
-        \item If $ X,Y $ are r.v.s that are integrable, then $ \bbE[X+Y]=\bbE[X]+\bbE[Y] $.
+        \item If $ X\ge 0 $, then $ \mathbb{E}[X]\ge 0 $.
+        \item If $X\ge 0 $ and $ \mathbb{E}[X]=0 $ then $ \mathbb{P}(X=0)=1$.
+        \item If $ c\in \mathbb{R} $, then $ \mathbb{E}[cX]=c\mathbb{E}[X] $ and $ \mathbb{E}[c+X]=c+\mathbb{E}[X] $.
+        \item If $ X,Y $ are r.v.s that are integrable, then $ \mathbb{E}[X+Y]=\mathbb{E}[X]+\mathbb{E}[Y] $.
         \item Let $ c_n\dots,c_n\in \mathbb{R}  $ and $ X_1,\dots,X_n $ are r.v.s that are integrable, then 
         \[
-            \bbE\left[ \sum_{i=1}^{n}c_iX_i \right] = \sum_{i=1}^{n} c_i\bbE[X_i].
+            \mathbb{E}\left[ \sum_{i=1}^{n}c_iX_i \right] = \sum_{i=1}^{n} c_i\mathbb{E}[X_i].
         \]
     \end{enumerate}
 \end{proposition}
@@ -207,34 +207,34 @@ When $ \bbE[X] $ is well-defined, we have again that
 \begin{proposition}
     Suppose $ X_1,X_2,\dots $ are non-negative r.v.s. Then 
     \[
-        \bbE \left[ \sum_n X_n \right] = \sum_n \bbE[X_n].
+        \mathbb{E} \left[ \sum_n X_n \right] = \sum_n \mathbb{E}[X_n].
     \]
 \end{proposition}
 \begin{proof}
     Suppose $\Omega$ is countable. Note that 
     \begin{align*}
-        \bbE\left[ \sum_n X_n \right] &= \sum_\omega \sum_n X_n(\omega)\mathbb{P}(\{\omega\})\\ 
-        &= \sum_n\sum_\omega X_n(\omega)\mathbb{P}(\{\omega\}) = \sum_n\bbE[X_n].
+        \mathbb{E}\left[ \sum_n X_n \right] &= \sum_\omega \sum_n X_n(\omega)\mathbb{P}(\{\omega\})\\ 
+        &= \sum_n\sum_\omega X_n(\omega)\mathbb{P}(\{\omega\}) = \sum_n\mathbb{E}[X_n].
     \end{align*}
 \end{proof}
 
 \begin{proposition}
-    If $ X=1_A,A\in \mathscr{F} $, then $ \bbE[X]=\mathbb{P}(A) $.
+    If $ X=1_A,A\in \mathscr{F} $, then $ \mathbb{E}[X]=\mathbb{P}(A) $.
 \end{proposition}
 \begin{proposition}
-    If $g:\bbR\to \bbR$, define $ g(X) $ to be the r.v. $ g(X)(\omega)=g(X(\omega)) $. Then 
+    If $g:\mathbb{R}\to \mathbb{R}$, define $ g(X) $ to be the r.v. $ g(X)(\omega)=g(X(\omega)) $. Then 
     \[
-        \bbE[g(X)] = \sum_{x\in \Omega_X} g(x)\mathbb{P}(X=x).
+        \mathbb{E}[g(X)] = \sum_{x\in \Omega_X} g(x)\mathbb{P}(X=x).
     \]
 \end{proposition}
 \begin{proof}
     Set $Y=g(X)$. 
     \[
-        \bbE[Y] = y \mathbb{P}(Y=y).
+        \mathbb{E}[Y] = y \mathbb{P}(Y=y).
     \]
     Note that $ \{Y=y\} = \{\omega:Y(\omega=y)\} = \{\omega:X(\omega)\in g^{-1}(\{y\})\} = \{X\in g^{-1}(y)\} $. So 
     \begin{align*}
-        \bbE[Y]&= \sum_{y\in \Omega_Y}y \mathbb{P}(X\in g^{-1}(\{y\}))=\sum_{y\in \Omega_Y}y \sum_{x\in g^{-1}(\{y\})}\mathbb{P}(X=x)\\
+        \mathbb{E}[Y]&= \sum_{y\in \Omega_Y}y \mathbb{P}(X\in g^{-1}(\{y\}))=\sum_{y\in \Omega_Y}y \sum_{x\in g^{-1}(\{y\})}\mathbb{P}(X=x)\\
         &= \sum_{y\in \Omega_Y}\sum_{x\in g^{-1}(\{y\})}g(x)\mathbb{P}(X=x)= \sum_{x\in \Omega_X} g(x)\mathbb{P}(X=x).\qedhere
     \end{align*}
 \end{proof}
@@ -242,7 +242,7 @@ When $ \bbE[X] $ is well-defined, we have again that
 \begin{proposition}
     If $ X\ge 0 $ and takes integer values, then 
     \[
-        \bbE[X] = \sum_{k=1}^{\infty} \mathbb{P}(X\ge k) = \sum_{k=0}^{\infty}\mathbb{P}(X>k).
+        \mathbb{E}[X] = \sum_{k=1}^{\infty} \mathbb{P}(X\ge k) = \sum_{k=0}^{\infty}\mathbb{P}(X>k).
     \]
 \end{proposition}
 \begin{proof}
@@ -256,7 +256,7 @@ When $ \bbE[X] $ is well-defined, we have again that
     \]
     so taking expectation gives 
     \begin{align*}
-        \bbE[X] &= \sum_{k=1}^{\infty}\bbE[1(X\ge k)] = \sum_{k=0}^{\infty}\bbE[1(X>k)]\\ 
+        \mathbb{E}[X] &= \sum_{k=1}^{\infty}\mathbb{E}[1(X\ge k)] = \sum_{k=0}^{\infty}\mathbb{E}[1(X>k)]\\ 
         &= \sum_{k=1}^{\infty} \mathbb{P}(X\ge k) = \sum_{k=0}^{\infty}\mathbb{P}(X>k).\qedhere
     \end{align*}
 \end{proof}
@@ -276,7 +276,7 @@ When $ \bbE[X] $ is well-defined, we have again that
 \begin{proof}
     Do it yourself.
 \end{proof}
-Taking $\bbE$ on both sides we get 
+Taking $\mathbb{E}$ on both sides we get 
 \[
     \mathbb{P}{(A_1\cup\cdots\cup A_n)} = \sum_{i=1}^{n}\mathbb{P}(A_i)-\sum_{i_1<i_2} \mathbb{P}(A_{i_1}\cap A_{i_2})+\cdots+(-1)^{n+1}\mathbb{P}(A_1\cap\cdots\cap A_n),
 \]
@@ -284,12 +284,12 @@ which is exactly the inclusion-exclusion formula.
 
 \subsection{Variance}
 \begin{definition}
-    Let $X$ be a r.v. and $ r\in \mathbb{N} $. We call $ \bbE[X^r] $ (as long as it is well-defined) the \textbf{$r$th moment} of $X$.
+    Let $X$ be a r.v. and $ r\in \mathbb{N} $. We call $ \mathbb{E}[X^r] $ (as long as it is well-defined) the \textbf{$r$th moment} of $X$.
 \end{definition}
 \begin{definition}
     The \textbf{variance} of $X$, denoted as $ \var(X) $, is defined to be 
     \[
-        \var(X) = \bbE[(X-\bbE[X])^2].
+        \var(X) = \mathbb{E}[(X-\mathbb{E}[X])^2].
     \]
     The variance is a measure of how concentrated $X$ is around its expectation.
 
@@ -298,32 +298,32 @@ which is exactly the inclusion-exclusion formula.
 \subsubsection*{Properties of variance}
 \begin{proposition}
     \begin{enumerate}
-        \item $ \var(X)\ge 0 $. If $ \var(X)=0 $ then $ \mathbb{P}(X=\bbE[X])=1 $.
-        \item If $c\in \bbR$ then $ \var(cX)=c^2\var(X) $ and $ \var(X+c)=\var(X) $.
-        \item $ \var(X)=\bbE[X^2]-(\bbE[X])^2 $.
+        \item $ \var(X)\ge 0 $. If $ \var(X)=0 $ then $ \mathbb{P}(X=\mathbb{E}[X])=1 $.
+        \item If $c\in \mathbb{R}$ then $ \var(cX)=c^2\var(X) $ and $ \var(X+c)=\var(X) $.
+        \item $ \var(X)=\mathbb{E}[X^2]-(\mathbb{E}[X])^2 $.
     \end{enumerate}
 \end{proposition}
 \begin{proof}
     We only prove 3 since other are trivial. Note that 
     \begin{align*}
-        \var(X)&= \bbE[(X-\bbE[x])^2] = \bbE[X^2-2X\bbE[X]+(\bbE[X])^2]\\ 
-        &= \bbE[X^2]-2\bbE[X]\bbE[X]+(\bbE[X])^2=\bbE[X^2]-(\bbE[X])^2,
+        \var(X)&= \mathbb{E}[(X-\mathbb{E}[x])^2] = \mathbb{E}[X^2-2X\mathbb{E}[X]+(\mathbb{E}[X])^2]\\ 
+        &= \mathbb{E}[X^2]-2\mathbb{E}[X]\mathbb{E}[X]+(\mathbb{E}[X])^2=\mathbb{E}[X^2]-(\mathbb{E}[X])^2,
     \end{align*}
     as claimed.
 \end{proof}
 
 \begin{proposition}
-    $ \displaystyle \var(X) = \min_{c\in \bbR}\bbE[(X-c)^2] $ and the min is achieved for $ c=\bbE[X] $.
+    $ \displaystyle \var(X) = \min_{c\in \mathbb{R}}\mathbb{E}[(X-c)^2] $ and the min is achieved for $ c=\mathbb{E}[X] $.
 \end{proposition}
 \begin{proof}
-    Let $ f(c)=\bbE[(X-c)^2] = \bbE[X^2]-2c\bbE[X]+c^2 $. Using usual algebras gives the result.
+    Let $ f(c)=\mathbb{E}[(X-c)^2] = \mathbb{E}[X^2]-2c\mathbb{E}[X]+c^2 $. Using usual algebras gives the result.
 \end{proof}
 
 \begin{example}
     \begin{enumerate}
-        \item Suppose $ X\sim B(n,p) $, so $ \bbE[X]=np $.
+        \item Suppose $ X\sim B(n,p) $, so $ \mathbb{E}[X]=np $.
         \begin{align*}
-            \var(X) &= \bbE[X^2]-(\bbE[X])^2 = \bbE[X(X-1)]+\bbE[X]-(\bbE[X])^2\\ 
+            \var(X) &= \mathbb{E}[X^2]-(\mathbb{E}[X])^2 = \mathbb{E}[X(X-1)]+\mathbb{E}[X]-(\mathbb{E}[X])^2\\ 
             &= \sum_{k=2}^{n}k(k-1) \binom{n}{k}p^k (1-p)^{n-k} +np-n^2p^2\\ 
             &= n(n-1)p^2 \sum_{k=2}^{n}\binom{n-2}{k-2}p^{k-2}(1-p)^{n-k}+np-n^2p^2\\ 
             &= n(n-1)p^2+np-n^2p^2\\ 
@@ -331,7 +331,7 @@ which is exactly the inclusion-exclusion formula.
         \end{align*}
         \item $ X\sim P(\lambda) $, then 
         \begin{align*}
-            \var(X) &= \bbE[X^2]-\lambda^2 = \bbE[X(X-1)]+\bbE[X]-\lambda^2\\ 
+            \var(X) &= \mathbb{E}[X^2]-\lambda^2 = \mathbb{E}[X(X-1)]+\mathbb{E}[X]-\lambda^2\\ 
             &= \sum_{k=2}^{\infty} k(k-1)e^{-\lambda}\frac{\lambda^k}{k!}+\lambda-\lambda^2\\ 
             &= e^{-\lambda}\lambda^2\sum_{k=2}^{\infty}\frac{\lambda^{k-2}}{(k-2)!}+\lambda-\lambda^2\\ 
             &= \lambda.
@@ -343,7 +343,7 @@ which is exactly the inclusion-exclusion formula.
 \begin{definition}
     Let $X,Y$ be r.v.s. Their \textbf{covariance} is defined as 
     \[
-        \cov (X,Y) = \bbE[(X-\bbE[X])(Y-\bbE[Y])].
+        \cov (X,Y) = \mathbb{E}[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])].
     \]
     It is a measure of how dependent $X,Y$ are.
 \end{definition}
@@ -351,8 +351,8 @@ which is exactly the inclusion-exclusion formula.
     \begin{enumerate}
         \item $ \cov(X,Y)=\cov(Y,X) $.
         \item $ \cov(X,X)=\var(X) $.
-        \item $ \cov(X,Y) = \bbE[XY]-\bbE[X]\bbE[Y] $.
-        \item Let $c\in \bbR$, Then $ \cov(cX,Y) = c\cov(X,Y) $ and $ \cov(c+X,Y)=\cov(X,Y) $.
+        \item $ \cov(X,Y) = \mathbb{E}[XY]-\mathbb{E}[X]\mathbb{E}[Y] $.
+        \item Let $c\in \mathbb{R}$, Then $ \cov(cX,Y) = c\cov(X,Y) $ and $ \cov(c+X,Y)=\cov(X,Y) $.
         \item $ \var(X+Y) = \var(X)+\var(Y)+2\cov(X,Y) $.
         \item $ \forall c\in \mathbb{R}, \cov(c,X)=0 $.
         \item If $ X,Y,Z $ are r.v.s, then 
@@ -372,7 +372,7 @@ which is exactly the inclusion-exclusion formula.
 \begin{proof}
     Note that 
     \[
-        (X-\bbE[X])(Y-\bbE[Y]) = XY-X\bbE[Y]-Y\bbE[X]+\bbE[X]\bbE[Y].\tag{$*$}
+        (X-\mathbb{E}[X])(Y-\mathbb{E}[Y]) = XY-X\mathbb{E}[Y]-Y\mathbb{E}[X]+\mathbb{E}[X]\mathbb{E}[Y].\tag{$*$}
     \]
     \begin{enumerate}
         \item It follows by changing the order of $X,Y$ in ($*$).
@@ -381,12 +381,12 @@ which is exactly the inclusion-exclusion formula.
         \item Replace $X$ by $cX,c+X$ and take expectation on ($*$).
         \item Note that 
         \begin{align*}
-            \var(X+Y)&= \bbE[(X+Y)^2]-(\bbE[X+Y])^2\\ 
-            &= \bbE[X^2]+\bbE[Y^2]+2\bbE[XY]-(\bbE[X]+\bbE[Y])^2\\ 
+            \var(X+Y)&= \mathbb{E}[(X+Y)^2]-(\mathbb{E}[X+Y])^2\\ 
+            &= \mathbb{E}[X^2]+\mathbb{E}[Y^2]+2\mathbb{E}[XY]-(\mathbb{E}[X]+\mathbb{E}[Y])^2\\ 
             &= \var(X)+\var(Y)+2\cov(X,Y).
         \end{align*}
         \item Replace $Y$ with $c$.
-        \item By substitution in ($*$) and linearity of $ \bbE $.
+        \item By substitution in ($*$) and linearity of $ \mathbb{E} $.
     \end{enumerate}
 \end{proof}
 
@@ -395,19 +395,19 @@ Recall that $ X\independent Y \Leftrightarrow \mathbb{P}(X=x,Y=y)=\mathbb{P}(X=x
 \begin{proposition}
     Let $X,Y$ be 2 independent r.v.s and let $ f,g:\mathbb{R} \to \mathbb{R} $ such that
     \[
-        \bbE[f(X)g(Y)],\bbE[f(X)],\bbE[g(Y)]
+        \mathbb{E}[f(X)g(Y)],\mathbb{E}[f(X)],\mathbb{E}[g(Y)]
     \]
     are well-defined. Then
     \[
-        \bbE[f(X)g(Y)] = \bbE[f(X)]\bbE[g(Y)].
+        \mathbb{E}[f(X)g(Y)] = \mathbb{E}[f(X)]\mathbb{E}[g(Y)].
     \]
 \end{proposition}
 \begin{proof}
     \begin{align*}
-        \bbE[f(X)g(Y)]&= \sum_{x,y} f(x)g(y) \mathbb{P}(X=x,Y=y)\\ 
+        \mathbb{E}[f(X)g(Y)]&= \sum_{x,y} f(x)g(y) \mathbb{P}(X=x,Y=y)\\ 
         &= \sum_{x,y} f(x)g(y) \mathbb{P}(X=x)\mathbb{P}(Y=y)\\ 
         &= \sum_{x} f(x)\mathbb{P}(X=x) \sum_y g(y)\mathbb{P}(Y=y)\\ 
-        &= \bbE[f(X)]\bbE[g(Y)].\qedhere
+        &= \mathbb{E}[f(X)]\mathbb{E}[g(Y)].\qedhere
     \end{align*}
 \end{proof}
 
@@ -416,8 +416,8 @@ Recall that $ X\independent Y \Leftrightarrow \mathbb{P}(X=x,Y=y)=\mathbb{P}(X=x
 \end{proposition}
 \begin{proof}
     \begin{align*}
-        \cov(X,Y) &= \bbE[(X-\bbE[X])(Y-\bbE[Y])] \\
-        &= \bbE[(X-\bbE[X])]\bbE[(Y-\bbE[Y])]\\ 
+        \cov(X,Y) &= \mathbb{E}[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])] \\
+        &= \mathbb{E}[(X-\mathbb{E}[X])]\mathbb{E}[(Y-\mathbb{E}[Y])]\\ 
         &= 0.\qedhere
     \end{align*}
 \end{proof}
@@ -429,7 +429,7 @@ Recall that $ X\independent Y \Leftrightarrow \mathbb{P}(X=x,Y=y)=\mathbb{P}(X=x
             Z_1&=X_3Y_1,\ Z_2 =X_3Y_2.
         \end{aligned}
     \]
-    We see that $ \bbE[Y_1]=\bbE[Y_2]=\bbE[Z_1]=\bbE[Z_2]=0 $, and $ \cov(Z_1,Z_2) = \bbE[Z_1Z_2] = \bbE[X_3^2Y_1Y_2]=0 $. However, $ Z_1,Z_2 $ are not independent since 
+    We see that $ \mathbb{E}[Y_1]=\mathbb{E}[Y_2]=\mathbb{E}[Z_1]=\mathbb{E}[Z_2]=0 $, and $ \cov(Z_1,Z_2) = \mathbb{E}[Z_1Z_2] = \mathbb{E}[X_3^2Y_1Y_2]=0 $. However, $ Z_1,Z_2 $ are not independent since 
     \[
         \mathbb{P}(Z_1=0,Z_2=0) = \mathbb{P}(Z_3=0) = \frac{1}{2}
     \]
@@ -446,54 +446,54 @@ Recall that $ X\independent Y \Leftrightarrow \mathbb{P}(X=x,Y=y)=\mathbb{P}(X=x
 \begin{proposition}[Markov's inequality]\label{prop:Markov's inequality}
     Suppose $ X\ge 0 $ is a r.v, then $ \forall a>0 $, 
     \[
-        \mathbb{P}(X\ge a) \le \frac{\bbE[X]}{a}.
+        \mathbb{P}(X\ge a) \le \frac{\mathbb{E}[X]}{a}.
     \]
 \end{proposition}
 \begin{proof}
     Observe that $ X\ge a \cdot 1(X\ge a) $. Taking expectations get 
     \[
-        \bbE[X]\ge \bbE[a \cdot 1(X\ge a)] = a \mathbb{P}(X\ge a) \Longrightarrow \mathbb{P}(X\ge a)\le \frac{\bbE[X]}{a}.\qedhere
+        \mathbb{E}[X]\ge \mathbb{E}[a \cdot 1(X\ge a)] = a \mathbb{P}(X\ge a) \Longrightarrow \mathbb{P}(X\ge a)\le \frac{\mathbb{E}[X]}{a}.\qedhere
     \]
 \end{proof}
 \begin{proposition}[Chebyshev's inequality]\label{prop:Chebyshev's inequality}
-    Let $X$ be a r.v. with $ \bbE[X]<\infty  $. Then $ \forall a>0 $,
+    Let $X$ be a r.v. with $ \mathbb{E}[X]<\infty  $. Then $ \forall a>0 $,
     \[
-        \mathbb{P}(|X-\bbE[X]|\ge a)\le \frac{\var(X)}{a^2}.
+        \mathbb{P}(|X-\mathbb{E}[X]|\ge a)\le \frac{\var(X)}{a^2}.
     \]
 \end{proposition}
 \begin{proof}
     \begin{align*}
-        \mathbb{P}(|X-\bbE[X]|\ge a) &= \mathbb{P}(|X-\bbE[X]|^2\ge a^2)\\ 
-        &\le \frac{\bbE\left[ |X-\bbE[X]|^2 \right]}{a^2} = \frac{\var(X)}{a^2}.\qedhere
+        \mathbb{P}(|X-\mathbb{E}[X]|\ge a) &= \mathbb{P}(|X-\mathbb{E}[X]|^2\ge a^2)\\ 
+        &\le \frac{\mathbb{E}\left[ |X-\mathbb{E}[X]|^2 \right]}{a^2} = \frac{\var(X)}{a^2}.\qedhere
     \end{align*}
 \end{proof}
 
 \begin{proposition}[Cauchy-Schwartz inequality]\label{prop:Cauchy-Schwartz inequality}
     If $X,Y$ are r.v.s, then 
     \[
-        \bbE[|XY|]\le \sqrt{\bbE[X^2]\bbE[Y^2]}.
+        \mathbb{E}[|XY|]\le \sqrt{\mathbb{E}[X^2]\mathbb{E}[Y^2]}.
     \]
 \end{proposition}
 \begin{proof}
-    It suffice to prove it for $ \bbE[X^2],\bbE[X^2]<\infty $ and $ X,Y\ge 0 $. Note that 
+    It suffice to prove it for $ \mathbb{E}[X^2],\mathbb{E}[X^2]<\infty $ and $ X,Y\ge 0 $. Note that 
     \[
-        XY\le \frac{1}{2}(X^2+Y^2) \Longrightarrow \bbE[XY] = \frac{1}{2}\left( \bbE[X^2]+\bbE[Y^2] \right)<\infty .
+        XY\le \frac{1}{2}(X^2+Y^2) \Longrightarrow \mathbb{E}[XY] = \frac{1}{2}\left( \mathbb{E}[X^2]+\mathbb{E}[Y^2] \right)<\infty .
     \]
-    Assume $ \bbE[X^2],\bbE[Y^2]>0 $, otherwise the result it trivial since either $ \bbE[X^2],\bbE[Y^2]=0 $ implies $XY\equiv 0$. Let $t\in \bbR$ and consider 
+    Assume $ \mathbb{E}[X^2],\mathbb{E}[Y^2]>0 $, otherwise the result it trivial since either $ \mathbb{E}[X^2],\mathbb{E}[Y^2]=0 $ implies $XY\equiv 0$. Let $t\in \mathbb{R}$ and consider 
     \begin{align*}
         &\ 0\le (X-tY)^2 = X^2-2tXY-t^2Y^2\\ 
-        \Longrightarrow &\  f(t) = \bbE[X^2]-2t\bbE[XY]+t^2\bbE[Y^2]\ge 0\\ 
-        \Longrightarrow &\  \min f(t)\quad\text{for}\quad t_0 = \frac{\bbE[XY]}{\bbE[Y^2]} \\ 
-        \Longrightarrow &\  f(t_0)=\bbE[X^2]-\frac{2\bbE[XY]^2}{\bbE[Y^2]}+\frac{\bbE[XY]^2}{\bbE[Y^2]}\ge 0\\ 
-        \Longrightarrow &\  \bbE[XY]^2\le \bbE[X^2]\bbE[Y^2]\\ 
-        \Longrightarrow &\  \bbE[|XY|]\le \sqrt{\bbE[X^2]\bbE[Y^2]},
+        \Longrightarrow &\  f(t) = \mathbb{E}[X^2]-2t\mathbb{E}[XY]+t^2\mathbb{E}[Y^2]\ge 0\\ 
+        \Longrightarrow &\  \min f(t)\quad\text{for}\quad t_0 = \frac{\mathbb{E}[XY]}{\mathbb{E}[Y^2]} \\ 
+        \Longrightarrow &\  f(t_0)=\mathbb{E}[X^2]-\frac{2\mathbb{E}[XY]^2}{\mathbb{E}[Y^2]}+\frac{\mathbb{E}[XY]^2}{\mathbb{E}[Y^2]}\ge 0\\ 
+        \Longrightarrow &\  \mathbb{E}[XY]^2\le \mathbb{E}[X^2]\mathbb{E}[Y^2]\\ 
+        \Longrightarrow &\  \mathbb{E}[|XY|]\le \sqrt{\mathbb{E}[X^2]\mathbb{E}[Y^2]},
     \end{align*}
     as claimed.
 \end{proof}
 \begin{remark}
-    Equality occurs when $ \bbE[(X-tY)^2]=0 $ for $ t=\bbE[XY]/\bbE[Y^2] $. Notice that 
+    Equality occurs when $ \mathbb{E}[(X-tY)^2]=0 $ for $ t=\mathbb{E}[XY]/\mathbb{E}[Y^2] $. Notice that 
     \[
-        \bbE[(X-tY)^2]=0 \Longrightarrow \mathbb{P}(X=tY)=1.
+        \mathbb{E}[(X-tY)^2]=0 \Longrightarrow \mathbb{P}(X=tY)=1.
     \]
 \end{remark}
 \begin{definition}[\href{https://www.princeton.edu/~aaa/Public/Teaching/ORF523/S16/ORF523_S16_Lec7_gh.pdf}{Convex functions}]
@@ -509,7 +509,7 @@ Recall that $ X\independent Y \Leftrightarrow \mathbb{P}(X=x,Y=y)=\mathbb{P}(X=x
     \]
 \end{lemma}
 \begin{proof}
-    Let $m\in \bbR$ and $ x<m<y $. Then $ \exists t\in [0,1], m=tx+(1-t)y $. By convexity, $ f(m)=tf(m)+(1-t)f(m)\le tf(x)+(1-t)f(y) $. Therefore 
+    Let $m\in \mathbb{R}$ and $ x<m<y $. Then $ \exists t\in [0,1], m=tx+(1-t)y $. By convexity, $ f(m)=tf(m)+(1-t)f(m)\le tf(x)+(1-t)f(y) $. Therefore 
     \[
         t(f(m)-f(x))\le (1-t)(f(y)-f(m)) \Longrightarrow \frac{f(m)-f(x)}{m-x}\le \frac{f(y)-f(m)}{y-m}.
     \]
@@ -526,24 +526,24 @@ Recall that $ X\independent Y \Leftrightarrow \mathbb{P}(X=x,Y=y)=\mathbb{P}(X=x
 \begin{proposition}[Jensen's inequality]\label{prop:Jensen's inequality}
     Let $X$ be a r.v. and let $f$ be a convex function. Then 
     \[
-        \bbE[f(X)]\ge f(\bbE[X]).
+        \mathbb{E}[f(X)]\ge f(\mathbb{E}[X]).
     \]
 \end{proposition}
 \begin{note}
-    Notice that $ \var(X)=\bbE[(X-\bbE[X])^2]=\bbE[X^2]-(\bbE[X])^2\ge 0 $, so $ \bbE[X^2]\ge (\bbE[X])^2 $. This is a way to remember the direction of the inequality.
+    Notice that $ \var(X)=\mathbb{E}[(X-\mathbb{E}[X])^2]=\mathbb{E}[X^2]-(\mathbb{E}[X])^2\ge 0 $, so $ \mathbb{E}[X^2]\ge (\mathbb{E}[X])^2 $. This is a way to remember the direction of the inequality.
 \end{note}
 \begin{proof}
-    Set $ m=\bbE[X] $ in lemma \ref{lma:Jensen}. Then $ \exists a,b\in \mathbb{R} $, 
+    Set $ m=\mathbb{E}[X] $ in lemma \ref{lma:Jensen}. Then $ \exists a,b\in \mathbb{R} $, 
     \[
-        f(m)=am+b \Longleftrightarrow f(\bbE[X])=a\bbE[X]+b
+        f(m)=am+b \Longleftrightarrow f(\mathbb{E}[X])=a\mathbb{E}[X]+b
     \]
     and $ f(X)\ge aX+b $. Taking expectation we get 
     \[
-        \bbE[f(X)]\ge a\bbE[X]+b=f(\bbE[X]).\qedhere
+        \mathbb{E}[f(X)]\ge a\mathbb{E}[X]+b=f(\mathbb{E}[X]).\qedhere
     \]
 \end{proof}
 \begin{remark}
-    The equality holds for $ X\equiv \bbE[X] $ (check it!).
+    The equality holds for $ X\equiv \mathbb{E}[X] $ (check it!).
 \end{remark}
 \begin{corollary}
     Let $f$ be a convex function and let $ x_1,\dots,x_n\in \mathbb{R}  $. Then 
@@ -565,21 +565,21 @@ Recall that $ X\independent Y \Leftrightarrow \mathbb{P}(X=x,Y=y)=\mathbb{P}(X=x
 \end{proof}
 \subsection{Conditional expectation}
 \begin{definition}[Conditional expectation]
-    Let $B\in \mathscr{F},\bbP(B)>0$ and let $ X $ be a r.v. Define the \textbf{conditional expectation} as
+    Let $B\in \mathscr{F},\mathbb{P}(B)>0$ and let $ X $ be a r.v. Define the \textbf{conditional expectation} as
     \[
-        \bbE[X|B] = \frac{\bbE[X\cdot 1(B)]}{\bbP(B)}.
+        \mathbb{E}[X|B] = \frac{\mathbb{E}[X\cdot 1(B)]}{\mathbb{P}(B)}.
     \]
 \end{definition}
 \begin{proposition}[Law of total expectation]\label{prop:Law of total expectation}
     Suppose $X\ge 0$ and let $ (\Omega_n) $ be a partition of $\Omega$ into disjoint events. Then 
     \[
-        \bbE[X] = \sum_{n} \bbE[X|\Omega_n]\mathbb{P}(\Omega_n).
+        \mathbb{E}[X] = \sum_{n} \mathbb{E}[X|\Omega_n]\mathbb{P}(\Omega_n).
     \]
 \end{proposition}
 \begin{proof}
     Note that $ X=X \cdot 1(\Omega)=\sum_{n} X \cdot 1(\Omega_n) $. Taking expectation gives
     \[
-    \bbE[X] = \bbE\left[ \sum_{n} X \cdot 1(\Omega_n) \right] = \sum_{n}\bbE[X\cdot 1(\Omega_n)]=\sum_{n} \bbE[X|\Omega_n]\mathbb{P}(\Omega_n),
+    \mathbb{E}[X] = \mathbb{E}\left[ \sum_{n} X \cdot 1(\Omega_n) \right] = \sum_{n}\mathbb{E}[X\cdot 1(\Omega_n)]=\sum_{n} \mathbb{E}[X|\Omega_n]\mathbb{P}(\Omega_n),
     \]
     as claimed.
 \end{proof}
@@ -640,40 +640,40 @@ Similarly,
     so $ X+Y \sim P(\lambda+\mu) $.
 \end{example}
 \begin{definition}
-    Let $ X,Y $ be 2 discrete r.v.s. The \textbf{conditional expectation} of $X$ given $Y=y$ is $ \bbE[X|Y=y]=\bbE[X\cdot 1(Y=y)]/\mathbb{P}(Y=y) $.
+    Let $ X,Y $ be 2 discrete r.v.s. The \textbf{conditional expectation} of $X$ given $Y=y$ is $ \mathbb{E}[X|Y=y]=\mathbb{E}[X\cdot 1(Y=y)]/\mathbb{P}(Y=y) $.
 \end{definition}
 Note that 
 \begin{align*}
-    \bbE[X|Y=y] &= \frac{\bbE[X\cdot 1(Y=y)]}{\mathbb{P}(Y=y)}\\
+    \mathbb{E}[X|Y=y] &= \frac{\mathbb{E}[X\cdot 1(Y=y)]}{\mathbb{P}(Y=y)}\\
      &= \frac{1}{\mathbb{P}(Y=y)}\sum_{x} x \cdot \mathbb{P}(X=x,Y=y)
      \\ &= \sum_{x} x \cdot \mathbb{P}(X=x|Y=y).
 \end{align*}
-We observe that for every $y\in \Omega_Y$, $\bbE[X|Y=y]$ is a function of $y$ only. Set $ g(y)=\bbE[X|Y=y] $.
+We observe that for every $y\in \Omega_Y$, $\mathbb{E}[X|Y=y]$ is a function of $y$ only. Set $ g(y)=\mathbb{E}[X|Y=y] $.
 
 \begin{definition}
-    Define the conditional expectation of $X$ given $Y$, written as $ \bbE[X|Y] $ for the random variable $g(Y)$.
+    Define the conditional expectation of $X$ given $Y$, written as $ \mathbb{E}[X|Y] $ for the random variable $g(Y)$.
 \end{definition}
 \begin{remark}
-    $ \bbE[X|Y] $ is a \textit{random variable} and depends only on $y$.
+    $ \mathbb{E}[X|Y] $ is a \textit{random variable} and depends only on $y$.
 \end{remark}
 Now 
 \begin{align*}
-    \bbE[X|Y] &= g(Y)\cdot 1 = g(Y) \sum_{y} 1(Y=y) = \sum_{y} g(Y)1(Y=y)\\ 
-    &= \sum_{y} g(y)1(Y=y)=\sum_{y} \bbE[X|Y=y]1(Y=y).
+    \mathbb{E}[X|Y] &= g(Y)\cdot 1 = g(Y) \sum_{y} 1(Y=y) = \sum_{y} g(Y)1(Y=y)\\ 
+    &= \sum_{y} g(y)1(Y=y)=\sum_{y} \mathbb{E}[X|Y=y]1(Y=y).
 \end{align*}
 \begin{example}\label{eg:2.11}
     Toss a $p$-coin $n$ times independently. Write 
     \[
         X_i = 1(i\text{th toss is a H}),\quad i=1,\dots,n,\quad Y_n=X_1+\cdots+X_n.
     \]
-    What is $ \bbE[X_1|Y_n] $?
+    What is $ \mathbb{E}[X_1|Y_n] $?
 
-    Set $ g(y)=\bbE[X_1|Y_n=y] $, then $g(Y_n)=\bbE[X_1|Y_n]$. Let $ y\in \{0,\dots,n\} $. Then $g(y) = \bbE[X_1|Y_n=y] = \mathbb{P}(X_1=1|Y_n=y).$ 
+    Set $ g(y)=\mathbb{E}[X_1|Y_n=y] $, then $g(Y_n)=\mathbb{E}[X_1|Y_n]$. Let $ y\in \{0,\dots,n\} $. Then $g(y) = \mathbb{E}[X_1|Y_n=y] = \mathbb{P}(X_1=1|Y_n=y).$ 
 
     If $ y=0 $, $\mathbb{P}(X_1=1|Y_n=0)=0$. If $ y\neq 0 $, we have 
     \begin{align*}
-        \mathbb{P}(X_1=1|Y_n=y) &= \frac{\bbP(X_1=1,Y_n=y)}{\bbP(Y_n=y)}\\ 
-        &= \frac{\bbP(X_1=1,X_2+\cdots+X_n=y-1)}{\bbP(Y_n=y)}.
+        \mathbb{P}(X_1=1|Y_n=y) &= \frac{\mathbb{P}(X_1=1,Y_n=y)}{\mathbb{P}(Y_n=y)}\\ 
+        &= \frac{\mathbb{P}(X_1=1,X_2+\cdots+X_n=y-1)}{\mathbb{P}(Y_n=y)}.
     \end{align*}
     Since $X_i$ are iid, we have 
     \begin{align*}
@@ -686,38 +686,38 @@ Now
     \]
     Therefore 
     \[
-        \bbE[X_1|Y_n] = g(Y_n) = \frac{Y_n}{n}.
+        \mathbb{E}[X_1|Y_n] = g(Y_n) = \frac{Y_n}{n}.
     \]
 \end{example}
 \subsubsection*{Properties of conditional expectation}
 \begin{proposition}\label{prop:Properties of conditional expectation}\ 
     \begin{itemize}
-        \item $ \forall c\in \mathbb{R},\ \bbE[cX|Y]=c \cdot [X|Y] $ and $ \bbE[c|Y]=c $.
+        \item $ \forall c\in \mathbb{R},\ \mathbb{E}[cX|Y]=c \cdot [X|Y] $ and $ \mathbb{E}[c|Y]=c $.
         \item If $ X_1,\dots,X_n $ are r.v.s, then 
         \[
-            \bbE\left[ \sum_{i=1}^{n}X_i\Big|Y \right] = \sum_{i=1}^{n} \bbE[X_i|Y].
+            \mathbb{E}\left[ \sum_{i=1}^{n}X_i\Big|Y \right] = \sum_{i=1}^{n} \mathbb{E}[X_i|Y].
         \]
-        \item $ \bbE[\bbE[X|Y]]=\bbE[X] $.
-        \item Let $X,Y$ be 2 independent r.v.s, then $ \bbE[X|Y]=\bbE[X] $.
+        \item $ \mathbb{E}[\mathbb{E}[X|Y]]=\mathbb{E}[X] $.
+        \item Let $X,Y$ be 2 independent r.v.s, then $ \mathbb{E}[X|Y]=\mathbb{E}[X] $.
     \end{itemize}
 \end{proposition}
 \begin{proof}[Proof of 3]
-    Note that $ \bbE[X|Y]=\sum_{y} 1(Y=y)\bbE[X|Y=y] $. Taking expectation gives 
+    Note that $ \mathbb{E}[X|Y]=\sum_{y} 1(Y=y)\mathbb{E}[X|Y=y] $. Taking expectation gives 
     \begin{align*}
-        \bbE[\bbE[X|Y]]&= \sum_{y} \bbE[X|Y=y] \cdot \bbE[1(Y=y)]\\
-        &= \sum_{y} \bbE[X|Y=y] \bbP(Y=y) = \sum_{y} \frac{\bbE[X\cdot 1(Y=y)]}{\bbP(Y=y)}\bbP(Y=y)\\ 
-        &= \sum_{y} \bbE[X\cdot 1(Y=y)] = \bbE\left[ X\cdot \sum_{y} 1(Y=y) \right] = \bbE[X].
+        \mathbb{E}[\mathbb{E}[X|Y]]&= \sum_{y} \mathbb{E}[X|Y=y] \cdot \mathbb{E}[1(Y=y)]\\
+        &= \sum_{y} \mathbb{E}[X|Y=y] \mathbb{P}(Y=y) = \sum_{y} \frac{\mathbb{E}[X\cdot 1(Y=y)]}{\mathbb{P}(Y=y)}\mathbb{P}(Y=y)\\ 
+        &= \sum_{y} \mathbb{E}[X\cdot 1(Y=y)] = \mathbb{E}\left[ X\cdot \sum_{y} 1(Y=y) \right] = \mathbb{E}[X].
     \end{align*}
     Alternatively,
     \[
-        \sum_{y} \bbE[X|Y=y] \bbP(Y=y) = \sum_{x,y} x\bbP(X=x|Y=y)\mathbb{P}(Y=y)=\bbE[X].\qedhere
+        \sum_{y} \mathbb{E}[X|Y=y] \mathbb{P}(Y=y) = \sum_{x,y} x\mathbb{P}(X=x|Y=y)\mathbb{P}(Y=y)=\mathbb{E}[X].\qedhere
     \]
 \end{proof}
 \begin{proof}[Proof of 4]
     \begin{align*}
-        \bbE[X|Y]&= \sum_{y} 1(Y=y) \cdot \bbE[X|Y=y]\\ 
-        &= \sum_{y} 1(Y=y) \sum_{x} x \cdot \bbP(X=x|Y=y)\\
-        &= \sum_{y} 1(Y=y) \sum_{x} x \cdot \mathbb{P}(X=x) = \bbE[X].\qedhere
+        \mathbb{E}[X|Y]&= \sum_{y} 1(Y=y) \cdot \mathbb{E}[X|Y=y]\\ 
+        &= \sum_{y} 1(Y=y) \sum_{x} x \cdot \mathbb{P}(X=x|Y=y)\\
+        &= \sum_{y} 1(Y=y) \sum_{x} x \cdot \mathbb{P}(X=x) = \mathbb{E}[X].\qedhere
     \end{align*}
 \end{proof}
 \begin{lemma}\label{lma:2.25}
@@ -735,45 +735,45 @@ Now
 \begin{proposition}
     Suppose $Y,Z$ are independent r.v.s, then 
     \[
-        \bbE[\bbE[X|Y]|Z] = \bbE[X].
+        \mathbb{E}[\mathbb{E}[X|Y]|Z] = \mathbb{E}[X].
     \]
 \end{proposition}
 \begin{proof}
-    We have $ \bbE[X|Y] = g(Y) $, where $g(Y)$ is defined before. If $ Y \independent Z $, then $ g(Y) \independent Z $ by lemma \ref{lma:2.25}. From proposition \ref{prop:Properties of conditional expectation}, 
+    We have $ \mathbb{E}[X|Y] = g(Y) $, where $g(Y)$ is defined before. If $ Y \independent Z $, then $ g(Y) \independent Z $ by lemma \ref{lma:2.25}. From proposition \ref{prop:Properties of conditional expectation}, 
     \[
-        \bbE[g(Y)|Z] = \bbE[g(Y)] = \bbE[\bbE[X|Y]] = \bbE[X].\qedhere
+        \mathbb{E}[g(Y)|Z] = \mathbb{E}[g(Y)] = \mathbb{E}[\mathbb{E}[X|Y]] = \mathbb{E}[X].\qedhere
     \]
 \end{proof}
 
 \begin{proposition}
-    Suppose $h:\bbR\to\bbR$, then 
+    Suppose $h:\mathbb{R}\to\mathbb{R}$, then 
     \[
-        \bbE[h(Y) \cdot X|Y] = h(Y) \cdot \bbE[X|Y].
+        \mathbb{E}[h(Y) \cdot X|Y] = h(Y) \cdot \mathbb{E}[X|Y].
     \]
 \end{proposition}
 \begin{proof}
     Note that 
     \[
-        \bbE[h(Y)\cdot X|Y=y]=\bbE[h(y)\cdot X|Y=y] = h(y)\bbE[X|Y=y],
+        \mathbb{E}[h(Y)\cdot X|Y=y]=\mathbb{E}[h(y)\cdot X|Y=y] = h(y)\mathbb{E}[X|Y=y],
     \]
     so plugging in $Y$ gives the result.
 \end{proof}
 \begin{corollary}
-    $ \bbE[\bbE[X|Y]|Y]=\bbE[X|Y] $ and $ \bbE[X|X]=X $.
+    $ \mathbb{E}[\mathbb{E}[X|Y]|Y]=\mathbb{E}[X|Y] $ and $ \mathbb{E}[X|X]=X $.
 \end{corollary}
 
 \begin{example}
     Refer to example \ref{eg:2.11}. We can prove it by the properties now: By symmetry for all $i$, 
     \[
-        \bbE[X_i|Y_n]=\bbE[X_1|Y_n].
+        \mathbb{E}[X_i|Y_n]=\mathbb{E}[X_1|Y_n].
     \]
     Now note that 
     \[
-        \bbE\left[ \sum_{i=1}^{n}X_i\Big|Y_n \right] = \sum_{i=1}^{n}\bbE[X_i|Y_n] = n \bbE[X_1|Y_n].
+        \mathbb{E}\left[ \sum_{i=1}^{n}X_i\Big|Y_n \right] = \sum_{i=1}^{n}\mathbb{E}[X_i|Y_n] = n \mathbb{E}[X_1|Y_n].
     \]
     Since $ \sum X_i = Y_n $, we have 
     \[
-        \bbE[X_1|Y_n] = \frac{1}{n}\bbE[Y_n|Y_n] = \frac{Y_n}{n}.\qedhere
+        \mathbb{E}[X_1|Y_n] = \frac{1}{n}\mathbb{E}[Y_n|Y_n] = \frac{Y_n}{n}.\qedhere
     \]
 \end{example}
 
@@ -789,15 +789,15 @@ Now
     where $Y_i$ are iid rvs and $x$ is a deterministic number.
 \end{definition}
 \begin{definition}
-    A random walk on $\bbZ$ is defined by 
+    A random walk on $\mathbb{Z}$ is defined by 
     \[
-        \bbP(Y_i=1) = p,\quad \mathbb{P}(Y_i=-1)=q=1-p.
+        \mathbb{P}(Y_i=1) = p,\quad \mathbb{P}(Y_i=-1)=q=1-p.
     \] 
     The random walk is \textbf{symmetric} if $p=q=1/2$.
 \end{definition}
 
 \begin{notation}
-    We write $ \mathbb{P}_x $ for the probability measure $ \mathbb{P}(\cdot | X_0=x) $, i.e. for $ A\in \mathscr{F}, \mathbb{P}_x(A) = \mathbb{P}(A|X_0=x) $. Also write $ \bbE_x $ for $ \bbE[\cdot|X_0=x] $.
+    We write $ \mathbb{P}_x $ for the probability measure $ \mathbb{P}(\cdot | X_0=x) $, i.e. for $ A\in \mathscr{F}, \mathbb{P}_x(A) = \mathbb{P}(A|X_0=x) $. Also write $ \mathbb{E}_x $ for $ \mathbb{E}[\cdot|X_0=x] $.
 \end{notation}
 
 We can think of $X_n$ as the fortune of a gambler who bets 1 at every step and either doubles it with probability $p$ or loses it with probability $q$.
@@ -806,7 +806,7 @@ We can think of $X_n$ as the fortune of a gambler who bets 1 at every step and e
 
     Define $ h(x) = \mathbb{P}_x(X_n \text{ hits }a \text{ before hitting }0) $. By the law of total probability, we have
     \begin{align*}
-        h(x)&=\bbP_x(\cdots|Y_1=1)\mathbb{P}(Y_1=1)+\mathbb{P}_x(\cdots|Y_1=-1)\mathbb{P}(Y_1=-1)\\ 
+        h(x)&=\mathbb{P}_x(\cdots|Y_1=1)\mathbb{P}(Y_1=1)+\mathbb{P}_x(\cdots|Y_1=-1)\mathbb{P}(Y_1=-1)\\ 
        &= p h(x+1)+q h(x-1).
     \end{align*}
     Note that $ h(0)=0,h(a)=1$.
@@ -819,12 +819,12 @@ We can think of $X_n$ as the fortune of a gambler who bets 1 at every step and e
     \end{itemize}
 \end{example}
 \begin{example}[Expected time to absorption]
-    Define $ T =\min \{n\ge 0: X_n\in \{0,a\}\} $. i.e. $T$ is the \textit{first} time $X$ hits $0$ or $a$. What is $ \tau_x = \bbE_x[T] $? Here $ 0<x<a $.
+    Define $ T =\min \{n\ge 0: X_n\in \{0,a\}\} $. i.e. $T$ is the \textit{first} time $X$ hits $0$ or $a$. What is $ \tau_x = \mathbb{E}_x[T] $? Here $ 0<x<a $.
 
     By the law of total expectation\footnote{We are calculating the \textit{time} it takes, so we have to take $Y_1$ into account.},
     \begin{align*}
-        \tau_x &= p\bbE_x[T|Y_1=1]+q\bbE_x[T|Y_1=-1]\\ 
-        &= p(1+\bbE_{x+1}[T])+q(1+\bbE_{x-1}[T])\\ 
+        \tau_x &= p\mathbb{E}_x[T|Y_1=1]+q\mathbb{E}_x[T|Y_1=-1]\\ 
+        &= p(1+\mathbb{E}_{x+1}[T])+q(1+\mathbb{E}_{x-1}[T])\\ 
         &= 1+ p \tau_{x+1}+q \tau_{x-1}
     \end{align*}
     with I.C.s $ \tau_0=\tau_a=0 $.
@@ -844,7 +844,7 @@ We can think of $X_n$ as the fortune of a gambler who bets 1 at every step and e
 \begin{definition}
     Let $X$ be a r.v. with values in $ \mathbb{N} $. Let $ p_r = \mathbb{P}(X=r), r\in \mathbb{N} $ be its probability mass function. The pgf of $X$ is defined to be 
     \[
-        p(z) = \sum_{r=0}^{\infty} p_r z^r = \bbE[z^X],\quad |z|\le 1.
+        p(z) = \sum_{r=0}^{\infty} p_r z^r = \mathbb{E}[z^X],\quad |z|\le 1.
     \]
 \end{definition}
 
@@ -875,20 +875,20 @@ So $ p(z) $ is well-defined and has radius of convergence at least 1.
 \end{proof}
 
 \begin{theorem}
-    $\displaystyle \lim_{z \uparrow 1} p'(z)=p'(1-)=\bbE[X]$. 
+    $\displaystyle \lim_{z \uparrow 1} p'(z)=p'(1-)=\mathbb{E}[X]$. 
 \end{theorem}
 \begin{proof}
-    Assume first that $ \bbE[X]< \infty $. Let $ 0<z<1 $. Since the series converges absolutely, we can differentiate $ p(z) $ term by term to get 
+    Assume first that $ \mathbb{E}[X]< \infty $. Let $ 0<z<1 $. Since the series converges absolutely, we can differentiate $ p(z) $ term by term to get 
     \[
-        p'(z) = \sum_{r=1}^{\infty} r p_r z^{r-1}\le \sum_{r=1}^{\infty}rp_r = \bbE[X].
+        p'(z) = \sum_{r=1}^{\infty} r p_r z^{r-1}\le \sum_{r=1}^{\infty}rp_r = \mathbb{E}[X].
     \]
     Since $ 0<z<1 $, $ p'(z) $ is an increasing function of $z$. So 
     \[
-        \lim_{z \uparrow 1} p'(z)\le \bbE[X].
+        \lim_{z \uparrow 1} p'(z)\le \mathbb{E}[X].
     \]
     Let $ \epsilon>0 $ and $N$ be large enough such that 
     \[
-        \sum_{r=0}^{N}rp_r\ge \bbE[X]-\epsilon.
+        \sum_{r=0}^{N}rp_r\ge \mathbb{E}[X]-\epsilon.
     \]
     Also 
     \[
@@ -896,11 +896,11 @@ So $ p(z) $ is well-defined and has radius of convergence at least 1.
     \]
     so 
     \[
-        \lim_{z \uparrow 1} p'(z) \ge \sum_{r=1}^{N}rp_r\ge \bbE[X]-\epsilon \Longrightarrow \lim_{z \uparrow 1} p'(z) \ge \bbE[X].
+        \lim_{z \uparrow 1} p'(z) \ge \sum_{r=1}^{N}rp_r\ge \mathbb{E}[X]-\epsilon \Longrightarrow \lim_{z \uparrow 1} p'(z) \ge \mathbb{E}[X].
     \]
-    Hence $\lim_{z \uparrow 1} p'(z)=p'(1-)\bbE[X]$ as required.
+    Hence $\lim_{z \uparrow 1} p'(z)=p'(1-)\mathbb{E}[X]$ as required.
 
-    Assume $ \bbE[X]=\infty $. For any $M$ take $N$ large such that 
+    Assume $ \mathbb{E}[X]=\infty $. For any $M$ take $N$ large such that 
     \[
         \sum_{r=0}^{N}rp_r\ge M.
     \]
@@ -908,13 +908,13 @@ So $ p(z) $ is well-defined and has radius of convergence at least 1.
     \[
         \lim_{z \uparrow 1} p'(z)\ge \sum_{r=1}^{N}rp_r\ge M,\quad \forall M>0,
     \]
-    so $ \lim_{z \uparrow 1} p'(z)=\infty =\bbE[X]$.
+    so $ \lim_{z \uparrow 1} p'(z)=\infty =\mathbb{E}[X]$.
 \end{proof}
 In exactly the same way, one can prove 
 \begin{theorem}
     \begin{align*}
-        p''&(1-)=\lim_{z \uparrow 1}p''(z)=\bbE[X(X-1)],\\
-        \forall k>0\quad  p^{(k)}&(1-)=\lim_{z \uparrow 1}p^{(k)}(z) = \bbE[X(X-1)\cdots(X-k+1)].
+        p''&(1-)=\lim_{z \uparrow 1}p''(z)=\mathbb{E}[X(X-1)],\\
+        \forall k>0\quad  p^{(k)}&(1-)=\lim_{z \uparrow 1}p^{(k)}(z) = \mathbb{E}[X(X-1)\cdots(X-k+1)].
     \end{align*}
     In particular, $ \var(X)=p''(1-)+p'(1-)-(p'(1-))^2. $ 
 \end{theorem}
@@ -926,11 +926,11 @@ In exactly the same way, one can prove
 \begin{example}
     Suppose that $ X_1,\dots,X_n $ are independent r.v.s with pgfs $ q_1,\dots,q_n $. What is 
     \[
-        p(z) = \bbE[z^{X_1+\cdots+X_n}]?
+        p(z) = \mathbb{E}[z^{X_1+\cdots+X_n}]?
     \]
     Since $ X_1\dots,X_n $ are independent, 
     \[
-        p(z)= \bbE[z^{X_1+\cdots+X_n}] = \bbE[z^{X_1}]\cdots \bbE[z^{X_n}]=q_1(z)\cdots q_n(z).
+        p(z)= \mathbb{E}[z^{X_1+\cdots+X_n}] = \mathbb{E}[z^{X_1}]\cdots \mathbb{E}[z^{X_n}]=q_1(z)\cdots q_n(z).
     \]
     If $X_i$ are iid, then $p(z)=q(z)^n$. Check the follows:
     \begin{enumerate}
@@ -943,7 +943,7 @@ In exactly the same way, one can prove
 \end{example}
 
 \begin{definition}
-    Let $ X_1,\dots, $ be iid rvs and let $N$ be an independent r.v. with values in $\bbN$. Define $S_n = X_1+\cdots+X_n,\forall n$. Then $ S_N=X_1+\cdots+X_N $, i.e. $ \forall \omega\in \Omega $, 
+    Let $ X_1,\dots, $ be iid rvs and let $N$ be an independent r.v. with values in $\mathbb{N}$. Define $S_n = X_1+\cdots+X_n,\forall n$. Then $ S_N=X_1+\cdots+X_N $, i.e. $ \forall \omega\in \Omega $, 
     \[
         S_N(\omega) = X_1(\omega)+\cdots+X_{N(\omega)}(\omega) = \sum_{i=1}^{N(\omega)}X_i(\omega).
     \]
@@ -954,30 +954,30 @@ Sum of a random number of r.v.s
 \end{proposition} 
 \begin{proof}
     \begin{align*}
-        r(z)&= \bbE[z^{S_N}] = \bbE[z^{X_1+\cdots+X_N}]\\ 
-        &= \sum_{n} \bbE[z^{X_1+\cdots+X_N} \cdot 1(N=n)]\\ 
-        &= \sum_{n} \bbE[z^{X_1+\cdots+X_n} \cdot 1(N=n)]\\ 
-        &= \sum_n \bbE[z^{X_1+\cdots+X_n}] \cdot \mathbb{P}(N=n)\\ 
+        r(z)&= \mathbb{E}[z^{S_N}] = \mathbb{E}[z^{X_1+\cdots+X_N}]\\ 
+        &= \sum_{n} \mathbb{E}[z^{X_1+\cdots+X_N} \cdot 1(N=n)]\\ 
+        &= \sum_{n} \mathbb{E}[z^{X_1+\cdots+X_n} \cdot 1(N=n)]\\ 
+        &= \sum_n \mathbb{E}[z^{X_1+\cdots+X_n}] \cdot \mathbb{P}(N=n)\\ 
         &= \sum_n p(z)^n \mathbb{P}(N=n) = q(p(z)).\qedhere
     \end{align*}
 \end{proof}
 \begin{proof}[Alternative proof]
-    Note that $ r(z)= \bbE[z^{X_1+\cdots+X_N}] = \bbE[\bbE[z^{X_1+\cdots+X_N}|N]] $. Also 
+    Note that $ r(z)= \mathbb{E}[z^{X_1+\cdots+X_N}] = \mathbb{E}[\mathbb{E}[z^{X_1+\cdots+X_N}|N]] $. Also 
     \[
-        \bbE[\bbE[z^{X_1+\cdots+X_N}|N=n]]=\bbE[\bbE[z^{X_1+\cdots+X_n}|N=n]]=\bbE[z^{X_1}]^n = p(z)^n,
+        \mathbb{E}[\mathbb{E}[z^{X_1+\cdots+X_N}|N=n]]=\mathbb{E}[\mathbb{E}[z^{X_1+\cdots+X_n}|N=n]]=\mathbb{E}[z^{X_1}]^n = p(z)^n,
     \]
-    so $ r(z)=\bbE[p(z)^N] = q(p(z)) $, as claimed.
+    so $ r(z)=\mathbb{E}[p(z)^N] = q(p(z)) $, as claimed.
 \end{proof}
 
 \begin{corollary}
-    $ \bbE[S_N] =\bbE[N]\bbE[X_1] $.
+    $ \mathbb{E}[S_N] =\mathbb{E}[N]\mathbb{E}[X_1] $.
 \end{corollary}
 \begin{proof}
-    $ \bbE[S_N]= q'(p(1-)) p'(1-)=q'(1-)p'(1-)=\bbE[N]\bbE[X_1]$.
+    $ \mathbb{E}[S_N]= q'(p(1-)) p'(1-)=q'(1-)p'(1-)=\mathbb{E}[N]\mathbb{E}[X_1]$.
 \end{proof}
 Similarly,
 \begin{corollary}
-    $ \var(S_N)=\bbE[N]\var(X_1)+\var(N)\bbE[X_1]^2 . $
+    $ \var(S_N)=\mathbb{E}[N]\var(X_1)+\var(N)\mathbb{E}[X_1]^2 . $
 \end{corollary}
 
 \subsection{Branching process}
@@ -992,38 +992,38 @@ Let $ (Y_{k,n}: k\ge 1,n\ge 0) $ be and iid sequence with distribution $ g_k $. 
 \]
 
 \begin{theorem}
-    $ \bbE[X_n] = (\bbE[X_1])^n,\ \forall n\ge 1 $.
+    $ \mathbb{E}[X_n] = (\mathbb{E}[X_1])^n,\ \forall n\ge 1 $.
 \end{theorem}
 \begin{proof}
-    Note that $ \bbE[X_{n+1}]=\bbE[\bbE[X_{n+1}|X_n]] $. Note also that 
+    Note that $ \mathbb{E}[X_{n+1}]=\mathbb{E}[\mathbb{E}[X_{n+1}|X_n]] $. Note also that 
     \begin{align*}
-        \bbE[X_{n+1}|X_n=m] &= \bbE[Y_{1,n}+\cdots +Y_{X_n,n}|X_n=m]\\ 
-        &= \bbE[Y_{1,n}+\cdots +Y_{m,n}|X_n=m]\\ 
-        &= m\bbE[X_1].
+        \mathbb{E}[X_{n+1}|X_n=m] &= \mathbb{E}[Y_{1,n}+\cdots +Y_{X_n,n}|X_n=m]\\ 
+        &= \mathbb{E}[Y_{1,n}+\cdots +Y_{m,n}|X_n=m]\\ 
+        &= m\mathbb{E}[X_1].
     \end{align*}
-    So $ \bbE[X_{n+1}|X_n] = X_n\bbE[X_1] $ and thus $ \bbE[X_{n+1}]=\bbE[X_1]\bbE[X_n] $. The result follows.
+    So $ \mathbb{E}[X_{n+1}|X_n] = X_n\mathbb{E}[X_1] $ and thus $ \mathbb{E}[X_{n+1}]=\mathbb{E}[X_1]\mathbb{E}[X_n] $. The result follows.
 \end{proof}
 \begin{theorem}
-    Let $ G(z) = \bbE[z^{X_1}] $ and $ G_n(z)=\bbE[z^{X_n}] $. Then 
+    Let $ G(z) = \mathbb{E}[z^{X_1}] $ and $ G_n(z)=\mathbb{E}[z^{X_n}] $. Then 
     \[
         G_{n+1}(z) = G(G_n(z)) = G^{n+1}(z)=G_n(G(z)),
     \]
     where $G^{n+1}$ is $G$ composite $n+1$ times.
 \end{theorem}
 \begin{proof}
-    Use a similar trick: $ G_{n+1}(z) = \bbE[z^{X_{n+1}}]=\bbE[\bbE[z^{X_{n+1}}|X_n]] $. Note that 
+    Use a similar trick: $ G_{n+1}(z) = \mathbb{E}[z^{X_{n+1}}]=\mathbb{E}[\mathbb{E}[z^{X_{n+1}}|X_n]] $. Note that 
     \begin{align*}
-        \bbE[z^{X_{n+1}}|X_n=m] &= \bbE\left[ z^{Y_{1,n}+\cdots+Y_{m,n}}|X_n=m \right]\\ 
-        &= \left( \bbE[z^{X_1}] \right)^m = G(z)^m.
+        \mathbb{E}[z^{X_{n+1}}|X_n=m] &= \mathbb{E}\left[ z^{Y_{1,n}+\cdots+Y_{m,n}}|X_n=m \right]\\ 
+        &= \left( \mathbb{E}[z^{X_1}] \right)^m = G(z)^m.
     \end{align*}
     So 
     \[
-        \bbE[\bbE[z^{X_{n+1}}|X_n]] = \bbE[G(z)^{X_n}] = G_n(G(z)).\qedhere
+        \mathbb{E}[\mathbb{E}[z^{X_{n+1}}|X_n]] = \mathbb{E}[G(z)^{X_n}] = G_n(G(z)).\qedhere
     \]
 \end{proof}
 
 \subsubsection*{Extinction probability} 
-Let $ \mathbb{P}(X_n=0 \text{ for some }n\ge 1)=q $ be the probability of extinction. Let $ q_n=\mathbb{P}(X_n=0) $. Let $ A_n=\{X_n=0\} $, then $ A_n \subseteq A_{n+1} $ so $A_n$ is an increasing sequence of events. By continuity of $\bbP$, $ \mathbb{P}(A_n) \to \mathbb{P}\left( \bigcup_{n} A_n \right) $. But 
+Let $ \mathbb{P}(X_n=0 \text{ for some }n\ge 1)=q $ be the probability of extinction. Let $ q_n=\mathbb{P}(X_n=0) $. Let $ A_n=\{X_n=0\} $, then $ A_n \subseteq A_{n+1} $ so $A_n$ is an increasing sequence of events. By continuity of $\mathbb{P}$, $ \mathbb{P}(A_n) \to \mathbb{P}\left( \bigcup_{n} A_n \right) $. But 
 \[
     \bigcup_{n} A_n = \{X_n=0\text{ for some }n\ge 1\},
 \]
@@ -1042,10 +1042,10 @@ so $ q_n\to q $ as $n\to \infty$.
     \]
     where $ X_i^{(j)} $ are iid branching processes with the same offspring distribution. So by law of total probability,
     \begin{align*}
-        q_{n+1}=\bbP(X_{n+1}=0)& = \sum_{m} \bbP(X_{n+1}=0|X_1=m)\bbP(X_1=m)\\ 
-        &= \sum_{m} \bbP(X_n^{(1)}=0,\dots,X_n^{(m)}=0|X_1=m)\bbP(X_1=m)\\ 
-        &= \sum_m \bbP(X_n^{(1)}=0)^m \cdot \bbP(X_1=m)\\ 
-        &= \sum_m q_n^m\bbP(X_1=m) = G(q_n).\qedhere
+        q_{n+1}=\mathbb{P}(X_{n+1}=0)& = \sum_{m} \mathbb{P}(X_{n+1}=0|X_1=m)\mathbb{P}(X_1=m)\\ 
+        &= \sum_{m} \mathbb{P}(X_n^{(1)}=0,\dots,X_n^{(m)}=0|X_1=m)\mathbb{P}(X_1=m)\\ 
+        &= \sum_m \mathbb{P}(X_n^{(1)}=0)^m \cdot \mathbb{P}(X_1=m)\\ 
+        &= \sum_m q_n^m\mathbb{P}(X_1=m) = G(q_n).\qedhere
     \end{align*}
 \end{proof}
 We have two cases: $G(z)$ intersects $z$ only at $(1,1)$ and $G(z)$ intersects $z$ at $ (q,q), 0<q<1 $.
@@ -1061,23 +1061,23 @@ We have two cases: $G(z)$ intersects $z$ only at $(1,1)$ and $G(z)$ intersects $
       \draw (5, 1) parabola (9, 4);
     \end{tikzpicture}
 \end{center}
-The tangent to the graph of $G$ at 1 in the first case has slope $ <1 $. The slope $ G'(1-)=\bbE[X_1]<1 $. In the second case, the slope is $ G'(1-)=\bbE[X_1]>1 $, and we see that $q<1$.
+The tangent to the graph of $G$ at 1 in the first case has slope $ <1 $. The slope $ G'(1-)=\mathbb{E}[X_1]<1 $. In the second case, the slope is $ G'(1-)=\mathbb{E}[X_1]>1 $, and we see that $q<1$.
 
 \begin{theorem}
-    The extinction probability is the minimal non-negative solution to the equation $t=G(t)$. Assume $ \mathbb{P}(X_1=1)<1 $. We also have $ q<1 $ if and only if $ \bbE[X_1]>1 $.
+    The extinction probability is the minimal non-negative solution to the equation $t=G(t)$. Assume $ \mathbb{P}(X_1=1)<1 $. We also have $ q<1 $ if and only if $ \mathbb{E}[X_1]>1 $.
 \end{theorem}
 \begin{proof}
-    Minimality: Take $t$ to be the smallest non-negative solution to $x=G(x)$. Clearly $ q_0=\bbP(X_0=0)=0\le t $. Suppose $ q_n\le t $. Note that $q_{n+1}=G(q_n)$, $G$ is an increasing function on $[0,1]$, and since $ q_n\le t $ we get $ q_{n+1}=G(q_n)\le G(t)=t $. Hence by induction $ q_n\le t,\forall n $. Taking limit shows that $ q\le t $. Since $t$ is the minimal root, $ q=t $ as required.
+    Minimality: Take $t$ to be the smallest non-negative solution to $x=G(x)$. Clearly $ q_0=\mathbb{P}(X_0=0)=0\le t $. Suppose $ q_n\le t $. Note that $q_{n+1}=G(q_n)$, $G$ is an increasing function on $[0,1]$, and since $ q_n\le t $ we get $ q_{n+1}=G(q_n)\le G(t)=t $. Hence by induction $ q_n\le t,\forall n $. Taking limit shows that $ q\le t $. Since $t$ is the minimal root, $ q=t $ as required.
 
     Now consider $H(z)=G(z)-z$, then $H^{\prime\prime}(z)=\sum_{r=2}^\infty r(r-1)g_rz^{r-2}$.
-    We can assume $g_0+g_1<1$ , since if not, then $ \bbP(X_1\le 1)=1 $ and thus $ \bbE[X_1]=\bbP(X_1=1)=1 $. In this case $ G(z)=1-\bbE[X_1]+\bbE[X_1]z $ and $ q=1 $.
+    We can assume $g_0+g_1<1$ , since if not, then $ \mathbb{P}(X_1\le 1)=1 $ and thus $ \mathbb{E}[X_1]=\mathbb{P}(X_1=1)=1 $. In this case $ G(z)=1-\mathbb{E}[X_1]+\mathbb{E}[X_1]z $ and $ q=1 $.
 
     Then $H^{\prime\prime}(z)>0$ for any $z\in (0,1)$, therefore $H^\prime$ is strictly increasing in $[0,1]$, which means (by Rolle's Theorem) that $H$ can have at most one solution other than $1$ in $[0,1]$.
     If $H$ has no root in $[0,1)$, then since $H(0)=G(0)\ge 0$, $\forall z\in [0,1],H(z)\ge 0$.
     Now
     $$H^\prime(1-)=\lim_{z \uparrow 1}\frac{H(1)-H(z)}{1-z}=\lim_{z \uparrow 1}-\frac{H(z)}{1-z}\le 0.$$
-    So $\bbE[X_1]=G^\prime(1-)=H^\prime(1-)+1\le1$.
+    So $\mathbb{E}[X_1]=G^\prime(1-)=H^\prime(1-)+1\le1$.
     Otherwise, let $r$ be a root of $H$ in $[0,1)$, then $G(r)=r$.
     But $G^\prime$ is strictly increasing, so $H^\prime$ must have a root $z$ in $(r,1)$ by Rolle's theorem.
-    Hence $G^\prime(z)=1$, but $G^\prime$ is increasing (check), so $\bbE[X_1]=G^\prime(1-)>G^\prime(z)=1$.
+    Hence $G^\prime(z)=1$, but $G^\prime$ is increasing (check), so $\mathbb{E}[X_1]=G^\prime(1-)>G^\prime(z)=1$.
 \end{proof}

@@ -7,16 +7,16 @@
     \]
 \end{definition}
 \begin{definition}[Divergence]
-    For a vector field $ \bfF: \mathbb{R}^{3}\to \mathbb{R}^{3} $, define the \textbf{divergence} of $\bfF$ by 
+    For a vector field $ \mathbf{F}: \mathbb{R}^{3}\to \mathbb{R}^{3} $, define the \textbf{divergence} of $\mathbf{F}$ by 
     \[
-        \operatorname{div} (\bfF) = \div \bfF.
+        \operatorname{div} (\mathbf{F}) = \div \mathbf{F}.
     \]
 \end{definition}
 
 \begin{center}
     \begin{tikzpicture}[scale=0.8]
         \node [dot] (0) at (-3, 0) {};
-        \node [above right] at (0) {$\bfx$};
+        \node [above right] at (0) {$\mathbf{x}$};
         \node (1) at (-3, 0.5) {};
         \node (2) at (-3, 2) {};
         \node (3) at (-2.5, 0) {};
@@ -34,7 +34,7 @@
         \node (16) at (-3.5, -0.5) {};
 		\node (17) at (-4.5, -1.5) {};
 		\node [dot] (18) at (2, 0) {};
-        \node [above right] at (18) {$\bfx$};
+        \node [above right] at (18) {$\mathbf{x}$};
 		\node (19) at (2, 0.5) {};
 		\node (20) at (2, 2) {};
 		\node (21) at (2.5, 0) {};
@@ -51,10 +51,10 @@
 		\node (32) at (1.5, 0.5) {};
 		\node (33) at (1.5, -0.5) {};
 		\node (34) at (0.5, -1.5) {};
-		\node (35) at (-3, -2.5) {$\div \bfF(\bfx)>0$};
-		\node (36) at (2, -2.5) {$\div \bfF(\bfx)<0$};
+		\node (35) at (-3, -2.5) {$\div \mathbf{F}(\mathbf{x})>0$};
+		\node (36) at (2, -2.5) {$\div \mathbf{F}(\mathbf{x})<0$};
 		\node [dot] (37) at (7, 0) {};
-        \node [above right] at (37) {$\bfx$};
+        \node [above right] at (37) {$\mathbf{x}$};
 		\node (38) at (7, 0.5) {};
 		\node (39) at (7, 2) {};
 		\node (40) at (7.5, 0) {};
@@ -71,7 +71,7 @@
 		\node (51) at (6.5, 0.5) {};
 		\node (52) at (6.5, -0.5) {};
 		\node (53) at (5.5, -1.5) {};
-		\node (54) at (7, -2.5) {$\div \bfF(\bfx)=0$};
+		\node (54) at (7, -2.5) {$\div \mathbf{F}(\mathbf{x})=0$};
         \draw [->-=0.6] (1.center) to (2.center);
         \draw [->-=0.6] (9.center) to (13.center);
         \draw [->-=0.6] (3.center) to (4.center);
@@ -99,16 +99,16 @@
 \begin{note}
     In Cartesian coordinates, 
     \begin{align*}
-        \div \bfF &= \left( \mathbf{e}_i \frac{\partial }{\partial x_i} \right)\cdot (F_j\bfe_j) = \bfe_i \cdot \left( \frac{\partial }{\partial x_i}(F_j\bfe_j)  \right)\\ 
+        \div \mathbf{F} &= \left( \mathbf{e}_i \frac{\partial }{\partial x_i} \right)\cdot (F_j\mathbf{e}_j) = \mathbf{e}_i \cdot \left( \frac{\partial }{\partial x_i}(F_j\mathbf{e}_j)  \right)\\ 
         &= (\mathbf{e}_i \cdot \mathbf{e}_j)\frac{\partial F_j}{\partial x_i} = \delta_{ij}\frac{\partial F_j}{\partial x_i} = \boxed{\frac{\partial F_i}{\partial x_i} } 
     \end{align*}
     assuming summation convention. Note that divergence of vector field is a \textit{scalar field}.
 \end{note}
 
 \begin{definition}[Curl]
-    For $ \bfF:\mathbb{R}^{3}\to \mathbb{R}^{3} $, define the \textbf{curl} of $\bfF$ by 
+    For $ \mathbf{F}:\mathbb{R}^{3}\to \mathbb{R}^{3} $, define the \textbf{curl} of $\mathbf{F}$ by 
     \[
-        \operatorname{curl}(F):= \curl \bfF.
+        \operatorname{curl}(F):= \curl \mathbf{F}.
     \]
 \end{definition}
 
@@ -119,36 +119,36 @@
         \node (2) at (-1, -1) {};
         \node (3) at (-4, -1) {};
         \node [dot] (4) at (-2, 0) {};
-        \node [right] at (4) {$\bfx$};
-        \node [above] (5) at (-2, 2) {$\bfe_3$};
+        \node [right] at (4) {$\mathbf{x}$};
+        \node [above] (5) at (-2, 2) {$\mathbf{e}_3$};
         \node (6) at (-2.5, 0.5) {};
         \node (7) at (-1, 0.5) {};
         \node (8) at (-1.5, -0.5) {};
         \node (9) at (-3, -0.5) {};
         \node (10) at (0, 1) {};
-        \node (11) at (-2.25, -1.5) {$[\curl\bfF(\bfx)]_3>0$};
+        \node (11) at (-2.25, -1.5) {$[\curl\mathbf{F}(\mathbf{x})]_3>0$};
         \node (12) at (1, 1) {};
         \node (13) at (4, 1) {};
         \node (14) at (3, -1) {};
         \node (15) at (0, -1) {};
         \node [dot] (16) at (2, 0) {};
-        \node [right] at (16) {$\bfx$};
-        \node [above] (17) at (2, 2) {$\bfe_3$};
+        \node [right] at (16) {$\mathbf{x}$};
+        \node [above] (17) at (2, 2) {$\mathbf{e}_3$};
         \node (18) at (1.5, 0.5) {};
         \node (19) at (3, 0.5) {};
         \node (20) at (2.5, -0.5) {};
         \node (21) at (1, -0.5) {};
         \node (22) at (4, 1) {};
-        \node (23) at (1.75, -1.5) {$[\curl\bfF(\bfx)]_3<0$};
+        \node (23) at (1.75, -1.5) {$[\curl\mathbf{F}(\mathbf{x})]_3<0$};
         \node (24) at (5, 1) {};
         \node (25) at (8, 1) {};
         \node (26) at (7, -1) {};
         \node (27) at (4, -1) {};
         \node [dot] (28) at (6, 0) {};
-        \node [below right] at (28) {$\bfx$};
-        \node [above] (29) at (6, 2) {$\bfe_3$};
+        \node [below right] at (28) {$\mathbf{x}$};
+        \node [above] (29) at (6, 2) {$\mathbf{e}_3$};
         \node (34) at (8, 1) {};
-        \node (35) at (5.75, -1.5) {$[\curl\bfF(\bfx)]_3=0$};
+        \node (35) at (5.75, -1.5) {$[\curl\mathbf{F}(\mathbf{x})]_3=0$};
         \node (36) at (6.375, 0.75) {};
         \node (37) at (6.95, 0) {};
         \node (38) at (5.6, -0.725) {};
@@ -186,19 +186,19 @@
 \begin{note}
     In Cartesian coordinates, 
     \begin{align*}
-        \curl \bfF&= \left( \mathbf{e}_j \frac{\partial }{\partial x_j} \right)\times (F_k\bfe_k)=\bfe_j \times \left( \frac{\partial }{\partial x_j}(F_k\bfe_k)  \right)\\ 
-        &= (\mathbf{e}_j \times \mathbf{e}_k)\frac{\partial F_k}{\partial x_j} = \epsilon_{ijk} {\color{blue}\frac{\partial {\color{violet}F_k}}{\partial x_j}} \ {\color{Sepia}\bfe_i},
+        \curl \mathbf{F}&= \left( \mathbf{e}_j \frac{\partial }{\partial x_j} \right)\times (F_k\mathbf{e}_k)=\mathbf{e}_j \times \left( \frac{\partial }{\partial x_j}(F_k\mathbf{e}_k)  \right)\\ 
+        &= (\mathbf{e}_j \times \mathbf{e}_k)\frac{\partial F_k}{\partial x_j} = \epsilon_{ijk} {\color{blue}\frac{\partial {\color{violet}F_k}}{\partial x_j}} \ {\color{Sepia}\mathbf{e}_i},
     \end{align*}
     assuming summation convention. So in Cartesian coordinates,
     \[
-        [\curl \bfF]_{i} = \epsilon_{ijk}\frac{\partial F_k}{\partial x_j}. 
+        [\curl \mathbf{F}]_{i} = \epsilon_{ijk}\frac{\partial F_k}{\partial x_j}. 
     \]
-    Note that $ \curl \bfF $ is a \textit{vector field}.
+    Note that $ \curl \mathbf{F} $ is a \textit{vector field}.
 \end{note}
-Notice that $ \curl \bfF $ can be written in determinant form:
+Notice that $ \curl \mathbf{F} $ can be written in determinant form:
 \[
-    \curl \bfF = \det \begin{pmatrix}
-        \bfe_1 & \bfe_2 & \bfe_3 \\
+    \curl \mathbf{F} = \det \begin{pmatrix}
+        \mathbf{e}_1 & \mathbf{e}_2 & \mathbf{e}_3 \\
         \partial /\partial x_1  & \partial /\partial x_2  & \partial /\partial x_3  \\
         F_1 & F_2 & F_3 \\
     \end{pmatrix}.
@@ -221,14 +221,14 @@ Notice that $ \curl \bfF $ can be written in determinant form:
 For summary, see \href{http://jt775.user.srcf.net/IA-Lent/handouts/vc_handout3.pdf}{this handout}.
 
 \begin{example}
-    Consider $ \bfF(\bfx) = \bfx $. Then using Cartesians, 
+    Consider $ \mathbf{F}(\mathbf{x}) = \mathbf{x} $. Then using Cartesians, 
     \begin{align*}
-        &\div \bfF= \frac{\partial x_i}{\partial x_i} = 3,\\ 
-        &[\curl \bfF]_{i} = \epsilon_{ijk}\frac{\partial x_k}{\partial x_j}=\epsilon_{ijk}\delta_{jk} = 0. \\  
+        &\div \mathbf{F}= \frac{\partial x_i}{\partial x_i} = 3,\\ 
+        &[\curl \mathbf{F}]_{i} = \epsilon_{ijk}\frac{\partial x_k}{\partial x_j}=\epsilon_{ijk}\delta_{jk} = 0. \\  
     \end{align*}
 \end{example}
 \begin{proposition}
-    For $f,g$ scalar fields and $ \bfF,\bfG $ vector fields,
+    For $f,g$ scalar fields and $ \mathbf{F},\mathbf{G} $ vector fields,
     \begin{align*}
       \nabla(fg) &= (\nabla f)g + f(\nabla g)\\\
       \nabla\cdot (f\mathbf{F}) &= (\nabla f)\cdot \mathbf{F} + f(\nabla\cdot \mathbf{F})\\
@@ -241,19 +241,19 @@ For summary, see \href{http://jt775.user.srcf.net/IA-Lent/handouts/vc_handout3.p
 \begin{proof}
     See \href{https://www.vle.cam.ac.uk/pluginfile.php/19798882/mod_resource/content/9/vc_notes1.pdf#page=32}{this}.
 \end{proof}
-All these identities hold in any OCC, but they are most easily established using Cartesian coordinates. For general OCC, divergence is defined by the same formula $ \div \bfF $, i.e. \footnote{Note the ordering: the differential operator acts first. So you interpret such terms as, for example
+All these identities hold in any OCC, but they are most easily established using Cartesian coordinates. For general OCC, divergence is defined by the same formula $ \div \mathbf{F} $, i.e. \footnote{Note the ordering: the differential operator acts first. So you interpret such terms as, for example
 \[
-    \left( \bfe_u \frac{\partial }{\partial u}  \right) \cdot (F_v\bfe_v)= \bfe_u \cdot \left( \frac{\partial }{\partial u}(F_v\bfe_v)  \right) = \bfe_u \cdot \left( \frac{F_v}{u}\bfe_v+F_v \frac{\partial \bfe_v}{\partial u}  \right)=F_v\left( \bfe_u \cdot \frac{\partial \bfe_v}{\partial u}  \right).
+    \left( \mathbf{e}_u \frac{\partial }{\partial u}  \right) \cdot (F_v\mathbf{e}_v)= \mathbf{e}_u \cdot \left( \frac{\partial }{\partial u}(F_v\mathbf{e}_v)  \right) = \mathbf{e}_u \cdot \left( \frac{F_v}{u}\mathbf{e}_v+F_v \frac{\partial \mathbf{e}_v}{\partial u}  \right)=F_v\left( \mathbf{e}_u \cdot \frac{\partial \mathbf{e}_v}{\partial u}  \right).
 \]}
 \[
-    \div \bfF = \left( \bfe_u \frac{1}{h_u}\frac{\partial }{\partial u} +\bfe_v \frac{1}{h_v}\frac{\partial }{\partial v}+\bfe_w \frac{1}{h_w}\frac{\partial }{\partial w}\right)\cdot (F_u\bfe_u+F_v\bfe_v+F_w\bfe_w).
+    \div \mathbf{F} = \left( \mathbf{e}_u \frac{1}{h_u}\frac{\partial }{\partial u} +\mathbf{e}_v \frac{1}{h_v}\frac{\partial }{\partial v}+\mathbf{e}_w \frac{1}{h_w}\frac{\partial }{\partial w}\right)\cdot (F_u\mathbf{e}_u+F_v\mathbf{e}_v+F_w\mathbf{e}_w).
 \]
-It gets quite messy to simplify this since $ \{\bfe_u,\bfe_v,\bfe_w\} $ is dependent on $u,v,w$, so we'd rather state the result here:
+It gets quite messy to simplify this since $ \{\mathbf{e}_u,\mathbf{e}_v,\mathbf{e}_w\} $ is dependent on $u,v,w$, so we'd rather state the result here:
 \begin{align*}
-    \div \bfF&=\frac{1}{h_uh_vh_w}\left(\sum_{\text{cyc}} \frac{\partial }{\partial u}(h_vh_wF_u)\right),\\ 
-    \curl \bfF &= \sum_{\text{cyc}} \frac{1}{h_vh_w}\left( \frac{\partial }{\partial v}(h_wF_w)-\frac{\partial }{\partial w}(h_vF_v)   \right)\bfe_u\\ 
+    \div \mathbf{F}&=\frac{1}{h_uh_vh_w}\left(\sum_{\text{cyc}} \frac{\partial }{\partial u}(h_vh_wF_u)\right),\\ 
+    \curl \mathbf{F} &= \sum_{\text{cyc}} \frac{1}{h_vh_w}\left( \frac{\partial }{\partial v}(h_wF_w)-\frac{\partial }{\partial w}(h_vF_v)   \right)\mathbf{e}_u\\ 
     &= \frac{1}{h_uh_vh_w}\det \begin{pmatrix}
-        h_u\bfe_u & h_v\bfe_v & h_w\bfe_w \\
+        h_u\mathbf{e}_u & h_v\mathbf{e}_v & h_w\mathbf{e}_w \\
         \partial /\partial u  & \partial /\partial v & \partial /\partial w \\
         h_uF_u & h_vF_v & h_wF_w \\
     \end{pmatrix},\\ 
@@ -271,13 +271,13 @@ It gets quite messy to simplify this since $ \{\bfe_u,\bfe_v,\bfe_w\} $ is depen
     \]
 \end{example}
 
-Might think the laplacian of a vector field as $ \div (\nabla \bfF) $, but we haven't defined what $ \nabla \bfF $ means. However, in Cartesian the basis vectors are independent, we can define 
+Might think the laplacian of a vector field as $ \div (\nabla \mathbf{F}) $, but we haven't defined what $ \nabla \mathbf{F} $ means. However, in Cartesian the basis vectors are independent, we can define 
 \[
-    \laplacian \bfF = (\laplacian F_i) \bfe_i.
+    \laplacian \mathbf{F} = (\laplacian F_i) \mathbf{e}_i.
 \]
 Then one can check, for example, that in Cartesians
 \[
-    \laplacian \mathbf{F} = \nabla (\div \bfF) - \curl (\curl \bfF).\tag{$\dagger$}
+    \laplacian \mathbf{F} = \nabla (\div \mathbf{F}) - \curl (\curl \mathbf{F}).\tag{$\dagger$}
 \]
 Since RHS is well-defined in any OCC, we use it as a definition.
 \begin{definition}
@@ -303,18 +303,18 @@ we cannot say much about $f$. This is an example of \textbf{hyperbolic problems}
 
 \subsection{Relations between div, grad, and curl}
 \begin{definition}
-    Recall that $\bfF$ was \textit{conservative} if $ \bfF=\nabla f $. We say $\bfF$ is \textbf{irrotational} if $ \curl \bfF= \mathbf{0} $.
+    Recall that $\mathbf{F}$ was \textit{conservative} if $ \mathbf{F}=\nabla f $. We say $\mathbf{F}$ is \textbf{irrotational} if $ \curl \mathbf{F}= \mathbf{0} $.
 \end{definition}
 \begin{definition}
-    We call $\bfA$ a \textbf{vector potential} for $\bfF$ if $ \bfF = \curl \bfA $.
+    We call $\mathbf{A}$ a \textbf{vector potential} for $\mathbf{F}$ if $ \mathbf{F} = \curl \mathbf{A} $.
 \end{definition}
 \begin{definition}
-    We say $\bfF$ is \textbf{solenoidal} if $ \div\bfF = 0 $.
+    We say $\mathbf{F}$ is \textbf{solenoidal} if $ \div\mathbf{F} = 0 $.
 \end{definition}
 \begin{proposition}
-    For scalar field $f$ and vector field $ \bfF $, we have 
+    For scalar field $f$ and vector field $ \mathbf{F} $, we have 
     \[
-        \curl \nabla f = 0,\quad \div (\curl \bfF) = 0.
+        \curl \nabla f = 0,\quad \div (\curl \mathbf{F}) = 0.
     \]
 \end{proposition}
 \begin{proof}
@@ -328,18 +328,18 @@ we cannot say much about $f$. This is an example of \textbf{hyperbolic problems}
     \]
 \end{proof}
 \begin{corollary}
-    If $\bfF$ is conservative, then $\bfF$ is irrotational. Reverse implication is true \textit{if} domain of $\bfF$ is \textit{simply connected}(1-connected). 
+    If $\mathbf{F}$ is conservative, then $\mathbf{F}$ is irrotational. Reverse implication is true \textit{if} domain of $\mathbf{F}$ is \textit{simply connected}(1-connected). 
 \end{corollary}
 \begin{corollary}
-    If there is a vector potential for $\bfF$, then $ \div\bfF = 0 $.
+    If there is a vector potential for $\mathbf{F}$, then $ \div\mathbf{F} = 0 $.
 \end{corollary}
 \begin{corollary}
-    If vector potential of $\bfF$ exists, then $\bfF$ is solenoidal. Reverse implication is true if the domain $ \Omega $ of $\bfF$ is 2-connected, i.e. is 1-connected and every sphere in $ \Omega $ can be continuously shrunk to any point in $ \Omega $. 
+    If vector potential of $\mathbf{F}$ exists, then $\mathbf{F}$ is solenoidal. Reverse implication is true if the domain $ \Omega $ of $\mathbf{F}$ is 2-connected, i.e. is 1-connected and every sphere in $ \Omega $ can be continuously shrunk to any point in $ \Omega $. 
 \end{corollary}
 \subsection{Topology via calculus}
-For $ \Omega \subseteq \mathbb{R}^{3} $, consider a vector field $ \bfF:\Omega\to \mathbb{R}^{3} $. We know that 
+For $ \Omega \subseteq \mathbb{R}^{3} $, consider a vector field $ \mathbf{F}:\Omega\to \mathbb{R}^{3} $. We know that 
 \[
-    \bfF \text{ irrotational} \land \Omega \text{ 1-connected} \Longrightarrow \bfF \text{ conservative}.
+    \mathbf{F} \text{ irrotational} \land \Omega \text{ 1-connected} \Longrightarrow \mathbf{F} \text{ conservative}.
 \]
 Using this result we can get results about topology without doing any topology.
 \begin{example}
@@ -347,17 +347,17 @@ Using this result we can get results about topology without doing any topology.
 
     Consider the vector field $F : \Omega\to \mathbb{R}^{3}$ defined by
     \[
-        \bfF(\bfx) = \frac{1}{x^2+y^2}\begin{pmatrix}
+        \mathbf{F}(\mathbf{x}) = \frac{1}{x^2+y^2}\begin{pmatrix}
             -y \\ x \\ 0
         \end{pmatrix}.
     \]
-    Clearly $\bfF$ is well-defined on $\Omega$ and $ \curl\bfF=\mathbf{0} $. If $ \Omega $ is simply connected, then $\bfF$ must be conservative. Suppose $ \bfF = \nabla f $ for some $f$. Then for any closed loop $C\in \Omega$, we have 
+    Clearly $\mathbf{F}$ is well-defined on $\Omega$ and $ \curl\mathbf{F}=\mathbf{0} $. If $ \Omega $ is simply connected, then $\mathbf{F}$ must be conservative. Suppose $ \mathbf{F} = \nabla f $ for some $f$. Then for any closed loop $C\in \Omega$, we have 
     \[
-        \oint_{C} \bfF\cdot\rmd \bfx = \oint_C \nabla f \cdot \rmd \bfx = 0,
+        \oint_{C} \mathbf{F}\cdot\mathrm{d} \mathbf{x} = \oint_C \nabla f \cdot \mathrm{d} \mathbf{x} = 0,
     \]
     while taking $ C:[0,2\pi]\ni t \mapsto (\cos t,\sin t,0) $, we have
     \[
-        \oint_{C} \bfF\cdot\rmd\bfx = \int_{0}^{2\pi} \begin{pmatrix}
+        \oint_{C} \mathbf{F}\cdot\mathrm{d}\mathbf{x} = \int_{0}^{2\pi} \begin{pmatrix}
             -\sin t \\ \cos t \\ 0
         \end{pmatrix} \cdot \begin{pmatrix}
             -\sin t \\ \cos t \\ 0

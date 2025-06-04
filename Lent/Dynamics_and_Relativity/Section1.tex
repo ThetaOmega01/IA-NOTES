@@ -4,8 +4,8 @@
     A \textbf{particle} is an object of negligible size and a finite mass $m>0$. (Perhaps) it has an electric charge $q$. 
 \end{definition}
 \begin{definition}[Position vector]
-    Position of a particle is described by a \textbf{position vector} $\bfr(t)$ or $\bfx(t)$ wrt to origin $O$. A particle at the origin has position vector $ \mathbf{0} $. The Cartesian components of $\bfr(t)$ are given by $(x,y,z): 
-    \mathbf{r}= x \bfi + y\bfj + z\bfk$. 
+    Position of a particle is described by a \textbf{position vector} $\mathbf{r}(t)$ or $\mathbf{x}(t)$ wrt to origin $O$. A particle at the origin has position vector $ \mathbf{0} $. The Cartesian components of $\mathbf{r}(t)$ are given by $(x,y,z): 
+    \mathbf{r}= x \mathbf{i} + y\mathbf{j} + z\mathbf{k}$. 
 \end{definition}
 \begin{definition}[Frame of reference]
     The choice of coordinate axes defines a \textbf{frame of reference} $S$.
@@ -13,37 +13,37 @@
 \begin{definition}[Velocity]
     The \textbf{velocity} of a particle is 
     \[
-        \bfu = \frac{\mathrm{d}}{\mathrm{d}t} \bfr(t) = \dot{\bfr}. 
+        \mathbf{u} = \frac{\mathrm{d}}{\mathrm{d}t} \mathbf{r}(t) = \dot{\mathbf{r}}. 
     \]
-    Note that $ \bfu $ is \textit{tangent} to path. See Vector Calculus for more details.
+    Note that $ \mathbf{u} $ is \textit{tangent} to path. See Vector Calculus for more details.
 \end{definition}
 \begin{definition}[Momentum]
     The \textbf{momentum} of a particle is 
     \[
-        m\bfu = m \dot{\bfr} = \bfp.
+        m\mathbf{u} = m \dot{\mathbf{r}} = \mathbf{p}.
     \]
 \end{definition}
 \begin{definition}[Acceleration]
     The \textbf{acceleration} of the particle is 
     \[
-        \dot{\bfu}= \ddot{\bfr} = \frac{\mathrm{d}^2\bfr}{\mathrm{d}t^2}.
+        \dot{\mathbf{u}}= \ddot{\mathbf{r}} = \frac{\mathrm{d}^2\mathbf{r}}{\mathrm{d}t^2}.
     \]
 \end{definition}
 \begin{note}
-    Time derivative of $\bfu(t)$ is
+    Time derivative of $\mathbf{u}(t)$ is
     \[
-        \dot{\bfu}(t) = \lim_{h \to 0} \frac{\bfu(t+h)-\bfu(t)}{h},
+        \dot{\mathbf{u}}(t) = \lim_{h \to 0} \frac{\mathbf{u}(t+h)-\mathbf{u}(t)}{h},
     \]
-    with $\bfu\to\bfu_0$ if and only if $|\bfu-\bfu_0|\to 0$. Then we can evaluate derivative by taking derivative of each component:
+    with $\mathbf{u}\to\mathbf{u}_0$ if and only if $|\mathbf{u}-\mathbf{u}_0|\to 0$. Then we can evaluate derivative by taking derivative of each component:
     \[
-        \frac{\mathrm{d}\bfr}{\mathrm{d}t} = \left( \frac{\mathrm{d}x}{\mathrm{d}t}, \frac{\mathrm{d}y}{\mathrm{d}t}, \frac{\mathrm{d}z}{\mathrm{d}t} \right). 
+        \frac{\mathrm{d}\mathbf{r}}{\mathrm{d}t} = \left( \frac{\mathrm{d}x}{\mathrm{d}t}, \frac{\mathrm{d}y}{\mathrm{d}t}, \frac{\mathrm{d}z}{\mathrm{d}t} \right). 
     \]
 \end{note}
 \begin{proposition}[Product rules]\label{prop:product rules}
 \begin{align*}
-    \frac{\mathrm{d}}{\mathrm{d}t}(f\bfg) &= \frac{\mathrm{d}f}{\mathrm{d}t} \cdot \bfg + f \frac{\mathrm{d}\bfg}{\mathrm{d}t},\\
-    \frac{\mathrm{d}}{\mathrm{d}t}(\bfg \cdot \bfh) &= \frac{\mathrm{d}\bfg}{\mathrm{d}t} \cdot \bfh + \bfg \cdot \frac{\mathrm{d}\bfh}{\mathrm{d}t},\\ 
-    \frac{\mathrm{d}}{\mathrm{d}t}(\bfg \times \bfh) &= \frac{\mathrm{d}\bfg}{\mathrm{d}t} \times \bfh + \bfg \times \frac{\mathrm{d}\bfh}{\mathrm{d}t}\quad\text{Order matters}.\\
+    \frac{\mathrm{d}}{\mathrm{d}t}(f\mathbf{g}) &= \frac{\mathrm{d}f}{\mathrm{d}t} \cdot \mathbf{g} + f \frac{\mathrm{d}\mathbf{g}}{\mathrm{d}t},\\
+    \frac{\mathrm{d}}{\mathrm{d}t}(\mathbf{g} \cdot \mathbf{h}) &= \frac{\mathrm{d}\mathbf{g}}{\mathrm{d}t} \cdot \mathbf{h} + \mathbf{g} \cdot \frac{\mathrm{d}\mathbf{h}}{\mathrm{d}t},\\ 
+    \frac{\mathrm{d}}{\mathrm{d}t}(\mathbf{g} \times \mathbf{h}) &= \frac{\mathrm{d}\mathbf{g}}{\mathrm{d}t} \times \mathbf{h} + \mathbf{g} \times \frac{\mathrm{d}\mathbf{h}}{\mathrm{d}t}\quad\text{Order matters}.\\
 \end{align*}
 \end{proposition}
 \subsection{Newton's Laws of Motions}
@@ -64,7 +64,7 @@
 \begin{definition}[Inertial frames]
     In \textbf{inertial frames} acceleration is zero if force is zero:
     \[
-        \ddot{\bfr}=\mathbf{0} \Longleftrightarrow \bfF = \mathbf{0}.
+        \ddot{\mathbf{r}}=\mathbf{0} \Longleftrightarrow \mathbf{F} = \mathbf{0}.
     \]
 \end{definition}
 
@@ -90,7 +90,7 @@
             \node[above] at (4,2.236) {$y'$};
             \node[below left] at (2,-1) {$z'$};
             \node at (4,-1.5) {$S'$};
-            \draw[->, color=red] (4,1) -- (5,1) node[above] at (5,1) {$\bfv$};
+            \draw[->, color=red] (4,1) -- (5,1) node[above] at (5,1) {$\mathbf{v}$};
         \end{tikzpicture}
     \end{center}
     Now $ x'=x-vt, y'=y, z'=z, t'=t $. We can generalise this to a general direction: 
@@ -102,23 +102,23 @@
     Transformations in the form $\mathbf{r}'=\mathbf{r}-\mathbf{v}t$ are called \textbf{boosts}.
 \end{definition}
 
-For a particle with position $ \mathbf{r}(t) $ in $S$ and $ \mathbf{r}'(t') $ in $S'$, then $\bfu=\dot{\bfr}(t)$ and $ \bfa=\ddot{\bfr}(t) $ in $S$. In $S'$ they are related by 
+For a particle with position $ \mathbf{r}(t) $ in $S$ and $ \mathbf{r}'(t') $ in $S'$, then $\mathbf{u}=\dot{\mathbf{r}}(t)$ and $ \mathbf{a}=\ddot{\mathbf{r}}(t) $ in $S$. In $S'$ they are related by 
 \[
-    \bfu' = \bfu-\bfv,\quad \bfa'=\bfa.
+    \mathbf{u}' = \mathbf{u}-\mathbf{v},\quad \mathbf{a}'=\mathbf{a}.
 \] 
 
 \begin{definition}[Galilean transformation]
     A general \textbf{Galilean transformation} combines boosts with some combinations of the following: 
     \begin{itemize}
-        \item Transformation of space: $ \bfr'=\bfr-\bfr_0 $, where $\bfr_0$ is constant.
+        \item Transformation of space: $ \mathbf{r}'=\mathbf{r}-\mathbf{r}_0 $, where $\mathbf{r}_0$ is constant.
         \item Transformation of time: $ t'=t-t_0 $ where $t_0$ is constant.
-        \item Rotations and reflections in space: $ \bfr'=R\bfr $, where $R$ is orthogonal.
+        \item Rotations and reflections in space: $ \mathbf{r}'=R\mathbf{r} $, where $R$ is orthogonal.
     \end{itemize}
     This set generates the \textbf{Galilean group}(group of Galilean transformation).
 \end{definition}
 
 \begin{note}
-    For any Galilean transformation we have $ \ddot{\bfr}=\mathbf{0} \Longleftrightarrow \ddot{\bfr}'=\mathbf{0} $.
+    For any Galilean transformation we have $ \ddot{\mathbf{r}}=\mathbf{0} \Longleftrightarrow \ddot{\mathbf{r}}'=\mathbf{0} $.
 \end{note}
 
 \begin{law}[Principle of Galilean relativity]
@@ -139,13 +139,13 @@ For a particle with position $ \mathbf{r}(t) $ in $S$ and $ \mathbf{r}'(t') $ in
 \subsection{Newton's second law and equations of motion}
 \subsubsection*{Newton's second law}
 
-From the second law, for a particle subject to a force $\bfF$ the momentum $\bfp$ satisfies
+From the second law, for a particle subject to a force $\mathbf{F}$ the momentum $\mathbf{p}$ satisfies
 \[
-    \frac{\mathrm{d}\bfp}{\mathrm{d}t} = \bfF \quad \text{where}\quad \bfp=m\bfu=m \dot{\bfr}. 
+    \frac{\mathrm{d}\mathbf{p}}{\mathrm{d}t} = \mathbf{F} \quad \text{where}\quad \mathbf{p}=m\mathbf{u}=m \dot{\mathbf{r}}. 
 \]
 Assume that $m$ is \textit{constant}. Then 
 \[
-    \bfF = m \dot{\bfu} = m \ddot{\bfr}.
+    \mathbf{F} = m \dot{\mathbf{u}} = m \ddot{\mathbf{r}}.
 \]
 We can say: 
 \begin{quote}
@@ -153,11 +153,11 @@ We can say:
 \end{quote}
 
 \subsubsection*{Equations of motion}
-By writting the force as $ \bfF(\mathbf{r},\dot{\bfr},t) $, we have 
+By writting the force as $ \mathbf{F}(\mathbf{r},\dot{\mathbf{r}},t) $, we have 
 \[
-    m \ddot{\bfr} = m \frac{\mathrm{d}^2 \bfr}{\mathrm{d}t^2} = \bfF(\bfr,\dot{\bfr},t). 
+    m \ddot{\mathbf{r}} = m \frac{\mathrm{d}^2 \mathbf{r}}{\mathrm{d}t^2} = \mathbf{F}(\mathbf{r},\dot{\mathbf{r}},t). 
 \]
-Need to provide initial position and velocity $ \mathbf{r}(t_0),\dot{\bfr}(t_0) $. The path/trajectory is then determined.
+Need to provide initial position and velocity $ \mathbf{r}(t_0),\dot{\mathbf{r}}(t_0) $. The path/trajectory is then determined.
 
 \subsection{Examples of forces}
 \subsubsection*{Gravitational force}
@@ -165,18 +165,18 @@ Need to provide initial position and velocity $ \mathbf{r}(t_0),\dot{\bfr}(t_0) 
 \begin{law}[Newton's law of gravitation]
     Gravitational force between 2 particles at $ \mathbf{r}_1,\mathbf{r}_2 $ with masses $m_1,m_2$ is 
     \[
-        \bfF_1 = -\frac{G m_1m_2}{\left| \mathbf{r}_1-\mathbf{r}_2 \right|^3 }(\bfr_1-\bfr_2) = -\bfF_2,
+        \mathbf{F}_1 = -\frac{G m_1m_2}{\left| \mathbf{r}_1-\mathbf{r}_2 \right|^3 }(\mathbf{r}_1-\mathbf{r}_2) = -\mathbf{F}_2,
     \]
-    where $G$ is the gravitational constant. Note that $ \bfF_1=-\bfF_2 \propto \left| \bfr_1-\bfr_2 \right| ^{-2} $, called the \textbf{inverse square law}. The direction implies that it is \textit{attractive}.
+    where $G$ is the gravitational constant. Note that $ \mathbf{F}_1=-\mathbf{F}_2 \propto \left| \mathbf{r}_1-\mathbf{r}_2 \right| ^{-2} $, called the \textbf{inverse square law}. The direction implies that it is \textit{attractive}.
 \end{law}
 
 \begin{center}
     \begin{tikzpicture}
-        \draw[->-=0.5] (0,0) -- (2,2) node[below right, color=blue] at (1,1) {$\bfr_2$} node[below] at (0,0) {$O$} node[circ] {} node[above] at (2,2.1) {$m_2$};
-        \draw[->-=0.5] (0,0) -- (-2,2) node[below left, color=blue] at (-1,1) {$\bfr_1$} node[circ] {} node[above] at (-2,2.1) {$m_1$};
+        \draw[->-=0.5] (0,0) -- (2,2) node[below right, color=blue] at (1,1) {$\mathbf{r}_2$} node[below] at (0,0) {$O$} node[circ] {} node[above] at (2,2.1) {$m_2$};
+        \draw[->-=0.5] (0,0) -- (-2,2) node[below left, color=blue] at (-1,1) {$\mathbf{r}_1$} node[circ] {} node[above] at (-2,2.1) {$m_1$};
         \draw[->-=0.5] (2,2) -- (-2,2) node[above, color=blue] at (0,2) {$ \mathbf{r}_1-\mathbf{r}_2 $};
-        \draw[->>, color=blue] (-1.9,2.6) -- (-0.9,2.6) node[above,pos=0.5] {$ \bfF_1 $};
-        \draw[<<-, color=blue] (0.9,2.6) -- (1.9,2.6) node[above,pos=0.5] {$ \bfF_2 $};
+        \draw[->>, color=blue] (-1.9,2.6) -- (-0.9,2.6) node[above,pos=0.5] {$ \mathbf{F}_1 $};
+        \draw[<<-, color=blue] (0.9,2.6) -- (1.9,2.6) node[above,pos=0.5] {$ \mathbf{F}_2 $};
     \end{tikzpicture}
 \end{center}
 \begin{note}
@@ -185,17 +185,17 @@ Need to provide initial position and velocity $ \mathbf{r}(t_0),\dot{\bfr}(t_0) 
 
 \subsubsection*{Electromagnetic forces}
 \begin{law}[Lorentz force law]
-    Consider a particle with electric charge $q$, in presence of \textbf{electric field} $ \bfE(\bfr,t) $ and a \textbf{magnetic field} $ \bfB(\bfr,t) $. It experiences an \textbf{electromagnetic force}
+    Consider a particle with electric charge $q$, in presence of \textbf{electric field} $ \mathbf{E}(\mathbf{r},t) $ and a \textbf{magnetic field} $ \mathbf{B}(\mathbf{r},t) $. It experiences an \textbf{electromagnetic force}
     \[
-        \bfF(\bfr,\dot{\bfr},t) = q(\bfE(\bfr,t)+\dot{\bfr}\times \bfB(\bfr,t)).
+        \mathbf{F}(\mathbf{r},\dot{\mathbf{r}},t) = q(\mathbf{E}(\mathbf{r},t)+\dot{\mathbf{r}}\times \mathbf{B}(\mathbf{r},t)).
     \]
 \end{law}
 \begin{example}
-    $ \bfE = \mathbf{0} $ and $ \bfB $ is constant. The equation of motion is 
+    $ \mathbf{E} = \mathbf{0} $ and $ \mathbf{B} $ is constant. The equation of motion is 
     \[
-        m \ddot{\bfr} = q \dot{\bfr} \times \bfB.
+        m \ddot{\mathbf{r}} = q \dot{\mathbf{r}} \times \mathbf{B}.
     \]
-    Choose axes such that $\bfB = B \hat{\bfz}$ is in the $z$-direction. Hence $m\ddot{z}=0 \Rightarrow z=z_0+ut$, $ m \ddot{x}=qB \dot{y} $ and $ m \ddot{y}=-qB \dot{x} $. For convenience, define $ \omega = qB/m $, the solution is\footnote{check it!}
+    Choose axes such that $\mathbf{B} = B \hat{\mathbf{z}}$ is in the $z$-direction. Hence $m\ddot{z}=0 \Rightarrow z=z_0+ut$, $ m \ddot{x}=qB \dot{y} $ and $ m \ddot{y}=-qB \dot{x} $. For convenience, define $ \omega = qB/m $, the solution is\footnote{check it!}
     \[
         \begin{pmatrix}
             x \\ y
@@ -204,7 +204,7 @@ Need to provide initial position and velocity $ \mathbf{r}(t_0),\dot{\bfr}(t_0) 
             x_0-\alpha \cos (\omega(t-t_0)) \\ y_0+\alpha \sin (\omega(t-t_0))
         \end{pmatrix},
     \] 
-    where $x_0,y_0,\alpha$ are determined by initial conditions. This particle moves in a helix. Motion is clockwise along the direction of $ \bbB $.
+    where $x_0,y_0,\alpha$ are determined by initial conditions. This particle moves in a helix. Motion is clockwise along the direction of $ \mathbb{B} $.
     \begin{center}
         \begin{tikzpicture}
             \begin{axis}[view={60}{30},ticks=none]
