@@ -1,6 +1,8 @@
 \documentclass[a4paper]{article}
 \usepackage{../triposnotes}
 
+\renewcommand{\triposcourse}{Groups}
+
 \newcommand{\bluecomment}[1]{{\color{blue}#1}}
 %\renewcommand{\comment}[1]{}
 \newcommand{\redcomment}[1]{{\color{red}#1}}
@@ -3102,7 +3104,7 @@ Now we can classify groups of order 8.
 
   Now let $ |G|=8 $ and $g\in G$, then $ \ord(G)|8 $ by Lagrange, so
   $ \ord(g)=1,2,4,8. $
-  \begin{enumerate}
+  \begin{enumerate}[align=left]
     \item[$ \ord=8 ,$] Then $ G=\langle g \rangle \cong C_8 $.
     \item[$ \ord=2 ,$] Then by lemma \ref{lma:8.2} $ G \cong
       C_2\times C_2 \times C_2 $.
@@ -3271,4 +3273,3 @@ For infinite groups, there are lots of really nice connections
 between geometric properites of Cayley graph and algebraic properties
 of the group.
 \end{document}
-
